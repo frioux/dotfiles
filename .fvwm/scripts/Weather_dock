@@ -1,0 +1,49 @@
+WindowTitle     {WeatherDock}
+WindowSize      45 45
+Colorset        0
+
+Init
+Begin
+		Set $PROG = {/home/frew/.fvwm/scripts/weather.pl}
+		
+		Set $text3 = (GetOutput $PROG 2 -1)
+		ChangeIcon 1 $text3
+End
+
+PeriodicTasks
+ Begin 
+  If (RemainderOfDiv (GetTime) 2000)==0 Then
+  Begin
+        Set $text3 = (GetOutput $PROG 2 -1)
+        ChangeIcon 1 $text3
+  End
+End
+
+################# DIA 3 #######################
+
+Widget			1
+Property
+	Type		ItemDraw
+	Size		45 45
+	Position	0 0
+	Font		"shadow=0 se:xft:Verdana:size=14"
+	Flags		NoFocus NoReliefString Center
+
+Main
+Case message of
+	SingleClic:
+	Begin
+		If $toggled==0 Then
+		Begin
+			Set $toggled = 1
+			Do {Module FvwmScript scripts/Weather_popup}
+		End
+		Else
+		Begin
+			Set $toggled = 0
+			Do {KillModule FvwmScript scripts/WeatherPopup}
+		End
+	End
+End
+
+

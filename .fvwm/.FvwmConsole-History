@@ -1,0 +1,11 @@
+Test (Exec exec ps -a | grep amarok*) Echo "Amarok Running"
+Test (True) Echo "Amarok Running"
+Test (1==1) Echo "Amarok Running"
+Test (1 1) Echo "Amarok Running"
+Test (Version *) Echo "Amarok Running"
+FvwmScript /home/frew/.fvwm/scripts/Weather_dock
+FvwmScript /home/frew/.fvwm/scripts/Weather_popup
+FvwmScript /home/frew/.fvwm/scripts/Weather_popup
+FvwmScript /home/frew/.fvwm/scripts/Weather_popup
+ButtonStyle 1 ActiveUp Pixmap /home/frew/tmp/elberg/options_activeup.xpm 
+exit

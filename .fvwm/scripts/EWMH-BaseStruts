@@ -1,0 +1,94 @@
+# Written by: Maciej Delmanowski <harnir@linux.net.pl>
+
+# Overview:
+# Functions for easier usage of EWMHBaseStruts command. How to use:
+# 1. Set the desktop boundaries using EWMH-Desktop function, example:
+#       EWMH-Desktop 3 3 3 3
+#    It will set a frame 3 pixels thick around desktop, windows will not
+#    maximize over this frame.
+# 2. Set separate space for each edge of the screen. Example of setting
+#    a border on the top edge, 30 pixels thick:
+#       EWMH-Panel-Top 30
+#    You can set all panel borders at once using EWMH-Panel function, similar
+#    to EWMH-Desktop.
+# 3. Now bind EWMH-Toggle function like this:
+#       Mouse 2 R N EWMH-Toggle Mouse 2 R N
+#    You have to tell this function what binding did you used. Now using that
+#    binding (ex. middle mouse button on the desktop) will hide or show all
+#    FvwmButtons, FvwmPager, FvwmIconMan and additionally gkrellm windows.
+#    Also desktop borders will be automatycally adjusted to shown/hidden
+#    state.
+
+
+DestroyFunc EWMH-Desktop
+AddToFunc EWMH-Desktop
++ I SetEnv EWMH-BS-Desktop-Left		$0
++ I SetEnv EWMH-BS-Desktop-Right	$1
++ I SetEnv EWMH-BS-Desktop-Top		$2
++ I SetEnv EWMH-BS-Desktop-Bottom	$3
++ I EWMH-Set-Desktop
++ I SetEnv EWMH-BS-Panel-Left	$[EWMH-BS-Desktop-Left]
++ I SetEnv EWMH-BS-Panel-Right	$[EWMH-BS-Desktop-Right]
++ I SetEnv EWMH-BS-Panel-Top	$[EWMH-BS-Desktop-Top]
++ I SetEnv EWMH-BS-Panel-Bottom	$[EWMH-BS-Desktop-Bottom]
+
+DestroyFunc EWMH-Set-Desktop
+AddToFunc EWMH-Set-Desktop
++ I EWMHBaseStruts $[EWMH-BS-Desktop-Left] $[EWMH-BS-Desktop-Right] $[EWMH-BS-Desktop-Top] $[EWMH-BS-Desktop-Bottom]
+
+DestroyFunc EWMH-Panel
+AddToFunc EWMH-Panel
++ I SetEnv EWMH-BS-Panel-Left	$0
++ I SetEnv EWMH-BS-Panel-Right	$1
++ I SetEnv EWMH-BS-Panel-Top	$2
++ I SetEnv EWMH-BS-Panel-Bottom	$3
++ I EWMH-Set-Panel
+
+DestroyFunc EWMH-Panel-Left
+AddToFunc EWMH-Panel-Left
++ I SetEnv EWMH-BS-Panel-Left $0
++ I EWMH-Set-Panel
+
+DestroyFunc EWMH-Panel-Right
+AddToFunc EWMH-Panel-Right
++ I SetEnv EWMH-BS-Panel-Right $0
++ I EWMH-Set-Panel
+
+DestroyFunc EWMH-Panel-Top
+AddToFunc EWMH-Panel-Top
++ I SetEnv EWMH-BS-Panel-Top $0
++ I EWMH-Set-Panel
+
+DestroyFunc EWMH-Panel-Bottom
+AddToFunc EWMH-Panel-Bottom
++ I SetEnv EWMH-BS-Panel-Bottom $0
++ I EWMH-Set-Panel
+
+DestroyFunc EWMH-Set-Panel
+AddToFunc EWMH-Set-Panel
++ I EWMHBaseStruts $[EWMH-BS-Panel-Left] $[EWMH-BS-Panel-Right] $[EWMH-BS-Panel-Top] $[EWMH-BS-Panel-Bottom]
+
+DestroyFunc EWMH-Toggle
+AddToFunc EWMH-Toggle
++ I Interface_Hide $0 $1 $2 $3
+
+DestroyFunc Interface_Show
+AddToFunc Interface_Show
++ I All (FvwmPager)	Iconify false
++ I All (FvwmButtons)	Iconify false
++ I All (FvwmIconMan)	Iconify false
++ I All (gkrellm)	Iconify false
++ I All (gDeskCal)	Iconify false
++ I EWMH-Set-Panel
++ I $0 $1 $2 $3 Interface_Hide $0 $1 $2 $3
+
+DestroyFunc Interface_Hide
+AddToFunc Interface_Hide
++ I All (FvwmPager)	Iconify true
++ I All (FvwmButtons)	Iconify true
++ I All (FvwmIconMan)	Iconify true
++ I All (gkrellm)	Iconify true
++ I All (gDeskCal)	Iconify true
++ I EWMH-Set-Desktop
++ I $0 $1 $2 $3 Interface_Show $0 $1 $2 $3
+

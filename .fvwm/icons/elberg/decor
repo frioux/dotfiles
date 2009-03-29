@@ -1,0 +1,8 @@
+BorderStyle -- HiddenHandles !NoInset Raised
+TitleStyle LeftJustified Height 19
+Style * Font         snap
+Style * HandleWidth  4
+Style * ForeColor    seashell2
+Style * BackColor    #808080
+Style * HilightFore  black
+Style * HilightBack  #F0F0F0

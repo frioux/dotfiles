@@ -1,0 +1,21 @@
+#Mouse 2 RI A EWMH-Toggle Mouse 2 RI A # Iconifies Dockbuttons and xmms/mpd-control
+Mouse 3 R N
+#Mouse 3 R A Menu FvwmRootMenu
+Mouse 1 R A Menu FvwmWindowOpsMenu
+Mouse 1 2 A FvwmDeleteOrDestroy
+Mouse 1 6 A FvwmIconifyOrShade
+a
+Mouse 1 4 A FvwmMaximize 100 100
+Mouse 2 4 A FvwmMaximize 0 100
+Mouse 3 4 A FvwmMaximize 100 0
+Mouse 1 W M FvwmMoveOrIconify
+Mouse 1 I A FvwmMoveOrIconify
+Mouse 4 T A FvwmWindowShade True
+Mouse 5 T A FvwmWindowShade False
+Mouse 1 1 A MoveToPage +1p 0p
+Mouse 3 1 A MoveToPage -1p 0p
+Mouse 3 T A Menu FvwmWindowOpsMenu
+Mouse 4 R A GoToPage +1p 0p
+Mouse 5 R A GoToPage -1p 0p
+Mouse 2 R M FvwmExpose
+

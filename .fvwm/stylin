@@ -1,0 +1,57 @@
+### Global Styles
+Style * SloppyFocus, MouseFocusClickRaises
+Style * TileCascadePlacement, GrabFocusOff
+Style * NoPPosition, ResizeOpaque
+Style * DecorateTransient, DontRaiseTransient
+Style * DontLowerTransient, StackTransientParent
+Style * GrabFocusTransientOff
+Style * WindowShadeSteps 20, WindowShadeScrolls
+Style * MwmDecor, SlipperyIcon
+Style * IconBox screen w 15 15 -165 -15, IconGrid 3 3, IconFill right top
+Style * Font "Shadow=1 1 SE:xft:snap.se:pixelsize=11"
+
+### IconStyle
+Style * IconFont "Shadow=1 se:xft:snap.se:size=8:antialias=True", IndexedIconName, IconBackgroundPadding 0
+Style * IconBackgroundRelief 0, IconBackGroundColorset 5
+Style * IconTitle, !StickyIcon, IconTitleColorset 5, IconBox 1200x100-30+10, \
+        IconFill right top, IconGrid 30 30 HilightIconTitleColorset 5, IconTitleRelief 0
+
+### FvwmExpose
+Style FvwmExpose* UseSkipList Colorset 3
+
+
+Style FvwmButtons          NeverFocus, NoHandles, NoTitle, StaysOnBottom, Sticky, WindowListSkip
+Style FvwmDesktop          NeverFocus
+Style FvwmIdent            NoTitle
+Style FvwmTaskBar          NeverFocus
+
+### Program Styles                              
+Style "*" Icon 32x32/x.png, NoActiveIconOverride, MiniIcon 16x16/x.png
+Style "XTerm" Icon 32x32/xconsole.png, NoActiveIconOverride, MiniIcon 16x16/xconsole.png, NoTitleBar
+Style "Gvim" Icon 32x32/vim.png, IconOverride, EWMHMiniIconOverride, MiniIcon 16x16/vim.png
+Style "Gaim" Icon 32x32/gaim.png, IconOverride, EWMHMiniIconOverride, MiniIcon 16x16/gaim.png, StartsOnPage 0 0 0, SkipMapping
+Style "Firefox-bin" Icon 32x32/firefox.png, MiniIcon 16x16/firefox.png, EWMHMiniIconOverride, StartsOnPage 0 0 0, SkipMapping
+Style "irssi" Icon 32x32/licq.png, MiniIcon 16x16/licq.png, IconOverride, EWMHMiniIconOverride, StartsOnPage 0 0 0, SkipMapping
+Style "xmms" WindowListSkip, CirculateSkip
+Style "MPlayer" Icon 32x32/mplayer.png MiniIcon 16x16/mplayer.png, IconOverride, EWMHMiniIconOverride
+Style "Mozilla-thunderbird-bin" Icon 32x32/thunderbird.png, MiniIcon 16x16/thunderbird.png, IconOverride, EWMHMiniIconOverride, StartsOnPage 0 1 0, SkipMapping
+Style "konqueror" Icon 32x32/konqueror.png, MiniIcon 16x16/konqueror.png, IconOverride, EWMHMiniIconOverride
+Style "rox" Icon 32x32/rox.png, MiniIcon 16x16/rox.png, IconOverride, EWMHMiniIconOverride,
+Style "xterm" Icon 32x32/xconsole.png, MiniIcon 16x16/xconsole.png, IconOverride, EWMHMiniIconOverride,
+Style "terminal" Icon 32x32/xconsole.png, MiniIcon 16x16/xconsole.png, IconOverride, EWMHMiniIconOverride,
+Style "k3b" Icon 32x32/k3b.png, MiniIcon 16x16/k3b.png, IconOverride, EWMHMiniIconOverride,
+Style "mplayer" Icon 32x32/mplayer.png, MiniIcon 16x16/mplayer.png, IconOverride, EWMHMiniIconOverride,
+Style "acroread" Icon 32x32/acroread.png, MiniIcon 16x16/acroread.png, IconOverride, EWMHMiniIconOverride,
+Style "gimp*" StartsOnPage 0 0 2, SkipMapping, Icon 32x32/gimp.png, MiniIcon 16x16/gimp.png, IconOverride, EWMHMiniIconOverride,
+Style "amarokapp" StartsOnPage 0 2 0, SkipMapping
+Style "apollon" StartsOnPage 0 1 1, SkipMapping
+Style "OpenOffice*", SkipMapping
+Style "porthole" StartsOnPage 0 1 1, SkipMapping
+Style "Eclipse" StartsOnPage 0 0 1, SkipMapping
+Style "Eclipse" StartsOnPage 0 0 1, SkipMapping
+Style "eclipse-gtk" StartsOnPage 0 0 1, SkipMapping
+Style "Point2Play" StartsOnPage 0 0 1, SkipMapping
+Style "Azureus" StartsOnPage 0 1 2, SkipMapping
+Style "gkrellm" StaysOnTop, !Iconifiable, Sticky, NeverFocus, NoHandles, WindowListSkip, NoTitle
+Style "xeyes" StaysOnTop, !Iconifiable, Sticky, NoTitle, NeverFocus, NoHandles, WindowListSkip
+Style FvwmPager NeverFocus, NoHandles, NoTitle, StaysOnTop, Sticky, WindowListSkip

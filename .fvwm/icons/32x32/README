@@ -1,0 +1,8 @@
+
+
+Put in here the icons your choice. 
+I'm using kde's crystal-svg icons. Have a look into your KDE-Directory (maybe /opt/kde/share/icons), or download them here http://linuxcult.com/forum/crystal/Crystal_SVG.tar.gz!!!
+Untar it somewhere an put all icons from /path/to/crystalsvg/32x32/apps into the 32x32 folder in .fvwm/icons/!
+Than do this in your terminal/konsole:
+
+for i in ~/.fvwm/icons/32x32/*;do convert $i -geometry 16x16 ~/.fvwm/icons/16x16/`basename $i`;done
