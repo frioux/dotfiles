@@ -3,9 +3,10 @@ if [[ $STY = '' ]] then screen -xR; fi
 
 #{{{ ZSH Modules
 
-autoload -U compinit promptinit zcalc zmv
+autoload -U compinit promptinit zcalc zmv zsh-mime-setup
 compinit
 promptinit
+zsh-mime-setup
 
 #}}}
 
