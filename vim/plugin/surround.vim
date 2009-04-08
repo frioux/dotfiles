@@ -1,7 +1,7 @@
 " surround.vim - Surroundings
 " Author:       Tim Pope <vimNOSPAM@tpope.info>
 " GetLatestVimScripts: 1697 1 :AutoInstall: surround.vim
-" $Id: surround.vim,v 1.24 2007/05/10 20:49:49 tpope Exp $
+" $Id: surround.vim,v 1.34 2008-02-15 21:43:42 tpope Exp $
 "
 " See surround.txt for help.  This can be accessed by doing
 "
@@ -13,7 +13,7 @@
 " ============================================================================
 
 " Exit quickly when:
-" - this plugin was already loaded (or disabled)
+" - this plugin was already loaded or disabled
 " - when 'compatible' is set
 if (exists("g:loaded_surround") && g:loaded_surround) || &cp
     finish
@@ -172,7 +172,10 @@ function! s:wrap(string,char,type,...)
         let extraspace = ' '
     endif
     let idx = stridx(pairs,newchar)
-    if exists("b:surround_".char2nr(newchar))
+    if newchar == ' '
+        let before = ''
+        let after  = ''
+    elseif exists("b:surround_".char2nr(newchar))
         let all    = s:process(b:surround_{char2nr(newchar)})
         let before = s:extractbefore(all)
         let after  =  s:extractafter(all)
@@ -350,6 +353,13 @@ function! s:insert(...) " {{{1
     let reg_save = @@
     call setreg('"',"\r",'v')
     call s:wrapreg('"',char,linemode)
+    " If line mode is used and the surrounding consists solely of a suffix,
+    " remove the initial newline.  This fits a use case of mine but is a
+    " little inconsistent.  Is there anyone that would prefer the simpler
+    " behavior of just inserting the newline?
+    if linemode && match(getreg('"'),'^\n\s*\zs.*') == 0
+        call setreg('"',matchstr(getreg('"'),'^\n\s*\zs.*'),getregtype('"'))
+    endif
     " This can be used to append a placeholder to the end
     if exists("g:surround_insert_tail")
         call setreg('"',g:surround_insert_tail,"a".getregtype('"'))
@@ -362,7 +372,7 @@ function! s:insert(...) " {{{1
     else
         norm! ""P
     endif
-    if @@ =~ '\r.*\n'
+    if linemode
         call s:reindent()
     endif
     norm! `]
@@ -409,8 +419,12 @@ function! s:dosurround(...) " {{{1
     let original = getreg('"')
     let otype = getregtype('"')
     call setreg('"',"")
-    exe 'norm d'.(scount==1 ? "": scount)."i".char
-    "exe "norm vi".char."d"
+    let strcount = (scount == 1 ? "" : scount)
+    if char == '/'
+        exe 'norm '.strcount.'[/d'.strcount.']/'
+    else
+        exe 'norm d'.strcount.'i'.char
+    endif
     let keeper = getreg('"')
     let okeeper = keeper " for reindent below
     if keeper == ""
@@ -421,8 +435,6 @@ function! s:dosurround(...) " {{{1
     let oldline = getline('.')
     let oldlnum = line('.')
     if char ==# "p"
-        "let append = matchstr(keeper,'\n*\%$')
-        "let keeper = substitute(keeper,'\n*\%$','','')
         call setreg('"','','V')
     elseif char ==# "s" || char ==# "w" || char ==# "W"
         " Do nothing
@@ -430,33 +442,30 @@ function! s:dosurround(...) " {{{1
     elseif char =~ "[\"'`]"
         exe "norm! i \<Esc>d2i".char
         call setreg('"',substitute(getreg('"'),' ','',''))
+    elseif char == '/'
+        norm! "_x
+        call setreg('"','/**/',"c")
+        let keeper = substitute(substitute(keeper,'^/\*\s\=','',''),'\s\=\*$','','')
     else
-        exe "norm! da".char
+        " One character backwards
+        call search('.','bW')
+        exe "norm da".char
     endif
     let removed = getreg('"')
     let rem2 = substitute(removed,'\n.*','','')
     let oldhead = strpart(oldline,0,strlen(oldline)-strlen(rem2))
     let oldtail = strpart(oldline,  strlen(oldline)-strlen(rem2))
     let regtype = getregtype('"')
-    if char == 'p'
-        let regtype = "V"
-    endif
     if char =~# '[\[({<T]' || spc
         let keeper = substitute(keeper,'^\s\+','','')
         let keeper = substitute(keeper,'\s\+$','','')
     endif
     if col("']") == col("$") && col('.') + 1 == col('$')
-        "let keeper = substitute(keeper,'^\n\s*','','')
-        "let keeper = substitute(keeper,'\n\s*$','','')
         if oldhead =~# '^\s*$' && a:0 < 2
-            "let keeper = substitute(keeper,oldhead.'\%$','','')
             let keeper = substitute(keeper,'\%^\n'.oldhead.'\(\s*.\{-\}\)\n\s*\%$','\1','')
         endif
         let pcmd = "p"
     else
-        if oldhead == "" && a:0 < 2
-            "let keeper = substitute(keeper,'\%^\n\(.*\)\n\%$','\1','')
-        endif
         let pcmd = "P"
     endif
     if line('.') < oldlnum && regtype ==# "V"
@@ -469,7 +478,6 @@ function! s:dosurround(...) " {{{1
     silent exe 'norm! ""'.pcmd.'`['
     if removed =~ '\n' || okeeper =~ '\n' || getreg('"') =~ '\n'
         call s:reindent()
-    else
     endif
     if getline('.') =~ '^\s\+$' && keeper =~ '^\s*\n'
         silent norm! cc
@@ -477,6 +485,11 @@ function! s:dosurround(...) " {{{1
     call setreg('"',removed,regtype)
     let s:lastdel = removed
     let &clipboard = cb_save
+    if newchar == ""
+        silent! call repeat#set("\<Plug>Dsurround".char,scount)
+    else
+        silent! call repeat#set("\<Plug>Csurround".char.newchar,scount)
+    endif
 endfunction " }}}1
 
 function! s:changesurround() " {{{1
@@ -542,6 +555,9 @@ function! s:opfunc(type,...) " {{{1
     call setreg(reg,reg_save,reg_type)
     let &selection = sel_save
     let &clipboard = cb_save
+    if a:type =~ '^\d\+$'
+        silent! call repeat#set("\<Plug>Y".(a:0 ? "S" : "s")."surround".char,a:type)
+    endif
 endfunction
 
 function! s:opfunc2(arg)
