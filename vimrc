@@ -1,5 +1,7 @@
-silent! ruby nil
+
 "{{{Auto Commands
+
+autocmd VimEnter * set vb t_vb=
 
 " Automatically cd into the directory that the file is in
 autocmd BufEnter * execute "chdir ".escape(expand("%:p:h"), ' ')
@@ -50,7 +52,6 @@ set foldmethod=marker
 filetype on
 filetype plugin on
 syntax enable
-set grepprg=grep\ -nH\ $*
 
 " Who doesn't like autoindent?
 set autoindent
@@ -108,6 +109,9 @@ let g:clipbrdDefaultReg = '+'
 " When I close a tab, remove the buffer
 set nohidden
 
+" allow selection of nothing
+set virtualedit=block
+
 " Set off the other paren
 highlight MatchParen ctermbg=4
 " }}}
@@ -119,15 +123,20 @@ if has("gui_running")
    colorscheme inkpot
    " Remove Toolbar
    set guioptions-=T
-   "Terminus is AWESOME
-   set guifont=Terminus\ 9
+   set guioptions-=r
+   set guioptions-=R
+   if has('win32')
+      set guifont=Consolas:h8
+   else
+      set guifont=Terminus\ 9
+   endif
 else
    colorscheme metacosm
 endif
 
 "Status line gnarliness
 set laststatus=2
-set statusline=%F%m%r%h%w\ (%{&ff}){%Y}\ [%l,%v][%p%%]
+set statusline=%F%m%r%h%w\ (%{&ff}){%Y}\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}\ [%l,%v][%p%%]
 
 " }}}
 
@@ -186,33 +195,41 @@ function! TodoListMode()
    set foldlevel=1
    tabnew ~/.notes.txt
    tabfirst
-   " or 'norm! zMzr'
 endfunction
 
+"{{{ Setup workspace
+function! WorkspaceMode()
+simalt ~x
+vsplit
+vsplit
+wincmd h
+wincmd h
+split
+wincmd l
+wincmd l
+split
+endfunction
+"}}}
+"
 "}}}
 
-"{{{ perl6 spec
-
-function! Perl6DevEnd()
-   wincmd h
-   wincmd h
-   wincmd h
-   q!
-   mksession! ~/tmp/pugsdev
-   qa
+function! ACDRI()
+   Project C:\Documents\ and\ Settings\frew\My\ Documents\Code\aircraft_ducting\project
 endfunction
 
-"}}}
-
-"{{{ perl6 spec
-
-function! Perl6Dev()
-   Project ~/tmp/spectestproject
-   set foldlevel=1
+function! Frew()
+   ruby << EOF
+     cb = VIM::Buffer.current
+     cl = cb.line_number
+     lines = []
+     line = cb.line
+     (two,be,awesome) = line.split(' ')
+     lines << "accessor => #{awesome.split(/(?=[A-Z])/).map{|w| w.downcase}.join("_")}"
+     lines.reverse.each {|line| cb.append(cl, line) }
+     cb.delete(cl)
+EOF
 endfunction
-
-"}}}
-
+" to use: :call Frew()
 "}}}
 
 "{{{ Mappings
@@ -220,26 +237,17 @@ endfunction
 " Open Url on this line with the browser \w
 map <Leader>w :call Browser ()<CR>
 
-" Open the Project Plugin <F2>
-nnoremap <silent> <F2> :Project<CR>
-
-" Open the Project Plugin
-nnoremap <silent> <Leader>pal  :Project .vimproject<CR>
+" Open NERDTree <F2>
+nnoremap <silent> <F2> :NERDTreeToggle<CR>
 
 " TODO Mode
 nnoremap <silent> <Leader>todo :execute TodoListMode()<CR>
 
-" Open the TagList Plugin <F3>
-nnoremap <silent> <F3> :Tlist<CR>
+"workspace mode
+nnoremap <silent> <Leader>work :execute WorkspaceMode()<CR>
 
-" Next Tab
-nnoremap <silent> <C-Right> :tabnext<CR>
-
-" Previous Tab
-nnoremap <silent> <C-Left> :tabprevious<CR>
-
-" New Tab
-nnoremap <silent> <C-t> :tabnew<CR>
+" Workaround to repeat commands <F3>
+nnoremap <silent> <F3> :let @@ = @: <Bar> exe @@<CR>
 
 " Rotate Color Scheme <F8>
 nnoremap <silent> <F8> :execute RotateColorTheme()<CR>
@@ -287,27 +295,21 @@ inoremap <expr> <c-n> pumvisible() ? "\<lt>c-n>" : "\<lt>c-n>\<lt>c-r>=pumvisibl
 inoremap <expr> <m-;> pumvisible() ? "\<lt>c-n>" : "\<lt>c-x>\<lt>c-o>\<lt>c-n>\<lt>c-p>\<lt>c-r>=pumvisible() ? \"\\<lt>down>\" : \"\"\<lt>cr>"
 
 " Swap ; and :  Convenient.
-nnoremap ; :
-nnoremap : ;
+noremap : ;
+noremap! : ;
+noremap ; :
+noremap! ; :
 
+iunmap :
+iunmap ;
 " Fix email paragraphs
 nnoremap <leader>par :%s/^>$//<CR>
 
-"ly$O#{{{ "lpjjj_%A#}}}jjzajj
-
-"}}}
-
-"{{{Taglist configuration
-let Tlist_Use_Right_Window = 1
-let Tlist_Enable_Fold_Column = 0
-let Tlist_Exit_OnlyWindow = 1
-let Tlist_Use_SingleClick = 1
-let Tlist_Inc_Winwidth = 0
 "}}}
 
 let g:rct_completion_use_fri = 1
-"let g:Tex_DefaultTargetFormat = "pdf"
-let g:Tex_ViewRule_pdf = "kpdf"
 
 filetype plugin indent on
 syntax on
+"match Error /,\_s*[)\]}]/
+au BufRead,BufNewFile *.plex set filetype=perl
