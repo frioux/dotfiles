@@ -1,0 +1,38 @@
+servers = (
+  {
+    address = "irc.perl.org";
+    chatnet = "Perl";
+    port = "6667";
+    use_ssl = "no";
+    ssl_verify = "no";
+    autoconnect = "yes";
+  },
+  {
+    address = "irc.freenode.net";
+    chatnet = "Freenode";
+    port = "6667";
+    use_ssl = "no";
+    ssl_verify = "no";
+    autoconnect = "yes";
+  }
+);
+
+chatnets = { Perl = { type = "IRC"; }; Freenode = { type = "IRC"; }; };
+
+channels = (
+  { name = "#perl6"; chatnet = "Freenode"; autojoin = "yes"; },
+  { name = "#dbix-class"; chatnet = "Perl"; autojoin = "yes"; },
+  { name = "#vim"; chatnet = "Freenode"; autojoin = "yes"; },
+  { name = "#zsh"; chatnet = "Freenode"; autojoin = "yes"; }
+);
+
+settings = {
+  core = {
+    real_name = "Frew Schmidt";
+    user_name = "frew";
+    nick = "frew|work";
+  };
+  "fe-text" = { actlist_sort = "refnum"; };
+  "fe-common/core" = { theme = "generane"; };
+};
+ignores = ( { level = "JOINS PARTS QUITS NICKS"; } );
