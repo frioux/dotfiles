@@ -1,6 +1,7 @@
 " Vim color file
 " Maintainer: Robert Melton ( vim at metacosm dot dhs dot org )
-" Last Change: 2004 June 19th
+" Last Change: 2006 April 21st
+
 
 
 " -----------------------------------------------------------------------------
@@ -21,6 +22,7 @@ endif
 let colors_name = "metacosm"
 
 
+
 " -----------------------------------------------------------------------------
 " Primary (hyper/selected/colored background)
 " -----------------------------------------------------------------------------
@@ -29,12 +31,12 @@ hi IncSearch guibg=black guifg=cyan
 hi Search guibg=black guifg=cyan
 
 " Visual 
-hi Visual guibg=black guifg=yellow
-hi VisualNOS guibg=black guifg=yellow gui=underline
+hi Visual guibg=yellow guifg=black
+hi VisualNOS guibg=yellow guifg=black gui=underline
 
 " Borders
-hi StatusLine guibg=black guifg=white
-hi StatusLineNC guibg=grey22 guifg=grey45
+hi StatusLine guibg=black guifg=#80a0ff
+hi StatusLineNC guibg=black guifg=grey45
 hi VertSplit guibg=black guifg=grey45
 
 " Cursors
@@ -55,55 +57,57 @@ hi Error guibg=red guifg=white
 hi WildMenu guibg=cyan guifg=black
 
 
+
 " -----------------------------------------------------------------------------
 " Primary (active/code/text/grey background)
 " -----------------------------------------------------------------------------
 " Normal
-hi Normal guibg=grey22 guifg=white
+hi Normal guibg=black guifg=white
 
 " Constants
-hi Constant guibg=grey22 guifg=#ffa0a0
-hi String guibg=grey22 guifg=#ffa0a0
-hi Character guibg=grey22 guifg=#ffa0a0
-hi Number guibg=grey22 guifg=#ffa0a0
-hi Boolean guibg=grey22 guifg=#ffa0a0
-hi Float guibg=grey22 guifg=#ffa0a0
+hi Constant guibg=black guifg=#ffa0a0
+hi String guibg=black guifg=#ffa0a0
+hi Character guibg=black guifg=#ffa0a0
+hi Number guibg=black guifg=#ffa0a0
+hi Boolean guibg=black guifg=#ffa0a0
+hi Float guibg=black guifg=#ffa0a0
 
 " Identifier
-hi Identifier guibg=grey22 guifg=#40ffff
-hi Function guibg=grey22 guifg=#40ffff
+hi Identifier guibg=black guifg=#40ffff
+hi Function guibg=black guifg=#40ffff
 
 " Statement
-hi Statement guibg=grey22 guifg=#ffff60
-hi Conditional guibg=grey22 guifg=#ffff60
-hi Repeat guibg=grey22 guifg=#ffff60
-hi Label guibg=grey22 guifg=#ffff60
-hi Operator guibg=grey22 guifg=#ffff60
-hi Keyword guibg=grey22 guifg=#ffff60
-hi Exception guibg=grey22 guifg=#ffff60
+hi Statement guibg=black guifg=#ffff60
+hi Conditional guibg=black guifg=#ffff60
+hi Repeat guibg=black guifg=#ffff60
+hi Label guibg=black guifg=#ffff60
+hi Operator guibg=black guifg=#ffff60
+hi Keyword guibg=black guifg=#ffff60
+hi Exception guibg=black guifg=#ffff60
 
 " PreProc
-hi PreProc guibg=grey22 guifg=#ff80ff
-hi Include guibg=grey22 guifg=#ff80ff
-hi Define guibg=grey22 guifg=#ff80ff
-hi Macro guibg=grey22 guifg=#ff80ff
-hi PreCondit guibg=grey22 guifg=#ff80ff
+hi PreProc guibg=black guifg=#ff80ff
+hi Include guibg=black guifg=#ff80ff
+hi Define guibg=black guifg=#ff80ff
+hi Macro guibg=black guifg=#ff80ff
+hi PreCondit guibg=black guifg=#ff80ff
 
 " Type
-hi Type guibg=grey22 guifg=#60ff60
-hi StorageClass guibg=grey22 guifg=#60ff60
-hi Structure guibg=grey22 guifg=#60ff60
-hi Typedef guibg=grey22 guifg=#60ff60
+hi Type guibg=black guifg=#60ff60
+hi StorageClass guibg=black guifg=#60ff60
+hi Structure guibg=black guifg=#60ff60
+hi Typedef guibg=black guifg=#60ff60
 
 " Special
-hi Special guibg=grey22 guifg=orange
-hi SpecialChar guibg=grey22 guifg=orange
-hi Tag guibg=grey22 guifg=orange
-hi Delimiter guibg=grey22 guifg=orange
-hi Debug guibg=grey22 guifg=orange
+hi Special guibg=black guifg=orange
+hi SpecialChar guibg=black guifg=orange
+hi Tag guibg=black guifg=orange
+hi Delimiter guibg=black guifg=orange
+hi Debug guibg=black guifg=orange
 
 " Misc
-hi Underlined guibg=grey22 guifg=#ffff60 gui=underline
+hi Underlined guibg=black guifg=#ffff60 gui=underline
+
 
 
 " -----------------------------------------------------------------------------
@@ -120,8 +124,8 @@ hi WarningMsg guibg=black guifg=blue gui=bold
 hi ErrorMsg guibg=black guifg=red gui=bold
 
 " Folding
-hi Folded guibg=black guifg=grey45
-hi FoldColumn guibg=black guifg=grey45
+hi Folded guibg=black guifg=white
+hi FoldColumn guibg=black guifg=white
 
 " Misc
 hi Ignore guibg=black guifg=grey45
@@ -130,3 +134,13 @@ hi LineNr guibg=black guifg=grey45
 hi SpecialKey guibg=black guifg=grey45
 hi SignColumn guibg=black guifg=grey45
 hi Directory guibg=black guifg=cyan
+
+
+
+" -----------------------------------------------------------------------------
+" Vim 7.x only
+" ----------------------------------------------------------------------------
+hi MatchParen guibg=purple guifg=yellow
+hi CursorLine guibg=black gui=underline
+hi Pmenu guibg=grey20 guifg=white
+hi PmenuSel guibg=lightblue guifg=black
