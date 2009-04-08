@@ -4,6 +4,8 @@ if [[ $STY = '' ]] then screen -xR; fi
 #{{{ ZSH Modules
 
 autoload -U compinit promptinit zcalc zmv zsh-mime-setup
+autoload -Uz colors
+colors
 compinit
 promptinit
 zsh-mime-setup
@@ -109,7 +111,7 @@ HELPDIR=~/zsh_help
 #{{{ Aliases
 
 #{{{ Amarok
-if [[ -x =amarok ]]; then
+if [[ -x `which amarok` ]]; then
   alias play='dcop amarok player play'
   alias pause='dcop amarok player pause'
   alias next='dcop amarok player next'
@@ -133,10 +135,10 @@ alias ls='pwd; ls --color'
 
 #{{{ Package management
 
-if [[ -x =aptitude ]]; then
+if [[ -x `which aptitude` ]]; then
   alias attd="sudo xterm -C aptitude"
 else
-  if [[ -x =emerge ]]; then
+  if [[ -x `which emerge` ]]; then
     alias emu='sudo emerge -uDN world'
     alias emup='sudo emerge -uDvpN world'
     alias esy='sudo emerge --sync'
