@@ -3,14 +3,14 @@
 " Maintainer:   Yi Zhao (ZHAOYI) <zzlinux AT hotmail DOT com>
 " Last Change:  May 17, 2007
 " Version:      0.7.5
-" Changes:      1, Get the vimdiff problem fixed finally. 
+" Changes:      1, Get the vimdiff problem fixed finally.
 "                Matthew Gallant reported the problem and test the fix. ;)
 "               2, Follow the suggestioin from Ingo Karkat.
-"                The 'foldtext' and 'foldlevel' settings should only be 
-"                changed if the file being edited is pure JavaScript, 
+"                The 'foldtext' and 'foldlevel' settings should only be
+"                changed if the file being edited is pure JavaScript,
 "                not if JavaScript syntax is embedded inside other syntaxes.
-"               3, Remove function FT_JavaScriptDoc(). 
-"                Since VIM do the better than me. 
+"               3, Remove function FT_JavaScriptDoc().
+"                Since VIM do the better than me.
 "
 " TODO:
 "  - Add the HTML syntax inside the JSDoc
@@ -22,12 +22,6 @@ if !exists("main_syntax")
     finish
   endif
   let main_syntax = 'javascript'
-endif
-
-"" Drop fold if it set but VIM doesn't support it.
-let b:javascript_fold='true'
-if version < 600    " Don't support the old version
-  unlet! b:javascript_fold
 endif
 
 "" dollar sigh is permittd anywhere in an identifier
@@ -146,7 +140,7 @@ endif "DOM/HTML/CSS
 syntax cluster javaScriptAll       contains=javaScriptComment,javaScriptLineComment,javaScriptDocComment,javaScriptStringD,javaScriptStringS,javaScriptRegexpString,javaScriptNumber,javaScriptFloat,javaScriptLabel,javaScriptSource,javaScriptType,javaScriptOperator,javaScriptBoolean,javaScriptNull,javaScriptFunction,javaScriptConditional,javaScriptRepeat,javaScriptBranch,javaScriptStatement,javaScriptGlobalObjects,javaScriptExceptions,javaScriptFutureKeys,javaScriptDomErrNo,javaScriptDomNodeConsts,javaScriptHtmlEvents,javaScriptDotNotation
 syntax region  javaScriptBracket   matchgroup=javaScriptBracket transparent start="\[" end="\]" contains=@javaScriptAll,javaScriptParensErrB,javaScriptParensErrC,javaScriptBracket,javaScriptParen,javaScriptBlock,@htmlPreproc
 syntax region  javaScriptParen     matchgroup=javaScriptParen   transparent start="("  end=")"  contains=@javaScriptAll,javaScriptParensErrA,javaScriptParensErrC,javaScriptParen,javaScriptBracket,javaScriptBlock,@htmlPreproc
-syntax region  javaScriptBlock     matchgroup=javaScriptBlock   transparent start="{"  end="}"  contains=@javaScriptAll,javaScriptParensErrA,javaScriptParensErrB,javaScriptParen,javaScriptBracket,javaScriptBlock,@htmlPreproc 
+syntax region  javaScriptBlock     matchgroup=javaScriptBlock   transparent start="{"  end="}"  contains=@javaScriptAll,javaScriptParensErrA,javaScriptParensErrB,javaScriptParen,javaScriptBracket,javaScriptBlock,@htmlPreproc
 
 "" catch errors caused by wrong parenthesis
 syntax match   javaScriptParensError    ")\|}\|\]"
@@ -156,27 +150,6 @@ syntax match   javaScriptParensErrC     contained "}"
 
 if main_syntax == "javascript"
   syntax sync ccomment javaScriptComment
-endif
-
-"" Fold control
-if exists("b:javascript_fold")
-    syntax match   javaScriptFunction       /\<function\>/ nextgroup=javaScriptFuncName skipwhite
-    syntax match   javaScriptOpAssign       /=\@<!=/ nextgroup=javaScriptFuncBlock skipwhite skipempty
-    syntax region  javaScriptFuncName       contained matchgroup=javaScriptFuncName start=/\%(\$\|\w\)*\s*(/ end=/)/ contains=javaScriptLineComment,javaScriptComment nextgroup=javaScriptFuncBlock skipwhite skipempty
-    syntax region  javaScriptFuncBlock      contained matchgroup=javaScriptFuncBlock start="{" end="}" contains=@javaScriptAll,javaScriptParensErrA,javaScriptParensErrB,javaScriptParen,javaScriptBracket,javaScriptBlock fold
-
-    if &l:filetype=='javascript' && !&diff
-      " Fold setting
-      " Redefine the foldtext (to show a JS function outline) and foldlevel
-      " only if the entire buffer is JavaScript, but not if JavaScript syntax
-      " is embedded in another syntax (e.g. HTML).
-      setlocal foldmethod=syntax
-      setlocal foldlevel=4
-    endif
-else
-    syntax keyword javaScriptFunction       function
-    setlocal foldmethod<
-    setlocal foldlevel<
 endif
 
 " Define the default highlighting.
@@ -249,4 +222,5 @@ if main_syntax == 'javascript'
   unlet main_syntax
 endif
 
+match Error /,\_s*[)\]}]/
 " vim: ts=4
