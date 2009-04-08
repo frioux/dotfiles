@@ -1,0 +1,4 @@
+exe "Snippet ACDGRID Ext.ns('ACDRI.ui');<CR><CR><{class}> = Ext.extend(<{superclass}>, {<CR>initComponent: function() {<CR>this.record = Ext.data.Record.create([<CR><{record}><CR>]);<CR>var config = {<CR>controller: <{controller}>,<CR>action: <{action}>,<CR>title: <{title}>,<CR>isPaginated: true,<CR>itemName: <{itemname}>,<CR>columns: [{<CR><{column}><CR>}]<CR>};<CR><CR>Ext.apply(this, Ext.apply(this.initialConfig, config));<CR><{class}>.superclass.initComponent.apply(this, arguments);<CR>}<CR>});<CR><CR>Ext.reg('<{class_string}>', <{class}>);<CR>"
+exe "Snippet record {name: '<{}>', type: '<{}>'},<CR><{}>"
+exe "Snippet column header: '<{}>',<CR>tooltip: '<{}>',<CR>dataIndex: '<{}>',<CR>sortable: true,<CR>width: 50<CR>},{<CR><{}>"
+exe "Snippet formitem fieldLabel: '<{}>',<CR>name: '<{}>',<CR>xtype: '<{}>'<CR>},{<CR><{}><CR>"
