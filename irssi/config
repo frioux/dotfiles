@@ -33,6 +33,22 @@ settings = {
     nick = "frew|work";
   };
   "fe-text" = { actlist_sort = "refnum"; };
-  "fe-common/core" = { theme = "generane"; };
+  "fe-common/core" = { theme = "sfcblue"; };
 };
 ignores = ( { level = "JOINS PARTS QUITS NICKS"; } );
+statusbar = {
+  default = {
+    window = {
+      items = {
+        barstart = { priority = "100"; };
+        user = { };
+        window = { };
+        window_empty = { };
+        lag = { priority = "-1"; };
+        act = { priority = "10"; };
+        more = { priority = "-1"; alignment = "right"; };
+        barend = { priority = "100"; alignment = "right"; };
+      };
+    };
+  };
+};

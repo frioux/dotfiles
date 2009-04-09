@@ -97,7 +97,7 @@ abstracts = {
   # private message in query
   privmsgnick = "{msgnick  %R$0-%n}";
 
-    # Actions
+  # Actions
 
   # used internally by this theme
   action_core = "%R~~~ $0-";
@@ -162,7 +162,7 @@ abstracts = {
   dccaction = "%C (*dcc*) $0-%n %|";
 
   # statusbar
- 
+
   # prompt (channel name in [] is yellow, [] are white.)
   prompt = "%W[%Y$*%W]%n ";
 
@@ -186,17 +186,17 @@ abstracts = {
   # hilight with specified color, $0 = color, $1 = text
   sb_act_hilight_color = "$0$1-%n";
 
- # whois
+  # whois
   whois = "$[12]0  : $1-";
 
 };
 
 formats = {
 
-"fe-common/irc" = {
+  "fe-common/irc" = {
 
-  whois = "{nick $0} ({nickhost $1%R@%r$2}) {comment $4}%:{whois %_i%_rcname $3}";
+    whois = "{nick $0} ({nickhost $1%R@%r$2}) {comment $4}%:{whois %_i%_rcname $3}";
 
-	};
+  };
 
 };
