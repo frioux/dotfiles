@@ -34,6 +34,7 @@ settings = {
   };
   "fe-text" = { actlist_sort = "refnum"; };
   "fe-common/core" = { theme = "sfcblue"; };
+  "perl/core/scripts" = { anotherway_reason = "\"I went AWOL!\""; };
 };
 ignores = ( { level = "JOINS PARTS QUITS NICKS"; } );
 statusbar = {
