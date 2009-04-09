@@ -1,8 +1,11 @@
 #change the hardstatus settings to give an window list at the bottom of the
 #Screen, with the time and date and with the current window highlighted
 hardstatus alwayslastline
-#hardstatus string '%{= mK}%-Lw%{= KW}%50>%n%f* %t%{= mK}%+Lw%< %{= kG}%-=%D %d %M %Y %c:%s%{-}'
-hardstatus string '%{= mK}%-Lw%{= KW}%50>%n%f* %h%{= mK}%+Lw%< %{= kG}%-=%D %d %M %Y %c:%s%{-}'
+#hardstatus string '%{= mK}%-Lw%{= KW}%50>%n%f* %h%{= mK}%+Lw%< %{= kG}%-=%D %d %M %Y %c:%s%{-}'
+#hardstatus string " [ %H ] %{wb} %c:%s | %d.%m.%Y %{wr} %w "
+#hardstatus string "%{+b Rk}(%{-b g}$LOGNAME@%H%{+b R}) (%{-b g}%C %a%{+b R}) %{-b g} %n %t"
+#hardstatus string "%{.kK}[%10%H] updates :: %20=%-w[%n %t]%+w"
+hardstatus string '%{= kK}%{w}%H %{K}%= %{= kw}%?%-Lw%?%{B}(%{W}%n*%f %t%?(%u)%?%{B})%{w}%?%+Lw%?%?%= %{K}%{B} %{w}%c%{K}'
 
 #I hate Ctrl+a  Try just plain backtick
 escape ``
