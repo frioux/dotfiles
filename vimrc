@@ -119,8 +119,9 @@ highlight MatchParen ctermbg=4
 "{{{Look and Feel
 
 " Favorite Color Scheme
+colorscheme inkpot
+
 if has("gui_running")
-   colorscheme inkpot
    " Remove Toolbar
    set guioptions-=T
    set guioptions-=r
@@ -130,8 +131,6 @@ if has("gui_running")
    else
       set guifont=Terminus\ 9
    endif
-else
-   colorscheme metacosm
 endif
 
 "Status line gnarliness
