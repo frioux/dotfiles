@@ -4,6 +4,8 @@ hardstatus alwayslastline
 #hardstatus string '%{= mK}%-Lw%{= KW}%50>%n%f* %t%{= mK}%+Lw%< %{= kG}%-=%D %d %M %Y %c:%s%{-}'
 hardstatus string '%{= mK}%-Lw%{= KW}%50>%n%f* %h%{= mK}%+Lw%< %{= kG}%-=%D %d %M %Y %c:%s%{-}'
 
+term screen-256color
+
 #I hate Ctrl+a  Try just plain backtick
 escape ``
 
