@@ -1,3 +1,5 @@
+set iskeyword=@,48-57,_,128-167,224-235,$
+
 function! GetPerlFold()
   if getline(v:lnum) =~ '\s*sub\s'
     return ">1"
