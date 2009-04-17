@@ -29,7 +29,7 @@ let b:did_indent = 1
 let b:indent_use_syntax = has("syntax")
 
 setlocal indentexpr=GetPerlIndent()
-setlocal indentkeys+=0=,0),0=or,0=and
+setlocal indentkeys+=0=,0),0],0=or,0=and
 if !b:indent_use_syntax
   setlocal indentkeys+=0=EO
 endif
@@ -124,7 +124,7 @@ function GetPerlIndent()
   " Indent blocks enclosed by {} or ()
   if b:indent_use_syntax
     " Find a real opening brace
-    let bracepos = match(line, '[(){}]', matchend(line, '^\s*[)}]'))
+    let bracepos = match(line, '[(){}\[\]]', matchend(line, '^\s*[)}\]]'))
     while bracepos != -1
       let synid = synIDattr(synID(lnum, bracepos + 1, 0), "name")
       " If the brace is highlighted in one of those groups, indent it.
@@ -135,15 +135,15 @@ function GetPerlIndent()
 	    \ || synid =~ "^perlFiledescStatement"
 	    \ || synid =~ '^perl\(Sub\|BEGINEND\|If\)Fold'
 	let brace = strpart(line, bracepos, 1)
-	if brace == '(' || brace == '{'
+	if brace == '(' || brace == '{' || brace == '['
 	  let ind = ind + &sw
 	else
 	  let ind = ind - &sw
 	endif
       endif
-      let bracepos = match(line, '[(){}]', bracepos + 1)
+      let bracepos = match(line, '[(){}\[\]]', bracepos + 1)
     endwhile
-    let bracepos = matchend(cline, '^\s*[)}]')
+    let bracepos = matchend(cline, '^\s*[)}\]]')
     if bracepos != -1
       let synid = synIDattr(synID(v:lnum, bracepos, 0), "name")
       if synid == ""
@@ -153,10 +153,10 @@ function GetPerlIndent()
       endif
     endif
   else
-    if line =~ '[{(]\s*\(#[^)}]*\)\=$'
+    if line =~ '[{(\[]\s*\(#[^)}\]]*\)\=$'
       let ind = ind + &sw
     endif
-    if cline =~ '^\s*[)}]'
+    if cline =~ '^\s*[)}\]]'
       let ind = ind - &sw
     endif
   endif
