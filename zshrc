@@ -177,7 +177,7 @@ fi
 
 # CPAN and sudo don't work together or something
 if [[ -x `which perl` ]]; then
-  alias cpan="su root -c 'perl -MCPAN -e \"shell\"'"
+  alias cpan="sudo perl -MCPAN -eshell"
 fi
 
 # Maxima with line editing!  Now if only I could use zle...

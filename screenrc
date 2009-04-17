@@ -7,6 +7,8 @@ hardstatus alwayslastline
 #hardstatus string "%{.kK}[%10%H] updates :: %20=%-w[%n %t]%+w"
 hardstatus string '%{= kK}%{w}%H %{K}%= %{= kw}%?%-Lw%?%{B}(%{W}%n*%f %t%?(%u)%?%{B})%{w}%?%+Lw%?%?%= %{K}%{B} %{w}%c%{K}'
 
+term screen-256color
+
 #I hate Ctrl+a  Try just plain backtick
 escape ``
 
