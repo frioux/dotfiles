@@ -12,15 +12,9 @@ term screen-256color
 #I hate Ctrl+a  Try just plain backtick
 escape ``
 
-multiuser on
-aclchg shutter +rwx "#?"
-aclchg benjie +rwx "#?"
-aclchg panic +rwx "#?"
-aclchg caleb +rwx "#?"
-#acladd shutter QSsUHy/lmL5CM
-#acladd benjie QSsUHy/lmL5CM
-#acladd panic QSsUHy/lmL5CM
-#acladd caleb QSsUHy/lmL5CM
+screen irssi
+title "IRSSI"
+screen zsh
 
 #
 # Example of a user's .screenrc file

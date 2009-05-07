@@ -239,6 +239,9 @@ map <Leader>w :call Browser ()<CR>
 " Open NERDTree <F2>
 nnoremap <silent> <F2> :NERDTreeToggle<CR>
 
+" PerlTidy file <F4>
+nnoremap <silent> <F4> :!perltidy %<CR>
+
 " TODO Mode
 nnoremap <silent> <Leader>todo :execute TodoListMode()<CR>
 
