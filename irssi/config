@@ -34,7 +34,7 @@ settings = {
     nick = "frew|work";
   };
   "fe-text" = { actlist_sort = "refnum"; };
-  "fe-common/core" = { theme = "sfcblue"; };
+  "fe-common/core" = { theme = "sfcblue"; autolog = "yes"; };
   "perl/core/scripts" = { anotherway_reason = "\"I went AWOL!\""; };
 };
 ignores = ( { level = "JOINS PARTS QUITS NICKS"; } );
