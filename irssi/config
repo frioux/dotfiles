@@ -21,7 +21,6 @@ chatnets = { Perl = { type = "IRC"; }; Freenode = { type = "IRC"; }; };
 
 channels = (
   { name = "#perl6"; chatnet = "Freenode"; autojoin = "yes"; },
-  { name = "#extjs"; chatnet = "Freenode"; autojoin = "yes"; },
   { name = "#dbix-class"; chatnet = "Perl"; autojoin = "yes"; },
   { name = "#vim"; chatnet = "Freenode"; autojoin = "yes"; },
   { name = "#zsh"; chatnet = "Freenode"; autojoin = "yes"; }
@@ -34,7 +33,7 @@ settings = {
     nick = "frew|work";
   };
   "fe-text" = { actlist_sort = "refnum"; };
-  "fe-common/core" = { theme = "sfcblue"; };
+  "fe-common/core" = { theme = "sfcblue"; autolog = "yes"; };
   "perl/core/scripts" = { anotherway_reason = "\"I went AWOL!\""; };
 };
 ignores = ( { level = "JOINS PARTS QUITS NICKS"; } );

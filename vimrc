@@ -123,9 +123,7 @@ colorscheme inkpot
 
 if has("gui_running")
    " Remove Toolbar
-   set guioptions-=T
-   set guioptions-=r
-   set guioptions-=R
+   set guioptions-=egmrLtT
    if has('win32')
       set guifont=Consolas:h8
    else
@@ -288,6 +286,11 @@ nnoremap <space> za
 " search will center on the line it's found in.
 map N Nzz
 map n nzz
+
+noremap <A-k> <C-W>k
+noremap <A-j> <C-W>j
+noremap <A-h> <C-W>h
+noremap <A-l> <C-W>l
 
 " Testing
 set completeopt=longest,menuone,preview
