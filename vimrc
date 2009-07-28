@@ -123,7 +123,7 @@ colorscheme inkpot
 
 if has("gui_running")
    " Remove Toolbar
-   set guioptions-=egmrLtT
+   set guioptions=
    if has('win32')
       set guifont=Consolas:h8
    else
