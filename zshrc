@@ -136,7 +136,7 @@ alias ls='pwd; ls --color'
 #{{{ Package management
 
 if [[ -x `which aptitude` ]]; then
-  alias attd="sudo xterm -C aptitude"
+  alias attd="sudo aptitude"
 else
   if [[ -x `which emerge` ]]; then
     alias emu='sudo emerge -uDN world'
