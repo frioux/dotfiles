@@ -22,15 +22,15 @@ chatnets = { Perl = { type = "IRC"; }; Freenode = { type = "IRC"; }; };
 channels = (
   { name = "#perl6"; chatnet = "Freenode"; autojoin = "yes"; },
   { name = "#dbix-class"; chatnet = "Perl"; autojoin = "yes"; },
-  { name = "#vim"; chatnet = "Freenode"; autojoin = "yes"; },
-  { name = "#zsh"; chatnet = "Freenode"; autojoin = "yes"; }
+  { name = "#catalyst"; chatnet = "Perl"; autojoin = "yes"; },
+  { name = "#moose"; chatnet = "Perl"; autojoin = "yes"; },
 );
 
 settings = {
   core = {
     real_name = "Frew Schmidt";
     user_name = "frew";
-    nick = "frew|work";
+    nick = "frew";
   };
   "fe-text" = { actlist_sort = "refnum"; };
   "fe-common/core" = { theme = "sfcblue"; autolog = "yes"; };
