@@ -11,13 +11,14 @@
 " under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
 " CONDITIONS OF ANY KIND, either express or implied. See the License for the
 " specific language governing permissions and limitations under the License.
-" 
+"
+"
 "
 " Plugin:
 "
 "   Indent Anything
 "
-" Version: 1.2
+" Version: 1.2.2
 "
 " Description:
 "
@@ -35,7 +36,7 @@
 "   Place this file in your home directory under ~/.vim/indent/, or replace
 "   the system indent/javascript.vim file to affect all users.
 "
-" Maintainer: Tye Z. < z d r o @ y a h o o . c o m >
+" Maintainer: Tye Z. <zdro@yahoo.com>
 "
 " Customization:
 "
@@ -51,6 +52,11 @@
 "   1.2 - made some functions script-local to prevent naming collisions
 "       - fixed some broken indentation in the middle of a block comment,
 "         which showed up in Javascript indentation.
+"
+"   1.2.2 - Fixed a bug causing the line after a single-line block comment to
+"           always have an indent of '0' (i.e. the line after /* comment */).
+"         - Added Apache 2 license
+"
 "
 
 let s:supportedVimVersion = 700
@@ -365,19 +371,30 @@ function! s:GetBlockCommentIndent(CurrLNum, LastLNum)
     return l:adj
 endfunction
 
-function! s:GetPostBlockCommentIndent(LNum)
+function! s:GetPostBlockCommentIndent(LastLNum)
 
     let l:cursor = getpos('.')
     let l:ind = 0
+    let l:comment_start_lnum = 0;
 
-    " Find beginning of block comment containing the start of line LNum
-    exec a:LNum
+    " Find beginning of block comment containing the start of line LastLNum
+    exec a:LastLNum
     normal ^
-    let l:ind = indent(searchpair(b:blockCommentStartRE, '', b:blockCommentEndRE, 'bWr'))
+    let l:comment_start_lnum = searchpair(
+                \ b:blockCommentStartRE, b:blockCommentMiddleRE, b:blockCommentEndRE, 'bWr')
+
+    " Assume that the LastLNum is a block comment.  If the comment both
+    " started and stopped on LastLNum, then searchpair will return 0.  In that
+    " case, we just want to return the indent of LastLNum itself.
+    if 0 == l:comment_start_lnum
+        let l:comment_start_lnum = a:LastLNum
+    endif
+
+    let l:ind = indent(l:comment_start_lnum)
 
     if 1 || l:ind != 0 && b:indent_anything_echo 
         let g:lastindent = g:lastindent . 
-                    \ "GetBlockCommentIndent: " . l:ind
+                    \ "GetPostBlockCommentIndent: " . l:ind
     endif
 
     call setpos('.', l:cursor)
