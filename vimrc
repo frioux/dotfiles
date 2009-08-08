@@ -317,4 +317,5 @@ let g:rct_completion_use_fri = 1
 filetype plugin indent on
 syntax on
 "match Error /,\_s*[)\]}]/
+match ErrorMsg '\%>80v.\+'
 au BufRead,BufNewFile *.plex set filetype=perl
