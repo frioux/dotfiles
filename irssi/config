@@ -24,6 +24,7 @@ channels = (
   { name = "#dbix-class"; chatnet = "Perl"; autojoin = "yes"; },
   { name = "#catalyst"; chatnet = "Perl"; autojoin = "yes"; },
   { name = "#moose"; chatnet = "Perl"; autojoin = "yes"; },
+  { name = "#enotime"; chatnet = "Perl"; autojoin = "yes"; }
 );
 
 settings = {
@@ -53,3 +54,58 @@ statusbar = {
     };
   };
 };
+logs = { };
+windows = {
+  1 = { immortal = "yes"; name = "(status)"; level = "ALL"; };
+  2 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#perl6";
+        tag = "Freenode";
+      }
+    );
+  };
+  3 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#dbix-class";
+        tag = "Perl";
+      }
+    );
+  };
+  4 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#catalyst";
+        tag = "Perl";
+      }
+    );
+  };
+  5 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#moose";
+        tag = "Perl";
+      }
+    );
+  };
+  6 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#enotime";
+        tag = "Perl";
+      }
+    );
+  };
+};
+mainwindows = { 3 = { first_line = "1"; lines = "56"; }; };
