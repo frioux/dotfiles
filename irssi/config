@@ -34,10 +34,21 @@ settings = {
     nick = "frew";
   };
   "fe-text" = { actlist_sort = "refnum"; };
-  "fe-common/core" = { theme = "sfcblue"; autolog = "yes"; };
+  "fe-common/core" = {
+    theme = "sfcblue";
+    autolog = "yes";
+    bell_beeps = "yes";
+    beep_msg_level = "MSGS NOTICES DCC DCCMSGS HILIGHT";
+  };
   "perl/core/scripts" = { anotherway_reason = "\"I went AWOL!\""; };
 };
-ignores = ( { level = "JOINS PARTS QUITS NICKS"; } );
+ignores = (
+  { level = "JOINS PARTS QUITS NICKS"; },
+  { mask = "*!*=GumbyNET@*"; level = "ALL"; },
+  { mask = "*!*=GumbyNET2@*"; level = "ALL"; },
+  { mask = "*!*=GumbyNET3@*"; level = "ALL"; },
+  { mask = "*!*=GumbyNET1@*"; level = "ALL"; }
+);
 statusbar = {
   default = {
     window = {
