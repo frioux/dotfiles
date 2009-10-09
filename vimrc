@@ -35,6 +35,9 @@ augroup JumpCursorOnEdit
             \ endif
 augroup END
 
+autocmd BufNewFile *.pl normal i#!perluse strict;use warnings;use feature ':5.10';
+autocmd BufNewFile *.pm normal ipackage ;use strict;use warnings;use feature ':5.10';
+
 "}}}
 
 "{{{Misc Settings
