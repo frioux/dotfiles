@@ -82,9 +82,7 @@ setopt RC_EXPAND_PARAM
 #}}}
 
 #{{{ Variables
-export MATHPATH="$MANPATH:/usr/local/texlive/2007/texmf/doc/man"
-export INFOPATH="$INFOPATH:/usr/local/texlive/2007/texmf/doc/info"
-export PATH="$PATH:/usr/local/texlive/2007/bin/i386-linux"
+export PATH="/home/frew/bin:/home/frew/localperl/bin:$PATH"
 export RI="--format ansi"
 
 declare -U path
@@ -125,9 +123,8 @@ fi
 #}}}
 
 #{{{ Shell Conveniences
-
-alias sz='source ~/.zshrc'
-alias ez='vim ~/.zshrc'
+source ~/.aliases
+alias ez='vim ~/.zshrc; source ~/.zshrc'
 alias mk=popd
 alias ls='pwd; ls --color'
 
@@ -173,11 +170,6 @@ alias ipl='perl -Mautobox::Core -E'
 if [[ -x `which tea_chooser` ]]; then
 # I need to do this more elegantly...
     alias rt='cd /home/frew/bin/run/tea_chooser; ./randtea.rb'
-fi
-
-# CPAN and sudo don't work together or something
-if [[ -x `which perl` ]]; then
-  alias cpan="sudo perl -MCPAN -eshell"
 fi
 
 # Maxima with line editing!  Now if only I could use zle...
