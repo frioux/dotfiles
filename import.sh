@@ -1,6 +1,7 @@
 #!/bin/bash
 
 cp ~/.zshrc zshrc
+cp ~/bin/showdm bin/showdm
 cp ~/.vimrc vimrc
 cp ~/.Xdefaults Xdefaults
 cp ~/.screenrc screenrc
