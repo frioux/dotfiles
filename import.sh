@@ -7,4 +7,5 @@ rm -r vim
 cp ~/.vim vim -R
 rm -r irssi
 cp ~/.irssi irssi -R
+cp ~/.xmonad xmonad -R
 
