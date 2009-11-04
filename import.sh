@@ -2,6 +2,7 @@
 
 cp ~/.zshrc zshrc
 cp ~/.vimrc vimrc
+cp ~/.Xdefaults Xdefaults
 cp ~/.screenrc screenrc
 rm -r vim
 cp ~/.vim vim -R
