@@ -1,6 +1,7 @@
 #!/bin/bash
 
-rm ~/bin/showdm ~/.Xdefaults ~/.vim ~/.zshrc ~/.vimrc ~/.screenrc ~/.irssi -R
+rm ~/.xmonad ~/bin/showdm ~/.Xdefaults ~/.vim ~/.zshrc ~/.vimrc\
+   ~/.screenrc ~/.irssi -R
 ln -s "$(pwd)/zshrc" ~/.zshrc
 ln -s "$(pwd)/bin/showdm" ~/bin/showdm
 ln -s "$(pwd)/Xdefaults" ~/.Xdefaults
