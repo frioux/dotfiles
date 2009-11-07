@@ -14,18 +14,26 @@ import XMonad.Util.EZConfig
 {- http://xmonad.org/xmonad-docs/xmonad-contrib/XMonad-Util-Dzen.html -}
 import XMonad.Util.Dzen
 
+import XMonad.Actions.CopyWindow
 
-main = xmonad $ withUrgencyHook dzenUrgencyHook {
-                  args = ["-bg", "darkgreen", "-xs", "1"]
-            } $ defaultConfig {
-                  manageHook = manageDocks <+> manageHook defaultConfig,
-                  logHook    = ewmhDesktopsLogHook,
-                  layoutHook = ewmhDesktopsLayout $ avoidStruts
-                                                  $ layoutHook defaultConfig
-            }
-            `additionalKeys`
-                 [
-                  ((mod1Mask, xK_y        ), dzen "Hi, mom!" 5000000),
-                  ((mod1Mask, xK_m        ), spawn "xterm"),
-                  ((mod1Mask, xK_x        ), spawn "/home/frew/bin/showdm")
-                 ]
+import XMonad.Actions.SwapWorkspaces
+
+main = xmonad
+   $ withUrgencyHook dzenUrgencyHook
+   $ defaultConfig {
+      manageHook = manageDocks <+> manageHook defaultConfig,
+      logHook    = ewmhDesktopsLogHook,
+      layoutHook = ewmhDesktopsLayout
+         $ avoidStruts
+         $ layoutHook defaultConfig
+   }
+   `additionalKeys` [
+      ((mod1Mask .|. controlMask, k), windows $ swapWithCurrent i)
+           | (i, k) <- zip (workspaces defaultConfig) [xK_1 ..]
+   ]
+   `additionalKeysP` [
+      ,("M-d", spawn "/home/frew/bin/showdm")
+      ,("<Pause>", spawn "/home/frew/bin/showdm")
+      ,("M-v", windows copyToAll)
+      ,("M-S-v",  killAllOtherCopies)
+   ]
