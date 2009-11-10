@@ -313,6 +313,9 @@ iunmap ;
 " Fix email paragraphs
 nnoremap <leader>par :%s/^>$//<CR>
 
+" sweet output paster
+vnoremap <silent> ,rs :!perl ~/bin/eval<cr>
+
 "}}}
 
 let g:rct_completion_use_fri = 1
