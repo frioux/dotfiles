@@ -24,7 +24,8 @@ channels = (
   { name = "#dbix-class"; chatnet = "Perl"; autojoin = "yes"; },
   { name = "#catalyst"; chatnet = "Perl"; autojoin = "yes"; },
   { name = "#moose"; chatnet = "Perl"; autojoin = "yes"; },
-  { name = "#enotime"; chatnet = "Perl"; autojoin = "yes"; }
+  { name = "#distzilla"; chatnet = "Perl"; autojoin = "yes"; },
+  { name = "#xmonad"; chatnet = "Freenode"; autojoin = "yes"; }
 );
 
 settings = {
@@ -61,6 +62,7 @@ statusbar = {
         act = { priority = "10"; };
         more = { priority = "-1"; alignment = "right"; };
         barend = { priority = "100"; alignment = "right"; };
+        usercount = { };
       };
     };
   };
@@ -113,10 +115,33 @@ windows = {
       {
         type = "CHANNEL";
         chat_type = "IRC";
-        name = "#enotime";
+        name = "#distzilla";
+        tag = "Perl";
+      }
+    );
+  };
+  7 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#xmonad";
         tag = "Perl";
       }
     );
   };
 };
 mainwindows = { 3 = { first_line = "1"; lines = "56"; }; };
+aliases = {
+  w1 = "win 1";
+  w2 = "win 2";
+  w3 = "win 3";
+  w4 = "win 4";
+  w5 = "win 5";
+  w6 = "win 6";
+  w7 = "win 7";
+  w8 = "win 8";
+  w9 = "win 9";
+  w10 = "win 10";
+  w11 = "win 11";
+};
