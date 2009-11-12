@@ -1,0 +1,9 @@
+font = Terminus 8
+background_color = "#000000"
+foreground_color = "#FFFFFF"
+scrollback_lines = '500'
+audible_bell = yes
+visible_bell  = no
+urgent_bell  = yes
+scrollbar_position = 'disabled'
+
