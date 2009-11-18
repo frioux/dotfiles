@@ -45,12 +45,8 @@ settings = {
 };
 ignores = (
   { level = "JOINS PARTS QUITS NICKS"; },
-  { mask = "*!*=GumbyNET@*"; level = "ALL"; },
-  { mask = "*!*=GumbyNET2@*"; level = "ALL"; },
-  { mask = "*!*=GumbyNET3@*"; level = "ALL"; },
-  { mask = "*!*=GumbyNET4@*"; level = "ALL"; },
-  { mask = "*!*=BinGOs@*"; level = "ALL"; },
-  { mask = "*!*=GumbyNET1@*"; level = "ALL"; }
+  { mask = "*!*=GumbyNET*@*"; level = "ALL"; },
+  { mask = "*!*=BinGOs@*"; level = "ALL"; }
 );
 statusbar = {
   default = {
