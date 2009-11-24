@@ -82,7 +82,7 @@ setopt RC_EXPAND_PARAM
 #}}}
 
 #{{{ Variables
-export PATH="/home/frew/bin:/home/frew/localperl/bin:$PATH"
+export PATH="/home/frew/bin:/home/frew/localperl/bin:/home/frew/.vim/bin:$PATH"
 export RI="--format ansi"
 
 declare -U path
