@@ -1,0 +1,15 @@
+[user]
+	name = Arthur Axel 'fREW' Schmidt
+	email = frioux@gmail.com
+[color]
+	status = auto
+	branch = auto
+	ui = auto
+[alias]
+	ci = commit
+        co = checkout
+[diff]
+   ;external = git_diff_wrapper
+
+[pager]
+   ;external =
