@@ -9,7 +9,9 @@ if [[ ! -x ~/.config/terminator ]]; then
 fi
 
 rm ~/.xmonad ~/bin/showdm ~/bin/eval ~/.Xdefaults ~/.vim ~/.zshrc ~/.vimrc\
-   ~/.screenrc ~/.irssi ~/.gitconfig ~/.config/terminator/config -R
+   ~/.screenrc ~/.irssi ~/.gitconfig ~/.config/terminator/config\
+   ~/passwords.kdb -R
+
 ln -s "$(pwd)/bin/eval" ~/bin/eval
 ln -s "$(pwd)/bin/showdm" ~/bin/showdm
 ln -s "$(pwd)/irssi" ~/.irssi
@@ -21,4 +23,5 @@ ln -s "$(pwd)/vim" ~/.vim
 ln -s "$(pwd)/Xdefaults" ~/.Xdefaults
 ln -s "$(pwd)/xmonad" ~/.xmonad
 ln -s "$(pwd)/zshrc" ~/.zshrc
+ln -s "$(pwd)/passwords.kdb" ~/passwords.kdb
 
