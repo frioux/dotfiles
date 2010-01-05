@@ -256,6 +256,7 @@ fi
 
 alias pdev='gvim -S ~/tmp/pugsdev -c "call Perl6Dev()"'
 
+alias realias='vi ~/.aliases; source ~/.aliases'
 #}}}
 
 #{{{ Completion Stuff
