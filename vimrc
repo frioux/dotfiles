@@ -9,6 +9,9 @@ autocmd BufEnter * execute "chdir ".escape(expand("%:p:h"), ' ')
 " Remove any trailing whitespace that is in the file
 autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
 
+" replace tabs with spaces
+autocmd BufRead,BufWrite * if ! &bin | silent! %retab | endif
+
 " Restore cursor position to where it was before
 augroup JumpCursorOnEdit
    au!
@@ -65,7 +68,7 @@ set smarttab
 
 " Who wants an 8 character tab?  Not me!
 set shiftwidth=3
-set softtabstop=3
+set tabstop=3
 
 " Use english for spellchecking, but don't spellcheck by default
 if version >= 700
@@ -146,7 +149,7 @@ set statusline=%F%m%r%h%w\ (%{&ff}){%Y}\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}\ [%
 
 function! Browser ()
    let line = getline (".")
-   let line = matchstr (line, "http[^ 	]*")
+   let line = matchstr (line, "http[^  ]*")
    exec "!konqueror ".line
 endfunction
 
@@ -323,5 +326,4 @@ let g:rct_completion_use_fri = 1
 filetype plugin indent on
 syntax on
 "match Error /,\_s*[)\]}]/
-match ErrorMsg '\%>80v.\+'
 au BufRead,BufNewFile *.plex set filetype=perl
