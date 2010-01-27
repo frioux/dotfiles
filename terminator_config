@@ -6,4 +6,4 @@ audible_bell = yes
 visible_bell  = no
 urgent_bell  = yes
 scrollbar_position = 'disabled'
-
+background_type = 'transparent'
