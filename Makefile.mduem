@@ -1,0 +1,108 @@
+# Makefile.mduem is just a "library" Makefile.  It doesn't nothing by itself.
+# Note that this Makefile requires GNU make.
+# Common  #{{{1
+
+.PHONY: \
+	all \
+	clean \
+	install \
+	pack \
+	release \
+	show-status \
+	test
+
+SHELL=/bin/bash
+
+
+
+
+
+
+
+
+# all  #{{{1
+
+all:
+	@echo 'Nothing to do'
+
+
+
+
+
+
+
+
+# clean  #{{{1
+
+clean:
+	@echo 'FIXME: NIY'
+
+
+
+
+
+
+
+
+# install  #{{{1
+
+install:
+	@echo 'FIXME: NIY'
+
+
+
+
+
+
+
+
+# pack  #{{{1
+
+pack:
+	@echo 'FIXME: NIY'
+
+
+
+
+
+
+
+
+# release  #{{{1
+
+release:
+	@echo 'FIXME: NIY'
+
+
+
+
+
+
+
+
+# show-status  #{{{1
+
+show-status:
+	@echo 'FIXME: NIY'
+
+
+
+
+
+
+
+
+# test  #{{{1
+
+test:
+	@echo 'FIXME: NIY'
+
+
+
+
+
+
+
+
+# __END__  #{{{1
+# vim: foldmethod=marker
