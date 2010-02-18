@@ -35,7 +35,7 @@ all:
 # clean  #{{{1
 
 clean:
-	@echo 'FIXME: NIY'
+	find -name '*~' -or -name ',*' | xargs rm -rf
 
 
 
