@@ -55,7 +55,10 @@ build: $(targets_all)
 # clean  #{{{1
 
 .PHONY: clean
-clean:
+clean: clean-junks
+
+.PHONY: clean-junks
+clean-junks:
 	find -name '*~' -or -name ',*' | xargs rm -rf
 
 
