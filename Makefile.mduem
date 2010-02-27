@@ -75,17 +75,17 @@ clean-junks:
 # install  #{{{1
 
 INSTALL_DIR ?=# Empty
+ifeq '$(strip $(INSTALL_DIR))' ''
+$(error Please set INSTALL_DIR)
+endif
+
 RENAME_TARGET ?= $(patsubst %,$(INSTALL_DIR)/%,$(1))
 
-.PHONY: install
-install: install-check build
 
-.PHONY: install-check
-install-check:
-	@if [ '$(INSTALL_DIR)' = '' ]; then \
-	  echo 'Please set INSTALL_DIR.'; \
-	  false; \
-	fi
+
+
+.PHONY: install
+install: build
 
 
 
