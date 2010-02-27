@@ -58,8 +58,30 @@ INSTALL_DIR ?=# Empty
 INSTALL_TARGETS_RENAME ?= $(patsubst %,$(INSTALL_DIR)/%,$(1))
 
 .PHONY: install
-install: build
-	@echo 'FIXME: NIY'
+install: install-check build
+
+.PHONY: install-check
+install-check:
+	@if [ '$(INSTALL_DIR)' = '' ]; then \
+	  echo 'Please set INSTALL_DIR.'; \
+	  false; \
+	fi
+
+
+
+
+define rule_to_install_a_target  # (build_target, install_target)
+install: $(2)
+$(2): $(1)
+	@echo 'INSTALL $(1) ==> $(2)'
+	@mkdir -p '$(dir $(2))'
+	@cp '$(1)' '$(2)'
+
+endef
+$(eval \
+  $(foreach build_target, \
+    $(BUILD_TARGETS_ALL), \
+    $(call rule_to_install_a_target,$(build_target),$(call INSTALL_TARGETS_RENAME,$(build_target)))))
 
 
 
