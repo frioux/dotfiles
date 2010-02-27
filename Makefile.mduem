@@ -40,10 +40,14 @@ all: build
 
 TARGETS_GENERATED ?=# Empty
 TARGETS_STATIC ?=# Empty
-targets_all = $(TARGETS_GENERATED) $(TARGETS_STATIC)
+
+targets_all_installed = $(TARGETS_GENERATED) $(TARGETS_STATIC)
+
+
+
 
 .PHONY: build
-build: $(targets_all)
+build: $(targets_all_installed)
 
 
 
@@ -100,7 +104,7 @@ $(2): $(1)
 endef
 $(eval \
   $(foreach t, \
-    $(targets_all), \
+    $(targets_all_installed), \
     $(call rule_to_install_a_target,$(t),$(call RENAME_TARGET,$(t)))))
 
 
