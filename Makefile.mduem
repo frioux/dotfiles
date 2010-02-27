@@ -79,6 +79,7 @@ clean-junks:
 
 
 # install  #{{{1
+# Core  #{{{2
 
 INSTALL_DIR ?=# Empty
 ifeq '$(strip $(INSTALL_DIR))' ''
@@ -94,8 +95,6 @@ RENAME_TARGET ?= $(patsubst %,$(INSTALL_DIR)/%,$(1))
 install: build
 
 
-
-
 define rule_to_install_a_target  # (build_target, install_target)
 install: $(2)
 $(2): $(1)
@@ -108,6 +107,22 @@ $(eval \
   $(foreach t, \
     $(targets_all_installed), \
     $(call rule_to_install_a_target,$(t),$(call RENAME_TARGET,$(t)))))
+
+
+# This should be placed at the last to ensure that post-install is executed
+# after any other rules to install.
+install: post-install
+
+
+
+
+# post-install  #{{{2
+
+post_install_builtin_rules :=# Empty
+
+
+.PHONY: post-install
+post-install: $(post_install_builtin_rules)
 
 
 
