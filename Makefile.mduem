@@ -2,15 +2,6 @@
 # Note that this Makefile requires GNU make.
 # Common  #{{{1
 
-.PHONY: \
-	all \
-	clean \
-	install \
-	pack \
-	release \
-	show-status \
-	test
-
 SHELL=/bin/bash
 
 
@@ -22,6 +13,7 @@ SHELL=/bin/bash
 
 # all  #{{{1
 
+.PHONY: all
 all:
 	@echo 'Nothing to do'
 
@@ -34,6 +26,7 @@ all:
 
 # clean  #{{{1
 
+.PHONY: clean
 clean:
 	find -name '*~' -or -name ',*' | xargs rm -rf
 
@@ -46,6 +39,7 @@ clean:
 
 # install  #{{{1
 
+.PHONY: install
 install:
 	@echo 'FIXME: NIY'
 
@@ -58,6 +52,7 @@ install:
 
 # pack  #{{{1
 
+.PHONY: pack
 pack:
 	@echo 'FIXME: NIY'
 
@@ -70,6 +65,7 @@ pack:
 
 # release  #{{{1
 
+.PHONY: release
 release:
 	@echo 'FIXME: NIY'
 
@@ -82,6 +78,7 @@ release:
 
 # show-status  #{{{1
 
+.PHONY: show-status
 show-status:
 	@echo 'FIXME: NIY'
 
@@ -94,6 +91,7 @@ show-status:
 
 # test  #{{{1
 
+.PHONY: test
 test:
 	@echo 'FIXME: NIY'
 
