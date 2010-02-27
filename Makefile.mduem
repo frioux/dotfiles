@@ -5,6 +5,8 @@
 # - Use UPPER_CASE variables to be configured by user.
 #
 # - Use lower_case variables for internal use of mduem.
+#
+# - Use non-empty string as true and empty string as false.
 
 
 
@@ -16,6 +18,9 @@
 # Common  #{{{1
 
 SHELL=/bin/bash
+
+repository_name := $(notdir $(shell pwd))
+vim_script_repository_p := $(filter vim-%,$(repository_name))
 
 
 
@@ -121,6 +126,16 @@ install: post-install
 post_install_builtin_rules :=# Empty
 
 
+ifneq '$(vim_script_repository_p)' ''
+target_vim_helptags := $(call RENAME_TARGET,doc/tags)
+$(target_vim_helptags): $(filter doc/%.txt,$(targets_all_installed))
+	@echo 'POST-INSTALL vim helptags'
+	@vim -n -N -u NONE -U NONE -e -c 'helptags $(dir $@) | qall!'
+
+post_install_builtin_rules += $(target_vim_helptags)
+endif
+
+
 .PHONY: post-install
 post-install: $(post_install_builtin_rules)
 
@@ -135,7 +150,6 @@ post-install: $(post_install_builtin_rules)
 
 archive_basename = $(repository_name)-$(version)
 archive_name = $(archive_basename).zip
-repository_name = $(notdir $(shell pwd))
 version = $(shell git describe --tags --always --dirty)
 
 
