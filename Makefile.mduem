@@ -38,9 +38,11 @@ all: build
 
 # build  #{{{1
 
+TARGETS_ARCHIVED ?= $(shell git ls-files)
 TARGETS_GENERATED ?=# Empty
 TARGETS_STATIC ?=# Empty
 
+targets_all_archived = $(sort $(targets_all_installed) $(TARGETS_ARCHIVED))
 targets_all_installed = $(TARGETS_GENERATED) $(TARGETS_STATIC)
 
 
@@ -125,7 +127,10 @@ version = $(shell git describe --tags --always)
 .PHONY: pack
 pack:
 	rm -rf '$(archive_basename)' '$(archive_name)'
-	$(MAKE) 'INSTALL_DIR=$(archive_basename)' install
+	$(MAKE) \
+	  'INSTALL_DIR=$(archive_basename)' \
+	  'targets_all_installed=$(targets_all_archived)' \
+	  install
 	zip -r $(archive_name) $(archive_basename)/
 	rm -rf '$(archive_basename)'
 
