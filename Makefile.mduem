@@ -14,8 +14,23 @@ SHELL=/bin/bash
 # all  #{{{1
 
 .PHONY: all
-all:
-	@echo 'Nothing to do'
+all: build
+
+
+
+
+
+
+
+
+# build  #{{{1
+
+BUILD_TARGETS_GENERATED ?=# Empty
+BUILD_TARGETS_STATIC ?=# Empty
+BUILD_TARGETS_ALL = $(BUILD_TARGETS_GENERATED) $(BUILD_TARGETS_STATIC)
+
+.PHONY: build
+build: $(BUILD_TARGETS_ALL)
 
 
 
@@ -39,8 +54,11 @@ clean:
 
 # install  #{{{1
 
+INSTALL_DIR ?=# Empty
+INSTALL_TARGETS_RENAME ?= $(patsubst %,$(INSTALL_DIR)/%,$(1))
+
 .PHONY: install
-install:
+install: build
 	@echo 'FIXME: NIY'
 
 
