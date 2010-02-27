@@ -121,7 +121,7 @@ $(eval \
 archive_basename = $(repository_name)-$(version)
 archive_name = $(archive_basename).zip
 repository_name = $(notdir $(shell pwd))
-version = $(shell git describe --tags --always)
+version = $(shell git describe --tags --always --dirty)
 
 
 .PHONY: pack
