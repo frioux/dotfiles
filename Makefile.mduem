@@ -112,9 +112,18 @@ $(eval \
 
 # pack  #{{{1
 
+archive_basename = $(repository_name)-$(version)
+archive_name = $(archive_basename).zip
+repository_name = $(notdir $(shell pwd))
+version = $(shell git describe --tags --always)
+
+
 .PHONY: pack
 pack:
-	@echo 'FIXME: NIY'
+	rm -rf '$(archive_basename)' '$(archive_name)'
+	$(MAKE) 'INSTALL_DIR=$(archive_basename)' install
+	zip -r $(archive_name) $(archive_basename)/
+	rm -rf '$(archive_basename)'
 
 
 
