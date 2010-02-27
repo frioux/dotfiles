@@ -154,19 +154,6 @@ release:
 
 
 
-# show-status  #{{{1
-
-.PHONY: show-status
-show-status:
-	@echo 'FIXME: NIY'
-
-
-
-
-
-
-
-
 # test  #{{{1
 
 .PHONY: test
