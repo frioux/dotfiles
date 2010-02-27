@@ -1,5 +1,18 @@
 # Makefile.mduem is just a "library" Makefile.  It doesn't nothing by itself.
 # Note that this Makefile requires GNU make.
+# Coding Rules  #{{{1
+#
+# - Use UPPER_CASE variables to be configured by user.
+#
+# - Use lower_case variables for internal use of mduem.
+
+
+
+
+
+
+
+
 # Common  #{{{1
 
 SHELL=/bin/bash
@@ -25,12 +38,12 @@ all: build
 
 # build  #{{{1
 
-BUILD_TARGETS_GENERATED ?=# Empty
-BUILD_TARGETS_STATIC ?=# Empty
-BUILD_TARGETS_ALL = $(BUILD_TARGETS_GENERATED) $(BUILD_TARGETS_STATIC)
+TARGETS_GENERATED ?=# Empty
+TARGETS_STATIC ?=# Empty
+targets_all = $(TARGETS_GENERATED) $(TARGETS_STATIC)
 
 .PHONY: build
-build: $(BUILD_TARGETS_ALL)
+build: $(targets_all)
 
 
 
@@ -55,7 +68,7 @@ clean:
 # install  #{{{1
 
 INSTALL_DIR ?=# Empty
-INSTALL_TARGETS_RENAME ?= $(patsubst %,$(INSTALL_DIR)/%,$(1))
+RENAME_TARGET ?= $(patsubst %,$(INSTALL_DIR)/%,$(1))
 
 .PHONY: install
 install: install-check build
@@ -79,9 +92,9 @@ $(2): $(1)
 
 endef
 $(eval \
-  $(foreach build_target, \
-    $(BUILD_TARGETS_ALL), \
-    $(call rule_to_install_a_target,$(build_target),$(call INSTALL_TARGETS_RENAME,$(build_target)))))
+  $(foreach t, \
+    $(targets_all), \
+    $(call rule_to_install_a_target,$(t),$(call RENAME_TARGET,$(t)))))
 
 
 
