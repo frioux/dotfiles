@@ -156,9 +156,35 @@ release:
 
 # test  #{{{1
 
+test_cases := $(patsubst %.expected,%, \
+                $(shell git ls-files test/ | grep '\.expected$$'))
+
+
+
+
 .PHONY: test
-test:
-	@echo 'FIXME: NIY'
+test: test/,ok
+
+test/,ok: $(test_cases:test/%=test/,%.ok)
+	@echo 'ALL TESTS PASSED.'
+	@touch $@
+
+test/,%.ok: test/,%.diff
+	@echo -n 'TEST: $< ... '
+	@if ! [ -s test/,%.diff ]; then \
+	   echo 'OK'; \
+	 else \
+	   echo 'FAILED'; \
+	   cat $<; \
+	   echo 'END'; \
+	   false; \
+	 fi
+	@touch $@
+
+test/,%.diff: test/%.expected test/,%.output
+	-@diff -u $^ >$@
+
+test/,%.output: test/%.input
 
 
 
