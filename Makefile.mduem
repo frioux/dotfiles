@@ -20,6 +20,7 @@
 SHELL=/bin/bash
 
 repository_name := $(notdir $(shell pwd))
+version := $(shell git describe --tags --always --dirty)
 vim_script_repository_p := $(filter vim-%,$(repository_name))
 
 
@@ -92,6 +93,7 @@ $(error Please set INSTALL_DIR)
 endif
 
 RENAME_TARGET ?= $(patsubst %,$(INSTALL_DIR)/%,$(1))
+SHOULD_INSTALL_ASIS ?=# All files are version-filtered by default.
 
 
 
@@ -105,7 +107,11 @@ install: $(2)
 $(2): $(1)
 	@echo 'INSTALL $(1) ==> $(2)'
 	@mkdir -p '$(dir $(2))'
+ifneq '$(call SHOULD_INSTALL_ASIS,$(1))' ''
 	@cp '$(1)' '$(2)'
+else
+	@sed -e 's/@@VERSION@@/$(version)/' '$(1)' >'$(2)'
+endif
 
 endef
 $(eval \
@@ -150,7 +156,6 @@ post-install: $(post_install_builtin_rules)
 
 archive_basename = $(repository_name)-$(version)
 archive_name = $(archive_basename).zip
-version = $(shell git describe --tags --always --dirty)
 
 
 .PHONY: pack
