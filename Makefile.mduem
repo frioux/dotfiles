@@ -51,7 +51,7 @@
 
 # Common  #{{{1
 
-SHELL=/bin/bash
+SHELL := /bin/bash
 
 repository_name := $(notdir $(shell pwd))
 version := $(shell git describe --tags --always --dirty)
