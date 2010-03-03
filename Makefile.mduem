@@ -93,8 +93,15 @@ all_deps := $(vim_script_deps) $(DEPS)
 DEP_vim_vspec_URI := ../vim-vspec
 DEP_vim_vspec_VERSION := 0.0.3a1
 
+origin_uri = $(or $(shell git config 'remote.origin.url'),../.)
+	# BUGS: This resolves "../" just once, but it's enough for usual cases.
+resolve_dep_uri = $(strip $(if $(filter ../%,$(1)), \
+                            $(dir $(origin_uri))$(1:../%=%), \
+                            $(1)))
+
 normalize_dep_name = $(subst -,_,$(1))
-dep_uri = $(DEP_$(call normalize_dep_name,$(1))_URI)
+dep_raw_uri = $(DEP_$(call normalize_dep_name,$(1))_URI)
+dep_uri = $(call resolve_dep_uri,$(call dep_raw_uri,$(1)))
 dep_version = $(DEP_$(call normalize_dep_name,$(1))_VERSION)
 dep_dir_name = $(patsubst %.git,%,$(notdir $(call dep_uri,$(1))))
 
