@@ -246,7 +246,7 @@ test_cases := $(patsubst %.expected,%, \
 
 
 .PHONY: test
-test: test/,ok
+test: fetch-deps test/,ok
 
 test/,ok: $(test_cases:test/%=test/,%.ok)
 	@echo 'ALL TESTS PASSED.'
