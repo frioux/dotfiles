@@ -270,6 +270,17 @@ test/,%.diff: test/%.expected test/,%.output
 test/,%.output: test/%.input
 
 
+ifneq '$(vim_script_repository_p)' ''
+all_vim_scripts = $(shell git ls-files | grep '\.vim$$')
+	# FIXME: Use $(all_deps) to list directories of deps.
+test/,%.output: test/%.input deps/vim-vspec/bin/vspec $(all_vim_scripts)
+	@./deps/vim-vspec/bin/vspec \
+	   $< \
+	   $$(find deps -mindepth 1 -maxdepth 1 -type d) \
+	   &>$@
+endif
+
+
 
 
 
