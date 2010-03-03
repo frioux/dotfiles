@@ -138,11 +138,11 @@ resolve_dep_uri = $(strip $(if $(filter ../%,$(1)), \
                             $(dir $(origin_uri))$(1:../%=%), \
                             $(1)))
 normalize_dep_name = $(subst -,_,$(1))
-dep_raw_uri = $(DEP_$(call normalize_dep_name,$(1))_URI)
+get_dep_raw_uri = $(DEP_$(call normalize_dep_name,$(1))_URI)
 
-dep_uri = $(call resolve_dep_uri,$(call dep_raw_uri,$(1)))
-dep_version = $(DEP_$(call normalize_dep_name,$(1))_VERSION)
-dep_dir_name = $(patsubst %.git,%,$(notdir $(call dep_uri,$(1))))
+get_dep_uri = $(call resolve_dep_uri,$(call get_dep_raw_uri,$(1)))
+get_dep_version = $(DEP_$(call normalize_dep_name,$(1))_VERSION)
+get_dep_dir_name = $(patsubst %.git,%,$(notdir $(call get_dep_uri,$(1))))
 
 
 
@@ -154,9 +154,10 @@ deps/,,%:
 	@echo 'FETCH-DEP $*'
 	@mkdir -p $(dir $@)
 	@{ \
-	   git clone $(call dep_uri,$*) $(dir $@)$(call dep_dir_name,$*) && \
-	   cd ./$(dir $@)$(call dep_dir_name,$*) && \
-	   git checkout $(call dep_version,$*); \
+	   git clone $(call get_dep_uri,$*) \
+	       $(dir $@)$(call get_dep_dir_name,$*) && \
+	   cd ./$(dir $@)$(call get_dep_dir_name,$*) && \
+	   git checkout $(call get_dep_version,$*); \
 	 } &>$@.log
 	@touch $@
 
@@ -170,10 +171,10 @@ deps/,,%:
 # install  #{{{1
 # Core  #{{{2
 
-INSTALL_DIR ?= $(error Please set INSTALL_DIR)
+INSTALLATION_DIR ?= $(error Please set INSTALLATION_DIR)
 
-RENAME_TARGET ?= $(patsubst %,$(INSTALL_DIR)/%,$(1))
-SHOULD_INSTALL_ASIS ?=# All files are version-filtered by default.
+RENAME_TARGET ?= $(patsubst %,$(INSTALLATION_DIR)/%,$(1))
+SHOULD_INSTALL_ASIS_P ?=# All files are version-filtered by default.
 
 
 
@@ -182,12 +183,12 @@ SHOULD_INSTALL_ASIS ?=# All files are version-filtered by default.
 install: build
 
 
-define rule_to_install_a_target  # (build_target, install_target)
+define generate_rule_to_install_a_target  # (build_target, install_target)
 install: $(2)
 $(2): $(1)
 	@echo 'INSTALL $(1) ==> $(2)'
 	@mkdir -p '$(dir $(2))'
-ifneq '$(call SHOULD_INSTALL_ASIS,$(1))' ''
+ifneq '$(call SHOULD_INSTALL_ASIS_P,$(1))' ''
 	@cp '$(1)' '$(2)'
 else
 	@sed -e 's/@@VERSION@@/$(version)/' '$(1)' >'$(2)'
@@ -197,7 +198,7 @@ endef
 $(eval \
   $(foreach t, \
     $(targets_all_installed), \
-    $(call rule_to_install_a_target,$(t),$(call RENAME_TARGET,$(t)))))
+    $(call generate_rule_to_install_a_target,$(t),$(call RENAME_TARGET,$(t)))))
 
 
 # This should be placed at the last to ensure that post-install is executed
@@ -209,7 +210,7 @@ install: post-install
 
 # post-install  #{{{2
 
-post_install_builtin_rules :=# Empty
+targets_post_install_builtin :=# Empty
 
 
 ifneq '$(vim_script_repository_p)' ''
@@ -218,12 +219,12 @@ $(target_vim_helptags): $(filter doc/%.txt,$(targets_all_installed))
 	@echo 'POST-INSTALL vim helptags'
 	@vim -n -N -u NONE -U NONE -e -c 'helptags $(dir $@) | qall!'
 
-post_install_builtin_rules += $(target_vim_helptags)
+targets_post_install_builtin += $(target_vim_helptags)
 endif
 
 
 .PHONY: post-install
-post-install: $(post_install_builtin_rules)
+post-install: $(targets_post_install_builtin)
 
 
 
@@ -242,7 +243,7 @@ archive_name = $(archive_basename).zip
 pack:
 	rm -rf '$(archive_basename)' '$(archive_name)'
 	$(MAKE) \
-	  'INSTALL_DIR=$(archive_basename)' \
+	  'INSTALLATION_DIR=$(archive_basename)' \
 	  'targets_all_installed=$(targets_all_archived)' \
 	  install
 	zip -r $(archive_name) $(archive_basename)/
