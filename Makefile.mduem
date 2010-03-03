@@ -285,7 +285,7 @@ test/,ok: $(test_cases:test/%=test/,%.ok)
 	@touch $@
 
 test/,%.ok: test/,%.diff
-	@echo -n 'TEST: $< ... '
+	@echo -n 'TEST $* ... '
 	@if [ -z test/,%.diff ]; then \
 	   echo 'OK'; \
 	 else \
