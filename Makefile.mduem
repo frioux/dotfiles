@@ -297,7 +297,7 @@ test/,%.ok: test/,%.diff
 	@touch $@
 
 test/,%.diff: test/%.expected test/,%.output
-	-@diff -u $^ >$@
+	@diff -u $^ >$@; true
 
 test/,%.output: test/%.input
 
