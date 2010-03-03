@@ -93,7 +93,12 @@ all_deps := $(vim_script_deps) $(DEPS)
 DEP_vim_vspec_URI := ../vim-vspec
 DEP_vim_vspec_VERSION := 0.0.3a1
 
-origin_uri = $(or $(shell git config 'remote.origin.url'),../.)
+
+current_branch = $(shell git symbolic-ref -q HEAD | sed -e 's|^refs/heads/||')
+origin_name = $(strip $(or \
+                $(shell git config --get "branch.$(current_branch).remote"), \
+		origin))
+origin_uri = $(or $(shell git config 'remote.$(origin_name).url'),../.)
 	# BUGS: This resolves "../" just once, but it's enough for usual cases.
 resolve_dep_uri = $(strip $(if $(filter ../%,$(1)), \
                             $(dir $(origin_uri))$(1:../%=%), \
