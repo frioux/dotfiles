@@ -136,10 +136,7 @@ deps/,,%:
 # install  #{{{1
 # Core  #{{{2
 
-INSTALL_DIR ?=# Empty
-ifeq '$(strip $(INSTALL_DIR))' ''
-$(error Please set INSTALL_DIR)
-endif
+INSTALL_DIR ?= $(error Please set INSTALL_DIR)
 
 RENAME_TARGET ?= $(patsubst %,$(INSTALL_DIR)/%,$(1))
 SHOULD_INSTALL_ASIS ?=# All files are version-filtered by default.
