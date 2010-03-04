@@ -1,5 +1,7 @@
-# Makefile.mduem is just a "library" Makefile.  It doesn't nothing by itself.
-# Note that this Makefile requires GNU make.
+# mduem - Little utility for little software development
+#
+# This is a library Makefile to maintain software development, especially for
+# Vim script.  Note that this Makefile requires GNU make to use.
 # Coding Rules  #{{{1
 #
 # - Use non-empty string as true and empty string as false.
