@@ -58,6 +58,8 @@ all: # Ensure that this is the default target.
 
 SHELL := /bin/bash
 
+git_controlled_p := $(wildcard .git/)
+ifneq '$(git_controlled_p)' ''
 this_makefile := $(lastword $(MAKEFILE_LIST))
 .mduem/cache/Makefile.variables: .git/config .git/index $(this_makefile)
 	@echo 'GENERATE $@'
@@ -78,6 +80,7 @@ this_makefile := $(lastword $(MAKEFILE_LIST))
 	   echo 'version := $(shell git describe --tags --always --dirty)'; \
 	   echo 'vim_script_repos_p := $(filter vim-%,$(repos_name))'; \
 	 } >'$@'
+endif
 
 include .mduem/cache/Makefile.variables
 
