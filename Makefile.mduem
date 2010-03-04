@@ -57,10 +57,10 @@
 all: # Ensure that this is the default target.
 
 SHELL := /bin/bash
+this_makefile := $(lastword $(MAKEFILE_LIST))
 
 git_controlled_p := $(wildcard .git/)
 ifneq '$(git_controlled_p)' ''
-this_makefile := $(lastword $(MAKEFILE_LIST))
 .mduem/cache/Makefile.variables: .git/config .git/index $(this_makefile)
 	@echo 'GENERATE $@'
 	@mkdir -p '$(dir $@)'
@@ -265,6 +265,7 @@ archive_name = $(archive_basename).zip
 pack:
 	rm -rf '$(archive_basename)' '$(archive_name)'
 	$(MAKE) \
+	  -f '$(this_makefile)' \
 	  'INSTALLATION_DIR=$(archive_basename)' \
 	  'targets_all_installed=$(targets_all_archived)' \
 	  install
