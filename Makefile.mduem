@@ -51,6 +51,8 @@
 
 # Common  #{{{1
 
+all: # Ensure that this is the default target.
+
 SHELL := /bin/bash
 
 repository_name := $(notdir $(shell pwd))
