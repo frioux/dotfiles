@@ -58,7 +58,8 @@ all: # Ensure that this is the default target.
 
 SHELL := /bin/bash
 
-.mduem/cache/Makefile.variables: .git/config .git/index Makefile.mduem
+this_makefile := $(lastword $(MAKEFILE_LIST))
+.mduem/cache/Makefile.variables: .git/config .git/index $(this_makefile)
 	@echo 'GENERATE $@'
 	@mkdir -p '$(dir $@)'
 	@{ \
