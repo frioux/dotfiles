@@ -102,7 +102,7 @@ all: build
 
 # build  #{{{1
 
-TARGETS_ARCHIVED ?= $(all_files_in_repos)
+TARGETS_ARCHIVED ?= $(all_files_in_repos) .mduem/cache/Makefile.variables
 TARGETS_GENERATED ?=# Empty
 TARGETS_STATIC ?=# Empty
 
