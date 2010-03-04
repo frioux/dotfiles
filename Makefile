@@ -172,9 +172,9 @@ get_dep_dir_name = $(patsubst %.git,%,$(notdir $(call get_dep_uri,$(1))))
 
 
 .PHONY: fetch-deps
-fetch-deps: $(all_deps:%=deps/,,%)
+fetch-deps: $(all_deps:%=.mduem/deps/,%)
 
-deps/,,%:
+.mduem/deps/,%:
 	@echo 'FETCH-DEP $*'
 	@mkdir -p $(dir $@)
 	@{ \
@@ -330,10 +330,10 @@ test/,%.output: test/%.input
 ifneq '$(vim_script_repos_p)' ''
 all_vim_scripts = $(filter %.vim,$(all_files_in_repos))
 	# FIXME: Use $(all_deps) to list directories of deps.
-test/,%.output: test/%.input deps/vim-vspec/bin/vspec $(all_vim_scripts)
-	@./deps/vim-vspec/bin/vspec \
+test/,%.output: test/%.input .mduem/deps/vim-vspec/bin/vspec $(all_vim_scripts)
+	@./.mduem/deps/vim-vspec/bin/vspec \
 	   $< \
-	   $$(find deps -mindepth 1 -maxdepth 1 -type d) \
+	   $$(find ./.mduem/deps -mindepth 1 -maxdepth 1 -type d) \
 	   &>$@
 endif
 
