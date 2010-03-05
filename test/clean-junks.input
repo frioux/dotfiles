@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# FIXME: Currently this test is not written, because it's hard to test.
+# The output file for this test is treated as a junk and it is removed by
+# clean-junk, so that "tester" make cannot find the output file.
+
+# __END__
