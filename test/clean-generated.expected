@@ -1,0 +1,9 @@
+BEFORE {
+test/,clean-generated
+test/,clean-generated/generated-file
+test/,clean-generated/static-file
+}
+AFTER {
+test/,clean-generated
+test/,clean-generated/static-file
+}

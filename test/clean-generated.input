@@ -1,0 +1,26 @@
+#!/bin/bash
+
+dir='test/,clean-generated'
+generated_file="$dir/generated-file"
+static_file="$dir/static-file"
+
+mkdir -p "$dir"
+touch "$generated_file"
+touch "$static_file"
+
+echo 'BEFORE {'
+find "$dir"
+echo '}'
+
+make --always-make >/dev/null \
+  "INSTALLATION_DIR=$dir" \
+  "TARGETS_GENERATED=$generated_file" \
+  clean-generated
+
+echo 'AFTER {'
+find "$dir"
+echo '}'
+
+rm -rf "$dir" "$generated_file" "$static_file"
+
+# __END__
