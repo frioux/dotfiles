@@ -1,0 +1,6 @@
+test/,install-post
+test/,install-post/doc
+test/,install-post/doc/something.txt
+test/,install-post/doc/tags
+test/,install-post/Makefile
+test/,install-post/README

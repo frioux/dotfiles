@@ -1,0 +1,18 @@
+#!/bin/bash
+
+dir='test/,install-post'
+
+mkdir -p "$dir/doc"
+touch "$dir/doc/something.txt"
+
+make --always-make >/dev/null \
+  "INSTALLATION_DIR=$dir" \
+  'TARGETS_STATIC=Makefile README' \
+  'vim_script_repos_p=t' \
+  install
+
+find "$dir"
+
+rm -rf "$dir"
+
+# __END__
