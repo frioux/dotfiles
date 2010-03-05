@@ -1,0 +1,26 @@
+#!/bin/bash
+
+dir='test/,all'
+makefile='test/,all.Makefile'
+file_source='test/,all.source'
+file_generated='test/,all.generated'
+
+echo "$$" >"$file_source"
+cat >"$makefile" <<END
+TARGETS_GENERATED := $file_generated
+
+$file_generated: $file_source
+	cp \$< \$@
+
+include Makefile
+END
+
+make --always-make -f "$makefile" >/dev/null \
+  "INSTALLATION_DIR=$dir" \
+  build
+
+diff "$file_source" "$file_generated" >/dev/null; echo "same $?"
+
+rm -rf "$dir" "$makefile" "$file_source" "$file_generated"
+
+# __END__
