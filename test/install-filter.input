@@ -1,0 +1,22 @@
+#!/bin/bash
+
+dir='test/,install-filter'
+file_asis="test/,install-filter.asis"
+file_filtered="test/,install-filter.filtered"
+
+echo '@@VERSION@@' >"$file_asis"
+echo '@@VERSION@@' >"$file_filtered"
+
+make --always-make >/dev/null \
+  "INSTALLATION_DIR=$dir" \
+  "TARGETS_STATIC=$file_asis $file_filtered" \
+  'SHOULD_INSTALL_ASIS_P=$(filter %.asis,$(1))' \
+  install
+
+find "$dir"
+diff "$file_asis" "$dir/$file_asis" >/dev/null; echo "asis $?"
+diff "$file_filtered" "$dir/$file_filtered" >/dev/null; echo "filtered $?"
+
+rm -rf "$dir" "$file_asis" "$file_filtered"
+
+# __END__
