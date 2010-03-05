@@ -234,6 +234,7 @@ install: post-install
 
 # post-install  #{{{2
 
+TARGETS_POST_INSTALL ?=# Empty
 targets_post_install_builtin :=# Empty
 
 
@@ -248,7 +249,7 @@ endif
 
 
 .PHONY: post-install
-post-install: $(targets_post_install_builtin)
+post-install: $(targets_post_install_builtin) $(TARGETS_POST_INSTALL)
 
 
 
