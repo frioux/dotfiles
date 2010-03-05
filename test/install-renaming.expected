@@ -1,0 +1,3 @@
+test/,install-renaming
+test/,install-renaming/Makefile.renamed
+test/,install-renaming/README.renamed

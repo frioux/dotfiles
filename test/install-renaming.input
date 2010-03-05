@@ -1,0 +1,15 @@
+#!/bin/bash
+
+dir='test/,install-renaming'
+
+make --always-make >/dev/null \
+  "INSTALLATION_DIR=$dir" \
+  'RENAME_TARGET=$(patsubst %,$(INSTALLATION_DIR)/%.renamed,$(1))' \
+  'TARGETS_STATIC=Makefile README' \
+  install
+
+find "$dir"
+
+rm -rf "$dir"
+
+# __END__
