@@ -1,0 +1,25 @@
+#!/bin/bash
+
+dir='test/,install-generated'
+makefile='test/,install-generated.Makefile'
+file='test/,install-generated.foo'
+
+cat >"$makefile" <<END
+TARGETS_GENERATED := $file
+
+$file:
+	echo $$ >\$@
+
+include Makefile
+END
+
+make --always-make -f "$makefile" >/dev/null \
+  "INSTALLATION_DIR=$dir" \
+  'TARGETS_STATIC=Makefile README' \
+  install
+
+find "$dir"
+
+rm -rf "$dir" "$makefile" "$file"
+
+# __END__
