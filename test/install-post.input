@@ -1,0 +1,19 @@
+#!/bin/bash
+
+dir='test/,install-post'
+makefile='test/,install-post.Makefile'
+
+cat >"$makefile" <<END
+include Makefile
+post-install:
+	find '$dir' >&2
+END
+
+make --always-make -f "$makefile" >/dev/null \
+  "INSTALLATION_DIR=$dir" \
+  'TARGETS_STATIC=Makefile README' \
+  install
+
+rm -rf "$dir" "$makefile"
+
+# __END__
