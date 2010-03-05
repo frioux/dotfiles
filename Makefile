@@ -210,7 +210,7 @@ install: build
 define generate_rule_to_install_a_target  # (build_target, install_target)
 install: $(2)
 $(2): $(1)
-	@echo 'INSTALL $(1) ==> $(2)'
+	@echo 'INSTALL $(1)'
 	@mkdir -p '$(dir $(2))'
 ifneq '$(call SHOULD_INSTALL_ASIS_P,$(1))' ''
 	@cp '$(1)' '$(2)'
@@ -306,7 +306,7 @@ test_cases := $(patsubst %.expected,%, \
 test: fetch-deps test/,ok
 
 test/,ok: $(test_cases:test/%=test/,%.ok)
-	@echo 'ALL TESTS PASSED.'
+	@echo 'ALL TESTS ARE PASSED.'
 	@touch $@
 
 test/,%.ok: test/,%.diff
