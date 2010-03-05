@@ -328,7 +328,7 @@ test/,ok: $(test_cases:test/%=test/,%.ok)
 
 test/,%.ok: test/,%.diff
 	@echo -n 'TEST $* ... '
-	@if [ -z test/,%.diff ]; then \
+	@if ! [ -s test/,%.diff ]; then \
 	   echo 'OK'; \
 	 else \
 	   echo 'FAILED'; \
