@@ -329,11 +329,10 @@ test/,%.output: test/%.input
 
 ifneq '$(vim_script_repos_p)' ''
 all_vim_scripts = $(filter %.vim,$(all_files_in_repos))
-	# FIXME: Use $(all_deps) to list directories of deps.
 test/,%.output: test/%.input .mduem/deps/vim-vspec/bin/vspec $(all_vim_scripts)
 	@./.mduem/deps/vim-vspec/bin/vspec \
 	   $< \
-	   $$(find ./.mduem/deps -mindepth 1 -maxdepth 1 -type d) \
+	   $(foreach d,$(all_deps),.mduem/deps/$(call get_dep_dir_name,$(d)))
 	   &>$@
 endif
 
