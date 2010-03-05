@@ -300,6 +300,23 @@ test_cases := $(patsubst %.expected,%, \
                 $(filter %.expected,$(all_files_in_repos)))
 
 
+default_test_rule_deps :=# Empty
+define default_test_rule
+	@source './$<' &>'$@' || { cat '$@'; false; }
+endef
+
+ifneq '$(vim_script_repos_p)' ''
+all_vim_scripts := $(filter %.vim,$(all_files_in_repos))
+vim_script_test_rule_deps := .mduem/deps/vim-vspec/bin/vspec $(all_vim_scripts)
+define vim_script_test_rule
+	@./$(call get_dep_dir,vim-vspec)/bin/vspec \
+	   $< \
+	   $(foreach d,$(all_deps),$(call get_dep_dir,$(d))) \
+	   &>$@
+endef
+endif
+
+
 
 
 .PHONY: test
@@ -324,17 +341,14 @@ test/,%.ok: test/,%.diff
 test/,%.diff: test/%.expected test/,%.output
 	@diff -u $^ >$@; true
 
-test/,%.output: test/%.input
-
-
-ifneq '$(vim_script_repos_p)' ''
-all_vim_scripts = $(filter %.vim,$(all_files_in_repos))
-test/,%.output: test/%.input .mduem/deps/vim-vspec/bin/vspec $(all_vim_scripts)
-	@./.mduem/deps/vim-vspec/bin/vspec \
-	   $< \
-	   $(foreach d,$(all_deps),$(call get_dep_dir,$(d)))
-	   &>$@
-endif
+TEST_RULE ?= $(if $(vim_script_repos_p), \
+               $(vim_script_test_rule), \
+               $(default_test_rule))
+TEST_RULE_DEPS ?= $(if $(vim_script_repos_p), \
+                    $(vim_script_test_rule_deps), \
+                    $(default_test_rule_deps))
+test/,%.output: test/%.input $(TEST_RULE_DEPS)
+	$(TEST_RULE)
 
 
 
