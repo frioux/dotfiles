@@ -1,0 +1,28 @@
+#!/bin/bash
+# FIXME: Add tests for DEP_{project}_URI with a relative URI.
+
+dir="$PWD/test/,fetch-deps"
+makefile="$dir/Makefile"
+cache=".mduem/cache/Makefile.variables"
+
+mkdir -p "$dir"
+mkdir -p "$dir/$(dirname "$cache")"
+cp "$cache" "$dir/$cache"
+cat >"$makefile" <<END
+DEPS := mduem
+DEP_mduem_URI := $PWD
+DEP_mduem_VERSION := test-fetch-deps
+
+include $PWD/Makefile
+END
+
+cd "$dir"
+make --always-make -f "$makefile" >/dev/null \
+  fetch-deps
+
+find -name '.git' -prune -or -print
+( cd "$dir/.mduem/deps/mduem" && git describe --tags --always --dirty; )
+
+rm -rf "$dir"
+
+# __END__
