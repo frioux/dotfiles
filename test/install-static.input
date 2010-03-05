@@ -1,0 +1,14 @@
+#!/bin/bash
+
+dir='test/,install-static'
+
+make --always-make >/dev/null \
+  "INSTALLATION_DIR=$dir" \
+  'TARGETS_STATIC=Makefile README' \
+  install
+
+find "$dir"
+
+rm -rf "$dir"
+
+# __END__

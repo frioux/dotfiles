@@ -1,0 +1,3 @@
+test/,install-static
+test/,install-static/Makefile
+test/,install-static/README
