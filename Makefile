@@ -163,10 +163,11 @@ resolve_dep_uri = $(strip $(if $(filter ../%,$(1)), \
                             $(1)))
 normalize_dep_name = $(subst -,_,$(1))
 get_dep_raw_uri = $(DEP_$(call normalize_dep_name,$(1))_URI)
+get_dep_dir_name = $(patsubst %.git,%,$(notdir $(call get_dep_uri,$(1))))
 
 get_dep_uri = $(call resolve_dep_uri,$(call get_dep_raw_uri,$(1)))
 get_dep_version = $(DEP_$(call normalize_dep_name,$(1))_VERSION)
-get_dep_dir_name = $(patsubst %.git,%,$(notdir $(call get_dep_uri,$(1))))
+get_dep_dir = .mduem/deps/$(call get_dep_dir_name,$(1))
 
 
 
@@ -178,9 +179,8 @@ fetch-deps: $(all_deps:%=.mduem/deps/,%)
 	@echo 'FETCH-DEP $*'
 	@mkdir -p $(dir $@)
 	@{ \
-	   git clone $(call get_dep_uri,$*) \
-	       $(dir $@)$(call get_dep_dir_name,$*) && \
-	   cd ./$(dir $@)$(call get_dep_dir_name,$*) && \
+	   git clone $(call get_dep_uri,$*) $(call get_dep_dir,$*) && \
+	   cd ./$(call get_dep_dir,$*) && \
 	   git checkout $(call get_dep_version,$*); \
 	 } &>$@.log
 	@touch $@
@@ -332,7 +332,7 @@ all_vim_scripts = $(filter %.vim,$(all_files_in_repos))
 test/,%.output: test/%.input .mduem/deps/vim-vspec/bin/vspec $(all_vim_scripts)
 	@./.mduem/deps/vim-vspec/bin/vspec \
 	   $< \
-	   $(foreach d,$(all_deps),.mduem/deps/$(call get_dep_dir_name,$(d)))
+	   $(foreach d,$(all_deps),$(call get_dep_dir,$(d)))
 	   &>$@
 endif
 
