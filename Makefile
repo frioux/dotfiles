@@ -274,7 +274,6 @@ archive_name = $(archive_basename).zip
 pack:
 	rm -rf '$(archive_basename)' '$(archive_name)'
 	$(MAKE) \
-	  -f '$(this_makefile)' \
 	  'INSTALLATION_DIR=$(archive_basename)' \
 	  'targets_all_installed=$(targets_all_archived)' \
 	  install
@@ -335,7 +334,7 @@ test/,ok: $(test_cases:%=test/,%.ok)
 
 test/,%.ok:
 	@echo -n 'TEST $* ... '
-	@$(MAKE) --silent -f '$(this_makefile)' '$(@:.ok=.diff)'
+	@$(MAKE) --silent '$(@:.ok=.diff)'
 	@if ! [ -s $(@:.ok=.diff) ]; then \
 	   echo 'OK'; \
 	 else \
