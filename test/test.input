@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# FIXME: Add test on TEST_RULE.
+# FIXME: Add test on TEST_RULE_DEPS.
+# FIXME: Add test on the default test rule for Vim script.
+
+# __END__
