@@ -1,8 +1,7 @@
-mduem is a tool to maintain software package, especially for Vim
-scripts.  Currently, it is just a snippet of Makefile for GNU make.
-Once you include it from your Makefile, you can do install, pack,
-release, etc with declarative way.  See files in "examples" directory to
-know how to use mduem.
+mduem is a tool to maintain software packages.  Currently, it is just
+a snippet of Makefile for GNU make.  Once you include it from your
+Makefile, you can do install, pack, release, etc with declarative way.
+See files in "examples" directory to know how to use mduem.
 
 Requirements:
 	Fundamentals:
