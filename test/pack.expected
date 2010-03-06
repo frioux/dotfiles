@@ -1,7 +1,3 @@
 GENERATE .mduem/cache/Makefile.variables
-0a1,3
+0a1
 > 
-> .mduem/
-> .mduem/cache/
-4a8
-> test/

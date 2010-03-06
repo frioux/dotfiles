@@ -12,8 +12,12 @@ test-pack:
 	@mv \$(archive_name) '$dir'
 	@unzip -Z1 '$dir/\$(archive_name)' \
 	 | sed 's!^\$(archive_basename)/!!' \
+	 | grep -v '/\$\$' \
+	 | sort \
 	 >'$dir/pack'
-	@for i in \$(targets_all_archived); do echo "\$\$i"; done >'$dir/orig'
+	@for i in \$(targets_all_archived); do echo "\$\$i"; done \
+         | sort \
+         >'$dir/orig'
 	@diff '$dir/orig' '$dir/pack'; true
 END
 
