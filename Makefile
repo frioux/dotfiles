@@ -326,6 +326,7 @@ vim_script_test_rule_deps := .mduem/deps/vim-vspec/bin/vspec $(all_vim_scripts)
 define vim_script_test_rule
 	@./$(call get_dep_dir,vim-vspec)/bin/vspec \
 	   $< \
+	   "$$PWD" \
 	   $(foreach d,$(all_deps),$(call get_dep_dir,$(d))) \
 	   &>$@
 endef
