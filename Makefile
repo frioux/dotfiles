@@ -88,11 +88,11 @@ ifneq '$(git_controlled_p)' ''
 	   ))'; \
 	   echo 'repos_name := $(notdir $(shell pwd))'; \
 	   echo 'version := $(shell git describe --tags --always --dirty)'; \
-	   echo 'vim_script_repos_p := $(filter vim-%,$(repos_name))'; \
 	 } >'$@'
 endif
-
 include .mduem/cache/Makefile.variables
+
+vim_script_repos_p := $(filter vim-%,$(repos_name))
 
 
 
