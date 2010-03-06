@@ -61,9 +61,17 @@ all: # Ensure that this is the default target.
 SHELL := /bin/bash
 this_makefile := $(lastword $(MAKEFILE_LIST))
 
-toplevel_dir_p := $(wildcard .git/)
-ifneq '$(toplevel_dir_p)' ''
-.mduem/cache/Makefile.variables: .git/config .git/index $(this_makefile)
+not = $(if $(1),,t)
+toplevel_dir := $(shell git rev-parse --show-toplevel 2>/dev/null)
+inner_dir := $(shell git rev-parse --show-prefix 2>/dev/null)
+git_controlled_p := $(toplevel_dir)
+toplevel_dir_p := $(and $(git_controlled_p),$(call not,$(inner_dir)))
+
+ifneq '$(git_controlled_p)' ''
+.mduem/cache/Makefile.variables: \
+		$(toplevel_dir)/.git/config \
+		$(toplevel_dir)/.git/index \
+		$(this_makefile)
 	@echo 'GENERATE $@'
 	@mkdir -p '$(dir $@)'
 	@{ \
