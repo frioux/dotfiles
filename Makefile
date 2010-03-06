@@ -138,11 +138,13 @@ clean: clean-generated clean-junks
 
 .PHONY: clean-generated
 clean-generated:
-	rm -rf $(TARGETS_GENERATED)
+	@echo 'CLEAN-GENERATED'
+	@rm -rf $(TARGETS_GENERATED)
 
 .PHONY: clean-junks
 clean-junks:
-	find -name '*~' -or -name ',*' | xargs rm -rf
+	@echo 'CLEAN-JUNKS'
+	@find -name '*~' -or -name ',*' | xargs rm -rf
 
 
 
