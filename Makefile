@@ -148,6 +148,7 @@ clean: clean-generated clean-junks
 clean-generated:
 	@echo 'CLEAN-GENERATED'
 	@rm -rf $(TARGETS_GENERATED)
+	@find -name '.mduem' | xargs rm -rf
 
 .PHONY: clean-junks
 clean-junks:
