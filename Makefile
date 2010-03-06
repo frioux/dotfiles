@@ -333,13 +333,14 @@ test/,ok: $(test_cases:test/%=test/,%.ok)
 	@echo 'ALL TESTS ARE PASSED.'
 	@touch $@
 
-test/,%.ok: test/,%.diff
+test/,%.ok:
 	@echo -n 'TEST $* ... '
-	@if ! [ -s $< ]; then \
+	@$(MAKE) --silent -f '$(this_makefile)' '$(@:.ok=.diff)'
+	@if ! [ -s $(@:.ok=.diff) ]; then \
 	   echo 'OK'; \
 	 else \
 	   echo 'FAILED'; \
-	   cat $<; \
+	   cat $(@:.ok=.diff); \
 	   echo 'END'; \
 	   false; \
 	 fi
