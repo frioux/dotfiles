@@ -75,17 +75,17 @@ ifneq '$(git_controlled_p)' ''
 	@echo 'GENERATE $@'
 	@mkdir -p '$(dir $@)'
 	@{ \
-	   echo 'all_files_in_repos := $(shell git ls-files)'; \
-	   echo 'current_branch := $(shell git symbolic-ref -q HEAD \
-	                                   | sed -e 's|^refs/heads/||')'; \
-	   echo 'origin_name := $(strip $(or \
-	     $(shell git config 'branch.$(current_branch).remote'), \
-	     origin \
-	   ))'; \
-	   echo 'origin_uri := $(strip $(or \
-	     $(shell git config 'remote.$(origin_name).url'), \
-	     ../. \
-	   ))'; \
+	   current_branch="$$(git symbolic-ref -q HEAD \
+	                      | sed -e 's|^refs/heads/||')"; \
+	   _origin_name="$$(git config "branch.$$current_branch.remote")"; \
+	   origin_name="$${_origin_name:-origin}"; \
+	   _origin_uri="$$(git config "remote.$$origin_name.url")"; \
+	   origin_uri="$${_origin_uri:-../.}"; \
+	   \
+	   echo "all_files_in_repos := $(shell git ls-files)"; \
+	   echo "current_branch := $${current_branch}"; \
+	   echo "origin_name := $${origin_name}"; \
+	   echo "origin_uri := $${origin_uri}"; \
 	   echo 'repos_name := $(notdir $(shell pwd))'; \
 	   echo 'version := $(shell git describe --tags --always --dirty)'; \
 	 } >'$@'
