@@ -303,8 +303,8 @@ release:
 
 # test  #{{{1
 
-test_cases := $(patsubst %.expected,%, \
-                $(filter %.expected,$(all_files_in_repos)))
+test_cases := $(patsubst test/%.expected,%, \
+                $(filter test/%.expected,$(all_files_in_repos)))
 
 
 default_test_rule_deps :=# Empty
@@ -329,7 +329,7 @@ endif
 .PHONY: test
 test: fetch-deps test/,ok
 
-test/,ok: $(test_cases:test/%=test/,%.ok)
+test/,ok: $(test_cases:%=test/,%.ok)
 	@echo 'ALL TESTS ARE PASSED.'
 	@touch $@
 
