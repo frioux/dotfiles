@@ -61,8 +61,8 @@ all: # Ensure that this is the default target.
 SHELL := /bin/bash
 this_makefile := $(lastword $(MAKEFILE_LIST))
 
-git_controlled_p := $(wildcard .git/)
-ifneq '$(git_controlled_p)' ''
+toplevel_dir_p := $(wildcard .git/)
+ifneq '$(toplevel_dir_p)' ''
 .mduem/cache/Makefile.variables: .git/config .git/index $(this_makefile)
 	@echo 'GENERATE $@'
 	@mkdir -p '$(dir $@)'
