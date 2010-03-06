@@ -111,12 +111,12 @@ TARGETS_ARCHIVED ?= $(all_files_in_repos)
 TARGETS_GENERATED ?=# Empty
 TARGETS_STATIC ?=# Empty
 
-targets_all_archived = $(sort \
-                         $(TARGETS_ARCHIVED) \
-                         $(targets_all_installed) \
-                         .mduem/cache/Makefile.variables \
-                         )
-targets_all_installed = $(TARGETS_GENERATED) $(TARGETS_STATIC)
+targets_all_installed := $(TARGETS_GENERATED) $(TARGETS_STATIC)
+targets_all_archived := $(sort \
+                          $(TARGETS_ARCHIVED) \
+                          $(targets_all_installed) \
+                          .mduem/cache/Makefile.variables \
+                          )
 
 
 
