@@ -346,6 +346,13 @@ define vim_script_test_rule
 endef
 endif
 
+TEST_RULE ?= $(if $(vim_script_repos_p), \
+               $(vim_script_test_rule), \
+               $(default_test_rule))
+TEST_RULE_DEPS ?= $(if $(vim_script_repos_p), \
+                    $(vim_script_test_rule_deps), \
+                    $(default_test_rule_deps))
+
 
 
 
@@ -372,12 +379,6 @@ test/,%.ok: test/%.input $(TEST_RULE_DEPS)
 test/,%.diff: test/%.expected test/,%.output
 	@diff -u $^ >$@; true
 
-TEST_RULE ?= $(if $(vim_script_repos_p), \
-               $(vim_script_test_rule), \
-               $(default_test_rule))
-TEST_RULE_DEPS ?= $(if $(vim_script_repos_p), \
-                    $(vim_script_test_rule_deps), \
-                    $(default_test_rule_deps))
 test/,%.output: test/%.input $(TEST_RULE_DEPS)
 	$(TEST_RULE)
 
