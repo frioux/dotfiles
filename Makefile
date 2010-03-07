@@ -60,6 +60,7 @@ all: # Ensure that this is the default target.
 
 SHELL := /bin/bash
 this_makefile := $(lastword $(MAKEFILE_LIST))
+cache_makefile := .mduem/cache/Makefile.variables
 
 not = $(if $(1),,t)
 toplevel_dir := $(shell git rev-parse --show-toplevel 2>/dev/null)
@@ -68,7 +69,7 @@ git_controlled_p := $(toplevel_dir)
 toplevel_dir_p := $(and $(git_controlled_p),$(call not,$(inner_dir)))
 
 ifneq '$(git_controlled_p)' ''
-.mduem/cache/Makefile.variables: \
+$(cache_makefile): \
 		$(toplevel_dir)/.git/config \
 		$(toplevel_dir)/.git/index \
 		$(this_makefile)
@@ -90,7 +91,7 @@ ifneq '$(git_controlled_p)' ''
 	   echo 'version := $(shell git describe --tags --always --dirty)'; \
 	 } >'$@'
 endif
-include .mduem/cache/Makefile.variables
+include $(cache_makefile)
 
 vim_script_repos_p := $(filter vim-%,$(repos_name))
 
@@ -123,7 +124,7 @@ targets_all_installed := $(TARGETS_GENERATED) $(TARGETS_STATIC)
 targets_all_archived := $(sort \
                           $(TARGETS_ARCHIVED) \
                           $(targets_all_installed) \
-                          .mduem/cache/Makefile.variables \
+                          $(cache_makefile) \
                           )
 
 
