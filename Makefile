@@ -197,21 +197,21 @@ fetch-deps: $(all_deps:%=.mduem/deps/,%)
 # FIXME: Update for changes on only DEPS and other values.
 .mduem/deps/,%: $(user_makefiles)
 	@echo 'FETCH-DEP $*'
-	@mkdir -p $(dir $@)
+	@mkdir -p '$(dir $@)'
 	@   { \
 	         if [ -d '$(call get_dep_dir,$*)' ] \
 	      ;  then \
-	           cd ./$(call get_dep_dir,$*) \
+	           cd './$(call get_dep_dir,$*)' \
 	      &&   git fetch \
 	      &&   git checkout -f mduem-master \
 	      ;  else \
-	           git clone $(call get_dep_uri,$*) $(call get_dep_dir,$*) \
-	      &&   cd ./$(call get_dep_dir,$*) \
+	           git clone '$(call get_dep_uri,$*)' '$(call get_dep_dir,$*)'\
+	      &&   cd './$(call get_dep_dir,$*)' \
 	      &&   git checkout -b mduem-master \
 	      ;  fi \
-	      && git reset --hard $(call get_dep_version,$*) \
-	 ;  } &>$@.log
-	@touch $@
+	      && git reset --hard '$(call get_dep_version,$*)' \
+	 ;  } &>'$@.log'
+	@touch '$@'
 
 
 
