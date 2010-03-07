@@ -60,6 +60,10 @@ all: # Ensure that this is the default target.
 
 SHELL := /bin/bash
 this_makefile := $(lastword $(MAKEFILE_LIST))
+cache_makefile := .mduem/cache/Makefile.variables
+user_makefiles := $(filter-out \
+                    $(this_makefile) $(cache_makefile), \
+                    $(MAKEFILE_LIST))
 
 not = $(if $(1),,t)
 toplevel_dir := $(shell git rev-parse --show-toplevel 2>/dev/null)
@@ -68,7 +72,7 @@ git_controlled_p := $(toplevel_dir)
 toplevel_dir_p := $(and $(git_controlled_p),$(call not,$(inner_dir)))
 
 ifneq '$(git_controlled_p)' ''
-.mduem/cache/Makefile.variables: \
+$(cache_makefile): \
 		$(toplevel_dir)/.git/config \
 		$(toplevel_dir)/.git/index \
 		$(this_makefile)
@@ -90,7 +94,7 @@ ifneq '$(git_controlled_p)' ''
 	   echo 'version := $(shell git describe --tags --always --dirty)'; \
 	 } >'$@'
 endif
-include .mduem/cache/Makefile.variables
+include $(cache_makefile)
 
 vim_script_repos_p := $(filter vim-%,$(repos_name))
 
@@ -123,7 +127,7 @@ targets_all_installed := $(TARGETS_GENERATED) $(TARGETS_STATIC)
 targets_all_archived := $(sort \
                           $(TARGETS_ARCHIVED) \
                           $(targets_all_installed) \
-                          .mduem/cache/Makefile.variables \
+                          $(cache_makefile) \
                           )
 
 
@@ -190,15 +194,25 @@ get_dep_dir = .mduem/deps/$(call get_dep_dir_name,$(1))
 .PHONY: fetch-deps
 fetch-deps: $(all_deps:%=.mduem/deps/,%)
 
-.mduem/deps/,%:
+# FIXME: Update for changes on only DEPS and other values.
+.mduem/deps/,%: $(user_makefiles)
 	@echo 'FETCH-DEP $*'
-	@mkdir -p $(dir $@)
-	@{ \
-	   git clone $(call get_dep_uri,$*) $(call get_dep_dir,$*) && \
-	   cd ./$(call get_dep_dir,$*) && \
-	   git checkout $(call get_dep_version,$*); \
-	 } &>$@.log
-	@touch $@
+	@mkdir -p '$(dir $@)'
+	@   ( \
+	         if [ -d '$(call get_dep_dir,$*)' ] \
+	      ;  then \
+	           cd './$(call get_dep_dir,$*)' \
+	      &&   git fetch \
+	      &&   git checkout -f mduem-master \
+	      ;  else \
+	           git clone '$(call get_dep_uri,$*)' '$(call get_dep_dir,$*)'\
+	      &&   cd './$(call get_dep_dir,$*)' \
+	      &&   git checkout -b mduem-master \
+	      ;  fi \
+	      && git reset --hard '$(call get_dep_version,$*)' \
+	 ;  ) &>'$@.log' \
+	 || { cat '$@.log'; false; }
+	@touch '$@'
 
 
 
