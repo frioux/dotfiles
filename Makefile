@@ -356,7 +356,7 @@ test/,ok: $(test_cases:%=test/,%.ok)
 	@echo 'ALL TESTS ARE PASSED.'
 	@touch $@
 
-test/,%.ok:
+test/,%.ok: test/%.input $(TEST_RULE_DEPS)
 	@echo -n 'TEST $* ... '
 	@$(MAKE) --silent '$(@:.ok=.diff)'
 	@if ! [ -s $(@:.ok=.diff) ]; then \
