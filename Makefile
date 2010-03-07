@@ -329,7 +329,7 @@ test_cases := $(patsubst test/%.expected,%, \
                 $(filter test/%.expected,$(all_files_in_repos)))
 
 
-default_test_rule_deps :=# Empty
+default_test_rule_deps := $(MAKEFILE_LIST)
 define default_test_rule
 	@source './$<' &>'$@' || { cat '$@'; false; }
 endef
