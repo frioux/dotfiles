@@ -121,20 +121,26 @@ TARGETS_STATIC := autoload/smartchr.vim doc/smartchr.txt
 # A project (= superproject) usually depends on some projects (= subprojects).
 # It's necessary to set up the subprojects to test the superproject.  If there
 # are such subprojects to set up, list their names in $(DEPS).  For example:
-#
-# DEPS := vim-vspec vim-textobj-user ...
-#
+
+DEPS := vim-vspec
+
 # Each subproject has its own official repository.  Define the URI of each
 # repository as follows.  (Note that mduem supports only git repository)
-#
-# DEPS_vim_vspec_URI := git://github.com/kana/vim-vspec.git
-# DEPS_vim_textobj_user_URI := git://github.com/kana/vim-textobj-user.git
-#
+
+DEPS_vim_vspec_URI := git://github.com/kana/vim-vspec.git
+
 # The superproject requires specific versions of subprojects.  To denote it,
 # write as follows.  (note that these "versions" are used as <commit-ish>s)
+
+DEPS_vim_vspec_VERSION := 0.0.3a1
+
+# Note that mduem automatically adds the above configuration for Vim-script
+# repository.  So that it's not necessary to set up by manually.  Usually, all
+# user has to do is to add configuration for Vim scripts except vim-vspec.
 #
-# DEPS_vim_vspec_VERSION := 0.0.3
-# DEPS_vim_textobj_user_VERSION := 0.4.0
+# But sometimes it's necessary to specify to use a specific version of
+# vim-vspec.  In such a case, user may override DEPS_vim_vspec_URI and
+#  DEPS_vim_vspec_VERSION.
 
 
 
