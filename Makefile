@@ -200,7 +200,8 @@ fetch-deps: $(all_deps:%=.mduem/deps/,%)
 	@{ \
 	   git clone $(call get_dep_uri,$*) $(call get_dep_dir,$*) && \
 	   cd ./$(call get_dep_dir,$*) && \
-	   git checkout $(call get_dep_version,$*); \
+	   git checkout -b mduem-master && \
+	   git reset --hard $(call get_dep_version,$*); \
 	 } &>$@.log
 	@touch $@
 
