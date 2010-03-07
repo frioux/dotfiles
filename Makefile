@@ -61,6 +61,9 @@ all: # Ensure that this is the default target.
 SHELL := /bin/bash
 this_makefile := $(lastword $(MAKEFILE_LIST))
 cache_makefile := .mduem/cache/Makefile.variables
+user_makefiles := $(filter-out \
+                    $(this_makefile) $(cache_makefile), \
+                    $(MAKEFILE_LIST))
 
 not = $(if $(1),,t)
 toplevel_dir := $(shell git rev-parse --show-toplevel 2>/dev/null)
