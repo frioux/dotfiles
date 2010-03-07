@@ -168,8 +168,8 @@ DEPS ?=# Empty
 vim_script_deps := $(if $(vim_script_repos_p),vim-vspec,)
 all_deps := $(vim_script_deps) $(DEPS)
 
-DEP_vim_vspec_URI := ../vim-vspec
-DEP_vim_vspec_VERSION := 0.0.3a1
+DEP_vim_vspec_URI ?= ../vim-vspec
+DEP_vim_vspec_VERSION ?= 0.0.3a1
 
 
 	# BUGS: This resolves "../" just once, but it's enough for usual cases.
