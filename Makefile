@@ -198,7 +198,7 @@ fetch-deps: $(all_deps:%=.mduem/deps/,%)
 .mduem/deps/,%: $(user_makefiles)
 	@echo 'FETCH-DEP $*'
 	@mkdir -p '$(dir $@)'
-	@   { \
+	@   ( \
 	         if [ -d '$(call get_dep_dir,$*)' ] \
 	      ;  then \
 	           cd './$(call get_dep_dir,$*)' \
@@ -210,7 +210,8 @@ fetch-deps: $(all_deps:%=.mduem/deps/,%)
 	      &&   git checkout -b mduem-master \
 	      ;  fi \
 	      && git reset --hard '$(call get_dep_version,$*)' \
-	 ;  } &>'$@.log'
+	 ;  ) &>'$@.log' \
+	 || { cat '$@.log'; false; }
 	@touch '$@'
 
 
