@@ -194,13 +194,20 @@ get_dep_dir = .mduem/deps/$(call get_dep_dir_name,$(1))
 .PHONY: fetch-deps
 fetch-deps: $(all_deps:%=.mduem/deps/,%)
 
-.mduem/deps/,%:
+# FIXME: Update for changes on only DEPS and other values.
+.mduem/deps/,%: $(user_makefiles)
 	@echo 'FETCH-DEP $*'
 	@mkdir -p $(dir $@)
 	@{ \
-	   git clone $(call get_dep_uri,$*) $(call get_dep_dir,$*) && \
-	   cd ./$(call get_dep_dir,$*) && \
-	   git checkout -b mduem-master && \
+	   if [ -d '$(call get_dep_dir,$*)' ]; then \
+	     cd ./$(call get_dep_dir,$*) && \
+	     git fetch && \
+	     git checkout -f mduem-master; \
+	   else \
+	     git clone $(call get_dep_uri,$*) $(call get_dep_dir,$*) && \
+	     cd ./$(call get_dep_dir,$*) && \
+	     git checkout -b mduem-master; \
+	   fi && \
 	   git reset --hard $(call get_dep_version,$*); \
 	 } &>$@.log
 	@touch $@
