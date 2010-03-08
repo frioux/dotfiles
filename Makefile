@@ -313,7 +313,16 @@ pack:
 # release  #{{{1
 
 .PHONY: release
-release:
+release: $(if $(vim_script_repos_p),release-vim-script,release-default)
+
+
+.PHONY: release-default
+release-default:
+	@echo 'Rules to release are not defined.'
+
+
+.PHONY: release-vim-script
+release-vim-script:
 	@echo 'FIXME: NIY'
 
 
