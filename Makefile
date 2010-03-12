@@ -86,7 +86,11 @@ $(cache_makefile): \
 	   _origin_uri="$$(git config "remote.$$origin_name.url")"; \
 	   origin_uri="$${_origin_uri:-../.}"; \
 	   \
-	   echo "all_files_in_repos := $(shell git ls-files)"; \
+	   echo "all_files_in_repos := \
+	         $(filter-out .gitmodules \
+	                      $(shell cd $(toplevel_dir) && \
+	                              git submodule foreach 'echo "$$path"'),\
+	           $(shell git ls-files))"; \
 	   echo "current_branch := $${current_branch}"; \
 	   echo "origin_name := $${origin_name}"; \
 	   echo "origin_uri := $${origin_uri}"; \
