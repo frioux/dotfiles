@@ -301,7 +301,9 @@ archive_name = $(archive_basename).zip
 
 
 .PHONY: pack
-pack:
+pack: $(archive_name)
+
+$(archive_name): $(cache_makefile)
 	rm -rf '$(archive_basename)' '$(archive_name)'
 	$(MAKE) \
 	  'INSTALLATION_DIR=$(archive_basename)' \
