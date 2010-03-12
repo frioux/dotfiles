@@ -329,6 +329,11 @@ release-vim-script: fetch-deps $(repos_name).vimup pack
 	./.mduem/deps/vimup/vimup update-script $(repos_name)
 	rm $(repos_name).vimup
 
+.PHONY: release-new-vim-script
+release-new-vim-script: fetch-deps $(repos_name).vimup pack
+	./.mduem/deps/vimup/vimup new-script $(repos_name)
+	rm $(repos_name).vimup
+
 $(repos_name).vimup: $(firstword $(sort $(filter doc/%.txt, \
                                                  $(all_files_in_repos))))
 	./.mduem/deps/vimup/vimup-info-generator \
