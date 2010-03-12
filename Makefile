@@ -169,11 +169,14 @@ clean-junks:
 # fetch-deps  #{{{1
 
 DEPS ?=# Empty
-vim_script_deps := $(if $(vim_script_repos_p),vim-vspec,)
+vim_script_deps := $(if $(vim_script_repos_p),vim-vspec vimup,)
 all_deps := $(vim_script_deps) $(DEPS)
 
 DEP_vim_vspec_URI ?= ../vim-vspec
 DEP_vim_vspec_VERSION ?= 0.0.3a1
+
+DEP_vimup_URI ?= ../vimup
+DEP_vimup_VERSION ?= 0.0.0a1
 
 
 	# BUGS: This resolves "../" just once, but it's enough for usual cases.
@@ -322,7 +325,7 @@ release-default:
 
 
 .PHONY: release-vim-script
-release-vim-script:
+release-vim-script: fetch-deps
 	@echo 'FIXME: NIY'
 
 

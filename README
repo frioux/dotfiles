@@ -14,6 +14,7 @@ Requirements:
 
 	For Vim script development (automatically downloaded):
 	vim-vspec 0.0.3a1 or later <http://github.com/kana/vim-vspec>
+	vimup 0.0.0a1 or later <http://github.com/kana/vimup>
 
 Public repository:
 	http://github.com/kana/mduem
