@@ -12,6 +12,9 @@ Requirements:
 	git 1.7.0 or later <http://git-scm.com/>
 	Zip 2.32 or later <http://www.info-zip.org/>
 
+	For Vim script development (automatically downloaded):
+	vim-vspec 0.0.3a1 or later <http://github.com/kana/vim-vspec>
+
 Public repository:
 	http://github.com/kana/mduem
 
