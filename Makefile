@@ -325,8 +325,15 @@ release-default:
 
 
 .PHONY: release-vim-script
-release-vim-script: fetch-deps
-	@echo 'FIXME: NIY'
+release-vim-script: fetch-deps $(repos_name).vimup pack
+	./.mduem/deps/vimup/vimup update-script $(repos_name)
+	rm $(repos_name).vimup
+
+$(repos_name).vimup: $(firstword $(sort $(filter doc/%.txt, \
+                                                 $(all_files_in_repos))))
+	./.mduem/deps/vimup/vimup-info-generator \
+	  <$< \
+	  >$(repos_name).vimup
 
 
 
