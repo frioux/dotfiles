@@ -61,6 +61,14 @@ TARGETS_STATIC := autoload/smartchr.vim doc/smartchr.txt
 # By default, mduem recognizes the current repository is for Vim script if the
 # name of the current directory starts with "vim-".  In such a case, the above
 # rules are automatically defined, so that user doesn't have to write them.
+#
+# However, it's possible to explicitly specify the type of the current
+# repository as follows:
+#
+#   # For Vim-script repository.
+# REPOS_TYPE := vim-script
+#   # For any software.
+# REPOS_TYPE := generic
 
 
 

@@ -15,7 +15,7 @@
 #
 # - Use suffix "_p" to indicate that a boolean value is resulted from
 #   a variable.
-#   Example: vim_script_repos_p, SHOULD_INSTALL_ASIS_P
+#   Example: SHOULD_INSTALL_ASIS_P
 #
 # - Use noun for ordinary variables.
 #   Example: repos_name, TARGETS_GENERATED
@@ -100,7 +100,12 @@ $(cache_makefile): \
 endif
 include $(cache_makefile)
 
-vim_script_repos_p := $(filter vim-%,$(repos_name))
+	# The type of a repository.  It must be one of the following values:
+	#
+	# generic       For any software.
+	# vim-script    For Vim plugins, etc.
+REPOS_TYPE ?= $(if $(filter vim-%,$(repos_name)),vim-script,generic)
+vim_script_repos_p := $(filter vim-script,$(REPOS_TYPE))
 
 
 

@@ -1,0 +1,28 @@
+#!/bin/bash
+
+makefile1='test/,repos-type.Makefile1'
+makefile2='test/,repos-type.Makefile2'
+
+cat >"$makefile1" <<END
+INSTALLATION_DIR :=# None
+include Makefile
+echo:
+	@echo \$(REPOS_TYPE) >&2
+END
+
+cat >"$makefile2" <<END
+INSTALLATION_DIR :=# None
+REPOS_TYPE := vim-script
+include Makefile
+echo:
+	@echo \$(REPOS_TYPE) >&2
+END
+
+make --always-make -f "$makefile1" >/dev/null echo
+make --always-make -f "$makefile2" >/dev/null echo
+make --always-make -f "$makefile1" >/dev/null echo REPOS_TYPE=amane
+make --always-make -f "$makefile2" >/dev/null echo REPOS_TYPE=amane
+
+rm -rf "$makefile1" "$makefile2"
+
+# __END__
