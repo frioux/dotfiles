@@ -1,5 +1,0 @@
-test/,install-generated
-test/,install-generated/Makefile
-test/,install-generated/README
-test/,install-generated/test
-test/,install-generated/test/,install-generated.foo
