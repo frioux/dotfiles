@@ -1,6 +1,0 @@
-test/,install-filter
-test/,install-filter/test
-test/,install-filter/test/,install-filter.asis
-test/,install-filter/test/,install-filter.filtered
-asis 0
-filtered 1
