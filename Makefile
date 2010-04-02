@@ -185,7 +185,7 @@ DEP_vim_vspec_URI ?= ../vim-vspec
 DEP_vim_vspec_VERSION ?= 0.0.3
 
 DEP_vimup_URI ?= ../vimup
-DEP_vimup_VERSION ?= 0.0.0a2
+DEP_vimup_VERSION ?= 0.0.0a3
 
 
 	# BUGS: This resolves "../" just once, but it's enough for usual cases.
