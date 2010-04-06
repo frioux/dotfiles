@@ -366,18 +366,18 @@ test_cases := $(patsubst test/%.expected,%, \
 
 default_test_rule_deps := $(MAKEFILE_LIST)
 define default_test_rule
-	@source './$<' &>'$@' || { cat '$@'; false; }
+	source './$<' &>'$@' || { cat '$@'; false; }
 endef
 
 ifneq '$(vim_script_repos_p)' ''
 all_vim_scripts := $(filter %.vim,$(all_files_in_repos))
 vim_script_test_rule_deps := .mduem/deps/vim-vspec/bin/vspec $(all_vim_scripts)
 define vim_script_test_rule
-	@./$(call get_dep_dir,vim-vspec)/bin/vspec \
-	   $< \
-	   "$$PWD" \
-	   $(foreach d,$(all_deps),$(call get_dep_dir,$(d))) \
-	   &>$@
+	./$(call get_dep_dir,vim-vspec)/bin/vspec \
+	  $< \
+	  "$$PWD" \
+	  $(foreach d,$(all_deps),$(call get_dep_dir,$(d))) \
+	  &>$@
 endef
 endif
 
@@ -415,7 +415,7 @@ test/,%.diff: test/%.expected test/,%.output
 	@diff -u $^ >$@; true
 
 test/,%.output: test/%.input $(TEST_RULE_DEPS)
-	$(TEST_RULE)
+	@$(TEST_RULE)
 
 
 
