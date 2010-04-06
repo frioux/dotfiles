@@ -384,9 +384,12 @@ endif
 TEST_RULE ?= $(if $(vim_script_repos_p), \
                $(vim_script_test_rule), \
                $(default_test_rule))
-TEST_RULE_DEPS ?= $(if $(vim_script_repos_p), \
-                    $(vim_script_test_rule_deps), \
-                    $(default_test_rule_deps))
+TEST_RULE_DEPS ?=# Empty
+
+builtin_test_rule_deps := $(if $(vim_script_repos_p), \
+                            $(vim_script_test_rule_deps), \
+                            $(default_test_rule_deps))
+all_test_rule_deps := $(builtin_test_rule_deps) $(TEST_RULE_DEPS)
 
 
 
@@ -398,7 +401,7 @@ test/,ok: $(test_cases:%=test/,%.ok)
 	@echo 'ALL TESTS ARE PASSED.'
 	@touch $@
 
-test/,%.ok: test/%.input $(TEST_RULE_DEPS)
+test/,%.ok: test/%.input $(all_test_rule_deps)
 	@echo -n 'TEST $* ... '
 	@$(MAKE) --silent '$(@:.ok=.diff)'
 	@if ! [ -s $(@:.ok=.diff) ]; then \
@@ -414,7 +417,7 @@ test/,%.ok: test/%.input $(TEST_RULE_DEPS)
 test/,%.diff: test/%.expected test/,%.output
 	@diff -u $^ >$@; true
 
-test/,%.output: test/%.input $(TEST_RULE_DEPS)
+test/,%.output: test/%.input $(all_test_rule_deps)
 	@$(TEST_RULE)
 
 
