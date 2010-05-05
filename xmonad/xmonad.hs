@@ -8,6 +8,8 @@ import qualified XMonad.StackSet as W
 import qualified XMonad.Prompt as P
 import qualified XMonad.Actions.Submap as SM
 import qualified XMonad.Actions.Search as S
+import XMonad.Hooks.ManageHelpers
+import XMonad.Layout.NoBorders
 
 
 {- http://xmonad.org/xmonad-docs/xmonad-contrib/XMonad-Hooks-UrgencyHook.html -}
@@ -34,14 +36,24 @@ searchList = [
    ,("p", (S.searchEngine "perldoc" "http://perldoc.perl.org/search.html?q="))
    ]
 
+myManageHooks = manageDocks <+> composeAll
+-- Allows focusing other monitors without killing the fullscreen
+   [ isFullscreen --> (doF W.focusDown <+> doFullFloat)
+
+-- Single monitor setups, or if the previous hook doesn't work
+    {-[ isFullscreen --> doFullFloat-}
+    {--- skipped-}
+    ]
+{-myManageHooks = manageDocks <+> manageHook defaultConfig-}
 main = xmonad
    $ withUrgencyHook dzenUrgencyHook
-   $ defaultConfig {
-      manageHook = manageDocks <+> manageHook defaultConfig,
-      logHook    = ewmhDesktopsLogHook,
-      layoutHook = ewmhDesktopsLayout
-         $ avoidStruts
+   $ ewmh defaultConfig {
+      manageHook = myManageHooks
+      ,logHook    = ewmhDesktopsLogHook
+      ,layoutHook = smartBorders (
+         avoidStruts
          $ layoutHook defaultConfig
+      )
    }
    `additionalKeys` [
       ((mod1Mask .|. controlMask, k), windows $ swapWithCurrent i)
