@@ -4,6 +4,7 @@ import XMonad.ManageHook
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.EwmhDesktops
 import qualified XMonad.StackSet as W
+import XMonad.Layout.NoBorders
 
 import qualified XMonad.Prompt as P
 import qualified XMonad.Actions.Submap as SM

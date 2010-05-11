@@ -1,9 +1,20 @@
-font = Terminus 8
-background_color = "#000000"
-foreground_color = "#FFFFFF"
-scrollback_lines = '500'
-audible_bell = yes
-visible_bell  = no
-urgent_bell  = yes
-scrollbar_position = 'disabled'
-background_type = 'transparent'
+[global_config]
+[keybindings]
+[profiles]
+  [[default]]
+    scrollbar_position = hidden
+    palette = "#000000:#cc0000:#4e9a06:#c4a000:#3465a4:#75507b:#06989a:#d3d7cf:#555753:#ef2929:#8ae234:#fce94f:#729fcf:#ad7fa8:#34e2e2:#eeeeec"
+    scrollback_lines = 0
+    background_type = transparent
+    use_system_font = False
+    show_titlebar = False
+    font = Terminus 8
+[layouts]
+  [[default]]
+    [[[child1]]]
+      type = Terminal
+      parent = window0
+    [[[window0]]]
+      type = Window
+      parent = ""
+[plugins]
