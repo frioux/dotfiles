@@ -1,0 +1,79 @@
+*textobj-between.txt*	Text objects for a range between a character.
+
+Version: 0.1.0
+Author : thinca <thinca+vim@gmail.com>
+License: Creative Commons Attribution 2.1 Japan License
+         <http://creativecommons.org/licenses/by/2.1/jp/deed.en>
+
+==============================================================================
+CONTENTS					*textobj-between-contents*
+
+INTRODUCTION			|textobj-between-introduction|
+INTERFACE			|textobj-between-interface|
+  KEY MAPPINGS			  |textobj-between-key-mappings|
+CUSTOMIZING			|textobj-between-customizing|
+CHANGELOG			|textobj-between-changelog|
+
+
+==============================================================================
+INTRODUCTION					*textobj-between-introduction*
+
+*textobj-between* is a Vim plugin to provide text objects to select a range
+between a character.
+
+
+Requirements:
+- Vim 7.2 or later
+- |textobj-user| 0.3.8 or later
+  <http://www.vim.org/scripts/script.php?script_id=2100>
+
+Latest version:
+http://github.com/thinca/vim-textobj-plugins/tree/between
+
+
+==============================================================================
+INTERFACE					*textobj-between-interface*
+
+------------------------------------------------------------------------------
+KEY MAPPINGS					*textobj-between-key-mappings*
+
+These key mappings are defined in Visual mode and Operator-pending mode.
+
+<Plug>(textobj-between-a){char}			*<Plug>(textobj-between-a)*
+			Select the range between the [count]'th {char}. This
+			is including the {char}.
+
+<Plug>(textobj-between-i){char}			*<Plug>(textobj-between-i)*
+			Select the range between the [count]'th {char}. This
+			is excluding the {char}.
+
+
+
+==============================================================================
+CUSTOMIZING					*textobj-between-customizing*
+
+				    *g:textobj_cobetweeno_default_key_mappings*
+					    *:TextobjBetweenDefaultKeyMappings*
+This plugin will define the following key mappings in Visual mode and
+Operator-pending mode automatically.  If you don't want these key mappings,
+define |g:textobj_between_no_default_key_mappings| before this plugin is loaded
+(e.g. in your |vimrc|).  You can also use |:TextobjBetweenDefaultKeyMappings|
+to redefine these key mappings.  This command doesn't override existing {lhs}s
+unless [!] is given.
+
+	{lhs}	{rhs}			~
+	-----	----------------------	~
+	af	<Plug>(textobj-between-a)
+	if	<Plug>(textobj-between-i)
+
+
+
+==============================================================================
+CHANGELOG					*textobj-between-changelog*
+
+0.1.0	2010-06-14
+	- Initial version.
+
+
+==============================================================================
+vim:tw=78:fo=tcq2mM:ts=8:ft=help:norl
