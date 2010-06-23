@@ -1,0 +1,29 @@
+#!/bin/bash
+
+dir='test/,default-target'
+makefile='test/,default-target.Makefile'
+file_source='test/,default-target.source'
+file_generated='test/,default-target.generated'
+
+echo "$$" >"$file_source"
+cat >"$makefile" <<END
+TARGETS_GENERATED := $file_generated
+
+.PHONY: first
+first:
+	echo 'first' >$file_generated
+
+$file_generated: $file_source
+	cp \$< \$@
+
+include Makefile
+END
+
+make --always-make -f "$makefile" >/dev/null \
+  "INSTALLATION_DIR=$dir"
+
+diff "$file_source" "$file_generated" >/dev/null; echo "same $?"
+
+rm -rf "$dir" "$makefile" "$file_source" "$file_generated"
+
+# __END__
