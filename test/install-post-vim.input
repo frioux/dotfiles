@@ -11,7 +11,7 @@ make --always-make >/dev/null \
   'vim_script_repos_p=t' \
   install
 
-find "$dir"
+find "$dir" | sort
 
 rm -rf "$dir"
 
