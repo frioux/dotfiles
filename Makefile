@@ -56,7 +56,10 @@
 
 # Common  #{{{1
 
-all: # Ensure that this is the default target.
+# Use "all" as the default target if no targets were specified on the command
+# line or any other rules were defined before including this Makefile.
+.DEFAULT_GOAL := all
+all:
 
 SHELL := /bin/bash
 this_makefile := $(lastword $(MAKEFILE_LIST))
