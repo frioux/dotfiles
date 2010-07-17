@@ -8,8 +8,12 @@
 [alias]
 	ci = commit
         co = checkout
+	st = status
+	br = branch
 [diff]
    ;external = git_diff_wrapper
 
 [pager]
    ;external =
+[merge]
+	tool = meld
