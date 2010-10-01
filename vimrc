@@ -199,3 +199,6 @@ iunmap ;
 
 "}}}
 
+set listchars=tab:▸\ ,eol:¬
+set list
+
