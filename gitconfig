@@ -8,8 +8,15 @@
 [alias]
 	ci = commit
         co = checkout
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
 [diff]
    ;external = git_diff_wrapper
 
 [pager]
    ;external =
+[gui]
+   fontdiff = -family terminus -size 10 -weight normal -slant roman -underline 0 -overstrike 0
+   fontui = -family helvetica -size 9 -weight bold -slant roman -underline 0 -overstrike 0
+
+[web]
+   browser = firefox
