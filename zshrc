@@ -466,7 +466,25 @@ else
     post_prompt="%{$fg_bold[$user_color]%}%#%{$reset_color%}"
 fi
 
-PS1="${host_prompt} ${jobs_total}${history_total} ${directory_prompt}${error_total}${post_prompt} "
+ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[blue]«$reset_color%{$fg[blue]%}"
+ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg_bold[yellow]%}¹%{$fg_bold[blue]%}»%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg_bold[blue]%}»"
+
+# get the name of the branch we are on
+function git_prompt_info() {
+  ref=$(git symbolic-ref HEAD 2> /dev/null) || return
+  echo "$ZSH_THEME_GIT_PROMPT_PREFIX${ref#refs/heads/}$(parse_git_dirty)$ZSH_THEME_GIT_PROMPT_SUFFIX"
+}
+
+parse_git_dirty () {
+  if [[ -n $(git status -s 2> /dev/null) ]]; then
+    echo "$ZSH_THEME_GIT_PROMPT_DIRTY"
+  else
+    echo "$ZSH_THEME_GIT_PROMPT_CLEAN"
+  fi
+}
+PS1="${host_prompt} ${jobs_total}${history_total} ${directory_prompt}$(git_prompt_info)${error_total}${post_prompt} "
 
 
 #if [[ $TERM == screen]; then
