@@ -1,19 +1,26 @@
 [user]
-	name = Arthur Axel 'fREW' Schmidt
-	email = frioux@gmail.com
+   name = Arthur Axel 'fREW' Schmidt
+   email = frioux@gmail.com
 [color]
-	status = auto
-	branch = auto
-	ui = auto
+   status = auto
+   branch = auto
+   ui = auto
 [alias]
-	ci = commit
-        co = checkout
-	st = status
-	br = branch
+   ci = commit
+   co = checkout
+   st = status
+   br = branch
+   lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
 [diff]
    ;external = git_diff_wrapper
 
 [pager]
    ;external =
 [merge]
-	tool = meld
+   tool = meld
+[gui]
+   fontdiff = -family terminus -size 10 -weight normal -slant roman -underline 0 -overstrike 0
+   fontui = -family helvetica -size 9 -weight bold -slant roman -underline 0 -overstrike 0
+
+[web]
+   browser = firefox
