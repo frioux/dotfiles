@@ -5,25 +5,6 @@
 
 #{{{ Functions
 
-#function vi {
-        #LIMIT=$#
-        #for ((i = 1; i <= $LIMIT; i++ )) do
-                #eval file="\$$i"
-                #if [[ -e $file && ! -O $file ]]
-                #then
-                        #otherfile=1
-                #else
-
-                #fi
-        #done
-        #if [[ $otherfile = 1 ]]
-        #then
-                #command sudo vi "$@"
-        #else
-                #command vi "$@"
-        #fi
-#}
-
 _force_rehash() {
   (( CURRENT == 1 )) && rehash
   return 1  # Because we didn't really complete anything
@@ -34,6 +15,18 @@ edit-command-output() {
  CURSOR=0
 }
 zle -N edit-command-output
+
+# URL encode something and print it.
+function url-encode; {
+  setopt extendedglob
+  echo "${${(j: :)@}//(#b)(?)/%$[[##16]##${match[1]}]}"
+}
+
+# Search google for the given keywords.
+function g; {
+  firefox "http://www.google.com/search?q=`url-encode "${(j: :)@}"`"
+}
+
 
 #}}}
 
