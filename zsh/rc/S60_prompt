@@ -71,8 +71,22 @@ function precmd { vcs_info 'prompt' }
 vcs='$vcs_info_msg_0_'
 
 function lprompt {
-  PROMPT="${host_prompt} ${jobs_total}${history_total} ${directory_prompt}${vcs}${error_total}${post_prompt} "
+  local vimode='${PR_VIMODE}'
+  local vicol='${PR_VICOLOR}'
+
+  PROMPT="${host_prompt} ${jobs_total}${history_total} ${directory_prompt}${vcs}${error_total}%{${vicol}%}${vimode}%{$reset_color%} "
 }
 
 lprompt
+
+PR_VIMODE='$'
+PR_VICOLOR="$fg_bold[green]"
+function zle-line-init zle-keymap-select {
+  PR_VIMODE="${${KEYMAP/vicmd/¢}/(main|viins)/$}"
+  PR_VICOLOR="${${KEYMAP/vicmd/$fg_bold[red]}/(main|viins)/$fg_bold[green]}"
+  zle reset-prompt
+}
+zle -N zle-line-init
+zle -N zle-keymap-select
+
 # vim: ft=zsh
