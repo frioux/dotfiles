@@ -54,7 +54,7 @@ esac
 fmt_branch="%b%{$fg_bold[yellow]%}%{$reset_color%}%u%{$fg_bold[green]%}%c%{$reset_color%}" # e.g. master¹²
 fmt_action="(%{$fg[red]%}%a%{$reset_color%})"   # e.g. (rebase-i)
 fmt_pre="%{$fg_bold[$vcs_color]%}«%{$reset_color%}%{$fg[$vcs_color]%}"
-fmt_post="%{$fg_bold[$vcs_color]%}»"
+fmt_post="%{$fg_bold[$vcs_color]%}»%{$reset_color%}"
 
 # check-for-changes can be really slow.
 # you should disable it, if you work with large repositories
