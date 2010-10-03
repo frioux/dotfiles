@@ -30,7 +30,6 @@ zstyle ':completion:*' list-colors "=(#b) #([0-9]#)*=36=31"
 # Separate man page sections.  Neat.
 zstyle ':completion:*:manuals' separate-sections true
 
-# Egomaniac!
 zstyle ':completion:*' list-separator '»»'
 
 # complete with a menu for xwindow ids
@@ -51,4 +50,7 @@ zstyle ':completion:*' ignore-parents parent pwd
 
 zstyle ':completion::approximate*:*' prefix-needed false
 
+# make kill way awesome
+zstyle ':completion:*:processes' command 'ps -au$USER -o pid,time,cmd|grep -v "ps -au$USER -o pid,time,cmd"'
+zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)[ 0-9:]#([^ ]#)*=01;30=01;31=01;38'
 # vim: ft=zsh
