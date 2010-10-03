@@ -1,0 +1,9 @@
+
+if [[ -r ~/.localdirs ]]; then
+        source ~/.localdirs
+fi
+
+autoload run-help
+HELPDIR=~/zsh_help
+
+# vim: ft=zsh

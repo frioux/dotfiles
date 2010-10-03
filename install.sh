@@ -23,5 +23,6 @@ ln -s "$(pwd)/vim" ~/.vim
 ln -s "$(pwd)/Xdefaults" ~/.Xdefaults
 ln -s "$(pwd)/xmonad" ~/.xmonad
 ln -s "$(pwd)/zshrc" ~/.zshrc
+ln -s "$(pwd)/zsh" ~/.zsh
 ln -s "$(pwd)/passwords.kdb" ~/passwords.kdb
 

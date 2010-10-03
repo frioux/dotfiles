@@ -1,0 +1,152 @@
+
+#{{{ Amarok
+if [[ -x `which amarok` ]]; then
+  alias play='dcop amarok player play'
+  alias pause='dcop amarok player pause'
+  alias next='dcop amarok player next'
+  alias prev='dcop amarok player prev'
+  alias stop='dcop amarok player stop'
+  alias current='dcop amarok player nowPlaying'
+  alias osd='dcop amarok player showOSD'
+  alias pp='dcop amarok player playPause'
+fi
+
+#}}}
+
+#{{{ Shell Conveniences
+source ~/.aliases
+alias ez='vim ~/.zshrc; source ~/.zshrc'
+alias mk=popd
+alias ls='pwd; ls --color'
+
+#}}}
+
+#{{{ Package management
+
+if [[ -x `which aptitude` ]]; then
+  alias attd="sudo aptitude"
+else
+  if [[ -x `which emerge` ]]; then
+    alias emu='sudo emerge -uDN world'
+    alias emup='sudo emerge -uDvpN world'
+    alias esy='sudo emerge --sync'
+    alias ei='sudo emerge'
+    alias eip='sudo emerge -vp '
+    alias packmask='sudo vi /etc/portage/package.unmask'
+    alias packuse='sudo vi /etc/portage/package.use'
+    alias packkey='sudo vi /etc/portage/package.keywords'
+  fi
+fi
+
+#}}}
+
+#{{{ SSH
+
+if [[ $HOST = FrewSchmidt ]]; then
+    alias sf='ssh frew@FrewSchmidt2'
+else
+    alias sf='ssh frew@FrewSchmidt'
+fi
+
+alias enosh='ssh schmidtf@enosh.letnet.net'
+
+alias s31='ssh 192.168.3.1'
+alias s39='ssh 192.168.3.9'
+#}}}
+
+#{{{ Misc.
+
+alias mmv='noglob zmv -W'
+alias ipl='perl -Mautobox::Core -E'
+if [[ -x `which tea_chooser` ]]; then
+# I need to do this more elegantly...
+    alias rt='cd /home/frew/bin/run/tea_chooser; ./randtea.rb'
+fi
+
+# Maxima with line editing!  Now if only I could use zle...
+if [[ -x `which maxima` && -x `which ledit` ]]; then
+  alias maxima='ledit maxima'
+fi
+
+# Convenient.  Also works in Gentoo or Ubuntu
+if [[ -x `which irb1.8` ]]; then
+  alias irb='irb1.8 --readline -r irb/completion'
+else
+  alias irb='irb --readline -r irb/completion'
+fi
+
+# For some reason the -ui doesn't work on Ubuntu... I need to deal with that
+# somehow...
+if [[ -x `which unison` ]]; then
+  alias un='unison -ui graphic -perms 0 default'
+  alias un.='unison -ui graphic -perms 0 dotfiles'
+fi
+
+# fri is faster.
+if [[ -x `which fri` ]]; then
+  alias ri=fri
+fi
+
+# This is how you can see all of my passwords.
+alias auth='view ~/.auth.des3'
+
+# copy with a progress bar.
+alias cpv="rsync -poghb --backup-dir=/tmp/rsync -e /dev/null --progress --"
+
+# save a few keystrokes when opening the learn sql database
+if [[ -x `which psql` ]]; then
+  alias lrnsql="psql learn_sql"
+fi
+
+# I use the commands like, every day now
+alias seinr="sudo /etc/init.d/networking restart"
+if [[ -x `which gksudo` && -x `which wlassistant` ]]; then
+  alias gkw="gksudo wlassistant&"
+fi
+
+alias kgs='javaws http://files.gokgs.com/javaBin/cgoban.jnlp'
+
+if [[ -x `which delish` ]]; then
+  alias delish="noglob delish"
+fi
+
+alias tomes='screen -S tome -c /home/frew/.tomescreenrc'
+alias mpfs='mplayer -fs -zoom'
+alias mpns='mplayer -nosound'
+
+if [[ -x /home/frew/personal/dino ]]; then
+  dinoray=( /home/frew/personal/dino/* )
+  alias dino='feh $dinoray[$RANDOM%$#dinoray+1]'
+fi
+
+#}}}
+
+#{{{ Globals...
+
+alias -g G="| grep"
+alias -g L="| less"
+
+#}}}
+
+#{{{ Suffixes...
+
+if [[ -x `which abiword` ]]; then
+  alias -s doc=abiword
+fi
+if [[ -x `which ooimpress` ]]; then
+  alias -s ppt='ooimpress &> /dev/null '
+fi
+
+if [[ $DISPLAY = '' ]] then
+  alias -s txt=vi
+else
+  alias -s txt=gvim
+fi
+
+#}}}
+
+alias pdev='gvim -S ~/tmp/pugsdev -c "call Perl6Dev()"'
+
+alias realias='vi ~/.aliases; source ~/.aliases'
+
+# vim: ft=zsh foldmethod=marker

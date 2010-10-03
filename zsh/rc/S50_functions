@@ -1,0 +1,40 @@
+# Autload every function in my .zsh/func/ directory
+#for file in ~/.zsh/func/*[^~] ; do
+        #autoload -U ${file##*/}
+#done
+
+#{{{ Functions
+
+#function vi {
+        #LIMIT=$#
+        #for ((i = 1; i <= $LIMIT; i++ )) do
+                #eval file="\$$i"
+                #if [[ -e $file && ! -O $file ]]
+                #then
+                        #otherfile=1
+                #else
+
+                #fi
+        #done
+        #if [[ $otherfile = 1 ]]
+        #then
+                #command sudo vi "$@"
+        #else
+                #command vi "$@"
+        #fi
+#}
+
+_force_rehash() {
+  (( CURRENT == 1 )) && rehash
+  return 1  # Because we didn't really complete anything
+}
+
+edit-command-output() {
+ BUFFER=$(eval $BUFFER)
+ CURSOR=0
+}
+zle -N edit-command-output
+
+#}}}
+
+# vim: ft=zsh

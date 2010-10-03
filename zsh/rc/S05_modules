@@ -1,0 +1,8 @@
+autoload -U compinit promptinit zcalc zmv zsh-mime-setup
+autoload -Uz colors
+colors
+compinit
+promptinit
+zsh-mime-setup
+
+# vim: ft=zsh
