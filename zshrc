@@ -1,5 +1,5 @@
 # Autoload screen if we aren't in it.  (Thanks Fjord!)
-#if [[ $STY = '' ]] then tmux attach; fi
+if [[ $STY = '' ]] then screen -xR; fi
 
 autoload -U compinit zrecompile
 
