@@ -115,31 +115,6 @@ set statusline=%F%m%r%h%w\ (%{&ff}){%Y}\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}\ [%
 
 " }}}
 
-"{{{ Functions
-
-function! Pivot(outer1, pivot, outer2)
-   let valset = "\\(\\s\\*\\)\\(\\S\\*\\)\\(\\s\\*\\)"
-   let regex = "\\M" . a:outer1 . valset . a:pivot . valset . a:outer2
-   let result = a:outer1 . "\\1\\5\\3" . a:pivot . "\\4\\2\\6" .a:outer2
-   let cmd = "s/" . regex . "/" . result . "/"
-   exec cmd
-endfunction
-
-function! PFatComma()
-   call Pivot("", "=>", ",")
-endfunction
-
-function! PCommaParen()
-   call Pivot("(", ",", ")")
-endfunction
-
-function! PVMatch(match)
-   exec '"ay'
-   call Pivot(a:match, @a, a:match)
-endfunction
-
-vnoremap <silent> <F6> :PVMatch(",")<CR>
-
 "{{{ Mappings
 
 " Open NERDTree <F2>
@@ -196,3 +171,4 @@ iunmap ;
 set listchars=tab:▸\ ,eol:¬
 set list
 
+" vim: foldmethod=marker
