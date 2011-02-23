@@ -6,6 +6,8 @@ autocmd VimEnter * set vb t_vb=
 " Remove any trailing whitespace that is in the file
 autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
 
+set autochdir
+
 " replace tabs with spaces
 autocmd BufRead,BufWrite * if ! &bin | silent! %retab | endif
 
