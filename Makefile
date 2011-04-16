@@ -257,7 +257,7 @@ $(2): $(1)
 	@echo 'INSTALL $(1)'
 	@mkdir -p '$(dir $(2))'
 ifneq '$(call SHOULD_INSTALL_ASIS_P,$(1))' ''
-	@cp '$(1)' '$(2)'
+	@cp '--preserve=mode,ownership' '$(1)' '$(2)'
 else
 	@sed -e 's/@@VERSION@@/$(version)/' '$(1)' >'$(2)'
 endif
