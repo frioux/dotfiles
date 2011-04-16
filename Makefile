@@ -256,10 +256,9 @@ install: $(2)
 $(2): $(1)
 	@echo 'INSTALL $(1)'
 	@mkdir -p '$(dir $(2))'
-ifneq '$(call SHOULD_INSTALL_ASIS_P,$(1))' ''
 	@cp '--preserve=mode,ownership' '$(1)' '$(2)'
-else
-	@sed -e 's/@@VERSION@@/$(version)/' '$(1)' >'$(2)'
+ifeq '$(call SHOULD_INSTALL_ASIS_P,$(1))' ''
+	@sed -i -e 's/@@VERSION@@/$(version)/' '$(2)'
 endif
 
 endef
