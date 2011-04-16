@@ -5,7 +5,9 @@ file_asis="test/,install-filter.asis"
 file_filtered="test/,install-filter.filtered"
 
 echo '@@VERSION@@' >"$file_asis"
+chmod 700 "$file_asis"
 echo '@@VERSION@@' >"$file_filtered"
+chmod 700 "$file_filtered"
 
 make --always-make >/dev/null \
   "INSTALLATION_DIR=$dir" \
@@ -15,7 +17,9 @@ make --always-make >/dev/null \
 
 find "$dir"
 diff "$file_asis" "$dir/$file_asis" >/dev/null; echo "asis $?"
+test -x "$dir/$file_asis"; echo "asis executable $?"
 diff "$file_filtered" "$dir/$file_filtered" >/dev/null; echo "filtered $?"
+test -x "$dir/$file_filtered"; echo "filtered executable $?"
 
 rm -rf "$dir" "$file_asis" "$file_filtered"
 

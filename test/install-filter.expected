@@ -3,4 +3,6 @@ test/,install-filter/test
 test/,install-filter/test/,install-filter.asis
 test/,install-filter/test/,install-filter.filtered
 asis 0
+asis executable 0
 filtered 1
+filtered executable 0
