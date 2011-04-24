@@ -109,7 +109,7 @@ sub get_battery {
    return "^ca(1, ./cpugraph.pl batt && feh out.png)^fg($color)^i(${iconpath}/power-bat2.xbm)^p(2)$percent^fg()^ca()";
 }
 
-sub render_cpu {
+sub render_temp {
    my $val = shift;
    my $cpu_color = '';
    $cpu_color = 'red' if $val >= 60;
@@ -150,8 +150,8 @@ while (<>) {
    say {$fh} join ' ^fg(orange)|^fg() ',
       'wifi',
       get_battery($current[batt]),
-      render_cpu($current[thrm]),
+      render_temp($current[thrm]),
       de_time(),
       get_weather(),
-      my_date()
+      my_date(),
 }
