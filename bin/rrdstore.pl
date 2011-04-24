@@ -1,6 +1,7 @@
 #!/usr/bin/perl
 
 use strict;
+use 5.10.1;
 use warnings;
 
 use constant {
@@ -68,7 +69,7 @@ sub get_data {
    $ret
 }
 
-sub get_weather {
+sub load_weather {
    eval {
    my $locations = $weather_finder->find('Plano, TX');
 
@@ -82,18 +83,51 @@ sub get_weather {
 
    return "^ca(1, /home/frew/tmp/firefox/firefox http://www.weather.com/weather/today/Plano+TX+75074)^fg($color)$desc_today ${temp_today}°F^fg()^ca()";
    };
-   return '???';
+   return ();
+}
+
+{
+   my @weather = load_weather;
+   sub get_weather {
+      $weather_counter--;
+      if ($weather_counter < 0) {
+         @weather = load_weather;
+         $weather_counter = 60;
+      }
+      @weather;
+   }
 }
 
 sub get_battery {
    my $percent = sprintf '%i', $_[0];
 
-   return '' if $percent == 100;
+   return () if $percent == 100;
 
    my $color = '';
    $color    = 'red' if $percent <= 20;
 
-   return " | ^ca(1, ./cpugraph.pl batt && feh out.png)^fg($color)^i(${iconpath}/power-bat2.xbm)^p(2)$percent^fg()^ca()";
+   return "^ca(1, ./cpugraph.pl batt && feh out.png)^fg($color)^i(${iconpath}/power-bat2.xbm)^p(2)$percent^fg()^ca()";
+}
+
+sub render_cpu {
+   my $val = shift;
+   my $cpu_color = '';
+   $cpu_color = 'red' if $val >= 60;
+
+   sprintf '^ca(1, ./cpugraph.pl thrm && feh out.png)^fg(%s)^i(/home/frew/icons/cpu.xbm)^p(2)%i°C^fg()^ca()', $cpu_color, $val
+}
+
+sub de_time {
+   local $ENV{TZ}='Europe/Berlin';
+   my $de_date = strftime('%l:%M %p', localtime);
+   $de_date =~ s/^\s+//g;
+   "riba: $de_date"
+}
+
+sub my_date {
+   my $my_date = strftime('%a %b %d, %l:%M %p', localtime);
+   $my_date = join ' ', split /\s+/, $my_date;
+   "^ca(1, xterm -e 'cal && read foo')^fg(white)$my_date^fg()^ca()"
 }
 
 $rrd->create(
@@ -101,14 +135,7 @@ $rrd->create(
    map gauge_def($_), qw(used buff cach free batt usr sys idl wai hig sig thrm),
 ) unless -f 'test.rrd';
 
-my $weather = get_weather;
 while (<>) {
-   $weather_counter--;
-   if ($weather_counter < 0) {
-      $weather = get_weather;
-      $weather_counter = 60;
-   }
-
    chomp(my $data = qx(tail -n1 out.csv));
    my @current = split /,/, $data;
    $rrd->update( values => \@current );
@@ -118,14 +145,13 @@ while (<>) {
    my @five_min    = get_data($time, 60*5);
    my @fifteen_min = get_data($time, 60*15);
 
-   my $de_date = do { local $ENV{TZ}='Europe/Berlin'; strftime('%l:%M %p', localtime) };
-   $de_date =~ s/^\s+//g;
-   my $my_date = strftime('%a %b %d, %l:%M %p', localtime);
-   $my_date = join ' ', split /\s+/, $my_date;
    open my $fh, '>', 'lol';
 
-   my $battery = get_battery($current[batt]);
-   my $cpu_color = '';
-   $cpu_color = 'red' if $current[thrm] >= 60;
-   printf {$fh} "wifi%s | ^ca(1, ./cpugraph.pl thrm && feh out.png)^fg(%s)^i(/home/frew/icons/cpu.xbm)^p(2)%i°C^fg()^ca() | riba: %s | %s | ^ca(1, xterm -e 'cal && read foo')^fg(white)%s^fg()^ca()\n", $battery, $cpu_color, $current[thrm], $de_date, $weather, $my_date
+   say {$fh} join ' ^fg(orange)|^fg() ',
+      'wifi',
+      get_battery($current[batt]),
+      render_cpu($current[thrm]),
+      de_time(),
+      get_weather(),
+      my_date()
 }
