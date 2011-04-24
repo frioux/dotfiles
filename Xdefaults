@@ -1,1 +1,43 @@
 *.urgentOnBell: true
+
+Xft.antialias: true
+
+! URxvt
+Rxvt.background: Black
+Rxvt.foreground: White
+Rxvt.scrollBar: false
+Rxvt.font: terminus-12
+Rxvt.boldFont: terminus-12
+Rxvt.italicFont: terminus-12
+Rxvt.boldItalicFont: terminus-12
+Rxvt.perl-ext-common: default,matcher,confirm-paste
+Rxvt.termName: screen-256color
+URxvt.urlLauncher: /home/frew/tmp/firefox/firefox
+!Rxvt*iconName:        urxvt
+
+Rxvt.insecure:         True
+
+Rxvt.inheritPixmap:    false
+Rxvt.colorBD:       #FFFFFF
+
+Rxvt.color0:        #000000
+Rxvt.color1:        #CC0000
+Rxvt.color2:        #4E9A06
+Rxvt.color3:        #C4A000
+Rxvt.color4:        #3465A4
+Rxvt.color5:        #75507B
+Rxvt.color6:        #06989A
+Rxvt.color7:        #D3D7CF
+Rxvt.color8:        #555753
+Rxvt.color9:        #EF2929
+Rxvt.color10:       #8AE234
+Rxvt.color11:       #FCE94F
+Rxvt.color12:       #729FCF
+Rxvt.color13:       #AD7FA8
+Rxvt.color14:       #34E2E2
+Rxvt.color15:       #EEEEEC
+
+Rxvt.cursorBlink:      on
+Rxvt.cursorOnTime:     400
+Rxvt.cursorOffTime:    250
+Rxvt.cursorColor:      White
