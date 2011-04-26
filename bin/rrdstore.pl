@@ -1,7 +1,8 @@
 #!/usr/bin/perl
 
-use strict;
 use 5.10.1;
+
+use strict;
 use warnings;
 
 use constant {
@@ -70,20 +71,20 @@ sub get_data {
 }
 
 sub load_weather {
-   eval {
-   my $locations = $weather_finder->find('Plano, TX');
+   my $ret = eval {
+      my $locations = $weather_finder->find('Plano, TX');
 
-   my $temp_today = sprintf '%i', $locations->[0]->current_conditions()->temperature() * 1.8 + 32;
-   my $desc_today = $locations->[0]->current_conditions()->description();
+      my $temp_today = int $locations->[0]->current_conditions()->temperature() * 1.8 + 32;
+      my $desc_today = $locations->[0]->current_conditions()->description();
 
-   my $color = '';
+      my $color = '';
 
-   $color = 'red'  if $temp_today >= 80;
-   $color = 'blue' if $temp_today <= 67;
+      $color = 'red'  if $temp_today >= 80;
+      $color = 'blue' if $temp_today <= 67;
 
-   return "^ca(1, /home/frew/tmp/firefox/firefox http://www.weather.com/weather/today/Plano+TX+75074)^fg($color)$desc_today ${temp_today}°F^fg()^ca()";
+      return "^ca(1, /home/frew/tmp/firefox/firefox http://www.weather.com/weather/today/Plano+TX+75074)^fg($color)$desc_today ${temp_today}°F^fg()^ca()";
    };
-   return ();
+   return $ret || ();
 }
 
 {
@@ -99,7 +100,7 @@ sub load_weather {
 }
 
 sub get_battery {
-   my $percent = sprintf '%i', $_[0];
+   my $percent = spritnf '%.0f', $_[0];
 
    return () if $percent == 100;
 
@@ -115,6 +116,22 @@ sub render_temp {
    $cpu_color = 'red' if $val >= 60;
 
    sprintf '^ca(1, ./cpugraph.pl thrm && feh out.png)^fg(%s)^i(/home/frew/icons/cpu.xbm)^p(2)%i°C^fg()^ca()', $cpu_color, $val
+}
+
+sub render_processor {
+   my $val = shift;
+
+   sprintf '^ca(1, ./cpugraph.pl idl && feh out.png)^p(2)%%%02i^fg()^ca()', $val
+}
+
+sub render_free {
+   my $val = shift;
+
+   $val = $val
+      / 2**10 # K
+      / 2**10 # M
+      / 2**10; # G
+   sprintf "^ca(1, ./cpugraph.pl free && feh out.png)^p(2)%01.02f G^fg()^ca()", $val
 }
 
 sub de_time {
@@ -148,7 +165,8 @@ while (<>) {
    open my $fh, '>', 'lol';
 
    say {$fh} join ' ^fg(orange)|^fg() ',
-      'wifi',
+      render_processor(100 - $current[idl]),
+      render_free($current[free]),
       get_battery($current[batt]),
       render_temp($current[thrm]),
       de_time(),
