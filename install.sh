@@ -10,7 +10,7 @@ fi
 
 rm ~/.xmonad ~/bin/showdm ~/bin/eval ~/.Xdefaults ~/.vim ~/.zshrc ~/.vimrc\
    ~/.screenrc ~/.irssi ~/.gitconfig ~/.config/terminator/config\
-   ~/passwords.kdb -R
+   ~/passwords.kdb ~/.xsession -R
 
 ln -s "$(pwd)/bin/eval" ~/bin/eval
 ln -s "$(pwd)/bin/showdm" ~/bin/showdm
@@ -25,4 +25,5 @@ ln -s "$(pwd)/xmonad" ~/.xmonad
 ln -s "$(pwd)/zshrc" ~/.zshrc
 ln -s "$(pwd)/zsh" ~/.zsh
 ln -s "$(pwd)/passwords.kdb" ~/passwords.kdb
+ln -s "$(pwd)/xsession" ~/.xsession
 
