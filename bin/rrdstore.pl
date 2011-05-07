@@ -100,7 +100,7 @@ sub load_weather {
 }
 
 sub get_battery {
-   my $percent = spritnf '%.0f', $_[0];
+   my $percent = sprintf '%.0f', $_[0];
 
    return () if $percent == 100;
 
@@ -144,7 +144,7 @@ sub de_time {
 sub my_date {
    my $my_date = strftime('%a %b %d, %l:%M %p', localtime);
    $my_date = join ' ', split /\s+/, $my_date;
-   "^ca(1, xterm -e 'cal && read foo')^fg(white)$my_date^fg()^ca()"
+   "^ca(1, xterm -e 'cal -A 1 -B 1 && read foo')^fg(white)$my_date^fg()^ca()"
 }
 
 $rrd->create(
