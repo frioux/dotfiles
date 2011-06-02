@@ -1,5 +1,5 @@
 
-export PATH="/home/frew/bin:/home/frew/.vim/bin:$PATH"
+export PATH="/home/frew/bin:/home/frew/.vim/bin:/opt/bin:$PATH"
 export RI="--format ansi"
 export EDITOR="vi"
 export DBIC_TRACE_PROFILE=~/dbic.json
