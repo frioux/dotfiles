@@ -34,6 +34,5 @@ main = xmonad
    `additionalKeysP`([
          ("M-d", spawn "/home/frew/bin/showdm"),
          ("M-S-d", spawn "gmrun"),
-         {-("Super-l", spawn "lastfm"),-}
          ("M-f", spawn "/home/frew/tmp/firefox/firefox")
       ])
