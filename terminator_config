@@ -1,14 +1,18 @@
 [global_config]
+  enabled_plugins = APTURLHandler, LaunchpadCodeURLHandler, LaunchpadBugURLHandler
+  borderless = True
 [keybindings]
 [profiles]
   [[default]]
     scrollbar_position = hidden
-    palette = "#000000:#cc0000:#4e9a06:#c4a000:#3465a4:#75507b:#06989a:#d3d7cf:#555753:#ef2929:#8ae234:#fce94f:#729fcf:#ad7fa8:#34e2e2:#eeeeec"
+    palette = "#000000:#cd0000:#00cd00:#cdcd00:#0000cd:#cd00cd:#00cdcd:#faebd7:#404040:#ff0000:#00ff00:#ffff00:#0000ff:#ff00ff:#00ffff:#ffffff"
+    font = Terminus 8
+    background_darkness = 0.85
     scrollback_lines = 0
     background_type = transparent
     use_system_font = False
     show_titlebar = False
-    font = Terminus 8
+    copy_on_selection = True
 [layouts]
   [[default]]
     [[[child1]]]
