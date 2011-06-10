@@ -24,3 +24,5 @@
 
 [web]
    browser = firefox
+[pack]
+	threads = 0
