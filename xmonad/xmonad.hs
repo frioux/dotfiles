@@ -22,7 +22,7 @@ myManageHooks = ManageDocks.manageDocks <+> composeAll
 main = xmonad
    $ UrgencyHook.withUrgencyHook UrgencyHook.dzenUrgencyHook
    $ EwmhDesktops.ewmh defaultConfig {
-      terminal   = "urxvt",
+      terminal   = "terminator",
       manageHook = myManageHooks,
       logHook    = EwmhDesktops.ewmhDesktopsLogHook,
       layoutHook = NoBorders.smartBorders (
