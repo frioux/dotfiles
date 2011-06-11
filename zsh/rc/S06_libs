@@ -3,4 +3,3 @@ source ~/.zsh/cxregs-bash-tools/bash_varstash
 source ~/.zsh/cxregs-bash-tools/bash_smartcd
 alias cd=smartcd
 
-setup_smartcd_prompt_hook
