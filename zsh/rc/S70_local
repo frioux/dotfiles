@@ -5,5 +5,5 @@ fi
 
 autoload run-help
 HELPDIR=~/zsh_help
-
+source ~/perl5/perlbrew/etc/bashrc
 # vim: ft=zsh
