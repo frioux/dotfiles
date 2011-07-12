@@ -14,6 +14,12 @@
 [diff]
    ;external = git_diff_wrapper
 
+[super-status]
+   master = master
+   pretty = 1
+   color = 1
+   releasable = 1
+
 [pager]
    ;external =
 [merge]
@@ -25,4 +31,4 @@
 [web]
    browser = firefox
 [pack]
-	threads = 0
+   threads = 0
