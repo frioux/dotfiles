@@ -145,10 +145,13 @@ fi
 
 #}}}
 
-alias pdev='gvim -S ~/tmp/pugsdev -c "call Perl6Dev()"'
-
 alias realias='vi ~/.aliases; source ~/.aliases'
 
 alias git='noglob git'
+alias gitk='noglob g_tk'
+function g_tk() { /usr/bin/env 'gitk' "$@" & }
+alias grr='noglob g_tk ^origin/release HEAD'
+alias gosu='git submodule update --init'
+alias gre='git rebase --root --onto origin/release -i'
 
 # vim: ft=zsh foldmethod=marker
