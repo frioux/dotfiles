@@ -1,8 +1,10 @@
-;(add-to-list 'load-path "C:/Users/Administrator/vimpulse")
-;(require 'vimpulse)
+(setq windows? (string= system-type "windows-nt"))
 
-;(add-to-list 'load-path "C:/Users/Administrator/color-theme")
-;(require 'color-theme)
+(mapc (lambda (x) (add-to-list 'load-path x))
+  (cond (windows? '("~/vimpulse"))
+        (t        '("~/code/color-theme" "~/code/vimpulse"))))
+
+(mapc (lambda (x) (require x)) '(vimpulse color-theme))
 
 (add-to-list 'auto-mode-alist '("\\.t\\'" . perl-mode))
 (add-to-list 'auto-mode-alist '("\\.plx\\'" . perl-mode))
@@ -23,12 +25,6 @@
  '(inhibit-startup-screen t)
  '(show-paren-mode t)
  '(tool-bar-mode nil))
-(custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "SystemWindow" :foreground "SystemWindowText" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 83 :width normal :foundry "outline" :family "Consolas")))))
 (put 'dired-find-alternate-file 'disabled nil)
 
 
