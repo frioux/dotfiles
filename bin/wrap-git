@@ -1,0 +1,35 @@
+#!/usr/bin/env perl
+
+use strict;
+use warnings;
+
+my %aliases = map { split(/\n/, $_, 2) }
+   split /\0/,
+   `git config -z --get-regexp alias\\.`;
+
+my %commit_aliases = (( commit => 1 ),
+   map { s/alias\.//; $_ => 1 }
+   grep $aliases{$_} =~ /^commit\b/,
+   keys %aliases);
+
+my ($command, @args) = @ARGV;
+
+if ($commit_aliases{$command} && $args[0] =~ /^-a|^--all/) {
+   my @staged = grep /^M/, split /\0/, `git status -z`;
+   if (@staged) {
+      print "There are staged changes, are you sure you want to commit all? (y/N) ";
+      chomp(my $answer = <STDIN>);
+      if ($answer =~ /^y/i) {
+         run_command()
+      }
+   } else {
+      run_command()
+   }
+} else {
+   run_command()
+}
+
+sub run_command {
+   system 'git', $command, @args;
+   exit $? >> 8;
+}

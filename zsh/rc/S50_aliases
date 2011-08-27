@@ -147,11 +147,11 @@ fi
 
 alias realias='vi ~/.aliases; source ~/.aliases'
 
-alias git='noglob git'
+alias git='noglob wrap-git'
 alias gitk='noglob g_tk'
 function g_tk() { /usr/bin/env 'gitk' "$@" & }
 alias grr='noglob g_tk ^origin/release HEAD'
 alias gosu='git submodule update --init'
-alias gre='git rebase --root --onto origin/release -i'
+alias gre='git rebase --root --onto origin/release -i --autosquash'
 
 # vim: ft=zsh foldmethod=marker
