@@ -27,4 +27,5 @@ ln -s "$(pwd)/zsh" ~/.zsh
 ln -s "$(pwd)/passwords.kdb" ~/passwords.kdb
 ln -s "$(pwd)/xsession" ~/.xsession
 ln -s "$(pwd)/emacs" ~/.emacs
+ln -s "$(pwd)/pentadactylrc" ~/.pentadactylrc
 
