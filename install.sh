@@ -10,7 +10,8 @@ fi
 
 rm ~/.xmonad ~/bin/showdm ~/bin/eval ~/.Xdefaults ~/.vim ~/.zshrc ~/.vimrc\
    ~/.screenrc ~/.irssi ~/.gitconfig ~/.config/terminator/config\
-   ~/passwords.kdb ~/.xsession ~/bin/wrap-git ~/.pentadactylrc -R
+   ~/passwords.kdb ~/.xsession ~/bin/wrap-git ~/.pentadactylrc ~/.zsh \
+   ~/.emacs -R
 
 ln -s "$(pwd)/bin/eval" ~/bin/eval
 ln -s "$(pwd)/bin/showdm" ~/bin/showdm
