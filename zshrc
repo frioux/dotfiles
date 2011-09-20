@@ -1,5 +1,10 @@
-# Autoload screen if we aren't in it.  (Thanks Fjord!)
-if [[ $STY = '' ]] then screen -xR; fi
+if [ "$PS1" != "" -a "${STARTED_TMUX:-x}" = x ]
+then
+        STARTED_TMUX=1; export STARTED_TMUX
+        sleep 1
+        ( (tmux has-session -t remote && tmux attach-session -t remote) || (tmux new-session -s remote) ) && exit 0
+        echo "tmux failed to start"
+fi
 
 autoload -U compinit zrecompile
 
