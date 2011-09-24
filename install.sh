@@ -11,7 +11,7 @@ fi
 rm ~/.xmonad ~/bin/showdm ~/bin/eval ~/.Xdefaults ~/.vim ~/.zshrc ~/.vimrc\
    ~/.screenrc ~/.irssi ~/.gitconfig ~/.config/terminator/config\
    ~/passwords.kdb ~/.xsession ~/bin/wrap-git ~/.pentadactylrc ~/.zsh \
-   ~/.emacs ~/.tmux.conf -R
+   ~/.emacs ~/.tmux.conf ~/.dzil -Rf
 
 ln -s "$(pwd)/bin/eval" ~/bin/eval
 ln -s "$(pwd)/bin/showdm" ~/bin/showdm
@@ -31,4 +31,5 @@ ln -s "$(pwd)/xsession" ~/.xsession
 ln -s "$(pwd)/emacs" ~/.emacs
 ln -s "$(pwd)/pentadactylrc" ~/.pentadactylrc
 ln -s "$(pwd)/tmux.conf" ~/.tmux.conf
+ln -s "$(pwd)/dzil" ~/.dzil
 

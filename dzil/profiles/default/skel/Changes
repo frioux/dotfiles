@@ -1,0 +1,5 @@
+Release history for {{ $dist->name }}
+
+{{ '{{$NEXT}}' }}
+
+  - Initial Release
