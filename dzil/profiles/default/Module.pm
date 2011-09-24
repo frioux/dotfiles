@@ -1,4 +1,4 @@
-package {{ $dist->name }};
+package {{ $name }};
 
 use strict;
 use warnings;
