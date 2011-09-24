@@ -168,6 +168,8 @@ iunmap ;
 
 "}}}
 
+abbr MCPAN https://metacpan.org/module/
+
 set listchars=tab:▸\ ,eol:¬
 set list
 
