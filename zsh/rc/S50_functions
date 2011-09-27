@@ -27,6 +27,9 @@ function g; {
   firefox "http://www.google.com/search?q=`url-encode "${(j: :)@}"`"
 }
 
+function calc() {
+   bc <<< "scale=5; $1";
+}
 
 #}}}
 
