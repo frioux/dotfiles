@@ -28,6 +28,9 @@ augroup END
 
 "{{{Misc Settings
 
+" PERSISTENT UNDO
+set undofile
+
 set viminfo='10,\"100,:20,%,n~/.viminfo
 
 " Tell vim to remember certain things when we exit
