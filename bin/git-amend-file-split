@@ -15,14 +15,12 @@ my %changed_files = map { m/(..)\s+(.+)/; ($2, $1) }
 for (keys %changed_files) {
    my $t = $changed_files{$_};
 
-   if ($t eq '??') {
-      system(qw(git add), $_);
-      system(qw(git commit -m), "$msg [Added $_]");
-   } elsif ($t eq ' M') {
-      system(qw(git add), $_);
-      system(qw(git commit -m), "$msg [Modified $_]");
-   } elsif ($t eq ' D') {
-      system(qw(git rm), $_);
-      system(qw(git commit -m), "$msg [Deleted $_]");
-   }
+   my $action;
+
+   $action = 'Added'    if $t eq '??';
+   $action = 'Modified' if $t eq ' M';
+   $action = 'Deleted'  if $t eq ' D';
+
+   system(qw(git add), $_);
+   system(qw(git commit -m), "$msg [$action $_]");
 }
