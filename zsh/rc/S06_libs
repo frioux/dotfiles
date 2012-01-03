@@ -1,5 +1,6 @@
 source ~/.zsh/cxregs-bash-tools/bash_arrays
 source ~/.zsh/cxregs-bash-tools/bash_varstash
 source ~/.zsh/cxregs-bash-tools/bash_smartcd
-alias cd=smartcd
+smartcd setup cd
+smartcd setup popd
 
