@@ -36,3 +36,6 @@
 
 [pack]
    threads = 0
+
+[push]
+   default = tracking
