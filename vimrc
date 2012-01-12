@@ -176,4 +176,7 @@ abbr MCPAN https://metacpan.org/module/
 set listchars=tab:▸\ ,eol:¬
 set list
 
+set directory=~/.vim/var/swap
+set undodir=~/.vim/var/undo
+
 " vim: foldmethod=marker
