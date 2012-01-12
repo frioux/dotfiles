@@ -148,6 +148,7 @@ fi
 alias realias='vi ~/.aliases; source ~/.aliases'
 
 alias git='noglob wrap-git'
+compdef wrap-git=git
 alias gitk='noglob g_tk'
 function g_tk() { /usr/bin/env 'gitk' "$@" & }
 alias grr='noglob g_tk ^origin/release HEAD'
