@@ -1,4 +1,8 @@
 
+if has('win32')
+   let &runtimepath = substitute(&runtimepath, '\(\~\|'.$USER.'\)/vimfiles\>', '\1/.vim', 'g')
+endif
+
 "{{{Auto Commands
 
 autocmd VimEnter * set vb t_vb=
@@ -173,7 +177,12 @@ iunmap ;
 
 abbr MCPAN https://metacpan.org/module/
 
-set listchars=tab:▸\ ,eol:¬
+if has('win32')
+   set listchars=tab:-\ ,eol:$
+else
+   set listchars=tab:▸\ ,eol:¬
+endif
+
 set list
 
 set directory=~/.vim/var/swap
