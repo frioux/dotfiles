@@ -12,67 +12,9 @@ alias attd="sudo aptitude"
 #{{{ Misc.
 
 alias mmv='noglob zmv -W'
-alias ipl='perl -Mautobox::Core -E'
-if [[ -x `which tea_chooser` ]]; then
-# I need to do this more elegantly...
-    alias rt='cd /home/frew/bin/run/tea_chooser; ./randtea.rb'
-fi
-
-# Maxima with line editing!  Now if only I could use zle...
-if [[ -x `which maxima` && -x `which ledit` ]]; then
-  alias maxima='ledit maxima'
-fi
-
-# Convenient.  Also works in Gentoo or Ubuntu
-if [[ -x `which irb1.8` ]]; then
-  alias irb='irb1.8 --readline -r irb/completion'
-else
-  alias irb='irb --readline -r irb/completion'
-fi
-
-# For some reason the -ui doesn't work on Ubuntu... I need to deal with that
-# somehow...
-if [[ -x `which unison` ]]; then
-  alias un='unison -ui graphic -perms 0 default'
-  alias un.='unison -ui graphic -perms 0 dotfiles'
-fi
-
-# fri is faster.
-if [[ -x `which fri` ]]; then
-  alias ri=fri
-fi
-
-# This is how you can see all of my passwords.
-alias auth='view ~/.auth.des3'
 
 # copy with a progress bar.
 alias cpv="rsync -poghb --backup-dir=/tmp/rsync -e /dev/null --progress --"
-
-# save a few keystrokes when opening the learn sql database
-if [[ -x `which psql` ]]; then
-  alias lrnsql="psql learn_sql"
-fi
-
-# I use the commands like, every day now
-alias seinr="sudo /etc/init.d/networking restart"
-if [[ -x `which gksudo` && -x `which wlassistant` ]]; then
-  alias gkw="gksudo wlassistant&"
-fi
-
-alias kgs='javaws http://files.gokgs.com/javaBin/cgoban.jnlp'
-
-if [[ -x `which delish` ]]; then
-  alias delish="noglob delish"
-fi
-
-alias tomes='screen -S tome -c /home/frew/.tomescreenrc'
-alias mpfs='mplayer -fs -zoom'
-alias mpns='mplayer -nosound'
-
-if [[ -x /home/frew/personal/dino ]]; then
-  dinoray=( /home/frew/personal/dino/* )
-  alias dino='feh $dinoray[$RANDOM%$#dinoray+1]'
-fi
 
 #}}}
 
