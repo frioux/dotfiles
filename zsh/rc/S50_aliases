@@ -27,6 +27,8 @@ alias -g L="| less"
 
 alias realias='vi ~/.aliases; source ~/.aliases'
 
+# {{{ git
+
 alias git='noglob wrap-git'
 compdef wrap-git=git
 alias gitk='noglob g_tk'
@@ -34,5 +36,7 @@ function g_tk() { /usr/bin/env 'gitk' "$@" & }
 alias grr='noglob g_tk ^origin/release HEAD'
 alias gosu='git submodule update --init'
 alias gre='git rebase --root --onto origin/release -i --autosquash'
+
+# }}}
 
 # vim: ft=zsh foldmethod=marker
