@@ -25,23 +25,6 @@ alias -g L="| less"
 
 #}}}
 
-#{{{ Suffixes...
-
-if [[ -x `which abiword` ]]; then
-  alias -s doc=abiword
-fi
-if [[ -x `which ooimpress` ]]; then
-  alias -s ppt='ooimpress &> /dev/null '
-fi
-
-if [[ $DISPLAY = '' ]] then
-  alias -s txt=vi
-else
-  alias -s txt=gvim
-fi
-
-#}}}
-
 alias realias='vi ~/.aliases; source ~/.aliases'
 
 alias git='noglob wrap-git'
