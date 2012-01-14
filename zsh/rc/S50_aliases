@@ -7,24 +7,7 @@ alias ls='pwd; ls --color'
 
 #}}}
 
-#{{{ Package management
-
-if [[ -x `which aptitude` ]]; then
-  alias attd="sudo aptitude"
-else
-  if [[ -x `which emerge` ]]; then
-    alias emu='sudo emerge -uDN world'
-    alias emup='sudo emerge -uDvpN world'
-    alias esy='sudo emerge --sync'
-    alias ei='sudo emerge'
-    alias eip='sudo emerge -vp '
-    alias packmask='sudo vi /etc/portage/package.unmask'
-    alias packuse='sudo vi /etc/portage/package.use'
-    alias packkey='sudo vi /etc/portage/package.keywords'
-  fi
-fi
-
-#}}}
+alias attd="sudo aptitude"
 
 #{{{ SSH
 
