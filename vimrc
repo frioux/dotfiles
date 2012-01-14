@@ -127,13 +127,6 @@ set statusline=%F%m%r%h%w\ (%{&ff}){%Y}\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}\ [%
 " Open NERDTree <F2>
 nnoremap <silent> <F2> :NERDTreeToggle<CR>
 
-" Workaround to repeat commands <F3>
-nnoremap <silent> <F3> :let @@ = @: <Bar> exe @@<CR>
-
-" Paste Mode!  Dang! <F10>
-nnoremap <silent> <F10> :call Paste_on_off()<CR>
-set pastetoggle=<F10>
-
 " Edit vimrc \ev
 nnoremap <silent> <Leader>ev :tabnew<CR>:e ~/.vimrc<CR>
 
@@ -149,13 +142,6 @@ nnoremap <silent> zk O<Esc>
 " search will center on the line it's found in.
 map N Nzz
 map n nzz
-
-noremap ,k <C-W>k
-noremap ,j <C-W>j
-noremap ,h <C-W>h
-noremap ,l <C-W>l
-noremap ,p <C-W>p
-noremap ,o <C-W>o
 
 " Testing
 set completeopt=longest,menuone,preview
@@ -174,8 +160,6 @@ iunmap :
 iunmap ;
 
 "}}}
-
-abbr MCPAN https://metacpan.org/module/
 
 if has('win32')
    set listchars=tab:-\ ,eol:$
