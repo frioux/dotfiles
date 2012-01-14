@@ -1,18 +1,4 @@
 
-#{{{ Amarok
-if [[ -x `which amarok` ]]; then
-  alias play='dcop amarok player play'
-  alias pause='dcop amarok player pause'
-  alias next='dcop amarok player next'
-  alias prev='dcop amarok player prev'
-  alias stop='dcop amarok player stop'
-  alias current='dcop amarok player nowPlaying'
-  alias osd='dcop amarok player showOSD'
-  alias pp='dcop amarok player playPause'
-fi
-
-#}}}
-
 #{{{ Shell Conveniences
 source ~/.aliases
 alias ez='vim ~/.zshrc; source ~/.zshrc'
