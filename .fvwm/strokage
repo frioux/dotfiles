@@ -1,8 +1,0 @@
-Mouse 3 R N
-Mouse 3 R N StrokeFunc DrawMotion FeedBack StrokeWidth 3
-
-Stroke 0 0 R N Menu FvwmRootMenu
-Stroke N987412369 0 R N FvwmOpenOffice
-Stroke N98745654123 0 R N FvwmEclipse
-Stroke N78963 0 R N FvwmInkscape
-Stroke N98741 0 R N Exec exec thunderbird
