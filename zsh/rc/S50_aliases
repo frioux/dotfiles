@@ -9,20 +9,6 @@ alias ls='pwd; ls --color'
 
 alias attd="sudo aptitude"
 
-#{{{ SSH
-
-if [[ $HOST = FrewSchmidt ]]; then
-    alias sf='ssh frew@FrewSchmidt2'
-else
-    alias sf='ssh frew@FrewSchmidt'
-fi
-
-alias enosh='ssh schmidtf@enosh.letnet.net'
-
-alias s31='ssh 192.168.3.1'
-alias s39='ssh 192.168.3.9'
-#}}}
-
 #{{{ Misc.
 
 alias mmv='noglob zmv -W'
