@@ -51,3 +51,5 @@ for tool in *; do
 done
 popd;
 
+rm .git/hooks/post-checkout
+ln -s "$(pwd)/install.sh" .git/hooks/post-checkout
