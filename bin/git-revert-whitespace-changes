@@ -1,0 +1,2 @@
+#!/bin/sh
+git diff -w > foo.patch && git co . && git apply foo.patch && rm foo.patch
