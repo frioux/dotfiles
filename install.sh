@@ -18,7 +18,6 @@ for x in        \
    irssi        \
    screenrc     \
    tmux.conf    \
-   vimrc        \
    Xdefaults    \
    xmonad       \
    xsession     \
@@ -43,7 +42,7 @@ case $OSTYPE in
       rm -rf "$HOME/.vim";
       ln -s "$(pwd)/vim" "$HOME/.vim";
    ;;
-   esac
+esac
 
 pushd bin;
 for tool in *; do
