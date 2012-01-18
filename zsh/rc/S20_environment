@@ -1,5 +1,5 @@
 
-export MANPATH="/opt/share/man:$PATH"
+export MANPATH="/opt/share/man:$MANPATH"
 export PATH="/home/frew/bin:/home/frew/.vim/bin:/opt/bin:$PATH"
 export RI="--format ansi"
 export EDITOR="vi"
