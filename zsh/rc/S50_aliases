@@ -39,4 +39,7 @@ alias gre='git rebase --root --onto origin/release -i --autosquash'
 
 # }}}
 
+alias tar='wrap-tar'
+compdef wrap-tar=tar
+
 # vim: ft=zsh foldmethod=marker

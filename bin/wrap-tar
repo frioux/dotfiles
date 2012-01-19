@@ -1,0 +1,14 @@
+#!/usr/bin/env perl
+
+use strict;
+use warnings;
+
+my ($command, @args) = @ARGV;
+
+if ($command =~ /-xv([jz])f/) {
+   print "frew, it's 2012, the dash is optional and the $1 is automatic\n";
+   exit 1;
+} else {
+   system 'tar', $command, @args;
+   exit $? >> 8;
+}
