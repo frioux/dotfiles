@@ -1,10 +1,7 @@
 
 if [[ -r ~/.localdirs ]]; then
-        source ~/.localdirs
+   source ~/.localdirs
 fi
-
-autoload run-help
-HELPDIR=~/zsh_help
 
 if [[ -e ~/perl5/perlbrew/etc/bashrc ]]; then
    source ~/perl5/perlbrew/etc/bashrc

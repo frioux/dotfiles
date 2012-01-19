@@ -1,4 +1,4 @@
-autoload -U compinit promptinit zcalc zmv zsh-mime-setup
+autoload -U compinit promptinit zmv zsh-mime-setup
 autoload -Uz colors
 colors
 compinit
