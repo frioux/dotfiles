@@ -31,10 +31,11 @@ alias realias='vi ~/.aliases; source ~/.aliases'
 
 alias git='noglob wrap-git'
 compdef wrap-git=git
-compdef _git {gitk,qgit}=git-log
+compdef _git {gitk,qgit,grr}=git-log
 alias gitk='noglob gitk'
 function gitk() { command gitk "$@" & }
-alias grr='noglob gitk ^origin/release HEAD'
+alias grr='noglob grr'
+function grr() { gitk ^origin/release HEAD "$@" & }
 alias gosu='git submodule update --init'
 alias gre='git rebase --root --onto origin/release -i --autosquash'
 
