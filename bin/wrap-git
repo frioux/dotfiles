@@ -14,7 +14,7 @@ my %commit_aliases = (( commit => 1 ),
 
 my ($command, @args) = @ARGV;
 
-if ($commit_aliases{$command} && $args[0] =~ /^-a|^--all/) {
+if ($commit_aliases{$command} && exists $args[0] && $args[0] =~ /^-a|^--all/) {
    my @staged = grep /^M/, split /\0/, `git status -z`;
    if (@staged) {
       print "There are staged changes, are you sure you want to commit all? (y/N) ";
