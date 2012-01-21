@@ -25,6 +25,9 @@ if ($commit_aliases{$command} && exists $args[0] && $args[0] =~ /^-a|^--all/) {
    } else {
       run_command()
    }
+} elsif ($command eq 'pull' && !grep /^-/, @args) {
+   unshift @args, '--ff-only';
+   run_command()
 } else {
    run_command()
 }
