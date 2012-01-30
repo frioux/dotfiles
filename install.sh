@@ -7,9 +7,9 @@ fi
 if [[ ! -x ~/.config/terminator ]]; then
    mkdir -p ~/.config/terminator
 fi
-rm ~/.config/terminator/config
+rm -f ~/.config/terminator/config
 ln -s "$(pwd)/terminator_config" ~/.config/terminator/config
-rm ~/passwords.kdb
+rm -f ~/passwords.kdb
 ln -s "$(pwd)/passwords.kdb" ~/passwords.kdb
 
 for x in        \
@@ -30,11 +30,13 @@ done
 
 case $OSTYPE in
    cygwin)
-      rm -rf "$(cygpath $USERPROFILE)/_vimrc";
-      cp vimrc "$(cygpath $USERPROFILE)/_vimrc";
-      rm -rf "$(cygpath $USERPROFILE)/.vim";
-      cp -r vim "$(cygpath $USERPROFILE)/.vim";
-
+      home="$(cygpath $USERPROFILE)";
+      rm -rf "$home/_vimrc";
+      cp vimrc "$home/_vimrc";
+      rm -rf "$home/.vim";
+      cp -r vim "$home/.vim";
+      mkdir -p "$home/var/undo";
+      mkdir -p "$home/var/swap";
    ;;
    *)
       rm -rf "$HOME/.vimrc";
@@ -46,7 +48,7 @@ esac
 
 pushd bin;
 for tool in *; do
-   rm "$HOME/bin/$tool"
+   rm -f "$HOME/bin/$tool"
    ln -s "$(pwd)/$tool" "$HOME/bin/$tool"
 done
 popd;

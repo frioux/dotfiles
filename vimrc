@@ -163,13 +163,15 @@ iunmap ;
 
 if has('win32')
    set listchars=tab:-\ ,eol:$
+   set directory=~/var/swap
+   set undodir=~/var/undo
 else
    set listchars=tab:▸\ ,eol:¬
+   set directory=~/.vim/var/swap
+   set undodir=~/.vim/var/undo
 endif
 
 set list
 
-set directory=~/.vim/var/swap
-set undodir=~/.vim/var/undo
 
 " vim: foldmethod=marker
