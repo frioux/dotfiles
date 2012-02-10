@@ -15,10 +15,7 @@ local tag = require("awful.tag")
 local layout = require("awful.widget.layout")
 
 local awful = require("awful") 
-local screen = screen
 local mouse = mouse
-local client = client
-local widget = widget
 
 local ipairs = ipairs
 
@@ -34,8 +31,8 @@ tagwidgets = setmetatable({}, { __mode = 'k' })
 function create_tags(names, layouts)
     local tags = {}
     local count = #names
-    if screen.count() >= #names then
-        count = screen.count() + 1
+    if capi.screen.count() >= #names then
+        count = capi.screen.count() + 1
     end
     for tagnumber = 1, count do
         tags[tagnumber] = awful.tag.add(names[tagnumber], {})
@@ -44,7 +41,7 @@ function create_tags(names, layouts)
         tags[tagnumber].screen = 1
         awful.layout.set(layouts[tagnumber], tags[tagnumber])
     end
-    for s = 1, screen.count() do
+    for s = 1, capi.screen.count() do
         -- I'm sure you want to see at least one tag.
         tags[s].screen = s
         tags[s].selected = true
@@ -58,7 +55,7 @@ end
 -- @param scr : the screen object to move to
 function tag_move(t, scr)
     local ts = t or awful.tag.selected()
-    local screen_target = scr or awful.util.cycle(screen.count(), ts.screen + 1)
+    local screen_target = scr or awful.util.cycle(capi.screen.count(), ts.screen + 1)
 
     if ts.screen and screen_target ~= ts.screen then
         -- switch for tag
@@ -84,7 +81,7 @@ end
 function tag_to_screen(t, scr)
     local ts = t or awful.tag.selected()
     local screen_origin = ts.screen
-    local screen_target = scr or awful.util.cycle(screen.count(), ts.screen + 1)
+    local screen_target = scr or awful.util.cycle(capi.screen.count(), ts.screen + 1)
 
     awful.tag.history.restore(ts.screen,1)
     -- move the tag only if we are on a different screen
@@ -96,11 +93,18 @@ function tag_to_screen(t, scr)
     mouse.screen = ts.screen
     if #ts:clients() > 0 then
         local c = ts:clients()[1]
-        client.focus = c
+        capi.client.focus = c
     end
 end
 --}}}
 
+--{{{ list_update: update a list of widgets
+-- @param screen : the screen to draw the taglist for
+-- @param w : the widget container
+-- @param label : label function to use
+-- @param buttons : a table with button bindings to set
+-- @param widgets : a table with widget style parameters
+-- @param objects : the list of tags to be displayed
 local function list_update(w, buttons, label, data, widgets, objects)
     -- Hack: if it has been registered as a widget in a wibox,
     -- it's w.len since __len meta does not work on table until Lua 5.2.
@@ -180,12 +184,15 @@ local function list_update(w, buttons, label, data, widgets, objects)
         end
    end
 end
+--}}}
 
 --{{{ taglist_update: update the taglist widget
 -- @param screen : the screen to draw the taglist for
 -- @param w : the taglist widget
 -- @param label : label function to use
 -- @param buttons : a table with button bindings to set
+-- @param widgets : a table with widget style parameters
+-- @param objects : the list of tags to be displayed
 local function taglist_update (screen, w, label, buttons, data, widgets)
     local showntags = {}
     for s = 1, capi.screen.count() do
