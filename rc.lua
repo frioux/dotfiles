@@ -493,7 +493,7 @@ client.add_signal("unfocus", function(c) c.border_color = beautiful.border_norma
 os.execute("~/bin/mouse-settings &")
 
 -- Applets
-os.execute("ps -U " .. user .. " | grep wicd-client >/dev/null || wicd-gtk &")
+os.execute("ps -U " .. user .. " | grep wicd-client >/dev/null || wicd-gtk --tray &")
 os.execute("ps -U " .. user .. " | grep blueman-applet >/dev/null || ( sleep 2; blueman-applet ) &")
 
 -- Bildschirmschoner und Powermanagement
