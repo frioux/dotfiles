@@ -1,0 +1,57 @@
+#!/usr/bin/env perl
+
+use strict;
+use warnings;
+
+use Text::xSV;
+use DateTime;
+use DateTime::Format::Strptime;
+use Getopt::Long::Descriptive;
+
+my ($opt, $usage) = describe_options(
+  'group-by-date %o',
+  [ 'in_format|i=s', 'format to parse from',  { default => '%F %T.%N' } ],
+  [ 'group_format|g=s', 'format to group by', { default => '%F'       } ],
+  [ 'out_format|o=s',   'format to output',   { default => '%F %T.%N' } ],
+  [],
+  [ 'help|h', 'view help' ],
+);
+
+print($usage->text), exit if $opt->help;
+
+my $f_in = new DateTime::Format::Strptime(
+   pattern     => $opt->in_format,
+   locale      => 'en_US',
+   time_zone   => 'UTC',
+);
+
+my $f_out = new DateTime::Format::Strptime(
+   pattern     => $opt->out_format || $opt->group_format,
+   locale      => 'en_US',
+   time_zone   => 'UTC',
+);
+
+my $f_group = new DateTime::Format::Strptime(
+   pattern     => $opt->group_format,
+   locale      => 'en_US',
+   time_zone   => 'UTC',
+);
+
+my $csv = Text::xSV->new(
+   fh => *STDIN,
+   header => ['timestamp', 'value'],
+);
+
+my %date;
+while ($csv->get_row) {
+   my ($time, $val) = $csv->extract(qw(timestamp value));
+   my $date_string = $f_group->format_datetime($f_in->parse_datetime($time));
+   $date{$date_string} += $val || 1;
+}
+
+my $csv_out = Text::xSV->new(
+   fh => *STDOUT,
+   header => ['timestamp', 'value'],
+);
+
+$csv_out->print_row($f_out->format_datetime($f_group->parse_datetime($_)), $date{$_}) for sort keys %date;

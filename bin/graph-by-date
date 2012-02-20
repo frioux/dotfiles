@@ -1,0 +1,65 @@
+#!/usr/bin/env perl
+
+use strict;
+use warnings;
+
+use Chart::Clicker;
+use Chart::Clicker::Axis::DateTime;
+use Chart::Clicker::Data::DataSet;
+use Chart::Clicker::Data::Series;
+use Text::xSV;
+use DateTime;
+use DateTime::Format::Strptime;
+use Getopt::Long::Descriptive;
+
+my ($opt, $usage) = describe_options(
+  'group-by-date %o',
+  [ 'in_format|i=s', 'format to parse date as',  { default => '%F %T.%N' } ],
+  [ 'out_file|f=s', 'file to write to',  { default => 'foo.png' } ],
+  [],
+  [ 'help|h', 'view help' ],
+);
+
+print($usage->text), exit if $opt->help;
+
+
+my $f = new DateTime::Format::Strptime(
+   pattern     => $opt->in_format,
+   locale      => 'en_US',
+   time_zone   => 'UTC',
+);
+
+my $csv = Text::xSV->new(
+   fh => *STDIN,
+   header => ['timestamp', 'value'],
+);
+
+my @date;
+my @val;
+while ($csv->get_row) {
+   my ($time, $val) = $csv->extract(qw(timestamp value));
+   push @date, $f->parse_datetime($time);
+   push @val, $val || 1;
+}
+
+my $cc = Chart::Clicker->new( width => 500, height => 400 );
+
+my $series1 = Chart::Clicker::Data::Series->new(
+    values => \@val,
+    keys => [ map { $_->epoch } @date ],
+);
+
+my $ds1 = Chart::Clicker::Data::DataSet->new( series => [$series1] );
+
+$cc->add_to_datasets($ds1);
+
+my $def = $cc->get_context('default');
+
+my $dtaxis = Chart::Clicker::Axis::DateTime->new(
+    format => '%m/%d',
+    position => 'bottom',
+    orientation => 'horizontal'
+);
+$def->domain_axis($dtaxis);
+
+$cc->write_output($opt->out_file);
