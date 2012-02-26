@@ -1,0 +1,24 @@
+#!/usr/bin/env perl
+
+use strict;
+use warnings;
+
+my ( $date, $plus, $minus );
+my %accumulator;
+while (<>) {
+    next unless $_;
+
+    if (/^(\d{4}-\d\d-\d\d \d\d:\d\d:\d\d)/) {
+        $date = $1;
+    } elsif (/^ \d+ files changed, (\d+) insertions\(\+\), (\d+) deletions\(-\)/) {
+        if ( my $current = $accumulator{$date} ) {
+            $current->[0] += $1;
+            $current->[1] += $2;
+        } else {
+            $accumulator{$date} = [ $1, $2 ]
+        }
+    }
+}
+
+print  "$_,$accumulator{$_}->[0],$accumulator{$_}->[1]\n"
+   for sort keys %accumulator
