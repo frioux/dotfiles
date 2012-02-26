@@ -13,15 +13,17 @@ use DateTime::Format::Strptime;
 use Getopt::Long::Descriptive;
 
 my ($opt, $usage) = describe_options(
-  'group-by-date %o',
+  'cat foo.csv | graph-by-date %o',
   [ 'in_format|i=s', 'format to parse date as',  { default => '%F %T.%N' } ],
   [ 'out_file|f=s', 'file to write to',  { default => 'foo.png' } ],
+  [ 'width|w=i', 'width of graph',  { default => 800 } ],
+  [ 'height|H=i', 'height of graph',  { default => 600 } ],
+  [ 'axis_format|a=i', 'the date format for the axis',  { default => '%Y-%m-%d' } ],
   [],
   [ 'help|h', 'view help' ],
 );
 
 print($usage->text), exit if $opt->help || -t STDIN;
-
 
 my $f = new DateTime::Format::Strptime(
    pattern     => $opt->in_format,
@@ -40,7 +42,7 @@ while (my $row = $csv->get_row) {
    push @val, \@row_val;
 }
 
-my $cc = Chart::Clicker->new( width => 500, height => 400 );
+my $cc = Chart::Clicker->new( width => $opt->width, height => $opt->height );
 
 my @series = map {
    my $chart = $_;
@@ -57,10 +59,10 @@ $cc->add_to_datasets($_) for @ds;
 my $def = $cc->get_context('default');
 
 my $dtaxis = Chart::Clicker::Axis::DateTime->new(
-    format => '%m/%d',
+    format => $opt->axis_format,
     position => 'bottom',
     orientation => 'horizontal'
 );
 $def->domain_axis($dtaxis);
-
+$def->renderer->brush->width(1);
 $cc->write_output($opt->out_file);
