@@ -18,7 +18,7 @@ my ($opt, $usage) = describe_options(
   [ 'help|h', 'view help' ],
 );
 
-print($usage->text), exit if $opt->help;
+print($usage->text), exit if $opt->help || -t STDIN;
 
 my $f_in = new DateTime::Format::Strptime(
    pattern     => ($opt->by_day ? '%F %T' : $opt->in_format),

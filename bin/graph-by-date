@@ -20,7 +20,7 @@ my ($opt, $usage) = describe_options(
   [ 'help|h', 'view help' ],
 );
 
-print($usage->text), exit if $opt->help;
+print($usage->text), exit if $opt->help || -t STDIN;
 
 
 my $f = new DateTime::Format::Strptime(
