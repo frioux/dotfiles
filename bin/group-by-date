@@ -11,8 +11,9 @@ use Getopt::Long::Descriptive;
 my ($opt, $usage) = describe_options(
   'group-by-date %o',
   [ 'in_format|i=s', 'format to parse from',  { default => '%F %T.%N' } ],
+  [ 'by_day|d', 'set in_format to "%F %T" (YYYY-MM-DD HH:MM:SS)'],
   [ 'group_format|g=s', 'format to group by', { default => '%F'       } ],
-  [ 'out_format|o=s',   'format to output',   { default => '%F %T.%N' } ],
+  [ 'out_format|o=s', 'format to output',   { default => '%F %T.%N' } ],
   [],
   [ 'help|h', 'view help' ],
 );
@@ -20,7 +21,7 @@ my ($opt, $usage) = describe_options(
 print($usage->text), exit if $opt->help;
 
 my $f_in = new DateTime::Format::Strptime(
-   pattern     => $opt->in_format,
+   pattern     => ($opt->by_day ? '%F %T' : $opt->in_format),
    locale      => 'en_US',
    time_zone   => 'UTC',
 );
