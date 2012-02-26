@@ -39,19 +39,29 @@ my $f_group = new DateTime::Format::Strptime(
 );
 
 my $csv = Text::xSV->new( fh => *STDIN );
-
-my %date;
-while (my $row = $csv->get_row) {
-   my ($time, @val) = @$row;
-   my $date_string = $f_group->format_datetime($f_in->parse_datetime($time));
-   $date{$date_string} ||= [];
-   @val = (1) unless @val;
-   $date{$date_string}[$_] += $val[$_] for 0..$#val;
-}
-
 my $csv_out = Text::xSV->new( fh => *STDOUT );
 
+my $last_date = '';
+my @val;
+my $date_string;
+while (my $row = $csv->get_row) {
+   my ($time, @row_val) = @$row;
+
+   $date_string = $f_group->format_datetime($f_in->parse_datetime($time));
+   if ($last_date && $date_string ne $last_date) {
+      $csv_out->print_row(
+         $f_out->format_datetime($f_group->parse_datetime($last_date)),
+         @val
+      );
+      $last_date = $date_string;
+      @val = ();
+   }
+   @row_val = (1) unless @row_val;
+   $val[$_] += $row_val[$_] for 0..$#row_val;
+   $last_date ||= $date_string;
+}
+
 $csv_out->print_row(
-   $f_out->format_datetime($f_group->parse_datetime($_)),
-   @{$date{$_}}
-) for sort keys %date;
+   $f_out->format_datetime($f_group->parse_datetime($date_string)),
+   @val
+);

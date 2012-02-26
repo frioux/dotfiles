@@ -13,22 +13,27 @@ if (-t STDIN) {
 } else {
    $in = \*STDIN
 }
-my ( $date, $plus, $minus );
-my %accumulator;
+my $last_date = '';
+my @val;
+my $i = 0;
 while (<$in>) {
-    next unless $_;
+   next unless $_;
 
-    if (/^(\d{4}-\d\d-\d\d \d\d:\d\d:\d\d)/) {
-        $date = $1;
-    } elsif (/^ \d+ files changed, (\d+) insertions\(\+\), (\d+) deletions\(-\)/) {
-        if ( my $current = $accumulator{$date} ) {
-            $current->[0] += $1;
-            $current->[1] += $2;
-        } else {
-            $accumulator{$date} = [ $1, $2 ]
-        }
-    }
+   if (/^(\d{4}-\d\d-\d\d \d\d:\d\d:\d\d)/) {
+      my $date = $1;
+      if ($date ne $last_date) {
+         $last_date = $date;
+         print "$last_date,$val[0],$val[1]\n" if $i;
+         $i = 0;
+         @val = (0, 0);
+      }
+   } elsif (/^ \d+ files changed, (\d+) insertions\(\+\), (\d+) deletions\(-\)/) {
+      $i++;
+      @val = (
+         $val[0] + $1,
+         $val[1] + $2,
+      );
+   }
 }
 
-print  "$_,$accumulator{$_}->[0],$accumulator{$_}->[1]\n"
-   for sort keys %accumulator
+print "$last_date,$val[0],$val[1]\n" if $i;
