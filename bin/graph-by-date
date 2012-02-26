@@ -29,29 +29,30 @@ my $f = new DateTime::Format::Strptime(
    time_zone   => 'UTC',
 );
 
-my $csv = Text::xSV->new(
-   fh => *STDIN,
-   header => ['timestamp', 'value'],
-);
+my $csv = Text::xSV->new( fh => *STDIN );
 
 my @date;
 my @val;
-while ($csv->get_row) {
-   my ($time, $val) = $csv->extract(qw(timestamp value));
-   push @date, $f->parse_datetime($time);
-   push @val, $val || 1;
+while (my $row = $csv->get_row) {
+   my ($time, @row_val) = @$row;
+   push @date, $f->parse_datetime($time)->epoch;
+   @row_val = (1) unless @row_val;
+   push @val, \@row_val;
 }
 
 my $cc = Chart::Clicker->new( width => 500, height => 400 );
 
-my $series1 = Chart::Clicker::Data::Series->new(
-    values => \@val,
-    keys => [ map { $_->epoch } @date ],
-);
+my @series = map {
+   my $chart = $_;
+   Chart::Clicker::Data::Series->new(
+      values => [map $_->[$chart], @val],
+      keys => \@date,
+   )
+} 0..(scalar @{$val[0]} - 1);
 
-my $ds1 = Chart::Clicker::Data::DataSet->new( series => [$series1] );
+my @ds = map Chart::Clicker::Data::DataSet->new( series => [$_] ), @series;
 
-$cc->add_to_datasets($ds1);
+$cc->add_to_datasets($_) for @ds;
 
 my $def = $cc->get_context('default');
 
