@@ -28,6 +28,9 @@ for x in        \
    ln -s "$(pwd)/$x" "$HOME/.$x";
 done
 
+rm -f "$HOME/bin/spark"
+ln -s "$(pwd)/zsh/spark/spark" "$HOME/bin/spark"
+
 case $OSTYPE in
    cygwin)
       home="$(cygpath $USERPROFILE)";
