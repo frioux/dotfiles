@@ -37,21 +37,20 @@ my $f_group = new DateTime::Format::Strptime(
    time_zone   => 'UTC',
 );
 
-my $csv = Text::xSV->new(
-   fh => *STDIN,
-   header => ['timestamp', 'value'],
-);
+my $csv = Text::xSV->new( fh => *STDIN );
 
 my %date;
-while ($csv->get_row) {
-   my ($time, $val) = $csv->extract(qw(timestamp value));
+while (my $row = $csv->get_row) {
+   my ($time, @val) = @$row;
    my $date_string = $f_group->format_datetime($f_in->parse_datetime($time));
-   $date{$date_string} += $val || 1;
+   $date{$date_string} ||= [];
+   @val = (1) unless @val;
+   $date{$date_string}[$_] += $val[$_] for 0..$#val;
 }
 
-my $csv_out = Text::xSV->new(
-   fh => *STDOUT,
-   header => ['timestamp', 'value'],
-);
+my $csv_out = Text::xSV->new( fh => *STDOUT );
 
-$csv_out->print_row($f_out->format_datetime($f_group->parse_datetime($_)), $date{$_}) for sort keys %date;
+$csv_out->print_row(
+   $f_out->format_datetime($f_group->parse_datetime($_)),
+   @{$date{$_}}
+) for sort keys %date;
