@@ -1,0 +1,7 @@
+#!/usr/bin/env perl
+
+my $skip = shift;
+while (<>) {
+   next unless $skip-- <= 0;
+   print
+}
