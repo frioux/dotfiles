@@ -3,9 +3,19 @@
 use strict;
 use warnings;
 
+my $filespec = shift;
+my $in;
+if (-t STDIN) {
+   my $cmd = 'git log --pretty=%ci --shortstat';
+   $cmd .= " -- $filespec" if $filespec;
+   $cmd .= '| cat';
+   open $in, '-|', $cmd;
+} else {
+   $in = \*STDIN
+}
 my ( $date, $plus, $minus );
 my %accumulator;
-while (<>) {
+while (<$in>) {
     next unless $_;
 
     if (/^(\d{4}-\d\d-\d\d \d\d:\d\d:\d\d)/) {
