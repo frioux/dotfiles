@@ -19,6 +19,7 @@ my ($opt, $usage) = describe_options(
   [ 'width|w=i', 'width of graph',  { default => 800 } ],
   [ 'height|H=i', 'height of graph',  { default => 600 } ],
   [ 'axis_format|a=i', 'the date format for the axis',  { default => '%Y-%m-%d' } ],
+  [ 'series_titles|T=s', 'comma separated list of series titles' ],
   [],
   [ 'help|h', 'view help' ],
 );
@@ -44,10 +45,12 @@ while (my $row = $csv->get_row) {
 
 my $cc = Chart::Clicker->new( width => $opt->width, height => $opt->height );
 
+my @titles = split /,/, ( $opt->series_titles || '' );
 my @series = map {
    my $chart = $_;
    Chart::Clicker::Data::Series->new(
-      values => [map $_->[$chart], @val],
+      (@titles ? (name   => $titles[$chart] ) : ()),
+      values => [map 0+$_->[$chart], @val],
       keys => \@date,
    )
 } 0..(scalar @{$val[0]} - 1);
