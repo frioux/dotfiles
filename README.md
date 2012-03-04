@@ -1,5 +1,5 @@
-This project is a series of testing for EditorConfig Core. Please have
-[cmake]() installed before using this project.
+This project is a series of testing for [EditorConfig Core][editorconfig]. Please have
+[cmake][] installed before using this project.
 
 After installing cmake, switch to the root dir of this project, and execute:
 
@@ -10,3 +10,4 @@ start testings.
 
 
 [cmake]: http://www.cmake.org
+[editorconfig]: http://editorconfig.org
