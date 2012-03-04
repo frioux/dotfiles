@@ -1,0 +1,10 @@
+; test property name lowercasing
+
+root = true
+
+[test1.c]
+indent_style = Space
+end_of_line = CRLF
+
+[test2.c]
+test_property = TestValue
