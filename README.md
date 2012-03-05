@@ -1,7 +1,7 @@
 This project is a series of testing for [EditorConfig Core][editorconfig]. Please have
 [cmake][] installed before using this project.
 
-# Use editorconfig-core-test independently
+### Use editorconfig-core-test independently
 
 After installing cmake, switch to the root dir of this project, and execute:
 
@@ -10,7 +10,7 @@ After installing cmake, switch to the root dir of this project, and execute:
 After that, if testing files are generated successfully, execute `ctest .` to
 start testings.
 
-# Use editorconfig-core-test in your project as a git submodule
+### Use editorconfig-core-test in your project as a git submodule
 
 If you are using [git][] and cmake to manage your project, this method should
 be suitable for you.
