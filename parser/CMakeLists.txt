@@ -69,11 +69,11 @@ add_test(spaces_in_section_name ${EDITORCONFIG_CMD} -f whitespace.in
 set_tests_properties(spaces_in_section_name
     PROPERTIES PASS_REGULAR_EXPRESSION "^key=value[ \t\n\r]*$")
 
-# test spaces before section name cause incorrect parsing
+# test spaces before section name are ignored
 add_test(spaces_before_section_name ${EDITORCONFIG_CMD} -f whitespace.in
     "${CMAKE_CURRENT_SOURCE_DIR}/test8.c")
 set_tests_properties(spaces_before_section_name
-    PROPERTIES PASS_REGULAR_EXPRESSION "^[ \t\n\r]*$")
+    PROPERTIES PASS_REGULAR_EXPRESSION "^key=value[ \t\n\r]*$")
 
 # test spaces after section name
 add_test(spaces_after_section_name ${EDITORCONFIG_CMD} -f whitespace.in
