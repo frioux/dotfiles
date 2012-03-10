@@ -81,6 +81,12 @@ add_test(spaces_after_section_name ${EDITORCONFIG_CMD} -f whitespace.in
 set_tests_properties(spaces_after_section_name
     PROPERTIES PASS_REGULAR_EXPRESSION "^key=value[ \t\n\r]*$")
 
+# test spaces at beginning of line between properties
+add_test(spaces_before_middle_property ${EDITORCONFIG_CMD} -f whitespace.in
+    "${CMAKE_CURRENT_SOURCE_DIR}/test10.c")
+set_tests_properties(spaces_before_middle_property
+    PROPERTIES PASS_REGULAR_EXPRESSION "^key1=value1[ \t\n\r]+key2=value2[ \t\n\r]+key3=value3[ \t\n\r]*$")
+
 
 # Tests for comment parsing
 

@@ -40,3 +40,9 @@ key=value
 ; spaces after section name
 [test9.c]  
 key=value
+
+; spacing before middle property
+[test10.c]
+key1=value1
+  key2=value2
+key3=value3
