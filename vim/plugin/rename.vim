@@ -10,7 +10,8 @@
 " :rename[!] {newname}
 
 command! -nargs=* -complete=file -bang Rename :call Rename("<args>", "<bang>")
-cabbrev rename <c-r>=getcmdpos() == 1 && getcmdtype() == ":" ? "Rename" : "rename"<CR>
+" this is what I get for aliasing :
+cabbrev rename <c-r>=getcmdpos() == 1 && getcmdtype() == ":" ? "Rename" ; "rename"<CR>
 
 function! Rename(name, bang)
   let l:curfile = expand("%:p")
