@@ -41,3 +41,6 @@
    default = tracking
 [link]
    clipboard = true
+
+[branch]
+   autosetupmerge = false
