@@ -1,2 +1,3 @@
 #!/bin/sh
-git diff -w > foo.patch && git co . && git apply foo.patch && rm foo.patch
+# add/reset so that we at least get an entry in git reflog in case something goes wrong
+git add . && git commit -am 'tmp' && git reset HEAD^ && git diff -w > foo.patch && git checkout . && git apply foo.patch && rm foo.patch
