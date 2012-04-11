@@ -26,61 +26,37 @@
 
 
 # test tab_width default
-add_test(tab_width_default ${EDITORCONFIG_CMD} -f tab_width_default.in
-    "${CMAKE_CURRENT_SOURCE_DIR}/test.c")
-set_tests_properties(tab_width_default
-    PROPERTIES PASS_REGULAR_EXPRESSION
+new_ec_test(tab_width_default tab_width_default.in test.c
     "^indent_style=space[ \t\n\r]+indent_size=4[ \t\n\r]+tab_width=4[\t\n\r]*$")
 
 # Tab_width should not be set to any value if indent_size is "tab" and
 # tab_width is not set
-add_test(tab_width_default_indent_size_tab ${EDITORCONFIG_CMD} -f
-    tab_width_default.in
-    "${CMAKE_CURRENT_SOURCE_DIR}/test2.c")
-set_tests_properties(tab_width_default_indent_size_tab 
-    PROPERTIES PASS_REGULAR_EXPRESSION
+new_ec_test(tab_width_default_indent_size_tab tab_width_default.in test2.c
     "^indent_style=tab[ \t\n\r]+indent_size=tab[ \t\n\r]*$")
 
 # Test indent_size default. When indent_style is "tab", indent_size defaults to
 # "tab".
-add_test(indent_size_default ${EDITORCONFIG_CMD} -f indent_size_default.in
-    "${CMAKE_CURRENT_SOURCE_DIR}/test.c")
-set_tests_properties(indent_size_default
-    PROPERTIES PASS_REGULAR_EXPRESSION
+new_ec_test(indent_size_default indent_size_default.in test.c
     "^indent_style=tab[ \t\n\r]+indent_size=tab[ \t\n\r]*$")
 
 # Test indent_size default. When indent_style is "tab", indent_size should have
 # no default value for version prior than 0.9.0.
-add_test(indent_size_default_pre_0_9_0 ${EDITORCONFIG_CMD} -b 0.8.0 -f
-    indent_size_default.in
-    "${CMAKE_CURRENT_SOURCE_DIR}/test.c")
-set_tests_properties(indent_size_default_pre_0_9_0
-    PROPERTIES PASS_REGULAR_EXPRESSION
-    "^indent_style=tab[ \t\n\r]*$")
+new_ec_test_version(indent_size_default_pre_0_9_0 indent_size_default.in test.c
+    "^indent_style=tab[ \t\n\r]*$" 0.8.0)
 
 # Test indent_size default. When indent_style is "space", indent_size has no
 # default value.
-add_test(indent_size_default_space ${EDITORCONFIG_CMD} -f indent_size_default.in
-    "${CMAKE_CURRENT_SOURCE_DIR}/test2.c")
-set_tests_properties(indent_size_default_space
-    PROPERTIES PASS_REGULAR_EXPRESSION
+new_ec_test(indent_size_default_space indent_size_default.in test2.c
     "^indent_style=space[ \t\n\r]*$")
 
 # test that same property values are lowercased
-add_test(lowercase_values1 ${EDITORCONFIG_CMD} -f lowercase_values.in
-    "${CMAKE_CURRENT_SOURCE_DIR}/test1.c")
-set_tests_properties(lowercase_values1
-    PROPERTIES PASS_REGULAR_EXPRESSION
+new_ec_test(lowercase_values1 lowercase_values.in test1.c
     "^indent_style=space[ \t\n\r]+end_of_line=crlf[ \t\n\r]*$")
 
 # test that same property values are not lowercased
-add_test(lowercase_values2 ${EDITORCONFIG_CMD} -f lowercase_values.in
-    "${CMAKE_CURRENT_SOURCE_DIR}/test2.c")
-set_tests_properties(lowercase_values2
-    PROPERTIES PASS_REGULAR_EXPRESSION "^test_property=TestValue[ \t\n\r]*$")
+new_ec_test(lowercase_values2 lowercase_values.in test2.c
+    "^test_property=TestValue[ \t\n\r]*$")
 
 # test that all property names are lowercased
-add_test(lowercase_names ${EDITORCONFIG_CMD} -f lowercase_names.in
-    "${CMAKE_CURRENT_SOURCE_DIR}/test.c")
-set_tests_properties(lowercase_names
-    PROPERTIES PASS_REGULAR_EXPRESSION "^testproperty=testvalue[ \t\n\r]*$")
+new_ec_test(lowercase_names lowercase_names.in test.c
+    "^testproperty=testvalue[ \t\n\r]*$")

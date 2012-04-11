@@ -26,73 +26,43 @@
 
 
 # Test for EditorConfig file in parent directory
-add_test(parent_directory ${EDITORCONFIG_CMD} -f parent_directory.in
-    "${CMAKE_CURRENT_SOURCE_DIR}/parent_directory/test.a")
-set_tests_properties(parent_directory
-    PROPERTIES PASS_REGULAR_EXPRESSION "^key=value[ \t\n\r]*$")
+new_ec_test(parent_directory parent_directory.in parent_directory/test.a "^key=value[ \t\n\r]*$")
 
 # Test for EditorConfig file in parent directory and current directory
-add_test(parent_and_current_dir ${EDITORCONFIG_CMD} -f parent_directory.in
-    "${CMAKE_CURRENT_SOURCE_DIR}/parent_directory/test.b")
-set_tests_properties(parent_and_current_dir
-    PROPERTIES PASS_REGULAR_EXPRESSION "^key1=value1[ \t\n\r]+key2=value2[ \t\n\r]*$")
+new_ec_test(parent_and_current_dir parent_directory.in parent_directory/test.b "^key1=value1[ \t\n\r]+key2=value2[ \t\n\r]*$")
 
 # Test for file in parent directory and overloaded by file in current directory
-add_test(parent_dir_overload ${EDITORCONFIG_CMD} -f parent_directory.in
-    "${CMAKE_CURRENT_SOURCE_DIR}/parent_directory/test.c")
-set_tests_properties(parent_dir_overload
-    PROPERTIES PASS_REGULAR_EXPRESSION "^key=valueB[ \t\n\r]*$")
+new_ec_test(parent_dir_overload parent_directory.in parent_directory/test.c "^key=valueB[ \t\n\r]*$")
 
 # Test that search stops at root EditorConfig file
-add_test(root_file ${EDITORCONFIG_CMD} -f root_file.in
-    "${CMAKE_CURRENT_SOURCE_DIR}/root_file/test.a")
-set_tests_properties(root_file
-    PROPERTIES PASS_REGULAR_EXPRESSION "^[ \t\n\r]*$")
+new_ec_test(root_file root_file.in root_file/test.a "^[ \t\n\r]*$")
 
 # Tests path separator match
-add_test(path_separator ${EDITORCONFIG_CMD} -f path_separator.in
-    "${CMAKE_CURRENT_SOURCE_DIR}/path/separator")
-set_tests_properties(path_separator
-    PROPERTIES PASS_REGULAR_EXPRESSION "^key=value[ \t\n\r]*$")
+new_ec_test(path_separator path_separator.in path/separator "^key=value[ \t\n\r]*$")
 
 # Windows style path separator in the command line should work on Windows, but
 # should not work on other systems
-add_test(path_separator_backslash_in_cmd_line ${EDITORCONFIG_CMD} -f
-    path_separator.in "${CMAKE_CURRENT_SOURCE_DIR}\\\\path\\\\separator")
 if(WIN32)
-    set_tests_properties(path_separator_backslash_in_cmd_line
-        PROPERTIES PASS_REGULAR_EXPRESSION "^key=value[ \t\n\r]*$")
+    set(path_separator_backslash_in_cmd_line_regex "^key=value[ \t\n\r]*$")
 else(WIN32)
-    set_tests_properties(path_separator_backslash_in_cmd_line
-        PROPERTIES PASS_REGULAR_EXPRESSION "^[ \t\n\r]*$")
+    set(path_separator_backslash_in_cmd_line_regex "^[ \t\n\r]*$")
 endif(WIN32)
+new_ec_test_full_ec_file_path(path_separator_backslash_in_cmd_line
+    path_separator.in "${CMAKE_CURRENT_SOURCE_DIR}\\\\\\\\path\\\\\\\\separator"
+    ${path_separator_backslash_in_cmd_line_regex})
 
 # Tests path separator match below top of path
-add_test(nested_path_separator ${EDITORCONFIG_CMD} -f path_separator.in
-    "${CMAKE_CURRENT_SOURCE_DIR}/nested/path/separator")
-set_tests_properties(nested_path_separator
-    PROPERTIES PASS_REGULAR_EXPRESSION "^[ \t\n\r]*$")
+new_ec_test(nested_path_separator path_separator.in nested/path/separator "^[ \t\n\r]*$")
 
 # Tests path separator match top of path only
-add_test(top_level_path_separator ${EDITORCONFIG_CMD} -f path_separator.in
-    "${CMAKE_CURRENT_SOURCE_DIR}/top/of/path")
-set_tests_properties(top_level_path_separator
-    PROPERTIES PASS_REGULAR_EXPRESSION "^key=value[ \t\n\r]*$")
+new_ec_test(top_level_path_separator path_separator.in top/of/path "^key=value[ \t\n\r]*$")
 
 # Tests path separator match top of path only
-add_test(top_level_path_separator_neg ${EDITORCONFIG_CMD} -f path_separator.in
-    "${CMAKE_CURRENT_SOURCE_DIR}/not/top/of/path")
-set_tests_properties(top_level_path_separator_neg
-    PROPERTIES PASS_REGULAR_EXPRESSION "^[ \t\n\r]*$")
+new_ec_test(top_level_path_separator_neg path_separator.in not/top/of/path "^[ \t\n\r]*$")
 
 # Test Windows-style path separator (backslash) does not work
-add_test(windows_separator ${EDITORCONFIG_CMD} -f path_separator.in
-    "${CMAKE_CURRENT_SOURCE_DIR}/windows/separator")
-set_tests_properties(windows_separator
-    PROPERTIES PASS_REGULAR_EXPRESSION "^[ \t\n\r]*$")
+new_ec_test(windows_separator path_separator.in windows/separator "^[ \t\n\r]*$")
 
 # Test again that Windows-style path separator (backslash) does not work
-add_test(windows_separator2 ${EDITORCONFIG_CMD} -f path_separator.in
-    "${CMAKE_CURRENT_SOURCE_DIR}/windows/separator2")
-set_tests_properties(windows_separator2
-    PROPERTIES PASS_REGULAR_EXPRESSION "^[ \t\n\r]*$")
+new_ec_test(windows_separator2 path_separator.in windows/separator2 "^[ \t\n\r]*$")
+

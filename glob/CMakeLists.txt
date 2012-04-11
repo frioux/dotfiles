@@ -28,119 +28,67 @@
 # Tests for *
 
 # matches a single characters
-add_test(star_single ${EDITORCONFIG_CMD} -f star.in
-    "${CMAKE_CURRENT_SOURCE_DIR}/ace.c")
-set_tests_properties(star_single
-    PROPERTIES PASS_REGULAR_EXPRESSION "^key=value[ \t\n\r]*$")
+new_ec_test(star_single star.in ace.c "^key=value[ \t\n\r]*$")
 
 # matches zero characters
-add_test(star_zero ${EDITORCONFIG_CMD} -f star.in
-    "${CMAKE_CURRENT_SOURCE_DIR}/ae.c")
-set_tests_properties(star_zero
-    PROPERTIES PASS_REGULAR_EXPRESSION "^key=value[ \t\n\r]*$")
+new_ec_test(star_zero star.in ae.c "^key=value[ \t\n\r]*$")
 
 # matches multiple characters
-add_test(star_multiple ${EDITORCONFIG_CMD} -f star.in
-    "${CMAKE_CURRENT_SOURCE_DIR}/abcde.c")
-set_tests_properties(star_multiple
-    PROPERTIES PASS_REGULAR_EXPRESSION "^key=value[ \t\n\r]*$")
+new_ec_test(star_multiple star.in abcde.c "^key=value[ \t\n\r]*$")
 
 # does not match path separator
-add_test(star_over_slash ${EDITORCONFIG_CMD} -f star.in
-    "${CMAKE_CURRENT_SOURCE_DIR}/a/e.c")
-set_tests_properties(star_over_slash
-    PROPERTIES PASS_REGULAR_EXPRESSION "^[ \t\n\r]*$")
+new_ec_test(star_over_slash star.in a/e.c "^[ \t\n\r]*$")
 
 
 # Tests for ?
 
 # matches a single character
-add_test(question_single ${EDITORCONFIG_CMD} -f question.in
-    "${CMAKE_CURRENT_SOURCE_DIR}/some.c")
-set_tests_properties(question_single
-    PROPERTIES PASS_REGULAR_EXPRESSION "^key=value[ \t\n\r]*$")
+new_ec_test(question_single question.in some.c "^key=value[ \t\n\r]*$")
 
 # does not match zero characters
-add_test(question_zero ${EDITORCONFIG_CMD} -f question.in
-    "${CMAKE_CURRENT_SOURCE_DIR}/som.c")
-set_tests_properties(question_zero
-    PROPERTIES PASS_REGULAR_EXPRESSION "^[ \t\n\r]*$")
+new_ec_test(question_zero question.in som.c "^[ \t\n\r]*$")
 
 # does not match multiple characters
-add_test(question_multiple ${EDITORCONFIG_CMD} -f question.in
-    "${CMAKE_CURRENT_SOURCE_DIR}/something.c")
-set_tests_properties(question_multiple
-    PROPERTIES PASS_REGULAR_EXPRESSION "^[ \t\n\r]*$")
+new_ec_test(question_multiple question.in something.c "^[ \t\n\r]*$")
 
 
 # Tests for [ and ]
 
 # character choice
-add_test(brackets_choice ${EDITORCONFIG_CMD} -f brackets.in
-    "${CMAKE_CURRENT_SOURCE_DIR}/a.a")
-set_tests_properties(brackets_choice
-    PROPERTIES PASS_REGULAR_EXPRESSION "^choice=true[ \t\n\r]*$")
+new_ec_test(brackets_choice brackets.in a.a "^choice=true[ \t\n\r]*$")
 
 # character choice 2
-add_test(brackets_choice2 ${EDITORCONFIG_CMD} -f brackets.in
-    "${CMAKE_CURRENT_SOURCE_DIR}/c.a")
-set_tests_properties(brackets_choice2
-    PROPERTIES PASS_REGULAR_EXPRESSION "^[ \t\n\r]*$")
+new_ec_test(brackets_choice2 brackets.in c.a "^[ \t\n\r]*$")
 
 # negative character choice
-add_test(brackets_nchoice ${EDITORCONFIG_CMD} -f brackets.in
-    "${CMAKE_CURRENT_SOURCE_DIR}/c.b")
-set_tests_properties(brackets_nchoice
-    PROPERTIES PASS_REGULAR_EXPRESSION "^choice=false[ \t\n\r]*$")
+new_ec_test(brackets_nchoice brackets.in c.b "^choice=false[ \t\n\r]*$")
 
 # negative character choice 2
-add_test(brackets_nchoice2 ${EDITORCONFIG_CMD} -f brackets.in
-    "${CMAKE_CURRENT_SOURCE_DIR}/a.b")
-set_tests_properties(brackets_nchoice2
-    PROPERTIES PASS_REGULAR_EXPRESSION "^[ \t\n\r]*$")
+new_ec_test(brackets_nchoice2 brackets.in a.b "^[ \t\n\r]*$")
 
 # character range
-add_test(brackets_range ${EDITORCONFIG_CMD} -f brackets.in
-    "${CMAKE_CURRENT_SOURCE_DIR}/f.c")
-set_tests_properties(brackets_range
-    PROPERTIES PASS_REGULAR_EXPRESSION "^range=true[ \t\n\r]*$")
+new_ec_test(brackets_range brackets.in f.c "^range=true[ \t\n\r]*$")
 
 # character range 2
-add_test(brackets_range2 ${EDITORCONFIG_CMD} -f brackets.in
-    "${CMAKE_CURRENT_SOURCE_DIR}/h.c")
-set_tests_properties(brackets_range2
-    PROPERTIES PASS_REGULAR_EXPRESSION "^[ \t\n\r]*$")
+new_ec_test(brackets_range2 brackets.in h.c "^[ \t\n\r]*$")
 
 # negative character range
-add_test(brackets_nrange ${EDITORCONFIG_CMD} -f brackets.in
-    "${CMAKE_CURRENT_SOURCE_DIR}/h.d")
-set_tests_properties(brackets_nrange
-    PROPERTIES PASS_REGULAR_EXPRESSION "^range=false[ \t\n\r]*$")
+new_ec_test(brackets_nrange brackets.in h.d "^range=false[ \t\n\r]*$")
 
 # negative character range 2
-add_test(brackets_nrange2 ${EDITORCONFIG_CMD} -f brackets.in
-    "${CMAKE_CURRENT_SOURCE_DIR}/f.d")
-set_tests_properties(brackets_nrange2
-    PROPERTIES PASS_REGULAR_EXPRESSION "^[ \t\n\r]*$")
+new_ec_test(brackets_nrange2 brackets.in f.d "^[ \t\n\r]*$")
 
 # range and choice
-add_test(brackets_range_and_choice ${EDITORCONFIG_CMD} -f brackets.in
-    "${CMAKE_CURRENT_SOURCE_DIR}/e.e")
-set_tests_properties(brackets_range_and_choice
-    PROPERTIES PASS_REGULAR_EXPRESSION "^range_and_choice=true[ \t\n\r]*$")
+new_ec_test(brackets_range_and_choice brackets.in e.e
+    "^range_and_choice=true[ \t\n\r]*$")
 
 # character choice with a dash
-add_test(brackets_choice_with_dash ${EDITORCONFIG_CMD} -f brackets.in
-    "${CMAKE_CURRENT_SOURCE_DIR}/-.f")
-set_tests_properties(brackets_choice_with_dash
-    PROPERTIES PASS_REGULAR_EXPRESSION "^choice_with_dash=true[ \t\n\r]*$")
+new_ec_test(brackets_choice_with_dash brackets.in -.f
+    "^choice_with_dash=true[ \t\n\r]*$")
 
 
 # Tests for **
 
 # matches over path separator
-add_test(star_star_over_separator ${EDITORCONFIG_CMD} -f star_star.in
-    "${CMAKE_CURRENT_SOURCE_DIR}/a/e.c")
-set_tests_properties(star_star_over_separator
-    PROPERTIES PASS_REGULAR_EXPRESSION "^key=value[ \t\n\r]*$")
+new_ec_test(star_star_over_separator star_star.in a/e.c "^key=value[ \t\n\r]*$")
 
