@@ -29,8 +29,12 @@ for x in        \
    ln -s "$(pwd)/$x" "$HOME/.$x";
 done
 
+git submodule update --init --quiet
 rm -f "$HOME/bin/spark"
 ln -s "$(pwd)/zsh/spark/spark" "$HOME/bin/spark"
+
+rm -rf "$HOME/.smartcd"
+ln -s "$(pwd)/zsh/cxregs-bash-tools" "$HOME/.smartcd"
 
 case $OSTYPE in
    cygwin)
