@@ -23,6 +23,7 @@ for x in        \
    xsession     \
    zsh          \
    zshrc        \
+   dbic.json    \
 ; do
    rm -rf "$HOME/.$x";
    ln -s "$(pwd)/$x" "$HOME/.$x";
