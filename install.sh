@@ -33,8 +33,9 @@ git submodule update --init --quiet
 rm -f "$HOME/bin/spark"
 ln -s "$(pwd)/zsh/spark/spark" "$HOME/bin/spark"
 
-rm -rf "$HOME/.smartcd"
-ln -s "$(pwd)/zsh/cxregs-bash-tools" "$HOME/.smartcd"
+mkdir -p "$HOME/.smartcd"
+rm -rf "$HOME/.smartcd/lib"
+ln -s "$(pwd)/zsh/cxregs-bash-tools/lib" "$HOME/.smartcd/lib"
 
 case $OSTYPE in
    cygwin)
