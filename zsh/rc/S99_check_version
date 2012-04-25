@@ -5,6 +5,7 @@ if [[ $EPOCHSECONDS -gt $(cat ~/.dotfilecheck) ]]; then
    echo $(($EPOCHSECONDS+60*60*24*7)) > ~/.dotfilecheck
    cd ~/code/dotfiles
    git pull --ff-only
+   ./install.sh
    mk
 fi
 
