@@ -1,7 +1,7 @@
 
 #{{{ Shell Conveniences
 source ~/.aliases
-alias ez='vim ~/.zshrc; source ~/.zshrc'
+alias ez="vim $HOME/.zsh; source $HOME/.zshrc"
 alias mk=popd
 alias ls='pwd; ls --color'
 
