@@ -2,7 +2,7 @@ zmodload zsh/datetime
 
 if [[ $EPOCHSECONDS -gt $(cat ~/.dotfilecheck) ]]; then
    rm ~/.dotfilecheck
-   echo $(($EPOCHSECONDS+60*60*24)) > ~/.dotfilecheck
+   echo $(($EPOCHSECONDS+60*60*24*7)) > ~/.dotfilecheck
    cd ~/code/dotfiles
    git pull --ff-only
    mk
