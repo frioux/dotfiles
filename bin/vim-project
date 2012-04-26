@@ -18,5 +18,5 @@ echo "creating $NAME to open in $PROJECT_DIR"
 
 echo "#!/bin/sh" > $FULL_NAME
 echo "cd $PROJECT_DIR" >> $FULL_NAME
-echo "gvim" >> $FULL_NAME
+echo "gvim -c':NERDTree'" >> $FULL_NAME
 chmod +x $FULL_NAME
