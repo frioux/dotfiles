@@ -62,4 +62,5 @@ add_subdirectory(glob)
 add_subdirectory(properties)
 add_subdirectory(parser)
 add_subdirectory(filetree)
+add_subdirectory(cli)
 
