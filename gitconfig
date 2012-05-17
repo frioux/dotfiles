@@ -42,5 +42,3 @@
 [link]
    clipboard = true
 
-[branch]
-   autosetupmerge = false

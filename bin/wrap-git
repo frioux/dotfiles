@@ -12,6 +12,11 @@ my %commit_aliases = (( commit => 1 ),
    grep $aliases{$_} =~ /^commit\b/,
    keys %aliases);
 
+my %checkout_aliases = (( checkout => 1 ),
+   map { s/alias\.//; $_ => 1 }
+   grep $aliases{$_} =~ /^checkout\b/,
+   keys %aliases);
+
 my ($command, @args) = @ARGV;
 
 if ($commit_aliases{$command} && exists $args[0] && $args[0] =~ /^-a|^--all/) {
@@ -25,6 +30,9 @@ if ($commit_aliases{$command} && exists $args[0] && $args[0] =~ /^-a|^--all/) {
    } else {
       run_command()
    }
+} elsif ($checkout_aliases{$command} && ( grep /^-b|^-B/, @args ) && ( grep /^origin\/(release|master)/, @args )) {
+   unshift @args, '--no-track';
+   run_command()
 } elsif ($command eq 'pull' && !grep /^-/, @args) {
    unshift @args, '--ff-only';
    run_command()
