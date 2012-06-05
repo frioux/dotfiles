@@ -1,6 +1,6 @@
 #!/bin/bash
 
-aptitude install \
+apt-get --no-install-recommends install \
    curl \
    build-essential \
    autoconf \
