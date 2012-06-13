@@ -433,6 +433,19 @@ awful.rules.rules = {
     -- Place incskape always on tag "media"
     { rule = { class = "Inkscape" },
       properties = { tag = tags[8] } },
+    -- Place all libreoffice windows on tag "office"
+    { rule = { class = "libreoffice-startcenter" },
+      properties = { tag = tags[3] } },
+    { rule = { class = "libreoffice-writer" },
+      properties = { tag = tags[3] } },
+    { rule = { class = "libreoffice-calc" },
+      properties = { tag = tags[3] } },
+    { rule = { class = "libreoffice-draw" },
+      properties = { tag = tags[3] } },
+    { rule = { class = "libreoffice-impress" },
+      properties = { tag = tags[3] } },
+    { rule = { class = "libreoffice-base" },
+      properties = { tag = tags[3] } },
     -- Start urxvt always as slave
     { rule = { class = "URxvt" },
       properties = { }, callback = awful.client.setslave },
