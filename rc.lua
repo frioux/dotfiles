@@ -197,7 +197,7 @@ for s = 1, screen.count() do
                            awful.button({ }, 5, function () awful.layout.inc(layouts, -1) end)))
     -- Create a taglist widget
     --mytaglist[s] = awful.widget.taglist(s, awful.widget.taglist.label.all, mytaglist.buttons)
-    mytaglist[s] = sharetags.taglist(s, awful.widget.taglist.label.all, mytaglist.buttons)
+    mytaglist[s] = sharetags.taglist(s, sharetags.label.all, mytaglist.buttons)
 
     -- Create a tasklist widget
     mytasklist[s] = awful.widget.tasklist(function(c)
@@ -357,8 +357,11 @@ for i = 1, keynumber do
     globalkeys = awful.util.table.join(globalkeys,
         awful.key({ modkey }, "#" .. i + 9,
                   function ()
-                        local screen = mouse.screen
-                        sharetags.tag_to_screen(tags[i], screen)
+                        local t = tags[i]
+                        if t.screen ~= mouse.screen then
+                            sharetags.tag_move(t, mouse.screen)
+                        end
+                        awful.tag.viewonly(t)
                   end),
         awful.key({ modkey, "Control" }, "#" .. i + 9,
                   function ()
