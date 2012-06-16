@@ -9,4 +9,6 @@ smartcd setup exit-hook
 smartcd setup completion
 VARSTASH_AUTOCONFIGURE=1
 VARSTASH_AUTOEDIT=1
+
+source ~/lib/resty/resty
 # vim: ft=zsh

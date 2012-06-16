@@ -7,3 +7,6 @@
 [submodule "zsh/spark"]
 	path = zsh/spark
 	url = git://github.com/holman/spark.git
+[submodule "zsh/resty"]
+	path = zsh/resty
+	url = git://github.com/micha/resty

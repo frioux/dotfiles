@@ -36,6 +36,9 @@ ln -s "$(pwd)/zsh/spark/spark" "$HOME/bin/spark"
 mkdir -p "$HOME/.smartcd"
 rm -rf "$HOME/.smartcd/lib"
 ln -s "$(pwd)/zsh/cxregs-bash-tools/lib" "$HOME/.smartcd/lib"
+mkdir -p "$HOME/lib"
+rm -rf "$HOME/lib/resty"
+ln -s "$(pwd)/zsh/resty" "$HOME/lib/resty"
 
 case $OSTYPE in
    cygwin)
