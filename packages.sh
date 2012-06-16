@@ -15,5 +15,8 @@ apt-get --no-install-recommends install \
    lastfm \
    vim-gnome \
    vim \
+   xfonts-terminus \
+   xfonts-terminus-oblique \
+   terminator \
    openvpn
 
