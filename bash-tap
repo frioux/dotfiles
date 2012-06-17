@@ -60,7 +60,7 @@ function has_plan() {
 function skip_all() {
     local reason="${*:?}"
 
-    _bt_escaped_echo "1..0 # $reason"
+    _bt_escaped_echo "1..0 # SKIP $reason"
 }
 
 # Test functions.
