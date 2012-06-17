@@ -15,7 +15,7 @@ fi
 
 if [ -z "$BASH_TAP_ROOT" ]; then
     #  TODO: search likely locations.
-    BASH_TAP_ROOT="$(dirname ${BASH_SOURCE[0]})/../../bash-tapzz"
+    BASH_TAP_ROOT="$(dirname ${BASH_SOURCE[0]})/../../bash-tap"
 fi
 
 if [ -f "$BASH_TAP_ROOT/bash-tap" ]; then
