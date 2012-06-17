@@ -1,0 +1,234 @@
+#!/bin/bash
+
+# Our state.
+
+_bt_plan=''
+_bt_plan_output=0
+_bt_current_test=0
+_bt_tap_output=''
+
+# Our test results so far
+unset _bt_test_ok
+unset _bt_test_actual_ok
+unset _bt_test_name
+unset _bt_test_type
+unset _bt_test_reason
+
+# Planning functions.
+
+function plan() {
+    local plan="$1"
+
+    case "$plan" in
+        no_plan)  no_plan             ;;
+        skip_all) skip_all "$2"       ;;
+        tests)    expected_tests "$2" ;;
+        *)        _bt_die "Unknown or missing plan: '$plan'" ;;
+    esac
+}
+
+function expected_tests() {
+    local num="$1"
+
+    if [ -z "$num" ]; then
+        echo $_bt_expected_tests
+    else
+        if [ -n "$_bt_plan" ]; then
+            _bt_caller_error "Plan is already defined"
+        fi
+        # TODO: validate
+        _bt_plan="$num"
+    fi
+    _bt_escaped_echo "1..$_bt_plan"
+}
+
+function no_plan() {
+    if [ -n "$_bt_plan" ]; then
+        _bt_caller_error "Plan is already defined"
+    fi
+    _bt_plan="no plan"
+}
+
+function done_testing() {
+    echo TODO
+}
+
+function has_plan() {
+    test -n "$_bt_plan"
+}
+
+function skip_all() {
+    local reason="${*:?}"
+
+    _bt_escaped_echo "1..0 # $reason"
+}
+
+# Test functions.
+
+function ok() {
+    local result="$1"
+    local name="$2"
+
+    current_test=$((current_test + 1))
+
+    # TODO: validate $name
+    if [ -z "$name" ]; then
+        name='unnamed test'
+    fi
+    name="${name//#/\\#}"
+
+    _bt_clear_out
+    if [ "$result" = 0 ]; then
+        _bt_out "not ok"
+        if [ -n "$TODO" ]; then
+            _bt_test_ok[$current_test]=1
+        else
+            _bt_test_ok[$current_test]=0
+        fi
+        _bt_test_actual_ok[$current_test]=0
+    else
+        _bt_out "ok"
+        _bt_test_ok[$current_test]=1
+        _bt_test_actual_ok[$current_test]="$result"
+    fi
+
+    _bt_out " $current_test - $name"
+    _bt_test_name[$current_test]="$name"
+
+    if [ -n "$TODO" ]; then
+        _bt_out " # TODO $TODO"
+        _bt_test_reason[$current_test]="$TODO"
+        _bt_test_type[$current_test]="todo"
+    else
+        _bt_test_reason[$current_test]=''
+        _bt_test_type[$current_test]=''
+    fi
+
+    _bt_print_out
+}
+
+function _is_diag() {
+    local result="$1"
+    local expected="$2"
+
+    diag "         got: '$result'"
+    diag "    expected: '$expected'"
+}
+
+function is() {
+    local result="$1"
+    local expected="$2"
+    local name="$3"
+
+    # TODO: sort out result storing, etc
+    if [ "$result" = "$expected" ]; then
+        ok 1 "$name"
+    else
+        # TODO: output diagnostics of failure
+        ok 0 "$name"
+        _is_diag "$result" "$expected"
+    fi
+}
+
+function isnt() {
+    echo TODO
+}
+
+function like() {
+    echo TODO
+}
+
+function unlike() {
+    echo TODO
+}
+
+function cmp_ok() {
+    echo TODO
+}
+
+# Other helper functions
+
+function BAIL_OUT() {
+    echo TODO
+}
+
+function skip() {
+    echo TODO
+}
+
+function todo_skip() {
+    echo TODO
+}
+
+function todo_start() {
+    echo TODO
+}
+
+function todo_end() {
+    echo TODO
+}
+
+# Output
+
+function diag() {
+    local message="$1"
+
+    if [ -n "$message" ]; then
+        _bt_escaped_echo "# $message"
+    fi
+}
+
+# Internals
+
+function _bt_stdout() {
+    echo "$@"
+}
+
+function _bt_stderr() {
+    echo "$@" >&2
+}
+
+function _bt_die() {
+    _bt_stderr "$@"
+    exit 255
+}
+
+#  Report an error from the POV of the first calling point outside this file
+function _bt_caller_error() {
+    local message="$*"
+
+    local thisfile="${BASH_SOURCE[0]}"
+    local file="$thisfile"
+    local frame_num=2
+    until [ "$file" != "$thisfile" ]; do
+        frame=$(caller "$frame_num")
+        IFS=' ' read line func file <<<"$frame"
+    done
+
+    _bt_die "Error: $message, on line $line of $file"
+}
+
+#  Echo the supplied message with lines after the
+#  first escaped as TAP comments.
+function _bt_escaped_echo() {
+    local message="$*"
+
+    local output=''
+    while IFS= read -r line; do
+        output="$output\n# $line"
+    done <<<"$message"
+    echo -e "${output:4}"
+}
+
+function _bt_clear_out() {
+    _bt_tap_output=""
+}
+
+function _bt_out() {
+    _bt_tap_output="$_bt_tap_output$*"
+}
+
+function _bt_print_out() {
+    _bt_escaped_echo "$_bt_tap_output"
+}
+
