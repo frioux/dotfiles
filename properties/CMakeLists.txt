@@ -49,6 +49,11 @@ new_ec_test_version(indent_size_default_pre_0_9_0 indent_size_default.in test.c
 new_ec_test(indent_size_default_space indent_size_default.in test2.c
     "^indent_style=space[ \t\n\r]*$")
 
+# Test indent_size default. When indent_style is "tab" and tab_width is set,
+# indent_size should default to tab_width
+new_ec_test(indent_size_default_with_tab_width indent_size_default.in test3.c
+    "^indent_style=tab[ \t\n\r]+tab_width=2[ \t\n\r]+indent_size=2[ \t\n\r]*$")
+
 # test that same property values are lowercased
 new_ec_test(lowercase_values1 lowercase_values.in test1.c
     "^indent_style=space[ \t\n\r]+end_of_line=crlf[ \t\n\r]*$")
