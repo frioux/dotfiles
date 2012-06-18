@@ -1,0 +1,194 @@
+Bash-TAP
+========
+
+Bash-TAP allows you to perform TAP-compliant tests within bash
+using a similar test syntax to Perl's Test::More and Test::Builder,
+suitable to run with `prove` or any other TAP-consuming test harness.
+
+For more information about TAP (the Test Anything Protocol) visit:
+
+    http://testanything.org/
+
+Installation and Usage
+----------------------
+
+1. Install the bash-tap files somewhere convenient for you.
+   The default location of `../../bash-tap` relative to your
+   test files is the easiest zero-conf way, but you can set
+   the `$BASH_TAP_ROOT` environment variable if you want to
+   install elsewhere.
+2. If you're writing tests then copy `bash-tap-bootstrap`
+   into your tests dir and source it inside your tests with:
+
+```bash
+. $(dirname $0)/bash-tap-bootstrap
+```
+
+3. Run your tests with `prove my_test_dir` or your favourite
+   TAP-consuming test harness, or run them manually as a
+   script if you just want to see the raw TAP output.
+
+Example test file
+-----------------
+
+Here's example test file `01_read_rows_from_key_value_lines.t` from
+https://github.com/illusori/bash-snippets
+
+```bash
+#!/bin/bash
+
+. $(dirname $0)/bash-tap-bootstrap
+. $(dirname $0)/../read_rows_from_key_value_lines
+
+columns_per_row=6
+max_rows_per_rowset=3
+total_rowsets=2
+
+plan tests $(((columns_per_row * max_rows_per_rowset * total_rowsets) + total_rowsets))
+
+#  Test data, resultset 1
+results1="artist Assemblage 23
+track Naked (God Module RMX)
+album Addendum
+year 2001
+rating 80
+tracktime 5:22
+artist Ayria
+track Sapphire
+album Debris
+year
+rating 100
+tracktime 6:14
+artist Apoptygma Berzerk
+track Kathy's Song
+album Welcome To Earth \"Extra bit for testing\"
+year
+rating 100
+tracktime 6:35"
+
+#  Test data, resultset 2
+results2="artist Colony 5
+track The Bottle
+album Lifeline
+year
+rating 80
+tracktime 4:34"
+
+output=$(_read_rows_from_key_value_lines "track" "$results1" 2>&1)
+is "$output" "" "Read of rowset 1 should produce no output"
+#  Since $() runs in a subshell, we need to run it "for real" now
+_read_rows_from_key_value_lines "track" "$results1" &>/dev/null
+
+#  Track 1
+is "${track_artist[0]}" "Assemblage 23" "rowset 1 track 1 artist"
+is "${track_track[0]}" "Naked (God Module RMX)" "rowset 1 track 1 track"
+is "${track_album[0]}" "Addendum" "rowset 1 track 1 album"
+is "${track_year[0]}" "2001" "rowset 1 track 1 year"
+is "${track_rating[0]}" "80" "rowset 1 track 1 rating"
+is "${track_tracktime[0]}" "5:22" "rowset 1 track 1 tracktime"
+
+#  Track 2
+is "${track_artist[1]}" "Ayria" "rowset 1 track 2 artist"
+is "${track_track[1]}" "Sapphire" "rowset 1 track 2 track"
+is "${track_album[1]}" "Debris" "rowset 1 track 2 album"
+is "${track_year[1]}" "" "rowset 1 track 2 year"
+is "${track_rating[1]}" "100" "rowset 1 track 2 rating"
+is "${track_tracktime[1]}" "6:14" "rowset 1 track 2 tracktime"
+
+#  Track 3
+is "${track_artist[2]}" "Apoptygma Berzerk" "rowset 1 track 3 artist"
+is "${track_track[2]}" "Kathy's Song" "rowset 1 track 3 track"
+is "${track_album[2]}" "Welcome To Earth \"Extra bit for testing\"" "rowset 1 track 3 album"
+is "${track_year[2]}" "" "rowset 1 track 3 year"
+is "${track_rating[2]}" "100" "rowset 1 track 3 rating"
+is "${track_tracktime[2]}" "6:35" "rowset 1 track 3 tracktime"
+
+output=$(_read_rows_from_key_value_lines "track" "$results2" 2>&1)
+is "$output" "" "Read of rowset 2 should produce no output"
+#  Since $() runs in a subshell, we need to run it "for real now
+_read_rows_from_key_value_lines "track" "$results2" &>/dev/null
+
+#  Track 1
+is "${track_artist[0]}" "Colony 5" "rowset 2 track 1 artist"
+is "${track_track[0]}" "The Bottle" "rowset 2 track 1 track"
+is "${track_album[0]}" "Lifeline" "rowset 2 track 1 album"
+is "${track_year[0]}" "" "rowset 2 track 1 year"
+is "${track_rating[0]}" "80" "rowset 2 track 1 rating"
+is "${track_tracktime[0]}" "4:34" "rowset 2 track 1 tracktime"
+
+#  Track 2
+is "${track_artist[1]}" "" "rowset 2 track 2 artist"
+is "${track_track[1]}" "" "rowset 2 track 2 track"
+is "${track_album[1]}" "" "rowset 2 track 2 album"
+is "${track_year[1]}" "" "rowset 2 track 2 year"
+is "${track_rating[1]}" "" "rowset 2 track 2 rating"
+is "${track_tracktime[1]}" "" "rowset 2 track 2 tracktime"
+
+#  Track 3
+is "${track_artist[2]}" "" "rowset 2 track 3 artist"
+is "${track_track[2]}" "" "rowset 2 track 3 track"
+is "${track_album[2]}" "" "rowset 2 track 3 album"
+is "${track_year[2]}" "" "rowset 2 track 3 year"
+is "${track_rating[2]}" "" "rowset 2 track 3 rating"
+is "${track_tracktime[2]}" "" "rowset 2 track 3 tracktime"
+```
+
+Running this gives output:
+
+```
+$ prove ~/projects/bash-snippets/t
+/Users/illusori/projects/bash-snippets/t/01_read_rows_from_key_value_lines.t .. ok
+All tests successful.
+Files=1, Tests=38,  0 wallclock secs ( 0.04 usr  0.00 sys +  0.04 cusr  0.02 csys =  0.10 CPU)
+Result: PASS
+```
+
+Or the verbose output:
+
+```
+$ prove -v ~/projects/bash-snippets/t
+/Users/illusori/projects/bash-snippets/t/01_read_rows_from_key_value_lines.t .. 
+1..38
+ok 1 - Read of rowset 1 should produce no output
+ok 2 - rowset 1 track 1 artist
+ok 3 - rowset 1 track 1 track
+ok 4 - rowset 1 track 1 album
+ok 5 - rowset 1 track 1 year
+ok 6 - rowset 1 track 1 rating
+ok 7 - rowset 1 track 1 tracktime
+ok 8 - rowset 1 track 2 artist
+ok 9 - rowset 1 track 2 track
+ok 10 - rowset 1 track 2 album
+ok 11 - rowset 1 track 2 year
+ok 12 - rowset 1 track 2 rating
+ok 13 - rowset 1 track 2 tracktime
+ok 14 - rowset 1 track 3 artist
+ok 15 - rowset 1 track 3 track
+ok 16 - rowset 1 track 3 album
+ok 17 - rowset 1 track 3 year
+ok 18 - rowset 1 track 3 rating
+ok 19 - rowset 1 track 3 tracktime
+ok 20 - Read of rowset 2 should produce no output
+ok 21 - rowset 2 track 1 artist
+ok 22 - rowset 2 track 1 track
+ok 23 - rowset 2 track 1 album
+ok 24 - rowset 2 track 1 year
+ok 25 - rowset 2 track 1 rating
+ok 26 - rowset 2 track 1 tracktime
+ok 27 - rowset 2 track 2 artist
+ok 28 - rowset 2 track 2 track
+ok 29 - rowset 2 track 2 album
+ok 30 - rowset 2 track 2 year
+ok 31 - rowset 2 track 2 rating
+ok 32 - rowset 2 track 2 tracktime
+ok 33 - rowset 2 track 3 artist
+ok 34 - rowset 2 track 3 track
+ok 35 - rowset 2 track 3 album
+ok 36 - rowset 2 track 3 year
+ok 37 - rowset 2 track 3 rating
+ok 38 - rowset 2 track 3 tracktime
+ok
+All tests successful.
+Files=1, Tests=38,  0 wallclock secs ( 0.04 usr  0.01 sys +  0.04 cusr  0.02 csys =  0.11 CPU)
+Result: PASS
+```
