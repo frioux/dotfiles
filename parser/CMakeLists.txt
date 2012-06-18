@@ -122,3 +122,5 @@ new_ec_test(escaped_octothorpe_in_property comments.in test12.c
 new_ec_test(escaped_octothorpe_in_section comments.in "test\#.c"
     "^key=value[ \t\n\r]*$")
 
+# test EditorConfig files with BOM at the head
+new_ec_test(bom_at_head bom.in "a.c" "^key=value[ \t\n\r]*$")
