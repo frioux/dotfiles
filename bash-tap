@@ -164,26 +164,59 @@ function is() {
     local expected="$2"
     local name="$3"
 
-    # TODO: sort out result storing, etc
     if [ "$result" = "$expected" ]; then
         ok 1 "$name"
     else
-        # TODO: output diagnostics of failure
         ok 0 "$name"
         _is_diag "$result" "$expected"
     fi
 }
 
+function _isnt_diag() {
+    local result="$1"
+    local expected="$2"
+
+    diag "         got: '$result'"
+    diag "    expected: anything else"
+}
+
 function isnt() {
-    echo TODO
+    local result="$1"
+    local expected="$2"
+    local name="$3"
+
+    if [ "$result" != "$expected" ]; then
+        ok 1 "$name"
+    else
+        ok 0 "$name"
+        _isnt_diag "$result" "$expected"
+    fi
 }
 
 function like() {
-    echo TODO
+    local result="$1"
+    local pattern="$2"
+    local name="$3"
+
+    if [[ "$result" =~ "$pattern" ]]; then
+        ok 1 "$name"
+    else
+        ok 0 "$name"
+        diag "    '$result' doesn't match '$pattern'"
+    fi
 }
 
 function unlike() {
-    echo TODO
+    local result="$1"
+    local pattern="$2"
+    local name="$3"
+
+    if [[ ! "$result" =~ "$pattern" ]]; then
+        ok 1 "$name"
+    else
+        ok 0 "$name"
+        diag "    '$result' matches '$pattern'"
+    fi
 }
 
 function cmp_ok() {
