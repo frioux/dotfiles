@@ -6,8 +6,7 @@ using a similar test syntax to Perl's Test::More and Test::Builder,
 suitable to run with `prove` or any other TAP-consuming test harness.
 
 For more information about TAP (the Test Anything Protocol) visit:
-
-    http://testanything.org/
+http://testanything.org/
 
 Installation and Usage
 ----------------------
