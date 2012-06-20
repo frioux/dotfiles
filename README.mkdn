@@ -191,3 +191,44 @@ All tests successful.
 Files=1, Tests=38,  0 wallclock secs ( 0.04 usr  0.01 sys +  0.04 cusr  0.02 csys =  0.11 CPU)
 Result: PASS
 ```
+
+Mocking with bash-tap-mock
+--------------------------
+
+Also included in `bash-tap` is a simple function mocking framework
+`bash-tap-mock`, it lets you mock commands and functions with
+`mock_command` and `restore_mocked_command`.
+
+If you particularly care to only mock functions rather than commands
+(a good safeguard against typos), use `mock_function` and
+`restore_mocked_function`, which have some extended error checking
+ensuring the function you're mocking exists in the first place.
+
+An example from https://github.com/illusori/bash-itunes is clearer:
+
+```bash
+#!/bin/bash
+
+. $(dirname $0)/bash-tap-bootstrap
+. "$BASH_TAP_ROOT/bash-tap-mock"
+. $(dirname $0)/../itunes
+
+plan tests 4
+
+sent_command=''
+function mock_osascript() {
+    sent_command="$*"
+    restore_mocked_function "_osascript"
+}
+mock_function "_osascript" "mock_osascript"
+
+start_output_capture
+_dispatch "stop"
+finish_output_capture stdout stderr
+
+like "$sent_command" 'stop' "sent command should contain 'stop'"
+like "$sent_command" 'tell application "iTunes"' "sent command should contain 'tell application \"iTunes\"'"
+
+is "$stdout" "Stopping iTunes." "stdout should tell user what happened"
+is "$stderr" "" "stderr should be empty"
+```

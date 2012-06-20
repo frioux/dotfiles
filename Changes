@@ -1,0 +1,4 @@
+* bash-tap 1.0.0 (2012-06-20-15:31)
+  * TAP-compliant testing for bash.
+  * Function and command mocks for bash.
+  * In-process output capture helpers for testing.

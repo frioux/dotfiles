@@ -15,6 +15,20 @@
 #
 #   . $(dirname $0)/bash-tap-mock
 #
+# It's important to note that if you're capturing the arguments
+# passed to your mock function in a variable, and want that
+# variable to be accessible to your tests, you must ensure that
+# the mocked function is executed in the current shell and not
+# a subshell.  In particular, this means you cannot use $() or
+# `` to capture output of the function at the same time, as these
+# invoke a subshell - the mock will happen, but any variables you
+# set within your mock will only exist within the subshell.
+# If you wish to capture output at the same time, you need to
+# make use of the start_output_capture and finish_output_capture
+# helper functons in bash-tap, or manually use file-descriptor
+# redirects yourself to achieve the same effect.
+
+bash_tap_mock_version='1.0.0'
 
 if [ "${BASH_SOURCE[0]}" = "$0" ]; then
     # Being run directly, probably by test harness running entire dir.
@@ -46,11 +60,38 @@ function restore_mocked_function() {
 
     #echo "restore_mocked_function '$original_name'."
     declare -F "$save_original_as" >/dev/null
-    if [ $? == 0 ]; then
+    if [ $? = 0 ]; then
         #echo "Original '$original_name' was saved, restoring from '$save_original_as'."
         _btm_copy_function "$save_original_as" "$original_name"
+        unset -f "$save_original_as"
     else
         _btm_caller_error "Can't find saved original function '$original_name' to restore"
+    fi
+}
+
+function mock_command() {
+    local command_name="$1"
+    local mock_name="$2"
+
+    declare -F "$command_name" >/dev/null
+    if [ $? = 0 ]; then
+        #  It's not actually a command, it's a function, mock that
+        mock_function "$command_name" "$mock_name"
+    else
+        _btm_copy_function "$mock_name" "$command_name"
+    fi
+}
+
+function restore_mocked_command() {
+    local command_name="$1"
+
+    local save_original_as="_btm_mocked_${command_name}"
+    declare -F "$save_original_as" >/dev/null
+    if [ $? = 0 ]; then
+        #  Was actually a function mock not a command mock.
+        restore_mocked_function "$command_name"
+    else
+        unset -f "$command_name" >/dev/null
     fi
 }
 

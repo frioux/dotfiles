@@ -7,6 +7,8 @@
 #    It takes care of finding bash-tap or outputing a usage message.
 #
 
+bash_tap_bootstrap_version='1.0.0'
+
 if [ "${BASH_SOURCE[0]}" = "$0" ]; then
     # Being run directly, probably by test harness running entire dir.
     echo "1..0 # SKIP bash-tap-bootstrap isn't a test file"

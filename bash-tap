@@ -1,5 +1,7 @@
 #!/bin/bash
 
+bash_tap_version='1.0.0'
+
 # Our state.
 
 _bt_plan=''
@@ -9,6 +11,7 @@ _bt_current_test=0
 _bt_tap_output=''
 _bt_has_output_plan=0
 _bt_done_testing=0
+_bt_output_capture=0
 
 # Our test results so far
 unset _bt_test_ok
@@ -16,6 +19,10 @@ unset _bt_test_actual_ok
 unset _bt_test_name
 unset _bt_test_type
 unset _bt_test_reason
+
+# Cleanup stuff.
+declare -a _bt_on_exit_cmds
+trap "_bt_on_exit" EXIT
 
 # Planning functions.
 
@@ -255,6 +262,38 @@ function diag() {
     fi
 }
 
+# Util functions for output capture within current shell
+
+function start_output_capture() {
+    if [ $_bt_output_capture = 1 ]; then
+        finish_output_capture
+        _bt_caller_error "Can't start output capture while already active"
+    fi
+    local stdout_tmpfile="/tmp/bash-itunes-test-out.$$"
+    local stderr_tmpfile="/tmp/bash-itunes-test-err.$$"
+    _bt_add_on_exit_cmd "rm -f '$stdout_tmpfile' '$stderr_tmpfile'"
+    _bt_output_capture=1
+    exec 3>&1 >$stdout_tmpfile 4>&2 2>$stderr_tmpfile
+}
+
+function finish_output_capture() {
+    local capture_stdout_varname="$1"
+    local capture_stderr_varname="$2"
+    if [ $_bt_output_capture != 1 ]; then
+        _bt_caller_error "Can't finish output capture when it wasn't started"
+    fi
+    exec 1>&3 3>&- 2>&4 4>&-
+    _bt_output_capture=0
+    if [ -n "$capture_stdout_varname" ]; then
+        local stdout_tmpfile="/tmp/bash-itunes-test-out.$$"
+        eval "$capture_stdout_varname=\$(< $stdout_tmpfile)"
+    fi
+    if [ -n "$capture_stderr_varname" ]; then
+        local stderr_tmpfile="/tmp/bash-itunes-test-err.$$"
+        eval "$capture_stderr_varname=\$(< $stderr_tmpfile)"
+    fi
+}
+
 # Internals
 
 function _bt_stdout() {
@@ -309,3 +348,18 @@ function _bt_print_out() {
     _bt_escaped_echo "$_bt_tap_output"
 }
 
+#  Cleanup stuff
+function _bt_add_on_exit_cmd() {
+    _bt_on_exit_cmds[${#_bt_on_exit_cmds[*]}]="$*"
+}
+
+function _bt_on_exit() {
+    if [ $_bt_output_capture = 1 ]; then
+        finish_output_capture
+    fi
+    for exit_cmd in "${_bt_on_exit_cmds[@]}"; do
+        diag "cleanup: $exit_cmd"
+        eval "$exit_cmd"
+    done
+    # TODO: check that we've output a plan/results
+}
