@@ -24,6 +24,7 @@ for x in        \
    zsh          \
    zshrc        \
    dbic.json    \
+   perltidyrc   \
 ; do
    rm -rf "$HOME/.$x";
    ln -s "$(pwd)/$x" "$HOME/.$x";
