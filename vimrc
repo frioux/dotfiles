@@ -130,6 +130,9 @@ nnoremap <silent> <F2> :NERDTreeToggle<CR>
 " Edit vimrc \ev
 nnoremap <silent> <Leader>ev :tabnew<CR>:e ~/.vimrc<CR>
 
+" DwarnF a perl var
+vnoremap <silent> <Leader>d= :!dwarnf_var_assignment<CR>
+
 " Up and down are more logical with g..
 nnoremap <silent> k gk
 nnoremap <silent> j gj

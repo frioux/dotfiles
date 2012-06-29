@@ -1,0 +1,7 @@
+#!/usr/bin/env perl
+
+print "use Devel::Dwarn;\n";
+while (<>) {
+   s/my(\s*)([^\s]+)(\s*)=/DwarnF { '$2 => ' . \$_[0] } my$1$2$3=/;
+   print;
+}
