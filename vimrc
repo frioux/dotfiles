@@ -132,6 +132,7 @@ nnoremap <silent> <Leader>ev :tabnew<CR>:e ~/.vimrc<CR>
 
 " DwarnF a perl var
 vnoremap <silent> <Leader>d= :!dwarnf_var_assignment<CR>
+nnoremap <silent> <Leader>d= :.!dwarnf_var_assignment<CR>
 
 " Up and down are more logical with g..
 nnoremap <silent> k gk
