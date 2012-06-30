@@ -251,6 +251,7 @@ globalkeys = awful.util.table.join(
 
     -- Prompt
     awful.key({ modkey },            "r",     function () mypromptbox[mouse.screen]:run() end),
+    awful.key({ modkey },            "d",     function () awful.util.spawn('/home/frew/bin/showdm') end),
 
     awful.key({ modkey }, "x",
               function ()
