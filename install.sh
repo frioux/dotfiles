@@ -19,7 +19,6 @@ for x in        \
    screenrc     \
    tmux.conf    \
    Xdefaults    \
-   xmonad       \
    xsession     \
    zsh          \
    zshrc        \
@@ -30,6 +29,8 @@ for x in        \
    ln -s "$(pwd)/$x" "$HOME/.$x";
 done
 
+rm -rf "$HOME/.config/awesome";
+ln -s "$(pwd)/awesome" "$HOME/.config/awesome";
 git submodule update --init --quiet
 rm -f "$HOME/bin/spark"
 ln -s "$(pwd)/zsh/spark/spark" "$HOME/bin/spark"
