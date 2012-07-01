@@ -13,6 +13,8 @@ rm -f ~/passwords.kdb
 ln -s "$(pwd)/passwords.kdb" ~/passwords.kdb
 
 for x in        \
+   gtkrc.mine   \
+   gtkrc-2.0    \
    dzil         \
    gitconfig    \
    irssi        \
