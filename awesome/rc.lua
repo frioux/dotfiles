@@ -325,6 +325,7 @@ root.keys(globalkeys)
 -- }}}
 
 -- {{{ Rules
+ -- to get properties for these use xprop
 awful.rules.rules = {
     -- All clients will match this rule.
     { rule = { },
@@ -339,6 +340,8 @@ awful.rules.rules = {
       properties = { floating = true } },
     { rule = { class = "gimp" },
       properties = { floating = true } },
+    { rule = { instance = "plugin-container" },
+        properties = { floating = true } },
     -- Set Firefox to always map on tags number 2 of screen 1.
     -- { rule = { class = "Firefox" },
     --   properties = { tag = tags[1][2] } },
