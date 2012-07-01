@@ -100,12 +100,110 @@ mylauncher = awful.widget.launcher({ image = image(beautiful.awesome_icon),
 -- }}}
 
 -- {{{ Wibox
-netwidget = widget({ type = "textbox" })
- -- Register widget
-vicious.register(netwidget, vicious.widgets.net, '<span color="#CC9393">${eth0 down_kb}</span> <span color="#7F9F7F">${eth0 up_kb}</span>', 3)
+
+-- Initialize widget
+batwidget = awful.widget.progressbar()
+-- Progressbar properties
+batwidget:set_width(8)
+--batwidget:set_height(10)
+batwidget:set_vertical(true)
+batwidget:set_background_color("#494B4F")
+--batwidget:set_border_color(nil)
+batwidget:set_color("#000000")
+batwidget:set_gradient_colors({ "#FF0000", "#FF0000" })
+batwidget_t = awful.tooltip({ objects = { batwidget.widget },})
+-- Register widget
+vicious.register(batwidget, vicious.widgets.bat, function (widget, args)
+    batwidget_t:set_text(
+      "BAT0: " .. args[1] .. " (" .. args[2] .. ") " .. args[3] .. " left"
+    )
+   return args[2]
+end, 13, "BAT0")
 
 -- Create a textclock widget
 mytextclock = awful.widget.textclock({ align = "right" })
+
+cpuwidget = awful.widget.graph({ align = "right" })
+cpuwidget:set_width(50)
+cpuwidget:set_background_color("#000000")
+cpuwidget:set_gradient_colors({ "#00FF00", "#00FF00" })
+cpuwidget_t = awful.tooltip({ objects = { cpuwidget.widget },})
+
+vicious.register(cpuwidget, vicious.widgets.cpu,
+  function (widget, args)
+    local str = "core[1] " .. string.format("%03i", args[1])
+    for i = 2, #args do
+      str = str .. "\ncore[" .. i .. "] " .. string.format("%03i", args[i])
+    end
+    cpuwidget_t:set_text(str)
+    return args[1]
+end, 1)
+
+tempwidget = awful.widget.graph({ align = "right" })
+tempwidget:set_width(50)
+tempwidget:set_background_color("#000000")
+tempwidget:set_gradient_colors({ "#FFBB00", "#FFBB00" })
+
+tempwidget_t = awful.tooltip({ objects = { tempwidget.widget },})
+vicious.register(tempwidget, vicious.widgets.thermal,
+  function (widget, args)
+    tempwidget_t:set_text("Temperature: " .. args[1])
+    return args[1]
+end, 1, 'thermal_zone0')
+
+memorywidget = awful.widget.graph({ align = "right" })
+memorywidget:set_width(50)
+memorywidget:set_background_color("#000000")
+memorywidget:set_gradient_colors({ "#0000FF", "#0000FF" })
+
+memorywidget_t = awful.tooltip({ objects = { memorywidget.widget },})
+vicious.register(memorywidget, vicious.widgets.mem,
+  function (widget, args)
+    memorywidget_t:set_text(" RAM: " .. args[2] .. "MB / " .. args[3] .. "MB ")
+    return args[1]
+end, 1)
+
+-- Weather widget
+osweatherwidget = widget({ type = "textbox" })
+osweather_t = awful.tooltip({ objects = { osweatherwidget },})
+
+vicious.register(osweatherwidget, vicious.widgets.weather,
+                function (widget, args)
+                    osweather_t:set_text(
+                       "City: " .. args["{city}"] ..
+                       "\nWind: " .. args["{windmph}"] .. "mph " ..
+                       "\nSky: " .. args["{sky}"] ..
+                       "\nHumidity: " .. args["{humid}"] .. "%")
+                    return args["{tempf}"] .. "°F"
+                end, 60 * 10, "KBIX")
+
+-- Weather widget
+rcweatherwidget = widget({ type = "textbox" })
+rcweather_t = awful.tooltip({ objects = { rcweatherwidget },})
+
+vicious.register(rcweatherwidget, vicious.widgets.weather,
+                function (widget, args)
+                    rcweather_t:set_text(
+                       "City: " .. args["{city}"] ..
+                       "\nWind: " .. args["{windmph}"] .. "mph " ..
+                       "\nSky: " .. args["{sky}"] ..
+                       "\nHumidity: " .. args["{humid}"] .. "%")
+                    return args["{tempf}"] .. "°F"
+                end, 60 * 10, "KADS")
+
+-- Weather widget
+gvweatherwidget = widget({ type = "textbox" })
+gvweather_t = awful.tooltip({ objects = { gvweatherwidget },})
+
+vicious.register(gvweatherwidget, vicious.widgets.weather,
+                function (widget, args)
+                    gvweather_t:set_text(
+                       "City: " .. args["{city}"] ..
+                       "\nWind: " .. args["{windmph}"] .. "mph " ..
+                       "\nSky: " .. args["{sky}"] ..
+                       "\nHumidity: " .. args["{humid}"] .. "%")
+                    return args["{tempf}"] .. "°F"
+                end, 60 * 10, "KGVT")
 
 -- Create a systray
 mysystray = widget({ type = "systray" })
@@ -181,7 +279,13 @@ for s = 1, screen.count() do
         },
         mylayoutbox[s],
         mytextclock,
-        netwidget,
+        cpuwidget.widget,
+        memorywidget.widget,
+        osweatherwidget,
+        rcweatherwidget,
+        gvweatherwidget,
+        batwidget.widget,
+        tempwidget.widget,
         s == 1 and mysystray or nil,
         mytasklist[s],
         layout = awful.widget.layout.horizontal.rightleft
