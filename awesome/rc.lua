@@ -6,7 +6,7 @@ require("awful.rules")
 require("beautiful")
 -- Notification library
 require("naughty")
-require("vicious")
+local vicious = require("vicious")
 
 -- Load Debian menu entries
 require("debian.menu")

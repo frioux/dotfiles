@@ -10,3 +10,6 @@
 [submodule "zsh/resty"]
 	path = zsh/resty
 	url = git://github.com/micha/resty
+[submodule "awesome/vicious"]
+	path = awesome/vicious
+	url = http://git.sysphere.org/vicious
