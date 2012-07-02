@@ -167,6 +167,9 @@ end, 1)
 osweatherwidget = widget({ type = "textbox" })
 osweather_t = awful.tooltip({ objects = { osweatherwidget },})
 
+osweatherwidget:buttons({
+   button({ }, 1, function () awful.util.spawn("firefox 'http://www.weather.com/weather/right-now/Biloxi+MS+USMS0033'") end)
+})
 vicious.register(osweatherwidget, vicious.widgets.weather,
                 function (widget, args)
                     osweather_t:set_text(
@@ -181,6 +184,10 @@ vicious.register(osweatherwidget, vicious.widgets.weather,
 rcweatherwidget = widget({ type = "textbox" })
 rcweather_t = awful.tooltip({ objects = { rcweatherwidget },})
 
+rcweatherwidget:buttons({
+   button({ }, 1, function () awful.util.spawn("firefox 'http://www.weather.com/weather/right-now/Addison+TX+USTX0007'") end)
+})
+
 vicious.register(rcweatherwidget, vicious.widgets.weather,
                 function (widget, args)
                     rcweather_t:set_text(
@@ -194,6 +201,10 @@ vicious.register(rcweatherwidget, vicious.widgets.weather,
 -- Weather widget
 gvweatherwidget = widget({ type = "textbox" })
 gvweather_t = awful.tooltip({ objects = { gvweatherwidget },})
+
+gvweatherwidget:buttons({
+   button({ }, 1, function () awful.util.spawn("firefox 'http://www.weather.com/weather/right-now/75402'") end)
+})
 
 vicious.register(gvweatherwidget, vicious.widgets.weather,
                 function (widget, args)
