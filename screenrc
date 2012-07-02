@@ -12,7 +12,7 @@ term screen-256color
 #I hate Ctrl+a  Try just plain backtick
 escape ``
 
-screen irssi
+mosh irc
 title "IRSSI"
 screen zsh
 
