@@ -131,9 +131,9 @@ cpuwidget_t = awful.tooltip({ objects = { cpuwidget.widget },})
 
 vicious.register(cpuwidget, vicious.widgets.cpu,
   function (widget, args)
-    local str = "core[1] " .. string.format("%03i", args[1])
+    local str = "Total " .. string.format("%03i", args[1])
     for i = 2, #args do
-      str = str .. "\ncore[" .. i .. "] " .. string.format("%03i", args[i])
+      str = str .. "\ncore " .. i - 1 .. " " .. string.format("%03i", args[i])
     end
     cpuwidget_t:set_text(str)
     return args[1]
