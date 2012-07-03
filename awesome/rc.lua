@@ -11,9 +11,6 @@ require("beautiful")
 require("naughty")
 local vicious = require("vicious")
 
--- Load Debian menu entries
-require("debian.menu")
-
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -82,25 +79,6 @@ tags = sharetags.create_tags({
    layouts[1],
    layouts[1]
 })
--- }}}
-
--- {{{ Menu
--- Create a laucher widget and a main menu
-myawesomemenu = {
-   { "manual", terminal .. " -e man awesome" },
-   { "edit config", editor_cmd .. " " .. awesome.conffile },
-   { "restart", awesome.restart },
-   { "quit", awesome.quit }
-}
-
-mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
-                                    { "Debian", debian.menu.Debian_menu.Debian },
-                                    { "open terminal", terminal }
-                                  }
-                        })
-
-mylauncher = awful.widget.launcher({ image = image(beautiful.awesome_icon),
-                                     menu = mymainmenu })
 -- }}}
 
 -- {{{ helpers
@@ -360,7 +338,6 @@ for s = 1, screen.count() do
     -- Add widgets to the wibox - order matters
     mywibox[s].widgets = {
         {
-            mylauncher,
             mytaglist[s],
             mypromptbox[s],
             layout = awful.widget.layout.horizontal.leftright
