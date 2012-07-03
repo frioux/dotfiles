@@ -101,6 +101,10 @@ mylauncher = awful.widget.launcher({ image = image(beautiful.awesome_icon),
 
 -- {{{ Wibox
 
+-- LAME.
+spacer = widget({ type = "textbox", name = "spacer" });
+spacer.text = " "
+
 -- Volume widget
 
 volumecfg = {}
@@ -343,12 +347,19 @@ for s = 1, screen.count() do
         mylayoutbox[s],
         mytextclock,
         cpuwidget.widget,
+        spacer,
         memorywidget.widget,
+        spacer,
         osweatherwidget,
+        spacer,
         rcweatherwidget,
+        spacer,
         gvweatherwidget,
+        spacer,
         batwidget.widget,
+        spacer,
         tempwidget.widget,
+        spacer,
         volumecfg.widget.widget,
         s == 1 and mysystray or nil,
         mytasklist[s],
