@@ -130,9 +130,9 @@ weather_widget = function(
 end
 -- }}}
 
--- {{{ Wibox
+-- {{{ widgets
 
--- Volume widget
+-- {{{ Volume widget
 
 volumecfg = {}
 volumecfg.cardid  = 0
@@ -181,31 +181,30 @@ volumecfg.widget.widget:buttons({
        button({ }, 1, function () volumecfg.toggle() end)
 })
 volumecfg.update()
+-- }}}
 
-
--- Initialize widget
+-- {{{ battery
 batwidget = awful.widget.progressbar()
--- Progressbar properties
 batwidget:set_width(8)
---batwidget:set_height(10)
 batwidget:set_vertical(true)
 batwidget:set_background_color("#494B4F")
---batwidget:set_border_color(nil)
 batwidget:set_color("#000000")
 batwidget:set_gradient_colors({ "#FF0000", "#FF0000" })
 batwidget_t = awful.tooltip({ objects = { batwidget.widget },})
--- Register widget
 vicious.register(batwidget, vicious.widgets.bat, function (widget, args)
     batwidget_t:set_text(
       "BAT0: " .. args[1] .. " (" .. args[2] .. ") " .. args[3] .. " left"
     )
    return args[2]
 end, 13, "BAT0")
+-- }}}
 
--- Create a textclock widget
+-- {{{ clock
 mytextclock = awful.widget.textclock({ align = "right" })
 cal.register(mytextclock, "<span color='green'><u>%s</u></span>")
+--}}}
 
+-- {{{ cpu
 cpuwidget = awful.widget.graph({ align = "right" })
 cpuwidget:set_width(50)
 cpuwidget:set_background_color("#000000")
@@ -221,7 +220,9 @@ vicious.register(cpuwidget, vicious.widgets.cpu,
     cpuwidget_t:set_text(str)
     return args[1]
 end, 1)
+-- }}}
 
+-- {{{ temp
 tempwidget = awful.widget.graph({ align = "right" })
 tempwidget:set_width(50)
 tempwidget:set_background_color("#000000")
@@ -233,7 +234,9 @@ vicious.register(tempwidget, vicious.widgets.thermal,
     tempwidget_t:set_text("Temperature: " .. args[1] .. "°C")
     return args[1]
 end, 1, 'thermal_zone0')
+-- }}}
 
+-- {{{ memory
 memorywidget = awful.widget.graph({ align = "right" })
 memorywidget:set_width(50)
 memorywidget:set_background_color("#000000")
@@ -245,7 +248,9 @@ vicious.register(memorywidget, vicious.widgets.mem,
     memorywidget_t:set_text(" RAM: " .. args[2] .. "MB / " .. args[3] .. "MB ")
     return args[1]
 end, 1)
+-- }}}
 
+-- {{{ weather
 osweatherwidget = weather_widget(
    "KBIX",
    "http://www.weather.com/weather/right-now/Biloxi+MS+USMS0033",
@@ -270,8 +275,15 @@ gvweatherwidget = weather_widget(
 
 awful.widget.layout.margins[gvweatherwidget] = { left = 5 };
 
--- Create a systray
+-- }}}
+
+-- {{{ Create a systray
 mysystray = widget({ type = "systray" })
+--}}}
+
+-- }}}
+
+-- {{{ Wibox
 
 -- Create a wibox for each screen and add it
 mywibox = {}
