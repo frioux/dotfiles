@@ -182,7 +182,7 @@ end, 13, "BAT0")
 
 -- Create a textclock widget
 mytextclock = awful.widget.textclock({ align = "right" })
-cal.register(mytextclock)
+cal.register(mytextclock, "<span color='green'><u>%s</u></span>")
 
 cpuwidget = awful.widget.graph({ align = "right" })
 cpuwidget:set_width(50)
