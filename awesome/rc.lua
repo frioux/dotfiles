@@ -68,7 +68,20 @@ layouts =
 
 -- {{{ Tags
 -- Define a tag table which hold all screen tags.
-tags = sharetags.create_tags({ 1, 2, 3, 4, 5, 6, 7, 8, 9 }, layouts)
+tags = sharetags.create_tags({
+   1, 2, 3, 4, 5, 6, 7, 8, 9
+}, {
+   layouts[1],
+   layouts[1],
+   layouts[1],
+   layouts[1],
+   layouts[1],
+   layouts[1],
+   layouts[1],
+   layouts[1],
+   layouts[1],
+   layouts[1]
+})
 -- }}}
 
 -- {{{ Menu
