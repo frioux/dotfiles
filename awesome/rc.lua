@@ -103,6 +103,33 @@ mylauncher = awful.widget.launcher({ image = image(beautiful.awesome_icon),
                                      menu = mymainmenu })
 -- }}}
 
+-- {{{ helpers
+weather_widget = function(
+   code,
+   url,
+   name
+)
+   local actual_widget = widget({ type = "textbox" })
+   local actual_tooltip = awful.tooltip({ objects = { actual_widget } });
+
+   actual_widget:buttons({
+      button({}, 1, function () awful.util.spawn("firefox '" .. url .. "'") end)
+   })
+
+   vicious.register(actual_widget, vicious.widgets.weather,
+      function (widget, args)
+        actual_tooltip:set_text(
+           "City: " .. args["{city}"] ..
+           "\nWind: " .. args["{windmph}"] .. "mph " ..
+           "\nSky: " .. args["{sky}"] ..
+           "\nHumidity: " .. args["{humid}"] .. "%")
+        return name .. " " .. args["{tempf}"] .. "°F"
+   end, 60 * 10, code)
+
+   return actual_widget
+end
+-- }}}
+
 -- {{{ Wibox
 
 -- Volume widget
@@ -219,64 +246,29 @@ vicious.register(memorywidget, vicious.widgets.mem,
     return args[1]
 end, 1)
 
--- Weather widget
-osweatherwidget = widget({ type = "textbox" })
-osweather_t = awful.tooltip({ objects = { osweatherwidget },})
+osweatherwidget = weather_widget(
+   "KBIX",
+   "http://www.weather.com/weather/right-now/Biloxi+MS+USMS0033",
+   "OS"
+)
 
 awful.widget.layout.margins[osweatherwidget] = { right = 5 };
 
-osweatherwidget:buttons({
-   button({ }, 1, function () awful.util.spawn("firefox 'http://www.weather.com/weather/right-now/Biloxi+MS+USMS0033'") end)
-})
-vicious.register(osweatherwidget, vicious.widgets.weather,
-                function (widget, args)
-                    osweather_t:set_text(
-                       "City: " .. args["{city}"] ..
-                       "\nWind: " .. args["{windmph}"] .. "mph " ..
-                       "\nSky: " .. args["{sky}"] ..
-                       "\nHumidity: " .. args["{humid}"] .. "%")
-                    return "OS " .. args["{tempf}"] .. "°F"
-                end, 60 * 10, "KBIX")
-
--- Weather widget
-rcweatherwidget = widget({ type = "textbox" })
-rcweather_t = awful.tooltip({ objects = { rcweatherwidget },})
+rcweatherwidget = weather_widget(
+   "KADS",
+   "http://www.weather.com/weather/right-now/Addison+TX+USTX0007",
+   "Richardson"
+)
 
 awful.widget.layout.margins[rcweatherwidget] = { left = 5, right = 5 };
 
-rcweatherwidget:buttons({
-   button({ }, 1, function () awful.util.spawn("firefox 'http://www.weather.com/weather/right-now/Addison+TX+USTX0007'") end)
-})
-
-vicious.register(rcweatherwidget, vicious.widgets.weather,
-                function (widget, args)
-                    rcweather_t:set_text(
-                       "City: " .. args["{city}"] ..
-                       "\nWind: " .. args["{windmph}"] .. "mph " ..
-                       "\nSky: " .. args["{sky}"] ..
-                       "\nHumidity: " .. args["{humid}"] .. "%")
-                    return "Richardson " .. args["{tempf}"] .. "°F"
-                end, 60 * 10, "KADS")
-
--- Weather widget
-gvweatherwidget = widget({ type = "textbox" })
-gvweather_t = awful.tooltip({ objects = { gvweatherwidget },})
+gvweatherwidget = weather_widget(
+   "KGVT",
+   "http://www.weather.com/weather/right-now/75402",
+   "Greenville"
+)
 
 awful.widget.layout.margins[gvweatherwidget] = { left = 5 };
-
-gvweatherwidget:buttons({
-   button({ }, 1, function () awful.util.spawn("firefox 'http://www.weather.com/weather/right-now/75402'") end)
-})
-
-vicious.register(gvweatherwidget, vicious.widgets.weather,
-                function (widget, args)
-                    gvweather_t:set_text(
-                       "City: " .. args["{city}"] ..
-                       "\nWind: " .. args["{windmph}"] .. "mph " ..
-                       "\nSky: " .. args["{sky}"] ..
-                       "\nHumidity: " .. args["{humid}"] .. "%")
-                    return "Greenville " .. args["{tempf}"] .. "°F"
-                end, 60 * 10, "KGVT")
 
 -- Create a systray
 mysystray = widget({ type = "systray" })
