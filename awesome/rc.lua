@@ -101,6 +101,58 @@ mylauncher = awful.widget.launcher({ image = image(beautiful.awesome_icon),
 
 -- {{{ Wibox
 
+-- Volume widget
+
+volumecfg = {}
+volumecfg.cardid  = 0
+volumecfg.channel = "Master"
+volumecfg.widget = awful.widget.progressbar()
+volumecfg.widget:set_max_value(100)
+volumecfg.widget:set_color('#FFFFFF')
+volumecfg.widget:set_width(8)
+volumecfg.widget:set_vertical(true)
+--widget({ type = "textbox", name = "volumecfg.widget", align = "right" })
+
+volumecfg_t = awful.tooltip({ objects = { volumecfg.widget.widget },})
+
+-- command must start with a space!
+volumecfg.mixercommand = function (command)
+       local fd = io.popen("amixer -c " .. volumecfg.cardid .. command)
+       local status = fd:read("*all")
+       fd:close()
+
+       local volume = string.match(status, "(%d?%d?%d)%%")
+       volume = string.format("% 3d", volume)
+       status = string.match(status, "%[(o[^%]]*)%]")
+       volumecfg.widget:set_value(volume)
+       if string.find(status, "on", 1, true) then
+          volumecfg.widget:set_color('#FFFFFF')
+          volumecfg_t:set_text("Volume: " .. volume .. '%')
+       else
+          volumecfg.widget:set_color('#FF0000')
+          volumecfg_t:set_text("Volume: " .. volume .. '%, muted')
+       end
+end
+volumecfg.update = function ()
+       volumecfg.mixercommand(" sget " .. volumecfg.channel)
+end
+volumecfg.up = function ()
+       volumecfg.mixercommand(" sset " .. volumecfg.channel .. " 1%+")
+end
+volumecfg.down = function ()
+       volumecfg.mixercommand(" sset " .. volumecfg.channel .. " 1%-")
+end
+volumecfg.toggle = function ()
+       volumecfg.mixercommand(" sset " .. volumecfg.channel .. " toggle")
+end
+volumecfg.widget.widget:buttons({
+       button({ }, 4, function () volumecfg.up() end),
+       button({ }, 5, function () volumecfg.down() end),
+       button({ }, 1, function () volumecfg.toggle() end)
+})
+volumecfg.update()
+
+
 -- Initialize widget
 batwidget = awful.widget.progressbar()
 -- Progressbar properties
@@ -297,6 +349,7 @@ for s = 1, screen.count() do
         gvweatherwidget,
         batwidget.widget,
         tempwidget.widget,
+        volumecfg.widget.widget,
         s == 1 and mysystray or nil,
         mytasklist[s],
         layout = awful.widget.layout.horizontal.rightleft
@@ -314,6 +367,9 @@ root.buttons(awful.util.table.join(
 
 -- {{{ Key bindings
 globalkeys = awful.util.table.join(
+    awful.key({ }, "XF86AudioRaiseVolume", function () volumecfg.up() end),
+    awful.key({ }, "XF86AudioLowerVolume", function () volumecfg.down() end),
+    awful.key({ }, "XF86AudioMute", function () volumecfg.toggle() end),
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore),
 
     awful.key({ modkey,           }, "j",
