@@ -10,7 +10,9 @@ apt-get --no-install-recommends install \
    zsh \
    screen \
    suckless-tools \
-   xmonad \
+   awesome \
+   awesome-extra \
+   mosh \
    firefox \
    lastfm \
    vim-gnome \
