@@ -82,6 +82,19 @@ tags = sharetags.create_tags({
 -- }}}
 
 -- {{{ helpers
+function exists(filename)
+  local file = io.open(filename)
+  if file then
+    io.close(file)
+    return true
+  else
+    return false
+  end
+end
+
+local has_battery = exists('/home/frew/etc/battery')
+local has_thermal = exists('/home/frew/etc/temperature')
+
 weather_widget = function(
    code,
    url,
@@ -162,19 +175,21 @@ volumecfg.update()
 -- }}}
 
 -- {{{ battery
-batwidget = awful.widget.progressbar()
-batwidget:set_width(8)
-batwidget:set_vertical(true)
-batwidget:set_background_color("#494B4F")
-batwidget:set_color("#000000")
-batwidget:set_gradient_colors({ "#FF0000", "#FF0000" })
-batwidget_t = awful.tooltip({ objects = { batwidget.widget },})
-vicious.register(batwidget, vicious.widgets.bat, function (widget, args)
-    batwidget_t:set_text(
-      "BAT0: " .. args[1] .. " (" .. args[2] .. ") " .. args[3] .. " left"
-    )
-   return args[2]
-end, 13, "BAT0")
+if has_battery then
+   batwidget = awful.widget.progressbar()
+   batwidget:set_width(8)
+   batwidget:set_vertical(true)
+   batwidget:set_background_color("#494B4F")
+   batwidget:set_color("#000000")
+   batwidget:set_gradient_colors({ "#FF0000", "#FF0000" })
+   batwidget_t = awful.tooltip({ objects = { batwidget.widget },})
+   vicious.register(batwidget, vicious.widgets.bat, function (widget, args)
+       batwidget_t:set_text(
+         "BAT0: " .. args[1] .. " (" .. args[2] .. ") " .. args[3] .. " left"
+       )
+      return args[2]
+   end, 13, "BAT0")
+end
 -- }}}
 
 -- {{{ clock
@@ -201,17 +216,19 @@ end, 1)
 -- }}}
 
 -- {{{ temp
-tempwidget = awful.widget.graph({ align = "right" })
-tempwidget:set_width(50)
-tempwidget:set_background_color("#000000")
-tempwidget:set_gradient_colors({ "#FFBB00", "#FFBB00" })
+if has_thermal then
+   tempwidget = awful.widget.graph({ align = "right" })
+   tempwidget:set_width(50)
+   tempwidget:set_background_color("#000000")
+   tempwidget:set_gradient_colors({ "#FFBB00", "#FFBB00" })
 
-tempwidget_t = awful.tooltip({ objects = { tempwidget.widget },})
-vicious.register(tempwidget, vicious.widgets.thermal,
-  function (widget, args)
-    tempwidget_t:set_text("Temperature: " .. args[1] .. "°C")
-    return args[1]
-end, 1, 'thermal_zone0')
+   tempwidget_t = awful.tooltip({ objects = { tempwidget.widget },})
+   vicious.register(tempwidget, vicious.widgets.thermal,
+     function (widget, args)
+       tempwidget_t:set_text("Temperature: " .. args[1] .. "°C")
+       return args[1]
+   end, 1, 'thermal_zone0')
+end
 -- }}}
 
 -- {{{ memory
@@ -349,8 +366,8 @@ for s = 1, screen.count() do
         osweatherwidget,
         rcweatherwidget,
         gvweatherwidget,
-        batwidget.widget,
-        tempwidget.widget,
+        has_battery and batwidget.widget or nil,
+        has_thermal and tempwidget.widget or nil,
         volumecfg.widget.widget,
         s == 1 and mysystray or nil,
         mytasklist[s],
