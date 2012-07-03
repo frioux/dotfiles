@@ -147,7 +147,7 @@ tempwidget:set_gradient_colors({ "#FFBB00", "#FFBB00" })
 tempwidget_t = awful.tooltip({ objects = { tempwidget.widget },})
 vicious.register(tempwidget, vicious.widgets.thermal,
   function (widget, args)
-    tempwidget_t:set_text("Temperature: " .. args[1])
+    tempwidget_t:set_text("Temperature: " .. args[1] .. "°C")
     return args[1]
 end, 1, 'thermal_zone0')
 
