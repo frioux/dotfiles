@@ -3,6 +3,8 @@ require("awful")
 require("awful.autofocus")
 require("awful.rules")
 require("sharetags")
+require("utils")
+local cal = utils.cal
 -- Theme handling library
 require("beautiful")
 -- Notification library
@@ -175,6 +177,7 @@ end, 13, "BAT0")
 
 -- Create a textclock widget
 mytextclock = awful.widget.textclock({ align = "right" })
+cal.register(mytextclock)
 
 cpuwidget = awful.widget.graph({ align = "right" })
 cpuwidget:set_width(50)
