@@ -410,6 +410,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Shift"   }, "e", function (c) awful.client.movetoscreen(c,2) end),
 
     -- Layout manipulation
+    awful.key({ 'Mod4'            }, 'space', function() awful.util.spawn('qdbus org.mpris.MediaPlayer2.clementine /Player ShowOSD') end),
     awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end),
     awful.key({ modkey, "Shift"   }, "k", function () awful.client.swap.byidx( -1)    end),
     awful.key({ modkey,           }, "u", awful.client.urgent.jumpto),
