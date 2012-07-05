@@ -40,6 +40,7 @@ end
 -- Themes define colours, icons, and wallpapers
 beautiful.init("/usr/share/awesome/themes/default/theme.lua")
 beautiful.border_focus = '#FF0000'
+beautiful.border_normal = '#AAAAAA'
 
 -- This is used later as the default terminal and editor to run.
 terminal = "x-terminal-emulator"
