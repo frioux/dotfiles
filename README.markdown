@@ -26,6 +26,12 @@ Or you can unzip it in your `~/.vim` directory. The plugin depends on the awesom
 [kana](https://github.com/kana). So you need to install it in order to use
 this plugin.
 
+Contributors
+------------
+
+- [kana](https://github.com/kana)
+  Use `normal!` instead of `normal` to avoid unexpected remapping.
+
 Copyright
 ---------
 
