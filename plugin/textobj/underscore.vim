@@ -1,6 +1,6 @@
-" if exists('g:loaded_textobj_underscore')
-"   finish
-" endif
+if exists('g:loaded_textobj_underscore')
+  finish
+endif
 
 call textobj#user#plugin('quoted', {
 \      '-': {
