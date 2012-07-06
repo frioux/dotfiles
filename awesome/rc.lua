@@ -11,6 +11,15 @@ require("beautiful")
 require("naughty")
 local vicious = require("vicious")
 
+warn = function(str)
+   io.stderr:write(str .. "\n")
+   io.stderr:flush()
+   naughty.notify({
+      preset = naughty.config.presets.critical,
+      title = "warning",
+      text = str
+   })
+end
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
