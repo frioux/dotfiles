@@ -2,7 +2,7 @@ if exists('g:loaded_textobj_underscore')
   finish
 endif
 
-call textobj#user#plugin('quoted', {
+call textobj#user#plugin('underscore', {
 \      '-': {
 \        '*sfile*': expand('<sfile>:p'),
 \        'select-a': 'a_',  '*select-a-function*': 's:select_a',
