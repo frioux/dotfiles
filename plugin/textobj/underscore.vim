@@ -11,11 +11,11 @@ call textobj#user#plugin('underscore', {
 \    })
 
 function! s:select_a()
-  normal F_
+  normal! F_
 
   let end_pos = getpos('.')
 
-  normal f_
+  normal! f_
 
   let start_pos = getpos('.')
   return ['v', start_pos, end_pos]
@@ -24,11 +24,11 @@ endfunction
 " ciao_come_stai
 
 function! s:select_i()
-  normal T_
+  normal! T_
 
   let end_pos = getpos('.')
 
-  normal t_
+  normal! t_
 
   let start_pos = getpos('.')
 
