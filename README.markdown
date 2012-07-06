@@ -22,8 +22,8 @@ I strongly recommend installing [pathogen.vim](https://github.com/tpope/pathogen
     git clone git://github.com/lucapette/vim-ruby-doc.git
 
 Or you can unzip it in your `~/.vim` directory. The plugin depends on the awesome
-(vim-textobj-user)[https://github.com/kana/vim-textobj-user] by
-(kana)[https://github.com/kana]. So you need to install it in order to use
+[vim-textobj-user](https://github.com/kana/vim-textobj-user) by
+[kana](https://github.com/kana). So you need to install it in order to use
 this plugin.
 
 Copyright
