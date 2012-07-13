@@ -29,7 +29,7 @@
 new_ec_test(parent_directory parent_directory.in parent_directory/test.a "^key=value[ \t\n\r]*$")
 
 # Test for EditorConfig file in parent directory and current directory
-new_ec_test(parent_and_current_dir parent_directory.in parent_directory/test.b "^key1=value1[ \t\n\r]+key2=value2[ \t\n\r]*$")
+new_ec_test(parent_and_current_dir parent_directory.in parent_directory/test.b "^key1=value1[ \t]*[\n\r]+key2=value2[ \t\n\r]*$")
 
 # Test for file in parent directory and overloaded by file in current directory
 new_ec_test(parent_dir_overload parent_directory.in parent_directory/test.c "^key=valueB[ \t\n\r]*$")
