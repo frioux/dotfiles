@@ -56,7 +56,7 @@ new_ec_test(indent_size_default_with_tab_width indent_size_default.in test3.c
 
 # test that same property values are lowercased
 new_ec_test(lowercase_values1 lowercase_values.in test1.c
-    "^indent_style=space[ \t\n\r]+end_of_line=crlf[ \t\n\r]*$")
+    "^indent_style=space[ \t\n\r]+end_of_line=crlf[ \t\n\r]+insert_final_newline=true[ \t\n\r]*$")
 
 # test that same property values are not lowercased
 new_ec_test(lowercase_values2 lowercase_values.in test2.c
