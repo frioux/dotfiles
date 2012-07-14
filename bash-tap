@@ -1,6 +1,6 @@
 #!/bin/bash
 
-bash_tap_version='1.0.0'
+bash_tap_version='1.0.1'
 
 # Our state.
 
@@ -205,11 +205,13 @@ function like() {
     local pattern="$2"
     local name="$3"
 
-    if [[ "$result" =~ "$pattern" ]]; then
+    # NOTE: leave $pattern unquoted, see http://stackoverflow.com/a/218217/870000
+    if [[ "$result" =~ $pattern ]]; then
         ok 1 "$name"
     else
         ok 0 "$name"
-        diag "    '$result' doesn't match '$pattern'"
+        diag "         got: '$result'"
+        diag "    expected: match for '$pattern'"
     fi
 }
 
@@ -218,11 +220,13 @@ function unlike() {
     local pattern="$2"
     local name="$3"
 
-    if [[ ! "$result" =~ "$pattern" ]]; then
+    # NOTE: leave $pattern unquoted, see http://stackoverflow.com/a/218217/870000
+    if [[ ! "$result" =~ $pattern ]]; then
         ok 1 "$name"
     else
         ok 0 "$name"
-        diag "    '$result' matches '$pattern'"
+        diag "         got: '$result'"
+        diag "    expected: no match for '$pattern'"
     fi
 }
 

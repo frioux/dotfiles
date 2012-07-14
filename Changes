@@ -1,3 +1,7 @@
+* bash-tap 1.0.1 (2012-07-14-20:59)
+  * Clearer diagnostics for like/unlike.
+  * Correct syntax for bash 3.2 regexp matching in like/unlike.
+
 * bash-tap 1.0.0 (2012-06-20-15:31)
   * TAP-compliant testing for bash.
   * Function and command mocks for bash.
