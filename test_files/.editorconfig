@@ -11,3 +11,16 @@ tab_width = 8
 [space.txt]
 indent_style = space
 indent_size = tab
+
+[tab.txt]
+indent_style = tab
+
+[4_tab.txt]
+indent_style = tab
+indent_size = 4
+tab_width = 4
+
+[4_tab_width_of_8.txt]
+indent_style = tab
+indent_size = 4
+tab_width = 8
