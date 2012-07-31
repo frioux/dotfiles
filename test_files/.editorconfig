@@ -1,0 +1,13 @@
+[3_space.txt]
+indent_style = space
+indent_size = 3
+tab_width = 3
+
+[4_space.py]
+indent_style = space
+indent_size = 4
+tab_width = 8
+
+[space.txt]
+indent_style = space
+indent_size = tab
