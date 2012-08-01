@@ -58,4 +58,6 @@ Tab-based indentation with size of 4 and tab width of 8
 1. Open ``4_tab_width_of_8.txt``.
 2. Confirm that no errors occur and EditorConfig file is read properly.
 3. Add a new line of text to the end of the file and indent it once.
-4. Confirm that new last line is indented with a single tab.
+4. Confirm that new last line is indented with 4 spaces.
+5. Add a second new line of text to the end of the file and indent it twice.
+6. Confirm that new last line is indented with a single tab.
