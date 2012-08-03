@@ -1,5 +1,5 @@
-Tests for End of Line Properties
-================================
+Tests for End of Line Property
+==============================
 
 The following tests are for the ``end_of_line`` EditorConfig property.
 
@@ -34,13 +34,13 @@ Unix-style Newlines
 3. Confirm that new lines use LF
 
 Windows-style Newlines
-~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~
 1. Open ``crlf.txt``.
 2. Add a new line to the end of the file and save it.
 3. Confirm that new lines use CRLF
 
 Old Mac-style Newlines
-~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~
 1. Open ``cr.txt``.
 2. Add a new line to the end of the file and save it.
 3. Confirm that new lines use CR
