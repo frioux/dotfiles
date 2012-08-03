@@ -15,3 +15,9 @@ these instructions.
 Tests should be run by opening up each relevant file in the ``tests``
 directory, running through the tests in the file and verifying that the
 expected behavior is observed.
+
+After running each test the files in the git repository should be reverted and
+any newly created files should be deleted.  To revert files in the git
+repository use:
+
+	git checkout -- test_files/
