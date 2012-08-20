@@ -215,6 +215,9 @@ cpuwidget = awful.widget.graph({ align = "right" })
 cpuwidget:set_width(50)
 cpuwidget:set_background_color("#000000")
 cpuwidget:set_gradient_colors({ "#00FF00", "#00FF00" })
+cpuwidget.widget:buttons({
+   button({}, 1, function () awful.util.spawn("gnome-system-monitor --show-resources-tab") end)
+})
 cpuwidget_t = awful.tooltip({ objects = { cpuwidget.widget },})
 
 vicious.register(cpuwidget, vicious.widgets.cpu,
@@ -249,6 +252,9 @@ memorywidget = awful.widget.graph({ align = "right" })
 memorywidget:set_width(50)
 memorywidget:set_background_color("#000000")
 memorywidget:set_gradient_colors({ "#0000FF", "#0000FF" })
+memorywidget.widget:buttons({
+   button({}, 1, function () awful.util.spawn("gnome-system-monitor --show-resources-tab") end)
+})
 
 memorywidget_t = awful.tooltip({ objects = { memorywidget.widget },})
 vicious.register(memorywidget, vicious.widgets.mem,
