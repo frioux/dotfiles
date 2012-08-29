@@ -33,3 +33,18 @@ end_of_line = crlf
 
 [cr.txt]
 end_of_line = cr
+
+[utf-8.txt]
+charset = utf-8
+
+[utf-8-bom.txt]
+charset = utf-8-bom
+
+[utf-16be.txt]
+charset = utf-16be
+
+[utf-16le.txt]
+charset = utf-16le
+
+[latin1.txt]
+charset = latin1
