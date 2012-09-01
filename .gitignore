@@ -1,3 +1,8 @@
 test_files/lf.txt
 test_files/crlf.txt
 test_files/cr.txt
+test_files/utf-16be.txt
+test_files/utf-16le.txt
+test_files/utf-8-bom.txt
+test_files/with_newline.txt
+test_files/without_newline.txt
