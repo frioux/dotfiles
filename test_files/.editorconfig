@@ -48,3 +48,9 @@ charset = utf-16le
 
 [latin1.txt]
 charset = latin1
+
+[with_newline.txt]
+insert_final_newline = true
+
+[without_newline.txt]
+insert_final_newline = false
