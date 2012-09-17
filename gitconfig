@@ -31,9 +31,6 @@
 [web]
    browser = firefox
 
-[browser "firefox"]
-   path = /home/frew/tmp/firefox/firefox
-
 [pack]
    threads = 0
 
