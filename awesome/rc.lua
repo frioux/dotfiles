@@ -192,6 +192,10 @@ if has_battery then
    batwidget:set_background_color("#494B4F")
    batwidget:set_color("#000000")
    batwidget:set_gradient_colors({ "#FF0000", "#FF0000" })
+   batwidget.widget:buttons({
+      button({}, 1, function () awful.util.spawn("gnome-power-statistics") end)
+   })
+
    batwidget_t = awful.tooltip({ objects = { batwidget.widget },})
    vicious.register(batwidget, vicious.widgets.bat, function (widget, args)
        batwidget_t:set_text(
