@@ -1,6 +1,3 @@
-# Autoload screen if we aren't in it.  (Thanks Fjord!)
-if [[ $STY = '' ]] then screen -xR; fi
-
 autoload -U compinit zrecompile
 
 zsh_cache=${HOME}/.zsh/cache

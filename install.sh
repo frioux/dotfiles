@@ -18,7 +18,6 @@ for x in        \
    dzil         \
    gitconfig    \
    irssi        \
-   screenrc     \
    tmux.conf    \
    Xdefaults    \
    xsession     \
