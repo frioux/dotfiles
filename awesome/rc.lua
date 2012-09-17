@@ -286,9 +286,9 @@ rcweatherwidget = weather_widget(
 awful.widget.layout.margins[rcweatherwidget] = { left = 5, right = 5 };
 
 gvweatherwidget = weather_widget(
-   "KGVT",
-   "http://www.weather.com/weather/right-now/75402",
-   "Greenville"
+   "KHQZ",
+   "http://www.weather.com/weather/right-now/75032",
+   "Rockwall"
 )
 
 awful.widget.layout.margins[gvweatherwidget] = { left = 5 };
