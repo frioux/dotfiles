@@ -1,5 +1,6 @@
 
-export MANPATH="/opt/share/man:$MANPATH"
+MANPATH=
+export MANPATH="/opt/share/man:$(manpath)"
 export PATH="$HOME/bin:/opt/bin:$PATH"
 export RI="--format ansi"
 export EDITOR="vi"
