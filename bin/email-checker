@@ -31,7 +31,7 @@ my $imap = Mail::IMAPClient->new(
 
 my $label = $opt->label;
 my $count = $imap->message_count( $label )
-  or die "Select '$label' error: ", $imap->LastError, "\n";
+  // die "Select '$label' error: $@\n";
 
 if ($count) {
    system(
