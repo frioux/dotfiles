@@ -8,7 +8,7 @@ require("beautiful")
 -- Notification library
 require("naughty")
 -- widget library
-require("vicious")
+vicious = require("vicious")
 
 -- Local extensions
 -- Menue functions
@@ -74,7 +74,9 @@ myawesomemenu = awful.menu({ items = {
    { "awesome", editor_cmd .. " " .. awful.util.getdir("config") .. "/rc.lua" },
    { "xdg", editor_cmd .. " " .. home_dir .. "/.config/" },
    { "vim", editor_cmd .. " " .. ".vimrc" },
-   { "Xdefaults", editor_cmd .. " " .. ".Xdefaults" }
+   { "Xdefaults", editor_cmd .. " " .. ".Xdefaults" },
+   -- TODO do with naughty
+   { "Xprop", terminal .. " -e xprop | grep --color=none 'WM_CLASS\|^WM_NAME' | less " }
    }
 })
 
