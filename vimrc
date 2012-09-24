@@ -103,16 +103,22 @@ set virtualedit=block
 
 "{{{Look and Feel
 
-" Favorite Color Scheme
-colorscheme inkpot
-
 if has("gui_running")
+   " Favorite Color Scheme
+   colorscheme inkpot
+
    " Remove Toolbar
    set guioptions=
    if has('win32')
       set guifont=Consolas:h8
    else
       set guifont=Terminus\ 8
+   endif
+else
+   if &t_Co == 256
+      colorscheme metacosm
+   else
+      colorscheme elflord
    endif
 endif
 
