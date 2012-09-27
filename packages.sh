@@ -20,5 +20,6 @@ apt-get --no-install-recommends install \
    xfonts-terminus \
    xfonts-terminus-oblique \
    terminator \
+   xclip \
    openvpn
 
