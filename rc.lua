@@ -144,8 +144,15 @@ mylayoutbox = {}
 mytaglist = {}
 mytaglist.buttons = awful.util.table.join(
                     awful.button({ }, 1, function(t)
+                        local swap_t = awful.tag.selected()
+                        local swap_s = t.screen
+                        local sel = t.selected
                         if t.screen ~= mouse.screen then
                             sharetags.tag_move(t, mouse.screen)
+                        end
+                        if sel == true then
+                            sharetags.tag_move(swap_t, swap_s)
+                            awful.tag.viewonly(swap_t)
                         end
                         awful.tag.viewonly(t)
                     end),
@@ -360,8 +367,15 @@ for i = 1, keynumber do
         awful.key({ modkey }, "#" .. i + 9,
                   function ()
                         local t = tags[i]
+                        local swap_t = awful.tag.selected()
+                        local swap_s = t.screen
+                        local sel = t.selected
                         if t.screen ~= mouse.screen then
                             sharetags.tag_move(t, mouse.screen)
+                        end
+                        if sel == true then
+                            sharetags.tag_move(swap_t, swap_s)
+                            awful.tag.viewonly(swap_t)
                         end
                         awful.tag.viewonly(t)
                   end),
