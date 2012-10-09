@@ -30,7 +30,7 @@ sub roll {
    state $d10 = Games::Dice::Advanced->new('d10');
    my $count = shift;
    say "--rolling: $count dice" if $opt->verbose;
-   my @this_roll = map $d10->roll, 1..$opt->dice;
+   my @this_roll = map $d10->roll, 1..$count;
    my $next_count = scalar grep {$_ >= $opt->reroll} @this_roll;
    push @this_roll, roll($next_count) if $next_count;
    return @this_roll
