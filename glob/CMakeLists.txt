@@ -54,6 +54,18 @@ new_ec_test(question_multiple question.in something.c "^[ \t\n\r]*$")
 
 # Tests for [ and ]
 
+# close bracket inside
+new_ec_test(brackets_close_inside brackets.in ].g "^close_inside=true[ \t\n\r]*$")
+
+# close bracket outside
+new_ec_test(brackets_close_outside brackets.in b].g "^close_outside=true[ \t\n\r]*$")
+
+# negative close bracket inside
+new_ec_test(brackets_nclose_inside brackets.in c.g "^close_inside=false[ \t\n\r]*$")
+
+# negative close bracket outside
+new_ec_test(brackets_nclose_outside brackets.in c].g "^close_outside=false[ \t\n\r]*$")
+
 # character choice
 new_ec_test(brackets_choice brackets.in a.a "^choice=true[ \t\n\r]*$")
 
