@@ -46,4 +46,6 @@ bindkey -M viins ' ' magic-space
 # gross.  Makes Meta-' write '\'' for you
 bindkey -s \\e\' \'\\\\\'\'
 
+# make _ work like 0 (vimish)
+bindkey -a _ beginning-of-line
 # vim: ft=zsh
