@@ -1,0 +1,39 @@
+; test { and }
+
+root=true
+
+; word choice
+[*.{py,js,html}]
+choice=true
+
+; single choice
+[{single}.b]
+choice=single
+
+; empty choice
+[{}.c]
+empty=all
+
+; choice with empty word
+[a{b,c,}.d]
+empty=word
+
+; choice with empty words
+[a{,b,,c,}.e]
+empty=words
+
+; no closing brace
+[{.f]
+closing=false
+
+; nested braces
+[{word,{also},this}.g]
+nested=true
+
+; closing inside beginning
+[{},b}.h]
+closing=inside
+
+; closing inside beginning
+[{{,b,c{d}.i]
+opening=inside

@@ -99,6 +99,53 @@ new_ec_test(brackets_choice_with_dash brackets.in -.f
     "^choice_with_dash=true[ \t\n\r]*$")
 
 
+# Tests for { and }
+
+# word choice
+new_ec_test(braces_word_choice1 braces.in test.py "^choice=true[ \t\n\r]*$")
+new_ec_test(braces_word_choice2 braces.in test.js "^choice=true[ \t\n\r]*$")
+new_ec_test(braces_word_choice3 braces.in test.html "^choice=true[ \t\n\r]*$")
+new_ec_test(braces_word_choice4 braces.in test.pyc "^[ \t\n\r]*$")
+
+# single choice
+new_ec_test(braces_single_choice braces.in {single}.b "^choice=single[ \t\n\r]*$")
+new_ec_test(braces_single_choice_negative braces.in .b "^[ \t\n\r]*$")
+
+# empty choice
+new_ec_test(braces_empty_choice braces.in {}.c "^empty=all[ \t\n\r]*$")
+new_ec_test(braces_empty_choice_negative braces.in .c "^[ \t\n\r]*$")
+
+# choice with empty word
+new_ec_test(braces_empty_word1 braces.in a.d "^empty=word[ \t\n\r]*$")
+new_ec_test(braces_empty_word2 braces.in ab.d "^empty=word[ \t\n\r]*$")
+new_ec_test(braces_empty_word3 braces.in ac.d "^empty=word[ \t\n\r]*$")
+new_ec_test(braces_empty_word4 braces.in a,.d "^[ \t\n\r]*$")
+
+# choice with empty words
+new_ec_test(braces_empty_words1 braces.in a.e "^empty=words[ \t\n\r]*$")
+new_ec_test(braces_empty_words2 braces.in ab.e "^empty=words[ \t\n\r]*$")
+new_ec_test(braces_empty_words3 braces.in ac.e "^empty=words[ \t\n\r]*$")
+new_ec_test(braces_empty_words4 braces.in a,.e "^[ \t\n\r]*$")
+
+# no closing brace
+new_ec_test(braces_no_closing braces.in {.f "^closing=false[ \t\n\r]*$")
+new_ec_test(braces_no_closing_negative braces.in .f "^[ \t\n\r]*$")
+
+# nested braces
+new_ec_test(braces_nested1 braces.in word,this}.g "^nested=true[ \t\n\r]*$")
+new_ec_test(braces_nested2 braces.in {also,this}.g "^nested=true[ \t\n\r]*$")
+new_ec_test(braces_nested3 braces.in {also}.g "^[ \t\n\r]*$")
+
+# closing inside beginning
+new_ec_test(braces_closing_in_beginning braces.in {},b}.h "^closing=inside[ \t\n\r]*$")
+
+# opening braces inside
+new_ec_test(braces_opening_inside1 braces.in {.i "^opening=inside[ \t\n\r]*$")
+new_ec_test(braces_opening_inside2 braces.in b.i "^opening=inside[ \t\n\r]*$")
+new_ec_test(braces_opening_inside3 braces.in c{d.i "^opening=inside[ \t\n\r]*$")
+new_ec_test(braces_opening_inside4 braces.in .i "^[ \t\n\r]*$")
+
+
 # Tests for **
 
 # matches over path separator
