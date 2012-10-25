@@ -190,9 +190,19 @@ let g:fuf_abbrevMap = {
      \     "App/lib/**/",
      \   ],
      \   "^c:" : [ "App/lib/Lynx/Controller/**/" ],
+     \   "^js:" : [
+     \     "cgi/js/",
+     \     "cgi/js/ui/**/",
+     \     "cgi/js/record/**/",
+     \     "cgi/js/fn/**/",
+     \   ],
      \ }
 
 nnoremap <silent> <F3> :FufFile<CR>
+nnoremap <silent> <S-F3> :FufRenewCache<CR>
+nnoremap <silent> <F4> :FufFileWithCurrentBufferDir<CR>
+nnoremap <silent> <F5> :FufBuffer<CR>
+nnoremap <silent> <F6> :FufLine<CR>
 
 " }}}
 
