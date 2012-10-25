@@ -42,6 +42,7 @@ alias gre='git rebase --root --onto origin/release -i --autosquash'
 
 # }}}
 
+alias wget='noglob wget'
 alias tar='wrap-tar'
 compdef wrap-tar=tar
 
