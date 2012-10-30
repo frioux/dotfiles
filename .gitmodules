@@ -16,3 +16,6 @@
 [submodule "awesome/utils"]
 	path = awesome/utils
 	url = git://github.com/Mic92/utils.git
+[submodule "zsh/zaw"]
+	path = zsh/zaw
+	url = git://github.com/zsh-users/zaw.git

@@ -42,6 +42,8 @@ ln -s "$(pwd)/zsh/cxregs-bash-tools/lib" "$HOME/.smartcd/lib"
 mkdir -p "$HOME/lib"
 rm -rf "$HOME/lib/resty"
 ln -s "$(pwd)/zsh/resty" "$HOME/lib/resty"
+rm -rf "$HOME/lib/zaw"
+ln -s "$(pwd)/zsh/zaw" "$HOME/lib/zaw"
 
 case $OSTYPE in
    cygwin)
