@@ -131,6 +131,10 @@ set statusline=%F%m%r%h%w\ (%{&ff}){%Y}\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}\ [%
 " Open NERDTree <F2>
 nnoremap <silent> <F2> :NERDTreeToggle<CR>
 
+" perltidy
+nnoremap <silent> <Leader>pt :%!perltidy<CR>
+vnoremap <silent> <Leader>pt :!perltidy<CR>
+
 " Edit vimrc \ev
 nnoremap <silent> <Leader>ev :tabnew<CR>:e ~/.vimrc<CR>
 
