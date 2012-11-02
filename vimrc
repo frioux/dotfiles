@@ -200,6 +200,10 @@ let g:fuf_abbrevMap = {
      \     "cgi/js/record/**/",
      \     "cgi/js/fn/**/",
      \   ],
+     \   "^t:" : [
+     \     "t/",
+     \     "t/**/",
+     \   ],
      \ }
 
 nnoremap <silent> <F3> :FufFile<CR>
