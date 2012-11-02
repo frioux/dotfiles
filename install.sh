@@ -44,6 +44,8 @@ rm -rf "$HOME/lib/resty"
 ln -s "$(pwd)/zsh/resty" "$HOME/lib/resty"
 rm -rf "$HOME/lib/zaw"
 ln -s "$(pwd)/zsh/zaw" "$HOME/lib/zaw"
+rm -rf "$HOME/.js"
+ln -s "$(pwd)/dotjs" "$HOME/.js"
 
 case $OSTYPE in
    cygwin)
