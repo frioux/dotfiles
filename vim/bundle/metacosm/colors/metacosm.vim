@@ -1,8 +1,5 @@
-" Vim color file
-" Maintainer: Robert Melton ( vim at metacosm dot dhs dot org )
-" Last Change: 2006 April 21st
-
-
+" Maintainer: Robert Melton ( iam -at- robertmelton -dot- com)
+" Last Change: 2009 June 4th
 
 " -----------------------------------------------------------------------------
 " This color scheme uses a dark grey background.
@@ -16,12 +13,10 @@
 set background=dark
 hi clear
 if exists("syntax_on")
-	syntax reset
+    syntax reset
 endif
 
 let colors_name = "metacosm"
-
-
 
 " -----------------------------------------------------------------------------
 " Primary (hyper/selected/colored background)
@@ -35,7 +30,7 @@ hi Visual guibg=yellow guifg=black
 hi VisualNOS guibg=yellow guifg=black gui=underline
 
 " Borders
-hi StatusLine guibg=black guifg=#80a0ff
+hi StatusLine guibg=black guifg=white
 hi StatusLineNC guibg=black guifg=grey45
 hi VertSplit guibg=black guifg=grey45
 
@@ -56,8 +51,6 @@ hi Todo  guibg=black guifg=cyan
 hi Error guibg=red guifg=white
 hi WildMenu guibg=cyan guifg=black
 
-
-
 " -----------------------------------------------------------------------------
 " Primary (active/code/text/grey background)
 " -----------------------------------------------------------------------------
@@ -65,12 +58,12 @@ hi WildMenu guibg=cyan guifg=black
 hi Normal guibg=black guifg=white
 
 " Constants
-hi Constant guibg=black guifg=#ffa0a0
-hi String guibg=black guifg=#ffa0a0
-hi Character guibg=black guifg=#ffa0a0
-hi Number guibg=black guifg=#ffa0a0
-hi Boolean guibg=black guifg=#ffa0a0
-hi Float guibg=black guifg=#ffa0a0
+hi Constant guibg=grey15 guifg=#ffa0a0
+hi String guibg=grey15 guifg=#ffa0a0
+hi Character guibg=grey15 guifg=#ffa0a0
+hi Number guibg=grey15 guifg=#ffa0a0
+hi Boolean guibg=grey15 guifg=#ffa0a0
+hi Float guibg=grey15 guifg=#ffa0a0
 
 " Identifier
 hi Identifier guibg=black guifg=#40ffff
@@ -108,8 +101,6 @@ hi Debug guibg=black guifg=orange
 " Misc
 hi Underlined guibg=black guifg=#ffff60 gui=underline
 
-
-
 " -----------------------------------------------------------------------------
 " Secondary (inactive/black background)
 " -----------------------------------------------------------------------------
@@ -120,12 +111,12 @@ hi SpecialComment guibg=black guifg=#80a0ff gui=underline
 " Messages
 hi ModeMsg guibg=black guifg=white gui=bold
 hi MoreMsg guibg=black guifg=seagreen gui=bold
-hi WarningMsg guibg=black guifg=blue gui=bold
+hi WarningMsg guibg=black guifg=pink gui=bold
 hi ErrorMsg guibg=black guifg=red gui=bold
 
 " Folding
-hi Folded guibg=black guifg=white
-hi FoldColumn guibg=black guifg=white
+hi Folded guibg=black guifg=grey50
+hi FoldColumn guibg=black guifg=grey30
 
 " Misc
 hi Ignore guibg=black guifg=grey45
@@ -135,12 +126,11 @@ hi SpecialKey guibg=black guifg=grey45
 hi SignColumn guibg=black guifg=grey45
 hi Directory guibg=black guifg=cyan
 
-
-
 " -----------------------------------------------------------------------------
 " Vim 7.x only
 " ----------------------------------------------------------------------------
 hi MatchParen guibg=purple guifg=yellow
-hi CursorLine guibg=black gui=underline
+hi CursorLine guibg=grey5 
+hi CursorColumn guibg=grey5
 hi Pmenu guibg=grey20 guifg=white
-hi PmenuSel guibg=lightblue guifg=black
+hi PmenuSel guibg=green guifg=black
