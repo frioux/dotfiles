@@ -19,3 +19,6 @@
 [submodule "zsh/zaw"]
 	path = zsh/zaw
 	url = git://github.com/zsh-users/zaw.git
+[submodule "vim/bundle/vim-pathogen"]
+	path = vim/bundle/vim-pathogen
+	url = git://github.com/tpope/vim-pathogen.git

@@ -214,4 +214,7 @@ nnoremap <silent> <F6> :FufLine<CR>
 
 " }}}
 
+runtime bundle/vim-pathogen/autoload/pathogen.vim
+call pathogen#infect()
+
 " vim: foldmethod=marker
