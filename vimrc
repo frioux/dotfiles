@@ -1,4 +1,7 @@
 
+runtime bundle/vim-pathogen/autoload/pathogen.vim
+call pathogen#infect()
+
 if has('win32')
    let &runtimepath = substitute(&runtimepath, '\(\~\|'.$USER.'\)/vimfiles\>', '\1/.vim', 'g')
 endif
@@ -104,6 +107,9 @@ set virtualedit=block
 if has("gui_running")
    " Favorite Color Scheme
    colorscheme inkpot
+   "Invisible character colors
+   highlight NonText guifg=#4a4a59
+   highlight SpecialKey guifg=#4a4a59
 
    " Remove Toolbar
    set guioptions=
@@ -213,8 +219,5 @@ nnoremap <silent> <F5> :FufBuffer<CR>
 nnoremap <silent> <F6> :FufLine<CR>
 
 " }}}
-
-runtime bundle/vim-pathogen/autoload/pathogen.vim
-call pathogen#infect()
 
 " vim: foldmethod=marker

@@ -25,3 +25,6 @@
 [submodule "vim/bundle/vim-repeat"]
 	path = vim/bundle/vim-repeat
 	url = git://github.com/tpope/vim-repeat.git
+[submodule "vim/bundle/inkpot"]
+	path = vim/bundle/inkpot
+	url = git://github.com/ciaranm/inkpot.git
