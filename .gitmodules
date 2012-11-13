@@ -40,3 +40,6 @@
 [submodule "vim/bundle/vim-fugitive"]
 	path = vim/bundle/vim-fugitive
 	url = git://github.com/tpope/vim-fugitive
+[submodule "vim/bundle/vim-powerline"]
+	path = vim/bundle/vim-powerline
+	url = git://github.com/Lokaltog/vim-powerline
