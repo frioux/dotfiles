@@ -219,5 +219,5 @@ nnoremap <silent> <F5> :FufBuffer<CR>
 nnoremap <silent> <F6> :FufLine<CR>
 
 " }}}
-
+let g:jshintprg="hint"
 " vim: foldmethod=marker
