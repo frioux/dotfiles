@@ -220,5 +220,4 @@ nnoremap <silent> <F6> :FufLine<CR>
 
 " }}}
 let g:jshintprg="hint"
-let g:jshintconfig="~/.vim/jshint.js"
 " vim: foldmethod=marker

@@ -25,6 +25,7 @@ for x in        \
    zshrc        \
    dbic.json    \
    perltidyrc   \
+   jshintrc     \
 ; do
    rm -rf "$HOME/.$x";
    ln -s "$(pwd)/$x" "$HOME/.$x";
