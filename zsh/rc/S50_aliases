@@ -37,8 +37,11 @@ alias gitk='noglob gitk'
 function gitk() { command gitk "$@" & }
 alias grr='noglob grr'
 function grr() { gitk ^origin/release HEAD "$@" & }
-alias gosu='git submodule update --init'
-alias gre='git rebase --root --onto origin/release -i --autosquash'
+alias gosu='git submodule foreach " git checkout . ; git clean -xdff" ; git submodule update --init'
+function gr() {
+   git rebase --root --onto $1 -i --autosquash
+}
+alias gre='gr origin/release'
 
 # }}}
 
