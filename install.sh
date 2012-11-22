@@ -9,8 +9,6 @@ if [[ ! -x ~/.config/terminator ]]; then
 fi
 rm -f ~/.config/terminator/config
 ln -s "$(pwd)/terminator_config" ~/.config/terminator/config
-rm -f ~/passwords.kdb
-ln -s "$(pwd)/passwords.kdb" ~/passwords.kdb
 
 for x in        \
    gtkrc.mine   \
