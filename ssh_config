@@ -11,6 +11,10 @@ host catagits
      hostname git.shadowcat.co.uk
      identityfile ~/.ssh/keys/id_rsa
 
+host ci
+     user frew
+     identityfile ~/.ssh/keys/frew_ci.rsa
+
 host cs
      user gitolite
      identityfile ~/.ssh/keys/frew
