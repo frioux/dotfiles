@@ -61,7 +61,7 @@ host paste
 
 host w
      user frew
-     hostname 10.6.1.6
+     hostname w
      identityfile ~/.ssh/keys/w.ecdsa
      ForwardAgent yes
 
