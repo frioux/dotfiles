@@ -59,6 +59,16 @@ host paste
      hostname p.afoolishmanifesto.com
      identityfile ~/.ssh/keys/frew_paste_afoolishmanifesto.rsa
 
+host sc
+     user arthurs
+     hostname jules.scsys.co.uk
+     identityfile ~/.ssh/keys/sc.rsa
+
+host scpubgit
+     user scpubgit
+     hostname git.shadowcat.co.uk
+     identityfile ~/.ssh/id_rsa
+
 host w
      user frew
      hostname w
