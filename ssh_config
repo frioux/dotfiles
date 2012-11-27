@@ -56,7 +56,7 @@ host p5sagit
 
 host paste
      user frew_paste
-     hostname afoolishmanifesto.com
+     hostname p.afoolishmanifesto.com
      identityfile ~/.ssh/keys/frew_paste_afoolishmanifesto.rsa
 
 host w
