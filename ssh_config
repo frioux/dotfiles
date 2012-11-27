@@ -1,0 +1,67 @@
+ControlMaster auto
+ControlPath /tmp/ssh_mux_%h_%p_%r
+ControlPersist 24h
+
+host catagits
+     user catagits
+     hostname git.shadowcat.co.uk
+     identityfile ~/.ssh/keys/id_rsa
+
+host cs
+     user gitolite
+     identityfile ~/.ssh/keys/frew
+
+host dbsrgits
+     user dbsrgits
+     hostname git.shadowcat.co.uk
+     identityfile ~/.ssh/keys/id_rsa
+
+host fl
+     user Administrator
+     hostname frewlynx
+     identityfile ~/.ssh/keys/frewlynx.rsa
+     ForwardAgent yes
+
+host flu
+     user Administrator
+     hostname frewlynxuser
+     identityfile ~/.ssh/keys/frewlynx.rsa
+     ForwardAgent yes
+
+host gh
+     user git
+     hostname github.com
+     identityfile ~/.ssh/keys/github.rsa
+
+host gitmo
+     user gitmo
+     hostname git.shadowcat.co.uk
+     identityfile ~/.ssh/keys/id_rsa
+
+host irc
+     user frew
+     hostname warpedreality.org
+     identityfile ~/.ssh/keys/id_rsa
+
+host lfl
+     user Administrator
+     hostname frewlynx2
+     identityfile ~/.ssh/keys/frewlynx.rsa
+     ForwardAgent yes
+
+host p5sagit
+     user p5sagit
+     hostname git.shadowcat.co.uk
+     identityfile ~/.ssh/keys/id_rsa
+
+host paste
+     user frew_paste
+     hostname afoolishmanifesto.com
+     identityfile ~/.ssh/keys/frew_paste_afoolishmanifesto.rsa
+
+host w
+     user frew
+     hostname 10.6.1.6
+     identityfile ~/.ssh/keys/w.ecdsa
+     ForwardAgent yes
+

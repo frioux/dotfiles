@@ -45,6 +45,8 @@ rm -rf "$HOME/lib/zaw"
 ln -s "$(pwd)/zsh/zaw" "$HOME/lib/zaw"
 rm -rf "$HOME/.js"
 ln -s "$(pwd)/dotjs" "$HOME/.js"
+mkdir -p "$HOME/.ssh"
+ln -s "$(pwd)/ssh_config" "$HOME/.ssh/config"
 
 case $OSTYPE in
    cygwin)
