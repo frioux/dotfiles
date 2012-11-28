@@ -137,6 +137,10 @@ set statusline=%F%m%r%h%w\ (%{&ff}){%Y}\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}\ [%
 " Open NERDTree <F2>
 nnoremap <silent> <F2> :NERDTreeToggle<CR>
 
+" fmt
+nnoremap <silent> <Leader>fm :.!fmt -w80<CR>
+vnoremap <silent> <Leader>fm :!fmt -w80<CR>
+
 " perltidy
 nnoremap <silent> <Leader>pt :%!perltidy<CR>
 vnoremap <silent> <Leader>pt :!perltidy<CR>

@@ -9,83 +9,67 @@ VisualHostKey yes
 host catagits
      user catagits
      hostname git.shadowcat.co.uk
-     identityfile ~/.ssh/keys/id_rsa
 
 host ci
      user frew
-     identityfile ~/.ssh/keys/frew_ci.rsa
 
 host cesium
      hostname cs
      user frew
-     identityfile ~/.ssh/keys/cesium
      ForwardAgent yes
 
 host cs
      user gitolite
-     identityfile ~/.ssh/keys/gitolite
 
 host dbsrgits
      user dbsrgits
      hostname git.shadowcat.co.uk
-     identityfile ~/.ssh/keys/id_rsa
 
 host fl
      user Administrator
      hostname frewlynx
-     identityfile ~/.ssh/keys/frewlynx
      ForwardAgent yes
 
 host flu
      user Administrator
      hostname frewlynxuser
-     identityfile ~/.ssh/keys/frewlynxuser
      ForwardAgent yes
 
 host gh
      user git
      hostname github.com
-     identityfile ~/.ssh/keys/github.rsa
 
 host gitmo
      user gitmo
      hostname git.shadowcat.co.uk
-     identityfile ~/.ssh/keys/id_rsa
 
 host irc
      user frew
      hostname warpedreality.org
-     identityfile ~/.ssh/keys/irc
 
 host lfl
      user Administrator
      hostname frewlynx2
-     identityfile ~/.ssh/keys/frewlynx.rsa
      ForwardAgent yes
 
 host p5sagit
      user p5sagit
      hostname git.shadowcat.co.uk
-     identityfile ~/.ssh/keys/id_rsa
 
 host paste
      user frew_paste
      hostname p.afoolishmanifesto.com
-     identityfile ~/.ssh/keys/frew_paste_afoolishmanifesto.rsa
 
 host sc
      user arthurs
      hostname jules.scsys.co.uk
-     identityfile ~/.ssh/keys/sc.rsa
 
 host scpubgit
      user scpubgit
      hostname git.shadowcat.co.uk
-     identityfile ~/.ssh/id_rsa
 
 host w
      user frew
      hostname w
-     identityfile ~/.ssh/keys/w.ecdsa
      ForwardAgent yes
 

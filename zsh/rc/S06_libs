@@ -1,4 +1,4 @@
-source ~/.zsh/adenosine/adenosine-exports
+#source ~/.zsh/adenosine/adenosine-exports
 source ~/.smartcd/lib/core/arrays
 source ~/.smartcd/lib/core/varstash
 source ~/.smartcd/lib/core/smartcd
