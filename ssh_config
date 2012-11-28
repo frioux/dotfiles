@@ -34,7 +34,7 @@ host fl
 host flu
      user Administrator
      hostname frewlynxuser
-     identityfile ~/.ssh/keys/frewlynx.rsa
+     identityfile ~/.ssh/keys/frewlynxuser
      ForwardAgent yes
 
 host gh
