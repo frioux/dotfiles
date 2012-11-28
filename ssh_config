@@ -28,7 +28,7 @@ host dbsrgits
 host fl
      user Administrator
      hostname frewlynx
-     identityfile ~/.ssh/keys/frewlynx.rsa
+     identityfile ~/.ssh/keys/frewlynx
      ForwardAgent yes
 
 host flu
