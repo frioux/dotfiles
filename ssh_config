@@ -16,6 +16,12 @@ host ci
      user frew
      identityfile ~/.ssh/keys/frew_ci.rsa
 
+host cesium
+     hostname cs
+     user frew
+     identityfile ~/.ssh/keys/cesium
+     ForwardAgent yes
+
 host cs
      user gitolite
      identityfile ~/.ssh/keys/gitolite
