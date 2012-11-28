@@ -5,6 +5,7 @@ ControlPersist 24h
 host *
      Ciphers blowfish-cbc
      Compression yes
+     IdentitiesOnly yes
 
 host catagits
      user catagits
