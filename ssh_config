@@ -18,7 +18,7 @@ host ci
 
 host cs
      user gitolite
-     identityfile ~/.ssh/keys/frew
+     identityfile ~/.ssh/keys/gitolite
 
 host dbsrgits
      user dbsrgits
