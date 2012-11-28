@@ -50,7 +50,7 @@ host gitmo
 host irc
      user frew
      hostname warpedreality.org
-     identityfile ~/.ssh/keys/id_rsa
+     identityfile ~/.ssh/keys/irc
 
 host lfl
      user Administrator
