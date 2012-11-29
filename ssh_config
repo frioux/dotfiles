@@ -14,7 +14,6 @@ host ci
      user frew
 
 host cesium
-     hostname cs
      user frew
      ForwardAgent yes
 
@@ -70,7 +69,6 @@ host scpubgit # git
 
 host w
      user frew
-     hostname w
      ForwardAgent yes
 
 host lap
