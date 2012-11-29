@@ -79,3 +79,9 @@ host lap
      port 2222
      ForwardAgent yes
 
+host nw
+     user frew
+     hostname noosphere-work.chickenkiller.com
+     port 2322
+     ForwardAgent yes
+
