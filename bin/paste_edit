@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+source ~/.zshrc
+TMP="$(mktemp)"
+xclip -o >> $TMP
+gvim -f $TMP
+cat $TMP | nopaste -o

@@ -435,6 +435,8 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Shift"   }, "w", function (c) awful.client.movetoscreen(c,1) end),
     awful.key({ modkey,           }, "e", function () awful.screen.focus(2) end),
     awful.key({ modkey, "Shift"   }, "e", function (c) awful.client.movetoscreen(c,2) end),
+    awful.key({ modkey,           }, "p", function () awful.util.spawn("zsh -c 'source ~/.zshrc && xclip -o | nopaste -o'") end),
+    awful.key({ modkey, "Shift"   }, "p", function () awful.util.spawn("zsh -c 'source ~/.zshrc && paste_edit'") end),
 
     -- Layout manipulation
     awful.key({ 'Mod4'            }, 'space', function() awful.util.spawn('qdbus org.mpris.MediaPlayer2.clementine /Player ShowOSD') end),
