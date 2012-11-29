@@ -46,9 +46,21 @@ host irc
      user frew
      hostname warpedreality.org
 
+host lap
+     user frew
+     hostname frew.chickenkiller.com
+     port 2222
+     ForwardAgent yes
+
 host lfl
      user Administrator
      hostname frewlynx2
+     ForwardAgent yes
+
+host nw
+     user frew
+     hostname noosphere-work.chickenkiller.com
+     port 2322
      ForwardAgent yes
 
 host p5sagit # git
@@ -69,17 +81,5 @@ host scpubgit # git
 
 host w
      user frew
-     ForwardAgent yes
-
-host lap
-     user frew
-     hostname frew.chickenkiller.com
-     port 2222
-     ForwardAgent yes
-
-host nw
-     user frew
-     hostname noosphere-work.chickenkiller.com
-     port 2322
      ForwardAgent yes
 
