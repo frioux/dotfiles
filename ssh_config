@@ -73,3 +73,9 @@ host w
      hostname w
      ForwardAgent yes
 
+host lap
+     user frew
+     hostname frew.chickenkiller.com
+     port 2222
+     ForwardAgent yes
+
