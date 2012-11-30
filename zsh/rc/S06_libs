@@ -1,19 +1,23 @@
 #source ~/.zsh/adenosine/adenosine-exports
-source ~/.smartcd/lib/core/arrays
-source ~/.smartcd/lib/core/varstash
-source ~/.smartcd/lib/core/smartcd
-smartcd setup cd
-smartcd setup pushd
-smartcd setup popd
-smartcd setup prompt-hook
-smartcd setup exit-hook
-smartcd setup completion
-VARSTASH_AUTOCONFIGURE=1
-VARSTASH_AUTOEDIT=1
 
-source ~/lib/zaw/zaw.zsh
-zstyle ':filter-select' case-insensitive yes
-zstyle ':filter-select' extended-search yes
+if [[ -z "$WINDIR" ]]; then
+   source ~/.smartcd/lib/core/arrays
+   source ~/.smartcd/lib/core/varstash
+   source ~/.smartcd/lib/core/smartcd
+   smartcd setup cd
+   smartcd setup pushd
+   smartcd setup popd
+   smartcd setup prompt-hook
+   smartcd setup exit-hook
+   smartcd setup completion
+   VARSTASH_AUTOCONFIGURE=1
+   VARSTASH_AUTOEDIT=1
 
-bindkey 'OR' zaw
+   source ~/lib/zaw/zaw.zsh
+   zstyle ':filter-select' case-insensitive yes
+   zstyle ':filter-select' extended-search yes
+
+   bindkey 'OR' zaw
+fi
+
 # vim: ft=zsh
