@@ -52,11 +52,6 @@ host lap
      port 2222
      ForwardAgent yes
 
-host lfl
-     user Administrator
-     hostname frewlynx2
-     ForwardAgent yes
-
 host nw
      user frew
      hostname noosphere-work.chickenkiller.com
