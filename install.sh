@@ -22,6 +22,7 @@ for x in        \
    zsh          \
    zshrc        \
    dbic.json    \
+   adenosinerc.yml \
    perltidyrc   \
    jshintrc     \
 ; do

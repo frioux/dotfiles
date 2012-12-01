@@ -1,4 +1,4 @@
-#source ~/.zsh/adenosine/adenosine-exports
+source ~/.zsh/adenosine/adenosine-exports
 
 if [[ -z "$WINDIR" ]]; then
    source ~/.smartcd/lib/core/arrays
