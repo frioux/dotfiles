@@ -106,10 +106,8 @@ set virtualedit=block
 
 if has("gui_running")
    " Favorite Color Scheme
-   colorscheme inkpot
-   "Invisible character colors
-   highlight NonText guifg=#4a4a59
-   highlight SpecialKey guifg=#4a4a59
+   set background=dark
+   colorscheme solarized
 
    " Remove Toolbar
    set guioptions=
@@ -120,7 +118,7 @@ if has("gui_running")
    endif
 else
    if &t_Co == 256
-      colorscheme metacosm
+      colorscheme inkpot
    else
       colorscheme elflord
    endif
