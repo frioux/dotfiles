@@ -2,6 +2,9 @@
 MANPATH=
 export MANPATH="/opt/share/man:$(manpath)"
 export PATH="$HOME/bin:/opt/bin:$PATH"
+export LD_LIBRARY_PATH="/opt/lib"
+export CFLAGS=-I/opt/include
+export LDFLAGS=-L/opt/lib
 export RI="--format ansi"
 export EDITOR="vi"
 export DBIC_TRACE_PROFILE=~/.dbic.json
