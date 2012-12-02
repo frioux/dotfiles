@@ -61,6 +61,5 @@ esac
 
 # ensure submodules are checked out before linking to them
 git submodule update --init --quiet
-link-file zsh/spark/spark ~/bin/spark
 link-file zsh/cxregs-bash-tools/lib ~/.smartcd
 link-file zsh/zaw ~/lib/zaw

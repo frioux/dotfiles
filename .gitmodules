@@ -4,9 +4,6 @@
 [submodule "vimpulse"]
 	path = vimpulse
 	url = git://gitorious.org/vimpulse/vimpulse.git
-[submodule "zsh/spark"]
-	path = zsh/spark
-	url = git://github.com/holman/spark.git
 [submodule "awesome/vicious"]
 	path = awesome/vicious
 	url = http://git.sysphere.org/vicious
