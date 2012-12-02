@@ -1,0 +1,45 @@
+set alias_file        = ~/mail/mutt_aliases
+set editor            = "vim -c 'set tw=70'"
+set envelope_from     = "yes"
+set folder            = "$HOME/Test"
+set followup_to       = yes
+set from              = "frioux@gmail.com"
+set honor_followup_to = yes
+set mbox_type         = Maildir
+set move              = no
+set pager_context     = 5
+set pgp_sign_as       = 0x737A7582
+set postponed         = "+bak.drafts"
+set realname          = "fREW Schmidt"
+set record            = "+bak.sent"
+set sendmail          = "/usr/bin/msmtp"
+set signature         = "~/.signature"
+set smart_wrap
+set sort_alias        = alias
+set sort_browser      = alpha
+set spoolfile         = /var/spool/mail/frew
+set status_on_top
+set use_from          = yes
+unset markers
+
+mailboxes `find ~/Test -maxdepth 1 -type d -printf "+%f "`
+
+macro compose A "<attach-message>?<toggle-mailboxes>" "attach message(s) to this message"
+macro index G <last-entry>
+macro index gg <first-entry>
+macro index C "<copy-message>?<toggle-mailboxes>" "copy a message to a mailbox"
+macro index M "<save-message>?<toggle-mailboxes>" "move a message to a mailbox"
+macro index,pager c "<change-folder>?<toggle-mailboxes>" "open a different folder"
+macro index,pager I "<shell-escape> offlineimap<enter>" "check mail"
+
+ignore *
+unignore Date: From: User-Agent: X-Mailer X-Operating-System To: \
+         Cc: Reply-To: Subject: Mail-Followup-To:
+hdr_order Date: From: User-Agent: X-Mailer X-Operating-System To: \
+        Cc: Reply-To: Subject: Mail-Followup-To:
+
+source ~/.mutt/colors
+source ~/.mutt/pgp
+push <show-version>
+
+# vim: ft=muttrc

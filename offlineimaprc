@@ -1,0 +1,23 @@
+[general]
+accounts = Test
+
+[Account Test]
+localrepository = Local
+remoterepository = gmail-remote
+
+[Repository Local]
+type = Maildir
+localfolders = ~/Test
+
+[Repository gmail-remote]
+type = Gmail
+remoteuser = frioux@gmail.com
+nametrans = lambda foldername: re.sub ('^\[gmail\]', 'bak',
+                               re.sub ('sent_mail', 'sent',
+                               re.sub ('starred', 'flagged',
+                               re.sub (' ', '_', foldername.lower()))))
+folderfilter = lambda foldername: foldername not in '[Gmail]/All Mail'
+# Necessary as of OfflineIMAP 6.5.4
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+
+# vim: ft=dosini

@@ -19,7 +19,12 @@ for x in        \
    tmux.conf    \
    Xdefaults    \
    xsession     \
+   mutt         \
+   msmtprc      \
+   muttrc       \
    zsh          \
+   signature    \
+   offlineimaprc\
    zshrc        \
    dbic.json    \
    adenosinerc.yml \
