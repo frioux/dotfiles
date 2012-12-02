@@ -1,15 +1,18 @@
 [general]
 accounts = Test
+fsync = False
 
 [Account Test]
 localrepository = Local
 remoterepository = gmail-remote
+status_backend = sqlite
 
 [Repository Local]
 type = Maildir
 localfolders = ~/Test
 
 [Repository gmail-remote]
+maxconnections = 3
 type = Gmail
 remoteuser = frioux@gmail.com
 nametrans = lambda foldername: re.sub ('^\[gmail\]', 'bak',
