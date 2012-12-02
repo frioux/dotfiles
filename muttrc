@@ -1,3 +1,4 @@
+set ascii_chars
 set alias_file        = ~/mail/mutt_aliases
 set editor            = "vim -c 'set tw=70'"
 set envelope_from     = "yes"
@@ -17,6 +18,7 @@ set signature         = "~/.signature"
 set smart_wrap
 set sort_alias        = alias
 set sort_browser      = alpha
+set sort              = threads
 set spoolfile         = /var/spool/mail/frew
 set status_on_top
 set use_from          = yes
