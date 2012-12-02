@@ -6,7 +6,7 @@ function link-file { _mkdir "${2:h}"; rm -rf "$2"; ln -s "$PWD/$1" "$2" }
 link-file awesome ~/.config/awesome
 link-file dotjs ~/.js
 link-file ssh_config ~/.ssh/config
-link-file terminator_config ~/.config/terminator
+link-file terminator_config ~/.config/terminator/config
 link-file install.sh .git/hooks/post-checkout
 link-file install.sh .git/hooks/post-merge
 
@@ -61,5 +61,5 @@ esac
 
 # ensure submodules are checked out before linking to them
 git submodule update --init --quiet
-link-file zsh/cxregs-bash-tools/lib ~/.smartcd
+link-file zsh/cxregs-bash-tools/lib ~/.smartcd/lib
 link-file zsh/zaw ~/lib/zaw
