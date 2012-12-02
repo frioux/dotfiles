@@ -52,7 +52,6 @@ git submodule update --init --quiet
 link-file zsh/spark/spark ~/bin/spark
 
 link-file zsh/cxregs-bash-tools/lib ~/.smartcd
-link-file zsh/resty ~/lib/resty
 link-file zsh/zaw ~/lib/zaw
 link-file dotjs ~/.js
 link-file ssh_config ~/.ssh/config
