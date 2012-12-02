@@ -1,14 +1,27 @@
 #!/bin/zsh
 
+function _mkdir {
+   if [[ ! -d $1 ]]; then
+      mkdir -p $1
+   fi
+}
+
+function link-file {
+   _mkdir "${2:h}"
+   rm -rf "$2"
+   echo "linking $PWD/$1 $2"
+   ln -s "$PWD/$1" "$2"
+}
+
+function dotlink-file {
+   link-file $1 "$HOME/.$1"
+}
+
 if [[ ! -x ~/bin ]]; then
    mkdir ~/bin
 fi
 
-if [[ ! -x ~/.config/terminator ]]; then
-   mkdir -p ~/.config/terminator
-fi
-rm -f ~/.config/terminator/config
-ln -s "$(pwd)/terminator_config" ~/.config/terminator/config
+link-file terminator_config ~/.config/terminator
 
 for x in        \
    gtkrc.mine   \
@@ -31,29 +44,18 @@ for x in        \
    perltidyrc   \
    jshintrc     \
 ; do
-   rm -rf "$HOME/.$x";
-   ln -s "$(pwd)/$x" "$HOME/.$x";
+   dotlink-file $x
 done
 
-rm -rf "$HOME/.config/awesome";
-ln -s "$(pwd)/awesome" "$HOME/.config/awesome";
+link-file awesome ~/.config/awesome
 git submodule update --init --quiet
-rm -f "$HOME/bin/spark"
-ln -s "$(pwd)/zsh/spark/spark" "$HOME/bin/spark"
+link-file zsh/spark/spark ~/bin/spark
 
-mkdir -p "$HOME/.smartcd"
-rm -rf "$HOME/.smartcd/lib"
-ln -s "$(pwd)/zsh/cxregs-bash-tools/lib" "$HOME/.smartcd/lib"
-mkdir -p "$HOME/lib"
-rm -rf "$HOME/lib/resty"
-ln -s "$(pwd)/zsh/resty" "$HOME/lib/resty"
-rm -rf "$HOME/lib/zaw"
-ln -s "$(pwd)/zsh/zaw" "$HOME/lib/zaw"
-rm -rf "$HOME/.js"
-ln -s "$(pwd)/dotjs" "$HOME/.js"
-mkdir -p "$HOME/.ssh"
-rm "$HOME/.ssh/config"
-ln -s "$(pwd)/ssh_config" "$HOME/.ssh/config"
+link-file zsh/cxregs-bash-tools/lib ~/.smartcd
+link-file zsh/resty ~/lib/resty
+link-file zsh/zaw ~/lib/zaw
+link-file dotjs ~/.js
+link-file ssh_config ~/.ssh/config
 
 case $OSTYPE in
    cygwin)
@@ -66,21 +68,16 @@ case $OSTYPE in
       mkdir -p "$home/var/swap";
    ;;
    *)
-      rm -rf "$HOME/.vimrc";
-      ln -s "$(pwd)/vimrc" "$HOME/.vimrc";
-      rm -rf "$HOME/.vim";
-      ln -s "$(pwd)/vim" "$HOME/.vim";
+      link-file vimrc ~/.vimrc
+      link-file vim ~/.vim
    ;;
 esac
 
-pushd bin;
+pushd bin
 for tool in *; do
-   rm -f "$HOME/bin/$tool"
-   ln -s "$(pwd)/$tool" "$HOME/bin/$tool"
+   link-file $tool ~/bin/$tool
 done
-popd;
+popd
 
-rm -f .git/hooks/post-checkout
-rm -f .git/hooks/post-merge
-ln -s "$(pwd)/install.sh" .git/hooks/post-checkout
-ln -s "$(pwd)/install.sh" .git/hooks/post-merge
+link-file install.sh .git/hooks/post-checkout
+link-file install.sh .git/hooks/post-merge
