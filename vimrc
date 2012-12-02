@@ -180,6 +180,11 @@ noremap! ; :
 iunmap :
 iunmap ;
 
+" F1 sucks.  TURN IT OFF
+
+imap <F1> <nop>
+map <F1> <nop>
+
 "}}}
 
 if has('win32')
