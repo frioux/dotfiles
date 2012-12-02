@@ -1,25 +1,29 @@
 #!/bin/bash
 
 apt-get --no-install-recommends install \
-   curl \
-   build-essential \
-   autoconf \
-   asciidoc \
-   libcurl4-openssl-dev \
-   git-core \
-   zsh \
-   screen \
-   suckless-tools \
-   awesome \
-   awesome-extra \
-   mosh \
-   firefox \
-   lastfm \
-   vim-gnome \
-   vim \
-   xfonts-terminus \
-   xfonts-terminus-oblique \
-   terminator \
-   xclip \
-   openvpn
+   asciidoc                             \
+   autoconf                             \
+   awesome                              \
+   awesome-extra                        \
+   build-essential                      \
+   curl                                 \
+   firefox                              \
+   git-core                             \
+   lastfm                               \
+   libcurl4-openssl-dev                 \
+   mosh                                 \
+   msmtp                                \
+   offlineimap                          \
+   openvpn                              \
+   openssh-server                       \
+   openssh-client                       \
+   screen                               \
+   suckless-tools                       \
+   terminator                           \
+   vim                                  \
+   vim-gnome                            \
+   xclip                                \
+   xfonts-terminus                      \
+   xfonts-terminus-oblique              \
+   zsh
 
