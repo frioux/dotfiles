@@ -17,10 +17,6 @@ function dotlink-file {
    link-file $1 "$HOME/.$1"
 }
 
-if [[ ! -x ~/bin ]]; then
-   mkdir ~/bin
-fi
-
 link-file terminator_config ~/.config/terminator
 
 for x in        \
