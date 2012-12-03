@@ -11,6 +11,7 @@ set move              = no
 set pager_context     = 5
 set pgp_sign_as       = 0x737A7582
 set postponed         = "+bak.drafts"
+set query_command     = "goobook query '%s'"
 set realname          = "fREW Schmidt"
 set record            = "+bak.sent"
 set sendmail          = "/usr/bin/msmtp"
