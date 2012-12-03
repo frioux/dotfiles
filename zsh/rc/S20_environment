@@ -1,4 +1,3 @@
-
 MANPATH=
 export MANPATH="/opt/share/man:$(manpath)"
 export PATH="$HOME/bin:/opt/bin:$PATH"
@@ -14,4 +13,5 @@ export NOPASTE_SSH_DOCROOT=p.afoolishmanifesto.com/p
 export NOPASTE_SSH_WEBPATH=http://p.afoolishmanifesto.com/p
 export NOPASTE_SSH_MODE=0644
 export NOPASTE_SERVICES='ssh Shadowcat'
+
 # vim: ft=zsh
