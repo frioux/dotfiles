@@ -11,6 +11,9 @@ apt-get --no-install-recommends install \
    git-core                             \
    lastfm                               \
    libcurl4-openssl-dev                 \
+   libxapian-dev                        \
+   libgmime-2.6-dev                     \
+   libtalloc-dev                        \
    mosh                                 \
    msmtp                                \
    offlineimap                          \
