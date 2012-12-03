@@ -18,7 +18,8 @@ set sendmail          = "/usr/bin/msmtp"
 set signature         = "~/.signature"
 set smart_wrap
 set sort_alias        = alias
-set sort_browser      = alpha
+set sort_aux          = last-date-received
+set sort_browser      = reverse-date
 set sort              = threads
 set spoolfile         = /var/spool/mail/frew
 set status_on_top
