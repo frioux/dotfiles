@@ -18,7 +18,8 @@ if [[ "$HOST" = *Lynx* ]]; then
    alias restartall='stopall ; startall'
 
    function lxs-current-version {
-      echo ${${(s:-:)${${(no)${(f)"$(git ls-tree --name-only origin/release var/SQLServer/upgrade/)"}}[-1]}}[2]}
+      local diff="$(git ls-tree --name-only origin/release var/SQLServer/upgrade/)"
+      echo ${${(s:-:)${${(no)${(f)diff}}[-1]}}[2]}
    }
 
    function lxs-next-version {
@@ -48,7 +49,8 @@ if [[ "$HOST" = *Lynx* ]]; then
    }
 
    function lxs-new-migrations {
-      printf '%s\n' ${${(M)${(f)"$(git diff HEAD '^origin/release' --name-status -- var)"}:#A*}##$'A\t'}
+      local diff="$(git diff HEAD '^origin/release' --name-status -- var)"
+      printf '%s\n' ${${(M)${(f)diff}:#A*}##$'A\t'}
    }
 
    function lxs-mv-new-migrations {
