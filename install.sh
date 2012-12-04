@@ -21,6 +21,7 @@ for x in           \
    irssi           \
    jshintrc        \
    msmtprc         \
+   mailcap         \
    mutt            \
    muttrc          \
    offlineimaprc   \

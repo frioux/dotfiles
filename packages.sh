@@ -15,6 +15,7 @@ apt-get --no-install-recommends install \
    libxapian-dev                        \
    libgmime-2.6-dev                     \
    libtalloc-dev                        \
+   lynx                                 \
    mosh                                 \
    msmtp                                \
    offlineimap                          \
