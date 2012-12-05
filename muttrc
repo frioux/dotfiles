@@ -20,15 +20,15 @@ set record            = "+bak.sent"
 set sendmail          = "/usr/bin/msmtp"
 set signature         = "~/.signature"
 set sleep_time        = 0
-set smart_wrap
+set smart_wrap        = yes
 set sort_alias        = alias
 set sort_aux          = last-date-received
 set sort_browser      = reverse-date
 set sort              = threads
 set spoolfile         = /var/spool/mail/frew
-set status_on_top
+set status_on_top     = yes
 set use_from          = yes
-unset markers
+set markers           = no
 
 mailboxes `find ~/Test -maxdepth 1 -type d -printf "+%f "`
 
