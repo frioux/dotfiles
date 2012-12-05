@@ -3,6 +3,8 @@ accounts = Test
 fsync = False
 
 [Account Test]
+autorefresh = 1
+quick = 10
 localrepository = Local
 remoterepository = gmail-remote
 
@@ -11,7 +13,10 @@ type = Maildir
 localfolders = ~/Test
 
 [Repository gmail-remote]
-maxconnections = 3
+# where the hell is the actual doc for this stuff?
+keepalive = 60
+holdconnectionopen = yes
+maxconnections = 1
 type = Gmail
 remoteuser = frioux@gmail.com
 nametrans = lambda foldername: re.sub ('^\[gmail\]', 'bak',
@@ -21,5 +26,7 @@ nametrans = lambda foldername: re.sub ('^\[gmail\]', 'bak',
 folderfilter = lambda foldername: foldername not in '[Gmail]/All Mail'
 # Necessary as of OfflineIMAP 6.5.4
 sslcacertfile = /etc/ssl/certs/ca-certificates.crt
-
+# turns out you can use 100% of gmails features through IMAP. SWEET!
+# http://support.google.com/mail/bin/answer.py?hl=en&topic=12815&answer=77657
+realdelete = no
 # vim: ft=dosini
