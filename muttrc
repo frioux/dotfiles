@@ -5,10 +5,12 @@ set confirmappend     = no
 set delete            = yes
 set editor            = "vim -c 'set tw=70'"
 set envelope_from     = "yes"
+set fast_reply        = yes
 set folder            = "$HOME/Test"
 set followup_to       = yes
 set from              = "frioux@gmail.com"
 set honor_followup_to = yes
+set include           = yes
 set mbox_type         = Maildir
 set move              = no
 set pager_context     = 5
