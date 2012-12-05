@@ -67,6 +67,4 @@ source ~/.mutt/colors
 source ~/.mutt/pgp
 push <show-version>
 
-auto_view text/html
-
 # vim: ft=muttrc
