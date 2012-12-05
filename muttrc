@@ -1,6 +1,8 @@
 set alias_file        = ~/mail/mutt_aliases
 set beep_new          = yes
 set charset           = "utf-8"
+set confirmappend     = no
+set delete            = yes
 set editor            = "vim -c 'set tw=70'"
 set envelope_from     = "yes"
 set folder            = "$HOME/Test"
@@ -17,6 +19,7 @@ set realname          = "fREW Schmidt"
 set record            = "+bak.sent"
 set sendmail          = "/usr/bin/msmtp"
 set signature         = "~/.signature"
+set sleep_time        = 0
 set smart_wrap
 set sort_alias        = alias
 set sort_aux          = last-date-received
