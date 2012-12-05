@@ -37,7 +37,15 @@ macro index G <last-entry>
 macro index gg <first-entry>
 macro index C "<copy-message>?<toggle-mailboxes>" "copy a message to a mailbox"
 macro index M "<save-message>?<toggle-mailboxes>" "move a message to a mailbox"
+macro index M* "<save-message>=alert<enter>" "mark message as alert"
+macro index M+ "<save-message>=crit<enter>"  "mark message as crit"
+macro index M- "<save-message>=err<enter>"   "mark message as err"
 macro index,pager c "<change-folder>?<toggle-mailboxes>" "open a different folder"
+macro index,pager >m "<change-folder>=mitsi<enter>" "view mitsi list"
+macro index,pager >i "<change-folder>=inbox<enter>" "view inbox"
+macro index,pager >* "<change-folder>=alert<enter>" "view alert"
+macro index,pager >+ "<change-folder>=crit<enter>"  "view crit"
+macro index,pager >- "<change-folder>=err<enter>"   "view err"
 macro index,pager I "<shell-escape> offlineimap<enter>" "check mail"
 
 ignore *
