@@ -5,7 +5,6 @@ fsync = False
 [Account Test]
 localrepository = Local
 remoterepository = gmail-remote
-status_backend = sqlite
 
 [Repository Local]
 type = Maildir
