@@ -41,16 +41,21 @@ macro index G <last-entry>
 macro index gg <first-entry>
 macro index C "<copy-message>?<toggle-mailboxes>" "copy a message to a mailbox"
 macro index M "<save-message>?<toggle-mailboxes>" "move a message to a mailbox"
-macro index M* "<save-message>=alert<enter>" "mark message as alert"
-macro index M+ "<save-message>=crit<enter>"  "mark message as crit"
-macro index M- "<save-message>=err<enter>"   "mark message as err"
 macro index,pager c "<change-folder>?<toggle-mailboxes>" "open a different folder"
-macro index,pager >m "<change-folder>=mitsi<enter>" "view mitsi list"
-macro index,pager >i "<change-folder>=inbox<enter>" "view inbox"
-macro index,pager >* "<change-folder>=alert<enter>" "view alert"
-macro index,pager >+ "<change-folder>=crit<enter>"  "view crit"
-macro index,pager >- "<change-folder>=err<enter>"   "view err"
-macro index,pager I "<shell-escape> offlineimap<enter>" "check mail"
+
+macro index,pager I1 "<save-message>=alert<enter>$" "mark message as alert"
+macro index,pager I2 "<save-message>=crit<enter>$"  "mark message as crit"
+macro index,pager I3 "<save-message>=err<enter>$"   "mark message as err"
+macro index,pager IT "<save-message>=bak.trash<enter>$"   "delete message"
+macro index,pager IS "<save-message>=bak.spam<enter>$"   "mark message as spam"
+
+macro index,pager im "<change-folder>=mitsi<enter>" "view mitsi list"
+macro index,pager ii "<change-folder>=inbox<enter>" "view inbox"
+macro index,pager i1 "<change-folder>=alert<enter>" "view alert"
+macro index,pager i2 "<change-folder>=crit<enter>"  "view crit"
+macro index,pager i3 "<change-folder>=err<enter>"   "view err"
+macro index,pager iT "<change-folder>=bak.trash<enter>"  "view trash"
+macro index,pager iS "<change-folder>=bak.spam<enter>"   "view spam"
 
 ignore *
 unignore Date: From: User-Agent: X-Mailer X-Operating-System To: \
