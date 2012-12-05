@@ -74,7 +74,8 @@ function lprompt {
   local vimode='${PR_VIMODE}'
   local vicol='${PR_VICOLOR}'
 
-  PROMPT="${host_prompt} ${jobs_total}${history_total} ${directory_prompt}${vcs}${error_total}%{${vicol}%}${vimode}%{$reset_color%} "
+  local memento_mori="$fg[black]$bg[white]☠$reset_color"
+  PROMPT="$memento_mori ${host_prompt} ${jobs_total}${history_total} ${directory_prompt}${vcs}${error_total}%{${vicol}%}${vimode}%{$reset_color%} "
 }
 
 lprompt
