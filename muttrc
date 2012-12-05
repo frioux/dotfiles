@@ -27,7 +27,6 @@ set sleep_time        = 0
 set smart_wrap        = yes
 set sort_alias        = alias
 set sort_aux          = reverse-last-date-received
-set sort_browser      = reverse-date
 set sort              = threads
 set spoolfile         = +inbox
 set status_on_top     = yes
