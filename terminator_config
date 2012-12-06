@@ -2,6 +2,7 @@
   enabled_plugins = APTURLHandler, LaunchpadCodeURLHandler, LaunchpadBugURLHandler
   borderless = True
 [keybindings]
+  new_tab = None
 [profiles]
   [[default]]
     scrollbar_position = hidden
