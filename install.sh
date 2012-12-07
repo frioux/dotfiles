@@ -7,6 +7,7 @@ link-file awesome ~/.config/awesome
 link-file dotjs ~/.js
 link-file ssh_config ~/.ssh/config
 link-file terminator_config ~/.config/terminator/config
+link-file keepassx_config.ini ~/.config/keepassx/config.ini
 link-file install.sh .git/hooks/post-checkout
 link-file install.sh .git/hooks/post-merge
 
