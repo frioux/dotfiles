@@ -1,0 +1,17 @@
+[database]
+path=/home/frew/Test
+
+[user]
+name=Arthur Axel 'fREW' Schmidt
+primary_email=frioux@gmail.com
+other_email=FrewSchmidt@letu.edu;frew@mitsi.com;
+
+[new]
+tags=unread;inbox;
+ignore=
+
+[search]
+exclude_tags=deleted;spam
+
+[maildir]
+synchronize_flags=true

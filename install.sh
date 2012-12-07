@@ -24,6 +24,7 @@ for x in           \
    mailcap         \
    mutt            \
    muttrc          \
+   notmuch-config  \
    offlineimaprc   \
    perltidyrc      \
    signature       \
