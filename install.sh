@@ -27,6 +27,7 @@ for x in           \
    muttrc          \
    notmuch-config  \
    offlineimaprc   \
+   offlineimap.py  \
    perltidyrc      \
    signature       \
    tmux.conf       \

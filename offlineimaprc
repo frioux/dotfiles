@@ -1,6 +1,7 @@
 [general]
 accounts = Mail
 fsync = False
+pythonfile=~/.offlineimap.py
 
 [Account Mail]
 autorefresh = 1
@@ -25,6 +26,7 @@ holdconnectionopen = yes
 maxconnections = 1
 type = Gmail
 remoteuser = frioux@gmail.com
+foldersort = mycmp
 
 nametrans = lambda foldername: re.sub ('^\[Gmail\]', 'gmail',
                                   re.sub ('sent_mail', 'sent',
