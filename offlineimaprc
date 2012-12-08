@@ -1,8 +1,8 @@
 [general]
-accounts = Test
+accounts = Mail
 fsync = False
 
-[Account Test]
+[Account Mail]
 autorefresh = 1
 quick = 10
 localrepository = Local
@@ -10,7 +10,7 @@ remoterepository = gmail-remote
 
 [Repository Local]
 type = Maildir
-localfolders = ~/Test
+localfolders = ~/Mail
 
 [Repository gmail-remote]
 # where the hell is the actual doc for this stuff?

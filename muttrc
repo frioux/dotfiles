@@ -6,7 +6,7 @@ set delete            = yes
 set editor            = "vim -c 'set tw=70'"
 set envelope_from     = "yes"
 set fast_reply        = yes
-set folder            = "$HOME/Test"
+set folder            = "$HOME/Mail"
 set followup_to       = yes
 set from              = "frioux@gmail.com"
 # this is an in memory cache since this is a
@@ -36,7 +36,7 @@ set status_on_top     = yes
 set use_from          = yes
 set markers           = no
 
-mailboxes `find ~/Test -maxdepth 1 -type d -printf "+%f "`
+mailboxes `find ~/Mail -maxdepth 1 -type d -printf "+%f "`
 
 macro compose A "<attach-message>?<toggle-mailboxes>" "attach message(s) to this message"
 macro index G <last-entry>
