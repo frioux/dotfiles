@@ -1,8 +1,7 @@
 " textobj-between - Text objects for a range between a character.
 " Version: 0.1.0
 " Author : thinca <thinca+vim@gmail.com>
-" License: Creative Commons Attribution 2.1 Japan License
-"          <http://creativecommons.org/licenses/by/2.1/jp/deed.en>
+" License: zlib License
 
 if exists('g:loaded_textobj_between')
   finish
