@@ -1,16 +1,21 @@
-function! textobj#between#select_a()  "{{{1
+" textobj-between - Text objects for a range between a character.
+" Version: 0.1.0
+" Author : thinca <thinca+vim@gmail.com>
+" License: Creative Commons Attribution 2.1 Japan License
+"          <http://creativecommons.org/licenses/by/2.1/jp/deed.en>
+
+let s:save_cpo = &cpo
+set cpo&vim
+
+function! textobj#between#select_a()
   return s:select(0)
 endfunction
 
-
-
-function! textobj#between#select_i()  "{{{1
+function! textobj#between#select_i()
   return s:select(1)
 endfunction
 
-
-
-function! s:select(in)  "{{{1
+function! s:select(in)
   let c = getchar()
   if type(c) == type(0)
     let c = nr2char(c)
@@ -51,3 +56,5 @@ function! s:select(in)  "{{{1
   endtry
 endfunction
 
+let &cpo = s:save_cpo
+unlet s:save_cpo
