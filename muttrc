@@ -31,7 +31,7 @@ set smart_wrap        = yes
 set sort_alias        = alias
 set sort_aux          = reverse-last-date-received
 set sort              = threads
-set spoolfile         = +inbox
+set spoolfile         = +INBOX
 set status_on_top     = yes
 set use_from          = yes
 set markers           = no
@@ -48,11 +48,11 @@ macro index,pager c "<change-folder>?<toggle-mailboxes>" "open a different folde
 macro index,pager I1 "<save-message>=alert<enter>$" "mark message as alert"
 macro index,pager I2 "<save-message>=crit<enter>$"  "mark message as crit"
 macro index,pager I3 "<save-message>=err<enter>$"   "mark message as err"
-macro index,pager IT "<save-message>=bak.trash<enter>$"   "delete message"
-macro index,pager IS "<save-message>=bak.spam<enter>$"   "mark message as spam"
+macro index,pager IT "<save-message>=gmail.Trash<enter>$"   "delete message"
+macro index,pager IS "<save-message>=gmail.Spam<enter>$"   "mark message as spam"
 
 macro index,pager im "<change-folder>=mitsi<enter>" "view mitsi list"
-macro index,pager ii "<change-folder>=inbox<enter>" "view inbox"
+macro index,pager ii "<change-folder>=INBOX<enter>" "view inbox"
 macro index,pager i1 "<change-folder>=alert<enter>" "view alert"
 macro index,pager i2 "<change-folder>=crit<enter>"  "view crit"
 macro index,pager i3 "<change-folder>=err<enter>"   "view err"
