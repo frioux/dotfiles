@@ -114,7 +114,7 @@ weather_widget = function(
    local actual_tooltip = awful.tooltip({ objects = { actual_widget } });
 
    actual_widget:buttons({
-      button({}, 1, function () awful.util.spawn("firefox '" .. url .. "'") end)
+      awful.button({}, 1, function () awful.util.spawn("firefox '" .. url .. "'") end)
    })
 
    vicious.register(actual_widget, vicious.widgets.weather,
@@ -177,9 +177,9 @@ volumecfg.toggle = function ()
        volumecfg.mixercommand(" sset " .. volumecfg.channel .. " toggle")
 end
 volumecfg.widget.widget:buttons({
-       button({ }, 4, function () volumecfg.up() end),
-       button({ }, 5, function () volumecfg.down() end),
-       button({ }, 1, function () volumecfg.toggle() end)
+       awful.button({ }, 4, function () volumecfg.up() end),
+       awful.button({ }, 5, function () volumecfg.down() end),
+       awful.button({ }, 1, function () volumecfg.toggle() end)
 })
 volumecfg.update()
 -- }}}
@@ -193,7 +193,7 @@ if has_battery then
    batwidget:set_color("#000000")
    batwidget:set_gradient_colors({ "#FF0000", "#FF0000" })
    batwidget.widget:buttons({
-      button({}, 1, function () awful.util.spawn("gnome-power-statistics") end)
+      awful.button({}, 1, function () awful.util.spawn("gnome-power-statistics") end)
    })
 
    batwidget_t = awful.tooltip({ objects = { batwidget.widget },})
@@ -220,7 +220,7 @@ cpuwidget:set_width(50)
 cpuwidget:set_background_color("#000000")
 cpuwidget:set_gradient_colors({ "#00FF00", "#00FF00" })
 cpuwidget.widget:buttons({
-   button({}, 1, function () awful.util.spawn("gnome-system-monitor --show-resources-tab") end)
+   awful.button({}, 1, function () awful.util.spawn("gnome-system-monitor --show-resources-tab") end)
 })
 cpuwidget_t = awful.tooltip({ objects = { cpuwidget.widget },})
 
@@ -257,7 +257,7 @@ memorywidget:set_width(50)
 memorywidget:set_background_color("#000000")
 memorywidget:set_gradient_colors({ "#0000FF", "#0000FF" })
 memorywidget.widget:buttons({
-   button({}, 1, function () awful.util.spawn("gnome-system-monitor --show-resources-tab") end)
+   awful.button({}, 1, function () awful.util.spawn("gnome-system-monitor --show-resources-tab") end)
 })
 
 memorywidget_t = awful.tooltip({ objects = { memorywidget.widget },})
