@@ -271,7 +271,7 @@ end, 1)
 -- {{{ weather
 osweatherwidget = weather_widget(
    "KBIX",
-   "http://www.weather.com/weather/right-now/Biloxi+MS+USMS0033",
+   "http://www.weather.com/weather/hourbyhour/graph/Biloxi+MS+USMS0033:1:US?pagenum=2&nextbeginIndex=0",
    "OS"
 )
 
@@ -279,7 +279,7 @@ awful.widget.layout.margins[osweatherwidget] = { right = 5 };
 
 rcweatherwidget = weather_widget(
    "KADS",
-   "http://www.weather.com/weather/right-now/Addison+TX+USTX0007",
+   "http://www.weather.com/weather/hourbyhour/graph/Richardson+TX+USTX1134:1:US?pagenum=2&nextbeginIndex=0",
    "Richardson"
 )
 
@@ -287,7 +287,7 @@ awful.widget.layout.margins[rcweatherwidget] = { left = 5, right = 5 };
 
 gvweatherwidget = weather_widget(
    "KHQZ",
-   "http://www.weather.com/weather/right-now/75032",
+   "http://www.weather.com/weather/hourbyhour/graph/Rockwall+TX+75032:4:US?pagenum=2&nextbeginIndex=0",
    "Rockwall"
 )
 
