@@ -32,17 +32,7 @@ error_prompt3="%{$fg_bold[$error_color]%}>%{$reset_color%}"
 
 error_total="%(?..${error_prompt1}${error_prompt2}${error_prompt3} )"
 
-case "$TERM" in
-  (screen)
-    function precmd() { print -Pn "\033]0;S $TTY:t{%100<...<%~%<<}\007" }
-  ;;
-  (xterm)
-    directory_prompt=""
-  ;;
-  (*)
-    directory_prompt="%{$fg[$directory_color]%}%~%{$reset_color%} "
-  ;;
-esac
+directory_prompt="%{$fg[$directory_color]%}%~%{$reset_color%} "
 
 # set formats
 # %b - branchname
