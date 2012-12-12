@@ -180,10 +180,8 @@ noremap! ; :
 iunmap :
 iunmap ;
 
-" F1 sucks.  TURN IT OFF
-
-imap <F1> <nop>
-map <F1> <nop>
+nnoremap <F1> :GundoToggle<CR>
+inoremap <F1> :GundoToggle<CR>
 
 "}}}
 
