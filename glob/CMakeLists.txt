@@ -172,8 +172,34 @@ new_ec_test(braces_escaped_backslash3 braces.in i.txt "^backslash=yes[ \t\n\r]*$
 
 # Tests for **
 
-# matches over path separator
-new_ec_test(star_star_over_separator star_star.in a/e.c "^key=value[ \t\n\r]*$")
-
 # test EditorConfig files with UTF-8 characters larger than 127
 new_ec_test(utf_8_char utf8char.in "中文.txt" "^key=value[ \t\n\r]*$")
+
+# matches over path separator
+new_ec_test(star_star_over_separator1 star_star.in a/z.c "^key1=value1[ \t\n\r]*$")
+new_ec_test(star_star_over_separator2 star_star.in amnz.c "^key1=value1[ \t\n\r]*$")
+new_ec_test(star_star_over_separator3 star_star.in am/nz.c "^key1=value1[ \t\n\r]*$")
+new_ec_test(star_star_over_separator4 star_star.in a/mnz.c "^key1=value1[ \t\n\r]*$")
+new_ec_test(star_star_over_separator5 star_star.in amn/z.c "^key1=value1[ \t\n\r]*$")
+new_ec_test(star_star_over_separator6 star_star.in a/mn/z.c "^key1=value1[ \t\n\r]*$")
+
+new_ec_test(star_star_over_separator7 star_star.in b/z.c "^key2=value2[ \t\n\r]*$")
+new_ec_test(star_star_over_separator8 star_star.in b/mnz.c "^key2=value2[ \t\n\r]*$")
+new_ec_test(star_star_over_separator9 star_star.in b/mn/z.c "^key2=value2[ \t\n\r]*$")
+new_ec_test(star_star_over_separator10 star_star.in bmnz.c "^[ \t\n\r]*$")
+new_ec_test(star_star_over_separator11 star_star.in bm/nz.c "^[ \t\n\r]*$")
+new_ec_test(star_star_over_separator12 star_star.in bmn/z.c "^[ \t\n\r]*$")
+
+new_ec_test(star_star_over_separator13 star_star.in c/z.c "^key3=value3[ \t\n\r]*$")
+new_ec_test(star_star_over_separator14 star_star.in cmn/z.c "^key3=value3[ \t\n\r]*$")
+new_ec_test(star_star_over_separator15 star_star.in c/mn/z.c "^key3=value3[ \t\n\r]*$")
+new_ec_test(star_star_over_separator16 star_star.in cmnz.c "^[ \t\n\r]*$")
+new_ec_test(star_star_over_separator17 star_star.in cm/nz.c "^[ \t\n\r]*$")
+new_ec_test(star_star_over_separator18 star_star.in c/mnz.c "^[ \t\n\r]*$")
+
+new_ec_test(star_star_over_separator19 star_star.in d/z.c "^key4=value4[ \t\n\r]*$")
+new_ec_test(star_star_over_separator20 star_star.in d/mn/z.c "^key4=value4[ \t\n\r]*$")
+new_ec_test(star_star_over_separator21 star_star.in dmnz.c "^[ \t\n\r]*$")
+new_ec_test(star_star_over_separator22 star_star.in dm/nz.c "^[ \t\n\r]*$")
+new_ec_test(star_star_over_separator23 star_star.in d/mnz.c "^[ \t\n\r]*$")
+new_ec_test(star_star_over_separator24 star_star.in dmn/z.c "^[ \t\n\r]*$")
