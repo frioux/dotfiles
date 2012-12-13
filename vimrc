@@ -11,10 +11,10 @@ endif
 autocmd VimEnter * set vb t_vb=
 
 " Remove any trailing whitespace that is in the file
-autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
+autocmd BufRead,BufWrite * if ! &bin && ! &readonly && expand('%') =~ "^\(.git\)\@!" | silent! %s/\s\+$//ge | endif
 
 " replace tabs with spaces
-autocmd BufRead,BufWrite * if ! &bin | silent! %retab | endif
+autocmd BufRead,BufWrite * if ! &bin && ! &readonly && expand('%') =~ "^\(.git\)\@!" | silent! %retab | endif
 
 " Restore cursor position to where it was before
 function! ResCur()
