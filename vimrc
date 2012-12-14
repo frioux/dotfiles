@@ -65,6 +65,8 @@ set expandtab
 set sw=3
 set ts=3
 
+set tw=80
+
 " Cool tab completion stuff
 set wildmenu
 set wildmode=list:longest,full
