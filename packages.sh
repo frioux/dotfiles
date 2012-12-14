@@ -9,6 +9,8 @@ apt-get --no-install-recommends install \
    curl                                 \
    firefox                              \
    git-core                             \
+   gnome-power-manager                  \
+   gnome-system-monitor                 \
    lastfm                               \
    libcurl4-openssl-dev                 \
    libncursesw5-dev                     \
