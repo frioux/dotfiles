@@ -1,14 +1,8 @@
-xmonad/xmonad-i386-linux
-xmonad/xmonad.errors
-xmonad/xmonad.hi
-xmonad/xmonad.o
-xmonad/history
 vim/.netrwhist
 vim/spell/en.utf-8.add
 vim/spell/en.utf-8.add.spl
 vim/bundle/*/doc/tags
 vim/bundle/*/doc/tags-*
 *.swp
-passwords.kdb.lock
 zsh/cache
 *.dat
