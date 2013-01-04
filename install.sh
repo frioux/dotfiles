@@ -10,6 +10,7 @@ link-file terminator_config ~/.config/terminator/config
 link-file keepassx_config.ini ~/.config/keepassx/config.ini
 link-file install.sh .git/hooks/post-checkout
 link-file install.sh .git/hooks/post-merge
+link-file xsession ~/.xinitrc
 
 # literal dotfiles
 for x in           \

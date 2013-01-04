@@ -1,12 +1,15 @@
-#!/bin/sh
+nm-applet &
+dropbox start &
+eval `gnome-keyring-daemon`
+eval `ssh-agent`
 
-export PATH=/home/frew/code/dotfiles/bin:/home/frew/code/dzen:/home/frew/perl5/perlbrew/bin:/opt/bin:$PATH
-export TERM=screen-256color
-cd /home/frew/code/dotfiles/bin
-dstat --mem --battery --cpu --thermal --output out.csv | ./rrdstore.pl &
-status.zsh | dzen2 -bg black -fn terminus -ta r -e ''&
-cd /home/frew
-urxvt&
-xsetroot -solid black&
+exec awesome
+# vim: ft=bash
 
-xmonad
+# for this to work you must have the following in
+# /usr/share/xsessions/xsession.desktop:
+
+#    [Desktop Entry]
+#    Name=Awesome-Gnome
+#    Comment=This runs ~/.xsession
+#    Exec=/etc/X11/Xsession
