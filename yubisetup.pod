@@ -1,0 +1,17 @@
+=head1 How to set up online two-factor auth with a yubikey
+
+=over 4
+
+=item * C<< sudo pam-auth-update >>, then enable yubico
+
+=item * L<Get API key|https://upgrade.yubico.com/getapikey/>
+
+=item * Put key data in F</etc/pam.d/common-auth>
+
+=item * Add C<< authfile=/etc/yubikey_mappings >> to yubi line
+
+=item * Get C<$yubiid> from the first 12 characters of an OTP
+
+=item * Create F</etc/yubikey_mappings> and put C<frew:$yubiid> in the file
+
+=back
