@@ -13,18 +13,18 @@ apt-get --no-install-recommends install \
    gnome-system-monitor                 \
    lastfm                               \
    libcurl4-openssl-dev                 \
-   libncursesw5-dev                     \
-   libxapian-dev                        \
    libgmime-2.6-dev                     \
+   libncursesw5-dev                     \
    libtalloc-dev                        \
    libtokyocabinet-dev                  \
+   libxapian-dev                        \
    lynx                                 \
    mosh                                 \
    msmtp                                \
    offlineimap                          \
-   openvpn                              \
-   openssh-server                       \
    openssh-client                       \
+   openssh-server                       \
+   openvpn                              \
    screen                               \
    suckless-tools                       \
    terminator                           \
