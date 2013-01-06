@@ -102,6 +102,9 @@ let g:clipbrdDefaultReg = '+'
 
 " allow selection of nothing
 set virtualedit=block
+
+" I never use octal (or hex?) so only treat numbers like decimals
+set nrformats=
 " }}}
 
 "{{{Look and Feel
