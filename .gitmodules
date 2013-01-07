@@ -55,3 +55,12 @@
 [submodule "vim/bundle/gundo.vim"]
 	path = vim/bundle/gundo.vim
 	url = git://github.com/sjl/gundo.vim.git
+[submodule "vim/bundle/vim-textobj-user"]
+	path = vim/bundle/vim-textobj-user
+	url = git://github.com/kana/vim-textobj-user.git
+[submodule "vim/bundle/vim-textobj-entire"]
+	path = vim/bundle/vim-textobj-entire
+	url = git://github.com/kana/vim-textobj-entire.git
+[submodule "vim/bundle/vim-textobj-underscore"]
+	path = vim/bundle/vim-textobj-underscore
+	url = git://github.com/lucapette/vim-textobj-underscore.git
