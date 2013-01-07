@@ -33,6 +33,7 @@ for x in           \
    signature       \
    tmux.conf       \
    Xdefaults       \
+   xmodmap         \
    xsession        \
    zsh             \
    zshrc           \

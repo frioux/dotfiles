@@ -2,6 +2,8 @@ nm-applet &
 dropbox start &
 eval `gnome-keyring-daemon`
 eval `ssh-agent`
+xmodmap "$HOME/.xmodmap"
+keepassx &
 
 exec awesome
 # vim: ft=bash
