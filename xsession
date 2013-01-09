@@ -1,5 +1,6 @@
 nm-applet &
 dropbox start &
+uptrack-manager &
 eval `gnome-keyring-daemon`
 eval `ssh-agent`
 xmodmap "$HOME/.xmodmap"
