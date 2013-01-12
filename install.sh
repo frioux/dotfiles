@@ -34,6 +34,7 @@ for x in           \
    tmux.conf       \
    Xdefaults       \
    xmodmap         \
+   xscreensaver    \
    xsession        \
    zsh             \
    zshrc           \
