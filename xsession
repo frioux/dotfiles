@@ -1,6 +1,7 @@
 nm-applet &
 dropbox start &
 uptrack-manager &
+xscreensaver -no-splash &
 eval `gnome-keyring-daemon`
 eval `ssh-agent`
 xmodmap "$HOME/.xmodmap"
