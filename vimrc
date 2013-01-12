@@ -69,7 +69,7 @@ set tw=80
 
 " Cool tab completion stuff
 set wildmenu
-set wildmode=list:longest,full
+set wildmode=full
 
 " Enable mouse support in console
 set mouse=a
