@@ -11,14 +11,14 @@
  sudo chmod g+rw /etc/yubikey
  sudo chmod g+s /usr/local/sbin/yk_chkpwd
 
-Put the following line at the top of F</etc/pam.d/common-auth>:
+Add a key:
 
- auth requisite pam_yubikey.so
-
-To add a key:
-
- ykpasswd -a -u frew -k $AES -o $OTP
+ sudo ykpasswd -a -u frew -k $AES -o $OTP
 
 B<NOTE:> Do not include the C<h:> in the AES value.
 
-Finally run C<ykvalidate $OTP> and it should identify the configured user.
+Run C<ykvalidate $OTP> and it should identify the configured user.
+
+Finally, put the following line at the top of F</etc/pam.d/common-auth>:
+
+ auth requisite pam_yubikey.so
