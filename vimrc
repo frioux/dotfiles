@@ -189,6 +189,9 @@ iunmap ;
 nnoremap <F1> :GundoToggle<CR>
 inoremap <F1> :GundoToggle<CR>
 
+" Make %% represent the dir of the current buffer
+cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
+
 "}}}
 
 if has('win32')
