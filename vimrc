@@ -192,6 +192,8 @@ inoremap <F1> :GundoToggle<CR>
 " Make %% represent the dir of the current buffer
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 
+set pastetoggle=<f10>
+
 "}}}
 
 if has('win32')
