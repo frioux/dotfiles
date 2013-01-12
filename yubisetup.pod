@@ -1,7 +1,6 @@
 =head1 How to set up offline two-factor auth with a yubikey
 
  git clone git://github.com/firnsy/yubipam.git
- sudo apt-get install libpam0g-dev
  autoreconf -i
  ./configure
  make
