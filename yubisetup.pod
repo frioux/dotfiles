@@ -1,17 +1,25 @@
-=head1 How to set up online two-factor auth with a yubikey
+=head1 How to set up offline two-factor auth with a yubikey
 
-=over 4
+ git clone git://github.com/firnsy/yubipam.git
+ sudo apt-get install libpam0g-dev
+ autoreconf -i
+ ./configure
+ make
+ sudo make install
+ sudo addgroup yubiauth
+ sudo touch /etc/yubikey
+ sudo chgrp yubiauth /etc/yubikey /usr/local/sbin/yk_chkpwd
+ sudo chmod g+rw /etc/yubikey
+ sudo chmod g+s /usr/local/sbin/yk_chkpwd
 
-=item * C<< sudo pam-auth-update >>, then enable yubico
+Put the following line at the top of F</etc/pam.d/common-auth>:
 
-=item * L<Get API key|https://upgrade.yubico.com/getapikey/>
+ auth requisite pam_yubikey.so
 
-=item * Put key data in F</etc/pam.d/common-auth>
+To add a key:
 
-=item * Add C<< authfile=/etc/yubikey_mappings >> to yubi line
+ ykpasswd -a -u frew -k $AES -o $OTP
 
-=item * Get C<$yubiid> from the first 12 characters of an OTP
+B<NOTE:> Do not include the C<h:> in the AES value.
 
-=item * Create F</etc/yubikey_mappings> and put C<frew:$yubiid> in the file
-
-=back
+Finally run C<ykvalidate $OTP> and it should identify the configured user.
