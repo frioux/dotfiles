@@ -36,7 +36,8 @@ augroup END
 " PERSISTENT UNDO
 set undofile
 
-set viminfo='10,\"100,:20,%,n~/.viminfo
+set history=10000
+set viminfo='10,\"100,:10000,%,n~/.viminfo
 
 " Tell vim to remember certain things when we exit
 "  '10  :  marks will be remembered for up to 10 previously edited files
