@@ -34,5 +34,6 @@ apt-get --no-install-recommends install \
    xclip                                \
    xfonts-terminus                      \
    xfonts-terminus-oblique              \
+   xscreensaver                         \
    zsh
 
