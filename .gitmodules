@@ -70,3 +70,6 @@
 [submodule "vim/bundle/vim-textobj-lastpat"]
 	path = vim/bundle/vim-textobj-lastpat
 	url = git://github.com/kana/vim-textobj-lastpat.git
+[submodule "vim/bundle/vim-visual-star-search"]
+	path = vim/bundle/vim-visual-star-search
+	url = git://github.com/nelstrom/vim-visual-star-search.git
