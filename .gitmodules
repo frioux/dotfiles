@@ -73,3 +73,6 @@
 [submodule "vim/bundle/vim-visual-star-search"]
 	path = vim/bundle/vim-visual-star-search
 	url = git://github.com/nelstrom/vim-visual-star-search.git
+[submodule "vim/bundle/vim-abolish"]
+	path = vim/bundle/vim-abolish
+	url = git://github.com/tpope/vim-abolish.git
