@@ -1,6 +1,10 @@
 if [[ "$HOST" = *Lynx* ]]; then
    _PERLBIN="/c/inetpub/strawberry/perl/bin/perl.exe"
 
+   function work {
+      cd /c/inetpub/wwwroot
+   }
+
    function cperl {
       pushd /c/inetpub/wwwroot/cgi
       $_PERLBIN "$@"
