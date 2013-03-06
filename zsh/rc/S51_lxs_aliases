@@ -68,7 +68,9 @@ if [[ "$HOST" = *Lynx* ]]; then
                git mv "$file" "$to"
                git ci --fixup "$fixup"
             else
-               echo " !! Could not move $file because it had $commits commits instead of just one"
+               echo " !! Could not move $file because it had $commits commits instead of just one:\n"
+               git log --oneline -- $file
+               echo ""
             fi
          else
             echo " -- $file already in $to"
