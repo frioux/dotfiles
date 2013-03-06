@@ -18,7 +18,6 @@ if [[ "$HOST" = *Lynx* ]]; then
    alias startall='cperl start-MSG-service.pl installall'
    alias stopall='cperl start-MSG-service.pl removeall'
    alias checkdb='cperl checkdb.plx'
-   alias lynxservice='cperl Lynx_service.plx'
    alias restartall='stopall ; startall'
 
    function lxs-current-version {
@@ -80,6 +79,13 @@ if [[ "$HOST" = *Lynx* ]]; then
    function lynxapp {
       sc stop lynxwebserver1
       $_PERLBIN c:/inetpub/wwwroot/App/script/server.pl -d
+   }
+
+   function lynxservice {
+      sc stop lynxmessageserver
+      sc stop lynxmessageserver2
+      sc stop lynxmessageserver3
+      cperl Lynx_service.plx
    }
 
 fi
