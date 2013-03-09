@@ -41,3 +41,7 @@ close_inside=false
 ; Negative¬close bracket outside
 [[!ab]].g]
 close_outside=false
+
+; Slash inside brackets
+[ab[e/]cd.i]
+slash_inside=true

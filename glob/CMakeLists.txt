@@ -98,6 +98,13 @@ new_ec_test(brackets_range_and_choice brackets.in e.e
 new_ec_test(brackets_choice_with_dash brackets.in -.f
     "^choice_with_dash=true[ \t\n\r]*$")
 
+# slash inside brackets
+new_ec_test(brackets_slash_inside brackets.in ab/cd.i
+    "^slash_inside=true[ \t\n\r]*$")
+
+# slash inside brackets
+new_ec_test(brackets_slash_inside brackets.in abecd.i
+    "^slash_inside=true[ \t\n\r]*$")
 
 # Tests for { and }
 
