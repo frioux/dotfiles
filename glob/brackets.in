@@ -27,7 +27,7 @@ range_and_choice=true
 choice_with_dash=true
 
 ; Close bracket inside
-[[]ab].g]
+[[\]ab].g]
 close_inside=true
 
 ; Close bracket outside
@@ -35,7 +35,7 @@ close_inside=true
 close_outside=true
 
 ; Negative close bracket inside
-[[!]ab].g]
+[[!\]ab].g]
 close_inside=false
 
 ; Negative¬close bracket outside
