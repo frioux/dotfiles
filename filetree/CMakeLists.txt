@@ -48,7 +48,7 @@ else(WIN32)
     set(path_separator_backslash_in_cmd_line_regex "^[ \t\n\r]*$")
 endif(WIN32)
 new_ec_test_full_ec_file_path(path_separator_backslash_in_cmd_line
-    path_separator.in "${CMAKE_CURRENT_SOURCE_DIR}\\\\\\\\path\\\\\\\\separator"
+    path_separator.in "${CMAKE_CURRENT_SOURCE_DIR}\\path\\separator"
     ${path_separator_backslash_in_cmd_line_regex})
 
 # Tests path separator match below top of path

@@ -38,25 +38,25 @@ if(${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_CURRENT_SOURCE_DIR})
     enable_testing()
 endif()
 
-# The most common test macro
-macro(new_ec_test name ec_file src_file regex)
+# The most common test function
+function(new_ec_test name ec_file src_file regex)
     add_test(${name} ${EDITORCONFIG_CMD} -f ${ec_file}
         "${CMAKE_CURRENT_SOURCE_DIR}/${src_file}")
     set_tests_properties(${name} PROPERTIES PASS_REGULAR_EXPRESSION "${regex}")
-endmacro()
+endfunction()
 
 # The tests that requires version specified
-macro(new_ec_test_version name ec_file src_file regex version)
+function(new_ec_test_version name ec_file src_file regex version)
     add_test(${name} ${EDITORCONFIG_CMD} -b ${version} -f ${ec_file}
         "${CMAKE_CURRENT_SOURCE_DIR}/${src_file}")
     set_tests_properties(${name} PROPERTIES PASS_REGULAR_EXPRESSION "${regex}")
-endmacro()
+endfunction()
 
 # The tests that requires the full path EditorConfig files
-macro(new_ec_test_full_ec_file_path name ec_file src_file regex)
+function(new_ec_test_full_ec_file_path name ec_file src_file regex)
     add_test(${name} ${EDITORCONFIG_CMD} -f ${ec_file} "${src_file}")
     set_tests_properties(${name} PROPERTIES PASS_REGULAR_EXPRESSION "${regex}")
-endmacro()
+endfunction()
 
 add_subdirectory(glob)
 add_subdirectory(properties)

@@ -164,7 +164,7 @@ new_ec_test(braces_escaped_brace3 braces.in f.txt "^closing=yes[ \t\n\r]*$")
 
 # escaped backslash
 new_ec_test(braces_escaped_backslash1 braces.in g.txt "^backslash=yes[ \t\n\r]*$")
-new_ec_test(braces_escaped_backslash2 braces.in \.txt "^backslash=yes[ \t\n\r]*$")
+new_ec_test(braces_escaped_backslash2 braces.in \\.txt "^backslash=yes[ \t\n\r]*$")
 new_ec_test(braces_escaped_backslash3 braces.in i.txt "^backslash=yes[ \t\n\r]*$")
 
 
