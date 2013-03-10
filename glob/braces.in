@@ -48,4 +48,4 @@ closing=yes
 
 ; escaped backslash
 [{g,\\,i}.txt]
-backlsash=yes
+backslash=yes
