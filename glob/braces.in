@@ -34,6 +34,18 @@ nested=true
 [{},b}.h]
 closing=inside
 
-; closing inside beginning
+; opening inside beginning
 [{{,b,c{d}.i]
 opening=inside
+
+; escaped comma
+[{a\,b,cd}.txt]
+comma=yes
+
+; escaped closing brace
+[{e,\},f}.txt]
+closing=yes
+
+; escaped backslash
+[{g,\\,i}.txt]
+backlsash=yes

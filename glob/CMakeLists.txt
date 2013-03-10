@@ -152,6 +152,21 @@ new_ec_test(braces_opening_inside2 braces.in b.i "^opening=inside[ \t\n\r]*$")
 new_ec_test(braces_opening_inside3 braces.in c{d.i "^opening=inside[ \t\n\r]*$")
 new_ec_test(braces_opening_inside4 braces.in .i "^[ \t\n\r]*$")
 
+# escaped comma
+new_ec_test(braces_escaped_comma1 braces.in a,b.txt "^comma=yes[ \t\n\r]*$")
+new_ec_test(braces_escaped_comma2 braces.in a.txt "^[ \t\n\r]*$")
+new_ec_test(braces_escaped_comma3 braces.in cd.txt "^comma=yes[ \t\n\r]*$")
+
+# escaped closing brace
+new_ec_test(braces_escaped_brace1 braces.in e.txt "^closing=yes[ \t\n\r]*$")
+new_ec_test(braces_escaped_brace2 braces.in }.txt "^closing=yes[ \t\n\r]*$")
+new_ec_test(braces_escaped_brace3 braces.in f.txt "^closing=yes[ \t\n\r]*$")
+
+# escaped backslash
+new_ec_test(braces_escaped_backslash1 braces.in g.txt "^backslash=yes[ \t\n\r]*$")
+new_ec_test(braces_escaped_backslash2 braces.in \.txt "^backslash=yes[ \t\n\r]*$")
+new_ec_test(braces_escaped_backslash3 braces.in i.txt "^backslash=yes[ \t\n\r]*$")
+
 
 # Tests for **
 
