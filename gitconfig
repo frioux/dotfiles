@@ -45,6 +45,7 @@
    insteadOf = gh:
 [url "gitolite@cs:"]
    pushInsteadOf = cs:
+   insteadOf = cs:
 [url "git@github.com:"]
    pushInsteadOf = gh:
    pushInsteadOf = git://github.com/
