@@ -6,23 +6,12 @@ Ciphers blowfish-cbc
 Compression yes
 VisualHostKey yes
 
-host catagits # git
-     user catagits
-     hostname git.shadowcat.co.uk
-
 host ci
      user frew
 
 host cesium
      user frew
      ForwardAgent yes
-
-host cs # git
-     user gitolite
-
-host dbsrgits # git
-     user dbsrgits
-     hostname git.shadowcat.co.uk
 
 host fl
      user Administrator
@@ -33,14 +22,6 @@ host flu
      user Administrator
      hostname frewlynxuser
      ForwardAgent yes
-
-host gh # git
-     user git
-     hostname github.com
-
-host gitmo # git
-     user gitmo
-     hostname git.shadowcat.co.uk
 
 host irc
      user frew
@@ -58,10 +39,6 @@ host nw
      port 2322
      ForwardAgent yes
 
-host p5sagit # git
-     user p5sagit
-     hostname git.shadowcat.co.uk
-
 host paste
      user frew_paste
      hostname p.afoolishmanifesto.com
@@ -69,10 +46,6 @@ host paste
 host sc
      user arthurs
      hostname jules.scsys.co.uk
-
-host scpubgit # git
-     user scpubgit
-     hostname git.shadowcat.co.uk
 
 host w
      user frew

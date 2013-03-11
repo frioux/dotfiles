@@ -41,3 +41,30 @@
 
 [grep]
    patterntype = perl
+[url "git://github.com/"]
+   insteadOf = gh:
+[url "gitolite@cs:"]
+   pushInsteadOf = cs:
+[url "git@github.com:"]
+   pushInsteadOf = gh:
+   pushInsteadOf = git://github.com/
+[url "git://git.shadowcat.co.uk/catagits/"]
+   insteadOf = catagits:
+[url "catagits@git.shadowcat.co.uk:"]
+   pushInsteadOf = catagits:
+[url "git://git.shadowcat.co.uk/dbsrgits/"]
+   insteadOf = dbsrgits:
+[url "dbsrgits@git.shadowcat.co.uk:"]
+   pushInsteadOf = dbsrgits:
+[url "git://git.shadowcat.co.uk/gitmo/"]
+   insteadOf = gitmo:
+[url "gitmo@git.shadowcat.co.uk:"]
+   pushInsteadOf = gitmo:
+[url "git://git.shadowcat.co.uk/p5sagit/"]
+   insteadOf = p5sagit:
+[url "p5sagit@git.shadowcat.co.uk:"]
+   pushInsteadOf = p5sagit:
+[url "git://git.shadowcat.co.uk/scpubgit/"]
+   insteadOf = scpubgit:
+[url "scpubgit@git.shadowcat.co.uk:"]
+   pushInsteadOf = scpubgit:
