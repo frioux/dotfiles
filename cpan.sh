@@ -24,6 +24,11 @@ cpanm                                                               \
    Catalyst::View::TT                                               \
    Check::ISA                                                       \
    Crypt::Eksblowfish                                               \
+   Dist::Zilla                                                      \
+   Dist::Zilla::PluginBundle::Git                                   \
+   Dist::Zilla::PluginBundle::Basic                                 \
+   Dist::Zilla::Plugin::PodWeaver                                   \
+   Dist::Zilla::Plugin::ReadmeFromPod                               \
    DBIx::Class                                                      \
    DBIx::Class::Candy                                               \
    DBIx::Class::DeploymentHandler                                   \
