@@ -8,6 +8,7 @@ alias ls='pwd; ls --color'
 #}}}
 
 alias attd="sudo aptitude"
+alias mc="java -jar ~/Dropbox/ftblauncher/FTB_Launcher.jar"
 
 #{{{ Misc.
 
