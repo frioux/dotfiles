@@ -1,0 +1,29 @@
+#!/usr/bin/env perl
+
+use 5.16.1;
+use warnings;
+
+use Getopt::Long::Descriptive;
+use Module::Runtime 'use_module';
+my ($opt, $usage) = describe_options(
+  "$0 mkit_path data %o",
+  [ 'override-to|T=s', 'override to address' ],
+  [],
+  [ 'help|h',       "print usage message and exit" ],
+);
+
+print($usage->text), exit if $opt->help;
+
+my $location = shift or die "location is required\n";
+my $data     = shift or die "data is required\n";
+
+my $email = use_module('Email::MIME::Kit')->new({
+   source => use_module('Path::Class::Dir')->new($location)
+      ->absolute->resolve->stringify,
+})->assemble(
+   use_module('JSONY')->can('decode_jsony')->($data)
+);
+
+$email->header_set(To => $opt->override_to) if $opt->override_to;
+
+print $email->as_string;
