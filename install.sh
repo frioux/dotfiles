@@ -39,6 +39,7 @@ for x in           \
    xsession        \
    zsh             \
    zshrc           \
+   fruperl         \
 ; do
    link-file $x ~/.$x
 done
