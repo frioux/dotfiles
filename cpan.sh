@@ -8,6 +8,7 @@ cpanm                                                               \
    Catalyst::ActionRole::PseudoCache                                \
    Catalyst::Authentication::Store::DBIx::Class                     \
    Catalyst::Controller::Accessors                                  \
+   Catalyst::Devel                                                  \
    Catalyst::Model::DBIC::Schema                                    \
    Catalyst::Plugin::Authentication                                 \
    Catalyst::Plugin::Cache                                          \
