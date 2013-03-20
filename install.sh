@@ -5,8 +5,8 @@ function link-file { _mkdir "${2:h}"; rm -rf "$2"; ln -s "$PWD/$1" "$2" }
 
 link-file awesome ~/.config/awesome
 link-file dotjs ~/.js
-link-file ssh_config ~/.ssh/config
-link-file ssh_authorized_keys ~/.ssh/authorized_keys
+link-file ssh/config ~/.ssh/config
+link-file ssh/authorized_keys ~/.ssh/authorized_keys
 link-file terminator_config ~/.config/terminator/config
 link-file keepassx_config.ini ~/.config/keepassx/config.ini
 link-file install.sh .git/hooks/post-checkout
