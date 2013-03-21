@@ -16,5 +16,6 @@ let g:fuf_abbrevMap = {
      \   ],
      \   "^r:" : [ "cgi/My/Schema/Result/" ],
      \   "^s:" : [ "cgi/My/Schema/ResultSet/" ],
+     \   "^tt:" : [ "App/root/tt/*" ],
      \ }
 
