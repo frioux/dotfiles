@@ -1,10 +1,10 @@
 #!/bin/zsh
 
 cpanm                                                               \
-   Module::Install                                                  \
-   Catalyst::Runtime                                                \
-   Catalyst::Action::REST                                           \
+   App::Nopaste                                                     \
+   Carp::Always                                                     \
    Catalyst::Action::RenderView                                     \
+   Catalyst::Action::REST                                           \
    Catalyst::ActionRole::PseudoCache                                \
    Catalyst::Authentication::Store::DBIx::Class                     \
    Catalyst::Controller::Accessors                                  \
@@ -17,27 +17,29 @@ cpanm                                                               \
    Catalyst::Plugin::Session::State::Cookie                         \
    Catalyst::Plugin::Session::Store::DBIC                           \
    Catalyst::Plugin::Static::Simple                                 \
+   Catalyst::Runtime                                                \
    Catalyst::TraitFor::Controller::DBIC::DoesPaging                 \
    Catalyst::TraitFor::Controller::DoesExtPaging                    \
-   Catalyst::View::JSON                                             \
    Catalyst::View::JavaScript::Minifier::XS                         \
    Catalyst::View::Jemplate                                         \
+   Catalyst::View::JSON                                             \
    Catalyst::View::TT                                               \
    Check::ISA                                                       \
    Crypt::Eksblowfish                                               \
-   Dist::Zilla                                                      \
-   Dist::Zilla::PluginBundle::Git                                   \
-   Dist::Zilla::PluginBundle::Basic                                 \
-   Dist::Zilla::Plugin::PodWeaver                                   \
-   Dist::Zilla::Plugin::ReadmeFromPod                               \
+   Data::UUID                                                       \
+   DateTime::Format::MSSQL                                          \
    DBIx::Class                                                      \
    DBIx::Class::Candy                                               \
    DBIx::Class::DeploymentHandler                                   \
    DBIx::Class::Helpers                                             \
    DBIx::Class::Schema::Loader                                      \
    DBIx::Class::TimeStamp                                           \
-   Data::UUID                                                       \
-   DateTime::Format::MSSQL                                          \
+   Devel::Cover                                                     \
+   Dist::Zilla                                                      \
+   Dist::Zilla::PluginBundle::Basic                                 \
+   Dist::Zilla::PluginBundle::Git                                   \
+   Dist::Zilla::Plugin::PodWeaver                                   \
+   Dist::Zilla::Plugin::ReadmeFromPod                               \
    Email::MIME::Kit                                                 \
    Email::MIME::Kit::Renderer::TT                                   \
    Exception::Reporter                                              \
@@ -50,9 +52,14 @@ cpanm                                                               \
    Log::Sprintf                                                     \
    Log::Structured                                                  \
    MIME::Base64                                                     \
+   Module::Install                                                  \
+   Moo                                                              \
    Moose                                                            \
+   namespace::clean                                                 \
+   rlib                                                             \
    String::Random                                                   \
    Sub::Exporter                                                    \
+   syntax                                                           \
    Syntax::Feature::Method                                          \
    Syntax::Keyword::Junction                                        \
    Test::More                                                       \
@@ -61,9 +68,4 @@ cpanm                                                               \
    Text::CSV_XS                                                     \
    Time::Duration                                                   \
    Time::Duration::Parse                                            \
-   XML::Simple                                                      \
-   namespace::clean                                                 \
-   rlib                                                             \
-   syntax                                                           \
-   Moo                                                              \
-   App::Nopaste
+   XML::Simple
