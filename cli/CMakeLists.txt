@@ -30,13 +30,13 @@
 add_test(test_long_version_switch ${EDITORCONFIG_CMD} --version)
 set_tests_properties(test_long_version_switch PROPERTIES
     PASS_REGULAR_EXPRESSION
-    "^Version [0-9]+\\.[0-9]+\\.[0-9]+(-[a-z]+)?[ \t\n\r]$")
+    "^EditorConfig.* Version [0-9]+\\.[0-9]+\\.[0-9]+(-[a-z]+)?[ \t\n\r]$")
 
 # test -v option returns version information
 add_test(test_short_version_switch ${EDITORCONFIG_CMD} -v)
 set_tests_properties(test_short_version_switch PROPERTIES
     PASS_REGULAR_EXPRESSION
-    "^Version [0-9]+\\.[0-9]+\\.[0-9]+(-[a-z]+)?[ \t\n\r]$")
+    "^EditorConfig.* Version [0-9]+\\.[0-9]+\\.[0-9]+(-[a-z]+)?[ \t\n\r]$")
 
 # Test for multiple input files
 
