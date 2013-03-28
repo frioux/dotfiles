@@ -1,0 +1,89 @@
+if exists('g:matchmaker_loaded') || &compatible
+    finish
+endif
+
+" [ Defaults ] {{{
+
+let s:enabled = 1
+let s:matchpriority = 10
+
+hi default Matchmaker term=reverse ctermbg=195 ctermfg=16 guibg=#7777aa guifg=#ffffff
+
+" }}}
+
+" [ Functions ] {{{
+
+function! s:highlight(needle)
+    silent! let w:matchmaker_matchid = matchadd('Matchmaker', a:needle, s:matchpriority)
+endfunction
+
+function! s:matchunmake()
+    if exists('w:matchmaker_needle')
+        unlet w:matchmaker_needle
+    endif
+    if exists('w:matchmaker_matchid')
+        silent! call matchdelete(w:matchmaker_matchid)
+        unlet w:matchmaker_matchid
+    endif
+endfunction
+
+function! s:enable(enabled)
+    let s:enabled = a:enabled
+    if !s:enabled
+        call s:matchunmake()
+    endif
+endfunction
+
+function! s:is_enabled()
+    return exists('s:enabled') && s:enabled
+endfunction
+
+function! s:is_new_needle(needle)
+    if !exists('w:matchmaker_needle')
+        return 1
+    else
+        return !(a:needle ==# w:matchmaker_needle)
+    endif
+endfunction
+
+function! s:default_needle()
+    return '\V\<'.escape(expand('<cword>'), '\').'\>'
+endfunction!
+
+function! s:needle()
+    return exists('*b:matchmaker_needle') ? b:matchmaker_needle() : s:default_needle()
+endfunction
+
+function! s:matchmake(needle)
+    if !s:is_enabled()
+        return
+    elseif s:is_new_needle(a:needle)
+        if empty(a:needle)
+            call s:matchunmake()
+            return
+        endif
+        call s:matchunmake()
+        let w:matchmaker_needle = a:needle
+    else
+        return
+    endif
+    call s:highlight(w:matchmaker_needle)
+endfunction
+
+" }}}
+
+" [ Commands ] {{{
+
+command! -bang -nargs=0 Matchmaker call s:enable(<bang>1)
+
+" }}}
+
+" [ Autocmds ] {{{
+
+augroup Matchmaker
+    au!
+    au CursorMoved,CursorMovedI,WinEnter,VimEnter * call s:matchmake(s:needle())
+    au WinLeave * call s:matchunmake()
+augroup END
+
+" }}}
