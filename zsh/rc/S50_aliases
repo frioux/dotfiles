@@ -24,6 +24,8 @@ alias cpv="rsync -poghb --backup-dir=/tmp/rsync -e /dev/null --progress --"
 alias -g G="| grep"
 alias -g L="| less"
 alias -g UP="@{upstream}"
+alias -g PT="2>&1"
+alias -g PTV="2>&1 | vi -"
 
 #}}}
 
@@ -48,6 +50,7 @@ alias gre='gr origin/release'
 
 alias wget='noglob wget'
 alias tar='wrap-tar'
+alias cdroot='cd $(git rev-parse --show-toplevel)'
 compdef wrap-tar=tar
 
 # vim: ft=zsh foldmethod=marker
