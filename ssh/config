@@ -61,3 +61,7 @@ host s2
      ForwardAgent yes
      hostname 206.190.248.90
 
+host afm
+     user frew
+     hostname afoolishmanifesto.com
+
