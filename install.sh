@@ -39,6 +39,7 @@ for x in           \
    xscreensaver    \
    xsession        \
    zsh             \
+   weechat         \
    zshrc           \
    fruperl         \
 ; do
