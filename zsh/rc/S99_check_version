@@ -9,5 +9,6 @@ if [[ $EPOCHSECONDS -gt $(cat ~/.dotfilecheck) ]]; then
    mk
 fi
 
+trap "source ~/.zshrc" USR1
 
 # vim: ft=zsh foldmethod=marker
