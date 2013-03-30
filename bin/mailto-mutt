@@ -40,9 +40,7 @@ $ARGV[0] =~ /^mailto:/ or die "Usage: $proc <mailtoURI>\n";
 my $u = URI->new($ARGV[0]);
 my %headers = $u->headers;
 my $to = $u->to;
-my @cmd = -t STDIN ? qw/mutt/ :
-  qw/env LC_CTYPE=en_US.UTF-8 LC_CHARMAP=UTF-8 emacs -l emacs-mutt.el/;
-# (qw/uxterm +sb -sl 0 -n mutt-mailto -T/, "Mutt $to", qw/-e mutt/);
+my @cmd;
 my $body;
 while (my ($k,$v) = each %headers)
   {
@@ -55,36 +53,28 @@ while (my ($k,$v) = each %headers)
 if ($body ne '')
   {
     chomp $body;
-    open TMP, '>', undef
+    require File::Temp;
+    my $tmp = File::Temp->new();
+    my $fname = $tmp->filename;
+    open TMP, '>', $fname
       or die "$proc: can't create temporary file\n$!\n";
-    autoflush TMP 1;
     print TMP "$body\n"
       or die "$proc: can't print to temporary file\n$!\n";
-    fcntl(TMP, F_SETFD, 0)
-      or die "$proc: can't clear close-on-exec flag on temporary file\n$!\n";
-    my $fname = "/dev/fd/".fileno(TMP);
-    open FILE, $fname
-      or die "$proc: can't reopen temporary file\n$!\n";
-    my $empty = <FILE> eq '';
-    close FILE;
-    my $tmp;
-    if ($empty)  # occurs under Mac OS X Tiger
-      {
-        # Fallback to File::Temp (the temporary file is visible and
-        # will not be destroyed if mutt-mailto is killed).
-        require File::Temp;
-        $tmp = File::Temp->new();
-        $fname = $tmp->filename;
-        open TMP, '>', $fname
-          or die "$proc: can't create temporary file\n$!\n";
-        print TMP "$body\n"
-          or die "$proc: can't print to temporary file\n$!\n";
-      }
-    system @cmd, '-i', $fname, $to;
+    run_mutt(@cmd, '-i', $fname, $to);
     close TMP or die "$proc: can't close temporary file\n$!\n";
   }
 else
-  { exec @cmd, $to }
+  { run_mutt(@cmd, $to) }
+
+sub run_mutt {
+   if (-t STDIN ) {
+      exec 'mutt', @_
+   } else {
+      exec join(' ',
+         q<terminator -e "bash -c 'TERM=xterm-256color mutt>, @_
+      ) .  q<'">;
+   }
+}
 
 # Test on:
 # mailto:a1@x?To=a2@x&Cc=a3@x&Bcc=a4@x&Subject=mailto%20test
