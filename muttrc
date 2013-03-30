@@ -45,19 +45,18 @@ macro index C "<copy-message>?<toggle-mailboxes>" "copy a message to a mailbox"
 macro index M "<save-message>?<toggle-mailboxes>" "move a message to a mailbox"
 macro index,pager c "<change-folder>?<toggle-mailboxes>" "open a different folder"
 
-macro index,pager I1 "<save-message>=alert<enter>$" "mark message as alert"
-macro index,pager I2 "<save-message>=crit<enter>$"  "mark message as crit"
-macro index,pager I3 "<save-message>=err<enter>$"   "mark message as err"
+macro index,pager Id "<save-message>=today<enter>$" "mark message to deal with today"
+macro index,pager Iw "<save-message>=thisweek<enter>$"  "mark message to deal with this week"
 macro index,pager IT "<save-message>=gmail.Trash<enter>$"   "delete message"
 macro index,pager IS "<save-message>=gmail.Spam<enter>$"   "mark message as spam"
+macro index,pager Ii "<save-message>=INBOX<enter>$"   "mark message as spam"
 
 macro index,pager im "<change-folder>=mitsi<enter>" "view mitsi list"
 macro index,pager ii "<change-folder>=INBOX<enter>" "view inbox"
-macro index,pager i1 "<change-folder>=alert<enter>" "view alert"
-macro index,pager i2 "<change-folder>=crit<enter>"  "view crit"
-macro index,pager i3 "<change-folder>=err<enter>"   "view err"
-macro index,pager iT "<change-folder>=bak.trash<enter>"  "view trash"
-macro index,pager iS "<change-folder>=bak.spam<enter>"   "view spam"
+macro index,pager iT "<change-folder>=gmail.Trash<enter>"  "view trash"
+macro index,pager iS "<change-folder>=gmail.Spam<enter>"   "view spam"
+macro index,pager id "<change-folder>=today<enter>"  "view today"
+macro index,pager iw "<change-folder>=thisweek<enter>"   "view this week"
 
 ignore *
 unignore Date: From: User-Agent: X-Mailer X-Operating-System To: \
