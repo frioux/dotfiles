@@ -6,3 +6,4 @@ vim/bundle/*/doc/tags-*
 *.swp
 zsh/cache
 *.dat
+weechat/weechat.log
