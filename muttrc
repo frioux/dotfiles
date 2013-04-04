@@ -68,6 +68,6 @@ source ~/.mutt/colors
 source ~/.mutt/pgp
 push <show-version>
 
-send-hook @(mitsi|tycoint|celltrust)\.com my_hdr From: "Frew Schmidt <frew@mitsi.com>"
+send-hook '~t ".*@(mitsi|tycoint|celltrust)\.com"' 'my_hdr From: Frew Schmidt <frew@mitsi.com>'
 
 # vim: ft=muttrc
