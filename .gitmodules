@@ -79,3 +79,6 @@
 [submodule "vim/bundle/vim-easymotion"]
 	path = vim/bundle/vim-easymotion
 	url = git://github.com/Lokaltog/vim-easymotion.git
+[submodule "vim/bundle/vim-ledger"]
+	path = vim/bundle/vim-ledger
+	url = git://github.com/ledger/vim-ledger.git
