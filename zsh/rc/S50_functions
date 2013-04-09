@@ -22,7 +22,7 @@ function _mkdir { if [[ ! -d $1 ]]; then mkdir -p $1; fi }
 
 function tch { _mkdir "${1:h}"; touch "$1" }
 
-function _tmux_session { tmux -2 new-session -s "$1" || tmux -2 attach-session -t "$1" }
+function _tmux_session { tmux -2 new-session -s "$1" || tmux -2 attach-session -dt "$1" }
 
 function tmwork { _tmux_session work }
 
