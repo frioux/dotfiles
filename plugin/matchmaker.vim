@@ -7,7 +7,7 @@ endif
 let s:enabled = 1
 let s:matchpriority = 10
 
-hi default Matchmaker term=reverse ctermbg=195 ctermfg=16 guibg=#7777aa guifg=#ffffff
+hi default Matchmaker term=reverse ctermbg=238 guibg=#dddddd
 
 " }}}
 
