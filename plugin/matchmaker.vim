@@ -4,10 +4,10 @@ endif
 
 " [ Defaults ] {{{
 
-let s:enabled = 1
+let s:enabled = 0
 let s:matchpriority = 10
 
-hi default Matchmaker term=reverse ctermbg=238 guibg=#dddddd
+hi default Matchmaker term=underline    ctermbg=238     guibg=#dddddd
 
 " }}}
 
@@ -31,6 +31,8 @@ function! s:enable(enabled)
     let s:enabled = a:enabled
     if !s:enabled
         call s:matchunmake()
+    else
+        call s:matchmake(s:needle())
     endif
 endfunction
 
