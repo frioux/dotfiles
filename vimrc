@@ -149,6 +149,10 @@ vnoremap <silent> <Leader>fm :!fmt -w80<CR>
 nnoremap <silent> <Leader>pt :%!perltidy<CR>
 vnoremap <silent> <Leader>pt :!perltidy<CR>
 
+" toppost
+nnoremap <silent> <Leader>tp :%!top-post<CR>ggI
+vnoremap <silent> <Leader>tp :!top-post<CR>
+
 " Edit vimrc \ev
 nnoremap <silent> <Leader>ev :tabnew<CR>:e ~/.vimrc<CR>
 
