@@ -1,5 +1,8 @@
 #!/bin/zsh
 
+echo "running rc installer"
+trap "echo 'done installing'" USR1
+
 function _mkdir { if [[ ! -d $1 ]]; then mkdir -p $1; fi }
 function link-file { _mkdir "${2:h}"; rm -rf "$2"; ln -s "$PWD/$1" "$2" }
 function copy-file { _mkdir "${2:h}"; rm -rf "$2"; cp "$PWD/$1" "$2" }
