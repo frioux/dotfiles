@@ -25,7 +25,8 @@ host flu
 
 host irc
      user frew
-     hostname warpedreality.org
+     hostname 50.116.28.218
+     ForwardAgent yes
 
 host lap
      user frew
