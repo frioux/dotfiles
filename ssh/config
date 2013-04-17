@@ -60,7 +60,7 @@ host s1
 host s2
      user frew
      ForwardAgent yes
-     hostname 206.190.248.90
+     hostname 10.24.0.93
 
 host afm
      user frew
