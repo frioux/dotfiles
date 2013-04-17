@@ -12,6 +12,8 @@
    st = status
    br = branch
    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+   ours   = "!f() { git checkout --ours $@ && git add $@; }; f"
+   theirs = "!f() { git checkout --theirs $@ && git add $@; }; f"
 [diff]
    ;external = git_diff_wrapper
 
