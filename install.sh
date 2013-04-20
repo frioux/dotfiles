@@ -16,6 +16,10 @@ copy-file keepassx_config.ini ~/.config/keepassx/config.ini
 link-file install.sh .git/hooks/post-checkout
 link-file install.sh .git/hooks/post-merge
 link-file xsession ~/.xinitrc
+source ~/.smartcd/lib/core/arrays
+source ~/.smartcd/lib/core/varstash
+source ~/.smartcd/lib/core/smartcd
+cat smartcd-export | smartcd import
 
 # literal dotfiles
 for x in           \

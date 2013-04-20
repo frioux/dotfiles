@@ -1,0 +1,3 @@
+smartcd export 1.0
+@ scripts/home/frew/Dropbox/money/bash_enter
+ autostash PATH=__PATH__/bin:$PATH
