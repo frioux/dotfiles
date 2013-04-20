@@ -5,7 +5,6 @@ if [[ $EPOCHSECONDS -gt $(cat ~/.dotfilecheck) ]]; then
    rm ~/.dotfilecheck
    echo $(($EPOCHSECONDS+60*60*24*7)) > ~/.dotfilecheck
    env git --work-tree=$HOME/code/dotfiles --git-dir=$HOME/code/dotfiles/.git pull --ff-only
-   ./install.sh
 fi
 
 trap "source ~/.zshrc" USR1
