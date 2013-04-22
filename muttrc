@@ -8,7 +8,6 @@ set envelope_from     = "yes"
 set fast_reply        = yes
 set folder            = "$HOME/Mail"
 set followup_to       = yes
-set from              = "fREW Schmidt <frioux@gmail.com>"
 # this is an in memory cache since this is a
 # tmpfs I generally use for git migrations
 set header_cache      = "$HOME/code/tmp/headers"
@@ -66,6 +65,7 @@ source ~/.mutt/colors
 source ~/.mutt/pgp
 push <show-version>
 
+send-hook '~t ".*"' 'my_hdr From: fREW Schmidt <frioux@gmail.com>'
 send-hook '~t ".*@(mitsi|tycoint|celltrust)\.com"' 'my_hdr From: Frew Schmidt <frew@mitsi.com>'
 
 # vim: ft=muttrc
