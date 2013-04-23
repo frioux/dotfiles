@@ -22,6 +22,8 @@ apt-get --no-install-recommends install \
    lynx                                 \
    mosh                                 \
    msmtp                                \
+   notmuch                              \
+   notmuch-mutt                         \
    offlineimap                          \
    openssh-client                       \
    openssh-server                       \
