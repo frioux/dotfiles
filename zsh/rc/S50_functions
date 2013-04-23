@@ -25,8 +25,8 @@ function tch { _mkdir "${1:h}"; touch "$1" }
 function _tmux_session { tmux -2 new-session -s "$1" || tmux -2 attach-session -dt "$1" }
 
 function tmwork { _tmux_session work }
-
 function tmmess { _tmux_session messaging }
+function tmserv { _tmux_session services }
 
 function fru { MYPERL_CONFIG="$HOME/.fruperl" myperl "$@" }
 function frue { MYPERL_CONFIG="$HOME/.fruperl" myperl -E "$@" }
