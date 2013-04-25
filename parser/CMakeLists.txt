@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2011-2012 EditorConfig Team
+# Copyright (c) 2011-2013 EditorConfig Team
 # All rights reserved.
 # 
 # Redistribution and use in source and binary forms, with or without
@@ -124,3 +124,6 @@ new_ec_test(escaped_octothorpe_in_section comments.in "test\#.c"
 
 # test EditorConfig files with BOM at the head
 new_ec_test(bom_at_head bom.in "a.c" "^key=value[ \t\n\r]*$")
+
+# test EditorConfig files with CRLF line separators
+new_ec_test(crlf_linesep crlf.in "a.c" "^key=value[ \t\n\r]*$")
