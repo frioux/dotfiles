@@ -44,10 +44,12 @@ macro index,pager c "<change-folder>?<toggle-mailboxes>" "open a different folde
 
 macro index,pager Id "<save-message>=today<enter>$" "mark message to deal with today"
 macro index,pager Iw "<save-message>=thisweek<enter>$"  "mark message to deal with this week"
+macro index,pager If "<save-message>=fun<enter>$"  "mark message to read for fun"
 macro index,pager IT "<save-message>=gmail.Trash<enter>$"   "delete message"
 macro index,pager IS "<save-message>=gmail.Spam<enter>$"   "mark message as spam"
 macro index,pager Ii "<save-message>=INBOX<enter>$"   "mark message as spam"
 
+macro index,pager if "<change-folder>=fun<enter>" "view fun folder"
 macro index,pager im "<change-folder>=mitsi<enter>" "view mitsi list"
 macro index,pager ii "<change-folder>=INBOX<enter>" "view inbox"
 macro index,pager iT "<change-folder>=gmail.Trash<enter>"  "view trash"
