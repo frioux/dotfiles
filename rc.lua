@@ -55,6 +55,7 @@ terminal   = "urxvt"
 editor     = os.getenv("EDITOR") or "vim"
 home_dir   = os.getenv("HOME")
 user       = os.getenv("USER")
+conf_dir   = awful.util.getdir("config")
 editor_cmd = terminal .. " -e " .. editor
 wallpaper  = {
   home_dir .. "/Bilder/Icystones2.jpg",
@@ -144,38 +145,38 @@ mytextclock = awful.widget.textclock()
  
 -- {{{ Reusable separator
 separator = wibox.widget.imagebox()
---separator.set_image(beautiful.widget_sep)
+separator:set_image(conf_dir .. "/icons/separator.png")
 -- }}}
 
 -- {{{ Volume level
 volicon = wibox.widget.imagebox()
---volicon.set_image(beautiful.widget_vol)
+volicon:set_image(conf_dir .. "/icons/vol.png")
 -- Initialize widgets
 volbar    = awful.widget.progressbar()
 volwidget = wibox.widget.textbox()
 -- Progressbar properties
 volbar:set_vertical(true):set_ticks(true)
 volbar:set_height(12):set_width(8):set_ticks_size(2)
---volbar:set_background_color(beautiful.fg_off_widget)
---volbar:set_gradient_colors({ beautiful.fg_widget,
---   beautiful.fg_center_widget, beautiful.fg_end_widget
+volbar:set_background_color("#494B4F")
+--volbar:set_gradient_colors({ "#AECF96",
+--   "#88A175", "#FF5656"
 --}) -- Enable caching
 vicious.cache(vicious.widgets.volume)
 -- Register widgets
 vicious.register(volbar,    vicious.widgets.volume,  "$1",  2, "Master")
 vicious.register(volwidget, vicious.widgets.volume, " $1%", 2, "Master")
 -- Register buttons
---volbar.widget:buttons(awful.util.table.join(
---   awful.button({ }, 1, function () awful.util.spawn(terminal .. " -e alsamixer") end),
---   awful.button({ }, 4, function () awful.util.spawn("amixer -q set Master 2dB+", false) end),
---   awful.button({ }, 5, function () awful.util.spawn("amixer -q set Master 2dB-", false) end)
---)) -- Register assigned buttons
---volwidget:buttons(volbar.widget:buttons())
+volbar:buttons(awful.util.table.join(
+   awful.button({ }, 1, function () awful.util.spawn(terminal .. " -e alsamixer") end),
+   awful.button({ }, 4, function () awful.util.spawn("amixer -q set Master 2dB+", false) end),
+   awful.button({ }, 5, function () awful.util.spawn("amixer -q set Master 2dB-", false) end)
+)) -- Register assigned buttons
+volwidget:buttons(volbar:buttons())
 -- }}}
 
 -- {{{ Battery state
 baticon = wibox.widget.imagebox()
---baticon.set_image(beautiful.widget_bat)
+baticon:set_image(conf_dir .. "/icons/bat.png")
 -- Initialize widget
 batwidget = wibox.widget.textbox()
 -- Register widget
