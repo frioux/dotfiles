@@ -362,23 +362,6 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "Return", function () awful.layout.inc(layouts,  1) end),
     awful.key({ modkey, "Shift"   }, "Return", function () awful.layout.inc(layouts, -1) end),
 
-    -- Keychains anlegen
-    awful.key({ modkey,           }, "x", function (c) 
-        modal.modal_push( {
-            -- Menue anzeigen
-            space = function () 
-                myappmenu:show({keygrabber = true}) 
-            end,
-
-            r = function ()
-                awful.prompt.run({ prompt = "Run Lua code: " },
-                    mypromptbox[mouse.screen].widget,
-                    awful.util.eval, nil,
-                    awful.util.getdir("cache") .. "/history_eval")
-                    end,
-        })
-    end),
-
     -- Prompt
     awful.key({ modkey },            "r",     function () mypromptbox[mouse.screen]:run() end),
 
@@ -467,7 +450,46 @@ clientbuttons = awful.util.table.join(
     awful.button({ modkey }, 3, awful.mouse.client.resize))
 
 -- Set keys
-root.keys(globalkeys)
+keychains.init(globalkeys,
+  {
+    notify = {
+      bg="#000000",
+      position="bottom_left",
+      icon_size=32
+    },
+    menu = {
+      bg_normal = "#44444499",
+      bg_focus  = "#002288cc",
+      fg_normal = "#ffffff",
+      fg_focus  = "#ffff00",
+      border_color = "#111111",
+      border_width = 2
+    }
+  })
+
+-- add keychain bindings
+keychains.add( { modkey }, "x", "utils", "", {
+  -- Menue anzeigen
+  space = {
+    func = function () myappmenu:show({keygrabber = true}) end,
+    info = "Applications Menu"
+  },
+  m = {
+    func = function () myappmenu:show({keygrabber = true}) end,
+    info = "Applications Menu"
+  },
+  r = {
+    func = function ()
+      awful.prompt.run({ prompt = "Run Lua code: " },
+          mypromptbox[mouse.screen].widget,
+          awful.util.eval, nil,
+          awful.util.getdir("cache") .. "/history_eval")
+        end,
+    info = "Run Lua code"
+  }
+})
+
+keychains.start()
 -- }}}
 
 -- {{{ Rules
