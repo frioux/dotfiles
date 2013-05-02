@@ -56,9 +56,20 @@ editor     = os.getenv("EDITOR") or "vim"
 home_dir   = os.getenv("HOME")
 user       = os.getenv("USER")
 editor_cmd = terminal .. " -e " .. editor
+wallpaper  = {
+  home_dir .. "/Bilder/Icystones2.jpg",
+  home_dir .. "/Bilder/Daisy.jpg",
+  home_dir .. "/Bilder/Aqua.jpg",
+  home_dir .. "/Bilder/InthedarkRedux.jpg",
+  home_dir .. "/Bilder/RainDrops.jpg",
+  home_dir .. "/Bilder/Maraetaibeforesunrise.jpg",
+  home_dir .. "/Bilder/CurlsbyCandy.jpg",
+  home_dir .. "/Bilder/Blinds.jpg",
+  home_dir .. "/Bilder/Cornered.jpg"
+}
 
 -- Themes define colours, icons, and wallpapers
-beautiful.init(home_dir .. "/.config/awesome/zenburn.lua")
+beautiful.init("/usr/share/awesome/themes/zenburn/theme.lua")
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -86,10 +97,8 @@ local layouts =
 -- }}}
 
 -- {{{ Wallpaper
-if beautiful.wallpaper then
-    for s = 1, screen.count() do
-        gears.wallpaper.maximized(beautiful.wallpaper, s, true)
-    end
+for s = 1, screen.count() do
+    gears.wallpaper.maximized(wallpaper[s], s, true)
 end
 -- }}}
 
@@ -113,7 +122,7 @@ myawesomemenu = awful.menu({ items = {
    { "vim", editor_cmd .. " " .. ".vimrc" },
    { "Xdefaults", editor_cmd .. " " .. ".Xdefaults" },
    -- TODO do with naughty
-   { "Xprop", terminal .. " -e xprop | grep --color=none 'WM_CLASS\|^WM_NAME' | less " }
+   --{ "Xprop", terminal .. " -e xprop | grep --color=none 'WM_CLASS\|^WM_NAME' | less " }
    }
 })
 
