@@ -44,7 +44,7 @@ local vicious = require("vicious")
 -- Menue functions
 local freedesktop_menu = require("freedesktop.menu")
 -- Modal keybindings
-local modal = require("modal")
+require("keychains")
 -- Share tags on multiple screens
 local sharetags = require("sharetags")
 -- }}}
@@ -523,6 +523,9 @@ awful.rules.rules = {
     -- Place all libreoffice windows on tag "office"
     { rule = { class = "libreoffice[%a%d_-]*" },
       properties = { tag = tags[3] } },
+    -- Place anki always on tag "office" and make it floating
+    { rule = { class = "Anki" },
+      properties = { tag = tags[3], floating = true } },
     -- Start urxvt always as slave
     { rule = { class = "URxvt" },
       properties = { }, callback = awful.client.setslave },
