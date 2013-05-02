@@ -512,10 +512,11 @@ awful.rules.rules = {
                      buttons = clientbuttons,
                    } },
     { rule_any = { class = {"MPlayer", "pinentry", "Gimp", "recordMyDesktop",
-                        "Skype", "Vlc"} },
+                        "Skype", "Vlc", "Screenkey", } },
       properties = { floating = true } },
     -- VirtualBox immer auf dem 4. tag platzieren
-    { rule = { class = "VirtualBox" },
+    { rule_any = { class = {"VirtualBox", "rdesktop", "nxclient",
+                        "NX.[%a%d_-]*", "Gvncviewer", "vinagre", } },
       properties = { tag = tags[4]} },
     -- PCB immer auf dem 5. tag platzieren
     { rule_any = { class = {"Pcb", "PCB"} },
@@ -532,31 +533,15 @@ awful.rules.rules = {
     -- Place all libreoffice windows on tag "office"
     { rule = { class = "libreoffice[%a%d_-]*" },
       properties = { tag = tags[3] } },
+    { rule = { class = "[Ss]office" },
+      properties = { tag = tags[3] } },
     -- Place anki always on tag "office" and make it floating
     { rule = { class = "Anki" },
       properties = { tag = tags[3], floating = true } },
     -- Start urxvt always as slave
-    { rule = { class = "URxvt" },
+    { rule_any = { class = {"URxvt", "XTerm"} },
       properties = { }, callback = awful.client.setslave },
 }
---shifty.config.apps = {
---    { match = { "Uzbl", "Chromium", "zathura", "luakit"}, tag = "2:www"},
---    { match = { "xterm", "urxvt"}, slave = True },
---    { match = { "htop", "Wicd", "alsamixer", "zenmap", "Pavucontrol",
---                    "Blueman-manager"}, tag = "3:sys"},
---    { match = { "MPlayer", "feh", "Xfburn", "Skype"},
---                    float = true, tag = "8:media"},
---    { match = { "recordMyDesktop", "screenkey"}, float = true},
---    { match = { "VirtualBox", "rdesktop", "nxclient", "NX.*", "Gvncviewer",
---                    "vinagre"}, tag = "4:virtual"},
---    { match = { "Freecad"}, tag = "5:cad"},
---    { match = { "" }, buttons = {
---        button({ }, 1, function (c) client.focus = c; c:raise() end),
---        button({ modkey }, 1, function (c) awful.mouse.client.move() end),
---        button({ modkey }, 3, function (c) awful.mouse.client.resize() end),
---        },
---    },
---}
 -- }}}
 
 -- {{{ Signals
