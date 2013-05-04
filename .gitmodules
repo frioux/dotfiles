@@ -82,3 +82,6 @@
 [submodule "vim/bundle/vim-ledger"]
 	path = vim/bundle/vim-ledger
 	url = git://github.com/ledger/vim-ledger.git
+[submodule "zsh/todotxt"]
+	path = zsh/todotxt
+	url = git://github.com/ginatrapani/todo.txt-cli.git

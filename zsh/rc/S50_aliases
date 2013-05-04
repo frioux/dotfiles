@@ -52,5 +52,6 @@ alias wget='noglob wget'
 alias tar='wrap-tar'
 alias cdroot='cd $(git rev-parse --show-toplevel)'
 compdef wrap-tar=tar
+alias o='bash ~/code/dotfiles/zsh/todotxt/todo.sh'
 
 # vim: ft=zsh foldmethod=marker

@@ -16,6 +16,7 @@ copy-file keepassx_config.ini ~/.config/keepassx/config.ini
 link-file install.sh .git/hooks/post-checkout
 link-file install.sh .git/hooks/post-merge
 link-file xsession ~/.xinitrc
+link-file todo ~/.todo/config
 source ~/.smartcd/lib/core/arrays
 source ~/.smartcd/lib/core/varstash
 source ~/.smartcd/lib/core/smartcd
