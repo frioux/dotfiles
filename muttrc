@@ -41,6 +41,8 @@ macro index gg <first-entry>
 macro index C "<copy-message>?<toggle-mailboxes>" "copy a message to a mailbox"
 macro index M "<save-message>?<toggle-mailboxes>" "move a message to a mailbox"
 macro index,pager c "<change-folder>?<toggle-mailboxes>" "open a different folder"
+macro index,pager za "<collapse-thread>" "collapse thread"
+macro index,pager zi "<collapse-all>" "collapse all"
 
 macro index,pager Id "<save-message>=today<enter>$" "mark message to deal with today"
 macro index,pager Iw "<save-message>=thisweek<enter>$"  "mark message to deal with this week"
