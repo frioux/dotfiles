@@ -33,6 +33,9 @@ set status_on_top     = yes
 set use_from          = yes
 set markers           = no
 
+set index_format="%4C %Z %{%b %d} %-15.15L (%3E) %s"
+set pager_index_lines=9
+
 mailboxes `find ~/Mail -maxdepth 1 -type d -printf "+%f "`
 
 macro compose A "<attach-message>?<toggle-mailboxes>" "attach message(s) to this message"
