@@ -2,6 +2,7 @@ nm-applet &
 dropbox start &
 uptrack-manager &
 xscreensaver -no-splash &
+$HOME/bin/remind-daemon &
 eval `gnome-keyring-daemon`
 eval `ssh-agent`
 xmodmap "$HOME/.xmodmap"
