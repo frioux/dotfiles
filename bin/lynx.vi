@@ -1,4 +1,4 @@
 #!/bin/zsh
-cd /home/frew/servers/frewlynx/Inetpub/wwwroot
+cd /home/frew/servers/frewlynxuser/Inetpub/wwwroot
 gvim -c 'source ~/.vim/usr/lynx-fuf-map.vim'
 

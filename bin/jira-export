@@ -17,7 +17,12 @@ my @m = sort_by_version(values %{$j->get_versions('LXS')});
 
 splice @m, 3 if @m > 3;
 
-say(render_pri($_) . ($_->{created} =~ s/T.*$//r) . " $_->{summary} ($_->{key})") for
+say(
+   render_pri($_) .
+   ($_->{created} =~ s/T.*$//r) .
+   " $_->{summary} ($_->{key}) " .
+   '+lynx +jira @work'
+) for
    reverse
    map { $_->[0] }
    sort { $b->[1] cmp $a->[1] }
