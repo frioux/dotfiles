@@ -13,15 +13,36 @@ my $j = JIRA::Client->new({
    password => $ENV{JIRA_PASSWORD},
 });
 
-say(($_->{created} =~ s/T.*$//r) . " $_->{summary} ($_->{key})") for
+my @m = sort_by_version(values %{$j->get_versions('LXS')});
+
+splice @m, 3 if @m > 3;
+
+say(render_pri($_) . ($_->{created} =~ s/T.*$//r) . " $_->{summary} ($_->{key})") for
    reverse
    map { $_->[0] }
    sort { $b->[1] cmp $a->[1] }
    map {
-      if (my $ret = first { !$_->{released} } @{$_->{fixVersions}}) {
+      if (my $ret = fix_version($_)) {
          [$_, $ret->{sequence}]
       } else { () }
    }
    $j->filter_issues(
       'project = LXS AND resolution = Unresolved AND assignee = currentUser()'
-   )
+   );
+
+sub render_pri {
+   my $i = 0;
+   for my $pri (@m) {
+      return '(' . chr(65 + $i) . ') ' if fix_version($_[0])->{id} == $pri->{id};
+      $i++;
+   }
+   return '';
+}
+
+sub fix_version { (sort_by_version(@{$_[0]->{fixVersions}}))[0] }
+
+sub sort_by_version {
+   sort { $a->{sequence} <=> $b->{sequence} }
+   grep !$_->{released} && !$_->{archived},
+   @_
+}
