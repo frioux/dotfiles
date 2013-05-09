@@ -1,0 +1,27 @@
+#!/usr/bin/env perl
+
+use 5.16.1;
+use warnings;
+
+use List::Util 'first';
+
+use JIRA::Client;
+
+my $j = JIRA::Client->new({
+   user     => $ENV{JIRA_USER},
+   baseurl  => $ENV{JIRA_SITE},
+   password => $ENV{JIRA_PASSWORD},
+});
+
+say(($_->{created} =~ s/T.*$//r) . " $_->{summary} ($_->{key})") for
+   reverse
+   map { $_->[0] }
+   sort { $b->[1] cmp $a->[1] }
+   map {
+      if (my $ret = first { !$_->{released} } @{$_->{fixVersions}}) {
+         [$_, $ret->{sequence}]
+      } else { () }
+   }
+   $j->filter_issues(
+      'project = LXS AND resolution = Unresolved AND assignee = currentUser()'
+   )
