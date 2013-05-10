@@ -41,27 +41,17 @@ function mock_function() {
     local mock_name="$2"
     local save_original_as="_btm_mocked_${original_name}"
 
-    #echo "Original in place as:"
-    #declare -f "$original_name"
-
-    declare -F "$save_original_as" >/dev/null
-    if [ $? != 0 ]; then
-        #echo "Original '$original_name' not saved yet, saving as '$save_original_as'."
+    if [ -z $(declare -F "$save_original_as") ]; then
         _btm_copy_function "$original_name" "$save_original_as"
     fi
     _btm_copy_function "$mock_name" "$original_name"
-    #echo "Mock in place as:"
-    #declare -f "$original_name"
 }
 
 function restore_mocked_function() {
     local original_name="$1"
     local save_original_as="_btm_mocked_${original_name}"
 
-    #echo "restore_mocked_function '$original_name'."
-    declare -F "$save_original_as" >/dev/null
-    if [ $? = 0 ]; then
-        #echo "Original '$original_name' was saved, restoring from '$save_original_as'."
+    if [ ! -z $(declare -F "$save_original_as") ]; then
         _btm_copy_function "$save_original_as" "$original_name"
         unset -f "$save_original_as"
     else
@@ -73,8 +63,7 @@ function mock_command() {
     local command_name="$1"
     local mock_name="$2"
 
-    declare -F "$command_name" >/dev/null
-    if [ $? = 0 ]; then
+    if [ ! -z $(declare -F "$command_name") ]; then
         #  It's not actually a command, it's a function, mock that
         mock_function "$command_name" "$mock_name"
     else
@@ -86,8 +75,7 @@ function restore_mocked_command() {
     local command_name="$1"
 
     local save_original_as="_btm_mocked_${command_name}"
-    declare -F "$save_original_as" >/dev/null
-    if [ $? = 0 ]; then
+    if [ ! -z $(declare -F "$save_original_as") ]; then
         #  Was actually a function mock not a command mock.
         restore_mocked_function "$command_name"
     else
@@ -98,7 +86,6 @@ function restore_mocked_command() {
 # Copied from http://stackoverflow.com/a/1203628/870000
 function _btm_copy_function() {
     declare -F $1 >/dev/null || _btm_caller_error "Can't find function '$1' to copy"
-    #echo "Copying '$1' to '$2'."
     eval "$(echo "${2}()"; declare -f ${1} | tail -n +2)"
 }
 
