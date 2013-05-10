@@ -31,9 +31,14 @@ say(
          [$_, $ret->{sequence}]
       } else { () }
    }
-   $j->filter_issues(
-      'project = LXS AND resolution = Unresolved AND assignee = currentUser()'
-   );
+   $j->filter_issues(q<
+      project = LXS AND
+      status in ( Open , Resolved )
+      AND assignee = currentUser() AND (
+        resolution NOT IN ("Won't Fix" , Duplicate, "Cannot Reproduce") OR
+        resolution IS EMPTY
+      )
+   >);
 
 sub render_pri {
    my $i = 0;
