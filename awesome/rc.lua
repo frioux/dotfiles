@@ -113,9 +113,9 @@ weather_widget = function(
    local actual_widget = widget({ type = "textbox" })
    local actual_tooltip = awful.tooltip({ objects = { actual_widget } });
 
-   actual_widget:buttons({
+   actual_widget:buttons(awful.util.table.join(
       awful.button({}, 1, function () awful.util.spawn("firefox '" .. url .. "'") end)
-   })
+   ))
 
    vicious.register(actual_widget, vicious.widgets.weather,
       function (widget, args)
@@ -176,11 +176,11 @@ end
 volumecfg.toggle = function ()
        volumecfg.mixercommand(" sset " .. volumecfg.channel .. " toggle")
 end
-volumecfg.widget.widget:buttons({
+volumecfg.widget.widget:buttons(awful.util.table.join(
        awful.button({ }, 4, function () volumecfg.up() end),
        awful.button({ }, 5, function () volumecfg.down() end),
        awful.button({ }, 1, function () volumecfg.toggle() end)
-})
+))
 volumecfg.update()
 -- }}}
 
@@ -192,9 +192,9 @@ if has_battery then
    batwidget:set_background_color("#494B4F")
    batwidget:set_color("#000000")
    batwidget:set_gradient_colors({ "#FF0000", "#FF0000" })
-   batwidget.widget:buttons({
+   batwidget.widget:buttons(awful.util.table.join(
       awful.button({}, 1, function () awful.util.spawn("gnome-power-statistics") end)
-   })
+   ))
 
    batwidget_t = awful.tooltip({ objects = { batwidget.widget },})
    vicious.register(batwidget, vicious.widgets.bat, function (widget, args)
@@ -219,9 +219,9 @@ cpuwidget = awful.widget.graph({ align = "right" })
 cpuwidget:set_width(50)
 cpuwidget:set_background_color("#000000")
 cpuwidget:set_gradient_colors({ "#00FF00", "#00FF00" })
-cpuwidget.widget:buttons({
+cpuwidget.widget:buttons(awful.util.table.join(
    awful.button({}, 1, function () awful.util.spawn("gnome-system-monitor --show-resources-tab") end)
-})
+))
 cpuwidget_t = awful.tooltip({ objects = { cpuwidget.widget },})
 
 vicious.register(cpuwidget, vicious.widgets.cpu,
@@ -256,9 +256,9 @@ memorywidget = awful.widget.graph({ align = "right" })
 memorywidget:set_width(50)
 memorywidget:set_background_color("#000000")
 memorywidget:set_gradient_colors({ "#0000FF", "#0000FF" })
-memorywidget.widget:buttons({
+memorywidget.widget:buttons(awful.util.table.join(
    awful.button({}, 1, function () awful.util.spawn("gnome-system-monitor --show-resources-tab") end)
-})
+))
 
 memorywidget_t = awful.tooltip({ objects = { memorywidget.widget },})
 vicious.register(memorywidget, vicious.widgets.mem,
