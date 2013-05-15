@@ -175,3 +175,5 @@ new_ec_test(braces_escaped_backslash3 braces.in i.txt "^backslash=yes[ \t\n\r]*$
 # matches over path separator
 new_ec_test(star_star_over_separator star_star.in a/e.c "^key=value[ \t\n\r]*$")
 
+# test EditorConfig files with UTF-8 characters larger than 127
+new_ec_test(utf_8_char utf8char.in "中文.txt" "^key=value[ \t\n\r]*$")
