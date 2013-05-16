@@ -1,0 +1,4 @@
+#!/bin/bash
+inotifywait -mrqe create ~/Mail | while read; do
+  ! [[ "$reply" =~ notmuch ]] && notmuch new
+done
