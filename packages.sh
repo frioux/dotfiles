@@ -11,6 +11,8 @@ apt-get --no-install-recommends install \
    git-core                             \
    gnome-power-manager                  \
    gnome-system-monitor                 \
+   gxmessage                            \
+   inotify-tools                        \
    lastfm                               \
    libcurl4-openssl-dev                 \
    libgmime-2.6-dev                     \
