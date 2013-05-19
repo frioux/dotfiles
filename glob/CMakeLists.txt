@@ -139,9 +139,11 @@ new_ec_test(braces_no_closing braces.in {.f "^closing=false[ \t\n\r]*$")
 new_ec_test(braces_no_closing_negative braces.in .f "^[ \t\n\r]*$")
 
 # nested braces
-new_ec_test(braces_nested1 braces.in word,this}.g "^nested=true[ \t\n\r]*$")
-new_ec_test(braces_nested2 braces.in {also,this}.g "^nested=true[ \t\n\r]*$")
-new_ec_test(braces_nested3 braces.in {also}.g "^[ \t\n\r]*$")
+new_ec_test(braces_nested1 braces.in word,this}.g "^[ \t\n\r]*$")
+new_ec_test(braces_nested2 braces.in {also,this}.g "^[ \t\n\r]*$")
+new_ec_test(braces_nested3 braces.in word.g "^nested=true[ \t\n\r]*$")
+new_ec_test(braces_nested3 braces.in {also}.g "^nested=true[ \t\n\r]*$")
+new_ec_test(braces_nested3 braces.in this.g "^nested=true[ \t\n\r]*$")
 
 # closing inside beginning
 new_ec_test(braces_closing_in_beginning braces.in {},b}.h "^closing=inside[ \t\n\r]*$")
