@@ -148,11 +148,12 @@ new_ec_test(braces_nested3 braces.in this.g "^nested=true[ \t\n\r]*$")
 # closing inside beginning
 new_ec_test(braces_closing_in_beginning braces.in {},b}.h "^closing=inside[ \t\n\r]*$")
 
-# opening braces inside
-new_ec_test(braces_opening_inside1 braces.in {.i "^opening=inside[ \t\n\r]*$")
-new_ec_test(braces_opening_inside2 braces.in b.i "^opening=inside[ \t\n\r]*$")
-new_ec_test(braces_opening_inside3 braces.in c{d.i "^opening=inside[ \t\n\r]*$")
-new_ec_test(braces_opening_inside4 braces.in .i "^[ \t\n\r]*$")
+# missing closing braces
+new_ec_test(braces_unmatched1 braces.in {{,b,c{d}.i "^unmatched=true[ \t\n\r]*$")
+new_ec_test(braces_unmatched2 braces.in {.i "^[ \t\n\r]*$")
+new_ec_test(braces_unmatched3 braces.in b.i "^[ \t\n\r]*$")
+new_ec_test(braces_unmatched4 braces.in c{d.i "^[ \t\n\r]*$")
+new_ec_test(braces_unmatched5 braces.in .i "^[ \t\n\r]*$")
 
 # escaped comma
 new_ec_test(braces_escaped_comma1 braces.in a,b.txt "^comma=yes[ \t\n\r]*$")

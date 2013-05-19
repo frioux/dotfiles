@@ -36,7 +36,7 @@ closing=inside
 
 ; opening inside beginning
 [{{,b,c{d}.i]
-opening=inside
+unmatched=true
 
 ; escaped comma
 [{a\,b,cd}.txt]
