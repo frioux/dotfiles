@@ -1,3 +1,7 @@
+* bash-tap 1.0.2 (2013-05-19-00:59)
+  * Make bash-tap-mock work with -e.
+    Contributed by Daniel Nephin (@dnephin).
+
 * bash-tap 1.0.1 (2012-07-14-20:59)
   * Clearer diagnostics for like/unlike.
   * Correct syntax for bash 3.2 regexp matching in like/unlike.

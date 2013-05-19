@@ -28,7 +28,7 @@
 # helper functons in bash-tap, or manually use file-descriptor
 # redirects yourself to achieve the same effect.
 
-bash_tap_mock_version='1.0.0'
+bash_tap_mock_version='1.0.2'
 
 if [ "${BASH_SOURCE[0]}" = "$0" ]; then
     # Being run directly, probably by test harness running entire dir.
