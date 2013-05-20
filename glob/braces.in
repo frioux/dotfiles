@@ -49,3 +49,7 @@ closing=yes
 ; escaped backslash
 [{g,\\,i}.txt]
 backslash=yes
+
+; patterns nested in braces
+[{some,a{*c,b}[ef]}.j]
+patterns=nested

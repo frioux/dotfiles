@@ -172,6 +172,20 @@ if(NOT WIN32) # this case is impossible on Windows.
 endif()
 new_ec_test(braces_escaped_backslash3 braces.in i.txt "^backslash=yes[ \t\n\r]*$")
 
+# patterns nested in braces
+new_ec_test(braces_patterns_nested1 braces.in some.j "^patterns=nested[ \t\n\r]*$")
+new_ec_test(braces_patterns_nested2 braces.in abe.j "^patterns=nested[ \t\n\r]*$")
+new_ec_test(braces_patterns_nested3 braces.in abf.j "^patterns=nested[ \t\n\r]*$")
+new_ec_test(braces_patterns_nested4 braces.in abg.j "^[ \t\n\r]*$")
+new_ec_test(braces_patterns_nested5 braces.in ace.j "^patterns=nested[ \t\n\r]*$")
+new_ec_test(braces_patterns_nested6 braces.in acf.j "^patterns=nested[ \t\n\r]*$")
+new_ec_test(braces_patterns_nested7 braces.in acg.j "^[ \t\n\r]*$")
+new_ec_test(braces_patterns_nested8 braces.in abce.j "^patterns=nested[ \t\n\r]*$")
+new_ec_test(braces_patterns_nested9 braces.in abcf.j "^patterns=nested[ \t\n\r]*$")
+new_ec_test(braces_patterns_nested10 braces.in abcg.j "^[ \t\n\r]*$")
+new_ec_test(braces_patterns_nested11 braces.in ae.j "^[ \t\n\r]*$")
+new_ec_test(braces_patterns_nested12 braces.in .j "^[ \t\n\r]*$")
+
 
 # Tests for **
 
