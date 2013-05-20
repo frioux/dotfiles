@@ -53,3 +53,11 @@ backslash=yes
 ; patterns nested in braces
 [{some,a{*c,b}[ef]}.j]
 patterns=nested
+
+; numeric braces
+[{3..120}]
+number=true
+
+; alphabetical
+[{aardvark..antelope}]
+words=a

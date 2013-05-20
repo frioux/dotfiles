@@ -186,6 +186,23 @@ new_ec_test(braces_patterns_nested10 braces.in abcg.j "^[ \t\n\r]*$")
 new_ec_test(braces_patterns_nested11 braces.in ae.j "^[ \t\n\r]*$")
 new_ec_test(braces_patterns_nested12 braces.in .j "^[ \t\n\r]*$")
 
+# numeric brace range
+new_ec_test(braces_numeric_range1 braces.in 1 "^[ \t\n\r]*$")
+new_ec_test(braces_numeric_range2 braces.in 3 "^number=true[ \t\n\r]*$")
+new_ec_test(braces_numeric_range3 braces.in 15 "^number=true[ \t\n\r]*$")
+new_ec_test(braces_numeric_range4 braces.in 60 "^number=true[ \t\n\r]*$")
+new_ec_test(braces_numeric_range5 braces.in 5a "^[ \t\n\r]*$")
+new_ec_test(braces_numeric_range6 braces.in 120 "^number=true[ \t\n\r]*$")
+new_ec_test(braces_numeric_range7 braces.in 121 "^[ \t\n\r]*$")
+
+# alphabetical brace range
+new_ec_test(braces_alpha_range1 braces.in {ardvark..antimater} "^words=a[ \t\n\r]*$")
+new_ec_test(braces_alpha_range1 braces.in a "^[ \t\n\r]*$")
+new_ec_test(braces_alpha_range3 braces.in aardvark "^[ \t\n\r]*$")
+new_ec_test(braces_alpha_range6 braces.in agreement "^[ \t\n\r]*$")
+new_ec_test(braces_alpha_range8 braces.in antelope "^[ \t\n\r]*$")
+new_ec_test(braces_alpha_range9 braces.in antimatter "^[ \t\n\r]*$")
+
 
 # Tests for **
 
