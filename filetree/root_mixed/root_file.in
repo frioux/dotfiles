@@ -1,0 +1,4 @@
+root = TrUe
+
+[*.a]
+child=true
