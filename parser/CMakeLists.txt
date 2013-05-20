@@ -24,6 +24,12 @@
 # POSSIBILITY OF SUCH DAMAGE.
 #
 
+# Basic parser tests
+
+# test repeat sections
+new_ec_test(repeat_sections basic.in a.a "^option1=value1[ \t]*[\n\r]+option2=value2[ \t\n\r]*$")
+new_ec_test(basic_cascade basic.in b.b "^option1=c[ \t]*[\n\r]+option2=b[ \t\n\r]*$")
+
 # Tests for whitespace parsing
 
 # test no whitespaces in property assignment
