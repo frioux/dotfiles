@@ -46,3 +46,23 @@ key=value
 key1=value1
   key2=value2
 key3=value3
+
+; colon separator with no spaces
+[test1.d]
+key:value
+
+; colon separator with space after
+[test2.d]
+key: value
+
+; colon separator with space before and after
+[test3.d]
+key : value
+
+; colon separator with spaces befor
+[test4.d]
+  key:value
+
+; colon seperator with spaces after property value
+[test5.d]
+key:value  
