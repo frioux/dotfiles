@@ -99,11 +99,11 @@ new_ec_test(brackets_choice_with_dash brackets.in -.f
     "^choice_with_dash=true[ \t\n\r]*$")
 
 # slash inside brackets
-new_ec_test(brackets_slash_inside brackets.in ab/cd.i
-    "^slash_inside=true[ \t\n\r]*$")
-
-# slash inside brackets
-new_ec_test(brackets_slash_inside brackets.in abecd.i
+new_ec_test(brackets_slash_inside1 brackets.in ab/cd.i
+    "^[ \t\n\r]*$")
+new_ec_test(brackets_slash_inside2 brackets.in abecd.i
+    "^[ \t\n\r]*$")
+new_ec_test(brackets_slash_inside3 brackets.in ab[e/]cd.i
     "^slash_inside=true[ \t\n\r]*$")
 
 # Tests for { and }
