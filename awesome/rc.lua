@@ -114,7 +114,7 @@ weather_widget = function(
    local actual_tooltip = awful.tooltip({ objects = { actual_widget } });
 
    actual_widget:buttons(awful.util.table.join(
-      awful.button({}, 1, function () awful.util.spawn("firefox '" .. url .. "'") end)
+      awful.button({}, 1, function () awful.util.spawn("firefox '" .. url .. os.time() .. "'") end)
    ))
 
    vicious.register(actual_widget, vicious.widgets.weather,
@@ -270,25 +270,19 @@ end, 1)
 
 -- {{{ weather
 osweatherwidget = weather_widget(
-   "KBIX",
-   "http://www.weather.com/weather/hourbyhour/graph/Biloxi+MS+USMS0033:1:US?pagenum=2&nextbeginIndex=0",
-   "OS"
+   "KBIX", "http://forecast.io/#/f/30.4163,-88.8081/", "OS"
 )
 
 awful.widget.layout.margins[osweatherwidget] = { right = 5 };
 
 rcweatherwidget = weather_widget(
-   "KADS",
-   "http://www.weather.com/weather/hourbyhour/graph/Richardson+TX+USTX1134:1:US?pagenum=2&nextbeginIndex=0",
-   "Richardson"
+   "KADS", "http://forecast.io/#/f/32.9607,-96.7330/", "Richardson"
 )
 
 awful.widget.layout.margins[rcweatherwidget] = { left = 5, right = 5 };
 
 gvweatherwidget = weather_widget(
-   "KHQZ",
-   "http://www.weather.com/weather/hourbyhour/graph/Rockwall+TX+75032:4:US?pagenum=2&nextbeginIndex=0",
-   "Rockwall"
+   "KHQZ", "http://forecast.io/#/f/32.9310,-96.4608/", "Rockwall"
 )
 
 awful.widget.layout.margins[gvweatherwidget] = { left = 5 };
