@@ -29,6 +29,6 @@ function tmmess { _tmux_session messaging }
 function tmserv { _tmux_session services }
 
 function fru { MYPERL_CONFIG="$HOME/.fruperl" myperl "$@" }
-function frue { MYPERL_CONFIG="$HOME/.fruperl" myperl -E "$@" }
+function frew { MYPERL_CONFIG="$HOME/.fruperl" myperl -E "$@" }
 
 # vim: ft=zsh foldmethod=marker

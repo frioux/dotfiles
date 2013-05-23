@@ -1,0 +1,5 @@
+if::minus_e=v5.18.0
+if::minus_e=warnings
+if::minus_e=List::AllUtils,:all
+if::minus_e=Devel::Dwarn
+if::minus_e=Module::Runtime,use_module

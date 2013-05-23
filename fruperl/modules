@@ -1,5 +1,0 @@
-v5.16.1
-warnings
-List::AllUtils=:all
-Module::Runtime=use_module
-Devel::Dwarn
