@@ -116,6 +116,12 @@ awful.tag.setproperty(tags[2], "mwfact", 0.75)
 -- }}}
 
 -- {{{ Menu
+-- Setup global menu keys
+awful.menu.menu_keys.up    = { "k", "Up"}
+awful.menu.menu_keys.down  = { "j", "Down"}
+awful.menu.menu_keys.enter = { "l", "Right"}
+awful.menu.menu_keys.back  = { "h", "Left"}
+
 -- Create a laucher widget and a main menu
 myawesomemenu = awful.menu({ items = {
    { "awesome", editor_cmd .. " " .. awful.util.getdir("config") .. "/rc.lua" },
