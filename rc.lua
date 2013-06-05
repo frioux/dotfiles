@@ -550,6 +550,11 @@ awful.rules.rules = {
       properties = { }, callback = awful.client.setslave },
     { rule = { class = "Screenkey" },
       properties = { floating = true, skip_taskbar = true, focusable = false, opacity = 0.5 } },
+    -- enable browser video plugin fullscreen
+    { rule = { instance = "exe" },
+      properties = { floating = true } },
+    { rule = { instance = "plugin-container" },
+      properties = { floating = true } },
 }
 -- }}}
 
