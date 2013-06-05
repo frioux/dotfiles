@@ -519,7 +519,7 @@ awful.rules.rules = {
                      buttons = clientbuttons,
                    } },
     { rule_any = { class = {"MPlayer", "pinentry", "Gimp", "recordMyDesktop",
-                        "Skype", "Vlc", "Screenkey", } },
+                        "Skype", "Vlc", "Arandr", } },
       properties = { floating = true } },
     -- VirtualBox immer auf dem 4. tag platzieren
     { rule_any = { class = {"VirtualBox", "rdesktop", "nxclient",
@@ -548,6 +548,8 @@ awful.rules.rules = {
     -- Start urxvt always as slave
     { rule_any = { class = {"URxvt", "XTerm"} },
       properties = { }, callback = awful.client.setslave },
+    { rule = { class = "Screenkey" },
+      properties = { floating = true, skip_taskbar = true, focusable = false, opacity = 0.5 } },
 }
 -- }}}
 
