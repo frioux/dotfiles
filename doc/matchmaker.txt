@@ -1,0 +1,52 @@
+*matchmaker.txt*  Highlight references to the syntax item under the cursor
+
+Author:         Quinn Strahl <https://github.com/qstrahl>
+License:        Same as Vim (see |license|)
+Version:        0.1.4
+
+This plugin is unavailable if 'compatible' is set
+
+INTRODUCTION                                    *matchmaker*
+
+This one time I was watching a coworker programming in a big fat IDE and,
+between trips to the washroom to throw up, I noticed that it highlighted the 
+identifier under his cursor throughout the file so that he could see at a 
+glance where it was being used. Enraged at the thought of his IDE having 
+useful features that Vim did not, I decided to implement it myself.
+
+COMMANDS                                        *matchmaker-commands*
+
+There's only one command (well, sort of two) and it toggles the behaviour.
+
+                                                *matchmaker-:Matchmaker*
+:Matchmaker             Enable matchmaker.
+
+                                                *matchmaker-:Matchmaker!*
+:Matchmaker!            Disable matchmaker.
+
+CONFIGURATION                                   *matchmaker-configuration*
+
+No configuration is strictly necessary, but matchmaker can be configured on a 
+per-buffer basis by setting the |b:matchmaker_needle()| function; the function 
+must return a pattern defining what text matchmaker should highlight.
+
+                                                *matchmaker-needle-example*
+
+As an example, matchmaker's default needle function would look like this: >
+    function b:matchmaker_needle()
+        return '\V\<'.escape(expand('<cword>'), '\').'\>'
+    endfunction
+<
+
+                                                *matchmaker-highlight*
+
+Matchmaker defines the "Matchmaker" highlight group, which you can configure 
+to your liking. See |:highlight| for how to do that.
+
+ABOUT                                           *matchmaker-about*
+
+Get the latest version, report issues, and submit your changes on GitHub:
+
+https://githib.com/qstrahl/vim-matchmaker
+
+ vim:tw=78:et:ft=help:norl:
