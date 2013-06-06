@@ -50,7 +50,7 @@ endfunction
 
 function! s:default_needle()
     return '\V\<'.escape(expand('<cword>'), '\').'\>'
-endfunction!
+endfunction
 
 function! s:needle()
     return exists('*b:matchmaker_needle') ? b:matchmaker_needle() : s:default_needle()
