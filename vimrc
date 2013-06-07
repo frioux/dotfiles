@@ -198,6 +198,9 @@ cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 
 set pastetoggle=<f10>
 
+nnoremap <F11> :vsplit<CR>
+nnoremap <F12> :split<CR>
+
 "}}}
 
 if has('win32')
