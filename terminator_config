@@ -2,7 +2,42 @@
   enabled_plugins = APTURLHandler, LaunchpadCodeURLHandler, LaunchpadBugURLHandler
   borderless = True
 [keybindings]
+  cycle_prev = None
+  close_window = None
+  group_tab = None
+  move_tab_right = None
+  resize_left = None
+  reset_clear = None
+  go_right = None
   new_tab = None
+  resize_right = None
+  resize_down = None
+  toggle_zoom = None
+  scaled_zoom = None
+  group_all = None
+  full_screen = None
+  prev_tab = None
+  split_vert = None
+  ungroup_all = None
+  ungroup_tab = None
+  cycle_next = None
+  go_prev = None
+  close_term = None
+  new_terminator = None
+  go_next = None
+  go_left = None
+  copy = None
+  hide_window = None
+  reset = None
+  search = None
+  go_up = None
+  resize_up = None
+  next_tab = None
+  split_horiz = None
+  go_down = None
+  new_window = None
+  move_tab_left = None
+  toggle_scrollbar = None
 [profiles]
   [[default]]
     scrollbar_position = hidden
