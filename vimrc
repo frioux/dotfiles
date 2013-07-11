@@ -1,10 +1,9 @@
-
-runtime bundle/vim-pathogen/autoload/pathogen.vim
-call pathogen#infect()
-
 if has('win32')
    let &runtimepath = substitute(&runtimepath, '\(\~\|'.$USER.'\)/vimfiles\>', '\1/.vim', 'g')
 endif
+
+runtime bundle/vim-pathogen/autoload/pathogen.vim
+call pathogen#infect()
 
 "{{{Auto Commands
 
