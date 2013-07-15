@@ -35,6 +35,16 @@ tokenize () {
   $GREP "$STRING|$NUMBER|$KEYWORD|$SPACE|." | egrep -v "^$SPACE$"
 }
 
+parse () {
+  read -r token
+  parse_value
+  read -r token
+  case "$token" in
+    '') ;;
+    *) throw "EXPECTED EOF GOT $token" ;;
+  esac
+}
+
 parse_array () {
   local index=0
   local ary=''
@@ -44,7 +54,7 @@ parse_array () {
     *)
       while :
       do
-        parse_value "$1" "$index"
+        parse_value "$1" "/$index"
         index=$((index+1))
         ary="$ary""$value"
         read -r token
@@ -78,7 +88,7 @@ parse_object () {
           *) throw "EXPECTED : GOT ${token:-EOF}" ;;
         esac
         read -r token
-        parse_value "$1" "$key"
+        parse_value "$1" "/${key:1:-1}"
         obj="$obj$key:$value"
         read -r token
         case "$token" in
@@ -90,11 +100,10 @@ parse_object () {
       done
     ;;
   esac
-  :
 }
 
 parse_value () {
-  local jpath="${1:+$1,}$2" isleaf=0 isempty=0 print=0
+  local jpath="${1:+$1}$2" isleaf=0 isempty=0 print=0
   case "$token" in
     '{') parse_object "$jpath" ;;
     '[') parse_array  "$jpath" ;;
@@ -107,16 +116,6 @@ parse_value () {
   esac
   [ "$value" = '' ] && return
   [ "$isleaf" -eq 1 ] && print=1
-  [ "$print" -eq 1 ] && printf "[%s]\t%s\n" "$jpath" "$value"
+  [ "$print" -eq 1 ] && printf "%s\t%s\n" "$jpath" "$value"
   :
-}
-
-parse () {
-  read -r token
-  parse_value
-  read -r token
-  case "$token" in
-    '') ;;
-    *) throw "EXPECTED EOF GOT $token" ;;
-  esac
 }
