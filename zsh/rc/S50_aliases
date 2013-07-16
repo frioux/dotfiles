@@ -25,11 +25,11 @@ alias -g G="| grep"
 alias -g L="| less"
 alias -g UP="@{upstream}"
 alias -g PT="2>&1"
-alias -g PTV="2>&1 | vi -"
+alias -g PTV="2>&1 | vim -"
 
 #}}}
 
-alias realias='vi ~/.aliases; source ~/.aliases'
+alias realias='vim ~/.aliases; source ~/.aliases'
 
 # {{{ git
 
@@ -44,10 +44,12 @@ alias gosu='git submodule foreach " git checkout . ; git clean -xdff" ; git subm
 function gr() {
    git rebase --root --onto $1 -i --autosquash
 }
+alias gr='noglob gr'
 alias gre='gr origin/release'
 
 # }}}
 
+alias vi='vim'
 alias wget='noglob wget'
 alias tar='wrap-tar'
 alias cdroot='cd $(git rev-parse --show-toplevel)'
