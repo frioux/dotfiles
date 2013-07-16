@@ -88,7 +88,8 @@ parse_object () {
           *) throw "EXPECTED : GOT ${token:-EOF}" ;;
         esac
         read -r token
-        parse_value "$1" "/${key:1:-1}"
+        # parse_value "$1" "/${key:1:-1}"
+        parse_value "$1" "/${key//\"/}"
         obj="$obj$key:$value"
         read -r token
         case "$token" in
