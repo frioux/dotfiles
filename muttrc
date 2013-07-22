@@ -47,20 +47,17 @@ macro index,pager c "<change-folder>?<toggle-mailboxes>" "open a different folde
 macro index,pager za "<collapse-thread>" "collapse thread"
 macro index,pager zi "<collapse-all>" "collapse all"
 
-macro index,pager Id "<save-message>=today<enter>$" "mark message to deal with today"
-macro index,pager Iw "<save-message>=thisweek<enter>$"  "mark message to deal with this week"
 macro index,pager If "<save-message>=fun<enter>$"  "mark message to read for fun"
 macro index,pager IT "<save-message>=gmail.Trash<enter>$"   "delete message"
 macro index,pager IS "<save-message>=gmail.Spam<enter>$"   "mark message as spam"
 macro index,pager Ii "<save-message>=INBOX<enter>$"   "mark message as spam"
 
-macro index,pager if "<change-folder>=fun<enter>" "view fun folder"
 macro index,pager im "<change-folder>=mitsi<enter>" "view mitsi list"
 macro index,pager ii "<change-folder>=INBOX<enter>" "view inbox"
 macro index,pager iT "<change-folder>=gmail.Trash<enter>"  "view trash"
 macro index,pager iS "<change-folder>=gmail.Spam<enter>"   "view spam"
-macro index,pager id "<change-folder>=today<enter>"  "view today"
-macro index,pager iw "<change-folder>=thisweek<enter>"   "view this week"
+macro index,pager iw "<change-folder>=mitsi.work<enter>"   "view mitsi.work"
+macro index,pager id "<change-folder>=DBIx-Class-Devel<enter>"   "view DBIx-Class-Devel"
 macro index <F8> \
      "<enter-command>unset wait_key<enter><shell-escape>notmuch-mutt -r --prompt search<enter><change-folder-readonly>~/.cache/notmuch/mutt/results<enter>" \
      "notmuch: search mail"
