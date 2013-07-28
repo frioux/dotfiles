@@ -1,0 +1,4 @@
+This line ends in whitespace 
+So does this one	
+And this one	 
+But not this one

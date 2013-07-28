@@ -56,3 +56,9 @@ insert_final_newline = true
 
 [without_newline.txt]
 insert_final_newline = false
+
+[trim.txt]
+trim_trailing_whitespace = true
+
+[no_trim.txt]
+trim_trailing_whitespace = false
