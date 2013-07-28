@@ -10,7 +10,7 @@ Files can be tested for a newline at the end with the ``file`` command.
 
 ``file test_files/with_newline.txt`` should return something like:
 
-	test_files/with_newline.txt: ASCII text, with no line terminators
+	test_files/with_newline.txt: ASCII text
 
 ``file test_files/without_newline.txt`` should return something like:
 
