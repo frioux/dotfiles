@@ -209,7 +209,7 @@ end
 -- {{{ clock
 mytextclock = widget({ type = "textbox" })
 vicious.register(mytextclock, vicious.widgets.date, "%a %b %e, %I:%M %P", 1)
-cal.register(mytextclock, "<span color='green'><u>%s</u></span>")
+cal.register(mytextclock, "<span color='lime'><u>%s</u></span>")
 
 awful.widget.layout.margins[mytextclock] = { right = 5, left = 5 };
 --}}}
