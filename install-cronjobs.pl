@@ -20,4 +20,16 @@ $ct->last(
       ]
    )
 );
+
+$ct->remove($ct->block($ct->select(-command_re => 'notmuch new')));
+$ct->last(
+   Config::Crontab::Block->new( -lines => [
+         Config::Crontab::Event->new(
+            -minute => 0,
+            -command => "/opt/bin/notmuch new",
+         )
+      ]
+   )
+);
+
 $ct->write;
