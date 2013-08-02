@@ -211,18 +211,39 @@ endif
 
 set list
 
-" {{{ FuzzyFinder settings
+" {{{ ctrlp settings
 
-let g:fuf_abbrevMap = {
-     \   "^lib:" : ["lib/**/"],
-     \   "^t:" : ["t/","t/**/"],
-     \ }
+function! DirCtrlP()
+   let g:ctrlp_working_path_mode = 0
+   CtrlP
+endfunction
 
-nnoremap <silent> <F3> :FufFile<CR>
-nnoremap <silent> <S-F3> :FufRenewCache<CR>
-nnoremap <silent> <F4> :FufFileWithCurrentBufferDir<CR>
-nnoremap <silent> <F5> :FufBuffer<CR>
-nnoremap <silent> <F6> :FufLine<CR>
+function! FileRelCtrlP()
+   let g:ctrlp_working_path_mode = 'c'
+   CtrlP
+endfunction
+
+let g:ctrlp_abbrev = {
+  \   "abbrevs": [
+  \    {
+  \       "pattern": "^lib:",
+  \       "expanded": "^lib/"
+  \    },
+  \    {
+  \       "pattern": "^t:",
+  \       "expanded": "^t/"
+  \    }
+  \   ]
+  \ }
+
+" put ctrlp matcher on top, ordering top to bottom
+let g:ctrlp_match_window = 'top,order:ttb,min:5,max:30'
+" search with regexen by default
+let g:ctrlp_regexp = 1
+nnoremap <silent> <F3> :call DirCtrlP()<CR>
+nnoremap <silent> <S-F3> :CtrlPClearCache<CR>
+nnoremap <silent> <F4> :call FileRelCtrlP()<CR>
+nnoremap <silent> <F5> :CtrlPBuffer<CR>
 
 " }}}
 let g:jshintprg="hint"

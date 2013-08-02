@@ -85,3 +85,6 @@
 [submodule "vim/bundle/synastic"]
 	path = vim/bundle/synastic
 	url = git://github.com/scrooloose/syntastic.git
+[submodule "vim/bundle/ctrlp.vim"]
+	path = vim/bundle/ctrlp.vim
+	url = git://github.com/kien/ctrlp.vim
