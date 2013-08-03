@@ -43,6 +43,7 @@ for x in           \
    offlineimap.py  \
    perltidyrc      \
    signature       \
+   tkremindrc      \
    tmux.conf       \
    Xdefaults       \
    xmodmap         \
