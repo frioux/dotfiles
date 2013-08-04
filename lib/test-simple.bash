@@ -83,7 +83,7 @@ TestSimple.END() {
     local exit_code=0
     if [ $TestSimple_failed -gt 0 ]; then
         exit_code=$TestSimple_failed
-        [ $exit_code > 254 ] && exit_code=254
+        [ $exit_code -gt 254 ] && exit_code=254
         local msg="# Looks like you failed $failed tests of $run run."
         [ $TestSimple_failed -eq 1 ] && msg=${msg/tests/test}
         echo "$msg" >&2
