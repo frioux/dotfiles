@@ -34,15 +34,16 @@ ok() {
         unset args[$last]
     fi
 # set -x
-    if eval "${args[@]}" &> /dev/null; then
-set +x
+    eval "${args[@]}" &> /dev/null
+    local rc=$?
+# set +x
+    if [ $rc = 0 ]; then
         if [ -n "$label" ]; then
             echo ok $((++TestSimple_run)) - $label
         else
             echo ok $((++TestSimple_run))
         fi
     else
-set +x
         let TestSimple_failed=TestSimple_failed+1
         if [ -n "$label" ]; then
             echo not ok $((++TestSimple_run)) - $label
@@ -52,7 +53,6 @@ set +x
             TestSimple.failure "$label"
         fi
     fi
-set +x
 }
 
 TestSimple.failure() {
