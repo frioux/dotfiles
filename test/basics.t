@@ -1,4 +1,5 @@
 #!/bin/bash
+
 source test-simple.bash tests 8
 
 fruit=apple
