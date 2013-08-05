@@ -1,0 +1,35 @@
+name: test-simple-bash
+abstract: Simple TAP test framework for Bash
+version: 0.0.1
+description: |
+  This is a functional equivalent of Perl's Test::Simple module; the original
+  TAP protocol testing module. It has been made to work fluentlly with
+  idiomatic Bash expressions. Runs best under the `prove` utility.
+language: bash
+keyword: [ bash, library, simple, tap, test, framework ]
+webpage: http://bpan.org/package/test-simple
+source: https://github.com/ingydotnet/test-simple-bash.git
+irc: ingy@irc.freenode.net
+bugs: https://github.com/ingydotnet/test-simple-bash/issues
+
+author:
+  name: Ingy döt Net
+  email: ingy@ingy.net
+
+license:
+  type: MIT
+  url: http://opensource.org/licenses/MIT
+
+copyright:
+  year: 2013
+
+library:
+- test-simple.bash
+test:
+  run: make test
+
+depend:
+  os: posix
+  language: bash >= 3.1
+  test: prove
+  make: gnu

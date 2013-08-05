@@ -29,15 +29,18 @@ ok() {
     local last=$((${#args[@]} - 1))
     local label=''
     local ending_re='^]]?$'
+    local rc=
     if [[ $last -gt 0 ]] && [[ ! "${args[$last]}" =~ $ending_re ]]; then
         label="${args[$last]}"
         unset args[$last]
     fi
-# set -x
-    eval "${args[@]}" &> /dev/null
-    local rc=$?
-# set +x
-    if [ $rc = 0 ]; then
+    if [[ ${#args[@]} -eq 1 ]] && [[ "${args[0]}" =~ ^[0-9]+$ ]]; then
+        rc=${args[0]}
+    else
+        eval "${args[@]}" &> /dev/null
+        rc=$?
+    fi
+    if [ $rc -eq 0 ]; then
         if [ -n "$label" ]; then
             echo ok $((++TestSimple_run)) - $label
         else
