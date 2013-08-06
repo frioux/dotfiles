@@ -25,6 +25,7 @@ TestSimple.init() {
 }
 
 ok() {
+    set +e
     local args=("$@")
     local last=$((${#args[@]} - 1))
     local label=''
@@ -47,27 +48,29 @@ ok() {
     fi
     if [ $rc -eq 0 ]; then
         if [ -n "$label" ]; then
-            echo ok $((++TestSimple_run)) - $label
+            echo "ok $((++TestSimple_run)) - $label"
         else
-            echo ok $((++TestSimple_run))
+            echo "ok $((++TestSimple_run))"
         fi
     else
         let TestSimple_failed=TestSimple_failed+1
         if [ -n "$label" ]; then
-            echo not ok $((++TestSimple_run)) - $label
+            echo "not ok $((++TestSimple_run)) - $label"
             TestSimple.failure "$label"
         else
-            echo not ok $((++TestSimple_run))
+            echo "not ok $((++TestSimple_run))"
             TestSimple.failure "$label"
         fi
     fi
+    return $rc
 }
 
+TestSimple_CALL_STACK_LEVEL=1
 TestSimple.failure() {
-    local c=( $(caller 1) )
+    local c=( $(caller $TestSimple_CALL_STACK_LEVEL) )
     local file=${c[2]}
     local line=${c[0]}
-    local label=$1
+    local label="$1"
     label=${label:+"'$label'\n#   at $file line $line."}
     label=${label:-"at $file line $line."}
     echo -e "#   Failed test $label" >&2
