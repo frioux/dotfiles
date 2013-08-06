@@ -47,6 +47,6 @@ ABOUT                                           *matchmaker-about*
 
 Get the latest version, report issues, and submit your changes on GitHub:
 
-https://githib.com/qstrahl/vim-matchmaker
+https://github.com/qstrahl/vim-matchmaker
 
  vim:tw=78:et:ft=help:norl:
