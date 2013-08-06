@@ -36,8 +36,13 @@ ok() {
     fi
     if [[ ${#args[@]} -eq 1 ]] && [[ "${args[0]}" =~ ^[0-9]+$ ]]; then
         rc=${args[0]}
-    else
+    elif [ ${args[0]} == '[[' ]; then
+        # XXX Currently need eval to support [[. Is there another way?
+        # Is [[ overkill? So many questons!
         eval "${args[@]}" &> /dev/null
+        rc=$?
+    else
+        "${args[@]}" &> /dev/null
         rc=$?
     fi
     if [ $rc -eq 0 ]; then
