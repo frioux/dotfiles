@@ -1,0 +1,105 @@
+'\" t
+.\"     Title: test-simple
+.\"    Author: [FIXME: author] [see http://docbook.sf.net/el/author]
+.\" Generator: DocBook XSL Stylesheets v1.76.1 <http://docbook.sf.net/>
+.\"      Date: 08/06/2013
+.\"    Manual: Git Manual
+.\"    Source: Git
+.\"  Language: English
+.\"
+.TH "TEST\-SIMPLE" "1" "08/06/2013" "Git" "Git Manual"
+.\" -----------------------------------------------------------------
+.\" * Define some portability stuff
+.\" -----------------------------------------------------------------
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.\" http://bugs.debian.org/507673
+.\" http://lists.gnu.org/archive/html/groff/2009-02/msg00013.html
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.ie \n(.g .ds Aq \(aq
+.el       .ds Aq '
+.\" -----------------------------------------------------------------
+.\" * set default formatting
+.\" -----------------------------------------------------------------
+.\" disable hyphenation
+.nh
+.\" disable justification (adjust text to left margin only)
+.ad l
+.\" -----------------------------------------------------------------
+.\" * MAIN CONTENT STARTS HERE *
+.\" -----------------------------------------------------------------
+.SH "NAME"
+test-simple \- Simple TAP test framework for Bash
+.SH "SYNOPSIS"
+.sp
+In a file, say, test/my_test\&.t:
+.sp
+.nf
+source test\-simple\&.bash tests 5
+.fi
+.sp
+.nf
+ok 0                    \*(Aq0 is true (other numbers are false)\*(Aq
+.fi
+.sp
+.nf
+answer=$(question "\&.\&.\&.?")
+ok [ $answer == yes ]   \*(AqThe answer is yes!\*(Aq
+ok [[ $answer =~ ^y ]]  \*(AqThe answer begins with y\*(Aq
+.fi
+.sp
+.nf
+ok true                 \*(Aqtrue is ok\*(Aq
+ok \*(Aq! false\*(Aq            \*(Aq! false is true\*(Aq
+.fi
+.sp
+Run the tests:
+.sp
+.nf
+prove \-ebash \-v test/
+.fi
+.SH "DESCRIPTION"
+.sp
+The test\-simple library is meant to work for Bash, just like the Test::Simple module does in Perl\&.
+.sp
+You can run the tests under any TAP harness tool\&. The prove utility is the most popular one\&.
+.sp
+The library provides one function called ok():
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+ok <testing> <arguments> [<label>]
+.fi
+.if n \{\
+.RE
+.\}
+.sp
+The last argument is assumed to be the a label, unless there is only one argument, or unless its value is ] or ]]\&.
+.sp
+The test arguments are evaled and if the result is true, the test passes, otherwise it fails\&.
+.SH "INSTALLATION"
+.sp
+Just run:
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+make install
+.fi
+.if n \{\
+.RE
+.\}
+.sp
+Possibly with sudo\&. The default location to install is /usr/local/lib/bash (assuming you are using /bin/bash)\&. To override the installation location, do something like this:
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+INSTALL_DIR=/your/bash/lib/path make \-e install
+.fi
+.if n \{\
+.RE
+.\}
