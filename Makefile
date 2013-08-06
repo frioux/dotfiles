@@ -2,12 +2,12 @@
     install install-lib install-doc \
     uninstall uninstall-lib uninstall-doc
 
-CMD=test-simple
+CMD := test-simple
 
 # XXX This is a very crude default. Be smarter here…
-PREFIX=/usr/local
-INSTALL_LIB=$(PREFIX)/lib/bash
-INSTALL_MAN=$(PREFIX)/share/man/man1
+PREFIX ?= /usr/local
+INSTALL_LIB ?= $(PREFIX)/lib/bash
+INSTALL_MAN ?= $(PREFIX)/share/man/man1
 
 # User targets:
 default: help
@@ -27,7 +27,7 @@ test: $(TEST_SIMPLE)
 
 install: install-lib install-doc
 
-install-lib: $(INSTALL_LIB)
+install-lib:
 	install -m 0755 lib/$(CMD) $(INSTALL_LIB)/
 
 install-doc: doc
