@@ -15,7 +15,7 @@ Also, I like it more.
 
 #Configuration
 
-Set `let g:matchmaker_enable_startup = 1` in your `~/.vimrc` to enable
+Add `let g:matchmaker_enable_startup = 1` to your `~/.vimrc` to enable
 Matchmaker when vim starts.
 
 #Contributing
