@@ -89,3 +89,11 @@ augroup Matchmaker
 augroup END
 
 " }}}
+
+" [ Enable on start ] {{{
+
+if exists('g:matchmaker_enable_startup') && g:matchmaker_enable_startup
+    Matchmaker
+endif
+
+" }}}
