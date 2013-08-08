@@ -38,13 +38,12 @@ As an example, matchmaker's default needle function would look like this: >
     endfunction
 <
 
-============-
+                            *matchmaker-startup* *g:matchmaker_enable_startup*
 
-    let g:matchmaker_enable_startup = 0
+To enable matchmaker when Vim starts, add the following to your vimrc: >
+    let g:matchmaker_enable_startup = 1
+<
 
-Set this to 1 in order to enable matchmaker when vim starts.
-
-============-
                                                 *matchmaker-highlight*
 
 Matchmaker defines the "Matchmaker" highlight group, which you can configure 
