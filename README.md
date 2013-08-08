@@ -13,6 +13,11 @@ does, the new usage will look like `:Matchmaker on` / `:Matchmaker off`.
 maybe `:Matchmaker someOtherMatchingMethod` to change the matching behaviour.
 Also, I like it more.
 
+#Configuration
+
+Add `let g:matchmaker_enable_startup = 1` to your `~/.vimrc` to enable
+Matchmaker when vim starts.
+
 #Contributing
 
 This project uses the [git 
