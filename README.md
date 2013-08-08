@@ -1,4 +1,4 @@
-#Matchmaker v0.1.6
+#Matchmaker v0.1.7
 
 Automatically highlight keyword matches as the cursor moves over them.
 
@@ -7,10 +7,10 @@ Automatically highlight keyword matches as the cursor moves over them.
 * `:Matchmaker` turns it on
 * `:Matchmaker!` turns it off
 
-**Note:** this behaviour will change in version **1.0.0**; be aware! When it 
-does, the new usage will look like `:Matchmaker on` / `:Matchmaker off`.  
-`:Matchmaker!` will toggle it. This is to make way for more commands, like 
-maybe `:Matchmaker someOtherMatchingMethod` to change the matching behaviour.  
+**Note:** this behaviour will change in version **1.0.0**; be aware! When it
+does, the new usage will look like `:Matchmaker on` / `:Matchmaker off`.
+`:Matchmaker!` will toggle it. This is to make way for more commands, like
+maybe `:Matchmaker someOtherMatchingMethod` to change the matching behaviour.
 Also, I like it more.
 
 #Contributing
