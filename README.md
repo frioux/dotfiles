@@ -21,3 +21,7 @@ development. There's [a handy git module for git
 flow](//github.com/nvie/gitflow). If you'd like to be added as a contributor, 
 make some well-formatted pull requests (against the `develop` branch) and let 
 me know.
+
+#License
+
+Same as Vim; see `:help license`
