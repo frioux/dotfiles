@@ -6,6 +6,7 @@ Automatically highlight keyword matches as the cursor moves over them.
 
 * `:Matchmaker` turns it on
 * `:Matchmaker!` turns it off
+* `:MatchmakerToggle` toggles it
 
 **Note:** this behaviour will change in version **1.0.0**; be aware! When it
 does, the new usage will look like `:Matchmaker on` / `:Matchmaker off`.
