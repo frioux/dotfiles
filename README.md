@@ -1,6 +1,6 @@
 #Matchmaker v0.2.0
 
-Automatically highlight keyword matches as the cursor moves over them.
+Highlight matches for the word under the cursor.
 
 #Usage
 

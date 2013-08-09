@@ -1,8 +1,8 @@
-*matchmaker.txt*  Highlight references to the syntax item under the cursor
+*matchmaker.txt*  Highlight matches for the word under the cursor
 
 Author:         Quinn Strahl <https://github.com/qstrahl>
 License:        Same as Vim (see |license|)
-Version:        0.2.0
+Version:        0.1.7
 
 This plugin is unavailable if 'compatible' is set
 
@@ -49,7 +49,7 @@ To enable matchmaker when Vim starts, add the following to your vimrc: >
 
                                                 *matchmaker-mapping-examples*
 
-To make <Leader>m toggle Matchmaker on and off: >
+To make <Leader>m  toggle Matchmaker on and off: >
     nnoremap <Leader>m :<C-u>MatchmakerToggle<CR>
 <
 
