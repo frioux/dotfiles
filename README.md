@@ -1,4 +1,4 @@
-#Matchmaker v0.1.7
+#Matchmaker v0.2.0
 
 Automatically highlight keyword matches as the cursor moves over them.
 
@@ -6,12 +6,18 @@ Automatically highlight keyword matches as the cursor moves over them.
 
 * `:Matchmaker` turns it on
 * `:Matchmaker!` turns it off
+* `:MatchmakerToggle` toggles it
 
 **Note:** this behaviour will change in version **1.0.0**; be aware! When it
 does, the new usage will look like `:Matchmaker on` / `:Matchmaker off`.
 `:Matchmaker!` will toggle it. This is to make way for more commands, like
 maybe `:Matchmaker someOtherMatchingMethod` to change the matching behaviour.
 Also, I like it more.
+
+#Configuration
+
+Add `let g:matchmaker_enable_startup = 1` to your `~/.vimrc` to enable
+Matchmaker when vim starts.
 
 #Contributing
 

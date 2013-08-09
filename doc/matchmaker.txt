@@ -2,7 +2,7 @@
 
 Author:         Quinn Strahl <https://github.com/qstrahl>
 License:        Same as Vim (see |license|)
-Version:        0.1.7
+Version:        0.2.0
 
 This plugin is unavailable if 'compatible' is set
 
@@ -24,6 +24,9 @@ There's only one command (well, sort of two) and it toggles the behaviour.
                                                 *matchmaker-:Matchmaker!*
 :Matchmaker!            Disable matchmaker.
 
+                                                *matchmaker-:MatchmakerToggle*
+:MatchmakerToggle       Toggle matchmaker.
+
 CONFIGURATION                                   *matchmaker-configuration*
 
 No configuration is strictly necessary, but matchmaker can be configured on a 
@@ -42,6 +45,12 @@ As an example, matchmaker's default needle function would look like this: >
 
 To enable matchmaker when Vim starts, add the following to your vimrc: >
     let g:matchmaker_enable_startup = 1
+<
+
+                                                *matchmaker-mapping-examples*
+
+To make <Leader>m toggle Matchmaker on and off: >
+    nnoremap <Leader>m :<C-u>MatchmakerToggle<CR>
 <
 
                                                 *matchmaker-highlight*
