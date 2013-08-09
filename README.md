@@ -1,4 +1,4 @@
-#Matchmaker v0.2.0
+#Matchmaker v0.2.1
 
 Highlight matches for the word under the cursor.
 

@@ -2,7 +2,7 @@
 
 Author:         Quinn Strahl <https://github.com/qstrahl>
 License:        Same as Vim (see |license|)
-Version:        0.1.7
+Version:        0.2.1
 
 This plugin is unavailable if 'compatible' is set
 
