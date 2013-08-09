@@ -72,11 +72,20 @@ function! s:matchmake(needle)
     call s:highlight(w:matchmaker_needle)
 endfunction
 
+function! s:toggle()
+    if s:is_enabled()
+        call s:enable(0)
+    else
+        call s:enable(1)
+    endif
+endfunction
+
 " }}}
 
 " [ Commands ] {{{
 
 command! -bang -nargs=0 Matchmaker call s:enable(<bang>1)
+command! -nargs=0 MatchmakerToggle call s:toggle()
 
 " }}}
 
