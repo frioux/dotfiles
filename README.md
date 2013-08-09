@@ -1,4 +1,4 @@
-#Matchmaker v0.1.7
+#Matchmaker v0.2.0
 
 Automatically highlight keyword matches as the cursor moves over them.
 
