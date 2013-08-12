@@ -56,6 +56,7 @@ cpanm                                                               \
    Moo                                                              \
    Moose                                                            \
    namespace::clean                                                 \
+   Perl::Tidy                                                       \
    rlib                                                             \
    String::Random                                                   \
    Sub::Exporter                                                    \
