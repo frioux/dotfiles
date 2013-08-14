@@ -33,6 +33,8 @@ set status_on_top     = yes
 set use_from          = yes
 set markers           = no
 
+alternates '^frew@mitsi.com$' '^frioux@gmail.com$'
+
 set index_format="%4C %Z %{%b %d} %-15.15L (%3E) %s"
 set pager_index_lines=9
 
