@@ -9,24 +9,14 @@ my $ct = Config::Crontab->new;
 
 $ct->read;
 
-$ct->remove($ct->block($ct->select(-command_re => '/bin/daily-notifications')));
-$ct->last(
-   Config::Crontab::Block->new( -lines => [
-         Config::Crontab::Event->new(
-            -minute => 0,
-            -hour   => 8,
-            -command => "$ENV{HOME}/bin/daily-notifications",
-         )
-      ]
-   )
-);
+$ct->remove($ct->block($ct->select(-command_re => qr[/bin/daily-notifications])));
 
-$ct->remove($ct->block($ct->select(-command_re => 'notmuch new')));
+$ct->remove($ct->block($ct->select(-command_re => qr/notmuch new/)));
 $ct->last(
    Config::Crontab::Block->new( -lines => [
          Config::Crontab::Event->new(
             -minute => 0,
-            -command => "/opt/bin/notmuch new",
+            -command => "sh -c '/opt/bin/notmuch new > /dev/null 2>&1'",
          )
       ]
    )
