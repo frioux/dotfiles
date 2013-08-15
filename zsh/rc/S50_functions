@@ -31,4 +31,6 @@ function tmserv { _tmux_session services }
 function fru { MYPERL_HOME="$HOME/.fruperl" myperl "$@" }
 function frew { MYPERL_HOME="$HOME/.fruperl" myperl -E "$@" }
 
+function tea_by_date { tea list_teas G '*' | cut -b7- | xargs -i{} sh -c 'tea list_times | grep "{}" | tail -n1' | sort }
+
 # vim: ft=zsh foldmethod=marker
