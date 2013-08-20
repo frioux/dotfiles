@@ -16,7 +16,6 @@ set include           = yes
 set mbox_type         = Maildir
 set move              = no
 set pager_context     = 5
-set pgp_sign_as       = 0x737A7582
 set postponed         = "+gmail.drafts"
 set query_command     = "goobook query '%s'"
 set realname          = "fREW Schmidt"
