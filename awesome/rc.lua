@@ -445,6 +445,14 @@ globalkeys = awful.util.table.join(
             end
         end),
 
+   awful.key({ modkey, "Shift"   }, "n",
+       function()
+           local tag = awful.tag.selected()
+               for i=1, #tag:clients() do
+                   tag:clients()[i].minimized=false
+                   tag:clients()[i]:redraw()
+           end
+       end),
     -- Standard program
     awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
     awful.key({ modkey, "Control" }, "r", awful.util.restart),
