@@ -25,44 +25,47 @@ TestSimple.init() {
 }
 
 ok() {
-    set +e
     local args=("$@")
     local last=$((${#args[@]} - 1))
     local label=''
     local ending_re='^]]?$'
-    local rc=
-    if [[ $last -gt 0 ]] && [[ ! "${args[$last]}" =~ $ending_re ]]; then
-        label="${args[$last]}"
-        unset args[$last]
-    fi
-    if [[ ${#args[@]} -eq 1 ]] && [[ "${args[0]}" =~ ^[0-9]+$ ]]; then
-        rc=${args[0]}
-    elif [ ${args[0]} == '[[' ]; then
-        # XXX Currently need eval to support [[. Is there another way?
-        # Is [[ overkill? So many questons!
-        eval "${args[@]}" &> /dev/null
-        rc=$?
-    else
-        "${args[@]}" &> /dev/null
-        rc=$?
-    fi
-    if [ $rc -eq 0 ]; then
-        if [ -n "$label" ]; then
-            echo "ok $((++TestSimple_run)) - $label"
-        else
-            echo "ok $((++TestSimple_run))"
+    let TestSimple_run=TestSimple_run+1
+    (
+        set +e
+        local rc=
+        if [[ $last -gt 0 ]] && [[ ! "${args[$last]}" =~ $ending_re ]]; then
+            label="${args[$last]}"
+            unset args[$last]
         fi
-    else
-        let TestSimple_failed=TestSimple_failed+1
-        if [ -n "$label" ]; then
-            echo "not ok $((++TestSimple_run)) - $label"
-            TestSimple.failure "$label"
+        if [[ ${#args[@]} -eq 1 ]] && [[ "${args[0]}" =~ ^[0-9]+$ ]]; then
+            rc=${args[0]}
+        elif [ ${args[0]} == '[[' ]; then
+            # XXX Currently need eval to support [[. Is there another way?
+            # Is [[ overkill? So many questons!
+            eval "${args[@]}" &> /dev/null
+            rc=$?
         else
-            echo "not ok $((++TestSimple_run))"
-            TestSimple.failure "$label"
+            "${args[@]}" &> /dev/null
+            rc=$?
         fi
-    fi
-    return $rc
+        if [ $rc -eq 0 ]; then
+            if [ -n "$label" ]; then
+                echo "ok $TestSimple_run - $label"
+            else
+                echo "ok $TestSimple_run"
+            fi
+        else
+            let TestSimple_failed=TestSimple_failed+1
+            if [ -n "$label" ]; then
+                echo "not ok $TestSimple_run - $label"
+                TestSimple.failure "$label"
+            else
+                echo "not ok $TestSimple_run"
+                TestSimple.failure "$label"
+            fi
+        fi
+        return $rc
+    )
 }
 
 TestSimple_CALL_STACK_LEVEL=1
