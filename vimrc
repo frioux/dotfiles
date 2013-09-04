@@ -9,12 +9,6 @@ call pathogen#infect()
 
 autocmd VimEnter * set vb t_vb=
 
-" Remove any trailing whitespace that is in the file
-autocmd BufRead,BufWrite * if ! &bin && ! &readonly && expand('<afile>:p') !~ '\.git/' | silent! %s/\s\+$//ge | endif
-
-" replace tabs with spaces
-autocmd BufRead,BufWrite * if ! &bin && ! &readonly && expand('<afile>:p') !~ '\.git/' | silent! %retab | endif
-
 " Restore cursor position to where it was before
 function! ResCur()
   if line("'\"") <= line("$")
