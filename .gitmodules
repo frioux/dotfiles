@@ -87,7 +87,7 @@
 	url = git://github.com/kien/ctrlp.vim
 [submodule "ww-roller.pl"]
 	path = ww-roller.pl
-	url = git://gist.github.com/6201486
+	url = git://github.com/wesQ3/ww-roll
 [submodule "vim/bundle/vim-airline"]
 	path = vim/bundle/vim-airline
 	url = git://github.com/bling/vim-airline

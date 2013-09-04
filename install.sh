@@ -20,7 +20,6 @@ link-file xsession ~/.xinitrc
 link-file gpg.conf ~/.gnupg/gpg.conf
 link-file todo ~/.todo/config
 link-file ww-roller.pl/ww_roll.pl ~/bin/ww-roll.pl
-chmod +x ~/bin/ww-roll.pl
 source ~/.smartcd/lib/core/arrays
 source ~/.smartcd/lib/core/varstash
 source ~/.smartcd/lib/core/smartcd
