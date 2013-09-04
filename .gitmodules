@@ -31,9 +31,6 @@
 [submodule "vim/bundle/vim-fugitive"]
 	path = vim/bundle/vim-fugitive
 	url = git://github.com/tpope/vim-fugitive
-[submodule "vim/bundle/vim-powerline"]
-	path = vim/bundle/vim-powerline
-	url = git://github.com/Lokaltog/vim-powerline
 [submodule "vim/bundle/jshint.vim"]
 	path = vim/bundle/jshint.vim
 	url = git://github.com/walm/jshint.vim.git
@@ -91,3 +88,6 @@
 [submodule "ww-roller.pl"]
 	path = ww-roller.pl
 	url = git://gist.github.com/6201486
+[submodule "vim/bundle/vim-airline"]
+	path = vim/bundle/vim-airline
+	url = git://github.com/bling/vim-airline
