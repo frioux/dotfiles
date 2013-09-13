@@ -186,10 +186,9 @@ inoremap <F1> :GundoToggle<CR>
 " Make %% represent the dir of the current buffer
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 
-set pastetoggle=<f10>
-
+nnoremap <F10> :split<CR>
 nnoremap <F11> :vsplit<CR>
-nnoremap <F12> :split<CR>
+set pastetoggle=<F12>
 
 "}}}
 
