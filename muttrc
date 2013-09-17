@@ -32,7 +32,7 @@ set status_on_top     = yes
 set use_from          = yes
 set markers           = no
 
-alternates '^frew@mitsi.com$' '^frioux@gmail.com$'
+alternates '^frew@mitsi.com$' '^frioux@gmail.com$' '^frew@afoolishmanifesto.com$'
 
 set index_format="%4C %Z %{%b %d} %-15.15L (%3E) %s"
 set pager_index_lines=9
@@ -81,5 +81,6 @@ push <show-version>
 
 send-hook '~t ".*"' 'my_hdr From: fREW Schmidt <frioux@gmail.com>'
 send-hook '~t ".*@(mitsi|tycoint|celltrust)\.com"' 'my_hdr From: Frew Schmidt <frew@mitsi.com>'
+send-hook '~t "(cscg-1@listbox.com|(mitsi|bladis)@googlegroups.com)"' 'my_hdr From: fREW Schmidt <frew@afoolishmanifesto.com>'
 
 # vim: ft=muttrc
