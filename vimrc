@@ -80,10 +80,8 @@ set ignorecase
 " And so is Artificial Intelligence!
 set smartcase
 
-" This is totally awesome - remap jj to escape in insert mode.  You'll never type jj anyway, so it's great!
-inoremap jj <Esc>
-
-nnoremap JJJJ <Nop>
+" This is totally awesome - remap jk to escape in insert mode.  You'll never type jk anyway, so it's great!
+inoremap jk <Esc>
 
 " Incremental searching is sexy
 set incsearch

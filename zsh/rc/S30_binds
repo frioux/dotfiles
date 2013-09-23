@@ -27,7 +27,7 @@ bindkey '\e[D' backward-char
 bindkey '\eOC' forward-char
 bindkey '\eOD' backward-char
 
-bindkey -M viins 'jj' vi-cmd-mode
+bindkey -M viins 'jk' vi-cmd-mode
 bindkey -M vicmd 'u' undo
 
 # Rebind the insert key.  I really can't stand what it currently does.
