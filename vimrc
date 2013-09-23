@@ -160,12 +160,12 @@ nnoremap <silent> zk O<Esc>
 
 " Search mappings: These will make it so that going to the next one in a
 " search will center on the line it's found in.
-map N Nzz
-map n nzz
+noremap N Nzz
+noremap n nzz
 
 " http://learnvimscriptthehardway.stevelosh.com/chapters/04.html
-nmap <c-u> viwU
-imap <c-u> <esc>viwUi
+nnoremap <c-u> viwU
+inoremap <c-u> <esc>viwUi
 
 " Testing
 set completeopt=longest,menuone,preview
