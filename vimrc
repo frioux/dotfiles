@@ -163,6 +163,10 @@ nnoremap <silent> zk O<Esc>
 map N Nzz
 map n nzz
 
+" http://learnvimscriptthehardway.stevelosh.com/chapters/04.html
+nmap <c-u> viwU
+imap <c-u> <esc>viwUi
+
 " Testing
 set completeopt=longest,menuone,preview
 set complete-=i
