@@ -144,7 +144,7 @@ nnoremap <silent> <Leader>tp :%!top-post<CR>ggI
 vnoremap <silent> <Leader>tp :!top-post<CR>
 
 " Edit vimrc \ev
-nnoremap <silent> <Leader>ev :tabnew<CR>:e ~/.vimrc<CR>
+nnoremap <silent> <Leader>ev :split $MYVIMRC<CR>
 
 " DwarnF a perl var
 vnoremap <silent> <Leader>d= :!dwarnf_var_assignment<CR>
