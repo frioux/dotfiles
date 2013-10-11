@@ -1,6 +1,6 @@
 MANPATH=
 export MANPATH="/opt/share/man:$(manpath)"
-export PATH="$HOME/bin:/opt/bin:$PATH"
+export PATH="$HOME/bin:$HOME/Dropbox/bin:/opt/bin:$PATH"
 export LD_LIBRARY_PATH="/opt/lib"
 export CFLAGS=-I/opt/include
 export LDFLAGS=-L/opt/lib
