@@ -1,6 +1,10 @@
+EXT = \
+	ext/bpan-bash/lib \
+	ext/test-more-bash/lib \
+
 .PHONY: test
-test: ext
+test: $(EXT)
 	prove $(PROVEOPT) test/
 
-ext:
+$(EXT):
 	git submodule update --init
