@@ -42,38 +42,27 @@ ok() {
     local last=$((${#args[@]} - 1))
     local label=''
     local ending_re='^]]?$'
-    (
-        set +e
-        local rc=
-        if [[ $last -gt 0 ]] && [[ ! "${args[$last]}" =~ $ending_re ]]; then
-            label="${args[$last]}"
-            unset args[$last]
-        fi
-        if [[ ${#args[@]} -eq 1 ]] && [[ "${args[0]}" =~ ^[0-9]+$ ]]; then
-            rc=${args[0]}
-        elif [ ${args[0]} == '[[' ]; then
-            # XXX Currently need eval to support [[. Is there another way?
-            # Is [[ overkill? So many questons!
-            eval "${args[@]}" &> /dev/null
-            rc=$?
-        else
-            "${args[@]}" &> /dev/null
-            rc=$?
-        fi
-        if [ $rc -eq 0 ]; then
-            pass "$label"
-        else
-            let TestTap_failed=TestTap_failed+1
-            if [ -n "$label" ]; then
-                echo "not ok $TestTap_run - $label"
-                TestTap.failure "$label"
-            else
-                echo "not ok $TestTap_run"
-                TestTap.failure "$label"
-            fi
-        fi
-        return $rc
-    )
+    local rc=
+    if [[ $last -gt 0 ]] && [[ ! "${args[$last]}" =~ $ending_re ]]; then
+        label="${args[$last]}"
+        unset args[$last]
+    fi
+    if [[ ${#args[@]} -eq 1 ]] && [[ "${args[0]}" =~ ^[0-9]+$ ]]; then
+        rc=${args[0]}
+    elif [ ${args[0]} == '[[' ]; then
+        # XXX Currently need eval to support [[. Is there another way?
+        (set +e; eval "${args[@]}" &> /dev/null)
+        rc=$?
+    else
+        "${args[@]}" &> /dev/null
+        rc=$?
+    fi
+    if [ $rc -eq 0 ]; then
+        pass "$label"
+    else
+        fail "$label"
+    fi
+    return $rc
 }
 
 [[ "${BASH_SOURCE[0]}" != "${0}" ]] && Test::Tap:init "$@"
