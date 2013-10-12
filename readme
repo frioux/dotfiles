@@ -1,0 +1,6 @@
+This is a clone of Perl's 'Test::More' TAP Testing library.
+
+Run `make test` to run the tests, and then look at the tests to see how it
+works.
+
+More doc coming soon.
