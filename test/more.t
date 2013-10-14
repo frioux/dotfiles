@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 
-source test/more.sh
+source test/more.bash
 
 plan tests 6
 
 pass 'This test always passes'
 
 {
-    # test fail without failing
-    output=`fail 'FAIL - O NOES' 2> /dev/null`
-    pass "${output/not ok 2 - /}"
+  # test fail without failing
+  output=`fail 'FAIL - O NOES' 2> /dev/null`
+  pass "${output/not ok 2 - /}"
 }
 
 is 'foo' "foo" 'foo is foo'
@@ -24,4 +24,4 @@ ok [[ ! team =~ I ]] "There's no I in team"
 
 note "A msg for stdout"
 
-# done_testing
+# vim: set sw=2 ft=sh:

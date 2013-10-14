@@ -1,6 +1,6 @@
 EXT = \
 	ext/bpan-bash/lib \
-	ext/test-more-bash/lib \
+	ext/test-tap-bash/lib \
 
 .PHONY: test
 test: $(EXT)
