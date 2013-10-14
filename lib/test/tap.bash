@@ -35,7 +35,8 @@ Test::Tap:plan() {
         Test__Tap_plan=$2
         printf "1..%d\n" $Test__Tap_plan
     elif [ "$1" == skip_all ]; then
-        printf "1..0 # SKIP $2"
+        printf "1..0 # SKIP $2\n"
+        exit 0
     else
         Test::Tap:die 'Usage: plan tests <number>'
     fi
