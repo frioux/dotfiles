@@ -1,6 +1,0 @@
-This is a TAP testing base class for Bash.
-
-It is used as the base for test-more-bash, which is what you want if you are
-writing tests in bash.
-
-See: https://github.com/ingydotnet/test-more-bash/
