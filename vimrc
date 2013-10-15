@@ -210,11 +210,11 @@ set pastetoggle=<F12>
 "}}}
 
 if has('win32')
-   set listchars=tab:-\ ,eol:$
+   set listchars=tab:-\ ,eol:$,nbsp:_,trail:.
    set directory=~/var/swap
    set undodir=~/var/undo
 else
-   set listchars=tab:▸\ ,eol:¬
+   set listchars=tab:▸\ ,eol:¬,nbsp:~,trail:·
    set directory=~/.vim/var/swap
    set undodir=~/.vim/var/undo
 endif
