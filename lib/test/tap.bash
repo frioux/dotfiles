@@ -84,7 +84,24 @@ Test::Tap:note() {
   echo "$msg"
 }
 
+Test::Tap:BAIL_OUT() {
+  TEST_TAP_BAIL_OUT_ON_ERROR="$@"
+  exit 255
+}
+
 Test::Tap:END() {
+  local rc=$?
+  if [ $rc -ne 0 ]; then
+    local bail="$TEST_TAP_BAIL_OUT_ON_ERROR"
+    if [ -n "$bail" ]; then
+      if [[ "$bail" =~ (1|true) ]]; then
+        bail="because TEST_TAP_BAIL_OUT_ON_ERROR=$bail and status=$rc"
+      fi
+      echo "Bail out!  $bail"
+      exit $rc
+    fi
+  fi
+
   for v in plan run failed; do eval local $v=\$Test__Tap_$v; done
   if [ $plan -eq 0 ]; then
     if [ $run -gt 0 ]; then
