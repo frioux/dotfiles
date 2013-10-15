@@ -1,10 +1,10 @@
-PATH="$(
-  IFS=':'
+INC="$(
   set -- \
     $PWD/lib \
     $PWD/ext/*/{bin,lib}
-  echo "$*"
-):$PATH"
+  IFS=':'; echo "$*"
+)"
+PATH="$INC:$PATH"
 
 . \
 bpan
