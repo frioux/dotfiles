@@ -14,7 +14,8 @@ pass() { Test::Tap:pass "$@"; }
 fail() { Test::Tap:fail "$@"; }
 diag() { Test::Tap:diag "$@"; }
 note() { Test::Tap:note "$@"; }
-done_testing() { Test::Tap:done_testing; }
+done_testing() { Test::Tap:done_testing "$@"; }
+BAIL_OUT() { Test::Tap:BAIL_OUT "$@"; }
 
 is() {
   local Test__Tap_CALL_STACK_LEVEL=$(( Test__Tap_CALL_STACK_LEVEL + 1 ))
