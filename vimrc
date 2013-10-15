@@ -209,12 +209,23 @@ set pastetoggle=<F12>
 
 "}}}
 
+let g:airline_symbols = {}
 if has('win32')
    set listchars=tab:-\ ,eol:$,nbsp:_,trail:.
    set directory=~/var/swap
    set undodir=~/var/undo
+   let g:airline_left_sep = '>'
+   let g:airline_right_sep = '<'
+   let g:airline_symbols.linenr = ''
+   let g:airline_symbols.branch = ''
+   let g:airline_symbols.whitespace = '='
 else
    set listchars=tab:▸\ ,eol:¬,nbsp:~,trail:·
+   let g:airline_left_sep = '▶'
+   let g:airline_right_sep = '◀'
+   let g:airline_symbols.linenr = '␤'
+   let g:airline_symbols.branch = '⎇ '
+   let g:airline_symbols.whitespace = 'Ξ'
    set directory=~/.vim/var/swap
    set undodir=~/.vim/var/undo
 endif
@@ -257,10 +268,4 @@ nnoremap <silent> <F5> :CtrlPBuffer<CR>
 
 " }}}
 let g:jshintprg="hint"
-let g:airline_left_sep = '▶'
-let g:airline_right_sep = '◀'
-let g:airline_symbols = {}
-let g:airline_symbols.linenr = '␤'
-let g:airline_symbols.branch = '⎇ '
-let g:airline_symbols.whitespace = 'Ξ'
 " vim: foldmethod=marker
