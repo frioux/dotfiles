@@ -86,7 +86,7 @@ Test::Tap:note() {
 
 Test::Tap:BAIL_OUT() {
   TEST_TAP_BAIL_OUT_ON_ERROR="$@"
-  : "${TEST_TAP_BAIL_OUT_ON_ERROR:-No reason given.}"
+  : "${TEST_TAP_BAIL_OUT_ON_ERROR:=No reason given.}"
   exit 255
 }
 
