@@ -1,17 +1,12 @@
-#!/bin/bash
+#!/bin/bash -e
 
-set -e
+source test/test.bash
 
-echo '1..2'
+plan 2
 
-{
-    PATH=$PWD/bin:$PATH source bpan
-    echo 'ok 1 - Source BPAN works'
-}
+PATH=$PWD/bin:$PATH source bpan
+ok 'Source BPAN works'
 
-label='BPAN_VERSION is 0.0.1'
-if [ $BPAN_VERSION == '0.0.1' ]; then
-    echo "ok 2 - $label"
-else
-    echo "not ok 2 - $label"
-fi
+is "$BPAN_VERSION" '0.0.1' 'BPAN_VERSION is 0.0.1'
+
+
