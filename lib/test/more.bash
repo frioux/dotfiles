@@ -16,25 +16,29 @@ diag() { Test::Tap:diag "$@"; }
 note() { Test::Tap:note "$@"; }
 done_testing() { Test::Tap:done_testing "$@"; }
 BAIL_OUT() { Test::Tap:BAIL_OUT "$@"; }
+FAIL_FAST() { Test::Tap:FAIL_FAST "$@"; }
 
 is() {
-  local Test__Tap_CALL_STACK_LEVEL=$(( Test__Tap_CALL_STACK_LEVEL + 1 ))
   local got="$1" want="$2" label="$3"
   if [ "$got" == "$want" ]; then
-    pass "$label"
+    Test::Tap:pass "$label"
   else
-    fail "$label"
-    if [[ "$want" =~ \n ]]; then
-      echo "$got" > /tmp/got-$$
-      echo "$want" > /tmp/want-$$
-      diff -u /tmp/{want,got}-$$ >&2
-      wc /tmp/{want,got}-$$ >&2
-      rm -f /tmp/{got,want}-$$
-    else
-      diag "\
-      got: '$got'
-   expected: '$want'"
-    fi
+    Test::Tap:fail "$label" Test::Tap:is-fail
+  fi
+}
+
+Test::More:is-fail() {
+  local Test__Tap_CALL_STACK_LEVEL=$(( Test__Tap_CALL_STACK_LEVEL + 1 ))
+  if [[ "$want" =~ \n ]]; then
+    echo "$got" > /tmp/got-$$
+    echo "$want" > /tmp/want-$$
+    diff -u /tmp/{want,got}-$$ >&2
+    wc /tmp/{want,got}-$$ >&2
+    rm -f /tmp/{got,want}-$$
+  else
+    Test::Tap:diag "\
+    got: '$got'
+  expected: '$want'"
   fi
 }
 
@@ -42,13 +46,16 @@ isnt() {
   local Test__Tap_CALL_STACK_LEVEL=$(( Test__Tap_CALL_STACK_LEVEL + 1 ))
   local got="$1" dontwant="$2" label="$3"
   if [ "$got" != "$dontwant" ]; then
-    pass "$label"
+    Test::Tap:pass "$label"
   else
-    fail "$label"
-    diag "\
+    Test::Tap:fail "$label" Test::More:isnt-fail
+  fi
+}
+
+Test::More:isnt-fail() {
+    Test::Tap:diag "\
       got: '$got'
    expected: anything else"
-  fi
 }
 
 ok() {
@@ -71,11 +78,24 @@ ok() {
     "${args[@]}" &> /dev/null || rc=$?
   fi
   if [ $rc -eq 0 ]; then
-    pass "$label"
+    Test::Tap:pass "$label"
   else
-    fail "$label"
+    Test::Tap:fail "$label"
   fi
   return $rc
+}
+
+like() {
+  local got=$1 regex=$2 label=$3
+  if [[ "$got" =~ "$regex" ]]; then
+    Test::Tap:pass "$label"
+  else
+    Test::Tap:fail "$label" Test::More:like-fail
+  fi
+}
+
+Test::More:like-fail() {
+    Test::Tap:diag "Got: '$got'"
 }
 
 [[ "${BASH_SOURCE[0]}" != "${0}" ]] && Test::Tap:init "$@"

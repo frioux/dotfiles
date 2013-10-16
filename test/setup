@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+BPAN_PATH="$(
+  set -- \
+    $PWD/lib \
+    $PWD/ext/*/{bin,lib}
+  IFS=':'; echo "$*"
+)"
+PATH="$BPAN_PATH:$PATH"
+
+. bpan --import include die

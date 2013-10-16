@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+source test/setup
 source test/more.bash
 
 plan tests 6
