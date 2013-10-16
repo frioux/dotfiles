@@ -3,15 +3,18 @@
 # Copyright (c) 2013 Ingy döt Net
 
 #------------------------------------------------------------------------------
-Test::Tap:die() { echo "$@" >&2; trap EXIT; exit 255; }
+Test::Tap:die() { echo "$@" >&2; trap EXIT; exit 1; }
 #------------------------------------------------------------------------------
 
 Test__Tap_VERSION=0.0.1
 
 Test::Tap:init() {
+  [ -n "$BASH_SOURCE" ] ||
+    Test::Tap:die "Error: test-tap-bash must be run under Bash only"
   Test__Tap_plan=0
   Test__Tap_run=0
   Test__Tap_failed=0
+  Test__Tap_pid=$BASHPID
 
   if [ $# -gt 0 ]; then
     [[ $# -eq 2 ]] ||
@@ -65,6 +68,9 @@ Test::Tap:fail() {
   label=${label:+"'$label'\n#   at $file line $line."}
   label=${label:-"at $file line $line."}
   echo -e "#   Failed test $label" >&2
+
+  local rc=${TEST_TAP_FAIL_FAST:-0}
+  [[ $TEST_TAP_FAIL_FAST -eq 0 ]] || exit $rc
 }
 
 Test::Tap:done_testing() {
@@ -85,19 +91,20 @@ Test::Tap:note() {
 }
 
 Test::Tap:BAIL_OUT() {
-  TEST_TAP_BAIL_OUT_ON_ERROR="$@"
-  : "${TEST_TAP_BAIL_OUT_ON_ERROR:=No reason given.}"
+  Test__Tap_bail_msg="$@"
+  : "${Test__Tap_bail_msg:=No reason given.}"
   exit 255
+}
+
+Test::Tap:FAIL_FAST() {
+  TEST_TAP_FAIL_FAST=1
 }
 
 Test::Tap:END() {
   local rc=$?
   if [ $rc -ne 0 ]; then
-    local bail="$TEST_TAP_BAIL_OUT_ON_ERROR"
-    if [ -n "$bail" ]; then
-      if [[ "$bail" =~ (1|true) ]]; then
-        bail="because TEST_TAP_BAIL_OUT_ON_ERROR=$bail and status=$rc"
-      fi
+    if [ -n "$Test__Tap_bail_msg" -o -n "$TEST_TAP_FAIL_FAST" ]; then
+      local bail="${Test__Tap_bail_msg:-"Failing fast on status=$rc"}"
       echo "Bail out!  $bail"
       exit $rc
     fi

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 source lib/test/tap.bash
 
@@ -6,6 +6,6 @@ Test::Tap:init
 Test::Tap:plan skip_all 'Test for skip_all from plan'
 
 Test::Tap:diag "This code should not be run"
-Test::Tap:pass
+Test::Tap:fail
 
 # vim: set sw=2 ft=sh:

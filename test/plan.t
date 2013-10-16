@@ -1,11 +1,12 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 source lib/test/tap.bash
 
 Test::Tap:init
-Test::Tap:plan tests 2
+Test::Tap:plan tests 3
 
-Test::Tap:pass 'pass with label'
-Test::Tap:pass
+for n in 1 2 3; do
+  Test::Tap:pass "Test #$n"
+done
 
 # vim: set sw=2 ft=sh:
