@@ -4,6 +4,32 @@
 
 set -e
 
+bpan:main() {
+  local import=false
+  for arg; do
+    if [[ "$arg" =~ ^-- ]]; then
+      import=false
+    fi
+    case "$arg" in
+    --import) import=true ;;
+    *)
+      if $import; then bpan:import $arg
+      fi ;;
+    esac
+  done
+}
+
+# Copy bpan: functions to unprefixed functions
+bpan:import() {
+  for arg; do
+    bpan:fcopy bpan:$arg $arg
+    if [ "$arg" == "include" ]; then
+      bpan:fcopy bpan:includable includable
+    fi
+  done
+}
+
+# Function copy
 bpan:fcopy() {
   [ "$(type -t "$1")" == function ] ||
     bpan:die "'$1' is not a function"
@@ -16,9 +42,10 @@ bpan:fcopy() {
   eval "$2() $func"
 }
 
+# Source a bash library like 'foo/bar'
 bpan:include() {
   local library_name="$1"; shift
-  local library_path="$(bpan:find_inc $library_name)"
+  local library_path="$(bpan:includable $library_name)"
   [ -n "$library_path" ] || {
     local DIE_STACK_LEVEL=1
     bpan:die "Can't include '$library_name'. Not found."
@@ -26,9 +53,10 @@ bpan:include() {
   source "$library_path" "$@"
 }
 
-bpan:find_inc() {
+# Find the path of a library
+bpan:includable() {
   local library_name="$1.bash"
-  find ${INC//:/ } -name ${library_name##*/} 2>/dev/null |
+  find ${BPAN_PATH//:/ } -name ${library_name##*/} 2>/dev/null |
     grep -E "$library_name\$" |
     head -n1
 }
@@ -37,9 +65,9 @@ bpan:die() {
   local c=($(caller ${DIE_STACK_LEVEL:-0}))
   local msg="${@//\\n/$'\n'}"
   if [ -z "$msg" ]; then
-    bpan:err- 'Died'
+    printf 'Died' >&2
   else
-    bpan:err- "$msg"
+    printf "$msg" >&2
   fi
   local trailing_newline_re=$'\n''$'
   [[ "$msg" =~ $trailing_newline_re ]] && exit 1
@@ -55,9 +83,9 @@ bpan:die() {
 bpan:warn() {
   local msg="${@//\\n/$'\n'}"
   if [ -z "$msg" ]; then
-    bpan:err 'Warning'
+    printf "Warning\n" >&2
   else
-    bpan:err "$msg"
+    printf "$msg\n" >&2
   fi
 }
 
@@ -118,5 +146,7 @@ bpan:prompt() {
 # Make sure a different BPAN was not loaded:
 [ "$BPAN_VERSION" == '0.0.1' ] ||
   bpan:die 'BPAN version mismatch'
+
+bpan:main "$@"
 
 # vim: set sw=2:
