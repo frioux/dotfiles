@@ -16,7 +16,7 @@ diag() { Test::Tap:diag "$@"; }
 note() { Test::Tap:note "$@"; }
 done_testing() { Test::Tap:done_testing "$@"; }
 BAIL_OUT() { Test::Tap:BAIL_OUT "$@"; }
-FAIL_FAST() { Test::Tap:FAIL_FAST "$@"; }
+BAIL_ON_FAIL() { Test::Tap:BAIL_ON_FAIL "$@"; }
 
 is() {
   local got="$1" want="$2" label="$3"

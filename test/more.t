@@ -3,15 +3,9 @@
 source test/setup
 source test/more.bash
 
-plan tests 6
+plan tests 5
 
 pass 'This test always passes'
-
-{
-  # test fail without failing
-  output=`fail 'FAIL - O NOES' 2> /dev/null`
-  pass "${output/not ok 2 - /}"
-}
 
 is 'foo' "foo" 'foo is foo'
 
