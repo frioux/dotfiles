@@ -59,7 +59,7 @@ Test::Tap:fail() {
   local c=( $(caller $Test__Tap_CALL_STACK_LEVEL) )
   local file=${c[2]}
   local line=${c[0]}
-  local label="$1"
+  local label="$1" callback="$2"
   if [ -n "$label" ]; then
     echo "not ok $Test__Tap_run - $label"
   else
@@ -69,13 +69,15 @@ Test::Tap:fail() {
   label=${label:-"at $file line $line."}
   echo -e "#   Failed test $label" >&2
 
+  [ -n "$callback" ] && $callback
+
   local rc=${TEST_TAP_FAIL_FAST:-0}
   [[ $TEST_TAP_FAIL_FAST -eq 0 ]] || exit $rc
 }
 
 Test::Tap:done_testing() {
   Test__Tap_plan=$Test__Tap_run
-  echo 1..$Test__Tap_run
+  echo 1..${1:-$Test__Tap_run}
 }
 
 Test::Tap:diag() {
