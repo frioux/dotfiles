@@ -55,7 +55,7 @@ unlike() {
 }
 
 done_testing() {
-  echo "1..$run"
+  echo "1..${1:-$run}"
 }
 
 diag() {
