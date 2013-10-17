@@ -13,14 +13,12 @@ plan() {
 
 pass() {
   let run=run+1
-  local label="${1:+ - $1}"
-  echo "ok $run$label"
+  echo "ok $run${1:+ - $1}"
 }
 
 fail() {
   let run=run+1
-  local label="${1:+ - $1}"
-  echo "not ok $run$label"
+  echo "not ok $run${1:+ - $1}"
 }
 
 is() {
@@ -34,11 +32,9 @@ is() {
 }
 
 ok() {
-  if [ $? -eq 0 ]; then
-    pass "$1"
-  else
-    fail "$1"
-  fi
+  (exit ${1:-$?}) &&
+    pass "$2" ||
+    fail "$2"
 }
 
 like() {

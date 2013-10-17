@@ -13,7 +13,7 @@ like "$(type bar 2>&1)" 'bar: not found' \
 bpan:fcopy foo bar
 
 type -t bar &>/dev/null
-ok 'bar is now a function'
+ok $? 'bar is now a function'
 is "$(type foo | tail -n+3)" "$(type bar | tail -n+3)" \
   'Copy matches original'
 
