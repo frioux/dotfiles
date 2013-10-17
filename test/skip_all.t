@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
 
 source test/setup
-include test/more
+include 'test/more'
 
-plan skip_all 'Skipping this test to demo skip_all'
+output=$(prove -v test/test/skip_all.t 2>&1) || true
 
-fail "Don't run this code"
+like "$output" 'skipped: Skipping this test to demo skip_all' \
+    'skip_all works'
 
-done_testing
+done_testing 1
+# vim: set sw=2 ft=sh:

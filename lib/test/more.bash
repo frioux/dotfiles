@@ -23,7 +23,7 @@ is() {
   if [ "$got" == "$want" ]; then
     Test::Tap:pass "$label"
   else
-    Test::Tap:fail "$label" Test::Tap:is-fail
+    Test::Tap:fail "$label" Test::More:is-fail
   fi
 }
 
@@ -59,30 +59,9 @@ Test::More:isnt-fail() {
 }
 
 ok() {
-  local args=("$@")
-  local last=$((${#args[@]} - 1))
-  local label=''
-  local ending_re='^]]?$'
-  local rc=
-  if [[ $last -gt 0 ]] && [[ ! "${args[$last]}" =~ $ending_re ]]; then
-    label="${args[$last]}"
-    unset args[$last]
-  fi
-    rc=0
-  if [[ ${#args[@]} -eq 1 ]] && [[ "${args[0]}" =~ ^[0-9]+$ ]]; then
-    rc=${args[0]}
-  elif [ ${args[0]} == '[[' ]; then
-    # XXX Currently need eval to support [[. Is there another way?
-    eval "${args[@]}" || rc=$?
-  else
-    "${args[@]}" &> /dev/null || rc=$?
-  fi
-  if [ $rc -eq 0 ]; then
-    Test::Tap:pass "$label"
-  else
-    Test::Tap:fail "$label"
-  fi
-  return $rc
+  (exit ${1:-$?}) &&
+    Test::Tap:pass "$2" ||
+    Test::Tap:fail "$2"
 }
 
 like() {
@@ -95,6 +74,19 @@ like() {
 }
 
 Test::More:like-fail() {
+    Test::Tap:diag "Got: '$got'"
+}
+
+unlike() {
+  local got=$1 regex=$2 label=$3
+  if [[ ! "$got" =~ "$regex" ]]; then
+    Test::Tap:pass "$label"
+  else
+    Test::Tap:fail "$label" Test::More:unlike-fail
+  fi
+}
+
+Test::More:unlike-fail() {
     Test::Tap:diag "Got: '$got'"
 }
 
