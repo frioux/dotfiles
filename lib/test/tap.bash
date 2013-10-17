@@ -26,6 +26,7 @@ Test::Tap:init() {
 }
 
 Test::Tap:plan() {
+  Test::Tap:_check-pid
   [ $# -eq 2 ] ||
     Test::Tap:die 'Usage: plan tests <number>'
   if [ "$1" = tests ]; then
@@ -44,6 +45,7 @@ Test::Tap:plan() {
 }
 
 Test::Tap:pass() {
+  Test::Tap:_check-pid
   let Test__Tap_run=Test__Tap_run+1
   local label="$1"
   if [ -n "$label" ]; then
@@ -55,6 +57,7 @@ Test::Tap:pass() {
 
 Test__Tap_CALL_STACK_LEVEL=1
 Test::Tap:fail() {
+  Test::Tap:_check-pid
   let Test__Tap_run=Test__Tap_run+1
   local c=( $(caller $Test__Tap_CALL_STACK_LEVEL) )
   local file=${c[2]}
@@ -71,42 +74,48 @@ Test::Tap:fail() {
 
   [ -n "$callback" ] && $callback
 
-  local rc=${TEST_TAP_FAIL_FAST:-0}
-  [[ $TEST_TAP_FAIL_FAST -eq 0 ]] || exit $rc
+  local rc=${TEST_TAP_BAIL_ON_FAIL:-0}
+  [[ $TEST_TAP_BAIL_ON_FAIL -eq 0 ]] || exit $rc
 }
 
 Test::Tap:done_testing() {
+  Test::Tap:_check-pid
   Test__Tap_plan=$Test__Tap_run
   echo 1..${1:-$Test__Tap_run}
 }
 
 Test::Tap:diag() {
+  Test::Tap:_check-pid
   local msg="$@"
   msg="# ${msg//$'\n'/$'\n'# }"
   echo "$msg" >&2
 }
 
 Test::Tap:note() {
+  Test::Tap:_check-pid
   local msg="$@"
   msg="# ${msg//$'\n'/$'\n'# }"
   echo "$msg"
 }
 
 Test::Tap:BAIL_OUT() {
+  Test::Tap:_check-pid
   Test__Tap_bail_msg="$@"
   : "${Test__Tap_bail_msg:=No reason given.}"
   exit 255
 }
 
-Test::Tap:FAIL_FAST() {
-  TEST_TAP_FAIL_FAST=1
+Test::Tap:BAIL_ON_FAIL() {
+  Test::Tap:_check-pid
+  TEST_TAP_BAIL_ON_FAIL=1
 }
 
 Test::Tap:END() {
   local rc=$?
+  Test::Tap:_check-pid
   if [ $rc -ne 0 ]; then
-    if [ -n "$Test__Tap_bail_msg" -o -n "$TEST_TAP_FAIL_FAST" ]; then
-      local bail="${Test__Tap_bail_msg:-"Failing fast on status=$rc"}"
+    if [ -n "$Test__Tap_bail_msg" -o -n "$TEST_TAP_BAIL_ON_FAIL" ]; then
+      local bail="${Test__Tap_bail_msg:-"Bailing out on status=$rc"}"
       echo "Bail out!  $bail"
       exit $rc
     fi
@@ -135,6 +144,13 @@ Test::Tap:END() {
     echo "$msg" >&2
   fi
   exit $exit_code
+}
+
+Test::Tap:_check-pid() {
+    local DIE_STACK_LEVEL=3
+  if [ $BASHPID -ne $Test__Tap_pid ]; then
+      die "Error: Called Test::Tap method from a subprocess"
+  fi
 }
 
 # vim: sw=2:

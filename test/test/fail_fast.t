@@ -3,7 +3,7 @@
 source lib/test/tap.bash
 
 Test::Tap:init tests 5
-Test::Tap:FAIL_FAST
+Test::Tap:BAIL_ON_FAIL
 
 Test::Tap:pass 'test #1'
 Test::Tap:pass 'test #2'

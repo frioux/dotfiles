@@ -7,9 +7,11 @@ Test::Tap:init tests 1
 
 output="$(prove -v test/test/fail_fast.t 2>&1)"
 
+# echo ">>>$output<<<" >&2
+
 test-helper:like \
   "$output" \
-  'Further testing stopped:  Failing fast on status=1' \
+  'Further testing stopped:  Bailing out on status=1' \
   'Test::Tap:BAIL_OUT works'
 
 # vim: set sw=2 ft=sh:
