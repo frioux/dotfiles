@@ -1,5 +1,12 @@
 #!/usr/bin/env bash
 
+#------------------------------------------------------------------------------
+# This is a tiny version of test-more-bash that I use here. test-more-bash uses
+# bpan-bash, so I want to avoid the circular dependency. This little guy does
+# 80-90% what test-more-bash does, with minimal code. It's a good example of
+# how nice Bash can be.
+#------------------------------------------------------------------------------
+
 plan() {
   echo "1..$1"
 }
