@@ -1,7 +1,9 @@
 #!/bin/bash -e
 
 source test/test.bash
-PATH=$PWD/bin:$PATH source bpan
+
+PATH=$PWD/bin:$PATH
+source bpan
 
 foo() {
   echo O HAI
@@ -17,10 +19,4 @@ ok $? 'bar is now a function'
 is "$(type foo | tail -n+3)" "$(type bar | tail -n+3)" \
   'Copy matches original'
 
-bpan:fcopy bpan:import import
-unlike "$(type import)" 'bpan:' \
-  "Copy doesn't contain 'bpan:'"
-
-done_testing
-
-# vim: set sw=2 ft=sh:
+done_testing 3

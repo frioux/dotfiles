@@ -3,4 +3,4 @@
 default:
 
 test:
-	prove $(PROVEOPT) test/
+	prove $(PROVEOPT:%=% )test/

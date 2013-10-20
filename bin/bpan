@@ -1,27 +1,30 @@
-#!/bin/bash
-
-set -e
-
-# Setup BPAN, but only first time:
-if [ -z "$BPAN_VERSION" ]; then
-  BPAN_VERSION='0.0.1'
-  # Simple 'die' command for bootstrapping.
-  bpan:die() { echo "$@"; exit 1; }
-fi
+#!/usr/bin/env bash -e
+#------------------------------------------------------------------------------
+# bpan - Bash Programming, All New
+#
+# Copyright (c) 2013 Ingy döt Net
+#------------------------------------------------------------------------------
 
 #------------------------------------------------------------------------------
 # Determine how `bpan` was called, and do the right thing:
 #------------------------------------------------------------------------------
-
 if [ "${BASH_SOURCE[0]}" != "$0" ]; then
   # 'bpan' is being sourced by some other Bash library:
+  [ -z "$BPAN_VERSION" ] || return 0
+  [[ "${BASH_SOURCE[0]}" =~ /bin/bpan$ ]] || {
+    echo "Invalid bpan path '${BASH_SOURCE[0]}'"
+    exit 1
+  }
   source "${BASH_SOURCE[0]%/bin/*}"/lib/bpan.bash "$@"
+  return $?
 elif [ $# -eq 0 ]; then
-  # 'bpan' command run with no arguments
+  # 'bpan' command run with no arguments:
   # exec bpan-shell
-  bpan:die "bpan-shell not yet implemented"
+  echo "bpan-shell not yet implemented" >&2
+  exit 1
 else
-  # 'bpan' command with arguments. Run package installer
+  # 'bpan' command with arguments. Run package installer:
   # exec bpan-installer "$@"
-  bpan:die "bpan-installer not yet implemented"
+  echo "bpan-installer not yet implemented" >&2
+  exit 1
 fi

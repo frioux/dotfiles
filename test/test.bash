@@ -68,5 +68,3 @@ diag() {
 note() {
   echo "# ${1//$'\n'/$'\n'# }"
 }
-
-# vim: set sw=2:
