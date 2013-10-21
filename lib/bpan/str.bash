@@ -37,5 +37,3 @@ Str:empty?() {
 Str:chomp() {
   echo -n $1
 }
-
-# vim: set sw=2:

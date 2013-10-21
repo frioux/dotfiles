@@ -21,7 +21,11 @@ bpan:use() {
     bpan:die "Can't find library '$library_name'." 1
   }
   source "$library_path"
-  bpan:import "$@"
+  if bpan:can "$library_name:import"; then
+    "$library_name:import" "$@"
+  else
+    bpan:import "$@"
+  fi
 }
 
 # Copy bpan: functions to unprefixed functions
@@ -47,7 +51,7 @@ bpan:fcopy() {
 
 # Find the path of a library
 bpan:findlib() {
-  local library_name="$1.bash"
+  local library_name="$(tr [A-Z] [a-z] <<< "${1//:://}").bash"
   find ${BPANLIB//:/ } -name ${library_name##*/} 2>/dev/null |
     grep -E "$library_name\$" |
     head -n1
