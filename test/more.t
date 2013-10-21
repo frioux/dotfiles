@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 source test/setup
-source test/more.bash
+use Test::More
 
 plan tests 5
 
@@ -18,5 +18,3 @@ ok "`[[ ! team =~ I ]]`" "There's no I in team"
 # diag "A msg for stderr"
 
 note "A msg for stdout"
-
-# vim: set sw=2 ft=sh:

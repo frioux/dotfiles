@@ -6,8 +6,10 @@ set -e
 
 Test__More_VERSION=0.0.1
 
-source bpan
-bpan:include 'test/tap'
+source bpan :std
+use Test::Tap
+
+Test::More:import() { Test::Tap:init "$@"; }
 
 plan() { Test::Tap:plan "$@"; }
 pass() { Test::Tap:pass "$@"; }
@@ -89,7 +91,3 @@ unlike() {
 Test::More:unlike-fail() {
     Test::Tap:diag "Got: '$got'"
 }
-
-[[ "${BASH_SOURCE[0]}" != "${0}" ]] && Test::Tap:init "$@"
-
-# vim: set sw=2:

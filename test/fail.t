@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
 source test/setup
-include 'test/more'
+
+use Test::More
 
 output=$(prove -v test/test/fail1.t 2>&1) || true
 
@@ -16,6 +17,4 @@ like "$output" "#     got: 'foo'" \
 like "$output" "#   expected: 'bar'" \
   'difference reporting - want'
 
-done_testing
-
-# vim: set sw=2 ft=sh:
+done_testing 5

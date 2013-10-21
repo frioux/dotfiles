@@ -2,7 +2,7 @@
 
 source test/setup
 
-include 'test/more' tests 3
+use Test::More tests 3
 
 pass 'pass 1 - with label'
 pass

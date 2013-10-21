@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
-BPAN_PATH="$(
+BPANLIB="$(
   set -- \
     $PWD/lib \
     $PWD/ext/*/{bin,lib}
   IFS=':'; echo "$*"
 )"
-PATH="$BPAN_PATH:$PATH"
+PATH="$BPANLIB:$PATH"
 
-. bpan --import include die
+. bpan :std

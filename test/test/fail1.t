@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 source test/setup
-include 'test/more'
+use Test::More
 
 fail 'fail with label'
 
@@ -9,5 +9,4 @@ fail
 
 is foo bar 'is foo bar'
 
-
-done_testing
+done_testing 3

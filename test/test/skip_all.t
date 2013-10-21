@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 source test/setup
-include test/more
+use Test::More
 
 plan skip_all 'Skipping this test to demo skip_all'
 
