@@ -8,4 +8,4 @@ BPANLIB="$(
 )"
 PATH="$BPANLIB:$PATH"
 
-. bpan :std
+source bpan :std

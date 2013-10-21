@@ -4,7 +4,7 @@ EXT = \
 
 .PHONY: test
 test: $(EXT)
-	prove $(PROVEOPT) test/
+	prove $(PROVEOPT:%=% )test/
 
 $(EXT):
 	git submodule update --init
