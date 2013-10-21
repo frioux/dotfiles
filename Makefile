@@ -1,3 +1,3 @@
 .PHONY: test
 test:
-	prove $(PROVEOPT) test/
+	prove $(PROVEOPT:%=% )test/
