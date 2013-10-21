@@ -152,9 +152,9 @@ volumecfg.mixercommand = function (command)
        local status = fd:read("*all")
        fd:close()
 
-       local volume = string.match(status, "(%d?%d?%d)%%")
+       local volume = string.match(status, "(%d?%d?%d)%%") or 0
        volume = string.format("% 3d", volume)
-       status = string.match(status, "%[(o[^%]]*)%]")
+       status = string.match(status, "%[(o[^%]]*)%]") or ''
        volumecfg.widget:set_value(volume)
        if string.find(status, "on", 1, true) then
           volumecfg.widget:set_color('#FFFFFF')
