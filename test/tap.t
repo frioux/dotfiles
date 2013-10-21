@@ -11,5 +11,3 @@ msg="$(Test::Tap:fail 'faaaaailll' 2>/dev/null)"
 if [[ "$msg" =~ not\ ok\ 4\ -\ faaaaailll ]]; then
   Test::Tap:pass 'fail works'
 fi
-
-# vim: set sw=2 ft=sh:

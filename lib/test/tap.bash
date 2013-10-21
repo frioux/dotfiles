@@ -147,10 +147,7 @@ Test::Tap:END() {
 }
 
 Test::Tap:_check-pid() {
-    local DIE_STACK_LEVEL=3
-  if [ $BASHPID -ne $Test__Tap_pid ]; then
-      die "Error: Called Test::Tap method from a subprocess"
+  if [ ${BASHPID:-0} -ne ${Test__Tap_pid:-0} ]; then
+    die "Error: Called Test::Tap method from a subprocess" 3
   fi
 }
-
-# vim: sw=2:

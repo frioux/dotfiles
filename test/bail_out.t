@@ -11,5 +11,3 @@ test-helper:like \
   "$output" \
   'Bailout called.  Further testing stopped:  Get me outta here' \
   'Test::Tap:BAIL_OUT works'
-
-# vim: set sw=2 ft=sh:

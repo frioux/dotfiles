@@ -10,5 +10,3 @@ Test::Tap:pass 'test #2'
 Test::Tap:fail 'test #3'
 Test::Tap:pass 'test #4'
 Test::Tap:pass 'test #5'
-
-# vim: set sw=2 ft=sh:

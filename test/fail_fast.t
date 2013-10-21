@@ -13,5 +13,3 @@ test-helper:like \
   "$output" \
   'Further testing stopped:  Bailing out on status=1' \
   'Test::Tap:BAIL_OUT works'
-
-# vim: set sw=2 ft=sh:

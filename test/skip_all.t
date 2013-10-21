@@ -18,5 +18,3 @@ for s in plan init; do
     'Result: NOTESTS' \
     "skip_all from $s: No tests run"
 done
-
-# vim: set sw=2 ft=sh:

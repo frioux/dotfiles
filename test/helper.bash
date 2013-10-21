@@ -7,5 +7,3 @@ test-helper:like() {
     Test::Tap:diag "Got: '$got'"
   fi
 }
-
-# vim: set sw=2 ft=sh:

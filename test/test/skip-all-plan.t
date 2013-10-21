@@ -7,5 +7,3 @@ Test::Tap:plan skip_all 'Test for skip_all from plan'
 
 Test::Tap:diag "This code should not be run"
 Test::Tap:fail
-
-# vim: set sw=2 ft=sh:

@@ -18,5 +18,3 @@ test-helper:like \
   "$output" \
   'Failed 1/1 subtests' \
   'Proper summary'
-
-# vim: set sw=2 ft=sh:

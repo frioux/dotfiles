@@ -8,5 +8,3 @@ Test::Tap:plan tests 3
 for n in 1 2 3; do
   Test::Tap:pass "Test #$n"
 done
-
-# vim: set sw=2 ft=sh:

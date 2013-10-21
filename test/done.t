@@ -8,6 +8,3 @@ Test::Tap:pass one
 Test::Tap:pass two
 
 Test::Tap:done_testing
-
-# vim: set sw=2 ft=sh:
-

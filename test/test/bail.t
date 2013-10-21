@@ -12,5 +12,3 @@ Test::Tap:BAIL_OUT 'Get me outta here'
 
 Test::Tap:pass 'test #4'
 Test::Tap:fail 'test #5'
-
-# vim: set sw=2 ft=sh:
