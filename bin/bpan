@@ -9,16 +9,16 @@
 # Determine how `bpan` was called, and do the right thing:
 #------------------------------------------------------------------------------
 if [ "${BASH_SOURCE[0]}" != "$0" ]; then
-  # 'bpan' is being sourced by some other Bash library:
-  [ -z "$BPAN_VERSION" ] || return 0
+  # 'bpan' is being sourced:
   [[ "${BASH_SOURCE[0]}" =~ /bin/bpan$ ]] || {
     echo "Invalid bpan path '${BASH_SOURCE[0]}'"
     exit 1
   }
-  source "${BASH_SOURCE[0]%/bin/*}"/lib/bpan.bash "$@"
+  source "${BASH_SOURCE[0]%/bin/*}"/lib/bpan.bash || return $?
+  bpan:import "$@"
   return $?
 elif [ $# -eq 0 ]; then
-  # 'bpan' command run with no arguments:
+  # 'bpan' command run with no arguments. Start bpan-shell:
   # exec bpan-shell
   echo "bpan-shell not yet implemented" >&2
   exit 1

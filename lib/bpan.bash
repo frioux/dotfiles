@@ -5,13 +5,13 @@
 #   echo ">>>${PATH//:/$'\n'}<<<" >&2
 
 set -e
-shopt -s expand_aliases
 
 [ -z "$BPAN_VERSION" ] || return 0
 
 BPAN_VERSION='0.0.1'
 
-alias bpan:export:std='echo use die warn'
+@() { echo "$@"; }
+bpan:export:std() { @ use die warn; }
 
 # Source a bash library call import on it:
 bpan:use() {
@@ -26,8 +26,13 @@ bpan:use() {
 
 # Copy bpan: functions to unprefixed functions
 bpan:import() {
+  local arg=
   for arg; do
-    bpan:fcopy bpan:$arg $arg
+    if [[ "$arg" =~ ^: ]]; then
+      bpan:import `bpan:export$arg`
+    else
+      bpan:fcopy bpan:$arg $arg
+    fi
   done
 }
 
@@ -70,8 +75,3 @@ bpan:warn() {
 bpan:can() {
   [ "$(type -t "${1:?bpan:can requires a function name}")" == function ]
 }
-
-# XXX move logic to import
-# bpan:import "$@"
-[ $# -eq 0 ] && return 0
-bpan:import `bpan:export:std`
