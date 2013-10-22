@@ -38,7 +38,7 @@ Run the test with `prove` like this:
 
     prove test/test.t
 
-Prove knows it's Bash from the first line, and it just works.
+Prove knows it's Bash from the first line (the hashbang), and it just works.
 
 # DESCRIPTION
 
