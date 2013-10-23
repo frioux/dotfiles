@@ -6,6 +6,7 @@ apt-get --no-install-recommends install \
    awesome                              \
    awesome-extra                        \
    build-essential                      \
+   clementine                           \
    curl                                 \
    firefox                              \
    git-core                             \
@@ -13,6 +14,7 @@ apt-get --no-install-recommends install \
    gnome-system-monitor                 \
    gxmessage                            \
    inotify-tools                        \
+   keepassx                             \
    lastfm                               \
    libcurl4-openssl-dev                 \
    libgmime-2.6-dev                     \
@@ -30,7 +32,7 @@ apt-get --no-install-recommends install \
    openssh-client                       \
    openssh-server                       \
    openvpn                              \
-   screen                               \
+   tmux                                 \
    suckless-tools                       \
    terminator                           \
    vim                                  \
