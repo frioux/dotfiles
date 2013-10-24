@@ -12,6 +12,7 @@ apt-get --no-install-recommends install \
    git-core                             \
    gnome-power-manager                  \
    gnome-system-monitor                 \
+   gtk2-engines                         \
    gxmessage                            \
    inotify-tools                        \
    keepassx                             \
