@@ -33,6 +33,7 @@ apt-get --no-install-recommends install \
    openssh-client                       \
    openssh-server                       \
    openvpn                              \
+   rdesktop                             \
    tmux                                 \
    suckless-tools                       \
    terminator                           \
