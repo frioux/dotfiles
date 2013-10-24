@@ -4,6 +4,7 @@ apt-get --no-install-recommends install \
    aptitude                             \
    asciidoc                             \
    autoconf                             \
+   automake                             \
    awesome                              \
    awesome-extra                        \
    build-essential                      \
