@@ -10,6 +10,7 @@ apt-get --no-install-recommends install \
    curl                                 \
    firefox                              \
    git-core                             \
+   git-annex                            \
    gnome-power-manager                  \
    gnome-system-monitor                 \
    gtk2-engines                         \
