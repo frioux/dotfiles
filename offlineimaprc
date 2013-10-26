@@ -11,7 +11,7 @@ remoterepository = gmail-remote
 
 [Repository Local]
 type = Maildir
-localfolders = ~/Mail
+localfolders = ~/var/mail
 nametrans = lambda foldername: re.sub ('^gmail\.', '[Gmail].',
                                   re.sub ('sent', 'sent_mail',
                                      re.sub ('flagged', 'starred',

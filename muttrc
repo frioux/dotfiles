@@ -6,11 +6,9 @@ set delete            = yes
 set editor            = "vim -c 'set tw=70'"
 set envelope_from     = "yes"
 set fast_reply        = yes
-set folder            = "$HOME/Mail"
+set folder            = "$HOME/var/mail"
 set followup_to       = yes
-# this is an in memory cache since this is a
-# tmpfs I generally use for git migrations
-set header_cache      = "$HOME/code/tmp/headers"
+set header_cache      = "$HOME/tmp/headers"
 set honor_followup_to = yes
 set include           = yes
 set mbox_type         = Maildir
@@ -37,7 +35,7 @@ alternates '^frew@mitsi.com$' '^frioux@gmail.com$' '^frew@afoolishmanifesto.com$
 set index_format="%4C %Z %{%b %d} %-15.15L (%3E) %s"
 set pager_index_lines=9
 
-mailboxes `find ~/Mail -maxdepth 1 -type d -printf "+%f "`
+mailboxes `find ~/var/mail -maxdepth 1 -type d -printf "+%f "`
 
 macro compose A "<attach-message>?<toggle-mailboxes>" "attach message(s) to this message"
 macro index G <last-entry>

@@ -1,5 +1,5 @@
 [database]
-path=/home/frew/Mail
+path=/home/frew/var/mail
 
 [user]
 name=Arthur Axel 'fREW' Schmidt

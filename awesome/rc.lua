@@ -102,8 +102,8 @@ function exists(filename)
   end
 end
 
-local has_battery = exists('/home/frew/etc/battery')
-local has_thermal = exists('/home/frew/etc/temperature')
+local has_battery = exists('/home/frew/.config/laptop/battery')
+local has_thermal = exists('/home/frew/.config/laptop/temperature')
 
 weather_widget = function(
    code,
