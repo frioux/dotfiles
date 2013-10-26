@@ -58,13 +58,6 @@ for x in           \
    link-file $x ~/.$x
 done
 
-# executables
-pushd bin
-for tool in *; do
-   link-file $tool ~/bin/$tool
-done
-popd
-
 # vim works differently on win32
 case $OSTYPE in
    cygwin)
