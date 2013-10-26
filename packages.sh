@@ -37,8 +37,11 @@ apt-get --no-install-recommends install \
    openssh-server                       \
    openvpn                              \
    rdesktop                             \
-   tmux                                 \
    suckless-tools                       \
+   tcl                                  \
+   tk                                   \
+   tk8.5                                \
+   tmux                                 \
    terminator                           \
    vim                                  \
    vim-gnome                            \
