@@ -1,4 +1,4 @@
-# bash+ - Modern Bash Programming Framework
+# bash+ - Modern Bash Programming
 #
 # Copyright (c) 2013 Ingy döt Net
 

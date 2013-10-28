@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #------------------------------------------------------------------------------
-# bash+ - Modern Programming in Bash
+# Bash+ - Modern Bash Programming
 #
 # Copyright (c) 2013 Ingy döt Net
 #------------------------------------------------------------------------------
@@ -25,13 +25,13 @@ else
   else
   cat <<...
 
-Greeting Bash programmer. Welcome to Bash+!
+Greetings modern Bash programmer. Welcome to Bash+!
 
 Bash+ is framework that makes Bash programming more like Ruby and Perl.
 
-See: https://github.com/BPAN-org/bashplus
+See: https://github.com/bpan-org/bashplus
 
-If you are trying to use bash+ in a program, you need to source it:
+If you got here trying to use bash+ in a program, you need to source it:
 
     source bash+
 
