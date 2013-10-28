@@ -1,4 +1,4 @@
-bash+(1) - Modern Bash Programming
+Bash+(1) - Modern Bash Programming
 ==================================
 
 [![Build Status](https://travis-ci.org/ingydotnet/bashplus.png?branch=master)](https://travis-ci.org/ingydotnet/bashplus)
