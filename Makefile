@@ -1,5 +1,5 @@
 EXT = \
-	ext/bpan-bash/lib \
+	ext/bashplus/lib \
 	ext/test-tap-bash/lib \
 
 .PHONY: test

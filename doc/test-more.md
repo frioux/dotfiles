@@ -1,12 +1,13 @@
-# NAME
+Test::More(1) - TAP Testing for Bash
+====================================
 
-test-more-bash - Full Functionality TAP Test Framework for Bash
+[![Build Status](https://travis-ci.org/ingydotnet/test-more-bash.png?branch=master)](https://travis-ci.org/ingydotnet/test-more-bash)
 
-# SYNOPSIS
+## Synopsis
 
-Write a test file like this. Maybe call it `test/test.t`.
+Write a test file like this. Maybe call it `test/test.t`:
 
-    #!/usr/bin/env bash -e
+    #!/usr/bin/env bash
 
     source test/more.bash
 
@@ -40,13 +41,13 @@ Run the test with `prove` like this:
 
 Prove knows it's Bash from the first line (the hashbang), and it just works.
 
-# DESCRIPTION
+## Description
 
 Test::More is the tried and true testing library for Perl. It uses TAP (the
 Test Anything Protocol). This is the same thing for Bash.  For the most part it
 should work exactly the same.
 
-# METHODS
+## Methods
 
 This is the basic usage:
 
@@ -61,7 +62,15 @@ This is the basic usage:
 * `diag "$message"`
 * `note "$message"`
 * `done_testing $count`
-* `BAIL_OUT "$reason"`
 * `plan skip_all "$reason"`
+* `BAIL_OUT "$reason"`
 
 More detailed info coming soon.
+
+## Author
+
+Written by Ingy döt Net <ingy@bpan.org>
+
+## Copyright
+
+Copyright 2013 Ingy döt Net

@@ -6,7 +6,7 @@ set -e
 
 Test__More_VERSION=0.0.1
 
-source bpan :std
+source bash+ :std
 use Test::Tap
 
 Test::More:import() { Test::Tap:init "$@"; }
