@@ -1,7 +1,7 @@
 [pkg]
 name                = test-tap
-author              = Ingy dot Net <ingy@bpan.org>
-copyright-holder    = Ingy dot Net
+author              = Ingy döt Net <ingy@bpan.org>
+copyright-holder    = Ingy döt Net
 copyright-year      = 2013
 license             = MIT
 abstract            = TAP Test Base for Bash
