@@ -1,0 +1,12 @@
+[pkg]
+name                = bashplus
+author              = Ingy dot Net <ingy@bpan.org>
+copyright-holder    = Ingy dot Net
+copyright-year      = 2013
+license             = MIT
+abstract            = Modern Bash Programming Framework
+
+[bpan]
+version             = 0.0.1
+owner               = ingydotnet
+requires-bash       = > 3.2
