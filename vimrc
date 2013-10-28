@@ -128,18 +128,6 @@ set statusline=%F%m%r%h%w\ (%{&ff}){%Y}\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}\ [%
 highlight ColorColumn ctermbg=magenta
 call matchadd('ColorColumn', '\%81v', 100)
 
-function! HLNext (blinktime)
-   highlight WhiteOnRed ctermfg=red ctermbg=white
-   let [bufnum, lnum, col, off] = getpos('.')
-   let matchlen = strlen(matchstr(strpart(getline('.'),col-1),@/))
-   let target_pat = '\c\%#'.@/
-   let ring = matchadd('WhiteOnRed', target_pat, 101)
-   redraw
-   exec 'sleep ' . float2nr(a:blinktime * 1000) . 'm'
-   call matchdelete(ring)
-   redraw
-endfunction
-
 " }}}
 
 "{{{ Mappings
@@ -173,8 +161,8 @@ nnoremap <silent> zk O<Esc>
 
 " Search mappings: These will make it so that going to the next one in a
 " search will center on the line it's found in.
-noremap N Nzz:call HLNext(0.4)<cr>
-noremap n nzz:call HLNext(0.4)<cr>
+noremap N Nzz
+noremap n nzz
 
 " http://learnvimscriptthehardway.stevelosh.com/chapters/04.html
 nnoremap <c-u> viwU
