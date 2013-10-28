@@ -3,7 +3,7 @@ Bash+(1) - Modern Bash Programming
 
 [![Build Status](https://travis-ci.org/ingydotnet/bashplus.png?branch=master)](https://travis-ci.org/ingydotnet/bashplus)
 
-## SYNOPSIS
+## Synopsis
 
     source bash+ :std :array
 
@@ -19,12 +19,12 @@ Bash+(1) - Modern Bash Programming
 
     this is awesome     # <= this is a real command! (You just imported it)
 
-## DESCRIPTION
+## Description
 
 Bash+ is just Bash... *plus* some libraries that can make Bash programming a
 lot nicer.
 
-## INSTALLATION
+## Installation
 
 Get the source code from GitHub:
 
@@ -35,7 +35,7 @@ Then run:
     make test
     make install        # Possibly with 'sudo'
 
-## USAGE
+## Usage
 
 For now look at some libraries the use Bash+:
 
@@ -43,7 +43,7 @@ For now look at some libraries the use Bash+:
 * https://github.com/bpan-org/json-bash
 * https://github.com/bpan-org/test-more-bash
 
-## STATUS
+## Status
 
 This stuff is really new. Watch the https://github.com/bpan-org/ for
 developments.
@@ -51,10 +51,10 @@ developments.
 If you are interested in chatting about this, `/join #bpan` on
 irc.freenode.net.
 
-## AUTHOR
+## Author
 
 Written by Ingy döt Net <ingy@bpan.org>
 
-## COPYRIGHT
+## Copyright
 
 Copyright 2013 Ingy döt Net
