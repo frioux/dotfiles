@@ -53,4 +53,11 @@ zstyle ':completion::approximate*:*' prefix-needed false
 # make kill way awesome
 zstyle ':completion:*:processes' command 'ps -au$USER -o pid,time,cmd|grep -v "ps -au$USER -o pid,time,cmd"'
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)[ 0-9:]#([^ ]#)*=01;30=01;31=01;38'
+
+# these are aliases
+
+compdef wrap-git=git
+compdef _git {gitk,qgit,grr}=git-log
+compdef wrap-tar=tar
+
 # vim: ft=zsh

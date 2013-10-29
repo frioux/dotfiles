@@ -53,6 +53,7 @@ for x in           \
    zsh             \
    weechat         \
    zshrc           \
+   zshenv          \
    fruperl         \
 ; do
    link-file $x ~/.$x
