@@ -1,3 +1,4 @@
+fpath=(~/.zsh/fn $fpath)
 # Faster! (?)
 zstyle ':completion::complete:*' use-cache 1
 
@@ -53,6 +54,8 @@ zstyle ':completion::approximate*:*' prefix-needed false
 # make kill way awesome
 zstyle ':completion:*:processes' command 'ps -au$USER -o pid,time,cmd|grep -v "ps -au$USER -o pid,time,cmd"'
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)[ 0-9:]#([^ ]#)*=01;30=01;31=01;38'
+
+zstyle ':completion:*:*:git:*' script ~/code/git/contrib/completion/git-completion.bash
 
 # these are aliases
 
