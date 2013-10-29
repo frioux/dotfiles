@@ -18,9 +18,9 @@ function sl_table_moniker() {
    perl -MDBIx::Class::Schema::Loader::Base -MDBIx::Class::Schema::Loader::Table -le "my \$sl = DBIx::Class::Schema::Loader::Base->new(naming => 'v$1', use_namespaces => 1); print \$sl->_default_table2moniker(DBIx::Class::Schema::Loader::Table->new(name => '$2', loader => \$sl))"
 }
 
-function _mkdir { if [[ ! -d $1 ]]; then mkdir -p $1; fi }
+function __mkdir { if [[ ! -d $1 ]]; then mkdir -p $1; fi }
 
-function tch { _mkdir "${1:h}"; touch "$1" }
+function tch { __mkdir "${1:h}"; touch "$1" }
 
 function _tmux_session { tmux -2 new-session -s "$1" || tmux -2 attach-session -dt "$1" }
 
