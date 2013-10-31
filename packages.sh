@@ -44,6 +44,7 @@ apt-get --no-install-recommends install \
    tk8.5                                \
    tmux                                 \
    terminator                           \
+   ttf-ancient-fonts                    \
    vim                                  \
    vim-gnome                            \
    xclip                                \
