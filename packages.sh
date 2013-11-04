@@ -11,7 +11,6 @@ apt-get --no-install-recommends install \
    clementine                           \
    curl                                 \
    firefox                              \
-   git-core                             \
    git-annex                            \
    gnome-power-manager                  \
    gnome-system-monitor                 \
@@ -37,11 +36,13 @@ apt-get --no-install-recommends install \
    openssh-client                       \
    openssh-server                       \
    openvpn                              \
+   remind                               \
    rdesktop                             \
    suckless-tools                       \
    tcl                                  \
    tk                                   \
    tk8.5                                \
+   tkremind                             \
    tmux                                 \
    terminator                           \
    ttf-ancient-fonts                    \
