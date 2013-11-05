@@ -12,12 +12,6 @@ if [[ -z "$WINDIR" ]]; then
    smartcd setup completion
    VARSTASH_AUTOCONFIGURE=1
    VARSTASH_AUTOEDIT=1
-
-   source ~/lib/zaw/zaw.zsh
-   zstyle ':filter-select' case-insensitive yes
-   zstyle ':filter-select' extended-search yes
-
-   bindkey 'OR' zaw
 fi
 
 # vim: ft=zsh

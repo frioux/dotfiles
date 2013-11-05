@@ -78,5 +78,4 @@ esac
 # ensure submodules are checked out before linking to them
 git submodule update --init --quiet
 link-file zsh/cxregs-bash-tools/lib ~/.smartcd/lib
-link-file zsh/zaw ~/lib/zaw
 pkill -usr1 zsh
