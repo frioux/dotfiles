@@ -84,9 +84,10 @@ if [[ "$HOST" = *Lynx* ]]; then
    }
 
    function lynxservice {
-      sc stop lynxmessageserver
-      sc stop lynxmessageserver2
-      sc stop lynxmessageserver3
+      for x in {,2,3}; do
+         sc stop lynxmessageserver$x &
+         sc delete lynxmessageserver$x &
+      done
       cperl Lynx_service.plx
    }
 
