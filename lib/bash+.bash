@@ -2,7 +2,16 @@
 #
 # Copyright (c) 2013 Ingy döt Net
 
-#   echo ">>>${PATH//:/$'\n'}<<<" >&2
+{
+  bash+:version-check() {
+    test $1 -ge 4 && return
+    test $1 -eq 3 -a $2 -ge 2 && return
+    echo "Bash version 3.2 or higher required for 'git hub'" >&2
+    exit 1
+  }
+  bash+:version-check "${BASH_VERSINFO[@]}"
+  unset -f Bash:version-check
+}
 
 set -e
 
