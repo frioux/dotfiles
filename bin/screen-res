@@ -1,3 +1,3 @@
 #!/bin/sh
 
-xrandr | perl -naE'if (m/\bconnected primary/) { say $F[3] =~ s/\+.+//r; last }'
+xrandr | perl -naE'if (m/\bconnected primary/) { say $F[3] =~ s/\+.+//r; last } elsif (m/\bconnected/) { say $F[2] =~ s/\+.+//r; last }'
