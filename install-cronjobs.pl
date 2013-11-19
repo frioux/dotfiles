@@ -16,7 +16,7 @@ $ct->last(
    Config::Crontab::Block->new( -lines => [
          Config::Crontab::Event->new(
             -minute => 0,
-            -command => "sh -c '/opt/bin/notmuch new > /dev/null 2>&1'",
+            -command => "zsh -c 'notmuch new > /dev/null 2>&1'",
          )
       ]
    )
