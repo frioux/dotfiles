@@ -12,7 +12,11 @@ smartcd export 1.0
  }
  
  function lynxservice() {
+    cd cgi;
+    trap 'true' 2;
     perl Lynx_service.plx
+    trap '' 2;
+    mk
  }
  
  function brr() {
