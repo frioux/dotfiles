@@ -16,7 +16,7 @@ smartcd export 1.0
  }
  
  function brr() {
-    git branch -r | grep -i /$1-
+    git branch -r | grep -i /$1- | perl -plaE'$_ = $F[0]'
  }
  
  function loc() {
@@ -24,7 +24,8 @@ smartcd export 1.0
  }
  
  function cobr() {
-    git checkout -b "$(loc $1)" "$(brr $1)"
+    local remote="$(brr $1)"
+    git checkout -b "$(loc $remote)" $remote
  }
  
  function kr() {
