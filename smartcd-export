@@ -4,11 +4,11 @@ smartcd export 1.0
  autostash WM_DEBUG=1
  autostash CATALYST_DEBUG=1
  autostash LYNX_DSN_PATH=/home/frew/code/flu-db.txt
- autostash PERL5LIB=/home/frew/code/lynx/App/lib:/home/frew/code/lynx/cgi/My:/home/frew/code/lynx/cgi
+ autostash PERL5LIB=__PATH__/App/lib:__PATH__/cgi/My:__PATH__/cgi
  autostash lynxapp lynxservice
  
  function lynxapp() {
-    plackup -I/home/frew/code/Plack-App-CaseInsensitiveFile/lib -R App/lib,cgi/My,/home/frew/code/plugins/CCure/lib,/home/frew/code/plugins/Foo/lib
+    plackup -I/home/frew/code/Plack-App-File-CaseInsensitive/lib -R App/lib,cgi/My,/home/frew/code/plugins/CCure/lib,/home/frew/code/plugins/Foo/lib
  }
  
  function lynxservice() {
