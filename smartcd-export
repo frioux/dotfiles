@@ -14,5 +14,21 @@ smartcd export 1.0
  function lynxservice() {
     perl Lynx_service.plx
  }
+ 
+ function brr() {
+    git branch -r | grep -i /$1-
+ }
+ 
+ function loc() {
+    echo $1 | cut -d'/' -f2-
+ }
+ 
+ function cobr() {
+    git checkout -b "$(loc $1)" "$(brr $1)"
+ }
+ 
+ function kr() {
+    gitk brr($1)
+ }
 @ scripts/home/frew/Dropbox/money/bash_enter
  autostash PATH=__PATH__/bin:$PATH
