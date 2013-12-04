@@ -8,7 +8,7 @@ smartcd export 1.0
  autostash lynxapp lynxservice brr loc cobr kr
  
  function lynxapp() {
-    plackup -I/home/frew/code/Plack-App-File-CaseInsensitive/lib -R App/lib,cgi/My,/home/frew/code/plugins/CCure/lib,/home/frew/code/plugins/Foo/lib
+    plackup -R App/lib,cgi/My
  }
  
  function lynxservice() {
