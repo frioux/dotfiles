@@ -33,7 +33,7 @@ smartcd export 1.0
  }
  
  function kr() {
-    gitk brr($1)
+    gitk "$(brr $1)"
  }
 @ scripts/home/frew/Dropbox/money/bash_enter
  autostash PATH=__PATH__/bin:$PATH
