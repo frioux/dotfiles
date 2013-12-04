@@ -1,20 +1,8 @@
+set crypt_use_gpgme
+
 set pgp_sign_as=0x737A7582
 set pgp_auto_decode = yes
-set pgp_decode_command="gpg %?p?--passphrase-fd 0? --no-verbose --batch --output - %f"
-set pgp_verify_command="gpg --no-verbose --batch --output - --verify %s %f"
-set pgp_decrypt_command="gpg --passphrase-fd 0 --no-verbose --batch --output - %f"
-set pgp_sign_command="gpg --no-verbose --batch --output - --passphrase-fd 0 --armor --detach-sign --textmode %?a?-u %a? %f"
-set pgp_clearsign_command="gpg --no-verbose --batch --output - --passphrase-fd 0 --armor --textmode --clearsign %?a?-u %a? %f"
-set pgp_encrypt_only_command="/opt/bin/pgpewrap gpg --batch --quiet --no-verbose --output - --textmode --armor --always-trust --encrypt-to %a -r %r --encrypt %f"
-set pgp_encrypt_sign_command="/opt/bin/pgpewrap gpg --passphrase-fd 0 --batch --verbose --textmode --output - --encrypt --sign %?a?-u %a? --armor --always-trust --encrypt-to %a -r %r -- %f"
-set pgp_import_command="gpg --no-verbose --import -v %f"
-set pgp_export_command="gpg --no-verbose --export --armor %r"
-set pgp_verify_key_command="gpg --no-verbose --batch --fingerprint --check-sigs %r"
-set pgp_list_pubring_command="gpg --no-verbose --batch --with-colons --list-keys %r"
-set pgp_list_secring_command="gpg --no-verbose --batch --with-colons --list-secret-keys %r"
 set pgp_autosign=yes
 set pgp_replyencrypt=yes
-set pgp_timeout=1800
-set pgp_good_sign="^gpg: Good signature from"
 
 # vim: ft=muttrc
