@@ -22,6 +22,7 @@ apt-get --no-install-recommends install \
    lastfm                               \
    libcurl4-openssl-dev                 \
    libgmime-2.6-dev                     \
+   libgpgme11-dev                       \
    libncursesw5-dev                     \
    libnotmuch-dev                       \
    libpam0g-dev                         \
