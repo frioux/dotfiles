@@ -5,6 +5,7 @@ xscreensaver -no-splash &
 $HOME/bin/remind-daemon &
 eval `gnome-keyring-daemon`
 eval `ssh-agent`
+eval `gpg-agent --daemon -s`
 xmodmap "$HOME/.xmodmap"
 keepassx &
 

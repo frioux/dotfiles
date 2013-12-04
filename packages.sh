@@ -14,6 +14,7 @@ apt-get --no-install-recommends install \
    git-annex                            \
    gnome-power-manager                  \
    gnome-system-monitor                 \
+   gnupg-agent                          \
    gtk2-engines                         \
    gxmessage                            \
    inotify-tools                        \
