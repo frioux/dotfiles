@@ -185,10 +185,10 @@ noremap! ; :
 iunmap :
 iunmap ;
 
-nnoremap <F1> :GundoToggle<CR>
-inoremap <F1> :GundoToggle<CR>
-nnoremap <F2> :set cursorcolumn! cursorline!<CR>
-inoremap <F2> <esc>:set cursorcolumn! cursorline!<CR>i
+nnoremap <F1> :set cursorcolumn! cursorline!<CR>
+inoremap <F1> <esc>:set cursorcolumn! cursorline!<CR>i
+nnoremap <F2> :GundoToggle<CR>
+inoremap <F2> :GundoToggle<CR>
 
 " Make %% represent the dir of the current buffer
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
