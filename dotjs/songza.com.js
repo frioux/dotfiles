@@ -1,2 +1,2 @@
-$('div.szi-comments').hide();
-$('div.szi-recent-listeners').hide();
+$('.szi-comments').remove();
+$('.szi-recent-listeners').remove();
