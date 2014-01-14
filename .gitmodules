@@ -91,3 +91,6 @@
 [submodule "vim/bundle/vim-perl"]
 	path = vim/bundle/vim-perl
 	url = git://github.com/vim-perl/vim-perl
+[submodule "vim/bundle/fsharp"]
+	path = vim/bundle/fsharp
+	url = git://github.com/kongo2002/fsharp-vim.git
