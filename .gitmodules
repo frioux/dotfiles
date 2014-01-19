@@ -103,3 +103,6 @@
 [submodule "vim/bundle/vinegar"]
 	path = vim/bundle/vinegar
 	url = git://github.com/tpope/vim-vinegar
+[submodule "vim/bundle/goyo"]
+	path = vim/bundle/goyo
+	url = git://github.com/junegunn/goyo.vim
