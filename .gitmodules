@@ -97,3 +97,6 @@
 [submodule "vim/bundle/signify"]
 	path = vim/bundle/signify
 	url = git://github.com/mhinz/vim-signify
+[submodule "vim/bundle/crunch"]
+	path = vim/bundle/crunch
+	url = git://github.com/arecarn/crunch
