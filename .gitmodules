@@ -94,3 +94,6 @@
 [submodule "vim/bundle/fsharp"]
 	path = vim/bundle/fsharp
 	url = git://github.com/kongo2002/fsharp-vim.git
+[submodule "vim/bundle/signify"]
+	path = vim/bundle/signify
+	url = git://github.com/mhinz/vim-signify
