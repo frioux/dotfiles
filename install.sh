@@ -30,6 +30,7 @@ for x in           \
    dbic.json       \
    dzil            \
    gitconfig       \
+   gitignore_global\
    gtkrc-2.0       \
    gtkrc.mine      \
    irssi           \

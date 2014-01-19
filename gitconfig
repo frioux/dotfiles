@@ -74,3 +74,5 @@
    insteadOf = scpubgit:
 [url "scpubgit@git.shadowcat.co.uk:"]
    pushInsteadOf = scpubgit:
+[core]
+	excludesfile = /home/frew/.gitignore_global
