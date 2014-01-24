@@ -14,6 +14,10 @@
    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
    ours   = "!f() { git checkout --ours $@ && git add $@; }; f"
    theirs = "!f() { git checkout --theirs $@ && git add $@; }; f"
+   ff = merge --ff-only
+   fx = commit -a --amend -C HEAD
+   ix = diff --staged
+   git = !git
 [diff]
    ;external = git_diff_wrapper
 
