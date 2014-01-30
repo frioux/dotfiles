@@ -16,7 +16,7 @@ do the following:
 Installation
 ------------
 
-I strongly recommend installing [pathogen.vim](https://github.com/tpope/pathogen.vim).
+I strongly recommend installing [pathogen.vim](https://github.com/tpope/vim-pathogen).
 
     cd ~/.vim/bundle
     git clone git://github.com/lucapette/vim-ruby-doc.git
