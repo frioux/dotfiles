@@ -1,7 +1,6 @@
 #!/bin/zsh
 
 echo "running rc installer"
-trap "echo 'done installing'" USR1
 
 function link-file { __mkdir "${2:h}"; rm -rf "$2"; ln -s "$PWD/$1" "$2" }
 function copy-file { __mkdir "${2:h}"; rm -rf "$2"; cp "$PWD/$1" "$2" }
@@ -79,4 +78,3 @@ esac
 # ensure submodules are checked out before linking to them
 git submodule update --init --quiet
 link-file zsh/cxregs-bash-tools/lib ~/.smartcd/lib
-pkill -usr1 zsh

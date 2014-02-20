@@ -7,6 +7,4 @@ if [[ $EPOCHSECONDS -gt $(cat ~/.dotfilecheck) ]]; then
    env git --work-tree=$HOME/code/dotfiles --git-dir=$HOME/code/dotfiles/.git pull --ff-only
 fi
 
-trap "echo 'maybe source ~/.zshrc ?'" USR1
-
 # vim: ft=zsh foldmethod=marker
