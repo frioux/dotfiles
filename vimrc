@@ -155,10 +155,6 @@ nnoremap <silent> <Leader>d= :.!dwarnf_var_assignment<CR>
 nnoremap <silent> k gk
 nnoremap <silent> j gj
 
-" Create Blank Newlines and stay in Normal mode
-nnoremap <silent> zj o<Esc>
-nnoremap <silent> zk O<Esc>
-
 " Search mappings: These will make it so that going to the next one in a
 " search will center on the line it's found in.
 noremap N Nzz
