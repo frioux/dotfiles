@@ -23,6 +23,11 @@ host flu
      hostname frewlynxuser
      ForwardAgent yes
 
+host mm
+     user Administrator
+     hostname mitchmurder
+     ForwardAgent yes
+
 host irc
      user frew
      hostname 50.116.28.218
