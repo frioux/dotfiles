@@ -1,0 +1,33 @@
+#!/usr/bin/env perl
+
+use strict;
+use warnings;
+
+$|++;
+
+use IO::Async::Loop;
+use IO::Async::Timer::Periodic;
+
+my $loop = IO::Async::Loop->new;
+my $clear = "\r\x1b[J";
+
+my $seconds_remaining = 25 * 60;
+my $timer = IO::Async::Timer::Periodic->new(
+   first_interval => 0,
+   interval => 1,
+
+   on_tick => sub {
+      if ($seconds_remaining >= 1) {
+         print $clear . $seconds_remaining--
+      } else {
+         print $clear . "Take a break!\a\n";
+         shift->loop->stop;
+      }
+   },
+);
+
+$timer->start;
+
+$loop->add( $timer );
+
+$loop->run;
