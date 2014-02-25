@@ -7,11 +7,20 @@ $|++;
 
 use IO::Async::Loop;
 use IO::Async::Timer::Periodic;
+use IO::Async::Stream;
+
+use IO::Termios;
+my $stdin = IO::Termios->new( \*STDIN );
+$stdin->setflag_echo(0);
+$stdin->setflag_icanon(0);
 
 my $loop = IO::Async::Loop->new;
 my $clear = "\r\x1b[J";
 
 my $seconds_remaining = 25 * 60;
+my $pause;
+$0 = 'pomotimer';
+print "[p]ause [r]eset abort[!]\n\n";
 my $timer = IO::Async::Timer::Periodic->new(
    first_interval => 0,
    interval => 1,
@@ -19,6 +28,7 @@ my $timer = IO::Async::Timer::Periodic->new(
    on_tick => sub {
       if ($seconds_remaining >= 1) {
          print $clear . format_time($seconds_remaining--)
+            unless $pause;
       } else {
          print $clear . "Take a break!\a\n";
          shift->loop->stop;
@@ -26,9 +36,32 @@ my $timer = IO::Async::Timer::Periodic->new(
    },
 );
 
+
 $timer->start;
 
 $loop->add( $timer );
+
+my $handle = IO::Async::Stream->new(
+   handle => \*STDIN,
+
+   on_read  => sub {
+      my ( $self, $buffref, $eof ) = @_;
+
+      $pause = !$pause if $$buffref =~ m/^p/;
+      $seconds_remaining = 25 * 60 if $$buffref =~ m/^r/;
+      if ($$buffref =~ m/^!/) {
+         print $clear . "aborting timer!\n\n";
+         $self->loop->stop;
+         exit 1;
+      }
+
+      $$buffref = '';
+
+      return 0;
+   },
+);
+
+$loop->add( $handle );
 
 $loop->run;
 
