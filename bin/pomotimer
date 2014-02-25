@@ -53,7 +53,7 @@ my $handle = IO::Async::Stream->new(
       $pause = !$pause if $$buffref =~ m/^p/;
       $seconds_remaining = 25 * 60 if $$buffref =~ m/^r/;
       if ($$buffref =~ m/^!/) {
-         print $clear . "aborting timer!\n\n";
+         print $clear . "aborting timer!\n";
          $self->loop->stop;
          exit 1;
       }
