@@ -27,8 +27,11 @@ my $timer = IO::Async::Timer::Periodic->new(
 
    on_tick => sub {
       if ($seconds_remaining >= 1) {
-         print $clear . format_time($seconds_remaining--)
-            unless $pause;
+         unless ($pause) {
+            $0 = 'PT' . format_time($seconds_remaining)
+               if $seconds_remaining % 30 == 0;
+            print $clear . format_time($seconds_remaining--)
+         }
       } else {
          print $clear . "Take a break!\a\n";
          shift->loop->stop;
