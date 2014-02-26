@@ -8,14 +8,14 @@ smartcd export 1.0
  autostash lynxapp lynxservice brr loc cobr kr
  
  function lynxapp() {
+    # start a subshell here to set ulimit
     plackup -R App/lib,cgi/My
  }
  
  function lynxservice() {
     cd cgi;
-    trap 'true' 2;
+    # start a subshell here to set ulimit
     perl Lynx_service.plx
-    trap '' 2;
     mk
  }
  
