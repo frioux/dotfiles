@@ -17,7 +17,8 @@ $stdin->setflag_icanon(0);
 my $loop = IO::Async::Loop->new;
 my $clear = "\r\x1b[J";
 
-my $seconds_remaining = 25 * 60;
+my $initial_seconds = shift || 25 * 60;
+my $seconds_remaining = $initial_seconds;
 my $pause;
 $0 = 'pomotimer';
 print "[p]ause [r]eset abort[!]\n\n";
@@ -51,7 +52,7 @@ my $handle = IO::Async::Stream->new(
       my ( $self, $buffref, $eof ) = @_;
 
       $pause = !$pause if $$buffref =~ m/^p/;
-      $seconds_remaining = 25 * 60 if $$buffref =~ m/^r/;
+      $seconds_remaining = $initial_seconds if $$buffref =~ m/^r/;
       if ($$buffref =~ m/^!/) {
          print $clear . "aborting timer!\n";
          $self->loop->stop;
