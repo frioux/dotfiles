@@ -73,18 +73,12 @@
 [submodule "vim/bundle/vim-ledger"]
 	path = vim/bundle/vim-ledger
 	url = git://github.com/ledger/vim-ledger.git
-[submodule "zsh/todotxt"]
-	path = zsh/todotxt
-	url = git://github.com/ginatrapani/todo.txt-cli.git
 [submodule "vim/bundle/synastic"]
 	path = vim/bundle/synastic
 	url = git://github.com/scrooloose/syntastic.git
 [submodule "vim/bundle/ctrlp.vim"]
 	path = vim/bundle/ctrlp.vim
 	url = git://github.com/kien/ctrlp.vim
-[submodule "ww-roller.pl"]
-	path = ww-roller.pl
-	url = git://github.com/wesQ3/ww-roll
 [submodule "vim/bundle/vim-airline"]
 	path = vim/bundle/vim-airline
 	url = git://github.com/bling/vim-airline
