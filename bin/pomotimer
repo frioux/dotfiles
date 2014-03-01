@@ -18,6 +18,7 @@ my $loop = IO::Async::Loop->new;
 my $clear = "\r\x1b[J";
 
 my $initial_seconds = shift || 25 * 60;
+$initial_seconds *= 60 if $initial_seconds =~ s/m$//;
 my $seconds_remaining = $initial_seconds;
 my $pause;
 $0 = 'pomotimer';
