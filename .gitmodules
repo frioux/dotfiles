@@ -97,3 +97,6 @@
 [submodule "vim/bundle/goyo"]
 	path = vim/bundle/goyo
 	url = git://github.com/junegunn/goyo.vim
+[submodule "git-hub"]
+	path = git-hub
+	url = git://github.com/ingydotnet/git-hub
