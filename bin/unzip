@@ -1,0 +1,40 @@
+#!/usr/bin/env perl
+
+use 5.18.1;
+use warnings;
+
+use Archive::Zip;
+
+my $file = shift;
+
+my $zip = Archive::Zip->new($file);
+
+use Devel::Dwarn;
+
+my @members = sort { length $a->fileName <=> length $b->fileName }
+   $zip->members;
+
+# filter out the BS
+@members = grep { $_->fileName !~ m(^__MACOSX/) } @members;
+
+my $root = $members[0]->fileName if $members[0]->fileName =~ m(^[^/]+/);
+
+say 'Archive:  ' . $file;
+if (!$root || scalar grep { $_->fileName !~ m/^\Q$root\E/ } @members) {
+   my $root = gen_root();
+   for (@members) {
+      say "  inflating: $root/" . $_->fileName;
+      $zip->extractMember($_, "$root/" . $_->fileName)
+   }
+} else {
+   for (@members) {
+      say '  inflating: ' . $_->fileName;
+      $zip->extractMember($_)
+   }
+}
+
+sub gen_root {
+   my (undef, undef, $root) = File::Spec->splitpath($file);
+   $root =~ s/\.zip$//;
+   return $root;
+}
