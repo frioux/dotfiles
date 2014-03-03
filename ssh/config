@@ -15,11 +15,6 @@ host cesium
 
 host fl
      user Administrator
-     hostname frewlynx
-     ForwardAgent yes
-
-host flu
-     user Administrator
      hostname frewlynxuser
      ForwardAgent yes
 
