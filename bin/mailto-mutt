@@ -1,4 +1,0 @@
-#!/bin/bash
-
-TERM=xterm-256color exec /usr/bin/terminator -x /opt/bin/mutt "$@"
-

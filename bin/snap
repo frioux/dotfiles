@@ -1,3 +1,0 @@
-#!/bin/bash
-
-zfs snapshot "home@$(date -Iseconds)"
