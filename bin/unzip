@@ -3,13 +3,13 @@
 use 5.18.1;
 use warnings;
 
+use File::Path 'mkpath';
 use Archive::Zip;
 
 my $file = shift;
+my $extract_to = shift;
 
 my $zip = Archive::Zip->new($file);
-
-use Devel::Dwarn;
 
 my @members = sort { length $a->fileName <=> length $b->fileName }
    $zip->members;
@@ -17,20 +17,20 @@ my @members = sort { length $a->fileName <=> length $b->fileName }
 # filter out the BS
 @members = grep { $_->fileName !~ m(^__MACOSX/) } @members;
 
-my $root = $members[0]->fileName if $members[0]->fileName =~ m(^[^/]+/);
+my $ideal_root = $members[0]->fileName
+   if $members[0]->fileName =~ m(^[^/]+/);
 
 say 'Archive:  ' . $file;
-if (!$root || scalar grep { $_->fileName !~ m/^\Q$root\E/ } @members) {
-   my $root = gen_root();
-   for (@members) {
-      say "  inflating: $root/" . $_->fileName;
-      $zip->extractMember($_, "$root/" . $_->fileName)
-   }
-} else {
-   for (@members) {
-      say '  inflating: ' . $_->fileName;
-      $zip->extractMember($_)
-   }
+my $root = gen_root()
+   if !$ideal_root || scalar
+      grep { $_->fileName !~ m/^\Q$ideal_root\E/ } @members;
+
+for (@members) {
+   mkpath($extract_to) if $extract_to && !-e $extract_to;
+
+   my $dest_dir = join '/', grep $_, $extract_to, $root, $_->fileName;
+   say "  inflating: $dest_dir";
+   $zip->extractMember($_, $dest_dir)
 }
 
 sub gen_root {
