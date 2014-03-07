@@ -1,0 +1,14 @@
+#!/usr/bin/env perl
+
+use strict;
+use warnings;
+
+my @command = @ARGV;
+
+my $pid;
+do {
+   kill KILL => $pid if $pid;
+   $pid = fork();
+
+   exec(@command) if !$pid;
+} while <STDIN>;
