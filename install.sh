@@ -42,6 +42,7 @@ for x in           \
    offlineimaprc   \
    offlineimap.py  \
    perltidyrc      \
+   proverc         \
    signature       \
    tkremindrc      \
    tmux.conf       \
