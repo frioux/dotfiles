@@ -10,6 +10,7 @@ apt-get --no-install-recommends install \
    build-essential                      \
    clementine                           \
    curl                                 \
+   dstat                                \
    firefox                              \
    git-annex                            \
    gnome-power-manager                  \
