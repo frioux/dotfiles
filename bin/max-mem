@@ -1,0 +1,5 @@
+#!/bin/zsh
+
+local meg=$1; shift
+ulimit -v $(calc "$meg * 1024")
+exec "$@"
