@@ -40,6 +40,12 @@ host nw
      port 2322
      ForwardAgent yes
 
+host pi
+     user pi
+     hostname tart.chickenkiller.com
+     port 2522
+     ForwardAgent yes
+
 host paste
      user frew_paste
      hostname p.afoolishmanifesto.com
