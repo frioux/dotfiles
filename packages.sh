@@ -11,6 +11,7 @@ apt-get --no-install-recommends install \
    clementine                           \
    curl                                 \
    dstat                                \
+   fail2ban                             \
    firefox                              \
    git-annex                            \
    gnome-power-manager                  \
