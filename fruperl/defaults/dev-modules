@@ -3,3 +3,4 @@ if::minus_e=List::AllUtils,:all
 if::minus_e=Devel::Dwarn
 if::minus_e=Module::Runtime,use_module
 if::minus_e=DateTime
+if::minus_e=IO::All
