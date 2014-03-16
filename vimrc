@@ -197,8 +197,11 @@ vmap  <expr>  D        DVB_Duplicate()
 vmap <expr> ++ VMATH_YankAndAnalyse()
 nmap        ++ vip++
 
+nmap gV `[v`]
+
 "}}}
 
+" {{{ airline settings
 let g:airline_symbols = {}
 if has('win32')
    set listchars=tab:-\ ,nbsp:~
@@ -219,6 +222,7 @@ else
    set directory=~/.vim/var/swap
    set undodir=~/.vim/var/undo
 endif
+" }}}
 
 set list
 
