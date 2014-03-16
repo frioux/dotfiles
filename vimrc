@@ -181,9 +181,6 @@ noremap! ; :
 iunmap :
 iunmap ;
 
-nnoremap <F1> :set cursorcolumn! cursorline!<CR>
-inoremap <F1> <esc>:set cursorcolumn! cursorline!<CR>i
-
 " Make %% represent the dir of the current buffer
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 
