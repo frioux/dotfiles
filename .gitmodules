@@ -112,3 +112,6 @@
 [submodule "vim/bundle/better-whitespace"]
 	path = vim/bundle/better-whitespace
 	url = gh:ntpeters/vim-better-whitespace
+[submodule "zsh/opp"]
+	path = zsh/opp
+	url = gh:hchbaw/opp.zsh

@@ -1,4 +1,7 @@
 source ~/.zsh/adenosine/adenosine-exports
+source ~/.zsh/opp/opp.zsh
+source ~/.zsh/opp/opp/surround.zsh
+source ~/.zsh/opp/opp/textobj-between.zsh
 
 if [[ -z "$WINDIR" ]]; then
    source ~/.smartcd/lib/core/arrays
