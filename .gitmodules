@@ -103,3 +103,6 @@
 [submodule "vim/bundle/patternjump"]
 	path = vim/bundle/patternjump
 	url = gh:machakann/vim-patternjump
+[submodule "vim/bundle/jdaddy"]
+	path = vim/bundle/jdaddy
+	url = gh:tpope/vim-jdaddy
