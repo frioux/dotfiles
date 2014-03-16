@@ -121,3 +121,6 @@
 [submodule "vim/bundle/seak"]
 	path = vim/bundle/seak
 	url = gh:justinmk/vim-sneak
+[submodule "vim/bundle/splitjoin"]
+	path = vim/bundle/splitjoin
+	url = gh:AndrewRadev/splitjoin.vim
