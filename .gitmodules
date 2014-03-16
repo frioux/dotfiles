@@ -100,3 +100,6 @@
 [submodule "git-hub"]
 	path = git-hub
 	url = git://github.com/ingydotnet/git-hub
+[submodule "vim/bundle/patternjump"]
+	path = vim/bundle/patternjump
+	url = gh:machakann/vim-patternjump
