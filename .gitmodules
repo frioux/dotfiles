@@ -115,3 +115,6 @@
 [submodule "zsh/opp"]
 	path = zsh/opp
 	url = gh:hchbaw/opp.zsh
+[submodule "vim/bundle/textobj-between"]
+	path = vim/bundle/textobj-between
+	url = gh:thinca/vim-textobj-between
