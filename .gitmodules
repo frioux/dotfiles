@@ -34,9 +34,6 @@
 [submodule "zsh/adenosine"]
 	path = zsh/adenosine
 	url = git://github.com/frioux/app-adenosine
-[submodule "vim/bundle/vim-indent-guides"]
-	path = vim/bundle/vim-indent-guides
-	url = git://github.com/nathanaelkane/vim-indent-guides.git
 [submodule "vim/bundle/vim-colors-solarized"]
 	path = vim/bundle/vim-colors-solarized
 	url = git://github.com/altercation/vim-colors-solarized.git
