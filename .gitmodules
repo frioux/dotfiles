@@ -109,3 +109,6 @@
 [submodule "vim/bundle/wildfire"]
 	path = vim/bundle/wildfire
 	url = gh:gcmt/wildfire.vim
+[submodule "vim/bundle/better-whitespace"]
+	path = vim/bundle/better-whitespace
+	url = gh:ntpeters/vim-better-whitespace

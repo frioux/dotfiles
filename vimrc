@@ -204,7 +204,7 @@ nmap        ++ vip++
 
 let g:airline_symbols = {}
 if has('win32')
-   set listchars=tab:-\ ,eol:$,nbsp:_,trail:.
+   set listchars=tab:-\ ,nbsp:~
    set directory=~/var/swap
    set undodir=~/var/undo
    let g:airline_left_sep = '>'
@@ -213,7 +213,7 @@ if has('win32')
    let g:airline_symbols.branch = ''
    let g:airline_symbols.whitespace = '='
 else
-   set listchars=tab:▸\ ,eol:¬,nbsp:~,trail:·
+   set listchars=tab:▸\ ,nbsp:~
    let g:airline_left_sep = '▶'
    let g:airline_right_sep = '◀'
    let g:airline_symbols.linenr = '␤'
