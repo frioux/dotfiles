@@ -118,3 +118,6 @@
 [submodule "vim/bundle/textobj-between"]
 	path = vim/bundle/textobj-between
 	url = gh:thinca/vim-textobj-between
+[submodule "vim/bundle/seak"]
+	path = vim/bundle/seak
+	url = gh:justinmk/vim-sneak
