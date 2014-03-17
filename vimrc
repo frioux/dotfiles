@@ -198,6 +198,7 @@ vmap <expr> ++ VMATH_YankAndAnalyse()
 nmap        ++ vip++
 
 nmap gV `[v`]
+nnoremap <leader>ts    :r !date "+\%FT\%T\%:z"<CR>
 
 "}}}
 
