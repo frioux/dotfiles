@@ -74,5 +74,5 @@ host afm
 
 host agm
      user git
-     hostname blog2.afoolishmanifesto.com
+     hostname blog.afoolishmanifesto.com
 
