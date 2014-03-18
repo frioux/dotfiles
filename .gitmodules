@@ -127,3 +127,6 @@
 [submodule "vim/bundle/textobj-word-column"]
 	path = vim/bundle/textobj-word-column
 	url = gh:coderifous/textobj-word-column.vim
+[submodule "vim/bundle/windowswap"]
+	path = vim/bundle/windowswap
+	url = gh:wesQ3/vim-windowswap
