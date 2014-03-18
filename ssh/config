@@ -12,39 +12,46 @@ host ci
 host cesium
      user frew
      ForwardAgent yes
+     ForwardX11 yes
 
 host fl
      user Administrator
      hostname frewlynxuser
      ForwardAgent yes
+     ForwardX11 yes
 
 host mm
      user Administrator
      hostname mitchmurder
      ForwardAgent yes
+     ForwardX11 yes
 
 host irc
      user frew
      hostname 50.116.28.218
      ForwardAgent yes
+     ForwardX11 yes
 
 host lap
      user frew
      hostname frew.chickenkiller.com
      port 2222
      ForwardAgent yes
+     ForwardX11 yes
 
 host nw
      user frew
      hostname noosphere-work.chickenkiller.com
      port 2322
      ForwardAgent yes
+     ForwardX11 yes
 
 host pi
      user pi
      hostname tart.chickenkiller.com
      port 2522
      ForwardAgent yes
+     ForwardX11 yes
 
 host paste
      user frew_paste
@@ -57,15 +64,18 @@ host sc
 host w
      user frew
      ForwardAgent yes
+     ForwardX11 yes
 
 host s1
      user Administrator
      ForwardAgent yes
+     ForwardX11 yes
      hostname 172.24.1.206
 
 host s2
      user frew
      ForwardAgent yes
+     ForwardX11 yes
      hostname 10.24.0.93
 
 host afm
