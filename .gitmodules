@@ -121,3 +121,6 @@
 [submodule "vim/bundle/exchange"]
 	path = vim/bundle/exchange
 	url = gh:tommcdo/vim-exchange
+[submodule "vim/bundle/commentary"]
+	path = vim/bundle/commentary
+	url = gh:tpope/vim-commentary
