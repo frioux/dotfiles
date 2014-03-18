@@ -118,3 +118,6 @@
 [submodule "vim/bundle/splitjoin"]
 	path = vim/bundle/splitjoin
 	url = gh:AndrewRadev/splitjoin.vim
+[submodule "vim/bundle/exchange"]
+	path = vim/bundle/exchange
+	url = gh:tommcdo/vim-exchange
