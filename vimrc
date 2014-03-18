@@ -132,14 +132,6 @@ call matchadd('ColorColumn', '\%81v', 100)
 
 "{{{ Mappings
 
-" fmt
-nnoremap <silent> <Leader>fm :.!fmt -w80<CR>
-vnoremap <silent> <Leader>fm :!fmt -w80<CR>
-
-" perltidy
-nnoremap <silent> <Leader>pt :%!perltidy<CR>
-vnoremap <silent> <Leader>pt :!perltidy<CR>
-
 " toppost
 nnoremap <silent> <Leader>tp :%!top-post<CR>ggI
 vnoremap <silent> <Leader>tp :!top-post<CR>
@@ -263,4 +255,10 @@ nnoremap <silent> <F5> :CtrlPBuffer<CR>
 
 " }}}
 let g:jshintprg="hint"
+
+augroup formatprg
+   au FileType * set formatprg=fmt\ -w80
+   au FileType perl set formatprg=perltidy
+augroup end
+
 " vim: foldmethod=marker
