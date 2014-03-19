@@ -261,4 +261,11 @@ augroup formatprg
    au FileType perl set formatprg=perltidy
 augroup end
 
+nmap gs <Plug>Sneak_s
+nmap gS <Plug>Sneak_S
+xmap gs <Plug>Sneak_s
+xmap gS <Plug>Sneak_S
+omap gs <Plug>Sneak_s
+omap gS <Plug>Sneak_S
+
 " vim: foldmethod=marker

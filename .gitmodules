@@ -130,3 +130,6 @@
 [submodule "vim/bundle/windowswap"]
 	path = vim/bundle/windowswap
 	url = gh:wesQ3/vim-windowswap
+[submodule "vim/bundle/sneak"]
+	path = vim/bundle/sneak
+	url = gh:justinmk/vim-sneak
