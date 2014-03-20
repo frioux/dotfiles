@@ -169,9 +169,7 @@ nnoremap ; :
 vnoremap ; :
 
 " make : work with Sneak
-nmap : <Plug>SneakNext
-xmap : <Plug>VSneakNext
-omap : <Plug>SneakNext
+map : <Plug>SneakNext
 
 " Make %% represent the dir of the current buffer
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
