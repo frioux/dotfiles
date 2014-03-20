@@ -1,4 +1,4 @@
-host *
+Host *
    ControlMaster auto
    ControlPath /tmp/ssh_mux_%h_%p_%r
    ControlPersist 24h
@@ -7,83 +7,83 @@ host *
    Compression yes
    VisualHostKey yes
 
-host ci
+Host ci
      user frew
 
-host cesium
+Host cesium
      user frew
      ForwardAgent yes
      ForwardX11 yes
 
-host fl
+Host fl
      user Administrator
      hostname frewlynxuser
      ForwardAgent yes
      ForwardX11 yes
 
-host mm
+Host mm
      user Administrator
      hostname mitchmurder
      ForwardAgent yes
      ForwardX11 yes
 
-host irc
+Host irc
      user frew
      hostname 50.116.28.218
      ForwardAgent yes
      ForwardX11 yes
 
-host lap
+Host lap
      user frew
      hostname frew.chickenkiller.com
      port 2222
      ForwardAgent yes
      ForwardX11 yes
 
-host nw
+Host nw
      user frew
      hostname noosphere-work.chickenkiller.com
      port 2322
      ForwardAgent yes
      ForwardX11 yes
 
-host pi
+Host pi
      user pi
      hostname tart.chickenkiller.com
      port 2522
      ForwardAgent yes
      ForwardX11 yes
 
-host paste
+Host paste
      user frew_paste
      hostname p.afoolishmanifesto.com
 
-host sc
+Host sc
      user arthurs
      hostname jules.scsys.co.uk
 
-host w
+Host w
      user frew
      ForwardAgent yes
      ForwardX11 yes
 
-host s1
+Host s1
      user Administrator
      ForwardAgent yes
      ForwardX11 yes
      hostname 172.24.1.206
 
-host s2
+Host s2
      user frew
      ForwardAgent yes
      ForwardX11 yes
      hostname 10.24.0.93
 
-host afm
+Host afm
      user frew
      hostname afoolishmanifesto.com
 
-host agm
+Host agm
      user git
      hostname blog.afoolishmanifesto.com
 
