@@ -165,13 +165,13 @@ inoremap <expr> <c-n> pumvisible() ? "\<lt>c-n>" : "\<lt>c-n>\<lt>c-r>=pumvisibl
 inoremap <expr> <m-;> pumvisible() ? "\<lt>c-n>" : "\<lt>c-x>\<lt>c-o>\<lt>c-n>\<lt>c-p>\<lt>c-r>=pumvisible() ? \"\\<lt>down>\" : \"\"\<lt>cr>"
 
 " Swap ; and :  Convenient.
-noremap : ;
-noremap! : ;
-noremap ; :
-noremap! ; :
+nnoremap ; :
+vnoremap ; :
 
-iunmap :
-iunmap ;
+" make : work with Sneak
+nmap : <Plug>SneakNext
+xmap : <Plug>VSneakNext
+omap : <Plug>SneakNext
 
 " Make %% represent the dir of the current buffer
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
