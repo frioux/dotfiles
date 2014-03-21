@@ -35,5 +35,34 @@ smartcd export 1.0
  function kr() {
     gitk "$(brr $1)"
  }
+ 
+ function win32-logging() {
+    perl -MLynx::Util -E'
+       my $config_rs = Lynx::Util::dbic_connect->resultset("Config");
+       sub sv {
+          my ($k, $v) = @_;
+          $config_rs->set_value($k, "X:/" )
+       }
+       sv(LOG       => "log");
+       sv(Datastore => "Sound");
+       sv(Mapstore  => "maps");
+       sv(BackupDIR => "Backup");
+    '
+ }
+ 
+ function linux-logging() {
+    mkdir -p ~/code/lynx-{sound,maps,backups,logs}
+    perl -MLynx::Util -E'
+       my $config_rs = Lynx::Util::dbic_connect->resultset("Config");
+       sub sv {
+          my ($k, $v) = @_;
+          $config_rs->set_value($k, "/home/frew/code/lynx-$v" )
+       }
+       sv(LOG       => "logs");
+       sv(Datastore => "sound");
+       sv(Mapstore  => "maps");
+       sv(BackupDIR => "backups");
+    '
+ }
 @ scripts/home/frew/Dropbox/money/bash_enter
  autostash PATH=__PATH__/bin:$PATH
