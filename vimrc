@@ -193,7 +193,10 @@ nnoremap <leader>ts    :r !date "+\%FT\%T\%:z"<CR>
 "}}}
 
 " {{{ airline settings
-let g:airline_symbols = {}
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+
 if has('win32')
    set listchars=tab:-\ ,nbsp:~
    set directory=~/var/swap
