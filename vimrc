@@ -266,4 +266,10 @@ xmap gS <Plug>Sneak_S
 omap gs <Plug>Sneak_s
 omap gS <Plug>Sneak_S
 
+" hopefully can get these into unimpaired
+" (https://github.com/tpope/vim-unimpaired/issues/63)
+nnoremap [oy :syntax on<cr>
+nnoremap ]oy :syntax off<cr>
+nnoremap coy :if exists("g:syntax_on") \| syntax off \| else \| syntax enable \| endif<CR>
+
 " vim: foldmethod=marker
