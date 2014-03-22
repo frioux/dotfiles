@@ -133,3 +133,6 @@
 [submodule "vim/bundle/sneak"]
 	path = vim/bundle/sneak
 	url = gh:justinmk/vim-sneak
+[submodule "pointless-xcompose"]
+	path = pointless-xcompose
+	url = gh:rrthomas/pointless-xcompose

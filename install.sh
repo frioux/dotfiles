@@ -46,6 +46,7 @@ for x in           \
    signature       \
    tkremindrc      \
    tmux.conf       \
+   XCompose        \
    Xdefaults       \
    xmodmap         \
    xscreensaver    \
