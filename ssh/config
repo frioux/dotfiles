@@ -1,3 +1,10 @@
+# github forcibly disconnects fairly quickly; since they apparently don't want
+# people using ControlMaster just don't use it at all for them
+Host github.com
+   ControlMaster  no
+   ControlPath    no
+   ControlPersist no
+
 Host *
    ControlMaster auto
    ControlPath /tmp/ssh_mux_%h_%p_%r
