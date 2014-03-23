@@ -50,7 +50,7 @@
    patterntype = perl
 [url "git@50.116.28.218:"]
    insteadOf = fru:
-[url "git://github.com/"]
+[url "https://github.com/"]
    insteadOf = gh:
 [url "gitolite@cs:"]
    pushInsteadOf = cs:
