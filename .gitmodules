@@ -82,9 +82,6 @@
 [submodule "vim/bundle/fsharp"]
 	path = vim/bundle/fsharp
 	url = git://github.com/kongo2002/fsharp-vim.git
-[submodule "vim/bundle/signify"]
-	path = vim/bundle/signify
-	url = git://github.com/mhinz/vim-signify
 [submodule "vim/bundle/crunch"]
 	path = vim/bundle/crunch
 	url = git://github.com/arecarn/crunch
@@ -142,3 +139,6 @@
 [submodule "vim/bundle/accelerated-smooth-scroll"]
 	path = vim/bundle/accelerated-smooth-scroll
 	url = gh:yonchu/accelerated-smooth-scroll
+[submodule "vim/bundle/gitgutter"]
+	path = vim/bundle/gitgutter
+	url = gh:airblade/vim-gitgutter
