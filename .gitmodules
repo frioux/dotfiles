@@ -139,3 +139,6 @@
 [submodule "vim/bundle/matchmaker"]
 	path = vim/bundle/matchmaker
 	url = gh:qstrahl/vim-matchmaker
+[submodule "vim/bundle/accelerated-smooth-scroll"]
+	path = vim/bundle/accelerated-smooth-scroll
+	url = gh:yonchu/accelerated-smooth-scroll
