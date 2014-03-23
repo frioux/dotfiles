@@ -136,3 +136,6 @@
 [submodule "pointless-xcompose"]
 	path = pointless-xcompose
 	url = gh:rrthomas/pointless-xcompose
+[submodule "vim/bundle/matchmaker"]
+	path = vim/bundle/matchmaker
+	url = gh:qstrahl/vim-matchmaker

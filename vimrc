@@ -275,4 +275,9 @@ nnoremap [oy :syntax on<cr>
 nnoremap ]oy :syntax off<cr>
 nnoremap coy :if exists("g:syntax_on") \| syntax off \| else \| syntax enable \| endif<CR>
 
+nnoremap [oM :Matchmaker<cr>
+nnoremap ]oM :Matchmaker!<cr>
+nnoremap coM :MatchmakerToggle<CR>
+let g:matchmaker_enable_startup = 1
+
 " vim: foldmethod=marker
