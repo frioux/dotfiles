@@ -53,6 +53,7 @@ apt-get --no-install-recommends install \
    vim                                  \
    vim-gnome                            \
    xclip                                \
+   xdotool                              \
    xfonts-terminus                      \
    xfonts-terminus-oblique              \
    xmlto                                \
