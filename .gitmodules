@@ -142,3 +142,12 @@
 [submodule "vim/bundle/gitgutter"]
 	path = vim/bundle/gitgutter
 	url = gh:airblade/vim-gitgutter
+[submodule "vim/bundle/ultisnips"]
+	path = vim/bundle/ultisnips
+	url = gh:sirver/ultisnips
+[submodule "vim/bundle/neocomplete"]
+	path = vim/bundle/neocomplete
+	url = gh:Shougo/neocomplete.vim
+[submodule "vim/bundle/snippets"]
+	path = vim/bundle/snippets
+	url = gh:honza/vim-snippets

@@ -280,4 +280,7 @@ nnoremap ]oM :Matchmaker!<cr>
 nnoremap coM :MatchmakerToggle<CR>
 let g:matchmaker_enable_startup = 1
 
+let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#enable_smart_case = 1
+
 " vim: foldmethod=marker
