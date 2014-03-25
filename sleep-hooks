@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# installation:
+# ln -s $PWD/sleep-hooks /etc/pm/sleep.d/99-my-hooks.sh
+
+case "$1" in
+suspend|hibernate)
+   killall -3 offlineimap
+   rm /tmp/ssh_mux_*
+   ;;
+esac
