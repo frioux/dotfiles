@@ -60,6 +60,9 @@ for x in           \
    link-file $x ~/.$x
 done
 
+mkdir -p "$HOME/.vvar/undo";
+mkdir -p "$HOME/.vvar/swap";
+
 # vim works differently on win32
 case $OSTYPE in
    cygwin)
@@ -68,8 +71,6 @@ case $OSTYPE in
       cp vimrc "$home/_vimrc";
       rm -rf "$home/.vim";
       cp -r vim "$home/.vim";
-      mkdir -p "$home/var/undo";
-      mkdir -p "$home/var/swap";
    ;;
    *)
       link-file vimrc ~/.vimrc

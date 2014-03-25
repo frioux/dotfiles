@@ -199,8 +199,6 @@ endif
 
 if has('win32')
    set listchars=tab:-\ ,nbsp:~
-   set directory=~/var/swap
-   set undodir=~/var/undo
    let g:airline_left_sep = '>'
    let g:airline_right_sep = '<'
    let g:airline_symbols.linenr = ''
@@ -213,8 +211,6 @@ else
    let g:airline_symbols.linenr = '␤'
    let g:airline_symbols.branch = '⎇ '
    let g:airline_symbols.whitespace = 'Ξ'
-   set directory=~/.vim/var/swap
-   set undodir=~/.vim/var/undo
 endif
 " }}}
 
@@ -283,4 +279,6 @@ let g:matchmaker_enable_startup = 1
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
 
+set directory=$HOME/.vvar/swap
+set undodir=$HOME/.vvar/undo
 " vim: foldmethod=marker
