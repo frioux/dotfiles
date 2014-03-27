@@ -274,7 +274,6 @@ nnoremap coy :if exists("g:syntax_on") \| syntax off \| else \| syntax enable \|
 nnoremap [oM :Matchmaker<cr>
 nnoremap ]oM :Matchmaker!<cr>
 nnoremap coM :MatchmakerToggle<CR>
-let g:matchmaker_enable_startup = 1
 
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
