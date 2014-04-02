@@ -5,7 +5,7 @@ endif
 " [ Defaults ] {{{
 
 let s:enabled = 0
-let s:matchpriority = 10
+let g:matchpriority = 10
 
 hi default Matchmaker term=underline    ctermbg=238     guibg=#dddddd
 
@@ -13,8 +13,23 @@ hi default Matchmaker term=underline    ctermbg=238     guibg=#dddddd
 
 " [ Functions ] {{{
 
+" Source: http://stackoverflow.com/a/6271254/2075911
+function! s:get_visual_selection()
+  " Why is this not a built-in Vim script function?!
+  let [line1, col1] = getpos("'<")[1:2]
+  let [line2, col2] = getpos("'>")[1:2]
+  let lines = getline(line1, line2)
+  if len(lines)
+    let lines[-1] = lines[-1][:col2 - (&selection == 'inclusive' ? 1 : 2)]
+    let lines[0] = lines[0][col1 - 1:]
+    return join(lines, "\n")
+  else
+    return ''
+  endif
+endfunction
+
 function! s:highlight(needle)
-    silent! let w:matchmaker_matchid = matchadd('Matchmaker', a:needle, s:matchpriority)
+    silent! let w:matchmaker_matchid = matchadd('Matchmaker', a:needle, g:matchpriority)
 endfunction
 
 function! s:matchunmake()
@@ -49,7 +64,11 @@ function! s:is_new_needle(needle)
 endfunction
 
 function! s:default_needle()
-    return '\V\<'.escape(expand('<cword>'), '\').'\>'
+    if mode() == 'v'
+        return '\V\<'.escape(s:get_visual_selection(), '\').'\>'
+    else
+        return '\V\<'.escape(expand('<cword>'), '\').'\>'
+    endif
 endfunction
 
 function! s:needle()
