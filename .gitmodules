@@ -94,9 +94,6 @@
 [submodule "git-hub"]
 	path = git-hub
 	url = git://github.com/ingydotnet/git-hub
-[submodule "vim/bundle/patternjump"]
-	path = vim/bundle/patternjump
-	url = gh:machakann/vim-patternjump
 [submodule "vim/bundle/jdaddy"]
 	path = vim/bundle/jdaddy
 	url = gh:tpope/vim-jdaddy
@@ -127,9 +124,6 @@
 [submodule "vim/bundle/windowswap"]
 	path = vim/bundle/windowswap
 	url = gh:wesQ3/vim-windowswap
-[submodule "vim/bundle/sneak"]
-	path = vim/bundle/sneak
-	url = gh:justinmk/vim-sneak
 [submodule "pointless-xcompose"]
 	path = pointless-xcompose
 	url = gh:rrthomas/pointless-xcompose
@@ -142,12 +136,6 @@
 [submodule "vim/bundle/gitgutter"]
 	path = vim/bundle/gitgutter
 	url = gh:airblade/vim-gitgutter
-[submodule "vim/bundle/ultisnips"]
-	path = vim/bundle/ultisnips
-	url = gh:sirver/ultisnips
 [submodule "vim/bundle/neocomplete"]
 	path = vim/bundle/neocomplete
 	url = gh:Shougo/neocomplete.vim
-[submodule "vim/bundle/snippets"]
-	path = vim/bundle/snippets
-	url = gh:honza/vim-snippets
