@@ -5,6 +5,12 @@ smartcd export 1.0
  autostash CATALYST_DEBUG=1
  autostash LYNX_DSN_PATH=/home/frew/code/flu-db.txt
  autostash PERL5LIB=__PATH__/App/lib:__PATH__/cgi/My:__PATH__/cgi
+ autostash alias grl='gr linux-support'
+ autostash alias grc='git rebase --continue'
+ autostash alias grC='git commit --amend -a -C HEAD && git rebase --continue'
+ autostash alias gds='git diff --staged'
+ autostash alias gra='git rebase --abort'
+ 
  autostash lynxapp lynxservice brr loc cobr kr
  
  function lynxapp() {
@@ -41,7 +47,7 @@ smartcd export 1.0
        my $config_rs = Lynx::Util::dbic_connect->resultset("Config");
        sub sv {
           my ($k, $v) = @_;
-          $config_rs->set_value($k, "X:/" )
+          $config_rs->set_value($k, "X:/$v" )
        }
        sv(LOG       => "log");
        sv(Datastore => "Sound");
