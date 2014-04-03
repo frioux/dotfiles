@@ -6,7 +6,7 @@ Host * !github.com
 Host *
    ControlPath /tmp/ssh_mux_%h_%p_%r
    ControlPersist 24h
-   BatchMode yes
+   PasswordAuthentication no
    Ciphers blowfish-cbc
    Compression yes
    VisualHostKey yes
