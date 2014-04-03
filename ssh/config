@@ -91,3 +91,14 @@ Host agm
      user git
      hostname blog.afoolishmanifesto.com
 
+Host futurecop
+     user Administrator
+     hostname 10.6.6.14
+
+Host powerglove
+     user Administrator
+     hostname 10.6.6.15
+
+Host lazerhawk
+     user Administrator
+     hostname 10.6.6.16
