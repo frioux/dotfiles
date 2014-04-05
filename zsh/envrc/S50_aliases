@@ -50,6 +50,7 @@ alias gre='gr origin/release'
 alias vi='vim'
 alias wget='noglob wget'
 alias tar='wrap-tar'
+alias unzip='replace-unzip'
 alias cdroot='cd $(git rev-parse --show-toplevel)'
 alias o='bash ~/code/dotfiles/zsh/todotxt/todo.sh'
 
