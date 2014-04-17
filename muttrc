@@ -1,5 +1,5 @@
 set alias_file        = ~/mail/mutt_aliases
-set beep_new          = yes
+set beep_new          = no
 set charset           = "utf-8"
 set confirmappend     = no
 set delete            = yes
