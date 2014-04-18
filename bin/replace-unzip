@@ -15,7 +15,9 @@ my @members = sort { length $a->fileName <=> length $b->fileName }
    $zip->members;
 
 # filter out the BS
-@members = grep { $_->fileName !~ m(^__MACOSX/) } @members;
+@members =
+   grep { $_->fileName !~ m[(?:^__MACOSX/|/\.DS_Store$)] }
+   @members;
 
 my $ideal_root = $members[0]->fileName
    if $members[0]->fileName =~ m(^[^/]+/);
