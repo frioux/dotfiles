@@ -3,6 +3,8 @@
 use strict;
 use warnings;
 
+$0 = 'git';
+
 my %aliases = map { split(/\n/, $_, 2) }
    split /\0/,
    `git config -z --get-regexp alias\\.`;
