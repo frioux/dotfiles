@@ -1,6 +1,6 @@
 MANPATH=
 export MANPATH="/opt/share/man:$(manpath)"
-export PATH="$HOME/bin:$HOME/code/dotfiles/bin:$HOME/code/dotfiles/git-hub/lib:$HOME/Dropbox/bin:$HOME/Dropbox/go/bin:$HOME/Dropbox/node/bin:/opt/bin:$PATH"
+export PATH="$HOME/bin:$HOME/code/dotfiles/bin:$HOME/code/dotfiles/git-hub/lib:$HOME/Dropbox/bin:$HOME/Dropbox/node/bin:/opt/bin:$PATH"
 export LD_LIBRARY_PATH="/opt/lib"
 export CFLAGS=-I/opt/include
 export LDFLAGS=-L/opt/lib
@@ -13,7 +13,6 @@ export NOPASTE_SSH_DOCROOT=p.afoolishmanifesto.com/p
 export NOPASTE_SSH_WEBPATH=http://p.afoolishmanifesto.com/p
 export NOPASTE_SSH_MODE=0644
 export NOPASTE_SERVICES='ssh Shadowcat'
-export GOROOT="$HOME/Dropbox/go"
 if [[ "$TERM" == xterm ]]; then
    export TERM=xterm-256color
 fi

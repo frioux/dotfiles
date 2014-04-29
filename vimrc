@@ -247,6 +247,7 @@ let g:jshintprg="hint"
 augroup formatprg
    au FileType * set formatprg=fmt\ -w80
    au FileType perl set formatprg=perltidy
+   au FileType go set formatprg=gofmt
 augroup end
 
 nmap gs <Plug>Sneak_s
