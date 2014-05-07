@@ -1,5 +1,5 @@
 MANPATH=
-export MANPATH="/opt/share/man:$(manpath)"
+export MANPATH="/opt/share/man:$HOME/code/dotfiles/git-hub/man:$(manpath)"
 export LD_LIBRARY_PATH="/opt/lib"
 export GOROOT="$HOME/go"
 export PATH="$HOME/bin:$HOME/code/dotfiles/bin:$HOME/code/dotfiles/git-hub/lib:$HOME/Dropbox/bin:$HOME/Dropbox/node/bin:/opt/bin:$GOROOT/bin:$PATH"
