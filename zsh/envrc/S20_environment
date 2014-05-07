@@ -1,7 +1,8 @@
 MANPATH=
 export MANPATH="/opt/share/man:$(manpath)"
-export PATH="$HOME/bin:$HOME/code/dotfiles/bin:$HOME/code/dotfiles/git-hub/lib:$HOME/Dropbox/bin:$HOME/Dropbox/node/bin:/opt/bin:$PATH"
 export LD_LIBRARY_PATH="/opt/lib"
+export GOROOT="$HOME/go"
+export PATH="$HOME/bin:$HOME/code/dotfiles/bin:$HOME/code/dotfiles/git-hub/lib:$HOME/Dropbox/bin:$HOME/Dropbox/node/bin:/opt/bin:$GOROOT/bin:$PATH"
 export CFLAGS=-I/opt/include
 export LDFLAGS=-L/opt/lib
 export RI="--format ansi"
