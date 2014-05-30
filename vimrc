@@ -47,6 +47,7 @@ set showcmd
 " Needed for Syntax Highlighting and stuff
 filetype on
 filetype plugin on
+filetype plugin indent on
 syntax enable
 
 " Who doesn't like autoindent?
