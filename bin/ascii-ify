@@ -1,0 +1,13 @@
+#!/usr/bin/env perl
+
+use 5.20.0;
+use warnings;
+
+use utf8;
+
+while (<STDIN>) {
+   tr/’–/'-/;
+   s/[^[:ascii:]]//g;
+
+   print
+}
