@@ -83,11 +83,15 @@ if [[ "$HOST" = *Lynx* ]]; then
       $_PERLBIN c:/inetpub/wwwroot/App/script/server.pl -d
    }
 
-   function lynxservice {
+   function stop-lynxservices {
       for x in {,2,3}; do
          sc stop lynxmessageserver$x &
          sc delete lynxmessageserver$x &
       done
+   }
+
+   function lynxservice {
+      stop-lynxservices
       cperl Lynx_service.plx
    }
 
