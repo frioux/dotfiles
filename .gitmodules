@@ -136,3 +136,6 @@
 [submodule "vim/bundle/neocomplete"]
 	path = vim/bundle/neocomplete
 	url = gh:Shougo/neocomplete.vim
+[submodule "vim/bundle/ultisnips"]
+	path = vim/bundle/ultisnips
+	url = git://github.com/sirver/ultisnips

@@ -1,0 +1,12 @@
+snippet fmatter
+---
+title: ${1:Title}
+date: ${2:`date +%Y-%m-%d`}
+tags: $3
+guid: "https://blog.afoolishmanifesto.com/posts/$1"
+---
+$0
+endsnippet
+snippet link
+[${1:human}](${2:http://...}) $0
+endsnippet
