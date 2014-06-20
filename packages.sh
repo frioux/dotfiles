@@ -30,6 +30,7 @@ apt-get --no-install-recommends install \
    libpam0g-dev                         \
    libtalloc-dev                        \
    libtokyocabinet-dev                  \
+   libtool                              \
    libxapian-dev                        \
    lynx                                 \
    mosh                                 \

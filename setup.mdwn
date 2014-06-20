@@ -47,10 +47,10 @@ Add a key:
 
      sudo ykpasswd -a -u frew -k $AES -o $OTP
 
-B<NOTE:> Do not include the C<h:> in the AES value.
+**NOTE:** Do not include the `h:` in the AES value.
 
-Run C<ykvalidate $OTP> and it should identify the configured user.
+Run `ykvalidate $OTP` and it should identify the configured user.
 
-Finally, put the following line at the top of F</etc/pam.d/common-auth>:
+Finally, put the following line at the top of __/etc/pam.d/common-auth__:
 
      auth requisite pam_yubikey.so
