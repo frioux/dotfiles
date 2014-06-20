@@ -1,0 +1,56 @@
+# Install Git
+
+     git clone git://github.com/gitster/git
+     cd git
+     git clean -xdff && make configure && ./configure --prefix=/opt --with-libpcre && make all doc && sudo make install install-doc
+
+# Install mutt
+
+     git clone git://github.com/karelzak/mutt-kz
+     cd mutt-kz
+     ./prepare --enable-gpgme --enable-notmuch --enable-hcache --prefix=/opt && make && sudo make install
+
+# Authorize Computer
+
+Get app specific password from gmail, put in __.netrc__:
+
+     machine imap.gmail.com
+     login $bar@gmail.com
+     password $foo
+
+     machine smtp.gmail.com
+     login $bar@gmail.com
+     password $foo
+
+     machine google.com
+     login $bar@gmail.com
+     password $foo
+
+Ensure permissions are correct:
+
+     chmod 600 ~/.netrc
+
+# How to set up offline two-factor auth with a yubikey
+
+     git clone git://github.com/firnsy/yubipam.git
+     autoreconf -i
+     ./configure
+     make
+     sudo make install
+     sudo addgroup yubiauth
+     sudo touch /etc/yubikey
+     sudo chgrp yubiauth /etc/yubikey /usr/local/sbin/yk_chkpwd
+     sudo chmod g+rw /etc/yubikey
+     sudo chmod g+s /usr/local/sbin/yk_chkpwd
+
+Add a key:
+
+     sudo ykpasswd -a -u frew -k $AES -o $OTP
+
+B<NOTE:> Do not include the C<h:> in the AES value.
+
+Run C<ykvalidate $OTP> and it should identify the configured user.
+
+Finally, put the following line at the top of F</etc/pam.d/common-auth>:
+
+     auth requisite pam_yubikey.so
