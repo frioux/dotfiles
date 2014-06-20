@@ -44,9 +44,9 @@ Host lap
      ForwardAgent yes
      ForwardX11 yes
 
-Host nw
+Host gb
      user frew
-     hostname noosphere-work.chickenkiller.com
+     hostname gae-bulg.chickenkiller.com
      port 2322
      ForwardAgent yes
      ForwardX11 yes
