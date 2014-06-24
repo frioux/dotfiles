@@ -142,8 +142,8 @@ new_ec_test(braces_no_closing_negative braces.in .f "^[ \t\n\r]*$")
 new_ec_test(braces_nested1 braces.in word,this}.g "^[ \t\n\r]*$")
 new_ec_test(braces_nested2 braces.in {also,this}.g "^[ \t\n\r]*$")
 new_ec_test(braces_nested3 braces.in word.g "^nested=true[ \t\n\r]*$")
-new_ec_test(braces_nested3 braces.in {also}.g "^nested=true[ \t\n\r]*$")
-new_ec_test(braces_nested3 braces.in this.g "^nested=true[ \t\n\r]*$")
+new_ec_test(braces_nested4 braces.in {also}.g "^nested=true[ \t\n\r]*$")
+new_ec_test(braces_nested5 braces.in this.g "^nested=true[ \t\n\r]*$")
 
 # closing inside beginning
 new_ec_test(braces_closing_in_beginning braces.in {},b}.h "^closing=inside[ \t\n\r]*$")
@@ -194,6 +194,7 @@ new_ec_test(braces_numeric_range4 braces.in 60 "^number=true[ \t\n\r]*$")
 new_ec_test(braces_numeric_range5 braces.in 5a "^[ \t\n\r]*$")
 new_ec_test(braces_numeric_range6 braces.in 120 "^number=true[ \t\n\r]*$")
 new_ec_test(braces_numeric_range7 braces.in 121 "^[ \t\n\r]*$")
+new_ec_test(braces_numeric_range8 braces.in 060 "^[ \t\n\r]*$")
 
 # alphabetical brace range
 new_ec_test(braces_alpha_range1 braces.in {ardvark..antimater} "^words=a[ \t\n\r]*$")
