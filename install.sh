@@ -17,6 +17,10 @@ link-file xsession ~/.xinitrc
 link-file gpg.conf ~/.gnupg/gpg.conf
 link-file todo ~/.todo/config
 link-file ww-roller.pl/ww_roll.pl ~/bin/ww-roll.pl
+
+# ensure submodules are checked out before linking to them
+git submodule update --init --quiet
+link-file zsh/cxregs-bash-tools/lib ~/.smartcd/lib
 source ~/.smartcd/lib/core/arrays
 source ~/.smartcd/lib/core/varstash
 source ~/.smartcd/lib/core/smartcd
@@ -76,7 +80,3 @@ case $OSTYPE in
       link-file vim ~/.vim
    ;;
 esac
-
-# ensure submodules are checked out before linking to them
-git submodule update --init --quiet
-link-file zsh/cxregs-bash-tools/lib ~/.smartcd/lib
