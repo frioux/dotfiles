@@ -52,6 +52,7 @@ apt-get --no-install-recommends install \
    tkremind                             \
    tmux                                 \
    ttf-ancient-fonts                    \
+   unattended-upgrades                  \
    vim                                  \
    vim-gnome                            \
    xclip                                \
