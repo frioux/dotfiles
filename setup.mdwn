@@ -30,6 +30,11 @@ Ensure permissions are correct:
 
      chmod 600 ~/.netrc
 
+# GPG Keyring
+
+     ssh w gpg -a --export-secret-key | gpg --import
+     ssh w gpg -a --export | gpg --import
+
 # How to set up offline two-factor auth with a yubikey
 
      git clone git://github.com/firnsy/yubipam.git
