@@ -41,15 +41,16 @@ apt-get --no-install-recommends install \
    openssh-client                       \
    openssh-server                       \
    openvpn                              \
-   remind                               \
+   pcmanfm                              \
    rdesktop                             \
+   remind                               \
    suckless-tools                       \
    tcl                                  \
+   terminator                           \
    tk                                   \
    tk8.5                                \
    tkremind                             \
    tmux                                 \
-   terminator                           \
    ttf-ancient-fonts                    \
    vim                                  \
    vim-gnome                            \
