@@ -1,5 +1,5 @@
 # fd.pipe	vpn-log.r	vpn-log.w
-# service.args	vpn-log	/usr/sbin/tinylog	-t	-k	1	log/vpn
+# service.args	vpn-log	tinylog	-t	-k	1	log/vpn
 # service.fds	vpn-log	vpn-log.r	stderr	stderr
 # service.auto_up	vpn-log	2	always
 # 
@@ -8,7 +8,7 @@
 # service.auto_up	vpn	1	always
 
 fd.pipe	local-log.r	local-log.w
-service.args	local-log	/usr/sbin/tinylog	-t	-k	1	log/local
+service.args	local-log	tinylog	-t	-k	1	log/local
 service.fds	local-log	local-log.r	stderr	stderr
 service.auto_up	local-log	2	always
 
@@ -16,7 +16,7 @@ service.args	local	sudo	-u	frew	/home/frew/code/daemonproxy/build/daemonproxy	-c
 service.fds	local	null	local-log.w	local-log.w
 service.auto_up	local	1	always
 
-service.args	my_exit_script	/home/frew/.plenv/shims/perl	/home/frew/code/daemonproxy/doc/example-clean-shutdown-controller.pl
+service.args	my_exit_script	perl	/home/frew/code/daemonproxy/doc/example-clean-shutdown-controller.pl
 service.fds	my_exit_script	control.event	control.cmd	stderr
 service.auto_up	my_exit_script	2	SIGTERM	SIGINT	SIGQUIT
 

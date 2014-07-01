@@ -1,21 +1,21 @@
 fd.pipe	offlineimap-log.r	offlineimap-log.w
-service.args	offlineimap-log	/usr/sbin/tinylog	-t	-k	1	log/offlineimap
+service.args	offlineimap-log	tinylog	-t	-k	1	log/offlineimap
 service.fds	offlineimap-log	offlineimap-log.r	stderr	stderr
 service.auto_up	offlineimap-log	2	always
 
-service.args	offlineimap	env	HOME=/home/frew	offlineimap
+service.args	offlineimap	offlineimap
 service.fds	offlineimap	null	offlineimap-log.w	offlineimap-log.w
 service.auto_up	offlineimap	1	always
 
 fd.pipe	syncthing-log.r	syncthing-log.w
-service.args	syncthing-log	/usr/sbin/tinylog	-t	-k	1	log/syncthing
+service.args	syncthing-log	tinylog	-t	-k	1	log/syncthing
 service.fds	syncthing-log	syncthing-log.r	stderr	stderr
 service.auto_up	syncthing-log	2	always
 
-service.args	syncthing	env	HOME=/home/frew	/home/frew/Sync/bin/syncthing
+service.args	syncthing	syncthing
 service.fds	syncthing	null	syncthing-log.w	syncthing-log.w
 service.auto_up	syncthing	1	always
 
-service.args	my_exit_script	/home/frew/.plenv/shims/perl	/home/frew/code/daemonproxy/doc/example-clean-shutdown-controller.pl
+service.args	my_exit_script	perl	/home/frew/code/daemonproxy/doc/example-clean-shutdown-controller.pl
 service.fds	my_exit_script	control.event	control.cmd	stderr
 service.auto_up	my_exit_script	2	SIGTERM	SIGINT	SIGQUIT
