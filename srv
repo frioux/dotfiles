@@ -12,7 +12,7 @@ service.args	local-log	tinylog	-t	-k	1	log/local
 service.fds	local-log	local-log.r	stderr	stderr
 service.auto_up	local-log	2	always
 
-service.args	local	sudo	-u	frew	/home/frew/code/daemonproxy/build/daemonproxy	-c	frew-srv	-i
+service.args	local	sudo	-u	frew	/home/frew/code/daemonproxy/build/daemonproxy	-c	/home/frew/code/services/frew-srv
 service.fds	local	null	local-log.w	local-log.w
 service.auto_up	local	1	always
 
