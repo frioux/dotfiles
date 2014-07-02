@@ -12,7 +12,7 @@ service.args	syncthing-log	tinylog	-t	-k	1	/home/frew/log/syncthing
 service.fds	syncthing-log	syncthing-log.r	stderr	stderr
 service.auto_up	syncthing-log	2	always
 
-service.args	syncthing	syncthing
+service.args	syncthing	/home/frew/Sync/bin/syncthing
 service.fds	syncthing	null	syncthing-log.w	syncthing-log.w
 service.auto_up	syncthing	1	always
 
