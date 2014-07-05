@@ -3,3 +3,15 @@ key2=value2
 
 [test.c]
 key=valueB
+
+[test.d]
+key=value_b
+
+[test.d]
+key=value_c
+
+[test.e]
+key=value_f
+
+[*.e]
+key=value_g
