@@ -34,6 +34,12 @@ new_ec_test(parent_and_current_dir parent_directory.in parent_directory/test.b "
 # Test for file in parent directory and overloaded by file in current directory
 new_ec_test(parent_dir_overload parent_directory.in parent_directory/test.c "^key=valueB[ \t\n\r]*$")
 
+# Test for file in parent directory and overloaded by file in current directory and repeated in current directory
+new_ec_test(parent_dir_overload_repeat parent_directory.in parent_directory/test.d "^key=value_c[ \t\n\r]*$")
+
+# Test for file in parent directory and overloaded by file in current directory and repeated in current directory, with different patterns
+new_ec_test(parent_dir_overload_repeat2 parent_directory.in parent_directory/test.e "^key=value_g[ \t\n\r]*$")
+
 # Test that search stops at root EditorConfig file
 new_ec_test(root_file root_file.in root_file/test.a "^[ \t\n\r]*$")
 
