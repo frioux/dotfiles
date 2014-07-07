@@ -59,3 +59,23 @@ Run `ykvalidate $OTP` and it should identify the configured user.
 Finally, put the following line at the top of __/etc/pam.d/common-auth__:
 
      auth requisite pam_yubikey.so
+
+# Bootstrap syncthing
+
+Install from syncthing.net
+
+"Pair" with other computers
+
+Sync `a`
+
+Remove installation and run from sync dir
+
+# "local" services
+
+[install perp](http://b0llix.net/perp/site.cgi?page=download)
+
+install Log::Any
+
+Clone http://github.com/frioux/services
+
+Run `sudo /home/frew/code/daemonproxy/build/daemonproxy -c /home/frew/code/services/srv -i`
