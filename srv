@@ -1,5 +1,5 @@
 fd.pipe	vpn-log.r	vpn-log.w
-service.args	vpn-log	tinylog	-t	-k	1	log/vpn
+service.args	vpn-log	tinylog	-k	1	log/vpn
 service.fds	vpn-log	vpn-log.r	stderr	stderr
 service.auto_up	vpn-log	2	always
 
