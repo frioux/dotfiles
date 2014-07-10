@@ -26,7 +26,6 @@ function _tmux_session { tmux -2 new-session -s "$1" || tmux -2 attach-session -
 
 function tmwork { _tmux_session work }
 function tmmess { _tmux_session messaging }
-function tmserv { _tmux_session services }
 
 function fru { MYPERL_HOME="$HOME/.fruperl" myperl "$@" }
 function frew { MYPERL_HOME="$HOME/.fruperl" myperl -E "$@" }
