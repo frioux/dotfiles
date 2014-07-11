@@ -1,3 +1,5 @@
+-- originally from https://github.com/lammermann/awesome-configs/blob/7dc2196c7b56cf539d67d8ce46ba01aab72c8abd/sharetags.lua
+
 -- functions to share tags on multiple screens
 
 --{{{ Grab environment we need
