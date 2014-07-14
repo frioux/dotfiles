@@ -191,7 +191,7 @@ if has_battery then
    batwidget:set_vertical(true)
    batwidget:set_background_color("#494B4F")
    batwidget:set_color("#000000")
-   batwidget:set_gradient_colors({ "#FF0000", "#FF0000" })
+   batwidget:set_gradient_colors({ "#CC0000", "#CC0000" })
    batwidget.widget:buttons(awful.util.table.join(
       awful.button({}, 1, function () awful.util.spawn("gnome-power-statistics") end)
    ))
@@ -218,7 +218,7 @@ awful.widget.layout.margins[mytextclock] = { right = 5, left = 5 };
 cpuwidget = awful.widget.graph({ align = "right" })
 cpuwidget:set_width(50)
 cpuwidget:set_background_color("#000000")
-cpuwidget:set_gradient_colors({ "#00FF00", "#00FF00" })
+cpuwidget:set_gradient_colors({ "#4E9A06", "#4E9A06" })
 cpuwidget.widget:buttons(awful.util.table.join(
    awful.button({}, 1, function () awful.util.spawn("gnome-system-monitor --show-resources-tab") end)
 ))
@@ -240,7 +240,7 @@ if has_thermal then
    tempwidget = awful.widget.graph({ align = "right" })
    tempwidget:set_width(50)
    tempwidget:set_background_color("#000000")
-   tempwidget:set_gradient_colors({ "#FFBB00", "#FFBB00" })
+   tempwidget:set_gradient_colors({ "#C4A000", "#C4A000" })
 
    tempwidget_t = awful.tooltip({ objects = { tempwidget.widget },})
    vicious.register(tempwidget, vicious.widgets.thermal,
@@ -255,7 +255,7 @@ end
 memorywidget = awful.widget.graph({ align = "right" })
 memorywidget:set_width(50)
 memorywidget:set_background_color("#000000")
-memorywidget:set_gradient_colors({ "#0000FF", "#0000FF" })
+memorywidget:set_gradient_colors({ "#3465A4", "#3465A4" })
 memorywidget.widget:buttons(awful.util.table.join(
    awful.button({}, 1, function () awful.util.spawn("gnome-system-monitor --show-resources-tab") end)
 ))
