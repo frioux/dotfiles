@@ -12,7 +12,7 @@ service.args	local-log	tinylog	-t	-k	1	/home/frew/log/local
 service.fds	local-log	local-log.r	stderr	stderr
 service.auto_up	local-log	2	always
 
-service.args	local	sudo	-u	frew	zsh	/home/frew/code/services/local.zsh
+service.args	local	sudo	-u	frew	zsh	/home/frew/code/dotfiles/bin/local.zsh
 service.fds	local	null	local-log.w	local-log.w
 service.auto_up	local	1	always
 
