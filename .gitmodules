@@ -6,7 +6,7 @@
 	url = git://gitorious.org/vimpulse/vimpulse.git
 [submodule "awesome/vicious"]
 	path = awesome/vicious
-	url = http://git.sysphere.org/vicious
+	url = git://github.com/frioux/awesome-vicious
 [submodule "awesome/utils"]
 	path = awesome/utils
 	url = git://github.com/frioux/awesome-utils.git
