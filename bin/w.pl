@@ -18,9 +18,10 @@ my $http = Net::Async::HTTP->new(timeout => 60);
 
 $loop->add($http);
 
-update_weather();
 my $timer = IO::Async::Timer::Periodic->new(
    interval => 10 * 60,
+
+   first_interval => 0,
 
    on_tick => \&update_weather,
 );
