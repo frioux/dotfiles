@@ -37,13 +37,10 @@ sub update_weather {
       warn "updating $code\n";
       $http->do_request(
          uri => URI->new( "http://weather.noaa.gov/pub/data/observations/metar/decoded/$code.TXT" ),
-      )->transform(
-         done => sub ($response) {
+      )->on_done(sub ($response) {
             open my $fh, '>', "$ENV{HOME}/tmp/$code";
             print $fh $response->decoded_content
-         },
-         fail => sub ($message, @) { warn "$code retrieval failed: $message" },
-      )
+      })->on_fail(sub ($message, @) { warn "$code retrieval failed: $message" })
    } foreach => [qw(KBIX KADS KHQZ)];
 
    $f->get
