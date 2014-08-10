@@ -22,7 +22,7 @@ alias cpv="rsync -poghb --backup-dir=/tmp/rsync -e /dev/null --progress --"
 #{{{ Globals...
 
 alias -g G="| grep"
-alias -g L="| less"
+alias -g L="| less -F"
 alias -g UP="@{upstream}"
 alias -g PT="2>&1"
 alias -g PTV="2>&1 | vim -"
