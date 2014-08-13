@@ -47,7 +47,13 @@ alias gre='gr origin/release'
 
 # }}}
 
-alias vi='vim'
+if [[ -a "$(whence nvim)" ]]; then
+   alias vim=nvim
+   alias vi=nvim
+else
+   alias vi=vim
+fi
+
 alias wget='noglob wget'
 alias tar='wrap-tar'
 alias unzip='replace-unzip'
