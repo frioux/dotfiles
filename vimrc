@@ -5,6 +5,15 @@ endif
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
 
+if has('python')
+   call pathogen#infect('bundle-python/{}')
+endif
+
+if has('lua')
+   call pathogen#infect('bundle-lua/{}')
+endif
+
+
 "{{{Auto Commands
 
 autocmd VimEnter * set vb t_vb=
