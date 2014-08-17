@@ -257,6 +257,9 @@ nnoremap <silent> <S-F3> :CtrlPClearCache<CR>
 nnoremap <silent> <F4> :call FileRelCtrlP()<CR>
 nnoremap <silent> <F5> :CtrlPBuffer<CR>
 
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
+let g:ctrlp_use_caching = 0
+
 " }}}
 let g:jshintprg="hint"
 
