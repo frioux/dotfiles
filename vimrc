@@ -191,6 +191,10 @@ set pastetoggle=<F12>
 nmap gV `[v`]
 nnoremap <leader>ts    :r !date "+\%FT\%T\%:z"<CR>
 
+vnoremap <silent> y y`]
+vnoremap <silent> p p`]
+nnoremap <silent> p p`]
+
 "}}}
 
 " {{{ airline settings
