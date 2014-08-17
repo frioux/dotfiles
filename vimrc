@@ -195,6 +195,8 @@ vnoremap <silent> y y`]
 vnoremap <silent> p p`]
 nnoremap <silent> p p`]
 
+map q: :q
+
 "}}}
 
 " {{{ airline settings
