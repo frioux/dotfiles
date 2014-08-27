@@ -3,12 +3,14 @@
 apt-get --no-install-recommends install \
    aptitude                             \
    asciidoc                             \
+   atop                                 \
    autoconf                             \
    automake                             \
    awesome                              \
    awesome-extra                        \
    build-essential                      \
    clementine                           \
+   collectl                             \
    curl                                 \
    dstat                                \
    dtach                                \
@@ -20,6 +22,7 @@ apt-get --no-install-recommends install \
    gnupg-agent                          \
    gtk2-engines                         \
    gxmessage                            \
+   htop                                 \
    inotify-tools                        \
    keepassx                             \
    lastfm                               \
@@ -36,6 +39,7 @@ apt-get --no-install-recommends install \
    lynx                                 \
    mosh                                 \
    msmtp                                \
+   nicstat                              \
    notmuch                              \
    notmuch-mutt                         \
    offlineimap                          \
@@ -46,12 +50,14 @@ apt-get --no-install-recommends install \
    rdesktop                             \
    remind                               \
    suckless-tools                       \
+   sysstat                              \
    tcl                                  \
    terminator                           \
    tk                                   \
    tk8.5                                \
    tkremind                             \
    tmux                                 \
+   trace-cmd                            \
    ttf-ancient-fonts                    \
    unattended-upgrades                  \
    vim                                  \
