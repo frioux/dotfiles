@@ -1,6 +1,7 @@
 smartcd export 1.0
 @ scripts/home/frew/code/lynx/bash_enter
  autostash DBIC_TRACE=1
+ autostash BUSHIDO=1
  autostash WM_DEBUG=1
  autostash CATALYST_DEBUG=1
  autostash LYNX_DSN_PATH=/home/frew/code/flu-db.txt
