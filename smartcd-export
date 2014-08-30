@@ -14,6 +14,18 @@ smartcd export 1.0
  
  autostash lynxapp lynxservice brr loc cobr kr
  
+ function pgup() {
+    docker run --rm -p 5432:5432 -P --name pg_lynx apalmer/postgres 2>&1 > /dev/null &
+ }
+ 
+ function pgdown() {
+    docker stop pg_lynx
+ }
+ 
+ function pgon() {
+    LYNX_DSN_PATH=/home/frew/code/flu-pg-db.txt
+ }
+ 
  function lynxapp() {
     # start a subshell here to set ulimit
     plackup -R App/lib,cgi/My
