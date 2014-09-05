@@ -37,6 +37,10 @@ set pager_index_lines=9
 
 mailboxes `find ~/var/mail -maxdepth 1 -type d -printf "+%f "`
 
+# who EVER wants to do these things?
+bind index,pager p noop
+bind index,pager a noop
+
 macro compose A "<attach-message>?<toggle-mailboxes>" "attach message(s) to this message"
 macro index G <last-entry>
 macro index gg <first-entry>
