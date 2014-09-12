@@ -43,6 +43,9 @@ new_ec_test(parent_dir_overload_repeat2 parent_directory.in parent_directory/tes
 # Test that search stops at root EditorConfig file
 new_ec_test(root_file root_file.in root_file/test.a "^[ \t\n\r]*$")
 
+# Test that search stops at root EditorConfig file
+new_ec_test(root_file_mixed_case root_file.in root_mixed/test.a "^child=true[ \t\n\r]*$")
+
 # Tests path separator match
 new_ec_test(path_separator path_separator.in path/separator "^key=value[ \t\n\r]*$")
 

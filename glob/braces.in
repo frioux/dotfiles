@@ -36,7 +36,7 @@ closing=inside
 
 ; opening inside beginning
 [{{,b,c{d}.i]
-opening=inside
+unmatched=true
 
 ; escaped comma
 [{a\,b,cd}.txt]
@@ -49,3 +49,15 @@ closing=yes
 ; escaped backslash
 [{g,\\,i}.txt]
 backslash=yes
+
+; patterns nested in braces
+[{some,a{*c,b}[ef]}.j]
+patterns=nested
+
+; numeric braces
+[{3..120}]
+number=true
+
+; alphabetical
+[{aardvark..antelope}]
+words=a

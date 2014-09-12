@@ -24,6 +24,12 @@
 # POSSIBILITY OF SUCH DAMAGE.
 #
 
+# Basic parser tests
+
+# test repeat sections
+new_ec_test(repeat_sections basic.in a.a "^option1=value1[ \t]*[\n\r]+option2=value2[ \t\n\r]*$")
+new_ec_test(basic_cascade basic.in b.b "^option1=c[ \t]*[\n\r]+option2=b[ \t\n\r]*$")
+
 # Tests for whitespace parsing
 
 # test no whitespaces in property assignment
@@ -62,6 +68,25 @@ new_ec_test(spaces_after_section_name whitespace.in test9.c "^key=value[ \t\n\r]
 
 # test spaces at beginning of line between properties
 new_ec_test(spaces_before_middle_property whitespace.in test10.c "^key1=value1[ \t]*[\n\r]+key2=value2[ \t]*[\n\r]+key3=value3[ \t\n\r]*$")
+
+# test colon seperator with no whitespaces in property assignment
+new_ec_test(colon_sep_no_whitespace whitespace.in test1.d "^key=value[ \t\n\r]*$")
+
+# test colon seperator with single spaces around equals sign
+new_ec_test(colon_sep_single_spaces_around_equals whitespace.in test2.d
+    "^key=value[ \t\n\r]*$")
+
+# test colon seperator with multiple spaces around equals sign
+new_ec_test(colon_sep_multiple_spaces_around_equals whitespace.in test3.d
+    "^key=value[ \t\n\r]*$")
+
+# test colon seperator with spaces before property name
+new_ec_test(colon_sep_spaces_before_property_name whitespace.in test4.d
+    "^key=value[ \t\n\r]*$")
+
+# test colon seperator with spaces before after property value
+new_ec_test(colon_sep_spaces_after_property_value whitespace.in test5.d
+    "^key=value[ \t\n\r]*$")
 
 
 # Tests for comment parsing
