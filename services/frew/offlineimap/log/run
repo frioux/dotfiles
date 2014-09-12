@@ -1,3 +1,3 @@
 #!/bin/zsh
 
-exec tinylog -t -k 1 /home/frew/log/offlineimap <&0
+exec tai64n <&0 | tai64nlocal| multilog /home/frew/log/offlineimap
