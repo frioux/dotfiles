@@ -15,7 +15,7 @@ smartcd export 1.0
  autostash lynxapp lynxservice brr loc cobr kr
  
  function pgup() {
-    docker run --rm -p 5432:5432 -P --name pg_lynx apalmer/postgres 2>&1 > /dev/null &
+    docker run --rm -p 5432:5432 -P --name pg_lynx postgres:9.3 2>&1 > /dev/null &
  }
  
  function pgdown() {
