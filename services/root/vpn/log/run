@@ -1,0 +1,4 @@
+#!/bin/zsh
+
+exec setuidgid frew \
+   tinylog -t -k 1 /home/frew/log/vpn <&0

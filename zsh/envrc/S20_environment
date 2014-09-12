@@ -17,5 +17,6 @@ export NOPASTE_SERVICES='ssh Shadowcat'
 if [[ "$TERM" == xterm ]]; then
    export TERM=xterm-256color
 fi
+export SVDIR=~/services/frew
 
 # vim: ft=zsh

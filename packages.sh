@@ -12,6 +12,7 @@ apt-get --no-install-recommends install \
    clementine                           \
    collectl                             \
    curl                                 \
+   daemontools                          \
    dstat                                \
    dtach                                \
    fail2ban                             \
@@ -49,6 +50,7 @@ apt-get --no-install-recommends install \
    pcmanfm                              \
    rdesktop                             \
    remind                               \
+   runit                                \
    suckless-tools                       \
    sysstat                              \
    tcl                                  \
