@@ -1,0 +1,18 @@
+#!/usr/bin/env perl
+
+use 5.20.0;
+use warnings;
+
+use IO::All;
+
+my @files = @ARGV;
+our @tmp_files = map ["/tmp/" . io($_)->filename, $_], @files;
+
+system("convert", $_->[1], '-resize', '1024x768', $_->[0])
+   for @tmp_files;
+
+system(qw(mutt -a), map $_->[0], @tmp_files);
+
+sub cleanup { unlink $_->[0] for @tmp_files }
+
+END { cleanup() }
