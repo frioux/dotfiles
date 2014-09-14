@@ -83,6 +83,8 @@ smartcd export 1.0
        sv(BackupDIR => "backups");
     '
  }
+@ scripts/home/frew/code/lynxnet-messenger/bash_enter
+ autostash SVDIR=__PATH__/services/
 @ scripts/home/frew/code/plugins/bash_enter
  autostash DBIC_TRACE=1
  autostash WM_DEBUG=1
