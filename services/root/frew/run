@@ -1,5 +1,5 @@
 #!/bin/zsh
 
 cd /home/frew/services/frew
-exec 2>&1 setuidgid frew \
-   runsvdir -P .
+exec 2>&1 sudo -u frew \
+  runsvdir -P .

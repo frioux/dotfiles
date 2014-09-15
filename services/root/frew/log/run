@@ -1,4 +1,4 @@
 #!/bin/zsh
 
-exec setuidgid frew \
-   tai64n <&0 | tai64nlocal| multilog /home/frew/log/frew
+exec sudo -u frew \
+   ./real <&0
