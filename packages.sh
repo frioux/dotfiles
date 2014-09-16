@@ -37,6 +37,8 @@ apt-get --no-install-recommends install \
    libtokyocabinet-dev                  \
    libtool                              \
    libxapian-dev                        \
+   linux-tools-common                   \
+   linux-tools-generic                  \
    lynx                                 \
    mosh                                 \
    msmtp                                \
