@@ -19,4 +19,10 @@ if [[ "$TERM" == xterm ]]; then
 fi
 export SVDIR=~/services/frew
 
+# Oracle--
+export ORACLE_HOME=$HOME/Dropbox/instantclient_12_1
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$ORACLE_HOME
+export TNS_ADMIN=$HOME/Dropbox
+
+
 # vim: ft=zsh
