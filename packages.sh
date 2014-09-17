@@ -50,6 +50,7 @@ apt-get --no-install-recommends install \
    openssh-server                       \
    openvpn                              \
    pcmanfm                              \
+   powertop                             \
    rdesktop                             \
    remind                               \
    runit                                \
