@@ -3,6 +3,6 @@
 export HOME=/home/frew
 source ~/.zshenv
 
-cd $HOME/services/frew
+cd $HOME/services
 exec 2>&1 sudo -u frew \
   runsvdir -P .
