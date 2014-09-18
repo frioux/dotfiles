@@ -13,6 +13,6 @@ system("convert", $_->[1], '-resize', '1024x768', $_->[0])
 
 system(qw(mutt -a), map $_->[0], @tmp_files);
 
-sub cleanup { unlink $_->[0] for @tmp_files }
+sub cleanup { unlink map $_->[0], @tmp_files }
 
 END { cleanup() }
