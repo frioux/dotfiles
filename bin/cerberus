@@ -1,0 +1,23 @@
+#!/usr/bin/env perl
+
+use 5.20.1;
+use warnings;
+
+use IO::All;
+
+my $dir = "$ENV{HOME}/services/offlineimap/supervise";
+
+while (1) {
+   sleep 60 * 10;
+
+   kill() if running() && time > last_logged() + 60 * 10
+}
+
+sub running { io->file("$dir/stat")->slurp =~ /run/ }
+sub last_logged { [io->file("$ENV{HOME}/log/offlineimap/current")->stat]->[9] }
+
+sub kill {
+   say 'killing!';
+   io->file("$dir/control")->print('k')
+}
+
