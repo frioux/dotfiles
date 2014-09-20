@@ -14,7 +14,6 @@ apt-get --no-install-recommends install \
    curl                                 \
    daemontools                          \
    dstat                                \
-   dtach                                \
    fail2ban                             \
    firefox                              \
    git-annex                            \
