@@ -1,0 +1,31 @@
+#!/usr/bin/env perl
+
+use 5.20.1;
+use warnings;
+use Getopt::Long::Descriptive;
+use IO::All;
+use File::ChangeNotify;
+
+use experimental 'postderef';
+
+my ($opt, $usage) = describe_options(
+  'minotaur %o',
+  [ 'dir=s@',    'the dir to watch', { required => 1  } ],
+  [ 'service=s@', 'the service to restart',   { required => 1 } ],
+  [],
+  [ 'help',       'print usage message and exit' ],
+);
+
+print($usage->text), exit if $opt->help;
+
+my $watcher = File::ChangeNotify
+   ->instantiate_watcher( directories => $opt->dir );
+
+while ( my @events = $watcher->wait_for_events ) {
+   say "files changed!";
+   for my $service ( $opt->service->@* ) {
+      say "restarting service: $service";
+      io->file("$ENV{HOME}/services/$service/supervise/control")
+         ->print('tcu') # sigTerm, sigCont, "Up"
+   }
+}
