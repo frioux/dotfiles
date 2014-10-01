@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2011-2012 EditorConfig Team
+# Copyright (c) 2011-2014 EditorConfig Team
 # All rights reserved.
 # 
 # Redistribution and use in source and binary forms, with or without
@@ -39,6 +39,8 @@ new_ec_test(star_multiple star.in abcde.c "^key=value[ \t\n\r]*$")
 # does not match path separator
 new_ec_test(star_over_slash star.in a/e.c "^[ \t\n\r]*$")
 
+# star after a slash
+new_ec_test(star_after_slash star.in Bar/foo.txt "^keyb=valueb[ \t\n\r]*$")
 
 # Tests for ?
 
