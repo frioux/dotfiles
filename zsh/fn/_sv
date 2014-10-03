@@ -48,6 +48,13 @@ case $state in
   ;;
 
   (options)
-     _describe -t services "sv services" "($(ls $SVDIR))"
+      local -a sv_services
+      sv_services=(
+         $SVDIR/*(N)
+         $SVDIR/*/log(N)
+      )
+
+      sv_services=( ${sv_services#$SVDIR/} )
+     _describe -t services "sv services" sv_services
   ;;
 esac
