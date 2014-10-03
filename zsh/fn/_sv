@@ -1,0 +1,53 @@
+#compdef sv
+
+_arguments \
+    '-v[verbose]' \
+    '-w:wait time' \
+    ':command:->command' \
+    '*::options:->options'
+
+case $state in
+  (command)
+      local -a sv_ary
+      sv_ary=(
+            'status':'Get status of service (and log service if available)'
+                'up':'start if service is running. If service stops, restart'
+              'down':'send SIGTERM and SIGCONT if service is running. After it stops, do not restart'
+              'once':'start if service is not running. Do not restart if it stops'
+             'pause':'send SIGSTOP if service is running'
+              'cont':'send SIGCONT if service is running'
+               'hup':'send SIGHUP if service is running'
+             'alarm':'send SIGALRM if service is running'
+         'interrupt':'send SIGINT if service is running'
+              'quit':'send SIGQUIT if service is running'
+                 '1':'send SIGUSR1 if service is running'
+                 '2':'send SIGUSR2 if service is running'
+              'term':'send SIGTERM if service is running'
+              'kill':'send SIGKILL if service is running'
+              'exit':'send SIGTERM and SIGCONT if service is running. Do not restart service.'
+      )
+
+      local -a sv_lsb_ary
+      sv_lsb_ary=(
+                  'start':'up with check/timeout'
+                   'stop':'down with check/timeout'
+                 'reload':'hup with check'
+                'restart':'down and up with check'
+               'shutdown':'exit with check/timeout'
+             'force-stop':'stop with kill on timeout'
+           'force-reload':'reload with kill on timeout'
+          'force-restart':'restart with kill on timeout'
+         'force-shutdown':'shutdown with kill on timeout'
+            'try-restart':'restart if service is already running'
+      )
+
+      _describe -t commands "sv commands" sv_ary -V sv_commands
+      _describe -t commands "sv LSM init compat" sv_lsb_ary -V sv_init_compat
+      _describe -t commands "sv additional commands" '("check:check status of service")' -V sv_addl_comm
+      return
+  ;;
+
+  (options)
+     _describe -t services "sv services" "($(ls $SVDIR))"
+  ;;
+esac
