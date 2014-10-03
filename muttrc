@@ -29,6 +29,8 @@ set spoolfile         = +INBOX
 set status_on_top     = yes
 set use_from          = yes
 set markers           = no
+set mime_forward      = yes
+set mime_forward_rest = yes
 
 alternates '^frew@mitsi.com$' '^frioux@gmail.com$' '^frew@afoolishmanifesto.com$'
 
