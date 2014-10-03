@@ -64,4 +64,6 @@ compdef _git {gitk,qgit,grr}=git-log
 compdef _git gr=git-rebase
 compdef wrap-tar=tar
 
+compinit
+
 # vim: ft=zsh

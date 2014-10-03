@@ -1,7 +1,6 @@
 autoload -U compinit promptinit zmv
 autoload -Uz colors
 colors
-compinit
 promptinit
 
 # vim: ft=zsh
