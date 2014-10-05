@@ -1,0 +1,47 @@
+#!/usr/bin/env perl
+
+use utf8;
+
+use 5.20.1;
+use warnings;
+
+use experimental 'signatures';
+
+use IPC::System::Simple 'system';
+use Capture::Tiny 'capture_merged';
+use Term::ANSIColor;
+
+binmode(STDOUT, ':encoding(UTF-8)');
+my $minute = 60;
+my $hour = 60 * $minute;
+my $day = $hour * 24;
+
+sub _format_time ($seconds) {
+   my $days = int $seconds / $day;
+   my $hours = int $seconds % $day / $hour;
+   my $minutes = int $seconds % $hour / $minute;
+   $seconds = $seconds % $minute;
+
+   ($days ? "${days}d" : '') .
+   ($hours ? "${hours}h" : '') .
+   ($minutes ? "${minutes}m" : '') .
+   "${seconds}s"
+}
+sub _format_service ($svc) {
+   my @services = split /;/, scalar capture_merged {
+      system(qw(sv status), $svc)
+   }, 2;
+
+   my $green = color('bold green');
+   my $red = color('bold red');
+   my $reset = color('reset');
+   for (@services) {
+      s/run(?=:)/${green}run$reset/;
+      s/down(?=:)/${red}down$reset/;
+
+      s/(\d+)s/_format_time($1)/e;
+   }
+
+   join "\n└─", @services;
+}
+print _format_service(shift)
