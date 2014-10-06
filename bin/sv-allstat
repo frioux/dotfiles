@@ -1,9 +1,0 @@
-#!/bin/zsh
-
-local -a services
-services=( $SVDIR/*)
-services=( ${services#$SVDIR/} )
-
-for s in $services; do
-   sv-stat-pretty $s
-done
