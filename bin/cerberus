@@ -13,11 +13,14 @@ while (1) {
    kill_it() if running() && time > last_logged() + 60 * 10
 }
 
-sub running { io->file("$dir/stat")->slurp =~ /run/ }
+sub running {
+   my $stat = io->file("$dir/stat")->slurp;
+   $stat =~ /run/ || $stat eq ''
+}
 sub last_logged { [io->file("$ENV{HOME}/log/offlineimap/current")->stat]->[9] }
 
 sub kill_it {
-   say 'killing!';
+   warn "killing!\n";
    io->file("$dir/control")->print('k')
 }
 
