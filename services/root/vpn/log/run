@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/dash
 
 exec sudo -u frew \
-  tai64n <&0 | tai64nlocal| multilog /home/frew/log/vpn
+  multilog t /home/frew/log/vpn

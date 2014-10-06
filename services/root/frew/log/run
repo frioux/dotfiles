@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/dash
 
 exec sudo -u frew \
-   ./real <&0
+   multilog t /home/frew/log/frew <&0

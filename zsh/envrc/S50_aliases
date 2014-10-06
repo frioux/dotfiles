@@ -60,6 +60,6 @@ alias unzip='replace-unzip'
 alias cdroot='cd $(git rev-parse --show-toplevel)'
 alias o='bash ~/code/dotfiles/zsh/todotxt/todo.sh'
 alias srv='plackup -MPlack::App::Directory -e "Plack::App::Directory->new(root => q(.))" -p 5001'
-alias svcs-tail='tail -F ~/log/**/current'
+alias svcs-tail='tail -F ~/log/**/current | tai64nlocal'
 
 # vim: ft=zsh foldmethod=marker

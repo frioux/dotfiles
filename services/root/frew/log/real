@@ -1,3 +1,0 @@
-#!/bin/zsh
-
-exec tai64n <&0 | tai64nlocal| multilog /home/frew/log/frew
