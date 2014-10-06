@@ -49,7 +49,7 @@ sub _format_service ($svc) {
 if (my $service = shift) {
    print _format_service($service)
 } else {
-   for my $service (map $_->filename, io->dir($ENV{SVDIR})->all) {
+   for my $service (map $_->filename, grep -d "$_", io->dir($ENV{SVDIR})->all) {
       print _format_service($service)
    }
 }
