@@ -3,8 +3,8 @@
 _arguments \
     '-v[verbose]' \
     '-w[wait time]:time (seconds)' \
-    ':command:->command' \
-    '*::options:->options'
+    '1: :->command' \
+    '*:: :->options'
 
 case $state in
   (command)
