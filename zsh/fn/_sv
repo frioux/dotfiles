@@ -49,12 +49,13 @@ case $state in
 
   (options)
       local -a sv_services
+      local svdir=${SVDIR:-/service}
       sv_services=(
-         $SVDIR/*(N)
-         $SVDIR/*/log(N)
+         $svdir/*(N)
+         $svdir/*/log(N)
       )
 
-      sv_services=( ${sv_services#$SVDIR/} )
+      sv_services=( ${sv_services#$svdir/} )
      _describe -t services "sv services" sv_services
   ;;
 esac
