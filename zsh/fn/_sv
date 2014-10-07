@@ -2,7 +2,7 @@
 
 _arguments \
     '-v[verbose]' \
-    '-w:wait time' \
+    '-w[wait time]:time (seconds)' \
     ':command:->command' \
     '*::options:->options'
 
