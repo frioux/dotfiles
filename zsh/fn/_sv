@@ -10,7 +10,7 @@ case $state in
   (command)
       local -a sv_ary
       sv_ary=(
-            'status':'Get status of service (and log service if available)'
+            'status':'get status of service (and log service if available)'
                 'up':'start if service is running. If service stops, restart'
               'down':'send SIGTERM and SIGCONT if service is running. After it stops, do not restart'
               'once':'start if service is not running. Do not restart if it stops'
