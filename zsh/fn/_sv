@@ -44,7 +44,8 @@ _sv_additional() {
     _describe -t additional-commands "sv additional commands" '("check:check status of service")' -V sv_addl_comm
 }
 
-_arguments \
+local curcontext="$curcontext" state line
+_arguments -C \
     '-v[verbose]' \
     '-w[wait time]:time (seconds)' \
     '1: :->command' \
