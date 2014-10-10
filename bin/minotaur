@@ -2,30 +2,63 @@
 
 use 5.20.1;
 use warnings;
-use Getopt::Long::Descriptive;
 use IO::All;
-use File::ChangeNotify;
+use JSON::MaybeXS 'decode_json';
+use Linux::Inotify2;
+use AnyEvent;
 
 use experimental 'postderef';
+my $config = shift;
+my @watches = decode_json(io->file($config)->all)->@*;
 
-my ($opt, $usage) = describe_options(
-  'minotaur %o',
-  [ 'dir=s@',    'the dir to watch', { required => 1  } ],
-  [ 'service=s@', 'the service to restart',   { required => 1 } ],
-  [],
-  [ 'help',       'print usage message and exit' ],
-);
+my @watchers;
 
-print($usage->text), exit if $opt->help;
+my $inotify = new Linux::Inotify2
+   or die "unable to create new inotify object: $!";
 
-my $watcher = File::ChangeNotify
-   ->instantiate_watcher( directories => $opt->dir );
+my $mask = IN_MODIFY | IN_ATTRIB | IN_MOVED_TO | IN_CREATE | IN_DELETE | IN_DELETE_SELF | IN_MOVE_SELF;
 
-while ( my @events = $watcher->wait_for_events ) {
-   say "files changed!";
-   for my $service ( $opt->service->@* ) {
-      say "restarting service: $service";
-      io->file("$ENV{HOME}/services/$service/supervise/control")
-         ->print('tcu') # sigTerm, sigCont, "Up"
+my %timeouts;
+
+while (my ($dirs, $svcs) = splice @watches, 0, 2) {
+
+   for my $outer_dir (@$dirs) {
+
+      my $cb = sub {
+         my $e = shift;
+
+         $timeouts{$outer_dir} = AnyEvent->timer(
+            after => $ENV{MINOTAUR_DEBOUNCE} || 0.5,
+            cb => sub {
+               for my $service (@$svcs) {
+                  say "restarting service: $service";
+                  io->file("$ENV{SVDIR}/$service/supervise/control")
+                     ->print('tcu') # sigTerm, sigCont, "Up"
+               }
+               delete $timeouts{$outer_dir}
+            },
+         );
+      };
+
+      for my $dir (io->dir($outer_dir)->All_Dirs) {
+         say "watching $dir";
+         $inotify->watch ($dir, $mask, $cb)
+            or die "unable to create new inotify object: $!";
+      }
+
    }
 }
+
+my $done = AnyEvent->condvar;
+
+$inotify->watch(
+   $config, $mask, sub { say "config modified, restarting"; $done->send }
+);
+
+my $inotify_w = AnyEvent->io (
+   fh => $inotify->fileno,
+   poll => 'r',
+   cb => sub { $inotify->poll } # runs callbacks defined above
+);
+
+$done->recv;
