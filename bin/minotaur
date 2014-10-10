@@ -31,9 +31,13 @@ while (my ($dirs, $svcs) = splice @watches, 0, 2) {
             after => $ENV{MINOTAUR_DEBOUNCE} || 0.5,
             cb => sub {
                for my $service (@$svcs) {
-                  say "restarting service: $service";
-                  io->file("$ENV{SVDIR}/$service/supervise/control")
-                     ->print('tcu') # sigTerm, sigCont, "Up"
+                  my $svc_dir = io->dir("$ENV{SVDIR}/$service/supervise");
+
+                  if ($svc_dir->file('stat')->all =~ /run/) {
+                     say "restarting service: $service";
+                     $svc_dir->file('control')
+                        ->print('tcu') # sigTerm, sigCont, "Up"
+                  }
                }
                delete $timeouts{$outer_dir}
             },
