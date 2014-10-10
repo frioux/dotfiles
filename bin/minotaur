@@ -5,7 +5,10 @@ use warnings;
 use IO::All;
 use JSON::MaybeXS 'decode_json';
 use Linux::Inotify2;
-use AnyEvent;
+use IO::Handle;
+use IO::Async::Loop;
+use IO::Async::Handle;
+use IO::Async::Timer::Countdown;
 
 $|++;
 
@@ -13,58 +16,64 @@ use experimental 'postderef';
 my $config = shift;
 my @watches = decode_json(io->file($config)->all)->@*;
 
-my @watchers;
+my $loop = IO::Async::Loop->new;
 
 my $inotify = new Linux::Inotify2
    or die "unable to create new inotify object: $!";
 
 my $mask = IN_MODIFY | IN_ATTRIB | IN_MOVED_TO | IN_CREATE | IN_DELETE | IN_DELETE_SELF | IN_MOVE_SELF;
 
-my %timeouts;
-
 while (my ($dirs, $svcs) = splice @watches, 0, 2) {
 
    for my $outer_dir (@$dirs) {
 
-      my $cb = sub {
-         my $e = shift;
+      my $timer = IO::Async::Timer::Countdown->new(
+         delay => 0.5,
 
-         $timeouts{$outer_dir} = AnyEvent->timer(
-            after => $ENV{MINOTAUR_DEBOUNCE} || 0.5,
-            cb => sub {
-               for my $service (@$svcs) {
-                  my $svc_dir = io->dir("$ENV{SVDIR}/$service/supervise");
+         on_expire => sub {
+            for my $service (@$svcs) {
+               my $svc_dir = io->dir("$ENV{SVDIR}/$service/supervise");
 
-                  if ($svc_dir->file('stat')->all =~ /run/) {
-                     say "restarting service: $service";
-                     $svc_dir->file('control')
-                        ->print('tcu') # sigTerm, sigCont, "Up"
-                  }
+               if ($svc_dir->file('stat')->all =~ /run/) {
+                  say "restarting service: $service";
+                  $svc_dir->file('control')
+                     ->print('tcu') # sigTerm, sigCont, "Up"
                }
-               delete $timeouts{$outer_dir}
-            },
-         );
-      };
+            }
+         },
+      );
+
+      $loop->add( $timer );
 
       for my $dir (io->dir($outer_dir)->All_Dirs) {
          say "watching $dir";
-         $inotify->watch ($dir, $mask, $cb)
-            or die "unable to create new inotify object: $!";
+         $inotify->watch ($dir, $mask, sub {
+            if ($timer->is_running) {
+               $timer->reset
+            } else {
+               $timer->start
+            }
+         }) or die "unable to create new inotify object: $!";
       }
 
    }
 }
 
-my $done = AnyEvent->condvar;
+my $exit = $loop->new_future;
 
 $inotify->watch(
-   $config, $mask, sub { say "config modified, restarting"; $done->send }
+   $config, $mask, sub { say "config modified, restarting"; $exit->done }
 );
 
-my $inotify_w = AnyEvent->io (
-   fh => $inotify->fileno,
-   poll => 'r',
-   cb => sub { $inotify->poll } # runs callbacks defined above
+my $handle = IO::Async::Handle->new(
+   read_handle => do {
+      my $h = IO::Handle->new;
+      $h->fdopen($inotify->fileno, 'r');
+      $h
+   },
+   on_read_ready => sub { $inotify->poll },
 );
 
-$done->recv;
+$loop->add($handle);
+
+$exit->get;
