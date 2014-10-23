@@ -76,12 +76,6 @@ Sync `a`
 
 Remove installation and run from sync dir
 
-# "local" services
+# services
 
-[install perp](http://b0llix.net/perp/site.cgi?page=download)
-
-install Log::Any
-
-Clone http://github.com/frioux/services
-
-Run `sudo /home/frew/code/daemonproxy/build/daemonproxy -c /home/frew/code/services/srv -i`
+    sudo rsync -r services/root/ /etc/service
