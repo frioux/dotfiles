@@ -2,13 +2,19 @@
 
      git clone git://github.com/gitster/git
      cd git
-     git clean -xdff && make configure && ./configure --prefix=/opt --with-libpcre && make all doc && sudo make install install-doc
+     git clean -xdff && \
+        make configure && \
+        ./configure --prefix=/opt --with-libpcre && \
+        make all doc && \
+        sudo make install install-doc
 
 # Install mutt
 
      git clone git://github.com/karelzak/mutt-kz
      cd mutt-kz
-     ./prepare --enable-gpgme --enable-notmuch --enable-hcache --prefix=/opt && make && sudo make install
+     ./prepare --enable-gpgme --enable-notmuch --enable-hcache --prefix=/opt && \
+        make && \
+        sudo make install
 
 # Authorize Computer
 
