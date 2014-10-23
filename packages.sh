@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/dash
 
 apt-get --no-install-recommends install \
    aptitude                             \
@@ -74,4 +74,3 @@ apt-get --no-install-recommends install \
    xscreensaver                         \
    xsltproc                             \
    zsh
-
