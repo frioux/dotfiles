@@ -1,3 +1,13 @@
+# dotfiles Setup
+
+    sudo apt-get install git
+    mkdir -p ~/code
+    git clone git://github.com/frioux/dotfiles ~/code/dotfiles
+    cd ~/code/dotfiles
+    sudo ./packages.sh
+    ./install.sh
+    sudo cat sysctl.conf >> /etc/sysctl.conf
+
 # Install Git
 
     git clone git://github.com/gitster/git
@@ -32,9 +42,14 @@ Get app specific password from gmail, put in __.netrc__:
     login $bar@gmail.com
     password $foo
 
+Put pause credentials in __.pause__:
+
+    user FREW
+    password DERP
+
 Ensure permissions are correct:
 
-    chmod 600 ~/.netrc
+    chmod 600 ~/.netrc ~/.pause
 
 # GPG Keyring
 
@@ -72,7 +87,7 @@ Install from syncthing.net
 
 "Pair" with other computers
 
-Sync `a`
+Sync `a` to __~/Sync__
 
 Remove installation and run from sync dir
 
