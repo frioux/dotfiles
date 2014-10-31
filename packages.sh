@@ -39,6 +39,7 @@ apt-get --no-install-recommends install \
    linux-tools-common                   \
    linux-tools-generic                  \
    lynx                                 \
+   mitmproxy                            \
    mosh                                 \
    msmtp                                \
    nicstat                              \
