@@ -7,6 +7,11 @@ ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMGDd3uKVSaX65yWh6ki4cosMGB/XKFCcU6wxMn6e/FE
 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIqZBUM2GdADJ3E2hEmJ5b3F1h4JdkzIRLbAQSKV1HXz frew@wanderlust
 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMSejHLu95YlHQo3VleEqf7YbAuAafyudd19r5hNTRzb frew@gae-bulg
 
+# These ecdsa keys are for up-to-date Debian servers
+ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBFRwZhukD1RZBUgQrjuGqHTOh9jAJujYpIfUxQ4Vwx3zKwyObGh0UQk6RGn7YIKwaD5dxnhopKzqhTvjYi6rHrw= frew@wanderlust
+ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBL0lVnuFo8eZfGMoWp/EnPmX/dIBgrqobY6QoPqAFbapDDOOYj8/fjTMMI6nU9EbsaUr4tTSULVYWYNAUTv9Gdc= frew@tungsten
+ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBMjJKmA0+DtIq0g9gHEj6JwvMQpdQCzv437BVRtsKkoBThfFa5xIhTfR8rnlUINTdWNC/MRHKI6uu6loAI+FdUw= frew@gae-bulg
+
 # These rsa keys are for the ancient shadowcat servers that are stuck on *Debian Sarge*
 # Should not be used for anything else, thus commented out
 
