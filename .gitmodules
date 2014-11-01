@@ -136,3 +136,6 @@
 [submodule "vim/bundle/ultisnips"]
 	path = vim/bundle-python/ultisnips
 	url = git://github.com/sirver/ultisnips
+[submodule "vim/bundle/racket"]
+	path = vim/bundle/racket
+	url = gh:wlangstroth/vim-racket
