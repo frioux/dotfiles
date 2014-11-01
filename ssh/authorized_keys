@@ -1,7 +1,3 @@
-# my rsa public keys are at:
-#
-# https://api.github.com/users/frioux/keys
-
 # These ed25519 keys are for latest-and-greatest Ubuntu and Cygwin servers
 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMGDd3uKVSaX65yWh6ki4cosMGB/XKFCcU6wxMn6e/FE frew@tungsten
 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIqZBUM2GdADJ3E2hEmJ5b3F1h4JdkzIRLbAQSKV1HXz frew@wanderlust
