@@ -41,6 +41,7 @@ apt-get --no-install-recommends install \
    lynx                                 \
    mitmproxy                            \
    mosh                                 \
+   monit                                \
    msmtp                                \
    nicstat                              \
    notmuch                              \

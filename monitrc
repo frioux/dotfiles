@@ -1,0 +1,22 @@
+set daemon 15
+
+set httpd
+  port 2812
+  use address 127.0.0.1
+  allow frew:test
+
+check process cerberus
+  with pidfile /home/frew/services/cerberus/supervise/pid
+
+check process offlineimap
+  with pidfile /home/frew/services/offlineimap/supervise/pid
+  start program = "/usr/bin/sv start offlineimap"
+  stop program = "/usr/bin/sv stop offlineimap"
+  if total memory > 1 GB for 5 cycles then restart
+
+check process syncthing
+  with pidfile /home/frew/services/syncthing/supervise/pid
+
+check process weather
+  with pidfile /home/frew/services/weather/supervise/pid
+
