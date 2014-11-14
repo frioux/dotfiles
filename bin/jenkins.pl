@@ -3,6 +3,7 @@
 use 5.20.1;
 use warnings;
 use Term::ANSIColor;
+use DateTime;
 binmode STDOUT, ':encoding(utf8)';
 
 use experimental 'postderef', 'signatures';
@@ -16,7 +17,8 @@ sub rn ($d) {
       =~ s(^refs/(?:heads|tags)/)()r
 }
 sub ce ($d) {
-   colored(['bright_black'], $d->{actions}->$m->{parameters}->$kv->{committer_email})
+   my $ce = $d->{actions}->$m->{parameters}->$kv->{committer_email};
+   colored(['bright_black'], (split '@', $ce)[0])
 }
 sub status ($d) {
    return {
@@ -25,10 +27,25 @@ sub status ($d) {
       FAILURE => colored(['red'], "\x{2716}"),
    }->{$d->{result} // 'undef'}
 }
+sub started ($d) {
+   my $t = DateTime->from_epoch(epoch => $d->{timestamp}/1000);
+   $t->set_time_zone('local');
+   $t->strftime('%F %T');
+}
+sub duration ($d) {
+   my $start = DateTime->from_epoch(epoch => $d->{timestamp}/1000);
+   my $seconds = $d->{result} ? $d->{duration} : $d->{estimatedDuration};
+   my $end = DateTime->from_epoch(epoch => ($d->{timestamp} + $seconds)/1000);
+   my $dur = $d->{result} ? $start->delta_ms($end) : DateTime->now->delta_ms($end);
+   sprintf "%s %02d:%02d",
+      $d->{result} ? colored(['green'], "\x{0394}") : colored(['yellow'],"\x{21BB}"),
+      $dur->minutes, $dur->seconds,
+}
 
 my $j = Jenkins::API->new({ base_url => $ENV{CIURL} });
-printf "%i: %s %s %s\n", $_->{number}, status($_), rn($_), ce($_) for
-   $j->current_status({
+printf "%s #%i %s %s %s %s\n",
+   started($_), $_->{number}, status($_), rn($_), ce($_), duration($_),
+   for $j->current_status({
          path_parts => [qw( job LynxTests )],
          extra_params => { depth => 1 }
       })->{builds}->@*
