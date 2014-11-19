@@ -11,6 +11,8 @@ directory_color=magenta
 error_color=red
 jobs_color=green
 vcs_color=blue
+clock_color=black
+clock_bg=white
 
 host_prompt="%{$fg_bold[$host_color]%}%m%{$reset_color%}"
 
@@ -33,6 +35,8 @@ error_prompt3="%{$fg_bold[$error_color]%}>%{$reset_color%}"
 error_total="%(?..${error_prompt1}${error_prompt2}${error_prompt3} )"
 
 directory_prompt="%{$fg[$directory_color]%}%~%{$reset_color%} "
+
+clock_prompt="%U%D{%l:%M:%S %P}%u"
 
 # set formats
 # %b - branchname
@@ -65,7 +69,9 @@ function lprompt {
   local vimode='${PR_VIMODE}'
   local vicol='${PR_VICOLOR}'
 
-  PROMPT="${host_prompt} $memento_mori ${jobs_total}${history_total} ${directory_prompt}${vcs}${error_total}%{${vicol}%}${vimode}%{$reset_color%} "
+  RPROMPT="$clock_prompt"
+  PROMPT="${host_prompt} $memento_mori ${jobs_total}${history_total} ${directory_prompt}${vcs}${error_total}
+%{${vicol}%}${vimode}%{$reset_color%} "
 }
 
 lprompt
