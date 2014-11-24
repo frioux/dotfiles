@@ -16,13 +16,16 @@ binmode(STDOUT, ':encoding(UTF-8)');
 my $minute = 60;
 my $hour = 60 * $minute;
 my $day = $hour * 24;
+my $week = $day * 7;
 
 sub _format_time ($seconds) {
-   my $days = int $seconds / $day;
+   my $weeks = int $seconds / $week;
+   my $days = int $seconds % $week / $day;
    my $hours = int $seconds % $day / $hour;
    my $minutes = int $seconds % $hour / $minute;
    $seconds = $seconds % $minute;
 
+   ($weeks ? "${weeks}w" : '') .
    ($days ? "${days}d" : '') .
    ($hours ? "${hours}h" : '') .
    ($minutes ? "${minutes}m" : '') .
