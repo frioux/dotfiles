@@ -32,10 +32,8 @@ smartcd export 1.0
  }
  
  function lynxservice() {
-    cd cgi;
     # start a subshell here to set ulimit
-    perl Lynx_service.plx
-    mk
+    (cd cgi; perl Lynx_service.plx)
  }
  
  function brr() {
