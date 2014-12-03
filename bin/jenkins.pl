@@ -25,7 +25,8 @@ sub status ($d) {
       undef => colored(['yellow'], "\x{21BB}"),
       SUCCESS => colored(['green'], "\x{2713}"),
       FAILURE => colored(['red'], "\x{2716}"),
-   }->{$d->{result} // 'undef'}
+      ABORTED => colored(['bright_black'], "\x{2716}"),
+   }->{$d->{result} // 'undef'} || colored(['white'], "?"),
 }
 sub started ($d) {
    my $t = DateTime->from_epoch(epoch => $d->{timestamp}/1000);
