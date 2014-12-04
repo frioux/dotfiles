@@ -1,2 +1,0 @@
-ssh -L 1234:localhost:6667 server.example.com
-# binds localhost:1234 to server.example.com:6667

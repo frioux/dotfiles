@@ -94,3 +94,13 @@ Remove installation and run from sync dir
 # services
 
     sudo rsync -r services/root/ /etc/service
+
+# Misc Snippets
+
+Record all traffic from a given host/port:
+
+    tcpdump -s 65535 -w tcp.dump host 10.6.6.1 and port 10114
+
+Bind localhost:1234 to server.example.com:6667
+
+    ssh -L 1234:localhost:6667 server.example.com
