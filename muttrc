@@ -46,6 +46,8 @@ bind index,pager a noop
 macro compose A "<attach-message>?<toggle-mailboxes>" "attach message(s) to this message"
 macro index G <last-entry>
 macro index gg <first-entry>
+macro pager G <bottom>
+macro pager gg <top>
 macro index C "<copy-message>?<toggle-mailboxes>" "copy a message to a mailbox"
 macro index M "<save-message>?<toggle-mailboxes>" "move a message to a mailbox"
 macro index,pager c "<change-folder>?<toggle-mailboxes>" "open a different folder"
