@@ -64,9 +64,6 @@
 [submodule "vim/bundle/synastic"]
 	path = vim/bundle/synastic
 	url = git://github.com/scrooloose/syntastic.git
-[submodule "vim/bundle/ctrlp.vim"]
-	path = vim/bundle/ctrlp.vim
-	url = git://github.com/kien/ctrlp.vim
 [submodule "vim/bundle/vim-airline"]
 	path = vim/bundle/airline
 	url = git://github.com/bling/vim-airline
@@ -121,3 +118,6 @@
 [submodule "vim/bundle/ultisnips"]
 	path = vim/bundle-python/ultisnips
 	url = git://github.com/sirver/ultisnips
+[submodule "vim/bundle/ctrlp"]
+	path = vim/bundle/ctrlp
+	url = gh:ctrlpvim/ctrlp.vim
