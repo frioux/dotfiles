@@ -61,12 +61,6 @@
 [submodule "vim/bundle/vim-abolish"]
 	path = vim/bundle/vim-abolish
 	url = git://github.com/tpope/vim-abolish.git
-[submodule "vim/bundle/vim-easymotion"]
-	path = vim/bundle/vim-easymotion
-	url = git://github.com/Lokaltog/vim-easymotion.git
-[submodule "vim/bundle/vim-ledger"]
-	path = vim/bundle/vim-ledger
-	url = git://github.com/ledger/vim-ledger.git
 [submodule "vim/bundle/synastic"]
 	path = vim/bundle/synastic
 	url = git://github.com/scrooloose/syntastic.git
@@ -79,12 +73,6 @@
 [submodule "vim/bundle/vim-perl"]
 	path = vim/bundle/vim-perl
 	url = git://github.com/vim-perl/vim-perl
-[submodule "vim/bundle/fsharp"]
-	path = vim/bundle/fsharp
-	url = git://github.com/kongo2002/fsharp-vim.git
-[submodule "vim/bundle/crunch"]
-	path = vim/bundle/crunch
-	url = git://github.com/arecarn/crunch
 [submodule "vim/bundle/vinegar"]
 	path = vim/bundle/vinegar
 	url = git://github.com/tpope/vim-vinegar
@@ -94,9 +82,6 @@
 [submodule "git-hub"]
 	path = git-hub
 	url = git://github.com/ingydotnet/git-hub
-[submodule "vim/bundle/jdaddy"]
-	path = vim/bundle/jdaddy
-	url = gh:tpope/vim-jdaddy
 [submodule "vim/bundle/better-whitespace"]
 	path = vim/bundle/better-whitespace
 	url = gh:ntpeters/vim-better-whitespace
@@ -136,6 +121,3 @@
 [submodule "vim/bundle/ultisnips"]
 	path = vim/bundle-python/ultisnips
 	url = git://github.com/sirver/ultisnips
-[submodule "vim/bundle/racket"]
-	path = vim/bundle/racket
-	url = gh:wlangstroth/vim-racket
