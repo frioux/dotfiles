@@ -75,6 +75,8 @@ macro index <F6> \
      "<enter-command>unset wait_key<enter><pipe-message>notmuch-mutt tag -- -inbox<enter>" \
      "notmuch: remove message from inbox"
 
+macro pager U <pipe-entry>extract_url.pl<enter> 'Follow links with urlview'
+
 ignore *
 unignore Date: From: User-Agent: X-Mailer X-Operating-System To: \
          Cc: Reply-To: Subject: Mail-Followup-To:
