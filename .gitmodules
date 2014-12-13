@@ -11,22 +11,22 @@
 	path = awesome/utils
 	url = git://github.com/frioux/awesome-utils.git
 [submodule "vim/bundle/vim-pathogen"]
-	path = vim/bundle/vim-pathogen
+	path = vim/bundle/pathogen
 	url = git://github.com/tpope/vim-pathogen.git
 [submodule "vim/bundle/vim-repeat"]
-	path = vim/bundle/vim-repeat
+	path = vim/bundle/repeat
 	url = git://github.com/tpope/vim-repeat.git
 [submodule "vim/bundle/inkpot"]
 	path = vim/bundle/inkpot
 	url = git://github.com/ciaranm/inkpot.git
 [submodule "vim/bundle/vim-surround"]
-	path = vim/bundle/vim-surround
+	path = vim/bundle/surround
 	url = https://github.com/tpope/vim-surround
 [submodule "vim/bundle/nerdcommenter"]
 	path = vim/bundle/nerdcommenter
 	url = git://github.com/scrooloose/nerdcommenter.git
 [submodule "vim/bundle/vim-fugitive"]
-	path = vim/bundle/vim-fugitive
+	path = vim/bundle/fugitive
 	url = git://github.com/tpope/vim-fugitive
 [submodule "vim/bundle/jshint.vim"]
 	path = vim/bundle/jshint.vim
@@ -35,31 +35,31 @@
 	path = zsh/adenosine
 	url = git://github.com/frioux/app-adenosine
 [submodule "vim/bundle/vim-colors-solarized"]
-	path = vim/bundle/vim-colors-solarized
+	path = vim/bundle/colors-solarized
 	url = git://github.com/altercation/vim-colors-solarized.git
 [submodule "vim/bundle/tabular"]
 	path = vim/bundle/tabular
 	url = git://github.com/godlygeek/tabular.git
 [submodule "vim/bundle/vim-textobj-user"]
-	path = vim/bundle/vim-textobj-user
+	path = vim/bundle/textobj-user
 	url = git://github.com/kana/vim-textobj-user.git
 [submodule "vim/bundle/vim-textobj-entire"]
-	path = vim/bundle/vim-textobj-entire
+	path = vim/bundle/textobj-entire
 	url = git://github.com/kana/vim-textobj-entire.git
 [submodule "vim/bundle/vim-textobj-underscore"]
-	path = vim/bundle/vim-textobj-underscore
+	path = vim/bundle/textobj-underscore
 	url = git://github.com/lucapette/vim-textobj-underscore.git
 [submodule "vim/bundle/vim-unimpaired"]
-	path = vim/bundle/vim-unimpaired
+	path = vim/bundle/unimpaired
 	url = git://github.com/tpope/vim-unimpaired.git
 [submodule "vim/bundle/vim-textobj-lastpat"]
-	path = vim/bundle/vim-textobj-lastpat
+	path = vim/bundle/textobj-lastpat
 	url = git://github.com/kana/vim-textobj-lastpat.git
 [submodule "vim/bundle/vim-visual-star-search"]
-	path = vim/bundle/vim-visual-star-search
+	path = vim/bundle/visual-star-search
 	url = git://github.com/nelstrom/vim-visual-star-search.git
 [submodule "vim/bundle/vim-abolish"]
-	path = vim/bundle/vim-abolish
+	path = vim/bundle/abolish
 	url = git://github.com/tpope/vim-abolish.git
 [submodule "vim/bundle/synastic"]
 	path = vim/bundle/synastic
@@ -68,10 +68,10 @@
 	path = vim/bundle/ctrlp.vim
 	url = git://github.com/kien/ctrlp.vim
 [submodule "vim/bundle/vim-airline"]
-	path = vim/bundle/vim-airline
+	path = vim/bundle/airline
 	url = git://github.com/bling/vim-airline
 [submodule "vim/bundle/vim-perl"]
-	path = vim/bundle/vim-perl
+	path = vim/bundle/perl
 	url = git://github.com/vim-perl/vim-perl
 [submodule "vim/bundle/vinegar"]
 	path = vim/bundle/vinegar
