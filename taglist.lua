@@ -27,7 +27,7 @@ taglist.filter = {}
 
 module("sharetags.taglist")
 
-function taglist.taglist_label(t, args)
+function taglist.taglist_label(t, args, screen)
     if not args then args = {} end
     local theme = beautiful.get()
     local fg_focus = args.fg_focus or theme.taglist_fg_focus or theme.fg_focus
@@ -53,7 +53,7 @@ function taglist.taglist_label(t, args)
     local icon
     local bg_resize = false
     local is_selected = false
-    if t.selected then
+    if t.selected and tag.getscreen(t) == screen then
         bg_color = bg_focus
         fg_color = fg_focus
     end
@@ -62,7 +62,7 @@ function taglist.taglist_label(t, args)
             -- Check that the selected clients is tagged with 't'.
             local seltags = sel:tags()
             for _, v in ipairs(seltags) do
-                if v == t then
+                if v == t and tag.getscreen(t) == screen then
                     bg_image = taglist_squares_sel
                     bg_resize = taglist_squares_resize == "true"
                     is_selected = true
@@ -119,15 +119,15 @@ function taglist.taglist_label(t, args)
     return text, bg_color, bg_image, not taglist_disable_icon and icon or nil
 end
 
-local function taglist_update(s, w, buttons, filter, data, style, update_function)
-    local tags = {}
+local function taglist_update(s, w, buttons, filter, data, style, update_function, tags)
+    --[[local tags = {}
     for k, t in ipairs(tag.gettags(s)) do
         if not tag.getproperty(t, "hide") and filter(t) then
             table.insert(tags, t)
         end
-    end
+    end ]]
 
-    local function label(c) return taglist.taglist_label(c, style) end
+    local function label(c) return taglist.taglist_label(c, style, s) end
 
     update_function(w, buttons, label, data, tags)
 end
@@ -163,14 +163,14 @@ end
 -- squares_unsel_empty Optional: a user provided image for unselected squares for empty tags.
 -- squares_resize Optional: true or false to resize squares.
 -- font The font.
-function taglist.new(screen, filter, buttons, style, update_function, base_widget)
+function taglist.new(tags, screen, filter, buttons, style, update_function, base_widget)
     local uf = update_function or common.list_update
     local w = base_widget or fixed.horizontal()
 
     local data = setmetatable({}, { __mode = 'k' })
     local u = function (s)
         if s == screen then
-            taglist_update(s, w, buttons, filter, data, style, uf)
+            taglist_update(s, w, buttons, filter, data, style, uf, tags)
         end
     end
     local uc = function (c) return u(c.screen) end
