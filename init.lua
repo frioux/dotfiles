@@ -23,25 +23,22 @@ local surface = require("gears.surface")
 local awful = require("awful") 
 local mouse = mouse
 
---local naughty = require("naughty")
-
---local inspect = require("inspect")
+local naughty = require("naughty")
+local inspect = require("inspect")
 --}}}
 
 module("sharetags")
 
---[[
+
 function dump(data)
-    naughty.notify({ preset = naughty.config.presets.critical,
-        title = "",
-        text = inspect(data) })
+    naughty.notify({ text = inspect(data) })
 end
-]]
+
 
 --{{{ Private structures
 tagwidgets = setmetatable({}, { __mode = 'k' })
-local cachedtags = {}
-label = {}
+--local cachedtags = {}
+
 --}}}
 
 --{{{ Functions
@@ -65,28 +62,24 @@ function create_tags(names, layouts)
 
         awful.layout.set(layouts[tagnumber], tags[tagnumber])
     end
-    --[[
-    for s = 1, capi.screen.count() do
-        -- I'm sure you want to see at least one tag.
-        tag.setscreen(tags[s], s)
-        tags[s].selected = true
-    end
-    --]]
-    cachedtags = tags
+    --cachedtags = tags
     return tags
 end
 --}}}
 
 --{{{ tag_move: move a tag to a screen
 -- @param t : the tag object to move
--- @param scr : the screen object to move to
-function tag_move(t, scr)
+-- @param screen_target : the screen object to move to
+function tag_move(t, screen_target)
+
+
     local ts = t or awful.tag.selected()
 
-    if not scr then return end
-    local screen_target = scr or awful.util.cycle(capi.screen.count(), tag.getscreen(ts) + 1)
+    if not screen_target then return end
 
-    if tag.getscreen(ts) and screen_target ~= tag.getscreen(ts) then
+    local current_screen = tag.getscreen(ts)
+
+    if current_screen and screen_target ~= current_screen then
         -- switch for tag
         local mynumber = tag.getproperty(ts, "number")
 
@@ -99,8 +92,15 @@ function tag_move(t, scr)
                 break
             end
         end
+
+        -- save curren_screen tags
+        local selected_tags = tag.selectedlist(current_screen)
+
         tag.setscreen(ts, screen_target)
         tag.move(index, ts)
+
+        -- restore curren_screen tag
+        tag.viewmore(selected_tags, current_screen)
 
 
         -- switch for all clients on tag
@@ -118,28 +118,53 @@ function tag_move(t, scr)
 end
 --}}}
 
---{{{ tag_to_screen: move a tag to a screen if its not already there
--- @param t : the tag object to move
--- @param scr : the screen object to move to
-function tag_to_screen(t, scr)
-    local ts = t or awful.tag.selected()
-    local screen_origin = tag.getscreen(ts)
-    local screen_target = scr or awful.util.cycle(capi.screen.count(), tag.getscreen(ts) + 1)
 
-    awful.tag.history.restore(tag.getscreen(ts), 1)
-    -- move the tag only if we are on a different screen
-    if screen_origin ~= screen_target then
-        tag_move(ts, screen_target)
+
+
+-- Open tag on screen
+function select_tag(t, target_screen)
+
+    local tag_screen = tag.getscreen(t)
+
+    if t.selected and target_screen ~= tag_screen and #tag.selectedlist(tag_screen) == 1 then
+        swap_screen(tag_screen, target_screen)
+    else
+        tag_move(t, target_screen)
+        tag.viewonly(t)
     end
 
 
-    awful.tag.viewonly(ts)
-    mouse.screen = tag.getscreen(ts)
-    if #ts:clients() > 0 then
-        local c = ts:clients()[1]
+    if #t:clients() > 0 then
+        local c = t:clients()[1]
         capi.client.focus = c
     end
+
 end
---}}}
+
+function toggle_tag(t, screen)
+    if (tag.getscreen(t) ~= screen) then
+        tag_move(t, screen)
+        if not t.selected then
+            tag.viewtoggle(t)
+        end
+    else
+        tag.viewtoggle(t)
+    end
+end
+
+
+-- Swap all tags between two screens
+function swap_screen(screen1, screen2)
+
+    local tags1 = tag.selectedlist(screen1)
+    local tags2 = tag.selectedlist(screen2)
+
+    for i, t in ipairs(tags1) do
+        toggle_tag(t, screen2)
+    end
+    for i, t in ipairs(tags2) do
+        toggle_tag(t, screen1)
+    end
+end
 
 
