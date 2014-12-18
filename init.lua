@@ -20,19 +20,20 @@ local beautiful = require("beautiful")
 local fixed = require("wibox.layout.fixed")
 local surface = require("gears.surface")
 
-local awful = require("awful") 
+local awful = require("awful")
 local mouse = mouse
 
-local naughty = require("naughty")
-local inspect = require("inspect")
+--local naughty = require("naughty")
+--local inspect = require("inspect")
 --}}}
 
 module("sharetags")
 
-
+--[[
 function dump(data)
     naughty.notify({ text = inspect(data) })
 end
+]]
 
 
 --{{{ Private structures
