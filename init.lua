@@ -1,27 +1,14 @@
 -- functions to share tags on multiple screens
 
 --{{{ Grab environment we need
-local capi = { widget = widget,
-               screen = screen,
-               image = image,
-               client = client,
-               button = button }
-local math = math
-local type = type
-local setmetatable = setmetatable
-local pcall = pcall
+local capi = { screen = screen,
+               client = client
+               }
+
 local pairs = pairs
 local ipairs = ipairs
-local table = table
-local common = require("awful.widget.common")
-local util = require("awful.util")
 local tag = require("awful.tag")
-local beautiful = require("beautiful")
-local fixed = require("wibox.layout.fixed")
-local surface = require("gears.surface")
-
 local awful = require("awful")
-local mouse = mouse
 
 --local naughty = require("naughty")
 --local inspect = require("inspect")
@@ -37,8 +24,6 @@ end
 
 
 --{{{ Private structures
-tagwidgets = setmetatable({}, { __mode = 'k' })
---local cachedtags = {}
 
 --}}}
 
@@ -56,14 +41,13 @@ function create_tags(names, layouts)
     end
 
     for tagnumber = 1, count do
-        tags[tagnumber] = awful.tag.add(names[tagnumber], {})
+        tags[tagnumber] = tag.add(names[tagnumber], {})
         tag.setproperty(tags[tagnumber], "number", tagnumber)
         -- Add tags to screen one by one
         tag.setscreen(tags[tagnumber], 1)
 
         awful.layout.set(layouts[tagnumber], tags[tagnumber])
     end
-    --cachedtags = tags
     return tags
 end
 --}}}
@@ -73,8 +57,7 @@ end
 -- @param screen_target : the screen object to move to
 function tag_move(t, screen_target)
 
-
-    local ts = t or awful.tag.selected()
+    local ts = t or tag.selected()
 
     if not screen_target then return end
 
@@ -120,8 +103,6 @@ end
 --}}}
 
 
-
-
 -- Open tag on screen
 function select_tag(t, target_screen)
 
@@ -142,6 +123,7 @@ function select_tag(t, target_screen)
 
 end
 
+-- Toggle tag on screen
 function toggle_tag(t, screen)
     if (tag.getscreen(t) ~= screen) then
         tag_move(t, screen)
