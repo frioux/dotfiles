@@ -18,21 +18,25 @@ sub ce ($d) {
    $d->{actions}->$m->{parameters}->$kv->{committer_email}
 }
 
-my $id = shift;
+die "please give the build numbers you'd like to see the details of\n"
+   if @ARGV == 0;
+
 my $j = Jenkins::API->new({ base_url => $ENV{CIURL} });
-my $d = $j->current_status({
-   path_parts => [qw( job LynxTests ), $id],
-   extra_params => { depth => 1 }
-});
+for my $id (@ARGV) {
+   my $d = $j->current_status({
+      path_parts => [qw( job LynxTests ), $id],
+      extra_params => { depth => 1 }
+   });
 
-say "$id failures: (" . rn($d) . ')';
-for my $server (grep $_->{result}{failCount}, $d->{actions}->$m->{childReports}->@*) {
-   my @failed_tests =
-      map $_->{name} =~ s/_t$//r,
-      grep { first { $_->{status} =~ m/(?:FAILED|REGRESSION)/ } $_->{cases}->@* }
-      $server->{result}{suites}->@*;
+   say "$id failures: (" . rn($d) . ')';
+   for my $server (grep $_->{result}{failCount}, $d->{actions}->$m->{childReports}->@*) {
+      my @failed_tests =
+         map $_->{name} =~ s/_t$//r,
+         grep { first { $_->{status} =~ m/(?:FAILED|REGRESSION)/ } $_->{cases}->@* }
+         $server->{result}{suites}->@*;
 
-   next unless @failed_tests;
+      next unless @failed_tests;
 
-   say(' ' . ($server->{child}{url} =~ s[.*label=(.+?)/.*][$1]r) ."\n" . join q(), map "  • $_\n", @failed_tests);
+      say(' ' . ($server->{child}{url} =~ s[.*label=(.+?)/.*][$1]r) ."\n" . join q(), map "  • $_\n", @failed_tests);
+   }
 }
