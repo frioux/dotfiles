@@ -142,6 +142,9 @@ function swap_screen(screen1, screen2)
     local tags1 = tag.selectedlist(screen1)
     local tags2 = tag.selectedlist(screen2)
 
+    tag. viewnone(screen1);
+    tag. viewnone(screen2);
+
     for i, t in ipairs(tags1) do
         toggle_tag(t, screen2)
     end
