@@ -1,1 +1,1 @@
-../../../bundle/vim-perl/contrib/test-more.vim
+../../../bundle/perl/contrib/test-more.vim
