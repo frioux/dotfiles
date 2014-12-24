@@ -25,7 +25,9 @@ my $j = Jenkins::API->new({ base_url => $ENV{CIURL} });
 for my $id (@ARGV) {
    my $d = $j->current_status({
       path_parts => [qw( job LynxTests ), $id],
-      extra_params => { depth => 1 }
+      extra_params => {
+         tree => 'actions[parameters[name,value],childReports[child[url],result[failCount,suites[name,cases[status]]]]]',
+      }
    });
 
    say "$id failures: (" . rn($d) . ')';
