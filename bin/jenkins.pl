@@ -48,5 +48,7 @@ printf "%s #%i %s %s %s %s\n",
    started($_), $_->{number}, status($_), rn($_), ce($_), duration($_),
    for $j->current_status({
          path_parts => [qw( job LynxTests )],
-         extra_params => { depth => 1 }
+         extra_params => {
+            tree => 'builds[number,result,timestamp,duration,estimatedDuration,actions[parameters[name,value]]]',
+         }
       })->{builds}->@*
