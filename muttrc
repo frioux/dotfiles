@@ -54,6 +54,7 @@ macro index,pager c "<change-folder>?<toggle-mailboxes>" "open a different folde
 macro index,pager za "<collapse-thread>" "collapse thread"
 macro index,pager zi "<collapse-all>" "collapse all"
 
+macro index,pager E ':set my_x=`sv 1 offlineimap`<enter>$'  "fetch mail now"
 macro index,pager If "<save-message>=fun<enter>$"  "mark message to read for fun"
 macro index,pager IT "<save-message>=gmail.Trash<enter>$"   "delete message"
 macro index,pager IS "<save-message>=gmail.Spam<enter>$"   "mark message as spam"
