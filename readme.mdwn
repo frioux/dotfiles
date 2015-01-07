@@ -51,6 +51,18 @@ Ensure permissions are correct:
 
     chmod 600 ~/.netrc ~/.pause
 
+# Add / Replace SSH Keys
+
+ * Generate Ed25519 Key: `ssh-keygen -t ed25519 -o -a 100`
+ * Generate RSA Key: `ssh-keygen -t rsa -b 4096 -o -a 100`
+ * Put Ed25519 Key on [github](https://github.com/settings/ssh)
+ * Put RSA Key on:
+   - cs
+   - dbsrgits
+   - gitmo
+   - catagits
+   - p5sagit
+
 # GPG Keyring
 
     ssh w gpg -a --export-secret-key | gpg --import
