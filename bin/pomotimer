@@ -32,6 +32,10 @@ my $timer = IO::Async::Timer::Periodic->new(
          unless ($pause) {
             $0 = 'PT' . format_time($seconds_remaining)
                if $seconds_remaining % 30 == 0;
+            if ($seconds_remaining % 60 == 0) {
+               my $color = (255 * (($initial_seconds - $seconds_remaining)/$initial_seconds)) . ',0,0';
+               exec qw(blink1-tool --quiet --rgb), $color if fork == 0;
+            }
             print $clear . format_time($seconds_remaining--)
          }
       } else {
@@ -69,6 +73,7 @@ my $handle = IO::Async::Stream->new(
 $loop->add( $handle );
 
 $loop->run;
+END { exec qw(blink1-tool --quiet --off) }
 
 sub format_time {
    my $s = shift;
