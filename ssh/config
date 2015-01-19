@@ -13,6 +13,8 @@ Host *
    # still ships with OpenSSH 6.0 which doesn't have all the more secure options
    MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-ripemd160-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-512,hmac-sha2-256,hmac-ripemd160,umac-128@openssh.com
    KexAlgorithms curve25519-sha256@libssh.org,diffie-hellman-group-exchange-sha256,diffie-hellman-group14-sha1
+   ForwardX11 no
+   ForwardAgent no
 
 Host ci
      user frew
@@ -77,13 +79,13 @@ Host w
 Host s1
      user Administrator
      ForwardAgent yes
-     ForwardX11 yes
+     ForwardX11 no
      hostname 172.24.1.206
 
 Host s2
      user frew
      ForwardAgent yes
-     ForwardX11 yes
+     ForwardX11 no
      hostname 10.24.0.93
 
 Host afm
