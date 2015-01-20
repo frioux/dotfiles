@@ -1,4 +1,12 @@
 smartcd export 1.0
+@ scripts/home/frew/code/plugins/bash_enter
+ autostash DBIC_TRACE=1
+ autostash WM_DEBUG=1
+ autostash CATALYST_DEBUG=1
+ autostash LYNX_DSN_PATH=/home/frew/code/flu-db.txt
+ autostash PERL5LIB=__PATH__/../lynx/App/lib:__PATH__/../lynx/cgi/My:__PATH__/../lynx/cgi
+@ scripts/home/frew/Dropbox/money/bash_enter
+ autostash PATH=__PATH__/bin:$PATH
 @ scripts/home/frew/code/lynx/root/bash_enter
  autostash DBIC_TRACE=1
  autostash BUSHIDO=1
@@ -81,11 +89,8 @@ smartcd export 1.0
        sv(BackupDIR => "backups");
     '
  }
-@ scripts/home/frew/code/plugins/bash_enter
- autostash DBIC_TRACE=1
- autostash WM_DEBUG=1
- autostash CATALYST_DEBUG=1
- autostash LYNX_DSN_PATH=/home/frew/code/flu-db.txt
- autostash PERL5LIB=__PATH__/../lynx/App/lib:__PATH__/../lynx/cgi/My:__PATH__/../lynx/cgi
-@ scripts/home/frew/Dropbox/money/bash_enter
- autostash PATH=__PATH__/bin:$PATH
+ 
+ function devel-init() {
+    echo '["**/*","**/.*"]' > __PATH__/negaglobs.json
+    echo '{}' > __PATH__/tree.json
+ }
