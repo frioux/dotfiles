@@ -48,6 +48,7 @@ macro index G <last-entry>
 macro index gg <first-entry>
 macro pager G <bottom>
 macro pager gg <top>
+macro index,pager g<space> <group-reply>
 macro index C "<copy-message>?<toggle-mailboxes>" "copy a message to a mailbox"
 macro index M "<save-message>?<toggle-mailboxes>" "move a message to a mailbox"
 macro index,pager c "<change-folder>?<toggle-mailboxes>" "open a different folder"
