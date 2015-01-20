@@ -40,6 +40,7 @@ my $timer = IO::Async::Timer::Periodic->new(
          }
       } else {
          print $clear . "Take a break!\a\n";
+         system qw(blink1-tool --quiet -m 50 -t 50 --rgb), '0x00,0xff,0x00', qw(--blink 5);
          shift->loop->stop;
       }
    },
