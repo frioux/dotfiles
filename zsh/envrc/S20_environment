@@ -8,11 +8,6 @@ export LDFLAGS=-L/opt/lib
 export EDITOR="vim"
 export DBIC_TRACE_PROFILE=~/.dbic.json
 export GPGKEY=737A7582
-export NOPASTE_SSH_SERVER=paste
-export NOPASTE_SSH_DOCROOT=p.afoolishmanifesto.com/p
-export NOPASTE_SSH_WEBPATH=http://p.afoolishmanifesto.com/p
-export NOPASTE_SSH_MODE=0644
-export NOPASTE_SERVICES='ssh Shadowcat'
 if [[ "$TERM" == xterm ]]; then
    export TERM=xterm-256color
 fi
