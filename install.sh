@@ -16,7 +16,6 @@ link-file install.sh .git/hooks/post-checkout
 link-file install.sh .git/hooks/post-merge
 link-file xsession ~/.xinitrc
 link-file gpg.conf ~/.gnupg/gpg.conf
-link-file todo ~/.todo/config
 link-file ww-roller.pl/ww_roll.pl ~/bin/ww-roll.pl
 
 # ensure submodules are checked out before linking to them
