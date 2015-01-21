@@ -7,14 +7,14 @@ if [[ -e ~/.plenv ]]; then
    PATH="$HOME/.plenv/bin:$PATH"
    eval "$(plenv init -)"
 else
-   function install-plenv() {
+   function plenv-install() {
       rm ~/perl5 -rf
       git clone git://github.com/tokuhirom/plenv.git ~/.plenv
       git clone git://github.com/tokuhirom/Perl-Build.git ~/.plenv/plugins/perl-build/
       PATH="$HOME/.plenv/bin:$PATH"
       eval "$(plenv init -)"
-      plenv install 5.20.0
-      plenv global 5.20.0
+      plenv install 5.20.1
+      plenv global 5.20.1
       plenv install-cpanm
       ~/code/dotfiles/cpan.sh
       plenv rehash
