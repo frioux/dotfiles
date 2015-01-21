@@ -35,12 +35,7 @@ alias gre='gr origin/release'
 
 # }}}
 
-if [[ -a "$(whence nvim)" ]]; then
-   alias vim=nvim
-   alias vi=nvim
-else
-   alias vi=vim
-fi
+alias vi=vim
 
 alias wget='noglob wget'
 alias tar='wrap-tar'
