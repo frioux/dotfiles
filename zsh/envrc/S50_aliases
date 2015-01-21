@@ -8,16 +8,6 @@ alias ls='pwd; ls --color'
 #}}}
 
 alias attd="sudo aptitude"
-alias mc="java -jar ~/Dropbox/ftblauncher/FTB_Launcher.jar"
-
-#{{{ Misc.
-
-alias mmv='noglob zmv -W'
-
-# copy with a progress bar.
-alias cpv="rsync -poghb --backup-dir=/tmp/rsync -e /dev/null --progress --"
-
-#}}}
 
 #{{{ Globals...
 
@@ -28,8 +18,6 @@ alias -g PT="2>&1"
 alias -g PTV="2>&1 | vim -"
 
 #}}}
-
-alias realias='vim ~/.aliases; source ~/.aliases'
 
 # {{{ git
 
