@@ -32,4 +32,6 @@ function frew { MYPERL_HOME="$HOME/.fruperl" myperl -E "$@" }
 
 function tea_by_date { tea list_teas --order-by-drank -O }
 
+function len { perl -E'say length shift' $1 }
+
 # vim: ft=zsh foldmethod=marker
