@@ -6,13 +6,11 @@ setopt GLOB_COMPLETE     # If we have a glob this will expand it
 setopt IGNORE_EOF
 setopt NO_BEEP           # beeps are annoying
 setopt NO_CASE_GLOB      # Case insensitive globbing
-setopt NO_CLOBBER        # Keep echo "station" > station from clobbering station
 setopt NO_FLOW_CONTROL   # If I could disable Ctrl-s completely I would!
 setopt NO_HUP
 setopt NUMERIC_GLOB_SORT # Be Reasonable!
 setopt PUSHD_IGNORE_DUPS # this will ignore multiple directories for the stack
 setopt PUSHD_MINUS
-setopt RM_STAR_WAIT      # 10 second wait if you do something that will delete everything
 setopt VI
 
 unsetopt LIST_AMBIGUOUS
