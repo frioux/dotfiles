@@ -5,7 +5,6 @@ export GOPATH="$HOME/go"
 export PATH="$HOME/bin:$HOME/code/dotfiles/bin:$HOME/code/dotfiles/git-hub/lib:$HOME/Sync/bin:$HOME/Dropbox/bin:$HOME/Dropbox/node/bin:/opt/bin:$GOPATH/bin:$HOME/.rakudobrew/bin:$PATH"
 export CFLAGS=-I/opt/include
 export LDFLAGS=-L/opt/lib
-export RI="--format ansi"
 export EDITOR="vim"
 export DBIC_TRACE_PROFILE=~/.dbic.json
 export GPGKEY=737A7582
