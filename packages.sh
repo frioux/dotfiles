@@ -9,14 +9,12 @@ apt-get --no-install-recommends install \
    awesome                              \
    awesome-extra                        \
    build-essential                      \
-   clementine                           \
    collectl                             \
    curl                                 \
    daemontools                          \
    dstat                                \
    fail2ban                             \
    firefox                              \
-   git-annex                            \
    gnome-power-manager                  \
    gnome-system-monitor                 \
    gnupg-agent                          \
@@ -26,7 +24,6 @@ apt-get --no-install-recommends install \
    inotify-tools                        \
    ioping                               \
    keepassx                             \
-   lastfm                               \
    libcurl4-openssl-dev                 \
    libgmime-2.6-dev                     \
    libgpgme11-dev                       \
@@ -56,7 +53,6 @@ apt-get --no-install-recommends install \
    powertop                             \
    pv                                   \
    rdesktop                             \
-   remind                               \
    runit                                \
    suckless-tools                       \
    sysstat                              \
@@ -64,7 +60,6 @@ apt-get --no-install-recommends install \
    terminator                           \
    tk                                   \
    tk8.5                                \
-   tkremind                             \
    tmux                                 \
    trace-cmd                            \
    ttf-ancient-fonts                    \
