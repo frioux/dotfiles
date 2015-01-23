@@ -24,6 +24,7 @@ apt-get --no-install-recommends install \
    gxmessage                            \
    htop                                 \
    inotify-tools                        \
+   ioping                               \
    keepassx                             \
    lastfm                               \
    libcurl4-openssl-dev                 \
@@ -40,6 +41,7 @@ apt-get --no-install-recommends install \
    linux-tools-generic                  \
    lynx                                 \
    mitmproxy                            \
+   moreutils                            \
    mosh                                 \
    monit                                \
    msmtp                                \
@@ -52,6 +54,7 @@ apt-get --no-install-recommends install \
    openvpn                              \
    pcmanfm                              \
    powertop                             \
+   pv                                   \
    rdesktop                             \
    remind                               \
    runit                                \
