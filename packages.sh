@@ -9,7 +9,6 @@ apt-get --no-install-recommends install \
    awesome                              \
    awesome-extra                        \
    build-essential                      \
-   collectl                             \
    curl                                 \
    daemontools                          \
    dstat                                \
