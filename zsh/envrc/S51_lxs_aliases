@@ -1,19 +1,19 @@
 if [[ "$HOST" = *Lynx* ]]; then
-   _PERLBIN="/c/inetpub/strawberry/perl/bin/perl.exe"
+   _PERLBIN="/c/inetpub/lynx/strawberry/perl/bin/perl.exe"
 
    function work {
-      cd /c/inetpub/wwwroot
+      cd /c/inetpub/lynx/root
    }
 
    function cperl {
-      pushd /c/inetpub/wwwroot/cgi
+      pushd /c/inetpub/lynx/root/cgi
       $_PERLBIN "$@"
       popd
    }
 
    function lperl { $_PERLBIN "$@" }
 
-   function prove { $_PERLBIN "c:\inetpub\strawberry\perl\bin\prove" "$@" }
+   function prove { $_PERLBIN "c:\inetpub\lynx\strawberry\perl\bin\prove" "$@" }
 
    alias startall='cperl start-MSG-service.pl installall'
    alias stopall='cperl start-MSG-service.pl removeall'
@@ -80,7 +80,7 @@ if [[ "$HOST" = *Lynx* ]]; then
 
    function lynxapp {
       sc stop lynxwebserver1
-      $_PERLBIN c:/inetpub/wwwroot/App/script/server.pl -d
+      $_PERLBIN c:/inetpub/lynx/root/App/script/server.pl -d
    }
 
    function stop-lynxservices {
