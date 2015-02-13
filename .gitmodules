@@ -121,3 +121,6 @@
 [submodule "vim/bundle/ctrlp"]
 	path = vim/bundle/ctrlp
 	url = gh:ctrlpvim/ctrlp.vim
+[submodule "vim/bundle/projectionist"]
+	path = vim/bundle/projectionist
+	url = git://github.com/tpope/vim-projectionist
