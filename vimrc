@@ -31,6 +31,8 @@ augroup resCur
   autocmd BufWinEnter * call ResCur()
 augroup END
 
+autocmd FileType perl let b:dispatch = 'perl %'
+
 "}}}
 
 "{{{Misc Settings
