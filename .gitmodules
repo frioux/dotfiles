@@ -127,3 +127,6 @@
 [submodule "vim/bundle/haystack"]
 	path = vim/bundle/haystack
 	url = git://github.com/tpope/vim-haystack
+[submodule "vim/bundle/dispatch"]
+	path = vim/bundle/dispatch
+	url = git://github.com/tpope/vim-dispatch
