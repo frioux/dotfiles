@@ -94,3 +94,34 @@ smartcd export 1.0
     echo '["**/*","**/.*"]' > __PATH__/negaglobs.json
     echo '{}' > __PATH__/tree.json
  }
+ 
+ function _tailer() {
+    tmux new-window -n $1 "dash -c 'tail -F ~/log/lxs/$2/current | tai64nlocal'"
+ }
+ 
+ function tail-all() {
+    _tailer web web
+    _tailer msg 'msg*'
+    _tailer pure-async pure-async
+    _tailer async async
+    _tailer imap imap
+    _tailer minotaur minotaur
+ }
+ 
+ function _all() {
+    for x in lxs-async lxs-imap lxs-message-service-1 lxs-message-service-2 lxs-message-service-3 lxs-minotaur lxs-pure-async lxs-web; do
+       sv $1 $x
+    done
+ }
+ 
+ function startall() {
+    _all up
+ }
+ 
+ function stopall() {
+    _all down
+ }
+ 
+ function restartall() {
+    _all restart
+ }
