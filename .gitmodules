@@ -124,3 +124,6 @@
 [submodule "vim/bundle/projectionist"]
 	path = vim/bundle/projectionist
 	url = git://github.com/tpope/vim-projectionist
+[submodule "vim/bundle/haystack"]
+	path = vim/bundle/haystack
+	url = git://github.com/tpope/vim-haystack
