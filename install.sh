@@ -41,7 +41,6 @@ for x in           \
    mailcap         \
    mutt            \
    muttrc          \
-   monitrc         \
    notmuch-config  \
    offlineimaprc   \
    offlineimap.py  \

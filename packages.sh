@@ -39,12 +39,10 @@ apt-get --no-install-recommends install \
    mitmproxy                            \
    moreutils                            \
    mosh                                 \
-   monit                                \
    msmtp                                \
    nicstat                              \
    notmuch                              \
    notmuch-mutt                         \
-   offlineimap                          \
    openssh-client                       \
    openssh-server                       \
    openvpn                              \

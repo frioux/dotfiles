@@ -1,3 +1,0 @@
-#!/bin/zsh
-
-exec 2>&1 offlineimap
