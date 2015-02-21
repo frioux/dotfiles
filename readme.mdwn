@@ -105,8 +105,7 @@ Remove installation and run from sync dir
 
 # services
 
-    docker pull frew/offlineimap
-    docker run -d --name offlineimap -v ~/.netrc:/opt/etc/netrc -v ~/var/mail:/opt/var/mail -v ~/.offlineimap/log:/opt/log -v ~/.offlineimap/index:/opt/var/index frew/offlineimap
+    sv-run-offlineimap
 
     sudo rsync -r services/root/ /etc/service
 
