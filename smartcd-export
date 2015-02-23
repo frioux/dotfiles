@@ -8,7 +8,7 @@ smartcd export 1.0
 @ scripts/home/frew/Dropbox/money/bash_enter
  autostash PATH=__PATH__/bin:$PATH
 @ scripts/home/frew/code/lynx/root/bash_enter
- autostash DBIC_TRACE=1
+ autostash DBIC_TRACE=
  autostash BUSHIDO=1
  autostash WM_DEBUG=1
  autostash CATALYST_DEBUG=1
@@ -19,6 +19,7 @@ smartcd export 1.0
  autostash alias grC='git commit --amend -a -C HEAD && git rebase --continue'
  autostash alias gds='git diff --staged'
  autostash alias gra='git rebase --abort'
+ autostash LIVE_TESTING_SERVER=localhost:5000
  
  autostash lynxapp lynxservice brr loc cobr kr
  
