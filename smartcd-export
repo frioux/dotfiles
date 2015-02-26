@@ -19,7 +19,7 @@ smartcd export 1.0
  autostash alias grC='git commit --amend -a -C HEAD && git rebase --continue'
  autostash alias gds='git diff --staged'
  autostash alias gra='git rebase --abort'
- autostash LIVE_TESTING_SERVER=localhost:5000
+ autostash LIVE_TEST_SERVER=localhost:5000
  
  autostash lynxapp lynxservice brr loc cobr kr
  
