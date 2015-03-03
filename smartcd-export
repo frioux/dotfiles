@@ -100,13 +100,37 @@ smartcd export 1.0
     tmux new-window -n $1 "dash -c 'tail -F ~/log/lxs/$2/current | tai64nlocal'"
  }
  
- function tail-all() {
+ function tail-web() {
     _tailer web web
+ }
+ 
+ function tail-msg() {
     _tailer msg 'msg*'
+ }
+ 
+ function tail-pure-async() {
     _tailer pure-async pure-async
+ }
+ 
+ function tail-async() {
     _tailer async async
+ }
+ 
+ function tail-imap() {
     _tailer imap imap
+ }
+ 
+ function tail-minotaur() {
     _tailer minotaur minotaur
+ }
+ 
+ function tail-all() {
+    tail-web
+    tail-msg
+    tail-pure-async
+    tail-async
+    tail-imap
+    tail-minotaur
  }
  
  function _all() {
