@@ -1,5 +1,7 @@
 #!/bin/dash
 
+docker stop offlineimap
+docker rm offlineimap
 docker pull frew/offlineimap
 docker run -d --name offlineimap          \
    -v             ~/.netrc:/opt/etc/netrc \
