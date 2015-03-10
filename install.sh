@@ -80,5 +80,3 @@ case $OSTYPE in
       rsync -ar services/frew/ ~/services
    ;;
 esac
-
-chmod 0700 ~/.monitrc
