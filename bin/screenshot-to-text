@@ -1,0 +1,4 @@
+#!/bin/dash
+
+shutter -s -e -o ~/tmp/foo.png
+tesseract ~/tmp/foo.png stdout | xclip -selection clipboard
