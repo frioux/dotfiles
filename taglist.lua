@@ -173,6 +173,13 @@ function taglist.new(tags, screen, filter, buttons, style, update_function, base
             taglist_update(s, w, buttons, filter, data, style, uf, tags)
         end
     end
+    set_signals(screen, u)
+
+    u(screen)
+    return w
+end
+
+function set_signals(screen, u)
     local uc = function (c) return u(c.screen) end
     local ut = function (t) return u(tag.getscreen(t)) end
     capi.client.connect_signal("focus", uc)
@@ -193,8 +200,6 @@ function taglist.new(tags, screen, filter, buttons, style, update_function, base
     capi.client.connect_signal("tagged", uc)
     capi.client.connect_signal("untagged", uc)
     capi.client.connect_signal("unmanage", uc)
-    u(screen)
-    return w
 end
 
 --- Filtering function to include all nonempty tags on the screen.
