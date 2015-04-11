@@ -106,19 +106,25 @@ end
 -- Open tag on screen
 function select_tag(t, target_screen)
 
+    local prev_focus = capi.client.focus;
     local tag_screen = tag.getscreen(t)
+    local is_tag_select = t.selected;
 
-    if t.selected and target_screen ~= tag_screen and #tag.selectedlist(tag_screen) == 1 then
-        swap_screen(tag_screen, target_screen)
-    else
+
+    --if t.selected and target_screen ~= tag_screen and #tag.selectedlist(tag_screen) == 1 then
+    --    swap_screen(tag_screen, target_screen)
+    --else
         tag_move(t, target_screen)
         tag.viewonly(t)
-    end
+    --end
 
 
-    if #t:clients() > 0 then
-        local c = t:clients()[1]
-        capi.client.focus = c
+    -- Если было перемещение тега то фокус на окне теряется.
+    -- Проверка на что это тот-же самый тег, восстанавливаем фокус на окне
+    if target_screen ~= tag_screen and is_tag_select then
+        if #t:clients() > 0 then
+            capi.client.focus = prev_focus
+        end
     end
 
 end
