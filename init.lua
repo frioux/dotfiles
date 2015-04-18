@@ -122,7 +122,7 @@ function select_tag(t, target_screen)
     -- Если было перемещение тега то фокус на окне теряется.
     -- Проверка на что это тот-же самый тег, восстанавливаем фокус на окне
     if target_screen ~= tag_screen and is_tag_select then
-        if #t:clients() > 0 then
+        if #t:clients() > 0 and prev_focus then
             capi.client.focus = prev_focus
         end
     end
