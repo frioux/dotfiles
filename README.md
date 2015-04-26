@@ -19,13 +19,18 @@ Also, I like it more.
 Add `let g:matchmaker_enable_startup = 1` to your `~/.vimrc` to enable
 Matchmaker when vim starts.
 
+If you have any highlighting conflicts with other plugins (such as
+[EasyMotion](https://github.com/Lokaltog/vim-easymotion)) you can configure
+the highlighting priority with `let g:matchmaker_matchpriority = 0`, where
+0 can be any value below (or above) the conflicting plugin.
+
 #Contributing
 
-This project uses the [git 
-flow](http://nvie.com/posts/a-successful-git-branching-model/) model for 
-development. There's [a handy git module for git 
-flow](//github.com/nvie/gitflow). If you'd like to be added as a contributor, 
-make some well-formatted pull requests (against the `develop` branch) and let 
+This project uses the [git
+flow](http://nvie.com/posts/a-successful-git-branching-model/) model for
+development. There's [a handy git module for git
+flow](//github.com/nvie/gitflow). If you'd like to be added as a contributor,
+make some well-formatted pull requests (against the `develop` branch) and let
 me know.
 
 #License
