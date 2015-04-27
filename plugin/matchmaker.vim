@@ -5,7 +5,7 @@ endif
 " [ Defaults ] {{{
 
 let s:enabled = 0
-let g:matchpriority = 10
+let g:matchmaker_matchpriority = get(g:, 'matchmaker_matchpriority', 10)
 
 hi default Matchmaker term=underline    ctermbg=238     guibg=#dddddd
 
@@ -29,7 +29,7 @@ function! s:get_visual_selection()
 endfunction
 
 function! s:highlight(needle)
-    silent! let w:matchmaker_matchid = matchadd('Matchmaker', a:needle, g:matchpriority)
+    silent! let w:matchmaker_matchid = matchadd('Matchmaker', a:needle, g:matchmaker_matchpriority)
 endfunction
 
 function! s:matchunmake()
