@@ -1,0 +1,32 @@
+#!/usr/bin/env perl
+
+use strict;
+use warnings;
+
+use autodie;
+
+use charnames ':full';
+
+use Unicode::Normalize 'NFD';
+
+my %seen;
+my $history = shift
+   or die 'you must pass a history file!';
+
+binmode(STDOUT, ':encoding(UTF-8)');
+
+open my $fh, '<:encoding(UTF-8)', $history;
+while (my $char = <$fh>) {
+   next unless $char;
+   chomp($char);
+   next unless $char;
+   my $name = lc charnames::viacode(ord NFD( $char ));
+   next if $seen{$name}++;
+   print "$name\n";
+}
+close $fh;
+
+while (chomp(my $char = <STDIN>)) {
+   next if $seen{$char}++;
+   print "$char\n";
+}
