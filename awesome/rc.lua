@@ -220,7 +220,7 @@ cpuwidget:set_width(50)
 cpuwidget:set_background_color("#000000")
 cpuwidget:set_gradient_colors({ "#4E9A06", "#4E9A06" })
 cpuwidget.widget:buttons(awful.util.table.join(
-   awful.button({}, 1, function () awful.util.spawn("gnome-system-monitor --show-resources-tab") end)
+   awful.button({}, 1, function () awful.util.spawn("terminator -e glances") end)
 ))
 cpuwidget_t = awful.tooltip({ objects = { cpuwidget.widget },})
 
@@ -257,7 +257,7 @@ memorywidget:set_width(50)
 memorywidget:set_background_color("#000000")
 memorywidget:set_gradient_colors({ "#3465A4", "#3465A4" })
 memorywidget.widget:buttons(awful.util.table.join(
-   awful.button({}, 1, function () awful.util.spawn("gnome-system-monitor --show-resources-tab") end)
+   awful.button({}, 1, function () awful.util.spawn("terminator -e glances") end)
 ))
 
 memorywidget_t = awful.tooltip({ objects = { memorywidget.widget },})

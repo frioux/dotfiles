@@ -14,8 +14,8 @@ apt-get --no-install-recommends install \
    dstat                                \
    fail2ban                             \
    firefox                              \
+   glances                              \
    gnome-power-manager                  \
-   gnome-system-monitor                 \
    gnupg-agent                          \
    gtk2-engines                         \
    gxmessage                            \
