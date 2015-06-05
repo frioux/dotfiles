@@ -275,17 +275,11 @@ osweatherwidget = weather_widget(
 
 awful.widget.layout.margins[osweatherwidget] = { right = 5 };
 
-rcweatherwidget = weather_widget(
-   "KADS", "http://forecast.io/#/f/32.9607,-96.7330/", "Richardson"
+smweatherwidget = weather_widget(
+   "KSMO", "https://forecast.io/#/f/34.0189,-118.4962", "Santa Monica"
 )
 
-awful.widget.layout.margins[rcweatherwidget] = { left = 5, right = 5 };
-
-gvweatherwidget = weather_widget(
-   "KHQZ", "http://forecast.io/#/f/32.9310,-96.4608/", "Rockwall"
-)
-
-awful.widget.layout.margins[gvweatherwidget] = { left = 5 };
+awful.widget.layout.margins[smweatherwidget] = { left = 5 };
 
 -- }}}
 
@@ -388,8 +382,7 @@ for s = 1, screen.count() do
         cpuwidget.widget,
         memorywidget.widget,
         osweatherwidget,
-        rcweatherwidget,
-        gvweatherwidget,
+        smweatherwidget,
         has_battery and batwidget.widget or nil,
         has_thermal and tempwidget.widget or nil,
         volumecfg.widget.widget,
