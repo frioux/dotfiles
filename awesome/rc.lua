@@ -279,7 +279,7 @@ smweatherwidget = weather_widget(
    "KSMO", "https://forecast.io/#/f/34.0189,-118.4962", "Santa Monica"
 )
 
-awful.widget.layout.margins[smweatherwidget] = { left = 5 };
+awful.widget.layout.margins[smweatherwidget] = { right = 5, left = 5 };
 
 -- }}}
 
