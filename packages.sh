@@ -35,6 +35,7 @@ apt-get --no-install-recommends install \
    libxapian-dev                        \
    linux-tools-common                   \
    linux-tools-generic                  \
+   lua-filesystem                       \
    lynx                                 \
    mitmproxy                            \
    moreutils                            \

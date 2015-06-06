@@ -123,7 +123,8 @@ weather_widget = function(
            "City: " .. args["{city}"] ..
            "\nWind: " .. args["{windmph}"] .. "mph " ..
            "\nSky: " .. args["{sky}"] ..
-           "\nHumidity: " .. args["{humid}"] .. "%")
+           "\nHumidity: " .. args["{humid}"] .. "%" ..
+           "\nMeasured At: " .. args["{time}"])
         return name .. " " .. args["{tempf}"] .. "°F"
    end, 60 * 10, code)
 

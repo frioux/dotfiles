@@ -1,0 +1,5 @@
+$!/usr/bin/env perl
+
+use 5.20.1;
+
+say eval $_ for @ARGV
