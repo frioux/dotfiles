@@ -23,7 +23,7 @@ The following tests are for space-based indentation (``indent_style = space``).
 3. Confirm that new last line is indented with 4 spaces.
 4. Add a second new line of code to the end of the file and indent it twice.
 5. Confirm that new last line is indented with 8 spaces.
-6. Confirm that indentation on fourth line of file uses a single 8 column tab.
+6. Confirm that indentation on third line of file uses a single 8 column tab.
 
 Space-based indentation with no size specified
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
