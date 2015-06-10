@@ -207,12 +207,17 @@ if has_battery then
 end
 -- }}}
 
--- {{{ clock
+-- {{{ clocks
 mytextclock = widget({ type = "textbox" })
-vicious.register(mytextclock, vicious.widgets.date, "%a %b %e, %I:%M %P", 1)
+vicious.register(mytextclock, vicious.widgets.date, "%a %b %e, %I:%M %P", 1, 60 * 60)
 cal.register(mytextclock, "<span color='lime'><u>%s</u></span>")
 
 awful.widget.layout.margins[mytextclock] = { right = 5, left = 5 };
+
+utcclock = widget({ type = "textbox" })
+vicious.register(mytextclock, vicious.widgets.date, "%a %b %e, %I:%M %P", 1, 60 * 60)
+awful.widget.layout.margins[mytextclock] = { right = 5, left = 5 };
+
 --}}}
 
 -- {{{ cpu
