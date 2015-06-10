@@ -1,8 +1,0 @@
-#!/bin/zsh
-
-set -e
-
-cd /home/frew/Dropbox/calendar
-chmod o-w *
-remind -z -k'gxmessage -title "reminder" %s &' calendar
-

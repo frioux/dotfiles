@@ -1,4 +1,0 @@
-#!/bin/zsh
-cd /home/frew/code/lynx
-gvim -c 'source ~/.vim/usr/lynx-fuf-map.vim'
-

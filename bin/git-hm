@@ -1,7 +1,0 @@
-#!/bin/bash
-
-if [[ -n "$(git show-ref MERGE_HEAD)" ]]; then
-   gitk MERGE_HEAD ORIG_HEAD $@ &
-else
-   gitk HEAD ORIG_HEAD $@ &
-fi

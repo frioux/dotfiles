@@ -1,5 +1,0 @@
-#!/bin/sh
-
-cd $HOME/Dropbox/calendar
-chmod 600 calendar
-tkremind calendar
