@@ -27,6 +27,15 @@
        make && \
        sudo make install
 
+# Install docker
+
+    wget -qO- https://get.docker.com/ | sh
+    sudo usermod frew -G docker
+
+# Install Dropbox
+
+[Install](https://www.dropbox.com/install)
+
 # Authorize Computer
 
 Get app specific password from gmail, put in __.netrc__:
@@ -52,13 +61,14 @@ Ensure permissions are correct:
 
     chmod 600 ~/.netrc ~/.pause
 
+Also set up Firefox Sync
+
 # Add / Replace SSH Keys
 
  * Generate Ed25519 Key: `ssh-keygen -t ed25519 -o -a 100`
  * Generate RSA Key: `ssh-keygen -t rsa -b 4096 -o -a 100`
  * Put Ed25519 Key on [github](https://github.com/settings/ssh)
  * Put RSA Key on:
-   - cs
    - dbsrgits
    - gitmo
    - catagits

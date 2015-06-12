@@ -50,6 +50,7 @@ apt-get --no-install-recommends install \
    pcmanfm                              \
    powertop                             \
    pv                                   \
+   python-gpgme                         \
    rdesktop                             \
    runit                                \
    suckless-tools                       \
