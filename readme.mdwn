@@ -7,6 +7,7 @@
     sudo ./packages.sh
     ./install.sh
     sudo cat sysctl.conf >> /etc/sysctl.conf
+    sudo cp xsession.desktop /usr/share/xsessions/xsession.desktop
 
 # Install Git
 

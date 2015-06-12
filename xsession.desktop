@@ -1,0 +1,4 @@
+[Desktop Entry]
+Name=Xsession
+Comment=This runs ~/.xsession
+Exec=/etc/X11/Xsession
