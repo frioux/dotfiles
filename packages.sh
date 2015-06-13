@@ -1,6 +1,7 @@
 #!/bin/dash
 
 apt-get --no-install-recommends install \
+   acpi                                 \
    aptitude                             \
    asciidoc                             \
    atop                                 \
