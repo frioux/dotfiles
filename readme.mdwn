@@ -6,7 +6,7 @@
     cd ~/code/dotfiles
     sudo ./packages.sh
     ./install.sh
-    sudo cat sysctl.conf >> /etc/sysctl.conf
+    sudo bash -c 'cat sysctl.conf >> /etc/sysctl.conf'
     sudo cp xsession.desktop /usr/share/xsessions/xsession.desktop
 
 # Install Git
@@ -30,7 +30,8 @@
 # Install docker
 
     wget -qO- https://get.docker.com/ | sh
-    sudo usermod frew -G docker
+    sudo usermod frew -aG docker
+    sudo systemctl enable docker
 
 # Install Dropbox
 
@@ -116,6 +117,7 @@ Remove installation and run from sync dir
 
 # services
 
+    sv-run-w.pl
     sv-run-offlineimap
 
     sudo rsync -r services/root/ /etc/service
