@@ -462,6 +462,8 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "space", function () awful.layout.inc(layouts,  1) end),
     awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(layouts, -1) end),
 
+    awful.key({ modkey, "Shift"   }, "x",     function () awful.util.spawn('xscreensaver-command -lock') end),
+
     awful.key({ modkey },            "d",     function () awful.util.spawn('/home/frew/code/dotfiles/bin/showdm') end),
 
     awful.key({ modkey },            "u",     function () awful.util.spawn('/home/frew/code/dotfiles/bin/showuni') end),
