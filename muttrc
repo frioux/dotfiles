@@ -32,7 +32,7 @@ set markers           = no
 set mime_forward      = yes
 set mime_forward_rest = yes
 
-alternates '^frew@mitsi.com$' '^frioux@gmail.com$' '^frew@afoolishmanifesto.com$'
+alternates '^frew@mitsi.com$' '^frioux@gmail.com$' '^frew@afoolishmanifesto.com$' '^frew@ziprecruiter.com$' '^arthur@ziprecruiter.com$'
 
 set index_format="%4C %Z %{%b %d} %-15.15L (%3E) %s"
 set pager_index_lines=9
@@ -91,6 +91,7 @@ push <show-version>
 
 send-hook '~t ".*"' 'my_hdr From: fREW Schmidt <frioux@gmail.com>'
 send-hook '~t ".*@(mitsi|tycoint|celltrust)\.com"' 'my_hdr From: Frew Schmidt <frew@mitsi.com>'
+send-hook '~t ".*@(ziprecruiter)\.com"' 'my_hdr From: Frew Schmidt <frew@ziprecruiter.com>'
 send-hook '~t "(cscg-1@listbox.com|(mitsi|bladis)@googlegroups.com)"' 'my_hdr From: fREW Schmidt <frew@afoolishmanifesto.com>'
 send-hook '~t ".*@(tycoint|celltrust)\.com"' 'push <edit-cc>kevin@mitsi.com<enter>'
 
