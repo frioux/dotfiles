@@ -18,5 +18,7 @@ export ORACLE_HOME=$HOME/Dropbox/instantclient_12_1
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$ORACLE_HOME
 export TNS_ADMIN=$HOME/Dropbox
 
+export STARTERVIEW=$HOME/code/ziprecruiter
+
 
 # vim: ft=zsh
