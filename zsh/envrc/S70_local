@@ -13,8 +13,8 @@ else
       git clone git://github.com/tokuhirom/Perl-Build.git ~/.plenv/plugins/perl-build/
       PATH="$HOME/.plenv/bin:$PATH"
       eval "$(plenv init -)"
-      plenv install 5.20.1
-      plenv global 5.20.1
+      plenv install 5.22.0
+      plenv global 5.22.0
       plenv install-cpanm
       ~/code/dotfiles/cpan.sh
       plenv rehash
