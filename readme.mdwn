@@ -32,6 +32,12 @@
     wget -qO- https://get.docker.com/ | sh
     sudo usermod frew -aG docker
     sudo systemctl enable docker
+    sudo cp /lib/systemd/system/docker.service /etc/systemd/system
+
+Then add `-s overlay` to the command in the copied file
+
+    sudo systemd daemon-reload
+    sudo systemctl restart docker
 
 # Install Dropbox
 
