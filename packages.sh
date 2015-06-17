@@ -61,6 +61,7 @@ apt-get --no-install-recommends install \
    tk8.5                                \
    tmux                                 \
    trace-cmd                            \
+   tree                                 \
    ttf-ancient-fonts                    \
    unattended-upgrades                  \
    vim                                  \
