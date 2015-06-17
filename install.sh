@@ -18,14 +18,6 @@ link-file xsession ~/.xinitrc
 link-file gpg.conf ~/.gnupg/gpg.conf
 link-file ww-roller.pl/ww_roll.pl ~/bin/ww-roll.pl
 
-# ensure submodules are checked out before linking to them
-git submodule update --init --quiet
-link-file zsh/cxregs-bash-tools/lib ~/.smartcd/lib
-source ~/.smartcd/lib/core/arrays
-source ~/.smartcd/lib/core/varstash
-source ~/.smartcd/lib/core/smartcd
-cat smartcd-export | smartcd import
-
 # literal dotfiles
 for x in           \
    adenosinerc.yml \
@@ -61,6 +53,14 @@ for x in           \
 ; do
    link-file $x ~/.$x
 done
+
+# ensure submodules are checked out before linking to them
+git submodule update --init --quiet
+link-file zsh/cxregs-bash-tools/lib ~/.smartcd/lib
+source ~/.smartcd/lib/core/arrays
+source ~/.smartcd/lib/core/varstash
+source ~/.smartcd/lib/core/smartcd
+cat smartcd-export | smartcd import
 
 mkdir -p "$HOME/.vvar/undo";
 mkdir -p "$HOME/.vvar/swap";
