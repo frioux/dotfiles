@@ -53,7 +53,6 @@ apt-get --no-install-recommends install \
    pv                                   \
    python-gpgme                         \
    rdesktop                             \
-   runit                                \
    suckless-tools                       \
    sysstat                              \
    tcl                                  \
