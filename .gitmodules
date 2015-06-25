@@ -130,3 +130,6 @@
 [submodule "vim/bundle/dispatch"]
 	path = vim/bundle/dispatch
 	url = git://github.com/tpope/vim-dispatch
+[submodule "vim/bundle-python/editorconfig"]
+	path = vim/bundle-python/editorconfig
+	url = git://github.com/editorconfig/editorconfig-vim
