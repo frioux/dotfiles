@@ -1,3 +1,12 @@
-#!/bin/sh
+#!/bin/dash
 # add/reset so that we at least get an entry in git reflog in case something goes wrong
-git add . && git commit -am 'tmp' && git reset HEAD^ && git diff -w > foo.patch && git checkout . && git apply foo.patch && rm foo.patch
+
+set -e
+git add .
+git commit -am 'tmp'
+git reset HEAD^
+git diff -w > /tmp/foo.patch
+git checkout .
+git clean -df
+git apply /tmp/foo.patch
+rm /tmp/foo.patch
