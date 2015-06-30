@@ -136,3 +136,6 @@
 [submodule "vim/bundle-nvim/deoplete"]
 	path = vim/bundle-nvim/deoplete
 	url = git://github.com/Shougo/deoplete.nvim
+[submodule "vim/bundle/eunuch"]
+	path = vim/bundle/eunuch
+	url = git://github.com/tpope/vim-eunuch
