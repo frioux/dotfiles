@@ -13,6 +13,11 @@ if has('lua')
    call pathogen#infect('bundle-lua/{}')
 endif
 
+if has('python3')
+   call pathogen#infect('bundle-nvim/{}')
+endif
+
+let g:deoplete#enable_at_startup = 1
 
 "{{{Auto Commands
 

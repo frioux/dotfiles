@@ -133,3 +133,6 @@
 [submodule "vim/bundle-python/editorconfig"]
 	path = vim/bundle-python/editorconfig
 	url = git://github.com/editorconfig/editorconfig-vim
+[submodule "vim/bundle-nvim/deoplete"]
+	path = vim/bundle-nvim/deoplete
+	url = git://github.com/Shougo/deoplete.nvim
