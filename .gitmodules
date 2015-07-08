@@ -139,3 +139,6 @@
 [submodule "vim/bundle/eunuch"]
 	path = vim/bundle/eunuch
 	url = git://github.com/tpope/vim-eunuch
+[submodule "vim/bundle/terminus"]
+	path = vim/bundle/terminus
+	url = git://github.com/wincent/terminus
