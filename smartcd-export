@@ -9,8 +9,11 @@ smartcd export 1.0
  autostash PATH=__PATH__/bin:$PATH
  autostash WWW=www.ziprecruiter-frew.com
  autostash DB=db.ziprecruiter-frew.com
- autostash SSH_AUTH_SOCK=
  autostash LOCAL_SANDBOX_MOUNT_TYPE=vboxsf
+ autostash dkrdb dkrwww
+ 
+ dkrdb() docker exec -it --user $(whoami) $DB bash -l
+ dkrwww() docker exec -it --user $(whoami) $WWW bash -l
 @ scripts/home/frew/Dropbox/money/bash_enter
  autostash PATH=__PATH__/bin:$PATH
 @ scripts/home/frew/code/lynx/root/bash_enter
