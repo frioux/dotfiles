@@ -12,8 +12,12 @@ smartcd export 1.0
  autostash LOCAL_SANDBOX_MOUNT_TYPE=vboxsf
  autostash dkrdb dkrwww
  
- dkrdb() docker exec -it --user $(whoami) $DB bash -l
- dkrwww() docker exec -it --user $(whoami) $WWW bash -l
+ _exec() docker exec -it --user $(whoami) "$@"
+ execwww() _exec $WWW "$@"
+ execdb() _exec $DB "$@"
+ dkrdb() execdb bash -l
+ dkrwww() execwww bash -l
+ runtests() execwww env SKIP_SLOW_TESTS=1 /var/starterview/bin/zr-run-tests --no-volatile
 @ scripts/home/frew/Dropbox/money/bash_enter
  autostash PATH=__PATH__/bin:$PATH
 @ scripts/home/frew/code/lynx/root/bash_enter
