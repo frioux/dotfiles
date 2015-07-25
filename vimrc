@@ -291,6 +291,10 @@ nnoremap [oM :Matchmaker<cr>
 nnoremap ]oM :Matchmaker!<cr>
 nnoremap coM :MatchmakerToggle<CR>
 
+nnoremap [oW :EnableWhitespace<cr>
+nnoremap ]oW :DisableWhitespace<cr>
+nnoremap coW :ToggleWhitespace<cr>
+
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
 
