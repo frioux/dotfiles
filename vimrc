@@ -295,6 +295,10 @@ nnoremap [oW :EnableWhitespace<cr>
 nnoremap ]oW :DisableWhitespace<cr>
 nnoremap coW :ToggleWhitespace<cr>
 
+nnoremap [oS :let b:syntastic_mode = 'active'<cr>
+nnoremap ]oS :let b:syntastic_mode = 'passive'<cr>
+nnoremap coS :SyntasticToggleMode<cr>
+
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
 
