@@ -325,6 +325,15 @@ autocmd FileType racket set autoindent
 
 let perl_no_subprototype_error = 1
 
+function ZRPod()
+   let path = substitute(substitute(@%, '\(app/lib/\|\.pm\)', '', 'g'), '/', '::', 'g')
+   let url = 'https://pod.ziprecruiter.com/?' . path
+   let command = "firefox '" . url . "'"
+   execute ":!" command
+endfunction
+
+command Pod call ZRPod()
+
 if has('gui_running')
   " Set the normal font face and size.
   function! FontNormal()
