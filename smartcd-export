@@ -17,7 +17,7 @@ smartcd export 1.0
  execdb() _exec $DB "$@"
  dkrdb() execdb bash -l
  dkrwww() execwww bash -l
- runtests() execwww env SKIP_SLOW_TESTS=1 prove /var/starterview/bin/zr-run-tests --no-volatile
+ runtests() execwww env SKIP_SLOW_TESTS=1 prove /var/starterview/bin/zr-run-tests :: --no-volatile
  run_s() execwww bash -c 'cd /var/starterview; export PATH=$PATH:/var/starterview/bin; "$@"' _ "$@"
 @ scripts/home/frew/Dropbox/money/bash_enter
  autostash PATH=__PATH__/bin:$PATH
