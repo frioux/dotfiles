@@ -14,26 +14,6 @@ Host *
    MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-ripemd160-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-512,hmac-sha2-256,hmac-ripemd160,umac-128@openssh.com
    KexAlgorithms curve25519-sha256@libssh.org,diffie-hellman-group-exchange-sha256,diffie-hellman-group14-sha1
 
-Host ci
-     user frew
-
-Host cesium
-     user frew
-     ForwardAgent yes
-     ForwardX11 yes
-
-Host fl
-     user Administrator
-     hostname frewlynxuser
-     ForwardAgent yes
-     ForwardX11 yes
-
-Host mm
-     user Administrator
-     hostname mitchmurder
-     ForwardAgent yes
-     ForwardX11 yes
-
 Host irc
      user frew
      hostname 50.116.28.218
@@ -44,13 +24,6 @@ Host lap
      user frew
      hostname frew.chickenkiller.com
      port 2222
-     ForwardAgent yes
-     ForwardX11 yes
-
-Host gb
-     user frew
-     hostname gae-bulg.chickenkiller.com
-     port 2322
      ForwardAgent yes
      ForwardX11 yes
 
@@ -69,23 +42,6 @@ Host sc
      user arthurs
      hostname jules.scsys.co.uk
 
-Host w
-     user frew
-     ForwardAgent yes
-     ForwardX11 yes
-
-Host s1
-     user Administrator
-     ForwardAgent yes
-     ForwardX11 no
-     hostname 172.24.1.206
-
-Host s2
-     user frew
-     ForwardAgent yes
-     ForwardX11 no
-     hostname 10.24.0.93
-
 Host afm
      user frew
      hostname afoolishmanifesto.com
@@ -93,15 +49,3 @@ Host afm
 Host agm
      user git
      hostname blog.afoolishmanifesto.com
-
-Host futurecop
-     user Administrator
-     hostname 10.6.6.14
-
-Host powerglove
-     user Administrator
-     hostname 10.6.6.15
-
-Host lazerhawk
-     user Administrator
-     hostname 10.6.6.16
