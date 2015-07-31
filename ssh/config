@@ -20,6 +20,9 @@ Host irc
      ForwardAgent yes
      ForwardX11 yes
 
+Host *.ziprecruiter-frew.com, *.ziprecruiter.com
+     ForwardAgent yes
+
 Host lap
      user frew
      hostname frew.chickenkiller.com
