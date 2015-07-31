@@ -80,3 +80,9 @@
    pushInsteadOf = scpubgit:
 [core]
 	excludesfile = /home/frew/.gitignore_global
+
+[sendemail]
+    smtpEncryption = tls
+    smtpServer = smtp.gmail.com
+    smtpUser = frioux@gmail.com
+    smtpServerPort = 587
