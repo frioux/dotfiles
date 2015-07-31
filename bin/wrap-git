@@ -19,6 +19,8 @@ my %checkout_aliases = (( checkout => 1 ),
    grep $aliases{$_} =~ /^checkout\b/,
    keys %aliases);
 
+exec 'git' unless @ARGV;
+
 my ($command, @args) = @ARGV;
 
 if ($commit_aliases{$command} && exists $args[0] && $args[0] =~ /^-a|^--all/) {
