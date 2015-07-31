@@ -3,6 +3,8 @@
 use strict;
 use warnings;
 
+use Net::Netrc;
+
 $0 = 'git';
 
 my %aliases = map { split(/\n/, $_, 2) }
@@ -17,6 +19,11 @@ my %commit_aliases = (( commit => 1 ),
 my %checkout_aliases = (( checkout => 1 ),
    map { s/alias\.//; $_ => 1 }
    grep $aliases{$_} =~ /^checkout\b/,
+   keys %aliases);
+
+my %sendemail_aliases = (( 'send-email' => 1 ),
+   map { s/alias\.//; $_ => 1 }
+   grep $aliases{$_} =~ /^send-email\b/,
    keys %aliases);
 
 exec 'git' unless @ARGV;
@@ -36,6 +43,9 @@ if ($commit_aliases{$command} && exists $args[0] && $args[0] =~ /^-a|^--all/) {
    }
 } elsif ($checkout_aliases{$command} && ( grep /^-b|^-B/, @args ) && ( grep /^origin\/(release|master)/, @args )) {
    unshift @args, '--no-track';
+   run_command()
+} elsif ($sendemail_aliases{$command}) {
+   unshift @args, '--smtp-pass', Net::Netrc->lookup('smtp.gmail.com')->password;
    run_command()
 } elsif ($command eq 'pull' && !grep /^-/, @args) {
    unshift @args, '--ff-only';
