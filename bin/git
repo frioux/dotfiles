@@ -4,8 +4,16 @@ use strict;
 use warnings;
 
 use Net::Netrc;
+use Path::Class 'file';
 
 $0 = 'git';
+
+my $dir = file(__FILE__)->parent;
+
+local $ENV{PATH} = join ':',
+   grep { $_ ne $dir }
+   split qr/\:/,
+   $ENV{PATH};
 
 my %aliases = map { split(/\n/, $_, 2) }
    split /\0/,

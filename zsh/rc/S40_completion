@@ -59,7 +59,6 @@ zstyle ':completion:*:*:git:*' script ~/code/git/contrib/completion/git-completi
 
 # these are aliases
 
-compdef wrap-git=git
 compdef _git {gitk,qgit,grr}=git-log
 compdef _git gr=git-rebase
 compdef wrap-tar=tar
