@@ -33,10 +33,13 @@ my ($command, @args) = @ARGV;
 if ($commit{$command} && exists $args[0] && $args[0] =~ /^-a|^--all/) {
    my @staged = grep /^M/, split /\0/, `git status -z`;
    if (@staged) {
-      print "There are staged changes, are you sure you want to commit all? (y/N) ";
-      chomp(my $answer = <STDIN>);
-      unless ($answer =~ /^y/i) {
-         exit 2;
+      my @diff = `git diff --shortstat`;
+      if (@diff) {
+         print "There are staged changes, are you sure you want to commit all? (y/N) ";
+         chomp(my $answer = <STDIN>);
+         unless ($answer =~ /^y/i) {
+            exit 2;
+         }
       }
    }
 } elsif ($checkout{$command} && ( grep /^-b|^-B/, @args ) && ( grep /^origin\/(?:release|master)/, @args )) {
