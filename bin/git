@@ -1,38 +1,30 @@
-#!/usr/bin/env perl
+#!/usr/bin/perl
 
 use strict;
 use warnings;
 
-use Net::Netrc;
-use Path::Class 'file';
+use Dir::Self;
 
 $0 = 'git';
 
-my $dir = file(__FILE__)->parent;
+my $dir = __DIR__;
 
 local $ENV{PATH} = join ':',
    grep { $_ ne $dir }
    split qr/\:/,
    $ENV{PATH};
 
-my %aliases = map { split(/\n/, $_, 2) }
-   split /\0/,
-   `git config -z --get-regexp alias\\.`;
+my %commit_aliases = (
+   commit => 1,
+   ci     => 1,
+),
 
-my %commit_aliases = (( commit => 1 ),
-   map { s/alias\.//; $_ => 1 }
-   grep $aliases{$_} =~ /^commit\b/,
-   keys %aliases);
+my %checkout_aliases = (
+   checkout => 1,
+   co       => 1,
+);
 
-my %checkout_aliases = (( checkout => 1 ),
-   map { s/alias\.//; $_ => 1 }
-   grep $aliases{$_} =~ /^checkout\b/,
-   keys %aliases);
-
-my %sendemail_aliases = (( 'send-email' => 1 ),
-   map { s/alias\.//; $_ => 1 }
-   grep $aliases{$_} =~ /^send-email\b/,
-   keys %aliases);
+my %sendemail_aliases = ( 'send-email' => 1 );
 
 exec 'git' unless @ARGV;
 
@@ -53,7 +45,8 @@ if ($commit_aliases{$command} && exists $args[0] && $args[0] =~ /^-a|^--all/) {
    unshift @args, '--no-track';
    run_command()
 } elsif ($sendemail_aliases{$command}) {
-   unshift @args, '--smtp-pass', Net::Netrc->lookup('smtp.gmail.com')->password;
+   chomp (my $pass = qx(netrc-password smpt.gmail.com));
+   unshift @args, '--smtp-pass', $pass;
    run_command()
 } elsif ($command eq 'pull' && !grep /^-/, @args) {
    unshift @args, '--ff-only';
@@ -62,7 +55,4 @@ if ($commit_aliases{$command} && exists $args[0] && $args[0] =~ /^-a|^--all/) {
    run_command()
 }
 
-sub run_command {
-   system 'git', $command, @args;
-   exit $? >> 8;
-}
+sub run_command { exec 'git', $command, @args }

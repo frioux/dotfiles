@@ -25,6 +25,7 @@ apt-get --no-install-recommends install \
    ioping                               \
    keepassx                             \
    libcurl4-openssl-dev                 \
+   libdir-self-perl                     \
    libgmime-2.6-dev                     \
    libgpgme11-dev                       \
    libncursesw5-dev                     \
