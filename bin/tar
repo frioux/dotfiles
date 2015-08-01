@@ -12,6 +12,8 @@ local $ENV{PATH} = join ':',
    split qr/\:/,
    $ENV{PATH};
 
+exec 'tar' unless @ARGV;
+
 my ($command, @args) = @ARGV;
 
 if ($command =~ /-xv([jz])f/) {
