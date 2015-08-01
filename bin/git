@@ -14,23 +14,23 @@ local $ENV{PATH} = join ':',
    split qr/\:/,
    $ENV{PATH};
 
-my %commit_aliases = (
+my %commit = (
    commit => 1,
    ci     => 1,
 ),
 
-my %checkout_aliases = (
+my %checkout = (
    checkout => 1,
    co       => 1,
 );
 
-my %sendemail_aliases = ( 'send-email' => 1 );
+my %sendemail = ( 'send-email' => 1 );
 
 exec 'git' unless @ARGV;
 
 my ($command, @args) = @ARGV;
 
-if ($commit_aliases{$command} && exists $args[0] && $args[0] =~ /^-a|^--all/) {
+if ($commit{$command} && exists $args[0] && $args[0] =~ /^-a|^--all/) {
    my @staged = grep /^M/, split /\0/, `git status -z`;
    if (@staged) {
       print "There are staged changes, are you sure you want to commit all? (y/N) ";
@@ -41,10 +41,10 @@ if ($commit_aliases{$command} && exists $args[0] && $args[0] =~ /^-a|^--all/) {
    } else {
       run_command()
    }
-} elsif ($checkout_aliases{$command} && ( grep /^-b|^-B/, @args ) && ( grep /^origin\/(release|master)/, @args )) {
+} elsif ($checkout{$command} && ( grep /^-b|^-B/, @args ) && ( grep /^origin\/(release|master)/, @args )) {
    unshift @args, '--no-track';
    run_command()
-} elsif ($sendemail_aliases{$command}) {
+} elsif ($sendemail{$command}) {
    chomp (my $pass = qx(netrc-password smpt.gmail.com));
    unshift @args, '--smtp-pass', $pass;
    run_command()
