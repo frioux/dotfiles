@@ -45,7 +45,7 @@ if ($commit{$command} && exists $args[0] && $args[0] =~ /^-a|^--all/) {
 } elsif ($checkout{$command} && ( grep /^-b|^-B/, @args ) && ( grep /^origin\/(?:release|master)/, @args )) {
    unshift @args, '--no-track';
 } elsif ($sendemail{$command}) {
-   chomp (my $pass = qx(netrc-password smpt.gmail.com));
+   chomp (my $pass = qx(netrc-password smtp.gmail.com));
    unshift @args, '--smtp-pass', $pass;
 } elsif ($command eq 'pull' && !grep /^-/, @args) {
    unshift @args, '--ff-only';
