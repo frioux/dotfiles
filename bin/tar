@@ -3,6 +3,15 @@
 use strict;
 use warnings;
 
+use Path::Class 'file';
+
+my $dir = file(__FILE__)->parent;
+
+local $ENV{PATH} = join ':',
+   grep { $_ ne $dir }
+   split qr/\:/,
+   $ENV{PATH};
+
 my ($command, @args) = @ARGV;
 
 if ($command =~ /-xv([jz])f/) {
