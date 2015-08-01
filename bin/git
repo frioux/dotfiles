@@ -35,24 +35,17 @@ if ($commit{$command} && exists $args[0] && $args[0] =~ /^-a|^--all/) {
    if (@staged) {
       print "There are staged changes, are you sure you want to commit all? (y/N) ";
       chomp(my $answer = <STDIN>);
-      if ($answer =~ /^y/i) {
-         run_command()
+      unless ($answer =~ /^y/i) {
+         exit 2;
       }
-   } else {
-      run_command()
    }
-} elsif ($checkout{$command} && ( grep /^-b|^-B/, @args ) && ( grep /^origin\/(release|master)/, @args )) {
+} elsif ($checkout{$command} && ( grep /^-b|^-B/, @args ) && ( grep /^origin\/(?:release|master)/, @args )) {
    unshift @args, '--no-track';
-   run_command()
 } elsif ($sendemail{$command}) {
    chomp (my $pass = qx(netrc-password smpt.gmail.com));
    unshift @args, '--smtp-pass', $pass;
-   run_command()
 } elsif ($command eq 'pull' && !grep /^-/, @args) {
    unshift @args, '--ff-only';
-   run_command()
-} else {
-   run_command()
 }
 
-sub run_command { exec 'git', $command, @args }
+exec 'git', $command, @args
