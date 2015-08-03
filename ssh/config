@@ -20,7 +20,10 @@ Host irc
      ForwardAgent yes
      ForwardX11 yes
 
-Host *.ziprecruiter-frew.com, *.ziprecruiter.com
+Host *.ziprecruiter.com
+     ForwardAgent yes
+
+Host *.ziprecruiter-frew.com
      ForwardAgent yes
 
 Host lap
