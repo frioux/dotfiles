@@ -3,16 +3,7 @@
 use strict;
 use warnings;
 
-use Dir::Self;
-
 $0 = 'git';
-
-my $dir = __DIR__;
-
-local $ENV{PATH} = join ':',
-   grep { $_ ne $dir }
-   split qr/\:/,
-   $ENV{PATH};
 
 my %commit = (
    commit => 1,

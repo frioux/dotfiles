@@ -21,6 +21,7 @@ alias -g PTV="2>&1 | vim -"
 
 # {{{ git
 
+alias git='noglob wrap-git'
 alias gitk='noglob gitk'
 function gitk() { command gitk "$@" & }
 alias grr='noglob grr'
