@@ -59,6 +59,13 @@ Get app specific password from gmail, put in __.netrc__:
     login $bar@gmail.com
     password $foo
 
+And __.git-smtp-password__:
+
+```
+[sendemail]
+   smtpPass = $foo
+```
+
 Put pause credentials in __.pause__:
 
     user FREW

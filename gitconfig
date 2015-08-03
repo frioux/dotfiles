@@ -86,3 +86,6 @@
     smtpServer = smtp.gmail.com
     smtpUser = frioux@gmail.com
     smtpServerPort = 587
+
+[include]
+   path = ~/.git-smtp-password
