@@ -93,4 +93,6 @@ send-hook '~t ".*"' 'my_hdr From: fREW Schmidt <frioux@gmail.com>'
 send-hook '~t ".*@(ziprecruiter)\.com"' 'my_hdr From: Frew Schmidt <frew@ziprecruiter.com>'
 send-hook '~t "(cscg-1@listbox.com|(mitsi|bladis)@googlegroups.com)"' 'my_hdr From: fREW Schmidt <frew@afoolishmanifesto.com>'
 
+source ~/.mutt-overrides
+
 # vim: ft=muttrc
