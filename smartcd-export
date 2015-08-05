@@ -19,6 +19,7 @@ smartcd export 1.0
  dkrwww() execwww bash -l
  runtests() execwww env SKIP_SLOW_TESTS=1 prove /var/starterview/bin/zr-run-tests :: --no-volatile
  run_s() execwww bash -c 'cd /var/starterview; export PATH=$PATH:/var/starterview/bin; "$@"' _ "$@"
+ with_x() run_s perl -MStarterView::Bootstrap -Maliased=$1,X -E $2
 @ scripts/home/frew/Dropbox/money/bash_enter
  autostash PATH=__PATH__/bin:$PATH
 @ scripts/home/frew/code/lynx/root/bash_enter
