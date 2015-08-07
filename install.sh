@@ -1,5 +1,10 @@
 #!/bin/zsh
 
+# Do not run if we only checked out a file vs switched branches
+if [[ -n "$3" && "$3" -eq 0 ]]; then
+   exit
+fi
+
 echo "running rc installer"
 
 function __mkdir { if [[ ! -d $1 ]]; then mkdir -p $1; fi }
