@@ -21,5 +21,6 @@ export TNS_ADMIN=$HOME/Dropbox
 
 export STARTERVIEW=$HOME/code/ziprecruiter
 
+export TZ='America/Los_Angeles'
 
 # vim: ft=zsh
