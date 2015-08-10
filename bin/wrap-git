@@ -35,6 +35,10 @@ if ($commit{$command} && exists $args[0] && $args[0] =~ /^-a|^--all/) {
    unshift @args, '--no-track';
 } elsif ($command eq 'pull' && !grep /^-/, @args) {
    unshift @args, '--ff-only';
+} elsif ($command eq 'clean' && grep /^-xdff$/, @args) {
+   die "Frew your muscle memory is some kind of murder (add another f if you really want it)\n"
+} elsif ($command eq 'clean' && grep /^-xdfff$/, @args) {
+   s/-xdfff/-xdff/ for @args
 }
 
 exec 'git', $command, @args
