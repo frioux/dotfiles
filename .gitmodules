@@ -142,3 +142,6 @@
 [submodule "vim/bundle/terminus"]
 	path = vim/bundle/terminus
 	url = git://github.com/wincent/terminus
+[submodule "vim/bundle/quick-scope"]
+	path = vim/bundle/quick-scope
+	url = git://github.com/unblevable/quick-scope
