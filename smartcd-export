@@ -20,6 +20,10 @@ smartcd export 1.0
  runtests() execwww env SKIP_SLOW_TESTS=1 prove /var/starterview/bin/zr-run-tests :: --no-volatile
  run_s() execwww env TERM=linux bash -c 'cd /var/starterview; export PATH=$PATH:/var/starterview/bin; "$@"' _ "$@"
  with_x() run_s perl -MStarterView::Bootstrap -Maliased=$1,X -E $2
+ 
+ _fix_for_foo() run_s sudo chown -R $1 $(run_s perl -e'print join q( ), glob(q(/tmp/TT*_cache-0))') /var/starterview/app/view/static/assembled
+ fix-for-apache() _fix_for_foo apache
+ fix-for-frew()   _fix_for_foo frew
 @ scripts/home/frew/Dropbox/money/bash_enter
  autostash PATH=__PATH__/bin:$PATH
 @ scripts/home/frew/code/lynx/root/bash_enter
