@@ -22,7 +22,7 @@ smartcd export 1.0
  run-s() ssh $WWW env TERM=linux bash -c 'cd /var/starterview; export PATH=$PATH:/var/starterview/bin; "$@"' "$@"
  with-x() run-d perl -MStarterView::Bootstrap -Maliased=$1,X -E $2
  
- _fix_perms() run-d sudo chown -R $1 $(run_s perl -e'print join q( ), glob(q(/tmp/TT*_cache-0))') /var/starterview/app/view/static/assembled
+ _fix_perms() run-d sudo chown -R $1 $(run-d perl -e'print join q( ), glob(q(/tmp/TT*_cache-0))') /var/starterview/app/view/static/assembled
  fix-perms-apache() _fix_perms apache
  fix-perms-frew()   _fix_perms frew
 @ scripts/home/frew/Dropbox/money/bash_enter
