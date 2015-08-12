@@ -299,6 +299,10 @@ nnoremap [oS :let b:syntastic_mode = 'active'<cr>
 nnoremap ]oS :let b:syntastic_mode = 'passive'<cr>
 nnoremap coS :SyntasticToggleMode<cr>
 
+nnoremap [oQ :let g:qs_enable = 1<cr>
+nnoremap ]oQ :let g:qs_enable = 0<cr>
+nnoremap coQ :QuickScopeToggle<cr>
+
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
 
