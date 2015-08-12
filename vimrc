@@ -283,9 +283,9 @@ omap gS <Plug>Sneak_S
 
 " hopefully can get these into unimpaired
 " (https://github.com/tpope/vim-unimpaired/issues/63)
-nnoremap [oy :syntax on<cr>
-nnoremap ]oy :syntax off<cr>
-nnoremap coy :if exists("g:syntax_on") \| syntax off \| else \| syntax enable \| endif<CR>
+nnoremap [oy :setlocal syntax=on<cr>
+nnoremap ]oy :setlocal syntax=off<cr>
+nnoremap coy :if exists("g:syntax_on") \| setlocal syntax=off \| else \| setlocal syntax=on \| endif<CR>
 
 nnoremap [oM :Matchmaker<cr>
 nnoremap ]oM :Matchmaker!<cr>
