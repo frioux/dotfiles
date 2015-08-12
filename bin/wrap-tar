@@ -3,15 +3,6 @@
 use strict;
 use warnings;
 
-use Path::Class 'file';
-
-my $dir = file(__FILE__)->parent;
-
-local $ENV{PATH} = join ':',
-   grep { $_ ne $dir }
-   split qr/\:/,
-   $ENV{PATH};
-
 exec 'tar' unless @ARGV;
 
 my ($command, @args) = @ARGV;
