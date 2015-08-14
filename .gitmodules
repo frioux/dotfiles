@@ -81,46 +81,46 @@
 	url = git://github.com/ingydotnet/git-hub
 [submodule "vim/bundle/better-whitespace"]
 	path = vim/bundle/better-whitespace
-	url = gh:ntpeters/vim-better-whitespace
+	url = git://github.com/ntpeters/vim-better-whitespace
 [submodule "zsh/opp"]
 	path = zsh/opp
-	url = gh:hchbaw/opp.zsh
+	url = git://github.com/hchbaw/opp.zsh
 [submodule "vim/bundle/textobj-between"]
 	path = vim/bundle/textobj-between
-	url = gh:thinca/vim-textobj-between
+	url = git://github.com/thinca/vim-textobj-between
 [submodule "vim/bundle/splitjoin"]
 	path = vim/bundle/splitjoin
-	url = gh:AndrewRadev/splitjoin.vim
+	url = git://github.com/AndrewRadev/splitjoin.vim
 [submodule "vim/bundle/exchange"]
 	path = vim/bundle/exchange
-	url = gh:tommcdo/vim-exchange
+	url = git://github.com/tommcdo/vim-exchange
 [submodule "vim/bundle/commentary"]
 	path = vim/bundle/commentary
-	url = gh:tpope/vim-commentary
+	url = git://github.com/tpope/vim-commentary
 [submodule "vim/bundle/textobj-word-column"]
 	path = vim/bundle/textobj-word-column
-	url = gh:coderifous/textobj-word-column.vim
+	url = git://github.com/coderifous/textobj-word-column.vim
 [submodule "vim/bundle/windowswap"]
 	path = vim/bundle/windowswap
-	url = gh:wesQ3/vim-windowswap
+	url = git://github.com/wesQ3/vim-windowswap
 [submodule "pointless-xcompose"]
 	path = pointless-xcompose
-	url = gh:rrthomas/pointless-xcompose
+	url = git://github.com/rrthomas/pointless-xcompose
 [submodule "vim/bundle/matchmaker"]
 	path = vim/bundle/matchmaker
-	url = gh:qstrahl/vim-matchmaker
+	url = git://github.com/qstrahl/vim-matchmaker
 [submodule "vim/bundle/gitgutter"]
 	path = vim/bundle/gitgutter
-	url = gh:airblade/vim-gitgutter
+	url = git://github.com/airblade/vim-gitgutter
 [submodule "vim/bundle/neocomplete"]
 	path = vim/bundle-lua/neocomplete
-	url = gh:Shougo/neocomplete.vim
+	url = git://github.com/Shougo/neocomplete.vim
 [submodule "vim/bundle/ultisnips"]
 	path = vim/bundle-python/ultisnips
 	url = git://github.com/sirver/ultisnips
 [submodule "vim/bundle/ctrlp"]
 	path = vim/bundle/ctrlp
-	url = gh:ctrlpvim/ctrlp.vim
+	url = git://github.com/ctrlpvim/ctrlp.vim
 [submodule "vim/bundle/projectionist"]
 	path = vim/bundle/projectionist
 	url = git://github.com/tpope/vim-projectionist
