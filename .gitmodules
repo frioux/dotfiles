@@ -145,3 +145,9 @@
 [submodule "vim/bundle/quick-scope"]
 	path = vim/bundle/quick-scope
 	url = git://github.com/unblevable/quick-scope
+[submodule "vim/bundle/sleuth"]
+	path = vim/bundle/sleuth
+	url = git://github.com/tpope/vim-sleuth
+[submodule "vim/bundle/obsession"]
+	path = vim/bundle/obsession
+	url = git://github.com/tpope/vim-obsession
