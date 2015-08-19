@@ -69,6 +69,7 @@ cat smartcd-export | smartcd import
 
 mkdir -p "$HOME/.vvar/undo";
 mkdir -p "$HOME/.vvar/swap";
+mkdir -p "$HOME/.vvar/sessions";
 
 # vim works differently on win32
 case $OSTYPE in

@@ -467,6 +467,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey },            "d",     function () awful.util.spawn('/home/frew/code/dotfiles/bin/showdm') end),
 
     awful.key({ modkey },            "u",     function () awful.util.spawn('/home/frew/code/dotfiles/bin/showuni') end),
+    awful.key({ modkey },            "v",     function () awful.util.spawn('/home/frew/code/dotfiles/bin/showsession') end),
 
     awful.key({ modkey }, "x",
               function ()
