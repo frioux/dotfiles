@@ -303,6 +303,10 @@ nnoremap [oQ :let g:qs_enable = 1<cr>
 nnoremap ]oQ :let g:qs_enable = 0<cr>
 nnoremap coQ :QuickScopeToggle<cr>
 
+nnoremap [oN :NeoCompleteEnable<cr>
+nnoremap ]oN :NeoCompleteDisable<cr>
+nnoremap coN :NeoCompleteToggle<CR>
+
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
 
