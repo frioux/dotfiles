@@ -22,7 +22,7 @@ smartcd export 1.0
  run-s() ssh $WWW env TERM=linux bash -c 'cd /var/starterview; export PATH=$PATH:/var/starterview/bin; "$@"' "$@"
  with-x() run-d perl -MStarterView::Bootstrap -Maliased=$1,X -E $2
  
- ssc() run-d sudo perl bin/sa/sync-server-config --define=uid_overlay={frew,1000}
+ ssc() run-d sudo perl bin/sa/sync-server-config "--define=uid_overlay={frew,$(id -u)}"
  
  start()   run-d sudo start $1
  stop()    run-d sudo stop $1
