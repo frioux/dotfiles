@@ -1,0 +1,4 @@
+#!/bin/dash
+
+exec run-s \
+   zr-pinto "$@"

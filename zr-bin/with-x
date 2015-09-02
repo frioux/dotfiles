@@ -1,0 +1,7 @@
+#!/bin/dash
+
+exec run-d \
+   perl \
+      -MStarterView::Bootstrap \
+      -Maliased=$1,X \
+      -E $2

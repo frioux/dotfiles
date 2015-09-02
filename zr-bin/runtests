@@ -1,0 +1,5 @@
+#!/bin/dash
+
+exec execwww \
+   env SKIP_SLOW_TESTS=1 \
+   prove /var/starterview/bin/zr-run-tests :: --no-volatile

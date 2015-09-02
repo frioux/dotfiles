@@ -1,0 +1,6 @@
+#!/bin/dash
+
+exec ssh -q $WWW \
+   env TERM=linux \
+   bash -c \
+   'cd /var/starterview; export PATH=$PATH:/var/starterview/bin; "$@"' "$@"

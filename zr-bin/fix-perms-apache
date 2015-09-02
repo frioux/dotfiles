@@ -1,0 +1,3 @@
+#!/bin/dash
+
+exec _fix_perms apache

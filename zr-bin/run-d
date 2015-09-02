@@ -1,0 +1,7 @@
+#!/bin/dash
+
+# still not quite sure why I need the `_`
+exec execwww \
+   env TERM=linux \
+   bash -c \
+   'cd /var/starterview; export PATH=$PATH:/var/starterview/bin; "$@"' _ "$@"
