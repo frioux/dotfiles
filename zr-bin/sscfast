@@ -1,0 +1,3 @@
+#!/bin/dash
+
+exec ssc --to-run "(000|001|$1)"
