@@ -1,3 +1,3 @@
 #!/bin/dash
 
-exec execdb bash -l
+exec execwww bash -l
