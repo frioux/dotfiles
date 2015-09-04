@@ -5,5 +5,12 @@ use warnings;
 use String::ShellQuote 'shell_quote';
 
 exec qw( ssh -tq ), $ENV{WWW},
-   'bash', '-c',
-   shell_quote('cd /var/starterview; export PATH="$PATH:/var/starterview/bin"; export TERM=linux; export PAGER=less; export ' . "LESS=$ENV{LESS}; " . shell_quote(@ARGV))
+   'bash', '-c', shell_quote(
+      (join '', map qq($_; ),
+         'cd /var/starterview',
+         'export PATH="$PATH:/var/starterview/bin"',
+         'export TERM=linux',
+         'export PAGER=less',
+         "export LESS=$ENV{LESS}",
+      ) . shell_quote(@ARGV)
+   )
