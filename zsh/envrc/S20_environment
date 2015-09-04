@@ -6,7 +6,7 @@ export PATH="$HOME/bin:$HOME/code/dotfiles/bin:$HOME/code/dotfiles/git-hub/lib:$
 export CFLAGS=-I/opt/include
 export LDFLAGS=-L/opt/lib
 export EDITOR="vim"
-export PAGER="less -M"
+export PAGER="less -MFRX"
 export DBIC_TRACE_PROFILE=~/.dbic.json
 export GPGKEY=737A7582
 if [[ "$TERM" == xterm ]]; then
