@@ -56,3 +56,8 @@ Host agm
      user git
      hostname blog.afoolishmanifesto.com
      ForwardAgent yes
+
+Host retropie
+     user pi
+     hostname 192.168.1.168
+     ForwardAgent yes
