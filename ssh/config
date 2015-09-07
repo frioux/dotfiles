@@ -50,8 +50,9 @@ Host sc
 
 Host afm
      user frew
-     hostname afoolishmanifesto.com
+     hostname blog.afoolishmanifesto.com
 
 Host agm
      user git
      hostname blog.afoolishmanifesto.com
+     ForwardAgent yes
