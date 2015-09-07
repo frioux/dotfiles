@@ -1,0 +1,18 @@
+#!/usr/bin/env perl
+
+use 5.22.0;
+use warnings;
+use autodie;
+
+use String::ShellQuote 'shell_quote';
+
+my $script = "$ENV{HOME}/code/dotfiles/bin/" . shift;
+
+die "$script already exists!\n"
+   if -e $script;
+
+open my $fh, '>', $script;
+print $fh "#!/bin/dash\n\n" . shell_quote(@ARGV);
+close $fh;
+
+chmod 0755, $script;
