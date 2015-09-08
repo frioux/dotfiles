@@ -20,14 +20,7 @@ print $fh "#!/bin/dash\n\n";
 if (@ARGV == 1) {
    print $fh @ARGV;
 } else {
-   print $fh
-      join q( ),
-      map {
-         $meta{$_}
-            ? $_
-            : shell_quote($_)
-      }
-      @ARGV;
+   print $fh shell_quote(@ARGV)
 }
 
 close $fh;
