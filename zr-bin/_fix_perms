@@ -1,9 +1,10 @@
 #!/bin/dash
 
 exec _execroot \
+   $WWW \
    chown -R \
    $1 \
-   $(_execroot perl -e'print join q( ), glob(q(/tmp/TT*_cache-0))') \
+   $(_execroot $WWW perl -e'print join q( ), glob(q(/tmp/TT*_cache-0))') \
    /var/starterview/app/view/static/assembled \
    /home/frew/profiling \
    /vol/log/www \
