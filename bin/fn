@@ -8,10 +8,13 @@ use String::ShellQuote 'shell_quote';
 
 my $script = "$ENV{HOME}/code/dotfiles/bin/" . shift;
 
+if ($ARGV[0] eq '-f') {
+   unlink $script;
+   shift
+}
+
 die "$script already exists!\n"
    if -e $script;
-
-my %meta = map { $_ => 1 } qw( | > < );
 
 open my $fh, '>', $script;
 
