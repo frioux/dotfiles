@@ -1,19 +1,15 @@
 #!/bin/dash
 
+./packages.minimal.sh
 ./packages.x11.sh
 ./packages.perf.sh
 
 apt-get --no-install-recommends install \
-   aptitude                             \
    asciidoc                             \
    autoconf                             \
    automake                             \
    build-essential                      \
-   curl                                 \
-   daemontools                          \
-   fail2ban                             \
    gnupg-agent                          \
-   htop                                 \
    inotify-tools                        \
    libcurl4-openssl-dev                 \
    libdir-self-perl                     \
@@ -29,20 +25,10 @@ apt-get --no-install-recommends install \
    lua-filesystem                       \
    lynx                                 \
    mitmproxy                            \
-   moreutils                            \
-   mosh                                 \
    msmtp                                \
    notmuch                              \
    notmuch-mutt                         \
-   openssh-client                       \
-   openssh-server                       \
    openvpn                              \
-   pv                                   \
    python-gpgme                         \
-   tmux                                 \
-   tree                                 \
-   unattended-upgrades                  \
-   vim                                  \
    xmlto                                \
-   xsltproc                             \
-   zsh
+   xsltproc
