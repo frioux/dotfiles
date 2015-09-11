@@ -1,5 +1,7 @@
 #!/bin/dash
 
+./packages.x11.sh
+
 apt-get --no-install-recommends install \
    acpi                                 \
    aptitude                             \
@@ -7,23 +9,16 @@ apt-get --no-install-recommends install \
    atop                                 \
    autoconf                             \
    automake                             \
-   awesome                              \
-   awesome-extra                        \
    build-essential                      \
    curl                                 \
    daemontools                          \
    dstat                                \
    fail2ban                             \
-   firefox                              \
    glances                              \
-   gnome-power-manager                  \
    gnupg-agent                          \
-   gtk2-engines                         \
-   gxmessage                            \
    htop                                 \
    inotify-tools                        \
    ioping                               \
-   keepassx                             \
    libcurl4-openssl-dev                 \
    libdir-self-perl                     \
    libgmime-2.6-dev                     \
@@ -49,29 +44,15 @@ apt-get --no-install-recommends install \
    openssh-client                       \
    openssh-server                       \
    openvpn                              \
-   pcmanfm                              \
    powertop                             \
    pv                                   \
    python-gpgme                         \
-   rdesktop                             \
-   suckless-tools                       \
    sysstat                              \
-   tcl                                  \
-   terminator                           \
-   tk                                   \
-   tk8.5                                \
    tmux                                 \
    trace-cmd                            \
    tree                                 \
-   ttf-ancient-fonts                    \
    unattended-upgrades                  \
    vim                                  \
-   vim-gnome                            \
-   xclip                                \
-   xdotool                              \
-   xfonts-terminus                      \
-   xfonts-terminus-oblique              \
    xmlto                                \
-   xscreensaver                         \
    xsltproc                             \
    zsh
