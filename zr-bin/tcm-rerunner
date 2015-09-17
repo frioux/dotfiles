@@ -1,0 +1,44 @@
+#!/usr/bin/env perl
+
+use 5.22.0;
+use warnings;
+
+my $output = 'perl app/t/tcm.t ::';
+
+while (my $line = <STDIN>) {
+   if ($line =~ m/TestsFor::(.*) failed/) {
+      $output .= " $1";
+   } elsif ($line =~ m/    (test_.*?)\s+#/) {
+      $output .= " --method $1";
+   }
+}
+
+say $output;
+
+=head1 SYNOPSIS
+
+Run this and paste in your TCM failure output:
+
+ perl tcm-rerunner.pl
+ # # ###################################################################
+ # #                                                                   #
+ # # TestsFor::StarterView::Controller::Dirps failed. Failing methods: #
+ # #     test_logged_in_user_functions                                 #
+ # #                                                                   #
+ # # TestsFor::StarterView::Controller::Job failed. Failing methods:   #
+ # #     test_closed_job                                               #
+ # #     test_get_web_ai_jobs                                          #
+ # #     test_international_job                                        #
+ # #     test_meta_fields_and_title_for_closed_job                     #
+ # #                                                                   #
+ # # TestsFor::StarterView::Controller::Quiz failed. Failing methods:  #
+ # #     test_contact_info                                             #
+ # #     test_post_job_acls                                            #
+ # #                                                                   #
+ # # ###################################################################
+ ^D
+
+And you'll get a command to rerun the failed tests:
+
+ perl app/t/tcm.t :: StarterView::Controller::Dirps --method test_logged_in_user_functions StarterView::Controller::Job --method test_closed_job --method test_get_web_ai_jobs --method test_international_job --method test_meta_fields_and_title_for_closed_job StarterView::Controller::Quiz --method test_contact_info --method test_post_job_acls
+
