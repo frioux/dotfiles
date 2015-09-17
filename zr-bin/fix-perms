@@ -1,0 +1,23 @@
+#!/bin/dash
+
+_execroot \
+   $WWW \
+   chgrp -R \
+   zr \
+   $(_execroot $WWW perl -e'print join q( ), glob(q(/tmp/TT*_cache-0))') \
+   /var/starterview/app/view/static/assembled \
+   /home/frew/profiling \
+   /vol/log/www \
+   /vol/log/apache2/zr-perl  \
+   /home/frew/log
+
+_execroot \
+   $WWW \
+   chmod -R \
+   g+w \
+   $(_execroot $WWW perl -e'print join q( ), glob(q(/tmp/TT*_cache-0))') \
+   /var/starterview/app/view/static/assembled \
+   /home/frew/profiling \
+   /vol/log/www \
+   /vol/log/apache2/zr-perl \
+   /home/frew/log
