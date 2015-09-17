@@ -1,10 +1,3 @@
 # see /usr/share/X11/locale/en_US.UTF-8/Compose
 include "%L"
-include "/home/frew/code/dotfiles/pointless-xcompose/arrows.xcompose"
-include "/home/frew/code/dotfiles/pointless-xcompose/bullets.xcompose"
-include "/home/frew/code/dotfiles/pointless-xcompose/dingbats.xcompose"
-include "/home/frew/code/dotfiles/pointless-xcompose/enclosed.xcompose"
-include "/home/frew/code/dotfiles/pointless-xcompose/fractions.xcompose"
-include "/home/frew/code/dotfiles/pointless-xcompose/math.xcompose"
-include "/home/frew/code/dotfiles/pointless-xcompose/typographic.xcompose"
-
+include "/home/frew/code/dotfiles/pointless-xcompose/xcompose"
