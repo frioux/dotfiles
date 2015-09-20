@@ -151,3 +151,6 @@
 [submodule "vim/bundle/obsession"]
 	path = vim/bundle/obsession
 	url = git://github.com/tpope/vim-obsession
+[submodule "vim/bundle/racket"]
+	path = vim/bundle/racket
+	url = git://github.com/wlangstroth/vim-racket
