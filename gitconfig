@@ -89,3 +89,5 @@
 
 [include]
    path = ~/.git-smtp-password
+[rebase]
+	autostash = true
