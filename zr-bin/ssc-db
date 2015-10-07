@@ -1,0 +1,9 @@
+#!/bin/dash
+
+db-d \
+   sudo \
+   perl bin/sa/sync-server-config \
+   "--define=uid_overlay={frew,$(id -u)}" \
+   "$@"
+
+exec copy-database

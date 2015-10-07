@@ -1,0 +1,8 @@
+#!/bin/dash
+
+# still not quite sure why I need the `_`
+exec execdb \
+   env TERM=linux \
+      PAGER='less -M' \
+   bash -c \
+   'cd /var/starterview; export PATH=$PATH:/var/starterview/bin; "$@"' _ "$@"

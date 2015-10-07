@@ -1,0 +1,16 @@
+#!/usr/bin/env perl
+
+use 5.22.0;
+use warnings;
+use String::ShellQuote 'shell_quote';
+
+exec qw( ssh -tq ), $ENV{DB},
+   'bash', '-c', shell_quote(
+      (join '', map qq($_; ),
+         'cd /var/starterview',
+         'export PATH="$PATH:/var/starterview/bin"',
+         'export TERM=linux',
+         'export PAGER=less',
+         "export LESS=$ENV{LESS}",
+      ) . shell_quote(@ARGV)
+   )

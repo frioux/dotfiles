@@ -1,0 +1,6 @@
+#!/bin/dash
+
+ssh -o UserKnownHostsFile=/dev/null \
+    -o ForwardAgent=yes             \
+    -o StrictHostKeyChecking=no     \
+    -t frew@$DB /var/starterview/bin/copy-database
