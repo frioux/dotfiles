@@ -97,11 +97,9 @@ Also set up Firefox Sync
 
 # How to set up offline two-factor auth with a u2f
 
-    git clone gh:yubico/pam-u2f
-    autoreconf -i
-    ./configure
-    make check
-    sudo make install
+    sudo apt-add-repo ppa:yubico/stable
+    sudo apt-get update
+    sudo apt-get install yubico-pam
     mkdir -p ~/.config/Yubico
     pamu2fcfg -ufrew > ~/.config/Yubico/u2f_keys
 

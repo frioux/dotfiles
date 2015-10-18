@@ -21,8 +21,6 @@ apt-get --no-install-recommends install \
    libtalloc-dev                        \
    libtokyocabinet-dev                  \
    libtool                              \
-   libu2f-host-dev                      \
-   libu2f-server-dev                    \
    libxapian-dev                        \
    lua-filesystem                       \
    lynx                                 \
@@ -32,7 +30,5 @@ apt-get --no-install-recommends install \
    notmuch-mutt                         \
    openvpn                              \
    python-gpgme                         \
-   u2f-host                             \
-   u2f-server                           \
    xmlto                                \
    xsltproc
