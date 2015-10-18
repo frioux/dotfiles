@@ -87,6 +87,8 @@ Also set up Firefox Sync
    - gitmo
    - catagits
    - p5sagit
+   - ZR
+   - agm
 
 # GPG Keyring
 
