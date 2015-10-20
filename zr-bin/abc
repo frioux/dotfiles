@@ -1,0 +1,20 @@
+#!/usr/bin/env perl
+
+use 5.14.0;
+use warnings;
+
+my $script = pop @ARGV;
+my (@modules) = @ARGV;
+
+my $alias = 'A';
+for (@modules) {
+   say "$_ → $alias";
+   $_ = "-Maliased=$_,$alias";
+   $alias++;
+}
+
+exec 'run-d',
+   'perl',
+      '-MStarterView::Bootstrap',
+      @modules,
+      "-E$script"
