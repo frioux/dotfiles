@@ -3,7 +3,7 @@
 use 5.14.0;
 use warnings;
 
-die "Usage: $0 Foo::Bar 'A->new'\n" unless @ARGV >= 2;
+die "Usage: $0 Foo::Bar 'A->new'\n" unless @ARGV >= 1;
 
 my $debug = 1;
 
@@ -12,7 +12,7 @@ unless ($ARGV[0]) {
    shift @ARGV;
 }
 my $script = pop @ARGV;
-my (@modules) = @ARGV;
+my (@modules) = (@ARGV, 'Devel::Dwarn', 'IO::All');
 
 my $alias = 'A';
 for (@modules) {
