@@ -2,6 +2,6 @@
 
 TARGET=$1
 
-eval $(systemctl show docker -p MainPID)
+eval "$(systemctl show docker -p MainPID)"
 
 ps -ww -eo pid,ppid,cgroup | grep $(docker inspect --format '{{.Id}}' $TARGET) | grep $MainPID | cut -d' ' -f1
