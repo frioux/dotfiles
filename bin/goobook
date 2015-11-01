@@ -1,0 +1,9 @@
+#!/bin/dash
+
+exec docker run -it --rm                            \
+  --volume ~/.goobook_auth.json:/.goobook_auth.json \
+  --volume ~/.goobook_cache:/.goobook_cache         \
+  --user $(id -u)                                   \
+  frew/goobook                                      \
+  "$@"
+
