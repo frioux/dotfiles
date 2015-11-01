@@ -22,6 +22,10 @@ link-file install.sh .git/hooks/post-merge
 link-file xsession ~/.xinitrc
 link-file gpg.conf ~/.gnupg/gpg.conf
 link-file ww-roller.pl/ww_roll.pl ~/bin/ww-roll.pl
+link-file crontab.d/hourly/notmuch ~/.crontab.d/hourly/notmuch
+link-file bin/sync-addresses ~/.crontab.d/hourly/sync-addresses
+
+crontab crontab
 
 # literal dotfiles
 for x in           \
