@@ -99,15 +99,15 @@ Also set up Firefox Sync
 
     sudo apt-add-repository ppa:yubico/stable
     sudo apt-get update
-    sudo apt-get install pam-u2f pamu2fcfg
-    mkdir -p ~/.yubico
-    pamu2fcfg -ufrew > ~/.yubico/u2f_keys
+    sudo apt-get install libpam-u2f pamu2fcfg
+    sudo bash -c "pamu2fcfg -ufrew > /etc/u2f_mappings"
 
 Finally, put the following line at the top of __/etc/pam.d/common-auth__:
 
-    auth requisite pam_u2f.so cue
+    auth requisite pam_u2f.so authfile=/etc/u2f_mappings cue
 
-[More details here.](https://developers.yubico.com/pam-u2f/)
+[More details here](https://developers.yubico.com/pam-u2f/)
+[and here.](https://launchpad.net/~yubico/+archive/ubuntu/stable/+packages)
 
 # Bootstrap syncthing
 
