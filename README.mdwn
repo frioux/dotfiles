@@ -66,6 +66,26 @@ And __.git-smtp-password__:
    smtpPass = $foo
 ```
 
+And __/etc/ssmtp/ssmtp.conf__:
+
+```
+root=frioux@gmail.com
+mailhub=smtp.gmail.com:587
+rewriteDomain=gmail.com
+hostname=localhost
+UseTLS=Yes
+UseSTARTTLS=Yes
+AuthUser=frioux
+AuthPass=$foo
+FromLineOverride=yes
+```
+
+And edit __/etc/ssmtp/revaliases__:
+
+```
+root:frioux@gmail.com:smtp.gmail.com:587
+```
+
 Put pause credentials in __.pause__:
 
     user FREW

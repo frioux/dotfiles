@@ -26,6 +26,7 @@ apt-get --no-install-recommends install \
    lynx                                 \
    mitmproxy                            \
    msmtp                                \
+   ssmtp                                \
    notmuch                              \
    notmuch-mutt                         \
    openvpn                              \
