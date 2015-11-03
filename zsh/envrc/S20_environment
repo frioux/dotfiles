@@ -1,32 +1,5 @@
-MANPATH=
-export MANPATH="/opt/share/man:$HOME/code/dotfiles/git-hub/man:$(manpath)"
-export LD_LIBRARY_PATH="/opt/lib"
-export GOPATH="$HOME/go"
-export PATH="$HOME/bin:$HOME/code/dotfiles/bin:$HOME/code/dotfiles/git-hub/lib:$HOME/Sync/bin:$HOME/Dropbox/bin:$HOME/Dropbox/node/bin:/opt/bin:$GOPATH/bin:$HOME/.rakudobrew/bin:$PATH"
+source ~/.env
 
 typeset -U path
-
-export CFLAGS=-I/opt/include
-export LDFLAGS=-L/opt/lib
-export EDITOR="vim"
-export LESS="-MFRX"
-export PAGER="less"
-export DBIC_TRACE_PROFILE=~/.dbic.json
-export GPGKEY=737A7582
-if [[ "$TERM" == xterm ]]; then
-   export TERM=xterm-256color
-fi
-export SVDIR=~/services
-
-# Oracle--
-export ORACLE_HOME=$HOME/Dropbox/instantclient_12_1
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$ORACLE_HOME
-export TNS_ADMIN=$HOME/Dropbox
-
-export STARTERVIEW=$HOME/code/ziprecruiter
-
-export TMPDIR=/run/shm
-
-export TZ='America/Los_Angeles'
 
 # vim: ft=zsh
