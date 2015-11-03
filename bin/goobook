@@ -1,6 +1,6 @@
 #!/bin/dash
 
-exec docker run -it --rm                            \
+exec docker run -i --rm                             \
   --volume ~/.goobook_auth.json:/.goobook_auth.json \
   --volume ~/.goobook_cache:/.goobook_cache         \
   --user $(id -u)                                   \

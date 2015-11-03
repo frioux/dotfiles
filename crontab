@@ -1,1 +1,1 @@
-3 * * * * run-parts /home/frew/.crontab.d/hourly
+3 * * * * . "$HOME/.env" && run-parts "$HOME/.crontab.d/hourly"
