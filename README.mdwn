@@ -75,7 +75,7 @@ rewriteDomain=gmail.com
 hostname=localhost
 UseTLS=Yes
 UseSTARTTLS=Yes
-AuthUser=frioux
+AuthUser=frioux@gmail.com
 AuthPass=$foo
 FromLineOverride=yes
 ```
