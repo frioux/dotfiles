@@ -1,6 +1,11 @@
 #!/bin/dash
 
-exec docker run -i --rm                             \
+ARGS=""
+if [ -t 1 ]; then
+  ARGS="t"
+fi
+
+exec docker run "-i$ARGS" --rm                      \
   --volume ~/.goobook_auth.json:/.goobook_auth.json \
   --volume ~/.goobook_cache:/.goobook_cache         \
   --user $(id -u)                                   \
