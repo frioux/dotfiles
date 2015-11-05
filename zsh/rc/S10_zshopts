@@ -1,0 +1,9 @@
+REPORTTIME=1
+TIMEFMT="\
+
+%J %*Us user %*Ss system %P cpu %*E total
+%W swapped %Xk shared %Dk unshared %Kk total %Mk max
+%F/%R faults %I/%O i/o %s/%r tx/rx %k signals %w/%c context switches
+"
+
+# vim: ft=zsh foldmethod=marker
