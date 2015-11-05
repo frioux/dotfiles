@@ -13,6 +13,7 @@ apt-get --no-install-recommends install \
    inotify-tools                        \
    libcurl4-openssl-dev                 \
    libdir-self-perl                     \
+   libemail-address-perl                \
    libgmime-2.6-dev                     \
    libgpgme11-dev                       \
    libncursesw5-dev                     \
