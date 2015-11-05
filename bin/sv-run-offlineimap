@@ -3,7 +3,8 @@
 docker stop offlineimap
 docker rm offlineimap
 docker pull frew/offlineimap
-docker run -d --name offlineimap          \
+docker run --name offlineimap             \
+   --user 1000                            \
    -v             ~/.netrc:/opt/etc/netrc \
    -v           ~/var/mail:/opt/var/mail  \
    -v   ~/.offlineimap/log:/opt/log       \
