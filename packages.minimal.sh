@@ -1,6 +1,7 @@
 #!/bin/dash
 
 apt-get --no-install-recommends install \
+        -y                              \
    aptitude                             \
    curl                                 \
    daemontools                          \

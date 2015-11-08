@@ -5,6 +5,7 @@
 ./packages.perf.sh
 
 apt-get --no-install-recommends install \
+        -y                              \
    asciidoc                             \
    autoconf                             \
    automake                             \
