@@ -201,7 +201,9 @@ end
 volumecfg.widget:buttons(awful.util.table.join(
        awful.button({ }, 4, function () volumecfg.up() end),
        awful.button({ }, 5, function () volumecfg.down() end),
-       awful.button({ }, 1, function () volumecfg.toggle() end)
+       awful.button({ }, 1, function () volumecfg.toggle() end),
+       awful.button({ }, 3, function () awful.util.spawn("terminator -e alsamixer") end),
+       awful.button({ }, 2, function () awful.util.spawn("pavucontrol") end)
 ))
 volumecfg.update()
 -- }}}
@@ -241,7 +243,9 @@ cpuwidget:set_width(50)
 cpuwidget:set_background_color("#000000")
 cpuwidget:set_color("#4E9A06")
 cpuwidget:buttons(awful.util.table.join(
-   awful.button({}, 1, function () awful.util.spawn("terminator -e glances") end)
+   awful.button({}, 1, function () awful.util.spawn("terminator -e glances") end),
+   awful.button({}, 3, function () awful.util.spawn("terminator -e top") end),
+   awful.button({}, 2, function () awful.util.spawn("gnome-system-monitor") end)
 ))
 cpuwidget_t = awful.tooltip({ objects = { cpuwidget },})
 
@@ -269,6 +273,10 @@ if has_thermal then
        tempwidget_t:set_text("Temperature: " .. args[1] .. "°C")
        return args[1]
    end, 1, 'thermal_zone0')
+   tempwidget:buttons(awful.util.table.join(
+      awful.button({ }, 1, function () awful.util.spawn("gnome-power-statistics") end),
+      awful.button({ }, 3, function () awful.util.spawn("gksudo 'terminator -e powertop'") end)
+   ))
 end
 -- }}}
 
@@ -278,7 +286,9 @@ memorywidget:set_width(50)
 memorywidget:set_background_color("#000000")
 memorywidget:set_color("#3465A4")
 memorywidget:buttons(awful.util.table.join(
-   awful.button({}, 1, function () awful.util.spawn("terminator -e glances") end)
+   awful.button({}, 1, function () awful.util.spawn("terminator -e glances") end),
+   awful.button({}, 3, function () awful.util.spawn("terminator -e top") end),
+   awful.button({}, 2, function () awful.util.spawn("gnome-system-monitor") end)
 ))
 
 memorywidget_t = awful.tooltip({ objects = { memorywidget },})

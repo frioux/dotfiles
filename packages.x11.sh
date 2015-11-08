@@ -7,6 +7,7 @@ apt-get --no-install-recommends install \
    firefox                              \
    gnome-system-monitor                 \
    gnome-power-manager                  \
+   gksu                                 \
    gtk2-engines                         \
    gxmessage                            \
    keepassx                             \
