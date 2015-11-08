@@ -5,10 +5,12 @@ apt-get --no-install-recommends install \
    awesome                              \
    awesome-extra                        \
    firefox                              \
+   gnome-system-monitor                 \
    gnome-power-manager                  \
    gtk2-engines                         \
    gxmessage                            \
    keepassx                             \
+   pavucontrol                          \
    pcmanfm                              \
    rdesktop                             \
    suckless-tools                       \
