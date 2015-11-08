@@ -1,14 +1,16 @@
 -- Standard awesome library
-require("awful")
+local awful = require("awful")
 require("awful.autofocus")
-require("awful.rules")
-require("sharetags")
-require("utils")
+awful.rules = require("awful.rules")
+local wibox = require("wibox")
+local sharetags = require("sharetags")
+local sharetags_taglist = require("sharetags.taglist")
+local utils = require("utils")
 local cal = utils.cal
 -- Theme handling library
-require("beautiful")
+local beautiful = require("beautiful")
 -- Notification library
-require("naughty")
+local naughty = require("naughty")
 local vicious = require("vicious")
 
 warn = function(str)
@@ -32,7 +34,7 @@ end
 -- Handle runtime errors after startup
 do
     local in_error = false
-    awesome.add_signal("debug::error", function (err)
+    awesome.connect_signal("debug::error", function (err)
         -- Make sure we don't go into an endless error loop
         if in_error then return end
         in_error = true
@@ -64,7 +66,7 @@ editor_cmd = terminal .. " -e " .. editor
 modkey = "Mod4"
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
-layouts =
+local layouts =
 {
     awful.layout.suit.tile,
     awful.layout.suit.tile.left,
@@ -92,6 +94,18 @@ tags = sharetags.create_tags({
 -- }}}
 
 -- {{{ helpers
+function margin(widget, margins)
+  local margin = wibox.layout.margin()
+  if margins.right then
+    margin:set_right(margins.right)
+  end
+  if margins.left then
+    margin:set_left(margins.left)
+  end
+  margin:set_widget(widget)
+  return wibox.widget.background(margin)
+end
+
 function exists(filename)
   local file = io.open(filename)
   if file then
@@ -104,13 +118,20 @@ end
 
 local has_battery = exists('/home/frew/.config/laptop/battery')
 local has_thermal = exists('/home/frew/.config/laptop/temperature')
+local alsa_card = 0
+
+if exists('/home/frew/.config/alsa_card') then
+  for line in io.lines('/home/frew/.config/alsa_card') do
+    alsa_card = line
+  end
+end
 
 weather_widget = function(
    code,
    url,
    name
 )
-   local actual_widget = widget({ type = "textbox" })
+   local actual_widget = wibox.widget.textbox()
    local actual_tooltip = awful.tooltip({ objects = { actual_widget } });
 
    actual_widget:buttons(awful.util.table.join(
@@ -137,7 +158,7 @@ end
 -- {{{ Volume widget
 
 volumecfg = {}
-volumecfg.cardid  = 0
+volumecfg.cardid  = alsa_card
 volumecfg.channel = "Master"
 volumecfg.widget = awful.widget.progressbar()
 volumecfg.widget:set_max_value(100)
@@ -177,7 +198,7 @@ end
 volumecfg.toggle = function ()
        volumecfg.mixercommand(" sset " .. volumecfg.channel .. " toggle")
 end
-volumecfg.widget.widget:buttons(awful.util.table.join(
+volumecfg.widget:buttons(awful.util.table.join(
        awful.button({ }, 4, function () volumecfg.up() end),
        awful.button({ }, 5, function () volumecfg.down() end),
        awful.button({ }, 1, function () volumecfg.toggle() end)
@@ -191,13 +212,12 @@ if has_battery then
    batwidget:set_width(8)
    batwidget:set_vertical(true)
    batwidget:set_background_color("#494B4F")
-   batwidget:set_color("#000000")
-   batwidget:set_gradient_colors({ "#CC0000", "#CC0000" })
-   batwidget.widget:buttons(awful.util.table.join(
+   batwidget:set_color("#CC0000")
+   batwidget:buttons(awful.util.table.join(
       awful.button({}, 1, function () awful.util.spawn("gnome-power-statistics") end)
    ))
 
-   batwidget_t = awful.tooltip({ objects = { batwidget.widget },})
+   batwidget_t = awful.tooltip({ objects = { batwidget },})
    vicious.register(batwidget, vicious.widgets.bat, function (widget, args)
        batwidget_t:set_text(
          "BAT0: " .. args[1] .. " (" .. args[2] .. ") " .. args[3] .. " left"
@@ -208,22 +228,22 @@ end
 -- }}}
 
 -- {{{ clock
-mytextclock = widget({ type = "textbox" })
+mytextclock = wibox.widget.textbox()
 vicious.register(mytextclock, vicious.widgets.date, "%a %b %e, %I:%M %P", 1)
 cal.register(mytextclock, "<span color='lime'><u>%s</u></span>")
 
-awful.widget.layout.margins[mytextclock] = { right = 5, left = 5 };
+mytextclock = margin(mytextclock, { left = 5, right = 5 })
 --}}}
 
 -- {{{ cpu
 cpuwidget = awful.widget.graph({ align = "right" })
 cpuwidget:set_width(50)
 cpuwidget:set_background_color("#000000")
-cpuwidget:set_gradient_colors({ "#4E9A06", "#4E9A06" })
-cpuwidget.widget:buttons(awful.util.table.join(
+cpuwidget:set_color("#4E9A06")
+cpuwidget:buttons(awful.util.table.join(
    awful.button({}, 1, function () awful.util.spawn("terminator -e glances") end)
 ))
-cpuwidget_t = awful.tooltip({ objects = { cpuwidget.widget },})
+cpuwidget_t = awful.tooltip({ objects = { cpuwidget },})
 
 vicious.register(cpuwidget, vicious.widgets.cpu,
   function (widget, args)
@@ -241,9 +261,9 @@ if has_thermal then
    tempwidget = awful.widget.graph({ align = "right" })
    tempwidget:set_width(50)
    tempwidget:set_background_color("#000000")
-   tempwidget:set_gradient_colors({ "#C4A000", "#C4A000" })
+   tempwidget:set_color("#C4A000")
 
-   tempwidget_t = awful.tooltip({ objects = { tempwidget.widget },})
+   tempwidget_t = awful.tooltip({ objects = { tempwidget },})
    vicious.register(tempwidget, vicious.widgets.thermal,
      function (widget, args)
        tempwidget_t:set_text("Temperature: " .. args[1] .. "°C")
@@ -256,12 +276,12 @@ end
 memorywidget = awful.widget.graph({ align = "right" })
 memorywidget:set_width(50)
 memorywidget:set_background_color("#000000")
-memorywidget:set_gradient_colors({ "#3465A4", "#3465A4" })
-memorywidget.widget:buttons(awful.util.table.join(
+memorywidget:set_color("#3465A4")
+memorywidget:buttons(awful.util.table.join(
    awful.button({}, 1, function () awful.util.spawn("terminator -e glances") end)
 ))
 
-memorywidget_t = awful.tooltip({ objects = { memorywidget.widget },})
+memorywidget_t = awful.tooltip({ objects = { memorywidget },})
 vicious.register(memorywidget, vicious.widgets.mem,
   function (widget, args)
     memorywidget_t:set_text(" RAM: " .. args[2] .. "MB / " .. args[3] .. "MB ")
@@ -274,18 +294,18 @@ osweatherwidget = weather_widget(
    "KBIX", "http://forecast.io/#/f/30.4163,-88.8081/", "OS"
 )
 
-awful.widget.layout.margins[osweatherwidget] = { right = 5 };
+osweatherwidget = margin(osweatherwidget, { right = 5 })
 
 smweatherwidget = weather_widget(
    "KSMO", "https://forecast.io/#/f/34.0189,-118.4962", "Santa Monica"
 )
 
-awful.widget.layout.margins[smweatherwidget] = { right = 5, left = 5 };
+smweatherwidget = margin(smweatherwidget, { left = 5, right = 5 })
 
 -- }}}
 
 -- {{{ Create a systray
-mysystray = widget({ type = "systray" })
+mysystray = wibox.widget.systray()
 --}}}
 
 -- }}}
@@ -325,7 +345,7 @@ mytaglist.buttons = awful.util.table.join(
 
 for s = 1, screen.count() do
     -- Create a promptbox for each screen
-    mypromptbox[s] = awful.widget.prompt({ layout = awful.widget.layout.horizontal.leftright })
+    mypromptbox[s] = awful.widget.prompt()
     -- Create an imagebox widget which will contains an icon indicating which layout we're using.
     -- We need one layoutbox per screen.
     mylayoutbox[s] = awful.widget.layoutbox(s)
@@ -335,31 +355,36 @@ for s = 1, screen.count() do
                            awful.button({ }, 4, function () awful.layout.inc(layouts, 1) end),
                            awful.button({ }, 5, function () awful.layout.inc(layouts, -1) end)))
     -- Create a taglist widget
-    mytaglist[s] = sharetags.taglist(s, awful.widget.taglist.label.all, mytaglist.buttons)
+    mytaglist[s] = sharetags_taglist(tags, s, awful.widget.taglist.filter.all, mytaglist.buttons)
 
 
     -- Create the wibox
     mywibox[s] = awful.wibox({ position = "top", screen = s })
-    -- Add widgets to the wibox - order matters
-    mywibox[s].widgets = {
-        {
-            mytaglist[s],
-            mypromptbox[s],
-            layout = awful.widget.layout.horizontal.leftright
-        },
-        mylayoutbox[s],
-        mytextclock,
-        cpuwidget.widget,
-        memorywidget.widget,
-        osweatherwidget,
-        smweatherwidget,
-        has_battery and batwidget.widget or nil,
-        has_thermal and tempwidget.widget or nil,
-        volumecfg.widget.widget,
-        s == 1 and mysystray or nil,
-        mytasklist[s],
-        layout = awful.widget.layout.horizontal.rightleft
-    }
+
+    -- Widgets that are aligned to the left
+    local left_layout = wibox.layout.fixed.horizontal()
+    left_layout:add(mytaglist[s])
+    left_layout:add(mypromptbox[s])
+
+    -- Widgets that are aligned to the right
+    local right_layout = wibox.layout.fixed.horizontal()
+    if s == 1 then right_layout:add(mysystray) end
+    if has_thermal then right_layout:add(tempwidget) end
+    if has_battery then right_layout:add(batwidget) end
+    right_layout:add(memorywidget)
+    right_layout:add(cpuwidget)
+    right_layout:add(smweatherwidget)
+    right_layout:add(osweatherwidget)
+    right_layout:add(volumecfg.widget)
+    right_layout:add(mytextclock)
+    right_layout:add(mylayoutbox[s])
+
+    local layout = wibox.layout.align.horizontal()
+    layout:set_left(left_layout)
+    layout:set_middle(nil)
+    layout:set_right(right_layout)
+
+    mywibox[s]:set_widget(layout)
 end
 -- }}}
 
@@ -542,12 +567,12 @@ awful.rules.rules = {
 
 -- {{{ Signals
 -- Signal function to execute when a new client appears.
-client.add_signal("manage", function (c, startup)
+client.connect_signal("manage", function (c, startup)
     -- Add a titlebar
     -- awful.titlebar.add(c, { modkey = modkey })
 
     -- Enable sloppy focus
-    c:add_signal("mouse::enter", function(c)
+    c:connect_signal("mouse::enter", function(c)
         if awful.layout.get(c.screen) ~= awful.layout.suit.magnifier
             and awful.client.focus.filter(c) then
             client.focus = c
@@ -567,8 +592,8 @@ client.add_signal("manage", function (c, startup)
     end
 end)
 
-client.add_signal("focus", function(c) c.border_color = beautiful.border_focus end)
-client.add_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
+client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
+client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
 
 -- Handle client's borders
@@ -635,23 +660,23 @@ function update_borders(c)
 end
 
 -- New tag selected, number of visible clients could change
-awful.tag.attached_add_signal(nil, "property::selected", update_borders)
+awful.tag.attached_connect_signal(nil, "property::selected", update_borders)
 
 -- New layout selected, could be "max" layout
-awful.tag.attached_add_signal(nil, "property::layout", update_borders)
+awful.tag.attached_connect_signal(nil, "property::layout", update_borders)
 
-capi.client.add_signal("new", function(c)
+capi.client.connect_signal("new", function(c)
    -- Client tagged / untagged, number of visible clients could change
-   c:add_signal("tagged", update_borders)
-   c:add_signal("untagged", update_borders)
+   c:connect_signal("tagged", update_borders)
+   c:connect_signal("untagged", update_borders)
 
    -- Floating windows get a special border, so have to update
-   c:add_signal("property::floating", update_borders)
+   c:connect_signal("property::floating", update_borders)
 end)
 
 -- {{{1 Border color
 
-capi.client.add_signal("manage", function(c)
+capi.client.connect_signal("manage", function(c)
    -- The tagged signal handled the border width, just need to handle color
    -- Some other manage signal could have messed with the border already!
    if capi.client.focus == c then
@@ -661,11 +686,11 @@ capi.client.add_signal("manage", function(c)
    end
 end)
 
-capi.client.add_signal("focus", function (c)
+capi.client.connect_signal("focus", function (c)
    c.border_color = beautiful.border_focus
 end)
 
-capi.client.add_signal("unfocus", function (c)
+capi.client.connect_signal("unfocus", function (c)
    c.border_color = beautiful.border_normal
 end)
 -- vim: foldmethod=marker

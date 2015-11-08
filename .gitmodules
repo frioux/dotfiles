@@ -154,3 +154,6 @@
 [submodule "vim/bundle/racket"]
 	path = vim/bundle/racket
 	url = git://github.com/wlangstroth/vim-racket
+[submodule "awesome/sharetags"]
+	path = awesome/sharetags
+	url = git://github.com/XLegion/sharetags
