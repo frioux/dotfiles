@@ -168,9 +168,8 @@ volumecfg.widget:set_vertical(true)
 
 volumecfg_t = awful.tooltip({ objects = { volumecfg.widget.widget },})
 
--- command must start with a space!
 volumecfg.mixercommand = function (command)
-       local fd = io.popen("amixer -c " .. volumecfg.cardid .. command)
+       local fd = io.popen("amixer -c " .. volumecfg.cardid .. " " .. command)
        local status = fd:read("*all")
        fd:close()
 
@@ -187,16 +186,16 @@ volumecfg.mixercommand = function (command)
        end
 end
 volumecfg.update = function ()
-       volumecfg.mixercommand(" sget " .. volumecfg.channel)
+       volumecfg.mixercommand("sget " .. volumecfg.channel)
 end
 volumecfg.up = function ()
-       volumecfg.mixercommand(" sset " .. volumecfg.channel .. " 1%+")
+       volumecfg.mixercommand("sset " .. volumecfg.channel .. " 1%+")
 end
 volumecfg.down = function ()
-       volumecfg.mixercommand(" sset " .. volumecfg.channel .. " 1%-")
+       volumecfg.mixercommand("sset " .. volumecfg.channel .. " 1%-")
 end
 volumecfg.toggle = function ()
-       volumecfg.mixercommand(" sset " .. volumecfg.channel .. " toggle")
+       volumecfg.mixercommand("sset " .. volumecfg.channel .. " toggle")
 end
 volumecfg.widget:buttons(awful.util.table.join(
        awful.button({ }, 4, function () volumecfg.up() end),
