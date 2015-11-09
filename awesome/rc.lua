@@ -394,6 +394,12 @@ for s = 1, screen.count() do
     layout:set_middle(nil)
     layout:set_right(right_layout)
 
+    mywibox[s]:buttons(awful.util.table.join(
+       awful.button({ }, 4, function () volumecfg.up() end),
+       awful.button({ }, 5, function () volumecfg.down() end),
+       awful.button({ }, 1, function () volumecfg.toggle() end)
+    ))
+
     mywibox[s]:set_widget(layout)
 end
 -- }}}
