@@ -87,6 +87,9 @@
     smtpUser = frioux@gmail.com
     smtpServerPort = 587
 
+[log]
+    date = iso8601
+
 [include]
    path = ~/.git-smtp-password
 [rebase]
