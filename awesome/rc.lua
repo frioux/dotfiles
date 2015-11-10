@@ -168,8 +168,13 @@ volumecfg.widget:set_vertical(true)
 
 volumecfg_t = awful.tooltip({ objects = { volumecfg.widget.widget },})
 
-volumecfg.mixercommand = function (command)
-       local fd = io.popen("amixer -c " .. volumecfg.cardid .. " " .. command)
+volumecfg.mixercommand = function (command, raw)
+       local fd
+       if raw then
+         fd = io.popen(command)
+       else
+         fd = io.popen("amixer -c " .. volumecfg.cardid .. " " .. command)
+       end
        local status = fd:read("*all")
        fd:close()
 
@@ -195,7 +200,7 @@ volumecfg.down = function ()
        volumecfg.mixercommand("sset " .. volumecfg.channel .. " 1%-")
 end
 volumecfg.toggle = function ()
-       volumecfg.mixercommand("sset " .. volumecfg.channel .. " toggle")
+       volumecfg.mixercommand("amixer -D pulse set Master toggle", true)
 end
 volumecfg.widget:buttons(awful.util.table.join(
        awful.button({ }, 4, function () volumecfg.up() end),
