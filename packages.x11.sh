@@ -25,4 +25,4 @@ apt-get --no-install-recommends install \
    xdotool                              \
    xfonts-terminus                      \
    xfonts-terminus-oblique              \
-   xscreensaver
+   gnome-screensaver
