@@ -417,7 +417,7 @@ root.buttons(awful.util.table.join(
 
 -- {{{ Key bindings
 globalkeys = awful.util.table.join(
-    awful.key({ }, "XF86ScreenSaver", function () awful.util.spawn("gnome-screensaver-command -l") end),
+    awful.key({ }, "XF86ScreenSaver", function () awful.util.spawn("xautolock -locknow") end),
     awful.key({ }, "XF86AudioRaiseVolume", function () volumecfg.up() end),
     awful.key({ }, "XF86AudioLowerVolume", function () volumecfg.down() end),
     awful.key({ }, "XF86AudioMute", function () volumecfg.toggle() end),
@@ -476,7 +476,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "space", function () awful.layout.inc(layouts,  1) end),
     awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(layouts, -1) end),
 
-    awful.key({ modkey, "Shift"   }, "x",     function () awful.util.spawn('gnome-screensaver-command -l') end),
+    awful.key({ modkey, "Shift"   }, "x",     function () awful.util.spawn('xautolock -locknow') end),
 
     awful.key({ modkey },            "d",     function () awful.util.spawn('/home/frew/code/dotfiles/bin/showdm') end),
 

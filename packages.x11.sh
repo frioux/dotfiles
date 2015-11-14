@@ -10,6 +10,7 @@ apt-get --no-install-recommends install \
    gksu                                 \
    gtk2-engines                         \
    gxmessage                            \
+   i3lock                               \
    keepassx                             \
    pavucontrol                          \
    pcmanfm                              \
@@ -21,8 +22,8 @@ apt-get --no-install-recommends install \
    tk8.5                                \
    ttf-ancient-fonts                    \
    vim-gnome                            \
+   xautolock                            \
    xclip                                \
    xdotool                              \
    xfonts-terminus                      \
-   xfonts-terminus-oblique              \
-   gnome-screensaver
+   xfonts-terminus-oblique
