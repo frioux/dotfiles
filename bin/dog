@@ -1,0 +1,13 @@
+#!/bin/dash
+
+if [ -z "$1" ]; then
+  ls
+fi
+
+for x in "$@"; do
+   if [ -f $x ]; then
+     cat $x
+   else
+     ls $x
+   fi
+done
