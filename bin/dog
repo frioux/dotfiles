@@ -1,13 +1,13 @@
 #!/bin/dash
 
 if [ -z "$1" ]; then
-  ls
+  ls --color
 fi
 
 for x in "$@"; do
    if [ -f $x ]; then
      cat $x
    else
-     ls $x
+     ls $x --color
    fi
 done
