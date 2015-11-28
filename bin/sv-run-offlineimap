@@ -1,7 +1,6 @@
 #!/bin/dash
 
-docker stop offlineimap
-docker rm offlineimap
+docker rm -f offlineimap
 docker pull frew/offlineimap
 docker run --name offlineimap             \
    --user $(id -u) -d                     \
