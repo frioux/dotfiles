@@ -3,7 +3,6 @@ setopt AUTO_NAME_DIRS    # This will use named dirs when possible
 setopt AUTO_PUSHD        # This makes cd=pushd
 setopt EXTENDED_GLOB     # I don't know why I never set this before.
 setopt GLOB_COMPLETE     # If we have a glob this will expand it
-setopt IGNORE_EOF
 setopt NO_BEEP           # beeps are annoying
 setopt NO_CASE_GLOB      # Case insensitive globbing
 setopt NO_FLOW_CONTROL   # If I could disable Ctrl-s completely I would!
