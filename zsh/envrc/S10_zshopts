@@ -5,7 +5,6 @@ setopt EXTENDED_GLOB     # I don't know why I never set this before.
 setopt GLOB_COMPLETE     # If we have a glob this will expand it
 setopt NO_BEEP           # beeps are annoying
 setopt NO_CASE_GLOB      # Case insensitive globbing
-setopt NO_FLOW_CONTROL   # If I could disable Ctrl-s completely I would!
 setopt NO_HUP
 setopt NUMERIC_GLOB_SORT # Be Reasonable!
 setopt PUSHD_IGNORE_DUPS # this will ignore multiple directories for the stack
