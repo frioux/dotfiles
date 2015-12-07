@@ -1,0 +1,54 @@
+#!/usr/bin/env python3
+
+from imaplib import IMAP4_SSL
+from netrc import netrc
+from email import message_from_bytes
+from argparse import ArgumentParser
+
+parser = ArgumentParser(description='Check email')
+parser.add_argument('-n', '--count', dest='count', action='store',
+                   default=1, type=int,
+                   help='How many messages to show')
+
+parser.add_argument('--body', dest='content_type', action='store',
+                   help='Which (if any) body to show')
+
+parser.add_argument('--header', dest='header', action='store',
+                   default='subject',
+                   help='Which (if any) header to show')
+
+parser.add_argument('-i', '--id', dest='id', action='store',
+                   help='Which (if any) message to show')
+
+args = parser.parse_args()
+
+conn = IMAP4_SSL('imap.gmail.com')
+auth = netrc().hosts['imap.gmail.com']
+
+conn.login(auth[0], auth[2])
+conn.select()
+
+def handle_mail(num, message):
+    if args.content_type:
+        for part in email.walk():
+            if part.get_content_type() == args.content_type:
+                print(part.get_payload(decode=True).decode("utf-8"))
+    else:
+        print("%i: %s" % (int(num), email.get(args.header)))
+
+if args.id:
+    typ, data =conn.fetch(args.id, '(RFC822)')
+    email = message_from_bytes(data[0][1])
+    handle_mail(args.id, email)
+else:
+    typ, data = conn.search(None, 'ALL')
+    i = 0
+    for num in reversed(data[0].split()):
+        i += 1
+        typ, data =conn.fetch(num, '(RFC822)')
+        email = message_from_bytes(data[0][1])
+        handle_mail(num, email)
+        if i == args.count:
+            break
+conn.close()
+conn.logout()
