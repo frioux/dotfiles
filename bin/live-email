@@ -4,6 +4,8 @@ from imaplib import IMAP4_SSL
 from netrc import netrc
 from email import message_from_bytes
 from argparse import ArgumentParser
+from email.header import decode_header
+import re
 
 parser = ArgumentParser(description='Check email')
 parser.add_argument('-n', '--count', dest='count', action='store',
@@ -34,7 +36,10 @@ def handle_mail(num, message):
             if part.get_content_type() == args.content_type:
                 print(part.get_payload(decode=True).decode("utf-8"))
     else:
-        print("%i: %s" % (int(num), message.get(args.header)))
+        header = message.get(args.header)
+        decoded_header = decode_header(header)[0][0]
+        unfolded_header = re.sub('[\r\n]', '', decoded_header)
+        print("%i: %s" % (int(num), unfolded_header))
 
 if args.id:
     typ, data =conn.fetch(args.id, '(RFC822)')
