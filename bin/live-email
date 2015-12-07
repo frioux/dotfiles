@@ -30,11 +30,11 @@ conn.select()
 
 def handle_mail(num, message):
     if args.content_type:
-        for part in email.walk():
+        for part in message.walk():
             if part.get_content_type() == args.content_type:
                 print(part.get_payload(decode=True).decode("utf-8"))
     else:
-        print("%i: %s" % (int(num), email.get(args.header)))
+        print("%i: %s" % (int(num), message.get(args.header)))
 
 if args.id:
     typ, data =conn.fetch(args.id, '(RFC822)')
