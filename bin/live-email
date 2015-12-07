@@ -5,50 +5,87 @@ from netrc import netrc
 from email import message_from_bytes
 from argparse import ArgumentParser
 
-parser = ArgumentParser(description='Check email')
-parser.add_argument('-n', '--count', dest='count', action='store',
-                   default=1, type=int,
-                   help='How many messages to show')
+def main():
+    """
+    Main loop.
 
-parser.add_argument('--body', dest='content_type', action='store',
-                   help='Which (if any) body to show')
+    Parse args, open a connection and handle the email
+    """
 
-parser.add_argument('--header', dest='header', action='store',
-                   default='subject',
-                   help='Which (if any) header to show')
+    args = arg_parser().parse_args()
+    conn = open_connection()
 
-parser.add_argument('-i', '--id', dest='id', action='store',
-                   help='Which (if any) message to show')
+    def handle_mail(num, message):
+        if args.content_type:
+            for part in message.walk():
+                if part.get_content_type() == args.content_type:
+                    print(part.get_payload(decode=True).decode("utf-8"))
+        else:
+            print("%i: %s" % (int(num), message.get(args.header)))
 
-args = parser.parse_args()
 
-conn = IMAP4_SSL('imap.gmail.com')
-auth = netrc().hosts['imap.gmail.com']
-
-conn.login(auth[0], auth[2])
-conn.select()
-
-def handle_mail(num, message):
-    if args.content_type:
-        for part in message.walk():
-            if part.get_content_type() == args.content_type:
-                print(part.get_payload(decode=True).decode("utf-8"))
-    else:
-        print("%i: %s" % (int(num), message.get(args.header)))
-
-if args.id:
-    typ, data =conn.fetch(args.id, '(RFC822)')
-    email = message_from_bytes(data[0][1])
-    handle_mail(args.id, email)
-else:
-    typ, data = conn.search(None, 'ALL')
-    i = 0
-    for num in reversed(data[0].split()):
-        i += 1
-        typ, data =conn.fetch(num, '(RFC822)')
+    def fetch_by_id(id):
+        typ, data = conn.fetch(id, '(RFC822)')
         email = message_from_bytes(data[0][1])
-        handle_mail(num, email)
-        if i == args.count:
-            break
-conn.close()
-conn.logout()
+        handle_mail(id, email)
+
+    if args.id:
+        fetch_by_id(conn, args.id, args.content_type)
+    else:
+        typ, data = conn.search(None, 'ALL')
+        for num in reversed(data[0].split())[0:args.count]:
+            typ, data = conn.fetch(num, '(RFC822)')
+            email = message_from_bytes(data[0][1])
+            handle_mail(num, email)
+    conn.close()
+    conn.logout()
+
+def arg_parser(parser=ArgumentParser(description='Check email')):
+    """
+    Prep and return an ArgumentParser
+
+    Args:
+        parser (Optional[ArgumentParser]): The parser
+
+    Returns:
+        ArgumentParser
+
+    """
+
+    parser.add_argument('-n', '--count', dest='count', action='store',
+                       default=1, type=int,
+                       help='How many messages to show')
+
+    parser.add_argument('--body', dest='content_type', action='store',
+                       help='Which (if any) body to show')
+
+    parser.add_argument('--header', dest='header', action='store',
+                       default='subject',
+                       help='Which (if any) header to show')
+
+    parser.add_argument('-i', '--id', dest='id', action='store',
+                       help='Which (if any) message to show')
+    return parser
+
+def open_connection(imap_hostname='imap.gmail.com'):
+    """
+    Open a SSL connection to an imap host.
+
+    Authentication information is handled by `netrc`
+
+    Args:
+        imap_hostname (str): the host to connect to.  Defaults to
+        imap.gmail.com.
+
+    Returns:
+        conn (IMAP4_SSL): an authenticated and selected connection the imap host
+    """
+    conn = IMAP4_SSL(imap_hostname)
+    auth = netrc().hosts[imap_hostname]
+    conn.login(auth[0], auth[2])
+    conn.select()
+    return conn
+
+
+if __name__ == '__main__':
+    main()
