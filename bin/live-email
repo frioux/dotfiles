@@ -50,10 +50,11 @@ else:
     i = 0
     for num in reversed(data[0].split()):
         i += 1
-        typ, data =conn.fetch(num, '(RFC822)')
+        typ, data = conn.fetch(num, '(RFC822)')
         email = message_from_bytes(data[0][1])
         handle_mail(num, email)
         if i == args.count:
             break
+
 conn.close()
 conn.logout()
