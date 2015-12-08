@@ -48,13 +48,16 @@ if args.id:
 else:
     typ, data = conn.search(None, 'ALL')
     i = 0
-    for num in reversed(data[0].split()):
-        i += 1
-        typ, data = conn.fetch(num, '(BODY.PEEK[])')
-        email = message_from_bytes(data[0][1])
-        handle_mail(num, email)
-        if i == args.count:
-            break
+    first = int(data[0].split()[-1])
+    last = int(first) - args.count + 1
+    message_set = str(str(first) + ":" + str(last))
+    typ, data = conn.fetch(message_set, '(BODY.PEEK[])')
+    for m in reversed(data):
+        if len(m) != 2:
+            continue
+        num = m[0].split(b' ')[0]
+        email = message_from_bytes(m[1])
+        handle_mail(int(num), email)
 
 conn.close()
 conn.logout()
