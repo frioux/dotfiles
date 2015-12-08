@@ -26,6 +26,8 @@ if (@ARGV == 1) {
    print $fh shell_quote(@ARGV)
 }
 
+print $fh "\n";
+
 close $fh;
 
 chmod 0755, $script;
