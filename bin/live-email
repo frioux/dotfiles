@@ -34,11 +34,15 @@ def handle_mail(num, message):
     if args.content_type:
         for part in message.walk():
             if part.get_content_type() == args.content_type:
+                # why does this look like double decoding?
                 print(part.get_payload(decode=True).decode("utf-8"))
     else:
         header = message.get(args.header)
+        # this is stupid.
         decoded_header = str(make_header(decode_header(header)))
+        # this is stupid
         unfolded_header = re.sub('[\r\n]', '', decoded_header)
+        # why do I have to cast to int?  shouldn't %i do that?
         print("%i: %s" % (int(num), unfolded_header))
 
 if args.id:
@@ -47,12 +51,13 @@ if args.id:
     handle_mail(args.id, email)
 else:
     typ, data = conn.search(None, 'ALL')
-    i = 0
+    # wow, look at all this casting
     first = int(data[0].split()[-1])
     last = int(first) - args.count + 1
     message_set = str(str(first) + ":" + str(last))
     typ, data = conn.fetch(message_set, '(BODY.PEEK[])')
     for m in reversed(data):
+        # why is the last one not a tuple like the rest?  who knows.
         if len(m) != 2:
             continue
         num = m[0].split(b' ')[0]
