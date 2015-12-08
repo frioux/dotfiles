@@ -4,7 +4,7 @@ from imaplib import IMAP4_SSL
 from netrc import netrc
 from email import message_from_bytes
 from argparse import ArgumentParser
-from email.header import decode_header
+from email.header import decode_header, make_header
 import re
 
 parser = ArgumentParser(description='Check email')
@@ -37,7 +37,7 @@ def handle_mail(num, message):
                 print(part.get_payload(decode=True).decode("utf-8"))
     else:
         header = message.get(args.header)
-        decoded_header = decode_header(header)[0][0]
+        decoded_header = str(make_header(decode_header(header)))
         unfolded_header = re.sub('[\r\n]', '', decoded_header)
         print("%i: %s" % (int(num), unfolded_header))
 
