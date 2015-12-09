@@ -1,14 +1,7 @@
-#!/usr/bin/env perl
+#!/bin/dash
 
-use warnings;
-use strict;
-
-use File::Temp;
-my $fh = File::Temp->new( UNLINK => 0 );
-
-binmode $fh;
-binmode STDIN;
-
-{ local $/; print $fh <STDIN> }
-
-exec 'firefox', $fh->filename
+P=$(mktemp -t tmp.fx.XXXXXXXXXX)
+cat /dev/stdin > $P
+firefox $P &
+sleep 1
+rm $P
