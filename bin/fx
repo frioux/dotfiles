@@ -1,0 +1,14 @@
+#!/usr/bin/env perl
+
+use warnings;
+use strict;
+
+use File::Temp;
+my $fh = File::Temp->new( UNLINK => 0 );
+
+binmode $fh;
+binmode STDIN;
+
+{ local $/; print $fh <STDIN> }
+
+exec 'firefox', $fh->filename
