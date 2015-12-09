@@ -51,17 +51,8 @@ def handle_mail(num, message):
     else:
         show_header(num, message)
 
-if args.id:
-    typ, data = conn.fetch(args.id, '(BODY.PEEK[])')
-    email = message_from_bytes(data[0][1])
-    handle_mail(args.id, email)
-else:
-    typ, data = conn.search(None, 'ALL')
-    # wow, look at all this casting
-    first = int(data[0].split()[-1])
-    last = int(first) - args.count + 1
-    message_set = str(str(first) + ":" + str(last))
-    typ, data = conn.fetch(message_set, '(BODY.PEEK[])')
+def handle_messages(message_spec):
+    typ, data = conn.fetch(message_spec, '(BODY.PEEK[])')
     for m in reversed(data):
         # why is the last one not a tuple like the rest?  who knows.
         if len(m) != 2:
@@ -69,6 +60,16 @@ else:
         num = m[0].split(b' ')[0]
         email = message_from_bytes(m[1])
         handle_mail(int(num), email)
+
+if args.id:
+    handle_messages(args.id)
+else:
+    typ, data = conn.search(None, 'ALL')
+    # wow, look at all this casting
+    first = int(data[0].split()[-1])
+    last = int(first) - args.count + 1
+    message_set = str(str(first) + ":" + str(last))
+    handle_messages(message_set)
 
 conn.close()
 conn.logout()
