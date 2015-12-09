@@ -5,7 +5,7 @@ from netrc import netrc
 from email import message_from_bytes
 from argparse import ArgumentParser
 from email.header import decode_header, make_header
-import re
+from re import sub
 
 parser = ArgumentParser(description='Check email')
 parser.add_argument('-n', '--count', dest='count', action='store',
@@ -41,7 +41,7 @@ def handle_mail(num, message):
         # this is stupid.
         decoded_header = str(make_header(decode_header(header)))
         # this is stupid
-        unfolded_header = re.sub('[\r\n]', '', decoded_header)
+        unfolded_header = sub('[\r\n]', '', decoded_header)
         # why do I have to cast to int?  shouldn't %i do that?
         print("%i: %s" % (int(num), unfolded_header))
 
