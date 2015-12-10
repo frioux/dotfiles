@@ -1,3 +1,4 @@
 #!/bin/dash
 
+echo ""
 grep "$@" "$HOME/addresses" | grep -v '(group)'
