@@ -12,7 +12,7 @@ my @overrides = sort grep m/^HOST_OVERRIDE_/, keys %ENV;
 my $data =
    join "\n",
    map {
-      my $ip = $ENV{$_};
+      my $ip = delete $ENV{$_};
       s/^HOST_OVERRIDE_//;
 
       "$_ $ip"
