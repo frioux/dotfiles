@@ -1,0 +1,33 @@
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+
+use autodie;
+
+use Digest::MD5 'md5_hex';
+
+my @overrides = sort grep m/^HOST_OVERRIDE_/, keys %ENV;
+
+my $data =
+   join "\n",
+   map {
+      my $ip = $ENV{$_};
+      s/^HOST_OVERRIDE_//;
+
+      "$_ $ip"
+   }
+   @overrides;
+
+$data .= "\n";
+
+my $digest = md5_hex($data . "@ARGV");
+my $tmpdir = $ENV{TMPDIR} || '/tmp';
+my $filename = "$tmpdir/HOSTALIASES-$digest";
+
+open my $fh, '>', $filename;
+print $fh $data;
+close $fh;
+
+$ENV{HOSTALIASES} = $filename;
+exec @ARGV;
