@@ -56,19 +56,23 @@ def show_body(num, message):
 def _by_attachment(message):
     return (part for part in message.walk() if part.get('content-disposition'))
 
-def list_attachments(message):
+def _with_index(generator):
     i = 0
-    for part in _by_attachment(message):
-        disp = part.get('content-disposition')
+    for x in generator:
         i += 1
-        print(str(i) + ": " + disp)
+        yield(x, i)
+
+def _at_index(generator, index):
+    return (x for x, i in _with_index(generator) if i == index )
+
+def list_attachments(message):
+    for part, index in _with_index(_by_attachment(message)):
+        disp = part.get('content-disposition')
+        print(str(index) + ": " + disp)
 
 def show_attachment(num, message):
-    i = 0
-    for part in _by_attachment(message):
-        i += 1
-        if int(i) == int(num):
-            print(part.get_payload(decode=True).decode("utf-8"))
+    for part in _at_index(_by_attachment(message), int(num)):
+        print(part.get_payload(decode=True).decode("utf-8"))
 
 def handle_mail(num, message):
     if args.content_type:
