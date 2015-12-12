@@ -53,23 +53,22 @@ def show_body(num, message):
             # why does this look like double decoding?
             print(part.get_payload(decode=True).decode("utf-8"))
 
+def _by_attachment(message):
+    return (part for part in message.walk() if part.get('content-disposition'))
+
 def list_attachments(message):
     i = 0
-    for part in message.walk():
+    for part in _by_attachment(message):
         disp = part.get('content-disposition')
-        # seems brittle...
-        if not (disp and disp.startswith("ATTACHMENT;")):
-            continue
         i += 1
         print(str(i) + ": " + disp)
 
 def show_attachment(num, message):
     i = 0
-    for part in message.walk():
-        if part.get('content-disposition'):
-            i += 1
-            if int(i) == int(num):
-                print(part.get_payload(decode=True).decode("utf-8"))
+    for part in _by_attachment(message):
+        i += 1
+        if int(i) == int(num):
+            print(part.get_payload(decode=True).decode("utf-8"))
 
 def handle_mail(num, message):
     if args.content_type:
