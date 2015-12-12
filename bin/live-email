@@ -6,6 +6,7 @@ from email import message_from_bytes
 from argparse import ArgumentParser
 from email.header import decode_header, make_header
 from re import sub
+from itertools import islice, count
 
 parser = ArgumentParser(description='Check email')
 parser.add_argument('-n', '--count', dest='count', action='store',
@@ -56,22 +57,13 @@ def show_body(num, message):
 def _by_attachment(message):
     return (part for part in message.walk() if part.get('content-disposition'))
 
-def _with_index(generator):
-    i = 0
-    for x in generator:
-        i += 1
-        yield(x, i)
-
-def _at_index(generator, index):
-    return (x for x, i in _with_index(generator) if i == index )
-
 def list_attachments(message):
-    for part, index in _with_index(_by_attachment(message)):
+    for part, index in zip(_by_attachment(message), count(1)):
         disp = part.get('content-disposition')
         print(str(index) + ": " + disp)
 
 def show_attachment(num, message):
-    for part in _at_index(_by_attachment(message), int(num)):
+    for part in islice(_by_attachment(message), int(num) - 1, 1):
         print(part.get_payload(decode=True).decode("utf-8"))
 
 def handle_mail(num, message):
