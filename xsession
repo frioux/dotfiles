@@ -11,4 +11,4 @@ sv-run-offlineimap &
 armstrong &
 
 exec awesome
-# vim: ft=bash
+# vim: ft=sh
