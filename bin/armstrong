@@ -1,0 +1,15 @@
+#!/bin/dash
+
+LIGHTD=/dev/null
+if [ -e $HOME/code/light-daemon/color-pipe ]; then
+   LIGHTD=$HOME/code/light-daemon/color-pipe
+fi
+while true; do
+   sleep $(( 60 * 25 ))
+   echo b255 > $LIGHTD
+   notify-send -u critical 'TIME TO STRETCH!'
+   sleep 10
+   echo b0 > $LIGHTD
+done
+
+# vim: ft=sh

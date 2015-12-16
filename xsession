@@ -8,6 +8,7 @@ xmodmap "$HOME/.xmodmap"
 keepassx &
 sv-run-w.pl &
 sv-run-offlineimap &
+armstrong &
 
 exec awesome
 # vim: ft=bash
