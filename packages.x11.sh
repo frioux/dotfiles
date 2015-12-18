@@ -4,6 +4,7 @@ apt-get --no-install-recommends install \
         -y                              \
    awesome                              \
    awesome-extra                        \
+   feh                                  \
    firefox                              \
    gnome-system-monitor                 \
    gnome-power-manager                  \
