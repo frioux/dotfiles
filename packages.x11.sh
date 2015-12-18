@@ -1,7 +1,7 @@
 #!/bin/dash
 
-apt-get --no-install-recommends install \
-        -y                              \
+exec apt-get --no-install-recommends    \
+                             install -y \
    awesome                              \
    awesome-extra                        \
    feh                                  \

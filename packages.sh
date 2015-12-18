@@ -5,8 +5,8 @@
 ./packages.x11.sh
 ./packages.perf.sh
 
-apt-get --no-install-recommends install \
-        -y                              \
+exec apt-get --no-install-recommends    \
+                             install -y \
    asciidoc                             \
    autoconf                             \
    automake                             \
