@@ -1,0 +1,33 @@
+#!/usr/bin/env perl
+
+use 5.16.1;
+use warnings;
+use autodie;
+
+use URI::Find::Schemeless;
+
+my @uri;
+my $finder = URI::Find::Schemeless->new(sub { push @uri, shift });
+
+my $string = do { local $/; <STDIN> };
+
+$finder->find(\$string);
+
+my $i = 0;
+for my $uri (@uri) {
+   say ++$i . ": $uri";
+}
+
+print "\n";
+
+$|++;
+print "Which URL would you like to copy? ";
+open my $new_stdin, '<', '/dev/tty';
+chomp(my $choice = <$new_stdin>);
+
+my $selection = $uri[$choice - 1];
+
+open my $copy_fh, '|-', 'xclip -in -selection clipboard';
+print $copy_fh $selection;
+
+say "Copied URL: $selection";
