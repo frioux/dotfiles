@@ -1,5 +1,6 @@
 #!/bin/dash
 
+./packages.rm.sh
 ./packages.minimal.sh
 ./packages.x11.sh
 ./packages.perf.sh
