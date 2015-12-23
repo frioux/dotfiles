@@ -1,0 +1,13 @@
+#!/bin/dash
+
+ARGS=""
+if [ -t 1 ]; then
+  ARGS="t"
+fi
+
+exec docker run "-i$ARGS" --rm  \
+  --publish 1313:1313           \
+  --volume $(pwd):/tmp/pwd      \
+  --user $(id -u)               \
+  frew/hugo                     \
+  "$@"
