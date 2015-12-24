@@ -1,2 +1,3 @@
 text/html; /usr/bin/lynx -dump -force_html '%s'; copiousoutput; description=HTML Text; nametemplate=%s.html
 application/pdf; evince '%s'; copiousoutput; description=PDF; nametemplate=%s.pdf
+image/jpeg; feh -F '%s';description=JPEG; nametemplate=%s.jpeg
