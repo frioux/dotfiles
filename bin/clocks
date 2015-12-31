@@ -1,0 +1,24 @@
+#!/usr/bin/env perl
+
+use 5.22.0;
+use warnings;
+
+use DateTime;
+my $now = DateTime->now;
+
+sub t {
+   my $time = $now->clone->set_time_zone( shift );
+   my $derpo = $time->set_time_zone('floating')->set_time_zone('local');
+
+   my $offset = ($derpo - $now)->in_units('hours');
+
+   $offset = "+$offset" if $offset >= 0;
+
+   $time->strftime("%F %H:%M %p\t" . $offset)
+}
+
+say 'here : ' . t 'local';
+say 'L.A. : ' . t 'America/Los_Angeles';
+say 'MS/TX: ' . t 'America/Chicago';
+say 'rjbs : ' . t 'America/New_York';
+say 'riba : ' . t 'Europe/Berlin';
