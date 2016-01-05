@@ -1,0 +1,5 @@
+#!/bin/dash
+
+exec i3lock --color 000000 --dpms --inactivity-timeout 2 --ignore-empty-password
+
+# vim: ft=sh
