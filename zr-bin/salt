@@ -1,0 +1,3 @@
+#!/bin/dash
+
+exec run-d sudo salt-call --local "$@"
