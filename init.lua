@@ -93,6 +93,14 @@ function tag_move(t, screen_target)
                 if not c.sticky then
                     c.screen = screen_target
                     c:tags( {ts} )
+
+                    -- Fix maximized client if display sizes not equal
+                    local is_maximized = c.maximized
+                    if is_maximized then
+                      c.maximized = false
+                      c.maximized = true
+                    end
+
                 else
                     awful.client.toggletag(ts,c)
                 end
@@ -109,6 +117,7 @@ function select_tag(t, target_screen)
     local prev_focus = capi.client.focus;
     local tag_screen = tag.getscreen(t)
     local is_tag_select = t.selected;
+    local is_tag_moved = (target_screen ~= tag_screen)
 
 
     --if t.selected and target_screen ~= tag_screen and #tag.selectedlist(tag_screen) == 1 then
@@ -121,7 +130,7 @@ function select_tag(t, target_screen)
 
     -- Если было перемещение тега то фокус на окне теряется.
     -- Проверка на что это тот-же самый тег, восстанавливаем фокус на окне
-    if target_screen ~= tag_screen and is_tag_select then
+    if is_tag_moved and is_tag_select then
         if #t:clients() > 0 and prev_focus then
             capi.client.focus = prev_focus
         end
