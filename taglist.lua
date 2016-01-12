@@ -168,14 +168,14 @@ function taglist.new(tags, screen, filter, buttons, style, update_function, base
     local w = base_widget or fixed.horizontal()
 
     local data = setmetatable({}, { __mode = 'k' })
-    local u = function (s)
+    local update_function = function (s)
         if s == screen then
             taglist_update(s, w, buttons, filter, data, style, uf, tags)
         end
     end
-    set_signals(screen, u)
+    set_signals(screen, update_function)
 
-    u(screen)
+    update_function(screen)
     return w
 end
 
@@ -191,7 +191,11 @@ function set_signals(screen, u)
     tag.attached_connect_signal(screen, "property::activated", ut)
     tag.attached_connect_signal(screen, "property::screen", ut)
     tag.attached_connect_signal(screen, "property::index", ut)
-    capi.client.connect_signal("property::urgent", uc)
+    capi.client.connect_signal("property::urgent", function(c)
+        -- If client change screen, refresh it anyway since we don't from
+        -- which screen it was coming :-)
+        u(screen)
+    end)
     capi.client.connect_signal("property::screen", function(c)
         -- If client change screen, refresh it anyway since we don't from
         -- which screen it was coming :-)
