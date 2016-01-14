@@ -163,3 +163,6 @@
 [submodule "vim/bundle/salt"]
 	path = vim/bundle/salt
 	url = git://github.com/saltstack/salt-vim
+[submodule "vim/bundle/vimoutliner"]
+	path = vim/bundle/vimoutliner
+	url = git://github.com/vimoutliner/vimoutliner
