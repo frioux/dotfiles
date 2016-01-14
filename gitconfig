@@ -18,6 +18,8 @@
    fx = commit -a --amend -C HEAD
    ix = diff --staged
    git = !git
+   wip = commit -amWIP
+   unwip = reset HEAD^
 [diff]
    ;external = git_diff_wrapper
 
