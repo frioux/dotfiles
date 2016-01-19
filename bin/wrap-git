@@ -39,6 +39,8 @@ if ($commit{$command} && exists $args[0] && $args[0] =~ /^-a|^--all/) {
    die "Frew your muscle memory is some kind of murder (add another f if you really want it)\n"
 } elsif ($command eq 'clean' && grep /^-xdfff$/, @args) {
    s/-xdfff/-xdff/ for @args
+} elsif ($command eq 'remote' && $args[0] eq 'add' && @args == 3) {
+   @args = ('add', 'origin', $args[-1]);
 }
 
 exec 'git', $command, @args
