@@ -2,7 +2,7 @@ set crypt_use_gpgme
 
 set pgp_sign_as=0x737A7582
 set pgp_auto_decode = yes
-set pgp_autosign=yes
+set pgp_autosign=no
 set pgp_replyencrypt=yes
 
 # vim: ft=muttrc
