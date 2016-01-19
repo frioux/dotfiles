@@ -8,6 +8,7 @@
 exec apt-get --no-install-recommends    \
                              install -y \
    asciidoc                             \
+   at                                   \
    autoconf                             \
    automake                             \
    build-essential                      \
