@@ -19,6 +19,7 @@ Host irc
      hostname 50.116.28.218
      ForwardAgent yes
      ForwardX11 yes
+     LocalForward 127.0.0.1:8000 127.0.0.1:8000
 
 Host *.ziprecruiter.com
      ForwardAgent yes
