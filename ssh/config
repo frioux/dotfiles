@@ -40,14 +40,6 @@ Host pi
      ForwardAgent yes
      ForwardX11 yes
 
-Host paste
-     user frew_paste
-     hostname p.afoolishmanifesto.com
-
-Host sc
-     user arthurs
-     hostname jules.scsys.co.uk
-
 Host afm
      user frew
      hostname blog.afoolishmanifesto.com
