@@ -96,3 +96,9 @@
    path = ~/.git-smtp-password
 [rebase]
 	autostash = true
+[transfer]
+           fsckobjects = true
+[fetch]
+           fsckobjects = true
+[receive]
+           fsckObjects = true
