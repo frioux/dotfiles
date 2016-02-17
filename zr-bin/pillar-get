@@ -1,5 +1,5 @@
 #!/bin/dash
 
-salt pillar.items --out json -l warnings | jq ".local.$1"
+salt pillar.items --out json -l warning | jq ".local.$1"
 
 # vim: ft=sh
