@@ -1,4 +1,7 @@
 smartcd export 1.0
+@ scripts/home/frew/code/saltstack/bash_enter
+ autostash PATH=$HOME/code/dotfiles/zr-bin:$PATH
+ autostash WWW=tmp_zr_base
 @ scripts/home/frew/code/ziprecruiter/bash_enter
  autostash PATH=$HOME/code/dotfiles/zr-bin:$PATH
  autostash WWW=www.ziprecruiter-frew.com
