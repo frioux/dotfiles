@@ -10,8 +10,8 @@ deal with the following type of words:
 Now, suppose you have to change bar to qux (\* for cursor position). You can
 do the following:
 
-`foo_b*ar_bar` and type `ci_` to get `foo_*_bar`. Or you can type `da_` to get
-`foobar`
+`foo_b*ar_baz` and type `ci_` to get `foo_*_baz`. Or you can type `da_` to get
+`foobaz`
 
 Installation
 ------------
