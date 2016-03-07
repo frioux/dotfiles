@@ -19,7 +19,7 @@ Installation
 I strongly recommend installing [pathogen.vim](https://github.com/tpope/vim-pathogen).
 
     cd ~/.vim/bundle
-    git clone git://github.com/lucapette/vim-ruby-doc.git
+    git clone git://github.com/lucapette/vim-textobj-underscore.git
 
 Or you can unzip it in your `~/.vim` directory. The plugin depends on the awesome
 [vim-textobj-user](https://github.com/kana/vim-textobj-user) by
