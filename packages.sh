@@ -22,6 +22,8 @@ exec apt-get --no-install-recommends    \
    libncursesw5-dev                     \
    libnotmuch-dev                       \
    libpam0g-dev                         \
+   libpam-u2f                           \
+   pamu2fcfg                            \
    libtalloc-dev                        \
    libtokyocabinet-dev                  \
    libtool                              \

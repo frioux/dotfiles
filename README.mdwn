@@ -1,5 +1,8 @@
 # dotfiles Setup
 
+    sudo apt-add-repository ppa:git-core/ppa
+    sudo apt-add-repository ppa:yubico/stable
+    sudo apt-get update
     sudo apt-get install git
     mkdir -p ~/code
     git clone git://github.com/frioux/dotfiles ~/code/dotfiles
@@ -8,16 +11,6 @@
     ./install.sh
     sudo bash -c 'cat sysctl.conf >> /etc/sysctl.conf'
     sudo cp xsession.desktop /usr/share/xsessions/xsession.desktop
-
-# Install Git
-
-    git clone git://github.com/gitster/git
-    cd git
-    git clean -xdff && \
-       make configure && \
-       ./configure --prefix=/opt --with-libpcre && \
-       make all doc && \
-       sudo make install install-doc
 
 # Install mutt
 
@@ -117,12 +110,9 @@ Also set up Firefox Sync
 
 # How to set up offline two-factor auth with a u2f
 
-    sudo apt-add-repository ppa:yubico/stable
-    sudo apt-get update
-    sudo apt-get install libpam-u2f pamu2fcfg
     sudo bash -c "pamu2fcfg -ufrew > /etc/u2f_mappings"
 
-Finally, put the following line at the top of __/etc/pam.d/common-auth__:
+Put the following line at the top of __/etc/pam.d/common-auth__:
 
     auth requisite pam_u2f.so authfile=/etc/u2f_mappings cue
 
