@@ -12,6 +12,9 @@ exec apt-get --no-install-recommends    \
    autoconf                             \
    automake                             \
    build-essential                      \
+   dictd                                \
+   dict                                 \
+   dict-gcide                           \
    gnupg-agent                          \
    inotify-tools                        \
    libcurl4-openssl-dev                 \
