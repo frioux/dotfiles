@@ -341,7 +341,7 @@ function ZRPod()
 endfunction
 
 command Pod call ZRPod()
-
+let g:qs_highlight_on_keys = [ 'f', 'F', 't', 'T' ]
 if has('gui_running')
   " Set the normal font face and size.
   function! FontNormal()
