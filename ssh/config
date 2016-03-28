@@ -43,11 +43,11 @@ Host pi
 
 Host afm
      user frew
-     hostname blog.afoolishmanifesto.com
+     hostname rss.afoolishmanifesto.com
 
 Host agm
      user git
-     hostname blog.afoolishmanifesto.com
+     hostname rss.afoolishmanifesto.com
      ForwardAgent yes
 
 Host retropie
