@@ -2,6 +2,7 @@
 
 exec docker run -it --rm \
   --volume ~/.aws:/.aws  \
+  --volume $(pwd):/pwd   \
   --user $(id -u)        \
   frew/aws-cli           \
   "$@"
