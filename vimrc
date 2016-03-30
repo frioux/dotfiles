@@ -162,6 +162,10 @@ nnoremap <silent> <Leader>ev :split $MYVIMRC<CR>
 vnoremap <silent> <Leader>d= :!dwarnf_var_assignment<CR>
 nnoremap <silent> <Leader>d= :.!dwarnf_var_assignment<CR>
 
+" Up and down are more logical with g..
+nnoremap <silent> k gk
+nnoremap <silent> j gj
+
 " Search mappings: These will make it so that going to the next one in a
 " search will center on the line it's found in.
 noremap N Nzz
@@ -303,14 +307,8 @@ nnoremap [oN :NeoCompleteEnable<cr>
 nnoremap ]oN :NeoCompleteDisable<cr>
 nnoremap coN :NeoCompleteToggle<CR>
 
-nnoremap [oH :call HardMode()<cr>
-nnoremap ]oH :call EasyMode()<cr>
-nnoremap coH :call ToggleHardMode()<cr>
-
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
-
-let g:hardmode = 1
 
 set directory=$HOME/.vvar/swap
 set undodir=$HOME/.vvar/undo

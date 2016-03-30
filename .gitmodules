@@ -169,6 +169,3 @@
 [submodule "vim/bundle/rust"]
 	path = vim/bundle/rust
 	url = https://github.com/wting/rust.vim
-[submodule "vim/bundle/hardmode"]
-	path = vim/bundle/hardmode
-	url = https://github.com/gkirilov/hardmode
