@@ -1,0 +1,62 @@
+#!/usr/bin/env perl
+
+use 5.14.1;
+use warnings;
+use JSON 'encode_json', 'decode_json';
+use HTTP::Tiny;
+
+my ($ua, $sid);
+
+sub help {
+   print <<"HELP";
+Examples:
+
+   $0 raw getCategories
+
+   $0 raw subscribeToFeed feed_url https://example.com/feed.atom category_id 123
+
+See https://tt-rss.org/gitlab/fox/tt-rss/wikis/ApiReference
+HELP
+}
+
+sub raw {
+   my (undef, $method, @args) = @_;
+
+   print rss_api(
+      $method => (
+         sid => _sid(),
+         @args,
+      ),
+   )
+
+}
+
+my $method = shift;
+if ($method =~ m/^-/) {
+   help();
+   exit;
+}
+
+main->$method(@ARGV);
+
+sub _ua { $ua ||= HTTP::Tiny->new; $ua }
+
+sub _sid {
+   $sid ||= decode_json(rss_api(
+      login => (
+         user     => $ENV{RSS_USER},
+         password => $ENV{RSS_PASS},
+      )
+   ))->{content}{session_id};
+
+   $sid
+}
+
+sub rss_api {
+    my ($method, @args) = @_;
+    my $response = _ua()->post( 'https://rss.afoolishmanifesto.com/api/' => {
+       content => encode_json({ op => $method, @args })
+    });
+
+    return $response->{content}
+}
