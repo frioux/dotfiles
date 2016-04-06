@@ -18,7 +18,7 @@ my ($opt, $usage) = describe_options(
   [ 'out_file|f=s', 'file to write to',  { default => 'foo.png' } ],
   [ 'width|w=i', 'width of graph',  { default => 800 } ],
   [ 'height|H=i', 'height of graph',  { default => 600 } ],
-  [ 'axis_format|a=i', 'the date format for the axis',  { default => '%Y-%m-%d' } ],
+  [ 'axis_format|a=s', 'the date format for the axis',  { default => '%Y-%m-%d' } ],
   [ 'series_titles|T=s', 'comma separated list of series titles' ],
   [],
   [ 'help|h', 'view help' ],
