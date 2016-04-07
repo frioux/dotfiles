@@ -32,7 +32,7 @@ sub raw {
 }
 
 my $method = shift;
-if ($method =~ m/^-/) {
+if (!$method || $method =~ m/^-/) {
    help();
    exit;
 }
