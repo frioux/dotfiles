@@ -44,8 +44,8 @@ sub _ua { $ua ||= HTTP::Tiny->new; $ua }
 sub _sid {
    $sid ||= decode_json(rss_api(
       login => (
-         user     => $ENV{RSS_USER},
-         password => $ENV{RSS_PASS},
+         user     => $ENV{RSS_USER} || die("RSS_USER must be set\n"),
+         password => $ENV{RSS_PASS} || die("RSS_PASS must be set\n"),
       )
    ))->{content}{session_id};
 
