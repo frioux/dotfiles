@@ -25,6 +25,7 @@ exec apt-get --no-install-recommends    \
    vim-gnome                            \
    vlc                                  \
    xautolock                            \
+   xbacklight                           \
    xclip                                \
    xdotool                              \
    xfonts-terminus                      \
