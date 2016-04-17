@@ -127,11 +127,6 @@ if has("gui_running")
 
    " Remove Toolbar
    set guioptions=
-   if has('win32')
-      set guifont=Consolas:h8
-   else
-      set guifont=Terminus\ 8
-   endif
 else
    if &t_Co == 256
       colorscheme inkpot
@@ -348,7 +343,7 @@ if has('gui_running')
     if has("gui_win32")
       set guifont=Consolas:h11
     else
-      set guifont=Terminus\ 8
+      set guifont=Terminus\ 14
     endif
     set lines=999 columns=999             " Maximize the window
   endfunction
