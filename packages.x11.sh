@@ -26,6 +26,7 @@ exec apt-get --no-install-recommends    \
    vlc                                  \
    xautolock                            \
    xbacklight                           \
+   xcalib                               \
    xclip                                \
    xdotool                              \
    xfonts-terminus                      \
