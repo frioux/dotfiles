@@ -478,6 +478,8 @@ globalkeys = awful.util.table.join(
 
   awful.key({ modkey },            "u",     function () awful.util.spawn('/home/frew/code/dotfiles/bin/showuni') end),
   awful.key({ modkey },            "v",     function () awful.util.spawn('/home/frew/code/dotfiles/bin/showsession') end),
+  awful.key({ modkey }, "F5",     function () awful.util.spawn('xbacklight -dec 10') end),
+  awful.key({ modkey }, "F6",     function () awful.util.spawn('xbacklight -inc 10') end),
 
   awful.key({ modkey }, "x",
   function ()
