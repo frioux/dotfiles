@@ -20,6 +20,7 @@ apt-get -y purge \
    libreoffice-style-galaxy \
    libreoffice-style-human \
    libreoffice-writer  \
+   modemmanager        \
    thunderbird         \
 
 exec apt-get -y autoremove
