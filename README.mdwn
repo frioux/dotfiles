@@ -103,11 +103,6 @@ Also set up Firefox Sync
    - ZR
    - agm
 
-# GPG Keyring
-
-    ssh w gpg -a --export-secret-key | gpg --import
-    ssh w gpg -a --export | gpg --import
-
 # How to set up offline two-factor auth with a u2f
 
     sudo bash -c "pamu2fcfg -ufrew > /etc/u2f_mappings"
