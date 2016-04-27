@@ -1,0 +1,2 @@
+KERNEL=="random", NAME="eerandom"
+KERNEL=="urandom", PROGRAM+="/bin/rm -f /dev/random", SYMLINK+="random"
