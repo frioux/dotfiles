@@ -5,6 +5,9 @@
 ./packages.x11.sh
 ./packages.perf.sh
 
+echo "postfix postfix/mailname string $(hostname)" | debconf-set-selections
+echo "postfix postfix/main_mailer_type string 'Local only'" | debconf-set-selections
+
 exec apt-get --no-install-recommends    \
                              install -y \
    asciidoc                             \
@@ -34,11 +37,10 @@ exec apt-get --no-install-recommends    \
    lua-filesystem                       \
    lynx                                 \
    mitmproxy                            \
-   msmtp                                \
-   ssmtp                                \
    notmuch                              \
    notmuch-mutt                         \
    openvpn                              \
+   postfix                              \
    python-gpgme                         \
    xmlto                                \
    xsltproc

@@ -1,0 +1,8 @@
+
+sender_dependent_default_transport_maps = hash:/etc/postfix/transport
+smtp_sender_dependent_authentication = yes
+smtp_sasl_auth_enable = yes
+smtp_sasl_password_maps = hash:/etc/postfix/sasl_passwd
+smtp_sasl_mechanism_filter = plain, login
+smtp_sasl_security_options = noanonymous
+smtp_use_tls = yes

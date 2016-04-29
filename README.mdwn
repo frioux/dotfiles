@@ -37,6 +37,24 @@ Then add `-s overlay` to the command in the copied file
 
 [Install](https://www.dropbox.com/install)
 
+# Configure Postfix
+
+Create /etc/postfix/sasl\_passwd:
+
+    frioux@gmail frioux@gmail:$foo
+
+Create /etc/postfix/transport:
+
+    frioux@gmail.com smtp:[smtp.gmail.com]:587
+
+    sudo sh -c 'cat ./main.cf >> /etc/postfix/main.cf'
+    sudo chown postfix.postfix /etc/postfix/sasl_passwd /etc/postfix/transport
+    sudo chmod 400 postfix.postfix /etc/postfix/sasl_passwd /etc/postfix/transport
+    sudo postmap /etc/postfix/sasl_passwd
+    sudo postmap /etc/postfix/transport
+    sudo rm /etc/postfix/transport /etc/postfix/sasl_passwd
+    sudo postfix reload
+
 # Authorize Computer
 
 Get app specific password from gmail, put in __.netrc__:
