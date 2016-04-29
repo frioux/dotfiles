@@ -1,4 +1,4 @@
 #!/bin/dash
 
-addrlookup-compat > "$HOME/addresses"
-goobook query '' >> "$HOME/addresses"
+goobook query '' > "$HOME/addresses"
+addrlookup-compat '' >> "$HOME/addresses"
