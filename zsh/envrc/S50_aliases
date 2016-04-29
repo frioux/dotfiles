@@ -26,13 +26,13 @@ alias gitk='noglob gitk'
 function gitk() { command gitk "$@" & }
 alias grr='noglob grr'
 alias grc='git rebase --continue'
-function grr() { gitk ^origin/release HEAD "$@" & }
+function grr() { gitk ^origin/master HEAD "$@" & }
 alias gosu='git submodule foreach " git checkout . ; git clean -xdff" ; git submodule sync ; git submodule update --init'
 function gr() {
    git rebase --root --onto $1 -i --autosquash
 }
 alias gr='noglob gr'
-alias gre='gr origin/release'
+alias gre='gr origin/master'
 
 # }}}
 
