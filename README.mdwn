@@ -47,12 +47,12 @@ Create /etc/postfix/transport:
 
     frioux@gmail.com smtp:[smtp.gmail.com]:587
 
+And finally, change the config:
+
     sudo sh -c 'cat ./main.cf >> /etc/postfix/main.cf'
-    sudo chown postfix.postfix /etc/postfix/sasl_passwd /etc/postfix/transport
-    sudo chmod 400 postfix.postfix /etc/postfix/sasl_passwd /etc/postfix/transport
     sudo postmap /etc/postfix/sasl_passwd
     sudo postmap /etc/postfix/transport
-    sudo rm /etc/postfix/transport /etc/postfix/sasl_passwd
+    sudo chmod 400 /etc/postfix/{sasl_passwd,transport}{.db,}
     sudo postfix reload
 
 # Authorize Computer
