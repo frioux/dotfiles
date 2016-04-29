@@ -41,7 +41,7 @@ Then add `-s overlay` to the command in the copied file
 
 Create /etc/postfix/sasl\_passwd:
 
-    frioux@gmail frioux@gmail:$foo
+    frioux@gmail.com frioux@gmail.com:$foo
 
 Create /etc/postfix/transport:
 
