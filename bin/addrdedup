@@ -1,0 +1,18 @@
+#!/usr/bin/env perl
+
+use 5.22.0;
+use warnings;
+
+use Tie::IxHash;
+
+# first line is meaningless?
+my $first = <STDIN>;
+my %hash;
+tie %hash, 'Tie::IxHash';
+while (<STDIN>) {
+   my ($address, $rest) = split /\t/, $_, 2;
+   $hash{$address} ||= ($rest||'');
+}
+
+print "\n";
+print "$_\t$hash{$_}" for keys %hash;
