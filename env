@@ -1,10 +1,10 @@
 #!/bin/sh
 
 MANPATH=
-export MANPATH="/opt/share/man:$HOME/code/dotfiles/git-hub/man:$(manpath)"
+export MANPATH="/opt/share/man:$(manpath)"
 export LD_LIBRARY_PATH=/opt/lib
 export GOPATH="$HOME/go"
-export PATH="$HOME/bin:$HOME/code/dotfiles/bin:$HOME/code/dotfiles/git-hub/lib:$HOME/Sync/bin:$HOME/Dropbox/bin:$HOME/Dropbox/node/bin:/opt/bin:$GOPATH/bin:$HOME/.rakudobrew/bin:$PATH"
+export PATH="$HOME/bin:$HOME/code/dotfiles/bin:$HOME/Sync/bin:$HOME/Dropbox/bin:$HOME/Dropbox/node/bin:/opt/bin:$GOPATH/bin:$HOME/.rakudobrew/bin:$PATH"
 export CFLAGS=-I/opt/include
 export LDFLAGS=-L/opt/lib
 export EDITOR=vim

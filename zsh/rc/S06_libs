@@ -4,6 +4,8 @@ source ~/.zsh/opp/opp/surround.zsh
 source ~/.zsh/opp/opp/textobj-between.zsh
 bindkey -M vicmd '~' vi-swap-case
 
+source ~/code/dotfiles/git-hub/.rc
+
 if [[ -z "$WINDIR" ]]; then
    source ~/.smartcd/lib/core/arrays
    source ~/.smartcd/lib/core/varstash

@@ -3,6 +3,7 @@ autoload -U compinit
 zsh_cache=${HOME}/.zsh/cache
 mkdir -p $zsh_cache
 
+fpath=(~/code/dotfiles/git-hub/share/zsh-completion $fpath)
 if [ $UID -eq 0 ]; then
         compinit
 else
