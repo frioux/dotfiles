@@ -5,7 +5,7 @@ endif
 runtime bundle/pathogen/autoload/pathogen.vim
 call pathogen#infect()
 
-if has('python')
+if has('python3')
    call pathogen#infect('bundle-python/{}')
 endif
 
@@ -13,7 +13,7 @@ if has('lua')
    call pathogen#infect('bundle-lua/{}')
 endif
 
-if has('python3')
+if has('nvim')
    call pathogen#infect('bundle-nvim/{}')
 endif
 
