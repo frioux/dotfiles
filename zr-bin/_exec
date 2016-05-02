@@ -1,3 +1,11 @@
-#!/bin/dash
+#!/usr/bin/perl
 
-exec _execroot --user $(whoami) "$@"
+use strict;
+use warnings;
+
+my @command = (
+   $ARGV[0],
+   qw( sudo -u ), (getpwuid $>)[0],
+   @ARGV[1 ..  $#ARGV]
+);
+exec '_execroot', @command;
