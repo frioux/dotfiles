@@ -4,14 +4,9 @@ use 5.22.0;
 use warnings;
 use String::ShellQuote 'shell_quote';
 
-my $QUIET = 'q';
+my $ssh_args = $ENV{SSH_ARGS} || '-q';
 
-if (!$ARGV[0]) {
-   shift;
-   $QUIET = '';
-}
-
-exec 'ssh', "-t$QUIET", $ENV{WWW},
+exec 'ssh', '-t', ($ssh_args ? ($ssh_args) : ()), $ENV{WWW},
    'bash', '-c', shell_quote(
       (join '', map qq($_; ),
          'cd /var/starterview',
