@@ -2,7 +2,5 @@
 
 # still not quite sure why I need the `_`
 exec execwww \
-   env TERM=linux \
-      PAGER='less -M' \
    bash -c \
-   'cd /var/starterview; export PATH=$PATH:/var/starterview/bin; "$@"' _ "$@"
+   'cd /var/starterview; export PATH=$PATH:/var/starterview/bin; exec "$@"' _ "$@"

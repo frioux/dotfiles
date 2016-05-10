@@ -5,7 +5,9 @@ use warnings;
 
 my @command = (
    $ARGV[0],
-   qw( sudo -u ), (getpwuid $>)[0],
-   @ARGV[1 ..  $#ARGV]
+   qw( sudo -Hu ), (getpwuid $>)[0],
+   'env', 'TERM=linux',
+          'PAGER=less -M',
+   @ARGV[1 ..  $#ARGV],
 );
 exec '_execroot', @command;
