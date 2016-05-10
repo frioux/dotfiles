@@ -6,6 +6,7 @@ exec apt-get --no-install-recommends    \
    awesome-extra                        \
    feh                                  \
    firefox                              \
+   fonts-lohit-knda                     \
    gnome-system-monitor                 \
    gnome-power-manager                  \
    gksu                                 \
