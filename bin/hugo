@@ -1,13 +1,16 @@
-#!/bin/dash
+#!/usr/bin/perl
 
-ARGS=""
-if [ -t 1 ]; then
-  ARGS="t"
-fi
+use strict;
+use warnings;
 
-exec docker run "-i$ARGS" --rm  \
-  --publish 1313:1313           \
-  --volume $(pwd):/tmp/pwd      \
-  --user $(id -u)               \
-  frew/hugo                     \
-  "$@"
+use Cwd;
+
+exec 'docker', 'run',
+  '-i',
+  (-t STDOUT ? ('-t') : ()),
+  '--rm',
+  ($ARGV[0] && $ARGV[0] eq 'server' ? (qw(--publish 1313:1313)) : ()),
+  '--volume', getcwd() . ':/tmp/pwd',
+  '--user', $<,
+  'frew/hugo',
+  @ARGV
