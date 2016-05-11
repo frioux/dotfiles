@@ -8,6 +8,7 @@ my @command = (
    qw( sudo -Hu ), (getpwuid $>)[0],
    'env', 'TERM=linux',
           'PAGER=less -M',
+          'STARTERVIEW=/var/starterview',
    @ARGV[1 ..  $#ARGV],
 );
 exec '_execroot', @command;
