@@ -1,60 +1,60 @@
 [global_config]
-  enabled_plugins = APTURLHandler, LaunchpadCodeURLHandler, LaunchpadBugURLHandler
   borderless = True
+  enabled_plugins = APTURLHandler, LaunchpadCodeURLHandler, LaunchpadBugURLHandler
 [keybindings]
-  cycle_prev = None
+  close_term = None
   close_window = None
-  group_tab = None
-  move_tab_right = None
-  resize_left = None
-  reset_clear = None
-  go_right = None
-  new_tab = None
-  resize_right = None
-  resize_down = None
-  toggle_zoom = None
-  scaled_zoom = None
-  group_all = None
+  copy = None
+  cycle_next = None
+  cycle_prev = None
   full_screen = None
+  go_down = None
+  go_left = None
+  go_next = None
+  go_prev = None
+  go_right = None
+  go_up = None
+  group_all = None
+  group_tab = None
+  hide_window = None
+  move_tab_left = None
+  move_tab_right = None
+  new_tab = None
+  new_terminator = None
+  new_window = None
+  next_tab = None
   prev_tab = None
+  reset = None
+  reset_clear = None
+  resize_down = None
+  resize_left = None
+  resize_right = None
+  resize_up = None
+  scaled_zoom = None
+  search = None
+  split_horiz = None
   split_vert = None
+  toggle_scrollbar = None
+  toggle_zoom = None
   ungroup_all = None
   ungroup_tab = None
-  cycle_next = None
-  go_prev = None
-  close_term = None
-  new_terminator = None
-  go_next = None
-  go_left = None
-  copy = None
-  hide_window = None
-  reset = None
-  search = None
-  go_up = None
-  resize_up = None
-  next_tab = None
-  split_horiz = None
-  go_down = None
-  new_window = None
-  move_tab_left = None
-  toggle_scrollbar = None
-[profiles]
-  [[default]]
-    scrollbar_position = hidden
-    palette = "#000000:#aa0000:#00aa00:#aa5500:#0048b5:#aa00aa:#00aaaa:#aaaaaa:#555555:#ff5555:#55ff55:#ffff55:#5555ff:#ff55ff:#55ffff:#ffffff"
-    font = Terminus 14
-    background_image = None
-    background_darkness = 1.66
-    scrollback_lines = 0
-    use_system_font = False
-    show_titlebar = False
-    copy_on_selection = True
 [layouts]
   [[default]]
     [[[child1]]]
-      type = Terminal
       parent = window0
+      type = Terminal
     [[[window0]]]
-      type = Window
       parent = ""
+      type = Window
 [plugins]
+[profiles]
+  [[default]]
+    background_darkness = 1.66
+    background_image = None
+    copy_on_selection = True
+    font = Terminus 14
+    palette = "#000000:#aa0000:#00aa00:#aa5500:#0048b5:#aa00aa:#00aaaa:#aaaaaa:#555555:#ff5555:#55ff55:#ffff55:#5555ff:#ff55ff:#55ffff:#ffffff"
+    scrollback_lines = 0
+    scrollbar_position = hidden
+    show_titlebar = False
+    use_system_font = False
