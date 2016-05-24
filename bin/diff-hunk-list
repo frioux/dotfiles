@@ -15,8 +15,9 @@ while (<STDIN>) {
       $line = $1;
       $offset = 0;
       $printed = 0;
-   } elsif (m(^\+ (.*)$)) {
+   } elsif (m(^\+(.*)$)) {
       print "$filename:" . ($offset + $line) . ":$1\n" unless $printed;
+      $offset++;
       $printed = 1;
    } elsif (m(^ )) {
       $printed = 0;
