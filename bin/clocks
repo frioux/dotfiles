@@ -22,3 +22,4 @@ say 'L.A. : ' . t 'America/Los_Angeles';
 say 'MS/TX: ' . t 'America/Chicago';
 say 'rjbs : ' . t 'America/New_York';
 say 'riba : ' . t 'Europe/Berlin';
+say 'UTC  : ' . t 'UTC';
