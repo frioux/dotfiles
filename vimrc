@@ -373,4 +373,7 @@ if has('gui_running')
   call FontNormal()
 endif
 
+command Gdiffs cexpr system('git diff \| diff-hunk-list')
+command GLdiffs lexpr system('git diff \| diff-hunk-list')
+
 " vim: foldmethod=marker
