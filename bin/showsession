@@ -1,3 +1,8 @@
 #!/bin/zsh
 
-exec gvim -S "$(find ~/.vvar/sessions -type f | dmenu -fn '-*-terminus-*-r-normal-*-*-120-*-*-*-*-iso8859-*' -nb '#000000' -nf '#FFFFFF' -sb '#0066ff')"
+session="$(find ~/.vvar/sessions -maxdepth 1 -type f | dmenu -fn '-*-terminus-*-r-normal-*-*-120-*-*-*-*-iso8859-*' -nb '#000000' -nf '#FFFFFF' -sb '#0066ff')"
+
+if [ -z $session ]; then
+   exit 1
+fi
+exec gvim -S "$session"
