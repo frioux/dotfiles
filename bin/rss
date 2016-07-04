@@ -3,7 +3,8 @@
 use 5.14.1;
 use warnings;
 use JSON 'encode_json', 'decode_json';
-use HTTP::Tiny;
+use LWP::UserAgent;
+use Try::Tiny;
 
 my ($ua, $sid);
 
@@ -39,24 +40,22 @@ if (!$method || $method =~ m/^-/) {
 
 main->$method(@ARGV);
 
-sub _ua { $ua ||= HTTP::Tiny->new; $ua }
-
+sub _ua { $ua ||= LWP::UserAgent->new; $ua }
 sub _sid {
-   $sid ||= decode_json(rss_api(
-      login => (
-         user     => $ENV{RSS_USER} || die("RSS_USER must be set\n"),
-         password => $ENV{RSS_PASS} || die("RSS_PASS must be set\n"),
-      )
-   ))->{content}{session_id};
+   my $str = rss_api( login => () );
+   $sid ||= try { decode_json($str)->{content}{session_id} } catch { die "Invalid JSON: $str\n" };
 
    $sid
 }
 
 sub rss_api {
     my ($method, @args) = @_;
-    my $response = _ua()->post( 'https://rss.afoolishmanifesto.com/api/' => {
-       content => encode_json({ op => $method, @args })
-    });
+    my $request = HTTP::Request->new(
+      POST => "$ENV{RSS_URL}/api/",
+      [], encode_json({ op => $method, @args })
+    );
+    $request->authorization_basic( $ENV{RSS_USER} => $ENV{RSS_PASS} );
+    my $response = _ua()->request($request);
 
-    return $response->{content}
+    return $response->decoded_content
 }
