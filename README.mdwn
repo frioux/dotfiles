@@ -28,7 +28,7 @@
     sudo systemctl enable docker
     sudo cp /lib/systemd/system/docker.service /etc/systemd/system
 
-Then add `-s overlay` to the command in the copied file
+Then add `-s overlay2 --live-restore` to the command in the copied file
 
     sudo systemd daemon-reload
     sudo systemctl restart docker
