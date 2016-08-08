@@ -1,0 +1,5 @@
+#!/bin/dash
+
+docker-root-pids "$1" | xargs -n1 pstree "${2:--U}"
+
+# vim: ft=sh

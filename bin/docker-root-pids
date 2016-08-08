@@ -1,7 +1,18 @@
-#!/bin/dash
+#!/usr/bin/env perl
 
-TARGET=$1
+use 5.24.0;
+use warnings;
 
-eval "$(systemctl show docker -p MainPID)"
+my $target = shift;
 
-ps -ww -eo pid,ppid,cgroup | grep $(docker inspect --format '{{.Id}}' $TARGET) | grep $MainPID | perl -lpaE'$_ = $F[0]'
+my $container = `docker inspect --format {{.Id}} $target`;
+
+my %pids;
+
+for my $line (map s/^\s+//r, grep m/\Q$container/, `ps -ww -eo pid= -o ppid= -o cgroup=`) {
+   my ($pid, $ppid) = split /\s+/, $line;
+   $pids{$pid} = $ppid;
+}
+
+my %result = map { $_ => 1 } grep !$pids{$_}, values %pids;
+say $_ for keys %result;
