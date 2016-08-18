@@ -1,5 +1,4 @@
 source ~/.zsh/adenosine/adenosine-exports
-bindkey -M vicmd '~' vi-swap-case
 
 source ~/code/dotfiles/git-hub/.rc
 

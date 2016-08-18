@@ -48,4 +48,7 @@ bindkey -s \\e\' \'\\\\\'\'
 
 # make _ work like 0 (vimish)
 bindkey -a _ beginning-of-line
+
+bindkey -M vicmd '~' vi-swap-case
+
 # vim: ft=zsh
