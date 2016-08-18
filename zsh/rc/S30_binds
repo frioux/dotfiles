@@ -51,4 +51,6 @@ bindkey -a _ beginning-of-line
 
 bindkey -M vicmd '~' vi-swap-case
 
+bindkey -M vicmd '\C-t' transpose-words
+
 # vim: ft=zsh
