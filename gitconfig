@@ -22,6 +22,7 @@
    unwip = reset HEAD^
 [diff]
    ;external = git_diff_wrapper
+   compactionHeuristic = true
 
 [super-status]
    master = master
