@@ -82,9 +82,6 @@
 [submodule "vim/bundle/better-whitespace"]
 	path = vim/bundle/better-whitespace
 	url = git://github.com/ntpeters/vim-better-whitespace
-[submodule "zsh/opp"]
-	path = zsh/opp
-	url = git://github.com/hchbaw/opp.zsh
 [submodule "vim/bundle/textobj-between"]
 	path = vim/bundle/textobj-between
 	url = git://github.com/thinca/vim-textobj-between
