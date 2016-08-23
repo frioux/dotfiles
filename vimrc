@@ -178,9 +178,6 @@ set complete-=i
 nnoremap ; :
 vnoremap ; :
 
-" make : work with Sneak
-map : <Plug>SneakNext
-
 " Make %% represent the dir of the current buffer
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 
