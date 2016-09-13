@@ -1,0 +1,28 @@
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+
+use autodie;
+
+use File::Temp;
+
+my $url = shift;
+my $email = $url =~ s(^email://)()r;
+
+my ($search, $which_email) = split /\.eml@/, $email;
+
+{
+   my $dir = File::Temp->newdir;
+
+   my $mutt = 'mutt';
+
+   if ($which_email eq 'zr') {
+      $mutt = 'zr-mutt';
+      $ENV{NOTMUCH_CONFIG} = "$ENV{HOME}/.zr-notmuch-config";
+   }
+
+   system qw(notmuch-mutt -r search), $search, '-o', "$dir";
+   system $mutt, qw( -R -f ), "$dir"
+
+}

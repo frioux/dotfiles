@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Mutt-id
+GenericName=Email Viewer
+Comment=View emailz
+Exec=/home/frew/dotfiles/bin/email-handler %u
+Terminal=true
+Type=Application
+Icon=gvim
+Categories=Utility;TextEditor;
+StartupNotify=true
+MimeType=x-scheme-handler/email;

@@ -1,0 +1,5 @@
+#!/bin/dash
+
+xdg-mime install ./xdg/frew-email.desktop
+xdg-mime default frew-email.desktop x-scheme-handler/email
+cp ./xdg/frew-email.desktop ~/.local/share/applications
