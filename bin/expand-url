@@ -1,0 +1,43 @@
+#!/usr/bin/env perl
+
+use 5.24.0;
+use warnings;
+
+use utf8;
+
+binmode STDIN, 'encoding(UTF-8)';
+binmode STDOUT, 'encoding(UTF-8)';
+
+use Try::Tiny;
+use WWW::Mechanize;
+
+my $m = WWW::Mechanize->new(
+   timeout => 30,
+);
+
+while (<STDIN>) {
+   chomp(my $url = $_);
+
+   my ($indent) = ($url =~ m/^(\s*)/);
+   $url =~ s/^\s*//; $url =~ s/\s*$//;
+
+   my $cb = "";
+   if ($url =~ s/\[([_X])\]\s*//) {
+      $cb = "[$1] ";
+   }
+
+   try {
+      $m->get($url);
+
+      if (my $title = $m->title) {
+         $title =~ s/\n/␤/g;
+         say "$indent$cb$title";
+         say "$indent\t$url";
+      } else {
+         say "$indent$cb$url";
+      }
+   } catch {
+      say "$indent$cb$url";
+      print "$indent\t$_";
+   };
+}
