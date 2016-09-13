@@ -67,10 +67,10 @@ macro index,pager iT "<change-folder>=gmail.Trash<enter>"  "view trash"
 macro index,pager iS "<change-folder>=gmail.Spam<enter>"   "view spam"
 macro index,pager iw "<change-folder>=mitsi.work<enter>"   "view mitsi.work"
 macro index,pager id "<change-folder>=DBIx-Class-Devel<enter>"   "view DBIx-Class-Devel"
-macro index <F8> \
+macro index,pager <F8> \
      "<enter-command>unset wait_key<enter><shell-escape>notmuch-mutt -r --prompt search<enter><change-folder-readonly>~/.cache/notmuch/mutt/results<enter>" \
      "notmuch: search mail"
-macro index <F9> \
+macro index,pager <F9> \
      "<enter-command>unset wait_key<enter><pipe-message>notmuch-mutt -r thread<enter><change-folder-readonly>~/.cache/notmuch/mutt/results<enter><enter-command>set wait_key<enter>" \
      "notmuch: reconstruct thread"
 macro index <F6> \
@@ -81,9 +81,9 @@ macro pager U <pipe-entry>extract_url.pl<enter> 'Follow links with urlview'
 
 ignore *
 unignore Date: From: User-Agent: X-Mailer X-Operating-System To: \
-         Cc: Reply-To: Subject: Mail-Followup-To:
+         Cc: Reply-To: Subject: Mail-Followup-To: Message-ID:
 hdr_order Date: From: User-Agent: X-Mailer X-Operating-System To: \
-        Cc: Reply-To: Subject: Mail-Followup-To:
+        Cc: Reply-To: Subject: Mail-Followup-To: Message-ID:
 
 source ~/.mutt/colors
 source ~/.mutt/pgp
