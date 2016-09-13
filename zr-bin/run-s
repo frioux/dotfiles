@@ -4,7 +4,7 @@ use 5.22.0;
 use warnings;
 use String::ShellQuote 'shell_quote';
 
-my $ssh_args = $ENV{SSH_ARGS} || '-q';
+my $ssh_args = $ENV{SSH_ARGS} // '-q';
 
 exec 'ssh', '-t', ($ssh_args ? ($ssh_args) : ()), $ENV{WWW},
    'bash', '-c', shell_quote(
