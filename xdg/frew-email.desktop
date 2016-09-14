@@ -2,7 +2,7 @@
 Name=Mutt-id
 GenericName=Email Viewer
 Comment=View emailz
-Exec=/home/frew/dotfiles/bin/email-handler %u
+Exec=/home/frew/code/dotfiles/bin/email-handler %u
 Terminal=true
 Type=Application
 Icon=gvim
