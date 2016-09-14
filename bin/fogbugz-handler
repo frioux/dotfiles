@@ -1,0 +1,9 @@
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+
+my $url = shift;
+$url =~ s(^fogbugz://)(https://ziprecruiter.fogbugz.com/f/cases/);
+
+exec 'xdg-open', $url

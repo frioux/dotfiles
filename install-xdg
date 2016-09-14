@@ -1,5 +1,7 @@
 #!/bin/dash
 
-xdg-mime install ./xdg/frew-email.desktop
-xdg-mime default frew-email.desktop x-scheme-handler/email
-cp ./xdg/frew-email.desktop ~/.local/share/applications
+for x in email fogbugz; do
+   xdg-mime install ./xdg/frew-$x.desktop
+   xdg-mime default frew-$x.desktop x-scheme-handler/$x
+   cp ./xdg/frew-$x.desktop ~/.local/share/applications
+done
