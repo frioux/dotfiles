@@ -1,0 +1,5 @@
+#!/bin/dash
+
+exec tmux new-window -t work "$@"
+
+# vim: ft=sh

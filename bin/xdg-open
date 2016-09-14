@@ -706,7 +706,11 @@ search_desktop_file()
             args=$(( $args - 1 ))
         done
         [ $replaced -eq 1 ] || set -- "$@" "$target"
-        "$command_exec" "$@"
+        if [ "$(get_key "${file}" "Terminal")" = true ]; then
+           xdg-terminal "$command_exec" "$@"
+        else
+           "$command_exec" "$@"
+        fi
 
         if [ $? -eq 0 ]; then
             exit_success
