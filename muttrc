@@ -1,6 +1,7 @@
 set alias_file        = ~/mail/mutt_aliases
 set beep_new          = no
 set charset           = "utf-8"
+set send_charset      = "utf-8"
 set confirmappend     = no
 set delete            = yes
 set editor            = "vim -c 'set tw=70'"
