@@ -166,3 +166,6 @@
 [submodule "vim/bundle/rust"]
 	path = vim/bundle/rust
 	url = https://github.com/wting/rust.vim
+[submodule "vim/bundle/FastFold"]
+	path = vim/bundle/FastFold
+	url = git://github.com/Konfekt/FastFold
