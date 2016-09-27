@@ -7,6 +7,8 @@ use autodie;
 
 use charnames ':full';
 
+use Encode 'decode';
+use File::ReadBackwards;
 use Unicode::Normalize 'NFD';
 
 my %seen;
@@ -15,8 +17,10 @@ my $history = shift
 
 binmode(STDOUT, ':encoding(UTF-8)');
 
-open my $fh, '<:encoding(UTF-8)', $history;
-while (my $char = <$fh>) {
+my $frb = File::ReadBackwards->new($history) or
+  die "can't read '$history' $!" ;
+while (my $char = $frb->readline) {
+   $char = decode('UTF-8', $char);
    next unless $char;
    chomp($char);
    next unless $char;
@@ -24,9 +28,12 @@ while (my $char = <$fh>) {
    next if $seen{$name}++;
    print "$name\n";
 }
-close $fh;
+$frb->close;
 
-while (chomp(my $char = <STDIN>)) {
+while (my $char = <STDIN>) {
+   next unless $char;
+   chomp($char);
+   next unless $char;
    next if $seen{$char}++;
    print "$char\n";
 }
