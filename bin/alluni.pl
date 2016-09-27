@@ -12,7 +12,8 @@ while (<$fh>) {
     my ($code, $name) = ($1, $2);
 
     next if $code =~ / /; # if we want to avoid named sequences
-    print lc $name, ' ', $/;
+
+    print lc $name, $/;
 }
 
 close $fh;
