@@ -1,0 +1,387 @@
+# Tools Index
+
+## Desktop Tools
+
+### `alluni.pl`
+
+Prints all unicode characters (by name.)
+
+### `armstrong`
+
+Reminder to stretch every 25m.
+
+### `email-handler`
+
+Handles `email://` links.
+
+### `fogbugz-handler`
+
+Handles `fogbugz://` links.
+
+### `file-manager`
+
+Runs my choice of file manager.
+
+### `lock-now`
+
+Runs screen locker.
+
+### `prepend-emoji-hist`
+
+```
+alluni.pl | prefix-emoji-hist ~/.uni_history
+```
+
+Prints out the deduplicated lines from the passed file, converting characters to
+unicode names, and then printing out the lines from STDIN, filtering out what's
+already been printed.
+
+### `scenery`
+
+Randomly show a different background from the `~/Dropbox/Pictures/wallpaper`
+directory, every 25 minutes.
+
+### `showdm`
+
+Show dmenu, to select program to run (eg `firefox`.)
+
+### `showsession`
+
+Show dmenu of vim sessions to resume.
+
+### `showuni`
+
+Show dmenu of unicode characters (by name) and stores selection into
+`~/.uni_history`.
+
+### `xdg-open`
+
+Fork of `xdg-open` that adds support for `Terminal=true` support.
+
+### `xdg-terminal`
+
+Terminal wrapper run by the above.
+
+## Docker Tools
+
+### `docker-pidof`
+
+Print the pid of the root of a given container.
+
+### `docker-pstree`
+
+Print the `pstree` of the passed container.
+
+### `docker-root-pids`
+
+Print the root pids of the passed container.
+
+### `sv-run-offlineimap`
+
+Run offlineimap container.
+
+### `sv-run-w.pl`
+
+Run w.pl container.
+
+### `sv-tail-offlineimap`
+
+Tail offlineimap container.
+
+### `sv-tail-w.pl`
+
+Tail w.pl container.
+
+## Docker Wrappers
+
+### `aws`
+
+Run "anonoymous" aws container.
+
+### `goobook`
+
+Run "anonoymous" goobook container.
+
+### `hugo`
+
+Run "anonoymous" hugo container.
+
+### `jpterm`
+
+Run "anonoymous" jpterm container.
+
+## Generic Wrappers
+
+### `replace-unzip`
+
+Reimplementation of `unzip`.  Leaves out `.DS_Store` and other OS cruft, wraps
+output files in a directory if no root directory was created.
+
+### `wrap-tar`
+
+Wraps tar to encourage me to not use muscle memory for longer command flags.
+
+## Git Tools
+
+### `git-amend-file-split`
+
+Splits most recent commit into a separate commit per file.
+
+### `git-fixup-assigner.pl`
+
+Commits all changes as fixups to the most recent commit for that hunk.
+
+### `git-remote-bzr`
+
+```
+git clone bzr::https://...
+```
+
+### `git-remote-hg`
+
+```
+git clone hg::https://hg.python.org/cpython/
+```
+
+### `git-revert-whitespace-changes`
+
+Remove whitespace only changes from the current checkout.
+
+### `wrap-git`
+
+A number of additional features added to core git via simple wrapper:
+
+ 1. Prompts when committing all when files are staged.
+ 2. Disallows tracking when branching off `origin/{release,master}`
+ 3. Defaults `git pull` to `--ff-only`
+ 4. Forces `-xdff` to be spelled `-xdfff`
+ 5. Defaults name of new remotes to `origin`
+
+## Mail Tools
+
+### `addrdedup`
+
+Deduplicates addresses based on the mutt address format.
+
+### `addrlookup-compat`
+
+Reformats output of `addrlookup` to be in the mutt address format.
+
+### `addrlookup-fast`
+
+Simple wrapper around `grep` to quickly search a preformatted address file.
+
+### `copy-url`
+
+Copy urls from emails.  Rarely used; flakey?
+
+### `extract_url.pl`
+
+Same as above, but not written by me.
+
+### `live-email`
+
+List and view emails directly via IMAP.  `live-email -h` for more details.
+
+### `mail-picture`
+
+Creates resized copies of all passed filenames to `1024x768` and initiates a new
+email containing them via mutt.
+
+### `sync-addresses`
+
+Creates fresh mutt address file using
+[goobook](https://pypi.python.org/pypi/goobook/1.9) and `addrlookup-compat`.
+
+### `top-post`
+
+An attempt at generically trimming emails for brief responses.  Currently unused
+and flakey.
+
+## Misc Tools
+
+### `ascii-ify`
+
+Silly filter that removes all non-ASCII characters, and replaces a couple UTF-8
+characters with ascii versions.
+
+### `clocks`
+
+My personal, digital, wall of clocks.
+
+### `diff-hunk-list`
+
+Tool to assist in [iterating over chunks of a diff in
+vim](https://blog.afoolishmanifesto.com/posts/iterating-over-chunks-of-a-diff-in-vim/).
+
+### `dog`
+
+Like `cat`, but better; works with directories too.
+
+### `expand-url`
+
+Filter that reads lines prefixed with `$n`tabs and newline separated links;
+writes title of page prefixed with `$n` tabs and link prefixed with `$n + 1`
+tabs.
+
+### `export-bamboohr`
+
+Prints all contacts managed in BambooHR as JSON.
+
+### `fn`
+
+Create persistent functions by actually writing scripts.  Example usage:
+
+```
+fn count-users 'wc -l < /etc/passwd'
+```
+
+### `fx`
+
+Firefox wrapper that reads from standard in instead of requiring a filename.
+
+### `gen-pass.pl`
+
+```
+gen-pass.pl 'Password1!' 14
+```
+
+Prints bcrypt hash of password, using the given cost.
+
+### `graph-by-date`
+
+Graphs time series data by parsing CSV from standard in.
+
+### `group-by-date`
+
+Creates time series data (likely used with the above `graph-by-date`) by
+counting lines and grouping them by a given date format.
+
+### `lb-command`
+
+Silly backdoor to send commands to [Lizard
+Brain](https://github.com/frioux/Lizard-Brain).
+
+### `minotaur`
+
+Watches a list of directories defined in the json document in the file in the
+first argument, and restarts the `runit` service by sending `SIGTERM`, `SIGCONT`,
+and telling the supervisor to start the service.
+
+### `netrc-password`
+
+```
+netrc-password imap.gmail.com foo@example.com
+```
+
+Gets a password from your netrc file.  (Login is optional.)
+
+### `override-hosts`
+
+```
+env 'HOST_OVERIDE_www.ziprecruiter.com=www.ziprecruiter-frew.com \
+   override-hosts perl -E'say gethostbyname("gmail.com")'
+```
+
+An attempt to allow overriding hosts at runtime.  Currently unused and flakey.
+
+### `paste_edit`
+
+Creates a temporary file containing the contents of the copy buffer, allows the
+user to edit it with gvim, and the submits the contents to a pastebin via
+[nopaste](https://metacpan.org/pod/App::Nopaste).
+
+### `perl-browse`
+
+Pass a module name (eg `File::Find`) and shows it in vim.  To browse as if you
+were in a web browser, press `gf` over other modules (like `File::Basename`) and
+to go back press `CTRL-O`.
+
+### `plain`
+
+Strips formatting from any text in the copy buffer.
+
+### `pomotimer`
+
+```
+pomotimer 2.5m
+```
+
+Handy terminal based timer especially for [The Pomodoro
+Technique](https://blog.afoolishmanifesto.com/posts/the-pomodoro-technique/).
+Allows pausing, resuming, and aborting the timer entirely.  If a
+[`blink(1)`](https://blink1.thingm.com/) is running and the `blink1-tool` is
+installed, will `pomotimer` will slowly decrease light from bright red to black,
+ending with 5 green blinks.
+
+### `restarter`
+
+```
+restarter my-web-server
+```
+
+Weird program I am not sure I ever used that simply runs a child process and
+restarts it any time a new line comes in over STDIN.
+
+### `rss`
+
+```
+rss raw subscribeToFeed feed_url https://lcamtuf.blogspot.com/feeds/posts/default category_id 3
+```
+
+Super basic CLI API to [TinyTinyRSS](https://tt-rss.org/).
+
+### `screen-res`
+
+```
+screen-res
+```
+
+Prints the screen resolution.
+
+### `screenshot-to-text`
+
+```
+screenshot-to-text
+```
+
+Prompts the user to make a partial screen selection with the mouse, and then
+runs OCR on the screenshot and places the results in the copy buffer.  For best
+results make text of size 16 or higher.
+
+### `skip`
+
+```
+$ perl -E'say for 1..10' | skip 9
+10
+```
+
+Skips the passed amount of lines.
+
+### `store-hist`
+
+```
+echo -n "foo" | store-hist ~/.history
+```
+
+Basically `tee -a` but only writes a single line and always adds a newline.
+
+## Perl Tools
+
+### `abc`
+
+```
+$ abc LWP::UserAgent '$ua = A->new; say length $ua->get("http://google.com")->content'
+```
+
+Runs passed perl script, with the leading tokens being loaded and aliased as
+`A`, `B`, `C`, etc.
+
+### `compile-mkit`
+
+```
+compile-mkit ./mkit/password-reset '{ username frew link http://test }'
+```
+
+Compile and render an mkit to STDOUT.  Takes path of mkit and [JSONY
+doc](https://metacpan.org/pod/distribution/JSONY/lib/JSONY.pod) as the data.
