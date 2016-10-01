@@ -15,7 +15,4 @@ skip is a tool to "skip" the first $n lines
 10
 USAGE
 my $skip = shift;
-while (<>) {
-   next unless $skip-- <= 0;
-   print
-}
+exec 'tail', '-n', '+' . ($skip + 1)
