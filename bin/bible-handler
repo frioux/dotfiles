@@ -1,0 +1,17 @@
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+
+use URI::Escape;
+
+my $url = shift;
+$url =~ s(^bible://)();
+
+my ($version) = $url =~ m/@(\w+)$/;
+$url =~ s/@\w+$//;
+$version ||= 'ESV';
+
+$url = "https://www.biblegateway.com/passage/?version=$version&search=" . uri_escape($url);
+
+exec 'xdg-open', $url

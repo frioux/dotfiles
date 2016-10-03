@@ -10,6 +10,10 @@ Prints all unicode characters (by name.)
 
 Reminder to stretch every 25m.
 
+### `bible-handler`
+
+Handles `bible://` links.
+
 ### `email-handler`
 
 Handles `email://` links.

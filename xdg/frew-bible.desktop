@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Bible
+Exec=/home/frew/code/dotfiles/bin/bible-handler %u
+Type=Application
+Categories=Utility;
+StartupNotify=false
+MimeType=x-scheme-handler/bible;

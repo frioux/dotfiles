@@ -1,6 +1,6 @@
 #!/bin/dash
 
-for x in email fogbugz; do
+for x in bible email fogbugz; do
    xdg-mime install ./xdg/frew-$x.desktop
    xdg-mime default frew-$x.desktop x-scheme-handler/$x
    cp ./xdg/frew-$x.desktop ~/.local/share/applications
