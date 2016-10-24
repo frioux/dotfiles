@@ -304,13 +304,13 @@ end, 1)
 
 -- {{{ weather
 osweatherwidget = weather_widget(
-  "KBIX", "http://forecast.io/#/f/30.4163,-88.8081/", "OS"
+  "KBIX", "https://darksky.net/30.4113,-88.8279", "OS"
 )
 
 osweatherwidget = margin(osweatherwidget, { right = 5 })
 
 smweatherwidget = weather_widget(
-  "KSMO", "https://forecast.io/#/f/34.0189,-118.4962", "Santa Monica"
+  "KSMO", "https://darksky.net/34.0196,-118.487", "Santa Monica"
 )
 
 smweatherwidget = margin(smweatherwidget, { left = 5, right = 5 })
