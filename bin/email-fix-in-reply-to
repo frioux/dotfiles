@@ -207,8 +207,6 @@ sub _rethread_emails ($fix_type, @email_ids) {
       my $new_raw = $email->{email}->as_string;
       next if $new_raw eq $email->{email_str};
 
-      $new_raw = $email->{email}->as_string;
-
       warn "Uploading replacement $email->{id}\n";
       my $upload_res = upload_email({ labelIds => $email->{labelIds}}, $new_raw);
       if (!$upload_res->is_success) {
