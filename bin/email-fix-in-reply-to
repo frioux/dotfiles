@@ -1,0 +1,342 @@
+#!/usr/bin/env perl
+
+use strict;
+use warnings;
+
+# https://developers.google.com/gmail/api/guides/uploads#multipart
+
+use experimental 'postderef', 'signatures';
+
+use HTTP::Request;
+use HTTP::Request::Common;
+use JSON;
+use LWP::UserAgent;
+use MIME::Base64::URLSafe;
+use Email::Date;
+use Email::MIME;
+use URI;
+use IO::All;
+use Try::Tiny;
+
+our $gmail_api_key = $ENV{GMAIL_API_KEY};
+our $gmail_api_client_id = $ENV{GMAIL_API_CLIENT_ID};
+our $gmail_secret = $ENV{GMAIL_SECRET};
+
+my $ua = LWP::UserAgent->new( keep_alive => 3 );
+
+my $config = try {
+   decode_json(io->file("$ENV{HOME}/.gmail-auth-token.json")->all)
+} catch { +{} };
+
+$config = get_token(
+   refresh_token => $config->{refresh_token},
+   grant_type => 'refresh_token',
+) if $config->{refresh_at} && time > $config->{refresh_at};
+
+sub _build_req ($uri_prefix, $uri_params, $headers = {}) {
+   my $uri = URI->new($uri_prefix);
+   $uri->query_form( %$uri_params );
+   HTTP::Request->new(
+      GET => "$uri",
+      [
+         %$headers,
+         Authorization => "Bearer $config->{access_token}"
+      ],
+   );
+}
+
+sub _do_req ($uri_prefix, %params) {
+   my $req = _build_req($uri_prefix, \%params);
+   my $res = $ua->request($req);
+   return decode_json($res->decoded_content)
+}
+
+sub get_token (%args) {
+   my $res = $ua->request(POST 'https://www.googleapis.com/oauth2/v4/token' => [
+      %args,
+      client_id     => $gmail_api_client_id,
+      client_secret => $gmail_secret,
+   ]);
+
+
+   my $config_to_save = decode_json($res->decoded_content);
+
+   die "$config_to_save->{error_description} ($config_to_save->{error})"
+      unless $res->is_success;
+   my $config = {
+      access_token => $config_to_save->{access_token},
+      refresh_token => $config_to_save->{refresh_token} || $config->{refresh_token},
+      refresh_at => time + $config_to_save->{expires_in},
+   };
+
+   io ->file("$ENV{HOME}/.gmail-auth-token.json")
+      ->write(encode_json($config));
+
+   $config
+}
+
+sub authenticate {
+   # https://developers.google.com/identity/protocols/OAuth2InstalledApp
+   my $uri = URI->new('https://accounts.google.com/o/oauth2/v2/auth');
+   $uri->query_form(
+      response_type => 'code',
+      client_id => $gmail_api_client_id,
+      redirect_uri => 'http://127.0.0.1:9004/wat',
+      access_type => 'offline',
+      prompt => 'consent',
+      scope => 'https://mail.google.com/',
+      include_granted_scope => 'false',
+   );
+
+   print "Opening $uri ...\n";
+   system 'xdg-open', "$uri";
+
+   my $app = sub {
+      my $env = shift;
+      $env->{'psgix.harakiri.commit'} = 1;
+
+      require Plack::Request;
+      my $req = Plack::Request->new( $env );
+      if (my $code = $req->param('code')) {
+         get_token(
+            code => $code,
+            grant_type    => 'authorization_code',
+            redirect_uri  => 'http://127.0.0.1:9004/wat',
+         );
+         return [
+            200,
+            [ content_type => 'text/html' ],
+            [ 'Success!' ]
+         ]
+      } else {
+         return [
+            500,
+            [ content_type => 'text/html' ],
+            [ sprintf "Error: %s (%s)", $req->param('error'), $req->param('error_subtype') ]
+         ]
+      }
+   };
+
+   require Plack::Runner;
+   my $runner = Plack::Runner->new;
+   $runner->parse_options(qw( --listen 127.0.0.1:9004 ));
+   $runner->run($app);
+}
+
+sub upload_email ($metadata, $email) {
+   my $uri = URI->new('https://www.googleapis.com/upload/gmail/v1/users/me/messages/import');
+   $uri->query_form(
+      uploadType => 'multipart',
+      neverMarkSpam => 'true',
+   );
+   my $req = HTTP::Request->new(
+      POST => "$uri",
+      [
+         Authorization => "Bearer $config->{access_token}",
+         content_type => "multipart/related",
+      ],
+   );
+   $req->add_part(
+      HTTP::Message->new(
+         HTTP::Headers->new(content_type => "application/json; charset=UTF-8"),
+         encode_json($metadata),
+      ),
+   );
+   $req->add_part(
+      HTTP::Message->new(
+         [ content_type => "message/rfc822" ],
+         $email,
+      ),
+   );
+   $req->header( content_length => length $req->content );
+   $ua->request($req);
+}
+
+sub delete_email ($id) {
+   my $req = HTTP::Request->new(
+      DELETE => "https://www.googleapis.com/gmail/v1/users/me/messages/$id",
+      [
+         Authorization => "Bearer $config->{access_token}"
+      ],
+   );
+   $ua->request($req);
+}
+
+sub _rethread_emails ($fix_type, @email_ids) {
+   my @emails;
+   for my $id (@email_ids) {
+      my $message = _do_req(
+         "https://www.googleapis.com/gmail/v1/users/me/messages/$id" => (
+            format => 'raw',
+         ));
+      my $email = Email::MIME->new(urlsafe_b64decode($message->{raw}));
+      push @emails, {
+         email => $email,
+         email_str => $email->as_string,
+         id => $id,
+         labelIds => $message->{labelIds},
+      };
+   }
+
+   @emails = sort {
+      find_date($a->{email_str}) <=> find_date($b->{email_str}) ||
+      $a->{email}->header_raw('Message-ID') cmp $b->{email}->header_raw('Message-ID')
+   } @emails;
+
+   my $first_email = shift @emails;
+   if (!$first_email->{email}->header_raw('Message-ID')) {
+      warn "Thread is p broken, skipping :( ...\n";
+      return
+   }
+   prefix_message_id($first_email->{email}, $fix_type)
+      if clear_initial_headers($first_email->{email});
+
+   my $prev = $first_email;
+   for my $email (@emails) {
+      if (!$email->{email}->header_raw('Message-ID')) {
+         warn "Thread is p broken, skipping :( ...\n";
+         return
+      }
+      prefix_message_id($email->{email}, $fix_type)
+         if update_references($email->{email}, $prev->{email});
+
+      $prev = $email
+   }
+
+   for my $email ($first_email, @emails) {
+      my $new_raw = $email->{email}->as_string;
+      next if $new_raw eq $email->{email_str};
+
+      $new_raw = $email->{email}->as_string;
+
+      warn "Uploading replacement $email->{id}\n";
+      my $upload_res = upload_email({ labelIds => $email->{labelIds}}, $new_raw);
+      if (!$upload_res->is_success) {
+         warn "Failed to upload $email->{id}: " . $upload_res->decoded_content . "\n";
+      } else {
+         if (decode_json($upload_res->decoded_content)->{id} ne $email->{id}) {
+            warn "Deleting old $email->{id}\n";
+            my $delete_res = delete_email($email->{id});
+            if (!$delete_res->is_success) {
+               warn "failed to delete $email->{id}: " . $delete_res->decoded_content . "\n";
+            }
+         } else {
+            warn "id of $email->{id} did not change, something is probably wrong\n"
+         }
+      }
+
+   }
+}
+
+sub prefix_message_id ($email, $type) {
+   my $id = $email->header_raw('Message-ID');
+   $id =~ s/^fixed-[^-]+-//;
+
+   die "No Message-ID in " . $email->as_string . "\n" if !$id;
+   if (!($id =~ s/^<fixed-$type(\d+)-/"<fixed-$type" . ($1 + 1) . "-"/e)) {
+      $id =~ s/^<(?:fixed-[^-]+-)?/<fixed-${type}1-/;
+   }
+   $email->header_set('Message-ID', $id);
+}
+
+sub update_references ($email, $prev) {
+   my $old = $email->as_string;
+
+   $email->header_set('In-Reply-To', $prev->header_raw('Message-ID'));
+   my $references = $prev->header_raw('Message-ID');
+   if (my $p_ref = $prev->header_raw('References')) {
+      $references .= " $p_ref";
+   }
+   $email->header_set('References', $references);
+
+   return $old ne $email->as_string;
+}
+
+sub clear_initial_headers ($email) {
+   my $old = $email->as_string;
+
+   $email->header_set('In-Reply-To');
+   $email->header_set('References');
+
+   return $old ne $email->as_string;
+}
+
+sub fix_fogbugz_threads {
+   my $fogbugz_inbox =
+      _do_req('https://www.googleapis.com/gmail/v1/users/me/messages' => (
+        q => "in:INBOX from:fogbugz",
+      ));
+
+   my @ids = map $_->{id}, $fogbugz_inbox->{messages}->@*;
+
+   my %cases;
+   for my $id (@ids) {
+      my $message = _do_req("https://www.googleapis.com/gmail/v1/users/me/messages/$id" => (
+         format => 'metadata',
+         metadataHeaders => 'Subject',
+      ));
+      my $header = $message->{payload}{headers}[0]{value};
+      my ($case_id) = ($header =~ m/\(Case (\d+)\)/);
+      $cases{$case_id} = 1;
+   }
+
+   for my $id (keys %cases) {
+      warn "Fixing FogBugz `Case $id` Thread...\n";
+      fix_fogbugz_thread($id);
+   }
+}
+
+sub fix_fogbugz_thread ($case_id) {
+   my $m = _do_req('https://www.googleapis.com/gmail/v1/users/me/messages' => (
+      q => qq{subject:"FogBugz (Case $case_id)"},
+   ));
+
+   my @ids = map $_->{id}, $m->{messages}->@*;
+
+   _rethread_emails('fogbugz', @ids)
+}
+
+sub fix_aws_thread ($case_id) {
+   my $m = _do_req('https://www.googleapis.com/gmail/v1/users/me/messages' => (
+      q => qq{subject:"Case $case_id)"},
+   ));
+
+   my @ids = map $_->{id}, $m->{messages}->@*;
+
+   _rethread_emails('aws', @ids)
+}
+
+sub fix_aws_threads {
+   my $aws_inbox =
+      _do_req('https://www.googleapis.com/gmail/v1/users/me/messages' => (
+        q => 'in:INBOX from:"Amazon Web Services"',
+      ));
+
+   my @ids = map $_->{id}, $aws_inbox->{messages}->@*;
+
+   my %cases;
+   for my $id (@ids) {
+      my $message = _do_req("https://www.googleapis.com/gmail/v1/users/me/messages/$id" => (
+         format => 'metadata',
+         metadataHeaders => 'Subject',
+      ));
+      my $header = $message->{payload}{headers}[0]{value};
+      if (my ($case_id) = ($header =~ m/\[Case (\d+)\]/)) {
+         $cases{$case_id} = 1;
+      }
+   }
+
+   for my $id (keys %cases) {
+      warn "Fixing AWS `Case $id` Thread...\n";
+      fix_aws_thread($id);
+   }
+
+}
+
+sub fix_threads{
+   fix_aws_threads();
+   fix_fogbugz_threads();
+}
+
+my $method = shift;
+main->can($method)->(@ARGV) if main->can($method);
