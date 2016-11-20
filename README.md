@@ -1,5 +1,5 @@
-sharetags
-=========
+Sharetags plugin for awesome wm
+===============================
 
 Shared tags for multi-monitor system
 
