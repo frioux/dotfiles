@@ -17,7 +17,7 @@
 
     git clone https://github.com/neomutt/neomutt
     cd neomutt
-    ./prepare --enable-notmuch --enable-hcache --prefix=/opt --disable-pgp --disable-smime && \
+    ./prepare --enable-notmuch --with-lmdb --prefix=/opt --disable-pgp --disable-smime && \
        make && \
        sudo make install
 

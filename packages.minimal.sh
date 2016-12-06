@@ -7,6 +7,7 @@ exec apt-get --no-install-recommends    \
    daemontools                          \
    fail2ban                             \
    htop                                 \
+   liblmdb-dev                          \
    moreutils                            \
    mosh                                 \
    openssh-client                       \
