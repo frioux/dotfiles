@@ -33,7 +33,7 @@ set markers           = no
 set mime_forward      = yes
 set mime_forward_rest = yes
 
-alternates '^frew@mitsi.com$' '^frioux@gmail.com$' '^frew@afoolishmanifesto.com$' '^frew@ziprecruiter.com$' '^arthur@ziprecruiter.com$'
+alternates '^frew@mitsi.com$' '^frioux@gmail.com$' 'frew.co$' 'afoolishmanifesto.com$' '^frew@ziprecruiter.com$' '^arthur@ziprecruiter.com$' '^FREW@cpan.org$'
 
 set index_format="%4C %Z %{%b %d} %-15.15L (%3E) %s"
 set pager_index_lines=9
