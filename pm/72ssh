@@ -1,0 +1,8 @@
+#!/bin/sh
+. "${PM_FUNCTIONS}"
+case "$1" in
+  thaw|resume)
+    rm /tmp/ssh_mux_*
+    ;;
+  *) exit $NA ;;
+esac

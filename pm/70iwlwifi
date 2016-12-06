@@ -1,0 +1,12 @@
+#!/bin/sh
+. "${PM_FUNCTIONS}"
+case "$1" in
+  hibernate|suspend)
+    rmmod iwldvm || /bin/true
+    rmmod iwlwifi || /bin/true
+    ;;
+  thaw|resume)
+    modprobe iwlwifi
+    ;;
+  *) exit $NA ;;
+esac

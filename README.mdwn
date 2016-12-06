@@ -12,6 +12,7 @@
     sudo bash -c 'cat sysctl.conf >> /etc/sysctl.conf'
     sudo cp xsession.desktop /usr/share/xsessions/xsession.desktop
     sudo cp random.rules /etc/udev/rules.d/71-disable-random-entropy-estimation.rules
+    sudo cp ./pm/* /etc/pm/sleep.d/
 
 # Install mutt
 
