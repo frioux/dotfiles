@@ -13,6 +13,7 @@ exec 'ssh', '-t', ($ssh_args ? ($ssh_args) : ()), $ENV{WWW},
          'export PATH="$PATH:/var/starterview/bin"',
          'export TERM=linux',
          'export PAGER=less',
+         'export ZR_SECRET_PATH=/var/starterview/passwords',
          "export LESS=$ENV{LESS}",
       ) . shell_quote(@ARGV)
    )

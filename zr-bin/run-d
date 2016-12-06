@@ -3,4 +3,4 @@
 # still not quite sure why I need the `_`
 exec execwww \
    bash -c \
-   'cd /var/starterview; export PATH=$PATH:/var/starterview/bin; exec "$@"' _ "$@"
+   'cd /var/starterview; export PATH=$PATH:/var/starterview/bin; export ZR_SECRET_PATH=/var/starterview/passwords; exec "$@"' _ "$@"
