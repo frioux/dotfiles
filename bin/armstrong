@@ -7,7 +7,7 @@ fi
 while true; do
    sleep $(( 60 * 25 ))
    echo b255 > $LIGHTD
-   notify-send -u critical 'TIME TO STRETCH!'
+   notify-send 'Time to stretch!'
    sleep 10
    echo b0 > $LIGHTD
 done
