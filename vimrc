@@ -220,6 +220,13 @@ endif
 
 set list
 
+" {{{ syntastic settings
+let g:syntastic_check_on_wq = 0
+let g:syntastic_mode_map = {
+\ "mode": "active",
+\ "passive_filetypes": ["perl"] }
+" }}}
+
 " {{{ ctrlp settings
 
 function! DirCtrlP()
