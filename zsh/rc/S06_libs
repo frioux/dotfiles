@@ -1,6 +1,6 @@
-source ~/.zsh/adenosine/adenosine-exports
-
-source ~/code/dotfiles/git-hub/.rc
+if [[ -e ~/code/dotfiles/git-hub/.rc ]]; then
+   source ~/code/dotfiles/git-hub/.rc
+fi
 
 if [[ -z "$WINDIR" ]]; then
    source ~/.smartcd/lib/core/arrays
