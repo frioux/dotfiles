@@ -1,4 +1,10 @@
 #!/bin/dash
 
+if [ ! -f "$HOME/.goobook_auth.json" ]; then
+   exit
+fi
+
 goobook query '' > "$HOME/addresses"
 addrlookup-compat '' >> "$HOME/addresses"
+
+# vim: ft=sh
