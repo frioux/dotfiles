@@ -31,9 +31,6 @@
 [submodule "vim/bundle/jshint.vim"]
 	path = vim/bundle/jshint.vim
 	url = git://github.com/walm/jshint.vim.git
-[submodule "zsh/adenosine"]
-	path = zsh/adenosine
-	url = git://github.com/frioux/app-adenosine
 [submodule "vim/bundle/vim-colors-solarized"]
 	path = vim/bundle/colors-solarized
 	url = git://github.com/altercation/vim-colors-solarized.git
