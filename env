@@ -1,6 +1,8 @@
 #!/bin/sh
 
-. "$HOME/.localdirs"
+if [ -r "$HOME/.localdirs" ]; then
+   . "$HOME/.localdirs"
+fi
 
 MANPATH=
 export MANPATH="/opt/share/man:$(manpath)"
