@@ -20,6 +20,7 @@
    git = !git
    wip = commit -amWIP
    unwip = reset HEAD^
+   sync = !git pull --rebase && git push
 [diff]
    ;external = git_diff_wrapper
    compactionHeuristic = true
