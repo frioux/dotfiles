@@ -1,3 +1,7 @@
 #!/bin/zsh
 
+if [[ ! -d /home/frew/var/mail ]]; then
+   exit
+fi
+
 ionice -c3 nice -n 15 notmuch new --quiet 2>&1 | perl -pe 'undef $_ if m/already locked/'
