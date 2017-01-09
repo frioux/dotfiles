@@ -1,5 +1,9 @@
 zmodload zsh/datetime
 
+if [[ ! -f ~/.dotfilecheck ]]; then
+   echo $(($EPOCHSECONDS+60*60*24*7)) > ~/.dotfilecheck
+fi
+
 if [[ $EPOCHSECONDS -gt $(cat ~/.dotfilecheck) ]]; then
    echo "Updating .zshrc automatically ($EPOCHSECONDS -gt $(cat ~/.dotfilecheck))";
    rm ~/.dotfilecheck
