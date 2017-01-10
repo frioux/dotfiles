@@ -28,9 +28,6 @@
 [submodule "vim/bundle/vim-fugitive"]
 	path = vim/bundle/fugitive
 	url = git://github.com/tpope/vim-fugitive
-[submodule "vim/bundle/jshint.vim"]
-	path = vim/bundle/jshint.vim
-	url = git://github.com/walm/jshint.vim.git
 [submodule "vim/bundle/vim-colors-solarized"]
 	path = vim/bundle/colors-solarized
 	url = git://github.com/altercation/vim-colors-solarized.git
@@ -145,9 +142,6 @@
 [submodule "vim/bundle/obsession"]
 	path = vim/bundle/obsession
 	url = git://github.com/tpope/vim-obsession
-[submodule "vim/bundle/racket"]
-	path = vim/bundle/racket
-	url = git://github.com/wlangstroth/vim-racket
 [submodule "awesome/sharetags"]
 	path = awesome/sharetags
 	url = git://github.com/XLegion/sharetags
