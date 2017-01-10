@@ -3,7 +3,7 @@
 ssh $1 <<SH
 mkdir -p \$HOME/code
 if [ ! -d \$HOME/code/dotfiles ]; then
-   git clone --quiet --recursive git://github.com/frioux/dotfiles \$HOME/code/dotfiles
+   git clone --quiet -j"\$(cat /proc/cpuinfo | grep '^processor' | wc -l)" --recursive git://github.com/frioux/dotfiles \$HOME/code/dotfiles
    cd \$HOME/code/dotfiles
    ./install.sh
 fi
