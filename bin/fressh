@@ -1,14 +1,19 @@
 #!/bin/dash
 
-ssh $1 <<SH
-mkdir -p \$HOME/code
-if [ ! -d \$HOME/code/dotfiles ]; then
-   git clone --quiet -j"\$(cat /proc/cpuinfo | grep '^processor' | wc -l)" --recursive git://github.com/frioux/dotfiles \$HOME/code/dotfiles
-   cd \$HOME/code/dotfiles
-   ./install.sh
-fi
-SH
+host=$1
+shift
 
-exec ssh $1
+if [ "$#" -eq 0 ]; then
+   ssh $host <<SH
+   mkdir -p \$HOME/code
+   if [ ! -d \$HOME/code/dotfiles ]; then
+      git clone --quiet -j"\$(cat /proc/cpuinfo | grep '^processor' | wc -l)" --recursive git://github.com/frioux/dotfiles \$HOME/code/dotfiles
+      cd \$HOME/code/dotfiles
+      ./install.sh
+   fi
+SH
+fi
+
+exec ssh $host "$@"
 
 # vim: ft=sh
