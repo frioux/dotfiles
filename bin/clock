@@ -24,7 +24,14 @@ my @hours = map uc, qw(
    eleven
 );
 
-my $time = "CLOCK FACE $hours[$hour]";
-$time .= '-THIRTY' if $min >= 15 && $min <= 45;
+my $time = "CLOCK FACE ";
+if ($min < 15) {
+   $time .= "$hours[$hour] OCLOCK";
+} elsif ($min >= 15 && $min <= 45) {
+   $time .= "$hours[$hour]-THIRTY"
+} else {
+   $hour += 1;
+   $time .= "$hours[$hour] OCLOCK";
+}
 
 say charnames::string_vianame($time);
