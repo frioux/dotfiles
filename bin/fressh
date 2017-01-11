@@ -1,19 +1,33 @@
-#!/bin/dash
+#!/usr/bin/env perl
 
-host=$1
-shift
+use 5.22.0;
+use warnings;
 
-if [ "$#" -eq 0 ]; then
-   ssh $host <<SH
-   mkdir -p \$HOME/code
-   if [ ! -d \$HOME/code/dotfiles ]; then
-      git clone --quiet -j"\$(cat /proc/cpuinfo | grep '^processor' | wc -l)" --recursive git://github.com/frioux/dotfiles \$HOME/code/dotfiles
-      cd \$HOME/code/dotfiles
+# TODO: make this work for ssh options
+my $host = shift;
+
+if (!@ARGV) {
+   system('ssh', $host, <<'SH');
+   set -e
+   timeout 5s curl https://github.com/ -s > /dev/null
+   mkdir -p $HOME/code
+   if [ ! -d $HOME/code/dotfiles ]; then
+      set -e
+      timeout 20s git clone --quiet -j"$(cat /proc/cpuinfo | grep '^processor' | wc -l)" --recursive git://github.com/frioux/dotfiles $HOME/code/dotfiles
+      cd $HOME/code/dotfiles
       ./install.sh
    fi
+   exit 0
 SH
-fi
 
-exec ssh $host "$@"
+   if ($? >> 8) {
+      system('rsync', '-r', '/home/frew/code/dotfiles/', "$host:/home/frew/code/dotfiles/");
+
+      system('ssh', $host, 'cd /home/frew/code/dotfiles; ./install.sh')
+         unless $? >> 8;
+   }
+}
+
+exec 'ssh', $host, @ARGV
 
 # vim: ft=sh
