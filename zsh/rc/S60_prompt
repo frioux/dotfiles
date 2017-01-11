@@ -63,7 +63,7 @@ zstyle ':vcs_info:*:prompt:*' enable git
 function precmd { vcs_info 'prompt' }
 
 vcs='$vcs_info_msg_0_'
-memento_mori="%{$fg_bold[white]%}💀%{$reset_color%}"
+memento_mori="%{$fg_bold[white]%}💀 $(clock)%{$reset_color%}"
 
 function lprompt {
   local vimode='${PR_VIMODE}'
