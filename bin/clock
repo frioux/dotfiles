@@ -9,6 +9,8 @@ binmode STDOUT, ':encoding(UTF-8)';
 
 my (undef, $min, $hour) = localtime;
 
+$hour = $hour % 12;
+
 my @hours = map uc, qw(
    twelve
    one
