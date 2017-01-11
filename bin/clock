@@ -1,0 +1,30 @@
+#!/usr/bin/env perl
+
+use 5.22.0;
+use warnings;
+
+use charnames ':full';
+
+binmode STDOUT, ':encoding(UTF-8)';
+
+my (undef, $min, $hour) = localtime;
+
+my @hours = map uc, qw(
+   twelve
+   one
+   two
+   three
+   four
+   five
+   six
+   seven
+   eight
+   nine
+   ten
+   eleven
+);
+
+my $time = "CLOCK FACE $hours[$hour]";
+$time .= '-THIRTY' if $min >= 15 && $min <= 45;
+
+say charnames::string_vianame($time);
