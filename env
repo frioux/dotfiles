@@ -25,6 +25,13 @@ export ORACLE_HOME="$HOME/Dropbox/instantclient_12_1"
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$ORACLE_HOME"
 export TNS_ADMIN="$HOME/Dropbox"
 
-export STARTERVIEW="$HOME/code/ziprecruiter"
+if [ -d "$HOME/code/ziprecruiter" ]; then
+   export STARTERVIEW="$HOME/code/ziprecruiter"
+elif [ -d "$HOME/ziprecruiter" ]; then
+   export STARTERVIEW="$HOME/ziprecruiter"
+elif [ -d /var/starterview ]; then
+   export STARTERVIEW=/var/starterview
+fi
+
 export TMPDIR=/run/shm
 export TZ=America/Los_Angeles
