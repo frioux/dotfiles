@@ -1,0 +1,14 @@
+#!/bin/dash
+
+docker rm -f weechat
+exec docker run -it    \
+     --rm            \
+     --env "TERM=$TERM" \
+     --env "WEE_USER=$(id -u)" \
+     --env "HOME=/" \
+     --volume "$HOME/irc-weechat:/.weechat" \
+     --name weechat \
+     frew/weechat
+
+# vim: ft=sh
+
