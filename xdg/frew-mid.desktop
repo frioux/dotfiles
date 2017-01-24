@@ -5,4 +5,4 @@ Terminal=true
 Type=Application
 Categories=Utility;
 StartupNotify=false
-MimeType=x-scheme-handler/email;
+MimeType=x-scheme-handler/mid;

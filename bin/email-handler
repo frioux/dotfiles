@@ -8,21 +8,24 @@ use autodie;
 use File::Temp;
 
 my $url = shift;
-my $email = $url =~ s(^email://)()r;
+my $id = $url =~ s(^mid:)()r;
 
-my ($search, $which_email) = split /\.eml@/, $email;
+my $dir = File::Temp->newdir;
 
-{
-   my $dir = File::Temp->newdir;
+for my $val (
+   [undef, ''],
+   ["$ENV{HOME}/.zr-notmuch-config", 'zr-']
+) {
+   $ENV{NOTMUCH_CONFIG} = $val->[0] if $val->[0];
+   my $mutt = $val->[1] . 'mutt';
 
-   my $mutt = 'mutt';
+   system qw(notmuch-mutt -r search), "id:$id", '-o', "$dir";
 
-   if ($which_email eq 'zr') {
-      $mutt = 'zr-mutt';
-      $ENV{NOTMUCH_CONFIG} = "$ENV{HOME}/.zr-notmuch-config";
-   }
+   next unless grep -f, glob "$dir/cur/*";
 
-   system qw(notmuch-mutt -r search), $search, '-o', "$dir";
-   system $mutt, qw( -R -f ), "$dir"
+   system $mutt, qw( -R -f ), "$dir";
 
+   exit;
 }
+
+exit 1;
