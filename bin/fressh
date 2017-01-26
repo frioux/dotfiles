@@ -32,5 +32,3 @@ SH
 }
 
 exec 'ssh', $host, @ARGV
-
-# vim: ft=sh
