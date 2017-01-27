@@ -1,0 +1,58 @@
+#!/usr/bin/env perl
+
+use 5.20.0;
+use warnings;
+
+use Email::Address;
+use Email::Date;
+use Email::MIME;
+use IO::All;
+use Time::Piece;
+
+my @emails = reverse sort glob shift;
+
+my $now = Time::Piece->new;
+
+my $lambda = log(2) / 30;
+
+my %score;
+
+for my $file (@emails) {
+   my $email = Email::MIME->new(io->file($file)->all);
+   for (
+      grep $_,
+      map Email::Address->parse($email->header_str($_)),
+      qw( To Cc Bcc )
+   ) {
+      next if $score{$_->address};
+
+      my $time = find_date($email);
+
+      # https://wiki.mozilla.org/User:Jesse/NewFrecency#Efficient_computation
+      my $age = int(($now - $time) / (24 * 60 * 60));
+
+      $score{$_->address} = exp($lambda * $age);
+   }
+}
+
+
+# first line is meaningless?
+my $first = <STDIN>;
+my %hash;
+while (<STDIN>) {
+   chomp;
+   my ($address, $rest) = split /\t/, $_, 2;
+   $hash{$address} ||= ($rest||'');
+}
+
+print "\n";
+
+my %scored = map {
+   $_ => delete $hash{$_}||'',
+} keys %score;
+
+say "$_\t$scored{$_}" for sort {
+   $score{$a} <=> $score{$b}
+} keys %scored;
+
+say "$_\t$hash{$_}" for sort keys %hash;
