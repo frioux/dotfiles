@@ -8,11 +8,18 @@ use utf8;
 binmode STDIN, 'encoding(UTF-8)';
 binmode STDOUT, 'encoding(UTF-8)';
 
+use HTTP::Cookies::Mozilla;
 use Try::Tiny;
 use WWW::Mechanize;
 
+my $cj = HTTP::Cookies::Mozilla->new(
+   autosave => 0,
+   file => '/home/frew/.mozilla/firefox/r2z3etun.default/cookies.sqlite'
+);
+
 my $m = WWW::Mechanize->new(
    timeout => 30,
+   cookie_jar => $cj,
 );
 
 while (<STDIN>) {
