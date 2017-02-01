@@ -20,7 +20,7 @@
    git = !git
    wip = commit -amWIP
    unwip = reset HEAD^
-   sync = !git pull --rebase && git push
+   sync = !git pull && git push
 [diff]
    ;external = git_diff_wrapper
    compactionHeuristic = true
@@ -106,3 +106,5 @@
            fsckobjects = true
 [receive]
            fsckObjects = true
+[pull]
+	rebase = true
