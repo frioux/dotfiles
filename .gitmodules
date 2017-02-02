@@ -94,9 +94,6 @@
 [submodule "vim/bundle/windowswap"]
 	path = vim/bundle/windowswap
 	url = git://github.com/wesQ3/vim-windowswap
-[submodule "pointless-xcompose"]
-	path = pointless-xcompose
-	url = git://github.com/rrthomas/pointless-xcompose
 [submodule "vim/bundle/matchmaker"]
 	path = vim/bundle/matchmaker
 	url = git://github.com/qstrahl/vim-matchmaker
