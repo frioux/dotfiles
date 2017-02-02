@@ -142,9 +142,6 @@
 [submodule "vim/bundle/vimoutliner"]
 	path = vim/bundle/vimoutliner
 	url = git://github.com/vimoutliner/vimoutliner
-[submodule "vim/bundle/rust"]
-	path = vim/bundle/rust
-	url = https://github.com/wting/rust.vim
 [submodule "vim/bundle/FastFold"]
 	path = vim/bundle/FastFold
 	url = git://github.com/Konfekt/FastFold
