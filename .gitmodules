@@ -139,12 +139,6 @@
 [submodule "awesome/sharetags"]
 	path = awesome/sharetags
 	url = git://github.com/XLegion/sharetags
-[submodule "vim/bundle/jinja-syntax"]
-	path = vim/bundle/jinja-syntax
-	url = git://github.com/Glench/Vim-Jinja2-Syntax
-[submodule "vim/bundle/salt"]
-	path = vim/bundle/salt
-	url = git://github.com/saltstack/salt-vim
 [submodule "vim/bundle/vimoutliner"]
 	path = vim/bundle/vimoutliner
 	url = git://github.com/vimoutliner/vimoutliner
