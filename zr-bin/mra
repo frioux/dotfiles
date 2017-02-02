@@ -1,0 +1,9 @@
+#!/bin/dash
+
+_execroot $WWW \
+   killall -r plackup -w -q
+
+_execroot $WWW \
+   killall -r starman -w -q
+
+exec run-d zr-partner-alerts-app "$@"
