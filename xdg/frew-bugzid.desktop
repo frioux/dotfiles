@@ -1,7 +1,7 @@
 [Desktop Entry]
-Name=Fogbugz-ID
+Name=BugzID
 Exec=/home/frew/code/dotfiles/bin/fogbugz-handler %u
 Type=Application
 Categories=Utility;
 StartupNotify=false
-MimeType=x-scheme-handler/fogbugz;
+MimeType=x-scheme-handler/bugzid;
