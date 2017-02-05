@@ -24,6 +24,7 @@
 [diff]
    ;external = git_diff_wrapper
    compactionHeuristic = true
+	submodule = log
 
 [super-status]
    master = master
