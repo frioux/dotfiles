@@ -85,9 +85,6 @@
 [submodule "vim/bundle/commentary"]
 	path = vim/bundle/commentary
 	url = git://github.com/tpope/vim-commentary
-[submodule "vim/bundle/textobj-word-column"]
-	path = vim/bundle/textobj-word-column
-	url = git://github.com/coderifous/textobj-word-column.vim
 [submodule "vim/bundle/windowswap"]
 	path = vim/bundle/windowswap
 	url = git://github.com/wesQ3/vim-windowswap
