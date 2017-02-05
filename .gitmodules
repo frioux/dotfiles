@@ -85,9 +85,6 @@
 [submodule "vim/bundle/commentary"]
 	path = vim/bundle/commentary
 	url = git://github.com/tpope/vim-commentary
-[submodule "vim/bundle/windowswap"]
-	path = vim/bundle/windowswap
-	url = git://github.com/wesQ3/vim-windowswap
 [submodule "vim/bundle/matchmaker"]
 	path = vim/bundle/matchmaker
 	url = git://github.com/qstrahl/vim-matchmaker
