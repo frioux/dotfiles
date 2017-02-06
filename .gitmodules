@@ -130,3 +130,6 @@
 [submodule "vim/bundle/FastFold"]
 	path = vim/bundle/FastFold
 	url = git://github.com/Konfekt/FastFold
+[submodule "vim/bundle/fugitive-gitlab"]
+	path = vim/bundle/fugitive-gitlab
+	url = git://github.com/shumphrey/fugitive-gitlab.vim

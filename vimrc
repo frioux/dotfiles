@@ -434,4 +434,7 @@ function! CompleteTags(findstart, base)
     return systemlist('bin/tags ' . a:base . '%')
   endif
 endfun
+
+let g:fugitive_gitlab_domains = ['https://git.ziprecruiter.com']
+
 " vim: foldmethod=marker
