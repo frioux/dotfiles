@@ -1,0 +1,6 @@
+#!/bin/dash
+
+sleep 1
+exec xdotool type --clearmodifiers "$(xclip -o -selection clipboard)"
+
+# vim: ft=sh
