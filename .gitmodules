@@ -27,7 +27,7 @@
 	url = git://github.com/scrooloose/nerdcommenter.git
 [submodule "vim/bundle/vim-fugitive"]
 	path = vim/bundle/fugitive
-	url = git://github.com/tpope/vim-fugitive
+	url = git://github.com/frioux/vim-fugitive
 [submodule "vim/bundle/vim-colors-solarized"]
 	path = vim/bundle/colors-solarized
 	url = git://github.com/altercation/vim-colors-solarized.git
