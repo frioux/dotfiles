@@ -3,4 +3,11 @@ autoload -Uz colors
 colors
 promptinit
 
+if [[ $TERM == dumb ]]; then
+    unset zle_bracketed_paste
+else
+    autoload -Uz bracketed-paste-magic
+    zle -N bracketed-paste bracketed-paste-magic
+fi
+
 # vim: ft=zsh
