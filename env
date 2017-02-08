@@ -60,7 +60,7 @@ if [ -f "$HOME/.dbic.json" ]; then
 fi
 
 export GPGKEY=737A7582
-if [ "x$TERM" = xxterm ]; then
+if [ $TERM = xterm ]; then
    export TERM=xterm-256color
 fi
 
