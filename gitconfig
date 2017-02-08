@@ -109,3 +109,5 @@
            fsckObjects = true
 [pull]
 	rebase = true
+[submodule]
+	fetchJobs = 8
