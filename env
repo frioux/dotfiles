@@ -5,11 +5,43 @@ if [ -r "$HOME/.localdirs" ]; then
 fi
 
 export DOTFILES="$(dirname "$(readlink "$0")" )"
-MANPATH=
-export MANPATH="/opt/share/man:$(manpath)"
-export LD_LIBRARY_PATH=/opt/lib
-export GOPATH="$HOME/go"
-export PATH="$HOME/bin:$DOTFILES/bin:$HOME/Sync/bin:$HOME/Dropbox/bin:$HOME/Dropbox/node/bin:/opt/bin:$GOPATH/bin:$HOME/.rakudobrew/bin:$PATH"
+
+if [ -d /opt/share/man ]; then
+   MANPATH=
+   export MANPATH="/opt/share/man:$(manpath)"
+fi
+MANPATH="$(zsh -fc "typeset -TU P=$MANPATH p; echo \$P")"
+
+if [ -d /opt/lib ]; then
+   export LD_LIBRARY_PATH=/opt/lib
+fi
+
+if [ -d "$HOME/.rakudobrew/bin" ]; then
+   PATH="$HOME/.rakudobrew/bin:$PATH"
+fi
+
+if [ -d "$HOME/go" ]; then
+   export GOPATH="$HOME/go"
+   PATH="$GOPATH/bin:$PATH"
+fi
+
+if [ -d /opt/bin ]; then
+   PATH="/opt/bin:$PATH"
+fi
+
+if [ -d "$HOME/Dropbox/bin" ]; then
+   PATH="$HOME/Dropbox/bin:$PATH"
+fi
+
+PATH="$DOTFILES/bin:$PATH"
+
+if [ -d "$HOME/bin" ]; then
+   PATH="$HOME/bin:$PATH"
+fi
+
+PATH="$(zsh -fc "typeset -TU P=$PATH p; echo \$P")"
+
+export PATH
 export CFLAGS=-I/opt/include
 export LDFLAGS=-L/opt/lib
 export EDITOR=vim
