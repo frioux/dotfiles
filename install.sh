@@ -54,6 +54,7 @@ for x in           \
    signature       \
    tkremindrc      \
    tmux.conf       \
+   vimoutlinerrc   \
    XCompose        \
    Xdefaults       \
    xmodmap         \
