@@ -59,7 +59,6 @@ if [ -f "$HOME/.dbic.json" ]; then
    export DBIC_TRACE_PROFILE="$HOME/.dbic.json"
 fi
 
-export GPGKEY=737A7582
 if [ $TERM = xterm ]; then
    export TERM=xterm-256color
 fi
