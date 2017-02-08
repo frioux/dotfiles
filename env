@@ -42,21 +42,34 @@ fi
 PATH="$(zsh -fc "typeset -TU P=$PATH p; echo \$P")"
 
 export PATH
-export CFLAGS=-I/opt/include
-export LDFLAGS=-L/opt/lib
+
+if [ -d /opt/include ]; then
+   export CFLAGS=-I/opt/include
+fi
+
+if [ -d /opt/lib ]; then
+   export LDFLAGS=-L/opt/lib
+fi
+
 export EDITOR=vim
 export LESS=-MFRX
 export PAGER=less
-export DBIC_TRACE_PROFILE="$HOME/.dbic.json"
+
+if [ -f "$HOME/.dbic.json" ]; then
+   export DBIC_TRACE_PROFILE="$HOME/.dbic.json"
+fi
+
 export GPGKEY=737A7582
 if [ "x$TERM" = xxterm ]; then
    export TERM=xterm-256color
 fi
 
-# Oracle--
-export ORACLE_HOME="$HOME/Dropbox/instantclient_12_1"
-export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$ORACLE_HOME"
-export TNS_ADMIN="$HOME/Dropbox"
+if [ -d "$HOME/Dropbox/instantclient_12_1" ]; then
+   # Oracle--
+   export ORACLE_HOME="$HOME/Dropbox/instantclient_12_1"
+   export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$ORACLE_HOME"
+   export TNS_ADMIN="$HOME/Dropbox"
+fi
 
 if [ -d "$HOME/code/ziprecruiter" ]; then
    export STARTERVIEW="$HOME/code/ziprecruiter"
