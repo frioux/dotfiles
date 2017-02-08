@@ -69,8 +69,14 @@ for x in           \
    link-file $x ~/.$x
 done
 
+GITFLAGS=
+if git --version | perl -E'my (undef, undef, $version) = split /\s+/, <STDIN>; my @v = split /\./, $version; exit if (1002008000 <= 1 . join "", map sprintf("%03d", $_), @v); exit 1'; then
+   GITFLAGS="$GITFLAGS -j $(cat /proc/cpuinfo | grep '^processor' | wc -l)"
+fi
+
 # ensure submodules are checked out before linking to them
-git submodule update --init --quiet
+git submodule update --init --quiet ${=GITFLAGS}
+
 link-file zsh/cxregs-bash-tools/lib ~/.smartcd/lib
 source ~/.smartcd/lib/core/arrays
 source ~/.smartcd/lib/core/varstash
