@@ -62,6 +62,7 @@ for x in           \
    xsession        \
    zsh             \
    weechat         \
+   zr-mutt         \
    zshrc           \
    zshenv          \
 ; do

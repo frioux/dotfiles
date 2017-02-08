@@ -1,0 +1,95 @@
+set alias_file        = ~/mail/mutt_aliases
+set beep_new          = no
+set charset           = "utf-8"
+set send_charset      = "utf-8"
+set confirmappend     = no
+set delete            = yes
+set editor            = "vim -c 'set tw=70'"
+set envelope_from     = "yes"
+set fast_reply        = yes
+set folder            = "$HOME/var/zr-mail"
+set followup_to       = yes
+set header_cache      = "$HOME/tmp/zr-headers"
+set honor_followup_to = yes
+set include           = yes
+set mbox_type         = Maildir
+set move              = no
+set pager_context     = 5
+set postponed         = "+gmail.drafts"
+set query_command     = "zr-addrlookup-fast '%s'"
+set realname          = "fREW Schmidt"
+set record            = "+gmail.sent"
+set sendmail          = "/usr/sbin/sendmail"
+set signature         = "~/.signature"
+set sleep_time        = 0
+set smart_wrap        = yes
+set sort_alias        = alias
+set sort_aux          = reverse-last-date-received
+set sort              = threads
+set spoolfile         = +INBOX
+set status_on_top     = yes
+set use_from          = yes
+set markers           = no
+set mime_forward      = yes
+set mime_forward_rest = yes
+set forward_format = "Fwd: %s"
+
+alternates '^frew@ziprecruiter.com$' '^arthur@ziprecruiter.com$'
+
+set index_format="%4C %Z %{%b %d} %-15.15L (%3E) %s"
+set pager_index_lines=9
+
+mailboxes `find ~/var/zr-mail -maxdepth 1 -type d -printf "+%f "`
+
+# who EVER wants to do these things?
+bind index,pager p noop
+bind index,pager a noop
+
+macro compose A "<attach-message>?<toggle-mailboxes>" "attach message(s) to this message"
+macro index G <last-entry>
+macro index gg <first-entry>
+macro pager G <bottom>
+macro pager gg <top>
+macro index,pager g<space> <group-reply>
+macro index C "<copy-message>?<toggle-mailboxes>" "copy a message to a mailbox"
+macro index M "<save-message>?<toggle-mailboxes>" "move a message to a mailbox"
+macro index,pager c "<change-folder>?<toggle-mailboxes>" "open a different folder"
+macro index,pager za "<collapse-thread>" "collapse thread"
+macro index,pager zi "<collapse-all>" "collapse all"
+
+macro index,pager IT "<save-message>=gmail.Trash<enter>$"   "delete message"
+macro index,pager IS "<save-message>=gmail.Spam<enter>$"   "mark message as spam"
+macro index,pager Ii "<save-message>=INBOX<enter>$"   "mark message as spam"
+
+macro index,pager ii "<change-folder>=INBOX<enter>" "view inbox"
+macro index,pager iT "<change-folder>=gmail.Trash<enter>"  "view trash"
+macro index,pager iS "<change-folder>=gmail.Spam<enter>"   "view spam"
+macro index,pager <F8> \
+     "<enter-command>unset wait_key<enter><shell-escape>notmuch-mutt -r --prompt search<enter><change-folder-readonly>~/.cache/notmuch/mutt/results<enter>" \
+     "notmuch: search mail"
+macro index,pager <F9> \
+     "<enter-command>unset wait_key<enter><pipe-message>notmuch-mutt -r thread<enter><change-folder-readonly>~/.cache/notmuch/mutt/results<enter><enter-command>set wait_key<enter>" \
+     "notmuch: reconstruct thread"
+macro index <F6> \
+     "<enter-command>unset wait_key<enter><pipe-message>notmuch-mutt tag -- -inbox<enter>" \
+     "notmuch: remove message from inbox"
+
+macro pager U <pipe-entry>extract_url.pl<enter> 'Follow links with urlview'
+
+ignore *
+unignore Date: From: User-Agent: X-Mailer X-Operating-System To: \
+         Cc: Reply-To: Subject: Mail-Followup-To: Message-ID:
+hdr_order Date: From: User-Agent: X-Mailer X-Operating-System To: \
+        Cc: Reply-To: Subject: Mail-Followup-To: Message-ID:
+
+source ~/.mutt/colors
+source ~/.mutt/pgp
+push <show-version>
+
+reply-hook '~s ".*"' 'set editor="vim"'
+reply-hook '~s "Production errors from yesterday"' 'set editor="maybe-snip vim"'
+send-hook '~t ".*"' 'my_hdr From: Frew Schmidt <frew@ziprecruiter.com>'
+
+source ~/.mutt-overrides
+
+# vim: ft=muttrc
