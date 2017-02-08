@@ -15,7 +15,7 @@ if (!@ARGV) {
       if git --version | perl -E'my (undef, undef, $version) = split /\s+/, <STDIN>; my @v = split /\./, $version; exit if (1002008000 <= 1 . join "", map sprintf("%03d", $_), @v); exit 1'; then
          timeout 20s git clone --quiet -j"$(cat /proc/cpuinfo | grep '^processor' | wc -l)" --recursive git://github.com/frioux/dotfiles $HOME/code/dotfiles
       else
-         timeout 2m git clone --quiet --recursive git://github.com/frioux/dotfiles $HOME/code/dotfiles
+         timeout 20s git clone --quiet git://github.com/frioux/dotfiles $HOME/code/dotfiles
       fi
       cd $HOME/code/dotfiles
       ./install.sh
