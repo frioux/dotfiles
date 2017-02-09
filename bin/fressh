@@ -22,9 +22,9 @@ SH
    if ($? >> 8) {
       warn "git clone timed out; falling back to rsync\n";
 
-      system('rsync', '-lr', '/home/frew/code/dotfiles/', "$host:/home/frew/code/dotfiles/");
+      system('rsync', '-lr', "$ENV{DOTFILES}/", "$host:code/dotfiles/");
 
-      system('ssh', $host, 'cd /home/frew/code/dotfiles; ./install.sh')
+      system('ssh', $host, 'cd $HOME/code/dotfiles; ./install.sh')
          unless $? >> 8;
    }
 }
