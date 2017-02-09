@@ -99,6 +99,7 @@
 
 [include]
    path = ~/.git-smtp-password
+   path = ~/.git-multicore
 [rebase]
 	autostash = true
 [transfer]
@@ -109,5 +110,3 @@
            fsckObjects = true
 [pull]
 	rebase = true
-[submodule]
-	fetchJobs = 8

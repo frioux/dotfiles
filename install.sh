@@ -69,6 +69,8 @@ for x in           \
    link-file $x ~/.$x
 done
 
+echo "[submodule]\n\tfetchJobs = $(cat /proc/cpuinfo | grep '^processor' | wc -l)\n\n" > ~/.git-multicore
+
 # ensure submodules are checked out before linking to them
 git submodule update --init
 
