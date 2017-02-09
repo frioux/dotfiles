@@ -70,7 +70,7 @@ for x in           \
 done
 
 # ensure submodules are checked out before linking to them
-git submodule update --init --quiet
+git submodule update --init
 
 link-file zsh/cxregs-bash-tools/lib ~/.smartcd/lib
 source ~/.smartcd/lib/core/arrays
