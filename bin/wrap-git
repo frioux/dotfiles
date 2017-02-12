@@ -15,7 +15,7 @@ my %checkout = (
    co       => 1,
 );
 
-exec 'git' unless @ARGV;
+exec '/usr/bin/git' unless @ARGV;
 
 my ($command, @args) = @ARGV;
 
@@ -43,4 +43,4 @@ if ($commit{$command} && exists $args[0] && $args[0] =~ /^-a|^--all/) {
    @args = ('add', 'origin', $args[-1]);
 }
 
-exec 'git', $command, @args
+exec '/usr/bin/git', $command, @args
