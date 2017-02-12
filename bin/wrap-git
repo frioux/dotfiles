@@ -15,9 +15,12 @@ my %checkout = (
    co       => 1,
 );
 
+# git --git-dir=/home/frew/code/dotfiles/.git --no-pager grep -n --no-color foo
+
 exec '/usr/bin/git' unless @ARGV;
 
-my ($command, @args) = @ARGV;
+my ($precmd, $command, $args) = _parse_args(@ARGV);
+my @args = @$args;
 
 if ($commit{$command} && exists $args[0] && $args[0] =~ /^-a|^--all/) {
    my @staged = grep /^M/, split /\0/, `git status -z`;
@@ -41,6 +44,42 @@ if ($commit{$command} && exists $args[0] && $args[0] =~ /^-a|^--all/) {
    s/-xdfff/-xdff/ for @args
 } elsif ($command eq 'remote' && $args[0] eq 'add' && @args == 2) {
    @args = ('add', 'origin', $args[-1]);
+} elsif ($command eq 'grep' && -f '.git/info/grep-exclude') {
+
+   my @exclude;
+
+   open my $fh, '<', '.git/info/grep-exclude';
+   while (<$fh>) {
+      chomp;
+      next if m/^#/;
+      push @exclude, ":!$_";
+   }
+   close $fh;
+   if (grep !m/^-/, @args == 1) {
+      push @args, '--', ':./*', @exclude;
+   } else {
+      push @args, '--', @exclude;
+   }
 }
 
-exec '/usr/bin/git', $command, @args
+exec '/usr/bin/git', @$precmd, $command, @args;
+
+sub _parse_args {
+   my @argv = @_;
+
+   my (@precmd, $cmd, @postcmd);
+
+   for my $arg (@argv) {
+      if (!$cmd) {
+         if ($arg =~ m/^-/) {
+            push @precmd, $arg
+         } else {
+            $cmd = $arg
+         }
+      } else {
+         push @postcmd, $arg
+      }
+   }
+
+   return \@precmd, $cmd, \@postcmd;
+}
