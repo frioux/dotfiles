@@ -55,10 +55,10 @@ if ($commit{$command} && exists $args[0] && $args[0] =~ /^-a|^--all/) {
       push @exclude, ":!$_";
    }
    close $fh;
-   if (grep !m/^-/, @args == 1) {
+   if (1 == grep !m/^-/, @args) {
       push @args, '--', ':./*', @exclude;
    } else {
-      push @args, '--', @exclude;
+      @args = ($args[0], '--', @args[1..$#args], @exclude)
    }
 }
 
