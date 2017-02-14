@@ -23,19 +23,6 @@ let g:deoplete#enable_at_startup = 1
 
 autocmd VimEnter * set vb t_vb=
 
-" Restore cursor position to where it was before
-function! ResCur()
-  if line("'\"") <= line("$")
-    normal! g`"
-    return 1
-  endif
-endfunction
-
-augroup resCur
-  autocmd!
-  autocmd BufWinEnter * call ResCur()
-augroup END
-
 autocmd FileType perl let b:dispatch = 'perl %'
 
 "}}}

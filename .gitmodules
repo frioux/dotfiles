@@ -133,3 +133,6 @@
 [submodule "vim/bundle/fugitive-gitlab"]
 	path = vim/bundle/fugitive-gitlab
 	url = git://github.com/shumphrey/fugitive-gitlab.vim
+[submodule "vim/bundle/lastplace"]
+	path = vim/bundle/lastplace
+	url = git://github.com/dietsche/vim-lastplace.git
