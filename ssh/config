@@ -8,46 +8,14 @@ Host *
    ControlPersist 24h
    Compression yes
    VisualHostKey yes
-   Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr
-   # Originally the following two lines were only used for github, but debian
-   # still ships with OpenSSH 6.0 which doesn't have all the more secure options
-   MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-ripemd160-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-512,hmac-sha2-256,hmac-ripemd160,umac-128@openssh.com
-   KexAlgorithms curve25519-sha256@libssh.org,diffie-hellman-group-exchange-sha256,diffie-hellman-group14-sha1
 
-Host irc
-     user frew
-     hostname 50.116.28.218
+Host *.zipaws.com
      ForwardAgent yes
-     ForwardX11 yes
-     LocalForward 127.0.0.1:8000 127.0.0.1:8000
 
 Host *.ziprecruiter.com
      ForwardAgent yes
 
 Host *.ziprecruiter-frew.com
-     ForwardAgent yes
-
-Host lap
-     user frew
-     hostname frew.chickenkiller.com
-     port 2222
-     ForwardAgent yes
-     ForwardX11 yes
-
-Host pi
-     user pi
-     hostname tart.chickenkiller.com
-     port 2522
-     ForwardAgent yes
-     ForwardX11 yes
-
-Host afm
-     user frew
-     hostname rss.afoolishmanifesto.com
-
-Host agm
-     user git
-     hostname rss.afoolishmanifesto.com
      ForwardAgent yes
 
 Host retropie
