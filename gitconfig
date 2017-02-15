@@ -55,6 +55,7 @@
 
 [grep]
    patterntype = perl
+	fallbackToNoIndex = true
 [url "git@50.116.28.218:"]
    insteadOf = fru:
 [url "https://github.com/"]
