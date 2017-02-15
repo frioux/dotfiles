@@ -1,6 +1,6 @@
 #!/usr/bin/env perl
 
-use 5.22.0;
+use strict;
 use warnings;
 
 # TODO: make this work for ssh options
