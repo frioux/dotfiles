@@ -11,7 +11,7 @@ edit-command-output() {
 zle -N edit-command-output
 
 function calc() {
-   bc <<< "scale=5; $1";
+   bc <<< "scale=5; $@";
 }
 
 function sl_table_moniker() {
