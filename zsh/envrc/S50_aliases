@@ -10,10 +10,16 @@ alias attd="sudo aptitude"
 
 #{{{ Globals...
 
-alias -g G="| grep"
-alias -g L="| less -F"
 alias -g UP="@{upstream}"
-alias -g PT="2>&1"
+
+alias -g PT="2>&1 |"
+
+alias -g G="| grep"
+alias -g L="| $PAGER"
+alias -g V="| vim -"
+
+alias -g PTG="2>&1 | grep"
+alias -g PTL="2>&1 | $PAGER"
 alias -g PTV="2>&1 | vim -"
 
 #}}}
