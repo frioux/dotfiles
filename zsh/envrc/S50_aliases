@@ -2,7 +2,7 @@
 #{{{ Shell Conveniences
 
 alias mk=popd
-alias ls='pwd; ls --color'
+alias ls='ls --color'
 
 #}}}
 
