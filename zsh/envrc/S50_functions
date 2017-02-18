@@ -14,10 +14,6 @@ function calc() {
    bc <<< "scale=5; $@";
 }
 
-function sl_table_moniker() {
-   perl -MDBIx::Class::Schema::Loader::Base -MDBIx::Class::Schema::Loader::Table -le "my \$sl = DBIx::Class::Schema::Loader::Base->new(naming => 'v$1', use_namespaces => 1); print \$sl->_default_table2moniker(DBIx::Class::Schema::Loader::Table->new(name => '$2', loader => \$sl))"
-}
-
 function __mkdir { if [[ ! -d $1 ]]; then mkdir -p $1; fi }
 
 function tch { __mkdir "${1:h}"; touch "$1" }
@@ -27,11 +23,6 @@ function _tmux_session { tmux -2 new-session -s "$1" || tmux -2 attach-session -
 function tmwork { _tmux_session work }
 function tmmess { _tmux_session messaging }
 
-function tea_by_date { tea list_teas --order-by-drank -O }
-
 function len { perl -E'say length shift' $1 }
-function xor { perl -E'sub s2h { unpack "H*", shift }; sub h2s { pack "H*", shift }; say s2h(h2s(shift) ^ h2s(shift))' $1 $2 }
-function s2h { perl -E'sub s2h { unpack "H*", shift }; say s2h(shift)' $1 }
-function h2s { perl -E'sub h2s { pack "H*", shift }; say h2s(shift)' $1 }
 
 # vim: ft=zsh foldmethod=marker
