@@ -1,10 +1,21 @@
 #!/bin/dash
 
+set -e
+
+. "$HOME/.env"
+
+TMP="$HOME/addresses.tmp"
+
 if [ ! -f "$HOME/.goobook_auth.json" ]; then
    exit
 fi
 
-goobook query '' > "$HOME/addresses"
-addrlookup-compat '' >> "$HOME/addresses"
+goobook query '' > "$TMP"
+< $TMP grep -v '^	' | sort | sponge > $TMP
+
+addrlookup-compat '' | grep -v '^	' | grep '.' | sort >> $TMP
+
+< $TMP addrs "$HOME/var/mail/gmail.sent/cur/*" | sponge $TMP
+mv $TMP "$HOME/addresses"
 
 # vim: ft=sh
