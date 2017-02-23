@@ -27,9 +27,15 @@ link-file ww-roller.pl/ww_roll.pl ~/bin/ww-roll.pl
 
 if [ -d "$HOME/var/mail" ]; then
    link-file crontab.d/hourly/notmuch ~/.crontab.d/hourly/notmuch
+else
+   rm ~/.crontab.d/hourly/notmuch
 fi
 
-link-file bin/sync-addresses ~/.crontab.d/hourly/sync-addresses
+if [ -f "$HOME/.goobook_auth.json" -o -d "$HOME/var/mail" ]; then
+   link-file bin/sync-addresses ~/.crontab.d/hourly/sync-addresses
+else
+   rm ~/.crontab.d/hourly/sync-addresses
+fi
 mkdir -p ~/.crontab.d/minutely
 link-file env ~/.env
 
