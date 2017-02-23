@@ -1,3 +1,0 @@
-#!/bin/dash
-
-addrlookup "$@" | perl -MEmail::Address -E'say ""; while (<STDIN>) { chomp; my ($addr) = Email::Address->parse($_) or next; print $addr->address . "\t" . $addr->phrase . "\tother\n" }'

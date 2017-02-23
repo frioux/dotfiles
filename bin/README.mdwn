@@ -167,10 +167,6 @@ A number of additional features added to core git via simple wrapper:
 
 Deduplicates addresses based on the mutt address format.
 
-### `addrlookup-compat`
-
-Reformats output of `addrlookup` to be in the mutt address format.
-
 ### `addrlookup-fast`
 
 Simple wrapper around `grep` to quickly search a preformatted address file.
@@ -195,7 +191,7 @@ email containing them via mutt.
 ### `sync-addresses`
 
 Creates fresh mutt address file using
-[goobook](https://pypi.python.org/pypi/goobook/1.9) and `addrlookup-compat`.
+[goobook](https://pypi.python.org/pypi/goobook/1.9) and `addrlookup`.
 
 ### `top-post`
 

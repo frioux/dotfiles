@@ -13,7 +13,7 @@ fi
 goobook query '' > "$TMP"
 < $TMP grep -v '^	' | sort | sponge > $TMP
 
-addrlookup-compat '' | grep -v '^	' | grep '.' | sort >> $TMP
+addrlookup --mutt '' | grep -v '^	' | grep '.' | sort >> $TMP
 
 < $TMP addrs "$HOME/var/mail/gmail.sent/cur/*" | sponge $TMP
 mv $TMP "$HOME/addresses"
