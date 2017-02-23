@@ -29,7 +29,15 @@ link-file bin/sync-addresses ~/.crontab.d/hourly/sync-addresses
 mkdir -p ~/.crontab.d/minutely
 link-file env ~/.env
 
-crontab crontab
+crontab="$(tempfile)"
+if [ $(ls "$HOME/.crontab.d/hourly" | wc -l) -gt 0 ]; then
+   echo '3 * * * * . "$HOME/.env" && run-parts "$HOME/.crontab.d/hourly"' >> $crontab
+fi
+
+if [ $(ls "$HOME/.crontab.d/minutely" | wc -l) -gt 0 ]; then
+   echo '* * * * * . "$HOME/.env" && run-parts "$HOME/.crontab.d/minutely"' >> $crontab
+fi
+crontab "$crontab"
 
 # literal dotfiles
 for x in           \

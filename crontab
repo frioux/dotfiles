@@ -1,2 +1,0 @@
-3 * * * * . "$HOME/.env" && run-parts "$HOME/.crontab.d/hourly"
-* * * * * . "$HOME/.env" && run-parts "$HOME/.crontab.d/minutely"
