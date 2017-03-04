@@ -16,7 +16,7 @@ my (@modules) = (@ARGV, 'Devel::Dwarn', 'IO::All');
 
 my $alias = 'A';
 for (@modules) {
-   warn "$_ → $alias\n" if $debug;
+   warn "$alias → $_\n" if $debug;
    $_ = "-Maliased=$_,$alias";
    $alias++;
 }
