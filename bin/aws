@@ -4,6 +4,8 @@ exec docker run -it --rm \
   --volume ~/.aws:/.aws  \
   --volume $(pwd):/pwd   \
   --user $(id -u)        \
+  --env AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID \
+  --env AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY \
   frew/aws-cli           \
   "$@"
 
