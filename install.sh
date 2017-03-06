@@ -114,6 +114,5 @@ case $OSTYPE in
    *)
       link-file vimrc ~/.vimrc
       link-file vim ~/.vim
-      rsync -ar services/frew/ ~/services
    ;;
 esac

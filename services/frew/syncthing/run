@@ -1,5 +1,0 @@
-#!/bin/zsh
-
-export STNORESTART=1
-
-exec 2>&1 syncthing

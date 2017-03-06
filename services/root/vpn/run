@@ -1,3 +1,0 @@
-#!/bin/dash
-
-exec 2>&1 /home/frew/Dropbox/frew@firewall.mitsi.com/vpn.sh

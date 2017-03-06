@@ -1,4 +1,0 @@
-#!/bin/dash
-
-exec sudo -u frew \
-  multilog t /home/frew/log/vpn
