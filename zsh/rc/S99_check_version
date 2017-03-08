@@ -6,9 +6,8 @@ fi
 
 if [[ $EPOCHSECONDS -gt $(cat ~/.dotfilecheck) ]]; then
    echo "Updating .zshrc automatically ($EPOCHSECONDS -gt $(cat ~/.dotfilecheck))";
-   rm ~/.dotfilecheck
    echo $(($EPOCHSECONDS+60*60*24*7)) > ~/.dotfilecheck
-   env git --work-tree=$HOME/code/dotfiles --git-dir=$HOME/code/dotfiles/.git pull --ff-only
+   git --work-tree=$DOTFILES --git-dir=$DOTFILES/.git pull --ff-only
 fi
 
 # vim: ft=zsh foldmethod=marker
