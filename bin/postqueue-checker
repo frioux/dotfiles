@@ -1,0 +1,9 @@
+#!/bin/dash
+
+while true; do
+   sleep 600
+
+   postqueue-notify
+done
+
+# vim: ft=sh

@@ -10,6 +10,7 @@ sv-run-w.pl &
 sv-run-offlineimap &
 scenery &
 armstrong &
+postqueue-checker &
 
 exec awesome
 # vim: ft=sh
