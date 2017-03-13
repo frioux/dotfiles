@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=RT
+Exec=/home/frew/code/dotfiles/bin/rt-handler %u
+Type=Application
+Categories=Utility;
+StartupNotify=false
+MimeType=x-scheme-handler/rt;

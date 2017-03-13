@@ -1,0 +1,9 @@
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+
+my $url = shift;
+$url =~ s(^rt:)(https://rt.cpan.org/Ticket/Display.html?id=)i;
+
+exec 'xdg-open', $url
