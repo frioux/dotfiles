@@ -1,0 +1,5 @@
+#!/bin/dash
+
+exec git grep "$@"
+
+# vim: ft=sh
