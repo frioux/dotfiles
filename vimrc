@@ -312,6 +312,7 @@ vmap <silent> <expr> p <sid>Repl()
 
 autocmd FileType sml set commentstring=(*\ %s\ *)
 autocmd FileType racket set commentstring=;\ %s
+autocmd FileType tf set commentstring=#\ %s
 
 autocmd BufReadPost *.rkt,*.rktl set filetype=racket
 autocmd FileType racket set lisp
