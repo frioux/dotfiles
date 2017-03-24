@@ -296,7 +296,7 @@ sub fix_fogbugz_thread ($case_id) {
 
 sub fix_aws_thread ($case_id) {
    my $m = _do_req('https://www.googleapis.com/gmail/v1/users/me/messages' => (
-      q => qq{subject:"Case $case_id)"},
+      q => qq{( (subject:"Case $case_id)") OR (subject:"Resolved $case_id") )},
    ));
 
    my @ids = map $_->{id}, $m->{messages}->@*;
@@ -320,6 +320,8 @@ sub fix_aws_threads {
       ));
       my $header = $message->{payload}{headers}[0]{value};
       if (my ($case_id) = ($header =~ m/\[Case (\d+)\]/)) {
+         $cases{$case_id} = 1;
+      } elsif (($case_id) = ($header =~ m/Resolved (\d+)/)) {
          $cases{$case_id} = 1;
       }
    }
