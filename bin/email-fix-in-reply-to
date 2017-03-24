@@ -331,8 +331,46 @@ sub fix_aws_threads {
 
 }
 
+sub fix_elastico_thread ($case_id) {
+   my $m = _do_req('https://www.googleapis.com/gmail/v1/users/me/messages' => (
+      q => qq{subject:"Case #$case_id)"},
+   ));
+
+   my @ids = map $_->{id}, $m->{messages}->@*;
+
+   _rethread_emails('elastico', @ids)
+}
+
+sub fix_elastico_threads {
+   my $aws_inbox =
+      _do_req('https://www.googleapis.com/gmail/v1/users/me/messages' => (
+        q => 'in:INBOX from:"Elastic Support"',
+      ));
+
+   my @ids = map $_->{id}, $aws_inbox->{messages}->@*;
+
+   my %cases;
+   for my $id (@ids) {
+      my $message = _do_req("https://www.googleapis.com/gmail/v1/users/me/messages/$id" => (
+         format => 'metadata',
+         metadataHeaders => 'Subject',
+      ));
+      my $header = $message->{payload}{headers}[0]{value};
+      if (my ($case_id) = ($header =~ m/Case #(\d+)/)) {
+         $cases{$case_id} = 1;
+      }
+   }
+
+   for my $id (keys %cases) {
+      warn "Fixing Elastico `Case #$id` Thread...\n";
+      fix_elastico_thread($id);
+   }
+
+}
+
 sub fix_threads{
    fix_aws_threads();
+   fix_elastico_threads();
    fix_fogbugz_threads();
 }
 
