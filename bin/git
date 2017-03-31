@@ -56,11 +56,25 @@ if ($commit{$command} && exists $args[0] && $args[0] =~ /^-a|^--all/) {
    if (1 == grep !m/^-/, @args) {
       push @args, '--', ':./*', @exclude;
    } else {
-      @args = ($args[0], '--', @args[1..$#args], @exclude)
+      # left is stuff that starts with -
+      # right is stuff that doesn't (sorta)
+      my $left = 1;
+      my (@left, @right);
+      for my $val (@args) {
+         if ($left && $val =~ m/^-/) {
+            push @left, $val;
+         } else {
+            $left = 0;
+            push @right, $val;
+         }
+      }
+      @args = (@left, $right[0], '--', @right[1..$#right], @exclude)
    }
 }
 
-exec '/usr/bin/git', @$precmd, $command, @args;
+my @run = ('/usr/bin/git', @$precmd, $command, @args);
+warn join(' ', @run) . "\n" if $ENV{GIT_WRAPPER_DEBUG};
+exec @run;
 
 sub _parse_args {
    my @argv = @_;
