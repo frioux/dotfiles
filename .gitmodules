@@ -133,3 +133,6 @@
 [submodule "vim/bundle/lastplace"]
 	path = vim/bundle/lastplace
 	url = git://github.com/dietsche/vim-lastplace.git
+[submodule "vim/bundle/go"]
+	path = vim/bundle/go
+	url = git://github.com/fatih/vim-go
