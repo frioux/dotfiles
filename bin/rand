@@ -1,0 +1,7 @@
+#!/usr/bin/perl
+
+use strict;
+use feature 'say';
+
+my $size = shift;
+say int 1 + $size * rand;
