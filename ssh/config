@@ -3,9 +3,13 @@
 Host * !github.com
    ControlMaster auto
 
+   # 1m30s timeout
+   ServerAliveInterval 30
+   ServerAliveCountMax 3
+
 Host *
    ControlPath /tmp/ssh_mux_%h_%p_%r
-   ControlPersist 24h
+   ControlPersist 2h
    Compression yes
    VisualHostKey yes
 
