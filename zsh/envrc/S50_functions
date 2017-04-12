@@ -14,7 +14,12 @@ calc() { bc <<< "scale=5; $@" }
 
 __mkdir() { if [[ ! -d $1 ]]; then mkdir -p $1; fi }
 
-tch() { __mkdir "${1:h}"; touch "$1" }
+tch() {
+  for x in "$@"; do
+    __mkdir "${x:h}"
+  done
+  touch "$@"
+}
 
 _tmux_session() { tmux -2 new-session -s "$1" || tmux -2 attach-session -dt "$1" }
 
