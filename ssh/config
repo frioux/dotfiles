@@ -9,13 +9,7 @@ Host *
    Compression yes
    VisualHostKey yes
 
-Host *.zipaws.com
-     ForwardAgent yes
-
-Host *.ziprecruiter.com
-     ForwardAgent yes
-
-Host *.ziprecruiter-frew.com
+Host *.ziprecruiter.com *.zipaws.com *.ziprecruiter-frew.com
      ForwardAgent yes
 
 Host retropie
