@@ -1,0 +1,66 @@
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+
+use utf8;
+binmode(STDOUT, ':encoding(UTF-8)');
+
+# https://github.com/frioux/awesome-vicious/blob/4aec16b509fb0e11eafa7ec0d164b66f2b1e476f/widgets/bat.lua
+
+my $minute = 60;
+my $hour = 60 * $minute;
+
+my %fh_cache;
+sub r {
+   my $loc = shift;
+
+   my $fh;
+   $fh = $fh_cache{$loc};
+   unless ($fh) {
+      open $fh, '<', "/sys/class/power_supply/BAT0/$loc";
+      $fh_cache{$loc} = $fh;
+   }
+   seek $fh, 0, 0;
+
+   chomp(my $ret = <$fh>);
+   $ret
+}
+
+
+my $dir;
+while (1) {
+   my $charging = (
+      r('status') =~ m/Discharging/
+      ? 0
+      : 1
+   );
+   my $rate = $charging
+      ? r('current_now')
+      : r('power_now')
+   ;
+   if (r('present')) {
+      print(
+         '^fg(#CC0000)' .
+         r('capacity') . '% ' .
+         ($charging ? '☇' : '~') . ' ' .
+         as_dur(
+           $charging
+             ? ( ( r('energy_full') - r('energy_now') ) / $rate )
+             : ( r('energy_now') / $rate )
+         ) .
+         '^p(15)' .
+         '^fg()' .
+         "\n"
+      );
+   }
+   sleep 1
+}
+
+sub as_dur {
+   my $in = shift;
+   my $hours = int $in;
+   my $min = int(($in - $hours) * 60);
+
+   "${hours}h${min}m"
+}

@@ -1,0 +1,8 @@
+#!/bin/dash
+
+while true; do
+   date '+%a %b %e, %I:%M %P'
+   sleep 60
+done
+
+# vim: ft=sh

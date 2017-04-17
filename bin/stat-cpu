@@ -1,0 +1,23 @@
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+
+open my $fh, '<', '/proc/uptime';
+
+my ($d1, $i1) = split /\s+/, <$fh>;
+
+# XXX This is totally wrong, try again with
+# https://github.com/frioux/awesome-vicious/blob/4aec16b509fb0e11eafa7ec0d164b66f2b1e476f/widgets/cpu.lua
+while (1) {
+   seek $fh, 0, 0;
+   sleep 1;
+
+   my ($d2, $i2) = split /\s+/, <$fh>;
+
+   my $cpu = int ( ($i2 - $i1) - ($d2 - $d1) );
+
+   ($d1, $i1) = ($d2, $i2);
+
+   print "^fg(#4E9A06)$cpu%^p(15)^fg()\n";
+}

@@ -1,0 +1,10 @@
+#!/bin/dash
+
+# XXX ???
+
+while true; do
+   echo "vol^p(15)"
+   sleep 60
+done
+
+# vim: ft=sh

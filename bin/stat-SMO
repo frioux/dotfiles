@@ -1,0 +1,9 @@
+#!/bin/dash
+
+# Santa Monica 66°C
+while true; do
+   echo "Santa Monica 66°C^p(15)"
+   sleep 60
+done
+
+# vim: ft=sh

@@ -1,0 +1,9 @@
+#!/bin/dash
+
+# XXX OS 66°F
+while true; do
+   echo "OS 66°F^p(15)"
+   sleep 60
+done
+
+# vim: ft=sh
