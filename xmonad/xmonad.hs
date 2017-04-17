@@ -2,6 +2,7 @@ import XMonad
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.FadeInactive
+import qualified XMonad.StackSet as W
 import XMonad.Util.Run(spawnPipe)
 import XMonad.Util.EZConfig(additionalKeys)
 import System.IO
@@ -16,8 +17,10 @@ main = do
         logHook = myLogHook dzenLeftBar >> fadeInactiveLogHook 0xdddddddd,
         terminal = "terminator",
         modMask = modMask'
-        } `additionalKeys`
-        [ ((modMask', xK_Return), spawn "terminator")
+        } `additionalKeys` myKeys
+
+
+myKeys = [ ((modMask', xK_Return), spawn "terminator")
         , ((modMask', xK_b ), sendMessage ToggleStruts)
         , ((modMask' .|. shiftMask, xK_x), spawn "xautolock -locknow")
         , ((modMask', xK_d), spawn "showdm")
@@ -27,6 +30,10 @@ main = do
         , ((modMask', xK_F6), spawn "backlight 10")
         , ((modMask' .|. shiftMask, xK_i), spawn "xcalib -i -a")
         ]
+        ++
+        [((m .|. modMask', key), screenWorkspace sc >>= flip whenJust (windows . f))
+                | (key, sc) <- zip [xK_w, xK_e, xK_r] [2,0,1]
+                , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
 
 -- |=
 -- =|
