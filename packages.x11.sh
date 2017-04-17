@@ -2,8 +2,7 @@
 
 exec apt-get --no-install-recommends    \
                              install -y \
-   awesome                              \
-   awesome-extra                        \
+   dzen2                                \
    feh                                  \
    firefox                              \
    fonts-lohit-knda                     \
@@ -22,6 +21,7 @@ exec apt-get --no-install-recommends    \
    terminator                           \
    tk                                   \
    tk8.5                                \
+   trayer                               \
    ttf-ancient-fonts                    \
    vim-gnome                            \
    vlc                                  \
@@ -31,4 +31,5 @@ exec apt-get --no-install-recommends    \
    xclip                                \
    xdotool                              \
    xfonts-terminus                      \
-   xfonts-terminus-oblique
+   xfonts-terminus-oblique              \
+   xmonad

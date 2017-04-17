@@ -76,6 +76,7 @@ for x in           \
    XCompose        \
    Xdefaults       \
    xmodmap         \
+   xmonad          \
    xscreensaver    \
    xsession        \
    zsh             \
