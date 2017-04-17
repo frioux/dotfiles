@@ -12,7 +12,11 @@ myXmonadBar = "dzen2 -x 0 -y 0 -h 24 -w 500 -ta l -fg '#FFFFFF' -bg '#1B1D1E' -e
 main = do
     dzenLeftBar <- spawnPipe myXmonadBar
     xmonad $ defaultConfig {
-        manageHook = manageDocks <+> manageHook defaultConfig,
+        manageHook = composeAll
+        [ className =? "trayer" --> doIgnore
+        , manageDocks
+        , manageHook defaultConfig
+        ],
         layoutHook = avoidStruts  $  layoutHook defaultConfig,
         logHook = myLogHook dzenLeftBar >> fadeInactiveLogHook 0xdddddddd,
         terminal = "terminator",
