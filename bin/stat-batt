@@ -11,6 +11,8 @@ binmode(STDOUT, ':encoding(UTF-8)');
 my $minute = 60;
 my $hour = 60 * $minute;
 
+my $dir = '/sys/class/power_supply/BAT0';
+
 my %fh_cache;
 sub r {
    my $loc = shift;
@@ -18,7 +20,8 @@ sub r {
    my $fh;
    $fh = $fh_cache{$loc};
    unless ($fh) {
-      open $fh, '<', "/sys/class/power_supply/BAT0/$loc";
+      open $fh, '<', "$dir/$loc"
+         or die "Couldn't open $dir/$loc: $!";
       $fh_cache{$loc} = $fh;
    }
    seek $fh, 0, 0;
@@ -28,18 +31,26 @@ sub r {
 }
 
 
-my $dir;
 while (1) {
    my $charging = (
       r('status') =~ m/Discharging/
       ? 0
       : 1
    );
-   my $rate = $charging
+   my $rate = -e "$dir/current_now"
       ? r('current_now')
       : r('power_now')
    ;
-   if (r('present')) {
+
+   if (!$rate) {
+      print(
+         '^fg(#CC0000)' .
+         'Charged' .
+         '^p(15)' .
+         '^fg()' .
+         "\n"
+      );
+   } elsif (r('present')) {
       print(
          '^fg(#CC0000)' .
          r('capacity') . '% ' .
