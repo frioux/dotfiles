@@ -8,7 +8,7 @@
 # changes to dzen2 when a change occurs, triggering a redraw. No redraws
 # happen unless a module pushes a change. Modules are just programs of any
 # kind. To add your own module, write a script that produces output for dzen2
-# and name it stat_<NAME> in this directory, then change the 'layout' list.
+# and name it stat-<NAME> in this directory, then change the 'layout' list.
 #
 # This script might need a few executable or directoy names changed to
 # operate correctly. These are marked with <C>.
@@ -19,40 +19,43 @@ BG='#2c2c32'  # dzen backgrounad
 FG='grey70'   # dzen foreground
 WIDTH=750     # width of the dzen bar
 
+warn() echo "$@">&2
+
 # Set to 1 or use -d option to print module outputs to stderr
 DBUG=0
 if [ "$1" = "-d"  -o  "$1" = "--debug" ]; then
+  shift
   DBUG=1;
 fi;
 
 # The dzen2 layout of the other scripts called by this script.
 # 'spacer' is a built-in r(9x9) with the same color as the background.
-layout='temperature spacer volume media'
+layout="$1"
 
 # <C> You'll need to cd if this script is executed outside this directory.
-cd ~/.dzen || exit 1
-echo "Starting..."
+warn "Starting..."
 
 
 # Make a pipe to multiplex inputs from the module scripts.
-if [ -p dzpipe ]; then
-  echo "Using existing dzpipe."
-elif [ ! -p dzpipe ]; then
-  echo "No dzpipe exists. Creating..."
-  mkfifo dzpipe || { echo 'Could not make dzpipe'>&2; exit 1; }
+if [ -p "/tmp/dzpipe.$$" ]; then
+  warn "Using existing dzpipe."
+elif [ ! -p "/tmp/dzpipe.$$" ]; then
+  warn "No dzpipe exists. Creating..."
+  mkfifo "/tmp/dzpipe.$$" || { warn 'Could not make dzpipe'; exit 1; }
 fi
 
 KIDS=""
 
 # Removes the dzpipe file, then kills all child processes.
+# There might be a way to improve the teardown so errors aren't given.
 shutdown () {
-  echo "Shutting down."
-  rm dzpipe && echo "dzpipe removed."
-  echo "Killing child processes."
+  warn "Shutting down."
+  rm "/tmp/dzpipe.$$" && warn "dzpipe removed."
+  warn "Killing child processes."
   for c in $KIDS; do
     kill $c;
   done
-  echo "Done."
+  warn "Done."
   exit 0
 }
 
@@ -60,13 +63,14 @@ shutdown () {
 trap shutdown INT QUIT
 
 # Start the modules, piping them to dzpipe.
-echo "Modules starting."
+warn "Modules starting."
 for mod in $layout; do
 if [ "$mod" != "spacer" ]; then
-  expect_unbuffer stat_$mod | sed --unbuffered "s/^/ITEM $mod /g" > dzpipe &
+  expect_unbuffer stat-$mod | sed --unbuffered "s/^/ITEM $mod /g" > "/tmp/dzpipe.$$" &
   KIDS="$KIDS $!"
 fi
 done
+
 
 # Main loop
 # A simple associative array (rememberer) keeps track of the last string
@@ -74,8 +78,8 @@ done
 # The output of print_status_bar is simply the concatenation of all the
 # strings. Output from mawk is piped into dzen2.
 # <C> You may need to install mawk to replace awk.
-echo "Main loop start"
-awk -W interactive -v DBUG="$DBUG" -v BG="$BG" -v layout_string="$layout" '
+warn "Main loop start"
+mawk -W interactive -v DBUG="$DBUG" -v BG="$BG" -v layout_string="$layout" '
 function print_status_bar()
 {
   for (i in layout) {
@@ -84,7 +88,7 @@ function print_status_bar()
   printf("\n");
 }
 BEGIN {
-  rememberer["spacer"] = "^fg(" BG ")^p(2)^r(9x9)^p(2)^fg()";
+  rememberer["spacer"] = "^p(15)";
   split(layout_string, layout, " ");
 }
 /^ITEM/ {
@@ -92,4 +96,4 @@ BEGIN {
   if (DBUG == 1) { print $0 > ("/dev/stderr"); }
   print_status_bar();
 }
-' < dzpipe | dzen2 -ta l -bg ${BG} -fg ${FG} -p -e '' -w ${WIDTH}
+' < "/tmp/dzpipe.$$"
