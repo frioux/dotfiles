@@ -1,0 +1,59 @@
+#!/usr/bin/env perl
+
+use strict;
+use warnings;
+
+use List::Util 'max', 'min';
+
+my $s = qx(pacmd list-sinks);
+my @sinks = split /\s+\*\s+index:\s+/, $s ;
+shift @sinks;
+
+my ($sink_id, $sink_data) = pick_sink(@sinks);
+my ($vol, $muted) = parse_sink($sink_data);
+
+my $cmd = shift;
+
+if (my $sub = main->can("cmd_$cmd")) {
+   $sub->(@ARGV);
+} else {
+   die "no such command $cmd\n"
+}
+
+sub pick_sink {
+   my @sinks = shift;
+
+   for my $sink (@sinks) {
+      if ($sink =~ m/ibasso/i) {
+         my ($ret) = ($sinks[0] =~ m/^(\d+)/);
+
+         return ( $ret, $sinks[0] );
+      }
+   }
+
+   my ($ret) = ($sinks[0] =~ m/^(\d+)/);
+
+   return ( $ret, $sinks[0] );
+}
+
+sub parse_sink {
+   my $sink_data = shift;
+
+   my ( $vol ) = ($sink_data =~ m/volume: f.*?(\d+)%/);
+   my $muted = $sink_data =~ m/muted: yes/;
+   $muted ||= 0; # prettier output in status
+
+   return ( $vol, $muted );
+}
+
+sub cmd_status { print "sink_id: $sink_id\nvolume: $vol\nmuted: $muted\n"; }
+
+sub cmd_toggle { exec 'pacmd', 'set-sink-mute', $sink_id, ( $muted ? 0 : 1 ) }
+
+sub cmd_up {
+   exec 'pacmd', 'set-sink-volume', $sink_id, min(int 65536 * ($vol + 2) / 100, 65536)
+}
+
+sub cmd_down {
+   exec 'pacmd', 'set-sink-volume', $sink_id, int 65536 * ($vol - 2) / 100
+}

@@ -1,9 +1,7 @@
 #!/bin/dash
 
-# XXX ???
-
 while true; do
-   echo "vol^p(15)"
+   echo "^ca(5, vol down)^ca(4, vol up)^ca(1, vol toggle)vol^ca()^ca()^ca()^p(15)"
    sleep 60
 done
 
