@@ -6,7 +6,8 @@ use warnings;
 use List::Util 'max', 'min';
 
 my $s = qx(pacmd list-sinks);
-my @sinks = split /\s+\*\s+index:\s+/, $s ;
+my @sinks = split /\n\s+(?:\*\s+)?index:\s+/, $s ;
+
 shift @sinks;
 
 my ($sink_id, $sink_data) = pick_sink(@sinks);
@@ -21,13 +22,13 @@ if (my $sub = main->can("cmd_$cmd")) {
 }
 
 sub pick_sink {
-   my @sinks = shift;
+   my @sinks = @_;
 
    for my $sink (@sinks) {
       if ($sink =~ m/ibasso/i) {
-         my ($ret) = ($sinks[0] =~ m/^(\d+)/);
+         my ($ret) = ($sink =~ m/^(\d+)/);
 
-         return ( $ret, $sinks[0] );
+         return ( $ret, $sink );
       }
    }
 
