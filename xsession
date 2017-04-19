@@ -8,7 +8,6 @@ trayer --edge top --align right --SetDockType true --SetPartialStrut true \
    --expand true --widthtype pixels --width 288 --height 24 --transparent true --tint 0x000000 &
 xmodmap "$HOME/.xmodmap"
 keepassx &
-sv-run-w.pl &
 sv-run-offlineimap &
 scenery &
 armstrong &
