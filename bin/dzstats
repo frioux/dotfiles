@@ -1,5 +1,5 @@
 #!/bin/dash
 
-dzen2 -x 500 -y 0 -h 24 -w 1132 -ta l -fg '#FFFFFF' -bg '#1B1D1E' -e ''
+dzen2 -x 500 -y 0 -h 24 -w 1132 -ta l -fg '#FFFFFF' -bg '#1B1D1E' -e '' -fn terminus-14
 
 # vim: ft=sh
