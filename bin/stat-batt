@@ -71,7 +71,7 @@ while (1) {
 sub as_dur {
    my $in = shift;
    my $hours = int $in;
-   my $min = int(($in - $hours) * 60);
+   my $min = sprintf '%02d', ($in - $hours) * 60;
 
    "${hours}h${min}m"
 }
