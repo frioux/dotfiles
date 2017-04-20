@@ -93,12 +93,6 @@ echo "[submodule]\n\tfetchJobs = $(nproc)\n\n" > ~/.git-multicore
 # ensure submodules are checked out before linking to them
 git submodule update --init
 
-link-file zsh/cxregs-bash-tools/lib ~/.smartcd/lib
-source ~/.smartcd/lib/core/arrays
-source ~/.smartcd/lib/core/varstash
-source ~/.smartcd/lib/core/smartcd
-cat smartcd-export | smartcd import
-
 mkdir -p "$HOME/.vvar/undo";
 mkdir -p "$HOME/.vvar/swap";
 mkdir -p "$HOME/.vvar/sessions";
