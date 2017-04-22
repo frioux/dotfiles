@@ -23,6 +23,7 @@ exec apt-get --no-install-recommends    \
    libcurl4-openssl-dev                 \
    libdir-self-perl                     \
    libemail-address-perl                \
+   libemail-date-perl                   \
    libgmime-2.6-dev                     \
    libgpgme11-dev                       \
    libncursesw5-dev                     \
