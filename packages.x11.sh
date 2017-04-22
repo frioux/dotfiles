@@ -2,7 +2,6 @@
 
 exec apt-get --no-install-recommends    \
                              install -y \
-   dzen2                                \
    feh                                  \
    firefox                              \
    fonts-lohit-knda                     \
@@ -17,11 +16,11 @@ exec apt-get --no-install-recommends    \
    pcmanfm                              \
    rdesktop                             \
    suckless-tools                       \
+   taffybar                             \
    tcl                                  \
    terminator                           \
    tk                                   \
    tk8.5                                \
-   trayer                               \
    ttf-ancient-fonts                    \
    vim-gnome                            \
    vlc                                  \

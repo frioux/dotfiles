@@ -1,5 +1,0 @@
-#!/bin/dash
-
-exec stat-weather KSMO 'print "^ca(1, firefox https://darksky.net/34.0196,-118.487)SMO $_->{temp_f}°F^p(15)^ca()\n"'
-
-# vim: ft=sh

@@ -6,19 +6,17 @@ import qualified XMonad.StackSet as W
 import XMonad.Util.Run(spawnPipe)
 import XMonad.Util.EZConfig(additionalKeys)
 import System.IO
-
-myXmonadBar = "dzen2 -x 0 -y 0 -h 24 -w 500 -ta l -fg '#FFFFFF' -bg '#1B1D1E' -e ''"
+import XMonad.Hooks.EwmhDesktops (ewmh)
+import System.Taffybar.Hooks.PagerHints (pagerHints)
 
 main = do
-    dzenLeftBar <- spawnPipe myXmonadBar
-    xmonad $ defaultConfig {
+    xmonad $ ewmh $ pagerHints $ defaultConfig {
         manageHook = composeAll
         [ className =? "trayer" --> doIgnore
         , manageDocks
         , manageHook defaultConfig
         ],
         layoutHook = avoidStruts  $  layoutHook defaultConfig,
-        logHook = myLogHook dzenLeftBar >> fadeInactiveLogHook 0xdddddddd,
         terminal = "terminator",
         modMask = modMask'
         } `additionalKeys` myKeys
@@ -52,25 +50,3 @@ myKeys = [ ((modMask', xK_Return), spawn "terminator")
 
 modMask' :: KeyMask
 modMask' = mod4Mask
-
-myLogHook :: Handle -> X ()
-myLogHook h = dynamicLogWithPP $ defaultPP
-    {
-        ppCurrent           =   dzenColor "#ebac54" "#1B1D1E" . pad
-      , ppVisible           =   dzenColor "white" "#1B1D1E" . pad
-      , ppHidden            =   dzenColor "white" "#1B1D1E" . pad
-      , ppHiddenNoWindows   =   dzenColor "#7b7b7b" "#1B1D1E" . pad
-      , ppUrgent            =   dzenColor "#ff0000" "#1B1D1E" . pad
-      , ppWsSep             =   " "
-      , ppSep               =   "  |  "
-      , ppLayout            =   dzenColor "#ebac54" "#1B1D1E" .
-                                (\x -> case x of
-                                    "ResizableTall"             ->      "RT"
-                                    "Mirror ResizableTall"      ->      "MRT"
-                                    "Full"                      ->      "F"
-                                    "Simple Float"              ->      "~"
-                                    _                           ->      x
-                                )
-      , ppTitle             =   (" " ++) . dzenColor "white" "#1B1D1E" . dzenEscape
-      , ppOutput            =   hPutStrLn h
-    }

@@ -1,5 +1,0 @@
-#!/bin/dash
-
-exec dzmux 'temp batt mem cpu SMO BIX vol time'
-
-# vim: ft=sh

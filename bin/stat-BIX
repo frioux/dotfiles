@@ -1,5 +1,0 @@
-#!/bin/dash
-
-exec stat-weather KBIX 'print "^ca(1, firefox https://darksky.net/30.4113,-88.8279)BIX $_->{temp_f}°F^p(15)^ca()\n"'
-
-# vim: ft=sh
