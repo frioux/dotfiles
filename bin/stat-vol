@@ -1,8 +1,23 @@
-#!/bin/dash
+#!/usr/bin/perl
 
-while true; do
-   echo "^ca(5, vol down)^ca(4, vol up)^ca(1, vol toggle)vol^ca()^ca()^ca()^p(15)"
-   sleep 60
-done
+use strict;
+use warnings;
 
-# vim: ft=sh
+use JSON::PP;
+
+my $VOL = '/tmp/vol';
+
+system 'mkfifo', $VOL unless -p $VOL;
+
+while (1) {
+   open my $vol_pipe, '<', $VOL;
+
+   while (<$vol_pipe>) {
+      my $data = decode_json($_);
+      my $str = "^ca(5, vol down)^ca(4, vol up)^ca(1, vol toggle)vol $data->{volume}^ca()^ca()^ca()^p(15)";
+      $str = "^fg(red)$str^fg()" if $data->{muted};
+
+      print "$str\n";
+   }
+   sleep 1;
+}
