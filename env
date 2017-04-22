@@ -4,7 +4,7 @@ if [ -r "$HOME/.localdirs" ]; then
    . "$HOME/.localdirs"
 fi
 
-export DOTFILES="$(dirname "$(readlink "$0")" )"
+export DOTFILES="$(dirname "$(readlink "$HOME/.env")" )"
 
 if [ -d /opt/share/man ]; then
    MANPATH=
