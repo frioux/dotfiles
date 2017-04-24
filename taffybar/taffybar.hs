@@ -10,9 +10,12 @@ import System.Taffybar.Battery
 import System.Taffybar.Widgets.PollingBar
 import System.Taffybar.Widgets.PollingGraph
 
+import Control.Monad.IO.Class
+import XMonad.Util.Run
 import System.Information.Memory
 import System.Information.CPU
 import System.Information.CPU2
+import qualified Graphics.UI.Gtk as Gtk
 
 main = do
   let
@@ -38,16 +41,90 @@ main = do
                                                       , (1, 0, 1, 0.5)
                                                       ]
                                   }
+
       clock = textClockNew Nothing "<span fgcolor='orange'>%a %b %_d %H:%M</span>" 1
       pager = taffyPagerNew defaultPagerConfig
       note = notifyAreaNew defaultNotificationConfig
-      wea = weatherNew (defaultWeatherConfig "KSMO") 10
-      wea2 = weatherNew (defaultWeatherConfig "KBIX") 30
-      mem = pollingGraphNew memCfg 1 memCallback
-      cpu = pollingGraphNew cpuCfg 0.5 cpuCallback
-      temp = pollingGraphNew tempCfg 1 tempCallback
-      batt = batteryBarNew defaultBatteryConfig 1
+
+      mem = do btn <- pollingGraphNew memCfg 1 memCallback
+               ebox <- Gtk.eventBoxNew
+               Gtk.containerAdd ebox btn
+               _ <- Gtk.on ebox Gtk.buttonPressEvent systemCallback
+               Gtk.widgetShowAll ebox
+               return $ Gtk.toWidget ebox
+
+
+      systemCallback :: Gtk.EventM Gtk.EButton Bool
+      systemCallback = do
+        e <- Gtk.eventButton
+        case e of
+          Gtk.LeftButton   -> unsafeSpawn "terminator -e glances"
+          Gtk.RightButton  -> unsafeSpawn "terminator -e top"
+          Gtk.MiddleButton -> unsafeSpawn "gnome-system-monitor"
+          _ -> return ()
+        return True
+
+      cpu = do btn <- pollingGraphNew cpuCfg 0.5 cpuCallback
+               ebox <- Gtk.eventBoxNew
+               Gtk.containerAdd ebox btn
+               _ <- Gtk.on ebox Gtk.buttonPressEvent systemCallback
+               Gtk.widgetShowAll ebox
+               return $ Gtk.toWidget ebox
+
+
+      tempCallback1 :: Gtk.EventM Gtk.EButton Bool
+      tempCallback1 = do
+        e <- Gtk.eventButton
+        case e of
+          Gtk.LeftButton  -> unsafeSpawn "gnome-power-statistics"
+          Gtk.RightButton -> unsafeSpawn "terminator -e 'sudo powertop'"
+          _ -> return ()
+        return True
+
+      temp = do btn <- pollingGraphNew tempCfg 1 tempCallback
+                ebox <- Gtk.eventBoxNew
+                Gtk.containerAdd ebox btn
+                _ <- Gtk.on ebox Gtk.buttonPressEvent tempCallback1
+                Gtk.widgetShowAll ebox
+                return $ Gtk.toWidget ebox
+
+      battCallback :: Gtk.EventM Gtk.EButton Bool
+      battCallback = do
+        unsafeSpawn "gnome-power-statistics"
+        return True
+
+      batt = do btn <- batteryBarNew defaultBatteryConfig 1
+                ebox <- Gtk.eventBoxNew
+                Gtk.containerAdd ebox btn
+                _ <- Gtk.on ebox Gtk.buttonPressEvent battCallback
+                Gtk.widgetShowAll ebox
+                return $ Gtk.toWidget ebox
+
       tray = systrayNew
+
+      weaCallback :: Gtk.EventM Gtk.EButton Bool
+      weaCallback = do
+        unsafeSpawn "firefox https://darksky.net/34.0196,-118.487"
+        return True
+
+      wea = do btn <- weatherNew (defaultWeatherConfig "KSMO") { weatherTemplate = "SM $tempF$ °C" } 10
+               ebox <- Gtk.eventBoxNew
+               Gtk.containerAdd ebox btn
+               _ <- Gtk.on ebox Gtk.buttonPressEvent weaCallback
+               Gtk.widgetShowAll ebox
+               return $ Gtk.toWidget ebox
+
+      wea2Callback :: Gtk.EventM Gtk.EButton Bool
+      wea2Callback = do
+        unsafeSpawn "firefox https://darksky.net/30.4113,-88.8279"
+        return True
+
+      wea2 = do btn <- weatherNew (defaultWeatherConfig "KBIX") { weatherTemplate = "OS $tempF$ °C" } 30
+                ebox <- Gtk.eventBoxNew
+                Gtk.containerAdd ebox btn
+                _ <- Gtk.on ebox Gtk.buttonPressEvent wea2Callback
+                Gtk.widgetShowAll ebox
+                return $ Gtk.toWidget ebox
 
   defaultTaffybar defaultTaffybarConfig { startWidgets = [ pager, note ]
                                         , endWidgets = [ tray, wea2, wea, clock, mem, cpu, batt, temp ]
