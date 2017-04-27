@@ -57,17 +57,15 @@ zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)[ 0-9:]#([
 
 zstyle ':completion:*:*:git:*' script ~/code/git/contrib/completion/git-completion.bash
 
+local -a h
+if [[ -r ~/.ssh/config ]]; then
+  h=($h ${${${(@M)${(f)"$(cat ~/.ssh/config)"}:#Host *}#Host }:#*[*?]*})
+fi
 if [[ -r ~/.ssh/zr_hosts ]]; then
-  local h=()
-  if [[ -r ~/.ssh/config ]]; then
-    h=($h ${${${(@M)${(f)"$(cat ~/.ssh/config)"}:#Host *}#Host }:#*[*?]*})
-  fi
-  if [[ -r ~/.ssh/zr_hosts ]]; then
-    h=($h $(cat ~/.ssh/zr_hosts || true)) 2>/dev/null
-  fi
-  if [[ $#h -gt 0 ]]; then
-     zstyle ':completion:*' hosts $h
-  fi
+  h=($h $(cat ~/.ssh/zr_hosts || true)) 2>/dev/null
+fi
+if [[ $#h -gt 0 ]]; then
+   zstyle ':completion:*' hosts $h
 fi
 
 # these are aliases
