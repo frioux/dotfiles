@@ -6,7 +6,7 @@ fi
 
 export DOTFILES="$(dirname "$(readlink "$HOME/.env")" )"
 
-if [ -d /opt/share/man ]; then
+if [ -d /opt/share/man -a -d /usr/bin/manpath ]; then
    MANPATH=
    export MANPATH="/opt/share/man:$(manpath)"
 fi
