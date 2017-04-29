@@ -1,0 +1,23 @@
+#!/bin/dash
+
+if [ $# -ne 2 ]; then
+  echo "Usage: $0 path/to/file linenumber" 1>&2
+  exit 1
+fi
+
+
+file="$1"
+shift
+
+line="$1"
+shift
+
+cp $file "$file.munged"
+echo "$line\ni\ntmp\n.\nwq" | ed -s "$file.munged" >/dev/null
+
+git diff --no-index "$file" "$file.munged" |
+   perl -pne 'if (m/^@@ .* @@ (.*)/) { $_ = "$1\n"} else { undef $_ }'
+
+rm "$file.munged"
+
+# vim: ft=sh
