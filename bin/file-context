@@ -7,10 +7,7 @@ fi
 
 
 file="$1"
-shift
-
-line="$1"
-shift
+line="$2"
 
 cp $file "$file.munged"
 echo "$line\ni\ntmp\n.\nwq" | ed -s "$file.munged" >/dev/null
