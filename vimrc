@@ -423,6 +423,13 @@ function! CompleteTags(findstart, base)
   endif
 endfun
 
+function Lost()
+  let line = line('.')
+  let file = expand('%')
+  exe 'echom system("file-context ' . file . ' ' . line . '")'
+endfunction
+command Lost call Lost()
+
 let g:fugitive_gitlab_domains = ['https://git.ziprecruiter.com']
 
 " vim: foldmethod=marker
