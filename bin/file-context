@@ -8,13 +8,14 @@ fi
 
 file="$1"
 line="$2"
+newfile="/run/shm/$(basename "$file").munged"
 
-cp $file "$file.munged"
-echo "$line\ni\ntmp\n.\nwq" | ed -s "$file.munged" >/dev/null
+cp "$file" "$newfile"
+echo "$line\ni\ntmp\n.\nwq" | ed -s "$newfile" >/dev/null
 
-git diff --no-index "$file" "$file.munged" |
+git diff --no-index "$file" "$newfile" |
    perl -pne 'if (m/^@@ .* @@ (.*)/) { $_ = "$1\n"} else { undef $_ }'
 
-rm "$file.munged"
+rm "$newfile"
 
 # vim: ft=sh
