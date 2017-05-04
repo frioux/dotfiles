@@ -66,6 +66,8 @@
 [url "git@github.com:"]
    pushInsteadOf = gh:
    pushInsteadOf = git://github.com/
+[url "git@gist.github.com:"]
+   pushInsteadOf = https://gist.github.com/
 [url "git://git.shadowcat.co.uk/catagits/"]
    insteadOf = catagits:
 [url "catagits@git.shadowcat.co.uk:"]
