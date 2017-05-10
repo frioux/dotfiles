@@ -14,7 +14,7 @@ use WWW::Mechanize;
 
 my $cj = HTTP::Cookies::Mozilla->new(
    autosave => 0,
-   file => '/home/frew/.mozilla/firefox/r2z3etun.default/cookies.sqlite'
+   file => '/home/frew/.mozilla/firefox/ami5zns1.default-1493856819600/cookies.sqlite'
 );
 
 my $m = WWW::Mechanize->new(
