@@ -19,18 +19,18 @@ import qualified Graphics.UI.Gtk as Gtk
 
 main = do
   let
-      memCallback :: IO [Double]
-      memCallback = do
+      memReader :: IO [Double]
+      memReader = do
         mi <- parseMeminfo
         return [memoryUsedRatio mi]
 
-      cpuCallback :: IO [Double]
-      cpuCallback = do
+      cpuReader :: IO [Double]
+      cpuReader = do
         (userLoad, systemLoad, totalLoad) <- cpuLoad
         return [totalLoad, systemLoad]
 
-      tempCallback :: IO [Double]
-      tempCallback = do
+      tempReader :: IO [Double]
+      tempReader = do
         ret <- getCPUTemp ["cpu0"]
         return [fromIntegral (ret!!0)]
 
@@ -58,16 +58,17 @@ main = do
       note = notifyAreaNew defaultNotificationConfig
 
       mem :: IO Gtk.Widget
-      mem = do btn <- pollingGraphNew memCfg 1 memCallback
-               ebox <- Gtk.eventBoxNew
-               Gtk.containerAdd ebox btn
-               _ <- Gtk.on ebox Gtk.buttonPressEvent systemCallback
-               Gtk.widgetShowAll ebox
-               return $ Gtk.toWidget ebox
+      mem = do
+        btn <- pollingGraphNew memCfg 1 memReader
+        ebox <- Gtk.eventBoxNew
+        Gtk.containerAdd ebox btn
+        _ <- Gtk.on ebox Gtk.buttonPressEvent systemEvents
+        Gtk.widgetShowAll ebox
+        return $ Gtk.toWidget ebox
 
 
-      systemCallback :: Gtk.EventM Gtk.EButton Bool
-      systemCallback = do
+      systemEvents :: Gtk.EventM Gtk.EButton Bool
+      systemEvents = do
         e <- Gtk.eventButton
         case e of
           Gtk.LeftButton   -> unsafeSpawn "terminator -e glances"
@@ -77,16 +78,17 @@ main = do
         return True
 
       cpu :: IO Gtk.Widget
-      cpu = do btn <- pollingGraphNew cpuCfg 0.5 cpuCallback
-               ebox <- Gtk.eventBoxNew
-               Gtk.containerAdd ebox btn
-               _ <- Gtk.on ebox Gtk.buttonPressEvent systemCallback
-               Gtk.widgetShowAll ebox
-               return $ Gtk.toWidget ebox
+      cpu = do
+        btn <- pollingGraphNew cpuCfg 0.5 cpuReader
+        ebox <- Gtk.eventBoxNew
+        Gtk.containerAdd ebox btn
+        _ <- Gtk.on ebox Gtk.buttonPressEvent systemEvents
+        Gtk.widgetShowAll ebox
+        return $ Gtk.toWidget ebox
 
 
-      tempCallback1 :: Gtk.EventM Gtk.EButton Bool
-      tempCallback1 = do
+      tempEvents :: Gtk.EventM Gtk.EButton Bool
+      tempEvents = do
         e <- Gtk.eventButton
         case e of
           Gtk.LeftButton  -> unsafeSpawn "gnome-power-statistics"
@@ -95,55 +97,59 @@ main = do
         return True
 
       temp :: IO Gtk.Widget
-      temp = do btn <- pollingGraphNew tempCfg 1 tempCallback
-                ebox <- Gtk.eventBoxNew
-                Gtk.containerAdd ebox btn
-                _ <- Gtk.on ebox Gtk.buttonPressEvent tempCallback1
-                Gtk.widgetShowAll ebox
-                return $ Gtk.toWidget ebox
+      temp = do
+        btn <- pollingGraphNew tempCfg 1 tempReader
+        ebox <- Gtk.eventBoxNew
+        Gtk.containerAdd ebox btn
+        _ <- Gtk.on ebox Gtk.buttonPressEvent tempEvents
+        Gtk.widgetShowAll ebox
+        return $ Gtk.toWidget ebox
 
-      battCallback :: Gtk.EventM Gtk.EButton Bool
-      battCallback = do
+      battEvents :: Gtk.EventM Gtk.EButton Bool
+      battEvents = do
         unsafeSpawn "gnome-power-statistics"
         return True
 
       batt :: IO Gtk.Widget
-      batt = do btn <- batteryBarNew defaultBatteryConfig 1
-                ebox <- Gtk.eventBoxNew
-                Gtk.containerAdd ebox btn
-                _ <- Gtk.on ebox Gtk.buttonPressEvent battCallback
-                Gtk.widgetShowAll ebox
-                return $ Gtk.toWidget ebox
+      batt = do
+        btn <- batteryBarNew defaultBatteryConfig 1
+        ebox <- Gtk.eventBoxNew
+        Gtk.containerAdd ebox btn
+        _ <- Gtk.on ebox Gtk.buttonPressEvent battEvents
+        Gtk.widgetShowAll ebox
+        return $ Gtk.toWidget ebox
 
       tray :: IO Gtk.Widget
       tray = systrayNew
 
-      weaCallback :: Gtk.EventM Gtk.EButton Bool
-      weaCallback = do
+      weaSMEvents :: Gtk.EventM Gtk.EButton Bool
+      weaSMEvents = do
         unsafeSpawn "firefox https://darksky.net/34.0196,-118.487"
         return True
 
-      wea :: IO Gtk.Widget
-      wea = do btn <- weatherNew (defaultWeatherConfig "KSMO") { weatherTemplate = "SM $tempF$ °C" } 10
-               ebox <- Gtk.eventBoxNew
-               Gtk.containerAdd ebox btn
-               _ <- Gtk.on ebox Gtk.buttonPressEvent weaCallback
-               Gtk.widgetShowAll ebox
-               return $ Gtk.toWidget ebox
+      weaSM :: IO Gtk.Widget
+      weaSM = do
+        btn <- weatherNew (defaultWeatherConfig "KSMO") { weatherTemplate = "SM $tempF$ °C" } 10
+        ebox <- Gtk.eventBoxNew
+        Gtk.containerAdd ebox btn
+        _ <- Gtk.on ebox Gtk.buttonPressEvent weaSMEvents
+        Gtk.widgetShowAll ebox
+        return $ Gtk.toWidget ebox
 
-      wea2Callback :: Gtk.EventM Gtk.EButton Bool
-      wea2Callback = do
+      weaOSEvents :: Gtk.EventM Gtk.EButton Bool
+      weaOSEvents = do
         unsafeSpawn "firefox https://darksky.net/30.4113,-88.8279"
         return True
 
-      wea2 :: IO Gtk.Widget
-      wea2 = do btn <- weatherNew (defaultWeatherConfig "KBIX") { weatherTemplate = "OS $tempF$ °C" } 30
-                ebox <- Gtk.eventBoxNew
-                Gtk.containerAdd ebox btn
-                _ <- Gtk.on ebox Gtk.buttonPressEvent wea2Callback
-                Gtk.widgetShowAll ebox
-                return $ Gtk.toWidget ebox
+      weaOS :: IO Gtk.Widget
+      weaOS = do
+        btn <- weatherNew (defaultWeatherConfig "KBIX") { weatherTemplate = "OS $tempF$ °C" } 30
+        ebox <- Gtk.eventBoxNew
+        Gtk.containerAdd ebox btn
+        _ <- Gtk.on ebox Gtk.buttonPressEvent weaOSEvents
+        Gtk.widgetShowAll ebox
+        return $ Gtk.toWidget ebox
 
   defaultTaffybar defaultTaffybarConfig { startWidgets = [ pager, note ]
-                                        , endWidgets = [ tray, wea2, wea, clock, mem, cpu, batt, temp ]
+                                        , endWidgets = [ tray, weaOS, weaSM, clock, mem, cpu, batt, temp ]
                                         }
