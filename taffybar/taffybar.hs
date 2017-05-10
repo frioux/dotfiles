@@ -19,33 +19,45 @@ import qualified Graphics.UI.Gtk as Gtk
 
 main = do
   let
+      memCallback :: IO [Double]
       memCallback = do
         mi <- parseMeminfo
         return [memoryUsedRatio mi]
 
+      cpuCallback :: IO [Double]
       cpuCallback = do
         (userLoad, systemLoad, totalLoad) <- cpuLoad
         return [totalLoad, systemLoad]
 
+      tempCallback :: IO [Double]
       tempCallback = do
         ret <- getCPUTemp ["cpu0"]
         return [fromIntegral (ret!!0)]
 
+      memCfg :: GraphConfig
       memCfg = defaultGraphConfig { graphDataColors = [(0, 0, 1, 1)]
                                   }
+      cpuCfg :: GraphConfig
       cpuCfg = defaultGraphConfig { graphDataColors = [ (0, 1, 0, 1)
                                                       , (1, 0, 1, 0.5)
                                                       ]
                                   }
+      tempCfg :: GraphConfig
       tempCfg = defaultGraphConfig { graphDataColors = [ (0, 1, 0, 1)
                                                       , (1, 0, 1, 0.5)
                                                       ]
                                   }
 
+      clock :: IO Gtk.Widget
       clock = textClockNew Nothing "<span fgcolor='orange'>%a %b %_d %H:%M</span>" 1
+
+      pager :: IO Gtk.Widget
       pager = taffyPagerNew defaultPagerConfig
+
+      note :: IO Gtk.Widget
       note = notifyAreaNew defaultNotificationConfig
 
+      mem :: IO Gtk.Widget
       mem = do btn <- pollingGraphNew memCfg 1 memCallback
                ebox <- Gtk.eventBoxNew
                Gtk.containerAdd ebox btn
@@ -64,6 +76,7 @@ main = do
           _ -> return ()
         return True
 
+      cpu :: IO Gtk.Widget
       cpu = do btn <- pollingGraphNew cpuCfg 0.5 cpuCallback
                ebox <- Gtk.eventBoxNew
                Gtk.containerAdd ebox btn
@@ -81,6 +94,7 @@ main = do
           _ -> return ()
         return True
 
+      temp :: IO Gtk.Widget
       temp = do btn <- pollingGraphNew tempCfg 1 tempCallback
                 ebox <- Gtk.eventBoxNew
                 Gtk.containerAdd ebox btn
@@ -93,6 +107,7 @@ main = do
         unsafeSpawn "gnome-power-statistics"
         return True
 
+      batt :: IO Gtk.Widget
       batt = do btn <- batteryBarNew defaultBatteryConfig 1
                 ebox <- Gtk.eventBoxNew
                 Gtk.containerAdd ebox btn
@@ -100,6 +115,7 @@ main = do
                 Gtk.widgetShowAll ebox
                 return $ Gtk.toWidget ebox
 
+      tray :: IO Gtk.Widget
       tray = systrayNew
 
       weaCallback :: Gtk.EventM Gtk.EButton Bool
@@ -107,6 +123,7 @@ main = do
         unsafeSpawn "firefox https://darksky.net/34.0196,-118.487"
         return True
 
+      wea :: IO Gtk.Widget
       wea = do btn <- weatherNew (defaultWeatherConfig "KSMO") { weatherTemplate = "SM $tempF$ °C" } 10
                ebox <- Gtk.eventBoxNew
                Gtk.containerAdd ebox btn
@@ -119,6 +136,7 @@ main = do
         unsafeSpawn "firefox https://darksky.net/30.4113,-88.8279"
         return True
 
+      wea2 :: IO Gtk.Widget
       wea2 = do btn <- weatherNew (defaultWeatherConfig "KBIX") { weatherTemplate = "OS $tempF$ °C" } 30
                 ebox <- Gtk.eventBoxNew
                 Gtk.containerAdd ebox btn
