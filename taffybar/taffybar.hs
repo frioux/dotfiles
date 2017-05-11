@@ -150,7 +150,7 @@ main = do
 
       weaSM :: IO Gtk.Widget
       weaSM = do
-        btn <- weatherNew (defaultWeatherConfig "KSMO") { weatherTemplate = "SM $tempF$ °C" } 10
+        btn <- weatherNew (defaultWeatherConfig "KSMO") { weatherTemplate = "SM $tempF$ °F" } 10
         ebox <- Gtk.eventBoxNew
         Gtk.containerAdd ebox btn
         _ <- Gtk.on ebox Gtk.buttonPressEvent weaSMEvents
@@ -164,7 +164,7 @@ main = do
 
       weaOS :: IO Gtk.Widget
       weaOS = do
-        btn <- weatherNew (defaultWeatherConfig "KBIX") { weatherTemplate = "OS $tempF$ °C" } 30
+        btn <- weatherNew (defaultWeatherConfig "KBIX") { weatherTemplate = "OS $tempF$ °F" } 30
         ebox <- Gtk.eventBoxNew
         Gtk.containerAdd ebox btn
         _ <- Gtk.on ebox Gtk.buttonPressEvent weaOSEvents
