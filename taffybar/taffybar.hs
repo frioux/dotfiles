@@ -15,23 +15,45 @@ import XMonad.Util.Run
 import System.Information.Memory
 import System.Information.CPU
 import System.Information.CPU2
+import Text.Show
+import Text.Printf
 import qualified Graphics.UI.Gtk as Gtk
 
 main = do
   let
-      memReader :: IO [Double]
-      memReader = do
+      memReader :: Gtk.Widget -> IO [Double]
+      memReader widget = do
         mi <- parseMeminfo
+        Gtk.postGUIAsync $ do
+          let
+            used    = round $ memoryUsed   mi :: Int
+            total   = round $ memoryTotal  mi :: Int
+            cached  = round $ memoryCache  mi :: Int
+            buffers = round $ memoryBuffer mi :: Int
+            ratio   = round $ 100 * memoryUsedRatio mi :: Int
+            tooltip = printf "%imB Used / %imB Total (%i%%)\nCached: %imB\nBuffers: %imB" used total ratio cached buffers :: String
+          _ <- Gtk.widgetSetTooltipText widget $ Just tooltip
+          return ()
         return [memoryUsedRatio mi]
 
-      cpuReader :: IO [Double]
-      cpuReader = do
+      cpuReader :: Gtk.Widget -> IO [Double]
+      cpuReader widget = do
         (userLoad, systemLoad, totalLoad) <- cpuLoad
+        Gtk.postGUIAsync $ do
+          let
+            user    = round $ 100 * userLoad   :: Int
+            system  = round $ 100 * systemLoad :: Int
+            tooltip = printf "%02i%% User\n%02i%% System" user system :: String
+          _ <- Gtk.widgetSetTooltipText widget $ Just tooltip
+          return ()
         return [totalLoad, systemLoad]
 
-      tempReader :: IO [Double]
-      tempReader = do
+      tempReader :: Gtk.Widget -> IO [Double]
+      tempReader widget = do
         ret <- getCPUTemp ["cpu0"]
+        Gtk.postGUIAsync $ do
+          _ <- Gtk.widgetSetTooltipText widget (Just (show $ ret!!0))
+          return ()
         return [fromIntegral (ret!!0)]
 
       memCfg :: GraphConfig
@@ -59,8 +81,8 @@ main = do
 
       mem :: IO Gtk.Widget
       mem = do
-        btn <- pollingGraphNew memCfg 1 memReader
         ebox <- Gtk.eventBoxNew
+        btn <- pollingGraphNew memCfg 1 $ memReader $ Gtk.toWidget ebox
         Gtk.containerAdd ebox btn
         _ <- Gtk.on ebox Gtk.buttonPressEvent systemEvents
         Gtk.widgetShowAll ebox
@@ -79,8 +101,8 @@ main = do
 
       cpu :: IO Gtk.Widget
       cpu = do
-        btn <- pollingGraphNew cpuCfg 0.5 cpuReader
         ebox <- Gtk.eventBoxNew
+        btn <- pollingGraphNew cpuCfg 0.5 $ cpuReader $ Gtk.toWidget ebox
         Gtk.containerAdd ebox btn
         _ <- Gtk.on ebox Gtk.buttonPressEvent systemEvents
         Gtk.widgetShowAll ebox
@@ -98,8 +120,8 @@ main = do
 
       temp :: IO Gtk.Widget
       temp = do
-        btn <- pollingGraphNew tempCfg 1 tempReader
         ebox <- Gtk.eventBoxNew
+        btn <- pollingGraphNew tempCfg 1 $ tempReader $ Gtk.toWidget ebox
         Gtk.containerAdd ebox btn
         _ <- Gtk.on ebox Gtk.buttonPressEvent tempEvents
         Gtk.widgetShowAll ebox
