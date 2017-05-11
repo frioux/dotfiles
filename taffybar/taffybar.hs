@@ -10,7 +10,6 @@ import System.Taffybar.Battery
 import System.Taffybar.Widgets.PollingBar
 import System.Taffybar.Widgets.PollingGraph
 
-import Control.Monad.IO.Class
 import XMonad.Util.Run
 import System.Information.Memory
 import System.Information.CPU
