@@ -18,3 +18,5 @@ function! s:lost()
   endif
 endfunction
 command! -bar Lost call s:lost()
+
+nnoremap <silent> gL :Lost<Cr>

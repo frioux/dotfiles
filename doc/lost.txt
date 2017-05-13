@@ -20,6 +20,11 @@ COMMANDS                                        *lost-commands*
                                                 *lost-:Lost*
 :Lost                   |:echom| the |lost-context| of the current line.
 
+MAPPINGS                                        *lost-mappings*
+
+                                                *lost-gL*
+gL                      call |lost-:Lost|
+
 ABOUT                                           *lost-about*
 
 Grab the latest version or report a bug on GitHub:
