@@ -1,0 +1,30 @@
+*lost.txt*  I'm all lost in this big old file
+Author:  Arthur Axel fREW Schmidt <https://blog.afoolishmanifesto.com/>
+License: Same terms as Vim itself (see |license|)
+
+INTRODUCTION                                    *lost*
+
+Lost provides a single command, |lost-:Lost|, to help you orient yourself in
+large sections of code.
+
+Context                                         *lost-context*
+
+Lost borrows the concept of the C function from `diff(1)`, which `git(1)` uses
+to give context by default.  I am astounded, after using `git(1)` as long as I
+have, how often the "C function" works for almost every single bit of code
+I've ever written.  I hope it works just as well for you!
+
+
+COMMANDS                                        *lost-commands*
+
+                                                *lost-:Lost*
+:Lost                   |:echom| the |lost-context| of the current line.
+
+ABOUT                                           *lost-about*
+
+Grab the latest version or report a bug on GitHub:
+
+https://github.com/frioux/vim-lost
+
+ vim:tw=78:et:ft=help:norl:
+
