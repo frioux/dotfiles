@@ -21,9 +21,29 @@ let g:deoplete#enable_at_startup = 1
 
 "{{{Auto Commands
 
-autocmd VimEnter * set vb t_vb=
+augroup vimrc
+   autocmd!
 
-autocmd FileType perl let b:dispatch = 'perl %'
+   au VimEnter * set vb t_vb=
+
+   au FileType perl let b:dispatch = 'perl %'
+
+   au FileType * set formatprg=fmt\ -w80
+   au FileType perl set formatprg=perltidy
+   au FileType go set formatprg=gofmt
+
+   au FileType sml set commentstring=(*\ %s\ *)
+   au FileType racket set commentstring=;\ %s
+   au FileType tf set commentstring=#\ %s
+
+   au BufReadPost *.rkt,*.rktl set filetype=racket
+   au FileType racket set lisp
+   au FileType racket set autoindent
+
+   au FileType markdown execute 'setlocal omnifunc=CompleteTags'
+
+   au FileType markdown let b:lost_regex = '\v^#'
+augroup END
 
 "}}}
 
@@ -310,13 +330,6 @@ function! s:Repl()
 endfunction
 vmap <silent> <expr> p <sid>Repl()
 
-autocmd FileType sml set commentstring=(*\ %s\ *)
-autocmd FileType racket set commentstring=;\ %s
-autocmd FileType tf set commentstring=#\ %s
-
-autocmd BufReadPost *.rkt,*.rktl set filetype=racket
-autocmd FileType racket set lisp
-autocmd FileType racket set autoindent
 
 let perl_no_subprototype_error = 1
 
@@ -404,7 +417,6 @@ function Chrono()
 endfunction
 command Chrono call Chrono()
 
-au FileType markdown execute 'setlocal omnifunc=CompleteTags'
 function! CompleteTags(findstart, base)
   if a:findstart
     " locate the start of the word
