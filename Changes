@@ -1,5 +1,7 @@
 Changelog for lost-vim
 
+- 1.0 2017-05-16 12:12 Los Angeles
+
   * Added a way to change the regex used (Good idea Léonard Messier!)
   * Added statusline support (Good idea Andrew Farmer and Chris Heithoff!)
   * Fixed link to pathogen in docs (Fixes #1) (Thanks Christopher Fujino!)
