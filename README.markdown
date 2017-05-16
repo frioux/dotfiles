@@ -20,6 +20,8 @@ sub foo {
 If you run the `:Lost` command you will see `sub foo {` at the bottom of your
 vim window.  Nice!
 
+[![Here's an asciinema demo](https://asciinema.org/a/2b64vpw1pmx3fl94ly1q4kyi8.png)](https://asciinema.org/a/2b64vpw1pmx3fl94ly1q4kyi8)
+
 ## Inspiration
 
 (The following is quoted from [the blog
