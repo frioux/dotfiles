@@ -20,6 +20,11 @@ COMMANDS                                        *lost-commands*
                                                 *lost-:Lost*
 :Lost                   |:echom| the |lost-context| of the current line.
 
+FUNCTIONS                                       *lost-functions*
+
+                                                *lost-Lost_string()*
+Lost_string()           returns the |lost-context| of the current line.
+
 MAPPINGS                                        *lost-mappings*
 
                                                 *lost-gL*
@@ -38,6 +43,16 @@ titles, I did the following in my vimrc:
 
         au FileType markdown let b:lost_regex = '\v^#'
       augroup END
+
+                                                *lost-statusline*
+
+If you want to see your context directly in your statusline, you can use
+something like this:
+
+      %{strpart(Lost_string(), 0, 20)}
+
+Any expression using |lost-Lost_string()| should work; though I'd recommend
+using |strpart()| if only to avoid overlong status lines.
 
 ABOUT                                           *lost-about*
 
