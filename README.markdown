@@ -61,7 +61,7 @@ If you don't have a preferred installation method, I recommend installing
 paste:
 
     cd ~/.vim/bundle
-    git clone git://github.com/tpope/vim-eunuch.git
+    git clone git://github.com/frioux/vim-lost
 
 Once help tags have been generated, you can view the manual with
 `:help lost`.
@@ -69,7 +69,7 @@ Once help tags have been generated, you can view the manual with
 ## Self-Promotion
 
 Like lost.vim? Follow the repository on
-[GitHub](https://github.com/tpope/vim-lost).  And if you're feeling especially
+[GitHub](https://github.com/frioux/vim-lost).  And if you're feeling especially
 charitable, follow [frioux](https://blog.afoolishmanifesto.com) on
 [Twitter](http://twitter.com/frioux) and [GitHub](https://github.com/frioux).
 
