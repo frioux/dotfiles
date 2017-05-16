@@ -127,3 +127,6 @@
 [submodule "vim/bundle/go"]
 	path = vim/bundle/go
 	url = git://github.com/fatih/vim-go
+[submodule "vim/bundle/lost"]
+	path = vim/bundle/lost
+	url = git://github.com/frioux/vim-lost
