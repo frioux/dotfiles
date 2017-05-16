@@ -25,6 +25,20 @@ MAPPINGS                                        *lost-mappings*
                                                 *lost-gL*
 gL                      call |lost-:Lost|
 
+SETTINGS                                        *lost-settings*
+
+                                                *lost-regex*
+
+If you work in a language that does not typically work with this venerable
+heuristic, you can tweak it by setting `b:lost_regex`.  For markdown, to match
+titles, I did the following in my vimrc:
+
+      augroup vimrc
+        autocmd!
+
+        au FileType markdown let b:lost_regex = '\v^#'
+      augroup END
+
 ABOUT                                           *lost-about*
 
 Grab the latest version or report a bug on GitHub:

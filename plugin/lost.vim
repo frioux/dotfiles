@@ -9,7 +9,8 @@ let g:loaded_lost = 1
 
 function! s:lost()
   " https://git.savannah.gnu.org/cgit/diffutils.git/tree/src/diff.c?id=eaa2a24#n464
-  let found = search('\v^[[:alpha:]$_]', "bn", 1, 100)
+  let re = get(b:, 'lost_regex', '\v^[[:alpha:]$_]')
+  let found = search(re, "bn", 1, 100)
   if found > 0
      let line = getline(found)
      echom line
