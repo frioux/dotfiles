@@ -112,9 +112,6 @@
 [submodule "vim/bundle/obsession"]
 	path = vim/bundle/obsession
 	url = git://github.com/tpope/vim-obsession
-[submodule "vim/bundle/vimoutliner"]
-	path = vim/bundle/vimoutliner
-	url = git://github.com/vimoutliner/vimoutliner
 [submodule "vim/bundle/FastFold"]
 	path = vim/bundle/FastFold
 	url = git://github.com/Konfekt/FastFold
