@@ -85,9 +85,6 @@
 [submodule "vim/bundle/neocomplete"]
 	path = vim/bundle-lua/neocomplete
 	url = git://github.com/Shougo/neocomplete.vim
-[submodule "vim/bundle/ultisnips"]
-	path = vim/bundle-python/ultisnips
-	url = git://github.com/sirver/ultisnips
 [submodule "vim/bundle/ctrlp"]
 	path = vim/bundle/ctrlp
 	url = git://github.com/ctrlpvim/ctrlp.vim
