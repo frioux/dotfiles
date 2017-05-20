@@ -40,8 +40,6 @@ augroup vimrc
    au FileType racket set lisp
    au FileType racket set autoindent
 
-   au FileType markdown execute 'setlocal omnifunc=CompleteTags'
-
    au FileType markdown let b:lost_regex = '\v^#'
 augroup END
 
