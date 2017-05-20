@@ -127,3 +127,6 @@
 [submodule "vim/bundle/lost"]
 	path = vim/bundle/lost
 	url = git://github.com/frioux/vim-lost
+[submodule "vim/bundle/denite"]
+	path = vim/bundle/denite
+	url = git://github.com/Shougo/denite.nvim
