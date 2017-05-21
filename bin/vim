@@ -1,0 +1,28 @@
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+
+use File::Basename 'fileparse';
+
+my $vim = '/usr/bin/' . fileparse($0);
+
+my $session;
+for my $i (0..$#ARGV) {
+   if ($ARGV[$i] eq '-S') {
+      if ($i eq $#ARGV) {
+         $session = 'Session.vim';
+      } elsif (exists $ARGV[$i+1]) {
+         $session = $ARGV[$i+1]
+      }
+   }
+}
+
+if (defined $session && -f $session) {
+   my $home = ( getpwuid $> )[7];
+
+   my $presession = "${session}a.vim";
+   $ENV{VIMINIT} = "source $home/.vimrc | source $presession" if -e $presession;
+}
+
+exec $vim, @ARGV

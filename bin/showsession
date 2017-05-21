@@ -1,14 +1,10 @@
 #!/bin/dash
 
-session="$(find ~/.vvar/sessions -maxdepth 1 -type f | grep -Fv x.vim | dmenu -fn '-*-terminus-*-r-normal-*-*-120-*-*-*-*-iso8859-*' -nb '#000000' -nf '#FFFFFF' -sb '#0066ff')"
+session="$(find ~/.vvar/sessions -maxdepth 1 -type f | grep -Pv '[ax].vim'| dmenu -fn '-*-terminus-*-r-normal-*-*-120-*-*-*-*-iso8859-*' -nb '#000000' -nf '#FFFFFF' -sb '#0066ff')"
 
 if [ -z $session ]; then
    exit 1
 fi
-
-presession=~/.vvar/presession/"$(basename "$session")"
-
-if [ -e "$presession" ]; then
-   export VIMINIT="source /home/frew/.vimrc | source $presession"
-fi
 exec gvim -S "$session"
+
+# vim: ft=vim
