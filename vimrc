@@ -277,12 +277,6 @@ let g:ctrlp_use_caching = 0
 " }}}
 let g:jshintprg="hint"
 
-augroup formatprg
-   au FileType * set formatprg=fmt\ -w80
-   au FileType perl set formatprg=perltidy
-   au FileType go set formatprg=gofmt
-augroup end
-
 nmap gs <Plug>Sneak_s
 nmap gS <Plug>Sneak_S
 xmap gs <Plug>Sneak_s
