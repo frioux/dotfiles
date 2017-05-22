@@ -19,10 +19,8 @@ for my $i (0..$#ARGV) {
 }
 
 if (defined $session && -f $session) {
-   my $home = ( getpwuid $> )[7];
-
    my $presession = "${session}a.vim";
-   $ENV{VIMINIT} = "source $home/.vimrc | source $presession" if -e $presession;
+   $ENV{VIMINIT} = "source ~/.vimrc | source $presession" if -e $presession;
 }
 
 exec $vim, @ARGV
