@@ -1,1 +1,1 @@
-autocmd BufNewFile,BufRead *.psgi setf perl 
+autocmd BufNewFile,BufRead *.psgi setf perl
