@@ -83,9 +83,6 @@ set wildmode=full
 " Case insensitive wild menu
 set wildignorecase
 
-" Got backspace?
-set backspace=2
-
 " Line Numbers PWN!
 set number
 
