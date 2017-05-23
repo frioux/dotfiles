@@ -51,14 +51,8 @@ augroup END
 set undofile
 
 set history=10000
-set viminfo='10,\"100,:10000,%,n~/.viminfo
+set viminfo='100,\"100,n~/.viminfo
 
-" Tell vim to remember certain things when we exit
-"  '10  :  marks will be remembered for up to 10 previously edited files
-"  "100 :  will save up to 100 lines for each register
-"  :20  :  up to 20 lines of command-line history will be remembered
-"  %    :  saves and restores the buffer list
-"  n... :  where to save the viminfo files
 " Necessary  for lots of cool vim things
 set nocompatible
 
