@@ -83,9 +83,6 @@ set wildmode=full
 " Case insensitive wild menu
 set wildignorecase
 
-" Enable mouse support in console
-set mouse=a
-
 " Got backspace?
 set backspace=2
 
