@@ -163,8 +163,6 @@ vnoremap ; :
 " Make %% represent the dir of the current buffer
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 
-nnoremap <F10> :split<CR>
-nnoremap <F11> :vsplit<CR>
 set pastetoggle=<F12>
 
 nmap gV `[v`]
