@@ -139,10 +139,6 @@ vnoremap <silent> <Leader>tp :!top-post<CR>
 " Edit vimrc \ev
 nnoremap <silent> <Leader>ev :split $MYVIMRC<CR>
 
-" DwarnF a perl var
-vnoremap <silent> <Leader>d= :!dwarnf_var_assignment<CR>
-nnoremap <silent> <Leader>d= :.!dwarnf_var_assignment<CR>
-
 " Up and down are more logical with g..
 nnoremap <silent> k gk
 nnoremap <silent> j gj
