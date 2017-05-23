@@ -101,9 +101,6 @@ set incsearch
 " Highlight things that we find with the search
 set hlsearch
 
-" Since I use Linux, I want this
-let g:clipbrdDefaultReg = '+'
-
 " allow selection of nothing
 set virtualedit=block
 
