@@ -5,6 +5,6 @@ session="$(find ~/.vvar/sessions -maxdepth 1 -type f | grep -Pv '[ax].vim'| dmen
 if [ -z $session ]; then
    exit 1
 fi
-exec gvim -S "$session"
+exec vim.gtk -g --not-a-terminal -S "$session"
 
 # vim: ft=vim

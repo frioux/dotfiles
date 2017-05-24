@@ -23,6 +23,7 @@ exec apt-get --no-install-recommends    \
    tk8.5                                \
    ttf-ancient-fonts                    \
    vim-gnome                            \
+   vim-gtk                              \
    vlc                                  \
    xautolock                            \
    xbacklight                           \
