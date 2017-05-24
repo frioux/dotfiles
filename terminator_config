@@ -49,12 +49,21 @@
 [plugins]
 [profiles]
   [[default]]
-    background_darkness = 1.66
-    background_image = None
+    background_darkness = 1.0
     copy_on_selection = True
+    cursor_color = "#aaaaaa"
     font = Terminus 14
     palette = "#000000:#aa0000:#00aa00:#aa5500:#0048b5:#aa00aa:#00aaaa:#aaaaaa:#555555:#ff5555:#55ff55:#ffff55:#5555ff:#ff55ff:#55ffff:#ffffff"
     scrollback_lines = 0
+    scrollbar_position = hidden
+    show_titlebar = False
+    use_system_font = False
+  [[outside]]
+    background_color = "#ffffdd"
+    copy_on_selection = True
+    cursor_color = "#aaaaaa"
+    font = Terminus 14
+    foreground_color = "#000000"
     scrollbar_position = hidden
     show_titlebar = False
     use_system_font = False
