@@ -47,6 +47,8 @@ augroup END
 
 "{{{Misc Settings
 
+set conceallevel=2
+
 " PERSISTENT UNDO
 set undofile
 
