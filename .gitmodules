@@ -127,3 +127,6 @@
 [submodule "vim/bundle/denite"]
 	path = vim/bundle/denite
 	url = git://github.com/Shougo/denite.nvim
+[submodule "vim/bundle/polyglot"]
+	path = vim/bundle/polyglot
+	url = git://github.com/sheerun/vim-polyglot
