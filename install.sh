@@ -13,6 +13,8 @@ function copy-file { __mkdir "${2:h}"; rm -rf "$2"; cp "$PWD/$1" "$2" }
 
 ./install-xdg
 
+mkdir -p ~/.config
+
 link-file awesome ~/.config/awesome
 link-file dotjs ~/.js
 link-file ssh/config ~/.ssh/config
@@ -112,5 +114,6 @@ case $OSTYPE in
    *)
       link-file vimrc ~/.vimrc
       link-file vim ~/.vim
+      link-file vim ~/.config/nvim
    ;;
 esac
