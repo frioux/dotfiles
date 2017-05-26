@@ -53,7 +53,11 @@ set conceallevel=2
 set undofile
 
 set history=10000
-set viminfo='100,\"100,n~/.viminfo
+if has('nvim')
+   set viminfo='100,\"100,n~/.nviminfo
+else
+   set viminfo='100,\"100,n~/.viminfo
+endif
 
 " Necessary  for lots of cool vim things
 set nocompatible
