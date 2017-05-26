@@ -185,6 +185,8 @@ nnoremap <silent> <leader>DP :exe ":profile pause"<cr>
 nnoremap <silent> <leader>DC :exe ":profile continue"<cr>
 nnoremap <silent> <leader>DQ :exe ":profile pause"<cr>:noautocmd wqa!<cr>
 
+nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
+
 "}}}
 
 " {{{ airline settings
