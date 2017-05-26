@@ -6,12 +6,12 @@ set -e
 
 TMP="$HOME/addresses.tmp"
 
-if [ ! -f "$HOME/.goobook_auth.json" ]; then
-   exit
-fi
+echo "" >> "$TMP"
 
-goobook query '' > "$TMP"
-< $TMP grep -v '^	' | sort | sponge > $TMP
+if [ -f "$HOME/.goobook_auth.json" ]; then
+   goobook query '' >> "$TMP"
+   < $TMP grep -v '^	' | sort | sponge > $TMP
+fi
 
 addrlookup --mutt '' | grep -v '^	' | grep '.' | sort >> $TMP
 
