@@ -352,6 +352,8 @@ endif
 command! Gdiffs cexpr system('git diff \| diff-hunk-list')
 command! GLdiffs lexpr system('git diff \| diff-hunk-list')
 
+command! CountMatches %s///gn
+
 let g:fugitive_gitlab_domains = ['https://git.ziprecruiter.com']
 
 " vim: foldmethod=marker
