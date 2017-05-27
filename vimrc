@@ -304,14 +304,14 @@ vmap <silent> <expr> p <sid>Repl()
 
 let perl_no_subprototype_error = 1
 
-function ZRPod()
+function! ZRPod()
    let path = substitute(substitute(@%, '\(app/lib/\|\.pm\)', '', 'g'), '/', '::', 'g')
    let url = 'https://pod.ziprecruiter.com/?' . path
    let command = "firefox '" . url . "'"
    execute ":!" command
 endfunction
 
-command Pod call ZRPod()
+command! Pod call ZRPod()
 let g:qs_highlight_on_keys = [ 'f', 'F', 't', 'T' ]
 if has('gui_running')
   " Set the normal font face and size.
@@ -349,8 +349,8 @@ if has('gui_running')
   call FontNormal()
 endif
 
-command Gdiffs cexpr system('git diff \| diff-hunk-list')
-command GLdiffs lexpr system('git diff \| diff-hunk-list')
+command! Gdiffs cexpr system('git diff \| diff-hunk-list')
+command! GLdiffs lexpr system('git diff \| diff-hunk-list')
 
 let g:fugitive_gitlab_domains = ['https://git.ziprecruiter.com']
 
