@@ -258,13 +258,6 @@ let g:ctrlp_use_caching = 0
 " }}}
 let g:jshintprg="hint"
 
-nmap gs <Plug>Sneak_s
-nmap gS <Plug>Sneak_S
-xmap gs <Plug>Sneak_s
-xmap gS <Plug>Sneak_S
-omap gs <Plug>Sneak_s
-omap gS <Plug>Sneak_S
-
 " hopefully can get these into unimpaired
 " (https://github.com/tpope/vim-unimpaired/issues/63)
 nnoremap [oy :setlocal syntax=on<cr>
