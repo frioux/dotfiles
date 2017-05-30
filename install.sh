@@ -113,6 +113,7 @@ case $OSTYPE in
    ;;
    *)
       link-file vimrc ~/.vimrc
+      link-file gvimrc ~/.gvimrc
       link-file vim ~/.vim
       link-file vim ~/.config/nvim
    ;;
