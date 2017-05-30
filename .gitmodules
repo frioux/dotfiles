@@ -102,7 +102,7 @@
 	url = git://github.com/wincent/terminus
 [submodule "vim/bundle/quick-scope"]
 	path = vim/bundle/quick-scope
-	url = git://github.com/unblevable/quick-scope
+	url = git://github.com/frioux/quick-scope
 [submodule "vim/bundle/sleuth"]
 	path = vim/bundle/sleuth
 	url = git://github.com/tpope/vim-sleuth
