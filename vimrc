@@ -21,6 +21,8 @@ let g:deoplete#enable_at_startup = 1
 
 "{{{Auto Commands
 
+set formatprg=fmt\ -w80
+
 augroup vimrc
    autocmd!
 
@@ -28,19 +30,20 @@ augroup vimrc
 
    au FileType perl let b:dispatch = 'perl %'
 
-   au FileType * set formatprg=fmt\ -w80
-   au FileType perl set formatprg=perltidy
-   au FileType go set formatprg=gofmt
+   au FileType perl setlocal formatprg=perltidy
+   au FileType go   setlocal formatprg=gofmt
 
-   au FileType sml set commentstring=(*\ %s\ *)
-   au FileType racket set commentstring=;\ %s
-   au FileType tf set commentstring=#\ %s
+   au FileType sml    setlocal commentstring=(*\ %s\ *)
+   au FileType racket setlocal commentstring=;\ %s
+   au FileType tf     setlocal commentstring=#\ %s
 
-   au BufReadPost *.rkt,*.rktl set filetype=racket
-   au FileType racket set lisp
-   au FileType racket set autoindent
+   au BufReadPost *.rkt,*.rktl setlocal filetype=racket
+   au FileType racket setlocal lisp
+   au FileType racket setlocal autoindent
 
    au FileType markdown let b:lost_regex = '\v^#'
+
+   au FileType help setlocal nolist
 augroup END
 
 "}}}
