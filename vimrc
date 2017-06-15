@@ -209,11 +209,11 @@ endif
 
 set list
 
-" {{{ syntastic settings
-let g:syntastic_check_on_wq = 0
-let g:syntastic_mode_map = {
-\ "mode": "active",
-\ "passive_filetypes": ["perl"] }
+" {{{ ale settings
+"
+let g:ale_lint_on_text_changed = 'normal'
+let g:ale_lint_on_insert_leave = 1
+
 " }}}
 
 " {{{ ctrlp settings
@@ -245,10 +245,10 @@ let g:ctrlp_abbrev = {
 let g:ctrlp_match_window = 'top,order:ttb,min:5,max:30'
 " search with regexen by default
 let g:ctrlp_regexp = 1
-nnoremap <silent> <F3> :call DirCtrlP()<CR>
-nnoremap <silent> <S-F3> :CtrlPClearCache<CR>
-nnoremap <silent> <F4> :call FileRelCtrlP()<CR>
-nnoremap <silent> <F5> :CtrlPBuffer<CR>
+call denite#custom#option('_', 'direction', 'aboveleft')
+nnoremap <silent> <F3> :Denite file_rec<CR>
+nnoremap <silent> <F4> :DeniteBufferDir file_rec<CR>
+nnoremap <silent> <F5> :Denite buffer<CR>
 
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
 let g:ctrlp_use_caching = 0

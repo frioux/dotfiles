@@ -43,9 +43,6 @@
 [submodule "vim/bundle/vim-visual-star-search"]
 	path = vim/bundle/visual-star-search
 	url = git://github.com/nelstrom/vim-visual-star-search.git
-[submodule "vim/bundle/synastic"]
-	path = vim/bundle/synastic
-	url = git://github.com/scrooloose/syntastic.git
 [submodule "vim/bundle/vim-airline"]
 	path = vim/bundle/airline
 	url = git://github.com/bling/vim-airline
@@ -130,3 +127,6 @@
 [submodule "vim/bundle/polyglot"]
 	path = vim/bundle/polyglot
 	url = git://github.com/sheerun/vim-polyglot
+[submodule "vim/bundle/ale"]
+	path = vim/bundle/ale
+	url = git://github.com/w0rp/ale
