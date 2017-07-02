@@ -130,3 +130,6 @@
 [submodule "vim/bundle/ale"]
 	path = vim/bundle/ale
 	url = git://github.com/w0rp/ale
+[submodule "vim/bundle/grepper"]
+	path = vim/bundle/grepper
+	url = git://github.com/mhinz/vim-grepper
