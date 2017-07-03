@@ -65,6 +65,8 @@ else
    set viminfo='100,\"100,n~/.viminfo
 endif
 
+set matchpairs+=<:>
+
 set termguicolors
 
 " Necessary  for lots of cool vim things
