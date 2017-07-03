@@ -153,6 +153,11 @@ set laststatus=2
 
 "{{{ Mappings
 
+if has('nvim')
+   tnoremap <Esc> <C-\><C-n>
+   tnoremap <C-v><Esc> <Esc>
+endif
+
 " toppost
 nnoremap <silent> <Leader>tp :%!top-post<CR>ggI
 vnoremap <silent> <Leader>tp :!top-post<CR>
