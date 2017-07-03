@@ -44,6 +44,9 @@ augroup vimrc
    au FileType markdown let b:lost_regex = '\v^#'
 
    au FileType help setlocal nolist
+
+   au BufWritePre /tmp/* setlocal noundofile
+   au BufWritePre /run/shm/* setlocal noundofile
 augroup END
 
 "}}}
