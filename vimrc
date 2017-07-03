@@ -62,6 +62,8 @@ else
    set viminfo='100,\"100,n~/.viminfo
 endif
 
+set termguicolors
+
 " Necessary  for lots of cool vim things
 set nocompatible
 
@@ -119,10 +121,20 @@ set nrformats=
 
 "{{{Look and Feel
 
+if has('termguicolors') && $COLORTERM == 'truecolor'
+   set termguicolors
+   if len($TMUX) > 0
+      let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+      let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+   endif
+endif
+
 if has("gui_running")
    colorscheme solarized
 else
-   if &t_Co == 256
+   if &termguicolors == 1
+      colorscheme solarized8_dark_high
+   elseif &t_Co == 256
       colorscheme inkpot
    else
       colorscheme elflord
