@@ -304,6 +304,30 @@ nnoremap [oN :NeoCompleteEnable<cr>
 nnoremap ]oN :NeoCompleteDisable<cr>
 nnoremap coN :NeoCompleteToggle<CR>
 
+function! CycleColors()
+   let mycolors = []
+   if &termguicolors
+      let mycolors += ['solarized8_dark_high', 'solarized8_light_high']
+   endif
+   let mycolors += [ 'elflord', 'desert' ]
+   let colordict = {}
+   let index = 0
+   while index < len(mycolors) - 1
+      let item = mycolors[index]
+      let colordict[item] = mycolors[index+1]
+      let index += 1
+   endwhile
+   let colordict[mycolors[-1]] = mycolors[0]
+
+   if has_key(g:, 'colors_name') && has_key(colordict, g:colors_name)
+      let nextColor = colordict[g:colors_name]
+   else
+      let nextColor = mycolors[0]
+   endif
+   execute ':colorscheme ' . nextColor
+endfunction
+nnoremap <F12> :call CycleColors()<cr>
+
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
 
