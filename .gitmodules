@@ -10,9 +10,6 @@
 [submodule "vim/bundle/vim-repeat"]
 	path = vim/bundle/repeat
 	url = git://github.com/tpope/vim-repeat.git
-[submodule "vim/bundle/inkpot"]
-	path = vim/bundle/inkpot
-	url = git://github.com/ciaranm/inkpot.git
 [submodule "vim/bundle/vim-surround"]
 	path = vim/bundle/surround
 	url = https://github.com/tpope/vim-surround
