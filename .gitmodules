@@ -133,3 +133,6 @@
 [submodule "vim/bundle/grepper"]
 	path = vim/bundle/grepper
 	url = git://github.com/mhinz/vim-grepper
+[submodule "vim/bundle/solarized8"]
+	path = vim/bundle/solarized8
+	url = git://github.com/lifepillar/vim-solarized8
