@@ -340,4 +340,6 @@ command! CountMatches %s///gn
 
 let g:fugitive_gitlab_domains = ['https://git.ziprecruiter.com']
 
+command! -nargs=1 Gg :Grepper -tool git -query <args>
+
 " vim: foldmethod=marker
