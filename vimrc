@@ -67,7 +67,9 @@ endif
 
 set matchpairs+=<:>
 
-set termguicolors
+if has('termguicolors')
+   set termguicolors
+endif
 
 " Necessary  for lots of cool vim things
 set nocompatible
@@ -137,10 +139,8 @@ endif
 if has("gui_running")
    colorscheme solarized
 else
-   if &termguicolors == 1
+   if has('termguicolors') && &termguicolors == 1
       colorscheme solarized8_dark_high
-   elseif &t_Co == 256
-      colorscheme inkpot
    else
       colorscheme elflord
    endif
@@ -306,7 +306,7 @@ nnoremap coN :NeoCompleteToggle<CR>
 
 function! CycleColors()
    let mycolors = []
-   if &termguicolors
+   if has('termguicolors') && &termguicolors
       let mycolors += ['solarized8_dark_high', 'solarized8_light_high']
    endif
    let mycolors += [ 'elflord', 'desert' ]
