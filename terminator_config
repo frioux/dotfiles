@@ -1,5 +1,6 @@
 [global_config]
   borderless = True
+  dbus = False
   enabled_plugins = APTURLHandler, LaunchpadCodeURLHandler, LaunchpadBugURLHandler
 [keybindings]
   close_term = None
