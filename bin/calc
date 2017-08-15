@@ -1,0 +1,6 @@
+#!/bin/bash
+
+script="scale=5; $@"
+script="$(echo "$script" | tr 'x' '*' )"
+
+bc <<< "$script"

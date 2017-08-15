@@ -10,8 +10,6 @@ edit-command-output() {
 }
 zle -N edit-command-output
 
-calc() { bc <<< "scale=5; $@" }
-
 __mkdir() { if [[ ! -d $1 ]]; then mkdir -p $1; fi }
 
 tch() {
