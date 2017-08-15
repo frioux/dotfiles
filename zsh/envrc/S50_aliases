@@ -45,6 +45,8 @@ alias vi=vim
 
 # {{{ wrappers
 
+alias calc='noglob calc'
+alias salt='noglob salt'
 alias ssh='fressh'
 alias wget='noglob wget'
 alias tar='wrap-tar'
