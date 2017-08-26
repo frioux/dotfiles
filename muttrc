@@ -43,6 +43,8 @@ mailboxes `find ~/var/mail -maxdepth 1 -type d -printf "+%f "`
 # who EVER wants to do these things?
 bind index,pager p noop
 bind index,pager a noop
+bind index       % noop
+bind index       * noop
 
 bind editor <tab> complete-query
 bind editor "\024" noop
