@@ -33,6 +33,7 @@ set markers           = no
 set mime_forward      = yes
 set mime_forward_rest = yes
 set forward_format = "Fwd: %s"
+set display_filter = $DOTFILES/bin/render-mail
 
 alternates '^frew@ziprecruiter.com$' '^arthur@ziprecruiter.com$'
 
