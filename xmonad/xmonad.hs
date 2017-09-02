@@ -24,7 +24,7 @@ main = do
 
 myKeys = [ ((modMask', xK_Return), spawn "terminator")
         , ((modMask', xK_b ), sendMessage ToggleStruts)
-        , ((modMask' .|. shiftMask, xK_x), spawn "xautolock -locknow")
+        , ((modMask' .|. shiftMask, xK_x), spawn "lock-now")
         , ((modMask', xK_d), spawn "showdm")
         , ((modMask', xK_u), spawn "showuni")
         , ((modMask', xK_v), spawn "showsession")
