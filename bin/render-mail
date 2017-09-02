@@ -4,10 +4,8 @@ use Date::Parse;
 use POSIX;
 use strict;
 
-if (/^Date: /) {
-  my $datestr = substr ($_, length ("Date: "));
-  my $zone;
-  ((undef) x 6, $zone) = strptime($datestr);
+if (my ($datestr) = m/^Date: (.*)$/) {
+  ((undef) x 6, my $zone) = strptime($datestr);
 
   if ($zone != -7 * 60 * 60) {
     my $date = strftime ("%a, %d %b %Y %H:%m:%S",
