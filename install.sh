@@ -39,7 +39,7 @@ if [ -f "$HOME/.goobook_auth.json" -o -d "$HOME/var/mail" ]; then
 else
    rm -f ~/.crontab.d/hourly/sync-addresses
 fi
-mkdir -p ~/.crontab.d/minutely
+mkdir -p ~/.crontab.d/minutely ~/.crontab.d/hourly
 link-file env ~/.env
 
 crontab="$(tempfile)"
