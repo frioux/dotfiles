@@ -93,6 +93,11 @@ done
 
 echo "[submodule]\n\tfetchJobs = $(nproc)\n\n" > ~/.git-multicore
 
+if [ "$(hostname -s)" != zfp -a "$(hostname -s)" != sandbox-frew-01 ]; then
+   # bypass git wrapper
+   /usr/bin/git clean -xdff
+fi
+
 # ensure submodules are checked out before linking to them
 git submodule update --init
 
