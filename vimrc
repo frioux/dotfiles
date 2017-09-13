@@ -26,6 +26,8 @@ set formatprg=fmt\ -w80
 augroup vimrc
    autocmd!
 
+   au BufEnter * syntax sync fromstart
+
    au VimEnter * set vb t_vb=
 
    au FileType perl let b:dispatch = 'perl %'
