@@ -282,7 +282,7 @@ let g:jshintprg="hint"
 " (https://github.com/tpope/vim-unimpaired/issues/63)
 nnoremap [oy :setlocal syntax=on<cr>
 nnoremap ]oy :setlocal syntax=off<cr>
-nnoremap coy :if exists("g:syntax_on") \| setlocal syntax=off \| else \| setlocal syntax=on \| endif<CR>
+nnoremap coy :if &syntax != "off" \| setlocal syntax=off \| else \| setlocal syntax=on \| endif<CR>
 
 nnoremap [oM :Matchmaker<cr>
 nnoremap ]oM :Matchmaker!<cr>
