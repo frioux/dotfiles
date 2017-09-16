@@ -1,24 +1,31 @@
 set alias_file        = ~/mail/mutt_aliases
 set beep_new          = no
 set charset           = "utf-8"
-set send_charset      = "utf-8"
 set confirmappend     = no
 set delete            = yes
+set display_filter = $DOTFILES/bin/render-mail
 set editor            = "vim -c 'set tw=70'"
 set envelope_from     = "yes"
 set fast_reply        = yes
 set folder            = "$HOME/var/zr-mail"
 set followup_to       = yes
+set forward_format = "Fwd: %s"
 set header_cache      = "$HOME/tmp/zr-headers"
 set honor_followup_to = yes
 set include           = yes
+set index_format="%4C %Z %{%b %d} %-15.15L (%3E) %s"
+set markers           = no
 set mbox_type         = Maildir
+set mime_forward_rest = yes
+set mime_forward      = yes
 set move              = no
 set pager_context     = 5
+set pager_index_lines=9
 set postponed         = "+gmail.drafts"
 set query_command     = "zr-addrlookup-fast '%s'"
 set realname          = "fREW Schmidt"
 set record            = "+gmail.sent"
+set send_charset      = "utf-8"
 set sendmail          = "/usr/sbin/sendmail"
 set signature         = "~/.signature"
 set sleep_time        = 0
@@ -29,16 +36,8 @@ set sort              = threads
 set spoolfile         = +INBOX
 set status_on_top     = yes
 set use_from          = yes
-set markers           = no
-set mime_forward      = yes
-set mime_forward_rest = yes
-set forward_format = "Fwd: %s"
-set display_filter = $DOTFILES/bin/render-mail
 
 alternates '^frew@ziprecruiter.com$' '^arthur@ziprecruiter.com$'
-
-set index_format="%4C %Z %{%b %d} %-15.15L (%3E) %s"
-set pager_index_lines=9
 
 bind editor <tab> complete-query
 bind editor "\024" noop
