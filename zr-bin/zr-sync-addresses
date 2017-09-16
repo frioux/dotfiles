@@ -1,0 +1,41 @@
+#!/bin/dash
+
+set -e
+
+. "$HOME/.env"
+
+TMP="$HOME/zr-addresses-built.tmp"
+
+export NOTMUCH_CONFIG="$HOME/.zr-notmuch-config"
+
+# reaches out to the internet, likely to fail, so don't pipe
+zr-goobook query '' > $TMP
+
+< $TMP grep -v '^	' | sort | sponge $TMP
+
+# reaches out to the internet, likely to fail, so don't pipe
+export-bamboohr > "$HOME/bamboo.js.tmp"
+
+# like to have this around so do the tmp trick to not blow away the old one on
+# fail
+mv "$HOME/bamboo.js.tmp" "$HOME/bamboo.js"
+
+perl -MJSON \
+  -E' my ($dn, $pn, $we) = qw(displayName preferredName workEmail);  ' \
+  -E' sub l {                                                        ' \
+  -E'   if ($_->{$pn} && index(fc $_->{$dn}, fc $_->{$pn}) == -1) {  ' \
+  -E'     $_->{$dn} = "($_->{$pn}) $_->{$dn}"                        ' \
+  -E'   }                                                            ' \
+  -E'   join "\t", $_->{$we}, $_->{$dn}, $_->{department}            ' \
+  -E' }                                                              ' \
+  -E' open my $fh, "<", "$ENV{HOME}/bamboo.js";                      ' \
+  -E' my $json = do { local $/; <$fh> };                             ' \
+  -E' my $data = decode_json($json);                                 ' \
+  -E' say l($_) for $data->@*                                        ' |
+   grep -v '^	' | sort >> $TMP
+
+addrlookup --mutt '' | grep -v '^	' | grep '.' | sort >> $TMP
+< $TMP addrs '/home/frew/var/zr-mail/gmail.sent/cur/*' | sponge $TMP
+mv $TMP "$HOME/zr-addresses-built"
+
+# vim: ft=sh
