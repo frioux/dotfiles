@@ -40,21 +40,35 @@ Then add `-s overlay2 --live-restore` to the command in the copied file
 
 # Configure Postfix
 
-Create /etc/postfix/sasl\_passwd:
+Create `/etc/postfix/sasl_passwd`:
 
-    frioux@gmail.com frioux@gmail.com:$foo
+```
+???@gmail.com               ???@gmail.com:$foo
+???@ziprecruiter.com ???@ziprecruiter.com:$bar
+smtp.pobox.com                        ???:$baz
+```
+... and `/etc/postfix/transport`:
 
-Create /etc/postfix/transport:
+```
+???@gmail.com        smtp:[smtp.gmail.com]:587
+???@ziprecruiter.com smtp:[smtp.gmail.com]:587
+```
 
-    frioux@gmail.com smtp:[smtp.gmail.com]:587
+... and `/etc/postfix/hosts`:
+
+```
+@frew.co               [smtp.pobox.com]:587
+@afoolishmanifesto.com [smtp.pobox.com]:587
+```
 
 And finally, change the config:
 
-    sudo sh -c 'cat ./main.cf >> /etc/postfix/main.cf'
-    sudo postmap /etc/postfix/sasl_passwd
-    sudo postmap /etc/postfix/transport
-    sudo chmod 400 /etc/postfix/{sasl_passwd,transport}{.db,}
-    sudo postfix reload
+```
+sudo sh -c 'cat ./main.cf >> /etc/postfix/main.cf'
+sudo postmap /etc/postfix/{sasl_passwd,transport,hosts}
+sudo chmod 400 /etc/postfix/{sasl_passwd,transport,hosts}{.db,}
+sudo service postfix restart
+```
 
 # Authorize Computer
 

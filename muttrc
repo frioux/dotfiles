@@ -18,6 +18,7 @@ set pager_context     = 5
 set postponed         = "+gmail.drafts"
 set query_command     = "addrlookup-fast '%s' | addrdedup"
 set realname          = "fREW Schmidt"
+set from              = "_@frew.co"
 set record            = "+gmail.sent"
 set sendmail          = "/usr/sbin/sendmail"
 set signature         = "~/.signature"
@@ -34,8 +35,9 @@ set mime_forward      = yes
 set mime_forward_rest = yes
 set forward_format = "Fwd: %s"
 set display_filter = $DOTFILES/bin/render-mail
+set reverse_name = yes
 
-alternates '^frew@mitsi.com$' '^frioux@gmail.com$' 'frew.co$' 'afoolishmanifesto.com$' '^frew@ziprecruiter.com$' '^arthur@ziprecruiter.com$' '^FREW@cpan.org$'
+alternates '^frew@mitsi.com$' '^frioux@gmail.com$' 'frew.co$' 'afoolishmanifesto.com$' '^FREW@cpan.org$'
 
 set index_format="%4C %Z %{%b %d} %-15.15L (%3E) %s"
 set pager_index_lines=9
@@ -95,9 +97,8 @@ source ~/.mutt/colors
 source ~/.mutt/pgp
 push <show-version>
 
-send-hook '~t ".*"' 'my_hdr From: fREW Schmidt <frioux@gmail.com>'
-send-hook '~t ".*@(ziprecruiter)\.com"' 'my_hdr From: Frew Schmidt <frew@ziprecruiter.com>'
-send-hook '~t "(cscg-1@listbox.com|(mitsi|bladis)@googlegroups.com)"' 'my_hdr From: fREW Schmidt <frew@afoolishmanifesto.com>'
+send-hook '~t ".*"' 'unmy_hdr From'
+send-hook '~t "(mitsi|bladis)@googlegroups.com"' 'my_hdr From: fREW Schmidt <frew@afoolishmanifesto.com>'
 
 source ~/.mutt-overrides
 
