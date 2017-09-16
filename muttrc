@@ -55,6 +55,7 @@ bind editor "\024" noop
 
 macro compose A "<attach-message>?<toggle-mailboxes>" "attach message(s) to this message"
 macro index G <last-entry>
+bind index,pager g noop
 macro index gg <first-entry>
 macro pager G <bottom>
 macro pager gg <top>
@@ -69,6 +70,7 @@ macro index,pager IT "<save-message>=gmail.Trash<enter>$"   "delete message"
 macro index,pager IS "<save-message>=gmail.Spam<enter>$"   "mark message as spam"
 macro index,pager Ii "<save-message>=INBOX<enter>$"   "mark message as spam"
 
+bind pager i noop
 macro index,pager im "<change-folder>=mitsi<enter>" "view mitsi list"
 macro index,pager ii "<change-folder>=INBOX<enter>" "view inbox"
 macro index,pager iT "<change-folder>=gmail.Trash<enter>"  "view trash"
