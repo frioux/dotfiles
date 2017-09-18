@@ -2,6 +2,6 @@
 
 read line
 echo "$line"
-grep $* -
+exec grep "$@"
 
 # vim: ft=sh
