@@ -93,26 +93,6 @@ And __.git-smtp-password__:
    smtpPass = $foo
 ```
 
-And __/etc/ssmtp/ssmtp.conf__:
-
-```
-root=frioux@gmail.com
-mailhub=smtp.gmail.com:587
-rewriteDomain=gmail.com
-hostname=localhost
-UseTLS=Yes
-UseSTARTTLS=Yes
-AuthUser=frioux@gmail.com
-AuthPass=$foo
-FromLineOverride=yes
-```
-
-And edit __/etc/ssmtp/revaliases__:
-
-```
-root:frioux@gmail.com:smtp.gmail.com:587
-```
-
 Put pause credentials in __.pause__:
 
     user FREW
@@ -148,22 +128,10 @@ Put the following line at the top of __/etc/pam.d/common-auth__:
 [More details here](https://developers.yubico.com/pam-u2f/)
 [and here.](https://launchpad.net/~yubico/+archive/ubuntu/stable/+packages)
 
-# Bootstrap syncthing
-
-Install from syncthing.net
-
-"Pair" with other computers
-
-Sync `a` to __~/Sync__
-
-Remove installation and run from sync dir
-
 # services
 
     sv-run-w.pl
     sv-run-offlineimap
-
-    sudo rsync -r services/root/ /etc/service
 
 # Misc Snippets
 
