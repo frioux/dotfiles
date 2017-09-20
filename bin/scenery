@@ -4,5 +4,3 @@ while true; do
    sleep $(( 60 * 25 ))
    feh --bg-max ~/Dropbox/Pictures/wallpaper -z
 done
-
-# vim: ft=sh

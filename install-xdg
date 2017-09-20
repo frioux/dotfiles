@@ -9,5 +9,3 @@ for x in bible mid bugzid rt; do
    xdg-mime default frew-$x.desktop x-scheme-handler/$x
    cp ./xdg/frew-$x.desktop ~/.local/share/applications
 done
-
-# vim: ft=sh

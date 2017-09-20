@@ -1,5 +1,3 @@
 #!/bin/dash
 
 echo "¯\_(ツ)_/¯" | xclip -i -selection clipboard
-
-# vim set ft=sh

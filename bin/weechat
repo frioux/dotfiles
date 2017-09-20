@@ -10,5 +10,3 @@ exec docker run -it    \
      --name weechat \
      frew/weechat
 
-# vim: ft=sh
-

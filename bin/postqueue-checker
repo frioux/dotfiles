@@ -5,5 +5,3 @@ while true; do
 
    postqueue-notify
 done
-
-# vim: ft=sh

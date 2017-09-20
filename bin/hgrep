@@ -3,5 +3,3 @@
 read line
 echo "$line"
 exec grep "$@"
-
-# vim: ft=sh

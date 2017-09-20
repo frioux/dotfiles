@@ -1,5 +1,3 @@
 #!/bin/dash
 
 exec pcmanfm
-
-# vim: ft=sh

@@ -11,5 +11,3 @@ while true; do
    sleep 10
    echo b0 > $LIGHTD
 done
-
-# vim: ft=sh

@@ -8,6 +8,3 @@ exec docker run -it    \
      --volume "$HOME/irc-bitlbee:/var/lib/bitlbee" \
      --name bitlbee    \
      frew/bitlbee
-
-# vim: ft=sh
-

@@ -1,5 +1,3 @@
 #!/bin/dash
 
 exec docker inspect --format {{.State.Pid}} $1
-
-# vim: ft=sh

@@ -14,4 +14,3 @@ postqueue-checker &
 shutter --min_at_startup &
 
 exec xmonad
-# vim: ft=sh

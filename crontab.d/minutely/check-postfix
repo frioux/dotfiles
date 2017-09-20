@@ -5,5 +5,3 @@ message_count="$(postqueue -j | wc -l)"
 #if [ $message_count -gt 0 ]; then
    notify-send -u critical "Emails unsent: $message_count"
 #fi
-
-# vim: ft=sh

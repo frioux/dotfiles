@@ -1,5 +1,3 @@
 #!/bin/dash
 
 exec /usr/bin/xclip -selection clipboard "$@"
-
-# vim: ft=sh

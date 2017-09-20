@@ -17,5 +17,3 @@ addrlookup --mutt '' | grep -v '^	' | grep '.' | sort >> $TMP
 
 < $TMP addrs "$HOME/var/mail/gmail.sent/cur/*" | sponge $TMP
 mv $TMP "$HOME/addresses"
-
-# vim: ft=sh

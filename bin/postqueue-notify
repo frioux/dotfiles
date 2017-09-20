@@ -5,4 +5,3 @@ old_count="$(postqueue -j | jq 'now - .arrival_time > 300' | grep true | wc -l)"
 if [ "$old_count" -gt 0 ]; then
    notify-send -u critical "$old_count emails stuck in queue"
 fi
-# vim: ft=sh
