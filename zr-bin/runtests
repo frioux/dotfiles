@@ -1,4 +1,4 @@
-#!/bin/dash
+#!/bin/sh
 
 exec execwww \
    env SKIP_SLOW_TESTS=1 \

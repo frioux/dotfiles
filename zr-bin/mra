@@ -1,4 +1,4 @@
-#!/bin/dash
+#!/bin/sh
 
 _execroot $WWW \
    killall -r plackup -w -q

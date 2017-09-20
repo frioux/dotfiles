@@ -1,4 +1,4 @@
-#!/bin/dash
+#!/bin/sh
 
 docker rm -f offlineimap
 docker pull frew/offlineimap

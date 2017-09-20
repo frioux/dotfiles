@@ -1,4 +1,4 @@
-#!/bin/dash
+#!/bin/sh
 
 ./packages.rm.sh
 ./packages.minimal.sh

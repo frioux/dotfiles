@@ -1,4 +1,4 @@
-#!/bin/dash
+#!/bin/sh
 
 old_count="$(postqueue -j | jq 'now - .arrival_time > 300' | grep true | wc -l)"
 

@@ -1,4 +1,4 @@
-#!/bin/dash
+#!/bin/sh
 
 docker rm -f weechat
 exec docker run -it    \

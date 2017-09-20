@@ -1,3 +1,3 @@
-#!/bin/dash
+#!/bin/sh
 
 exec docker inspect --format {{.State.Pid}} $1

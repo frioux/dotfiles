@@ -18,7 +18,7 @@ die "$script already exists!\n"
 
 open my $fh, '>', $script;
 
-print $fh "#!/bin/dash\n\n";
+print $fh "#!/bin/sh\n\n";
 
 if (@ARGV == 1) {
    print $fh @ARGV;

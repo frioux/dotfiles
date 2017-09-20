@@ -1,4 +1,4 @@
-#!/bin/dash
+#!/bin/sh
 
 exec apt-get --no-install-recommends    \
                              install -y \

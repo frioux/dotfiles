@@ -1,4 +1,4 @@
-#!/bin/dash
+#!/bin/sh
 
 apt-get -y purge \
    aisleriot           \

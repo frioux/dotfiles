@@ -1,4 +1,4 @@
-#!/bin/dash
+#!/bin/sh
 
 LIGHTD=/dev/null
 if [ -e $HOME/code/light-daemon/color-pipe ]; then
