@@ -14,7 +14,7 @@ vcs_color=blue
 clock_color=black
 clock_bg=white
 
-host_prompt="%{$fg_bold[$host_color]%}%m%{$reset_color%}"
+host_prompt="%{$fg_bold[$host_color]%}%M%{$reset_color%}"
 
 jobs_prompt1="%{$fg_bold[$jobs_color]%}(%{$reset_color%}"
 jobs_prompt2="%{$fg[$jobs_color]%}%j%{$reset_color%}"
