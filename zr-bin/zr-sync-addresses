@@ -36,4 +36,4 @@ perl -MJSON \
 
 addrlookup --mutt '' | grep -v '^	' | grep '.' | sort >> $TMP
 < $TMP addrs '/home/frew/var/zr-mail/gmail.sent/cur/*' | sponge $TMP
-mv $TMP "$HOME/zr-addresses-built"
+mv $TMP "$HOME/zr-addresses"

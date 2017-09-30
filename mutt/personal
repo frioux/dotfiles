@@ -1,7 +1,6 @@
 set folder            = "$HOME/var/mail"
 set from              = "_@frew.co"
 set reverse_name = yes
-set query_command     = "addrlookup-fast '%s' | addrdedup"
 
 alternates '^frew@mitsi.com$' '^frioux@gmail.com$' 'frew.co$' 'afoolishmanifesto.com$' '^FREW@cpan.org$'
 

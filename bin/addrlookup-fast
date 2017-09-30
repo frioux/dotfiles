@@ -1,4 +1,4 @@
 #!/bin/sh
 
 echo ""
-grep -i "$@" "$HOME/addresses" | grep -v '(group)'
+grep -i "$@" "$HOME/$MAILPROFILE-addresses" | grep -v '(group)'

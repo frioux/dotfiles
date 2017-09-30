@@ -4,7 +4,7 @@ set -e
 
 . "$HOME/.env"
 
-TMP="$HOME/addresses.tmp"
+TMP="$HOME/personal-addresses.tmp"
 
 echo "" >> "$TMP"
 
@@ -16,4 +16,4 @@ fi
 addrlookup --mutt '' | grep -v '^	' | grep '.' | sort >> $TMP
 
 < $TMP addrs "$HOME/var/mail/gmail.sent/cur/*" | sponge $TMP
-mv $TMP "$HOME/addresses"
+mv $TMP "$HOME/personal-addresses"

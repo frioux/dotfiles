@@ -1,5 +1,4 @@
 set folder            = "$HOME/var/zr-mail"
-set query_command     = "zr-addrlookup-fast '%s'"
 
 alternates '^frew@ziprecruiter.com$' '^arthur@ziprecruiter.com$'
 

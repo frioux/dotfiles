@@ -22,6 +22,7 @@ set move              = no
 set pager_context     = 5
 set pager_index_lines=9
 set postponed         = "+gmail.drafts"
+set query_command     = "addrlookup-fast '%s' | addrdedup"
 set realname          = "fREW Schmidt"
 set record            = "+gmail.sent"
 set send_charset      = "utf-8"
