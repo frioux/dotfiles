@@ -8,11 +8,9 @@ set display_filter = $DOTFILES/bin/render-mail
 set editor            = "vim -c 'set tw=70'"
 set envelope_from     = "yes"
 set fast_reply        = yes
-set folder            = "$HOME/var/mail"
 set followup_to       = yes
 set forward_format = "Fwd: %s"
-set from              = "_@frew.co"
-set header_cache      = "$HOME/tmp/headers"
+set header_cache      = ~/tmp/$MAILPROFILE-headers
 set honor_followup_to = yes
 set include           = yes
 set index_format="%4C %Z %{%b %d} %-15.15L (%3E) %s"
@@ -24,10 +22,8 @@ set move              = no
 set pager_context     = 5
 set pager_index_lines=9
 set postponed         = "+gmail.drafts"
-set query_command     = "addrlookup-fast '%s' | addrdedup"
 set realname          = "fREW Schmidt"
 set record            = "+gmail.sent"
-set reverse_name = yes
 set send_charset      = "utf-8"
 set sendmail          = "/usr/sbin/sendmail"
 set signature         = "~/.signature"
@@ -36,14 +32,8 @@ set smart_wrap        = yes
 set sort_alias        = alias
 set sort_aux          = reverse-last-date-received
 set sort              = threads
-set spoolfile         = +INBOX
 set status_on_top     = yes
 set use_from          = yes
-
-alternates '^frew@mitsi.com$' '^frioux@gmail.com$' 'frew.co$' 'afoolishmanifesto.com$' '^FREW@cpan.org$'
-
-
-mailboxes `find ~/var/mail -maxdepth 1 -type d -printf "+%f "`
 
 # who EVER wants to do these things?
 bind index,pager p noop
@@ -72,17 +62,14 @@ macro index,pager IS "<save-message>=gmail.Spam<enter>$"   "mark message as spam
 macro index,pager Ii "<save-message>=INBOX<enter>$"   "mark message as spam"
 
 bind pager i noop
-macro index,pager im "<change-folder>=mitsi<enter>" "view mitsi list"
 macro index,pager ii "<change-folder>=INBOX<enter>" "view inbox"
 macro index,pager iT "<change-folder>=gmail.Trash<enter>"  "view trash"
 macro index,pager iS "<change-folder>=gmail.Spam<enter>"   "view spam"
-macro index,pager iw "<change-folder>=mitsi.work<enter>"   "view mitsi.work"
-macro index,pager id "<change-folder>=DBIx-Class-Devel<enter>"   "view DBIx-Class-Devel"
 macro index,pager <F8> \
-     "<enter-command>unset wait_key<enter><shell-escape>notmuch-mutt -r --prompt search<enter><change-folder-readonly>~/.cache/notmuch/mutt/results<enter>" \
+     "<enter-command>unset wait_key<enter><shell-escape>notmuch-mutt -r --prompt search<enter><change-folder-readonly>~/.cache/notmuch/mutt/$MAILPROFILE-results<enter>" \
      "notmuch: search mail"
 macro index,pager <F9> \
-     "<enter-command>unset wait_key<enter><pipe-message>notmuch-mutt -r thread<enter><change-folder-readonly>~/.cache/notmuch/mutt/results<enter><enter-command>set wait_key<enter>" \
+     "<enter-command>unset wait_key<enter><pipe-message>notmuch-mutt -r thread<enter><change-folder-readonly>~/.cache/notmuch/mutt/$MAILPROFILE-results<enter><enter-command>set wait_key<enter>" \
      "notmuch: reconstruct thread"
 macro index <F6> \
      "<enter-command>unset wait_key<enter><pipe-message>notmuch-mutt tag -- -inbox<enter>" \
@@ -100,9 +87,8 @@ source ~/.mutt/colors
 source ~/.mutt/pgp
 push <show-version>
 
-send-hook '~t ".*"' 'unmy_hdr From'
-send-hook '~t "(mitsi|bladis)@googlegroups.com"' 'my_hdr From: fREW Schmidt <frew@afoolishmanifesto.com>'
-
 source ~/.mutt-overrides
+source ~/.mutt/$MAILPROFILE
+set spoolfile         = +INBOX
 
 # vim: ft=muttrc

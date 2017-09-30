@@ -1,0 +1,5 @@
+#!/bin/sh
+
+export MAILPROFILE=personal
+
+exec /opt/bin/mutt "$@"

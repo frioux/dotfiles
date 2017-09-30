@@ -1,0 +1,17 @@
+set folder            = "$HOME/var/mail"
+set from              = "_@frew.co"
+set reverse_name = yes
+set query_command     = "addrlookup-fast '%s' | addrdedup"
+
+alternates '^frew@mitsi.com$' '^frioux@gmail.com$' 'frew.co$' 'afoolishmanifesto.com$' '^FREW@cpan.org$'
+
+mailboxes `find ~/var/mail -maxdepth 1 -type d -printf "+%f "`
+
+macro index,pager im "<change-folder>=mitsi<enter>" "view mitsi list"
+macro index,pager iw "<change-folder>=mitsi.work<enter>"   "view mitsi.work"
+macro index,pager id "<change-folder>=DBIx-Class-Devel<enter>"   "view DBIx-Class-Devel"
+
+send-hook '~t ".*"' 'unmy_hdr From'
+send-hook '~t "(mitsi|bladis)@googlegroups.com"' 'my_hdr From: fREW Schmidt <frew@afoolishmanifesto.com>'
+
+# vim: ft=muttrc

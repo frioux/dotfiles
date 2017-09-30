@@ -1,0 +1,12 @@
+set folder            = "$HOME/var/zr-mail"
+set query_command     = "zr-addrlookup-fast '%s'"
+
+alternates '^frew@ziprecruiter.com$' '^arthur@ziprecruiter.com$'
+
+mailboxes `find ~/var/zr-mail -maxdepth 1 -type d -printf "+%f "`
+
+reply-hook '~s ".*"' 'set editor="vim"'
+reply-hook '~s "Production errors from yesterday"' 'set editor="maybe-snip vim"'
+send-hook '~t ".*"' 'my_hdr From: Frew Schmidt <frew@ziprecruiter.com>'
+
+# vim: ft=muttrc
