@@ -368,4 +368,6 @@ let g:fugitive_gitlab_domains = ['https://git.ziprecruiter.com']
 
 command! -nargs=1 Gg :Grepper -tool git -query <args>
 
+command! ESession execute ":tabnew | edit " . v:this_session . "x.vim | split" . v:this_session " | split " . v:this_session . "a.vim"
+
 " vim: foldmethod=marker
