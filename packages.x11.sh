@@ -28,8 +28,8 @@ exec apt-get --no-install-recommends    \
    xautolock                            \
    xbacklight                           \
    xcalib                               \
-   xclip                                \
    xdotool                              \
    xfonts-terminus                      \
    xfonts-terminus-oblique              \
+   xsel                                 \
    xmonad
