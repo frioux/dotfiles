@@ -6,7 +6,7 @@ use warnings;
 # TODO: make this work for ssh options
 my $host = shift;
 
-if (!@ARGV) {
+unless ($host =~ /@/ || @ARGV) {
    system('ssh', $host, <<'SH');
    set -e
    mkdir -p $HOME/code
