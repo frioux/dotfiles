@@ -20,18 +20,20 @@ export-bamboohr > "$HOME/bamboo.js.tmp"
 # fail
 mv "$HOME/bamboo.js.tmp" "$HOME/bamboo.js"
 
-perl -MJSON \
-  -E' my ($dn, $pn, $we) = qw(displayName preferredName workEmail);  ' \
-  -E' sub l {                                                        ' \
-  -E'   if ($_->{$pn} && index(fc $_->{$dn}, fc $_->{$pn}) == -1) {  ' \
-  -E'     $_->{$dn} = "($_->{$pn}) $_->{$dn}"                        ' \
-  -E'   }                                                            ' \
-  -E'   join "\t", $_->{$we}, $_->{$dn}, $_->{department}            ' \
-  -E' }                                                              ' \
-  -E' open my $fh, "<", "$ENV{HOME}/bamboo.js";                      ' \
-  -E' my $json = do { local $/; <$fh> };                             ' \
-  -E' my $data = decode_json($json);                                 ' \
-  -E' say l($_) for $data->@*                                        ' |
+perl -MJSON - <<'PERL' |
+use 5.20.0;
+my ($dn, $pn, $we) = qw(displayName preferredName workEmail);
+sub l {
+  if ($_->{$pn} && index(fc $_->{$dn}, fc $_->{$pn}) == -1) {
+    $_->{$dn} = "($_->{$pn}) $_->{$dn}"
+  }
+  join "\t", $_->{$we}, $_->{$dn}, $_->{department}
+}
+open my $fh, "<", "$ENV{HOME}/bamboo.js";
+my $json = do { local $/; <$fh> };
+my $data = decode_json($json);
+say l($_) for $data->@*
+PERL
    grep -v '^	' | sort >> $TMP
 
 addrlookup --mutt '' | grep -v '^	' | grep '.' | sort >> $TMP
