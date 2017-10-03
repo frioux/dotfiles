@@ -2,6 +2,6 @@
 
 source ~/.zshrc
 TMP="$(mktemp)"
-xclip -o >> $TMP
+xsel -o >> $TMP
 gvim -f $TMP
 cat $TMP | nopaste -o

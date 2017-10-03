@@ -1,4 +1,4 @@
 #!/bin/sh
 
 sleep 1
-exec xdotool type --clearmodifiers "$(xclip -o -selection clipboard)"
+exec xdotool type --clearmodifiers "$(xsel -o)"

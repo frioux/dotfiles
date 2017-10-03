@@ -27,7 +27,7 @@ chomp(my $choice = <$new_stdin>);
 
 my $selection = $uri[$choice - 1];
 
-open my $copy_fh, '|-', 'xclip -in -selection clipboard';
+open my $copy_fh, '|-', 'xsel -i';
 print $copy_fh $selection;
 
 say "Copied URL: $selection";

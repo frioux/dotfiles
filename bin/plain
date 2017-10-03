@@ -1,3 +1,3 @@
 #!/bin/sh
 
-xclip -o -selection clipboard | xclip -i -selection clipboard
+xsel -o | xsel -i
