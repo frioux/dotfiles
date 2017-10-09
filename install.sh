@@ -24,7 +24,6 @@ link-file install.sh .git/hooks/post-checkout
 link-file install.sh .git/hooks/post-merge
 link-file xsession ~/.xinitrc
 link-file gpg.conf ~/.gnupg/gpg.conf
-link-file ww-roller.pl/ww_roll.pl ~/bin/ww-roll.pl
 link-file taffybar/taffybar.hs ~/.config/taffybar/taffybar.hs
 
 if [ -d "$HOME/var/mail" ]; then
