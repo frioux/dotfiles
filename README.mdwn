@@ -1,5 +1,7 @@
 # dotfiles Setup
 
+    touch ~/.frewmbot-local ~/.frewmbot-maintained
+
     sudo apt-add-repository ppa:git-core/ppa
     sudo apt-add-repository ppa:yubico/stable
     sudo apt-get update
