@@ -65,6 +65,7 @@ if [[ -e ~/.frewmbot-local ]]; then
       proverc         \
       signature       \
       tkremindrc      \
+      tmux.conf       \
       vimoutlinerrc   \
       XCompose        \
       Xdefaults       \
@@ -77,6 +78,12 @@ if [[ -e ~/.frewmbot-local ]]; then
    ; do
       link-file $x ~/.$x
    done
+
+   test ! -e ~/.tmux/plugins/tpm && \
+      git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+   ~/.tmux/plugins/tpm/bin/clean_plugins
+   ~/.tmux/plugins/tpm/bin/install_plugins
 fi
 
 link-file install.sh .git/hooks/post-checkout
@@ -86,7 +93,6 @@ for x in           \
    env             \
    gitconfig       \
    gitignore_global\
-   tmux.conf       \
    zsh             \
    zshrc           \
    zshenv          \
