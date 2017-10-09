@@ -1,5 +1,7 @@
 #!/bin/sh
 
+sudo snap install keepassxc
+
 exec apt-get --no-install-recommends    \
                              install -y \
    feh                                  \
@@ -11,7 +13,6 @@ exec apt-get --no-install-recommends    \
    gtk2-engines                         \
    gxmessage                            \
    i3lock                               \
-   keepassx                             \
    pavucontrol                          \
    pcmanfm                              \
    rdesktop                             \

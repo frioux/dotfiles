@@ -6,7 +6,7 @@ eval `ssh-agent`
 eval `gpg-agent --daemon -s --default-cache-ttl 28800 --max-cache-ttl 86400`
 taffybar &
 xmodmap "$HOME/.xmodmap"
-keepassx &
+keepassxc &
 sv-run-offlineimap &
 scenery &
 armstrong &

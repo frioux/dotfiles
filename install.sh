@@ -20,7 +20,6 @@ link-file dotjs ~/.js
 link-file ssh/config ~/.ssh/config
 link-file ssh/authorized_keys ~/.ssh/authorized_keys
 link-file terminator_config ~/.config/terminator/config
-copy-file keepassx_config.ini ~/.config/keepassx/config.ini
 link-file install.sh .git/hooks/post-checkout
 link-file install.sh .git/hooks/post-merge
 link-file xsession ~/.xinitrc
