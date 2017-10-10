@@ -1,0 +1,25 @@
+#!/usr/bin/perl
+
+use 5.24.0;
+use warnings;
+
+die "usage: $0 some-file a|m|c 23h\n"
+   unless @ARGV == 3;
+
+my ($file, $op, $timespec) = @ARGV;
+
+my %left;
+((undef) x 8, $left{a}, $left{m}, $left{c}) = stat $file;
+
+my $offset = 0;
+if ($timespec =~ s/(\d+)h//) {
+   $offset += $1 * 60 * 60;
+}
+if ($timespec =~ s/(\d+)m//) {
+   $offset += $1 * 60;
+}
+if ($timespec =~ s/^(\d+)s?$//) {
+   $offset += $1
+}
+
+exit 1 unless time - $left{$op} > $offset;
