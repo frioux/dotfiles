@@ -2,16 +2,18 @@ if [[ -e ~/code/dotfiles/git-hub/.rc ]]; then
    source ~/code/dotfiles/git-hub/.rc
 fi
 
-source ~/.smartcd/lib/core/arrays
-source ~/.smartcd/lib/core/varstash
-source ~/.smartcd/lib/core/smartcd
-smartcd setup cd
-smartcd setup pushd
-smartcd setup popd
-smartcd setup prompt-hook
-smartcd setup exit-hook
-smartcd setup completion
-VARSTASH_AUTOCONFIGURE=1
-VARSTASH_AUTOEDIT=1
+if [[ -e ~/.frewmbot-local ]]; then
+   source ~/.smartcd/lib/core/arrays
+   source ~/.smartcd/lib/core/varstash
+   source ~/.smartcd/lib/core/smartcd
+   smartcd setup cd
+   smartcd setup pushd
+   smartcd setup popd
+   smartcd setup prompt-hook
+   smartcd setup exit-hook
+   smartcd setup completion
+   VARSTASH_AUTOCONFIGURE=1
+   VARSTASH_AUTOEDIT=1
+fi
 
 # vim: ft=zsh
