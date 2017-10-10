@@ -4,6 +4,8 @@ set -e
 
 . "$HOME/.env"
 
+older-than "$HOME/zr-addresses" a 24h
+
 TMP="$HOME/zr-addresses-built.tmp"
 
 export NOTMUCH_CONFIG="$HOME/.zr-notmuch-config"

@@ -4,6 +4,8 @@ set -e
 
 . "$HOME/.env"
 
+older-than "$HOME/personal-addresses" a 24h
+
 TMP="$HOME/personal-addresses.tmp"
 
 echo "" >> "$TMP"
