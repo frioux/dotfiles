@@ -72,9 +72,6 @@ macro index,pager <F8> \
 macro index,pager <F9> \
      "<enter-command>unset wait_key<enter><pipe-message>notmuch-mutt -r thread --output-dir ~/.cache/notmuch/mutt/$MAILPROFILE-results<enter><change-folder-readonly>~/.cache/notmuch/mutt/$MAILPROFILE-results<enter><enter-command>set wait_key<enter>" \
      "notmuch: reconstruct thread"
-macro index <F6> \
-     "<enter-command>unset wait_key<enter><pipe-message>notmuch-mutt tag -- -inbox<enter>" \
-     "notmuch: remove message from inbox"
 
 macro pager U <pipe-entry>extract_url.pl<enter> 'Follow links with urlview'
 
