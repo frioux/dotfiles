@@ -84,7 +84,7 @@
 	url = git://github.com/ctrlpvim/ctrlp.vim
 [submodule "vim/bundle/projectionist"]
 	path = vim/bundle/projectionist
-	url = git://github.com/tpope/vim-projectionist
+	url = git://github.com/frioux/vim-projectionist
 [submodule "vim/bundle-python/editorconfig"]
 	path = vim/bundle-python/editorconfig
 	url = git://github.com/editorconfig/editorconfig-vim
