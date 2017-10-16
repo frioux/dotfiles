@@ -191,4 +191,10 @@ You can also call *projectionist#path()* to get the root of the innermost set
 of projections, which is useful for implementing commands like
 |projectionist-:Cd|.
 
+The |User| *ProjectionistApplyTemplate* event is triggered immediately after a
+template is applied.  You can use this to do post-processing on the generated
+template:
+
+    autocmd User ProjectionistApplyTemplate %s/\~\~UUID\~\~/\=systemlist("uuidgen")[0]/ge
+
  vim:tw=78:et:ft=help:norl:
