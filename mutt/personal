@@ -12,6 +12,7 @@ macro index,pager id "<change-folder>=DBIx-Class-Devel<enter>"   "view DBIx-Clas
 
 send-hook '~t ".*"' 'unmy_hdr From'
 send-hook '~t "(mitsi|bladis)@googlegroups.com"' 'my_hdr From: fREW Schmidt <frew@afoolishmanifesto.com>'
+send-hook '~t "mtsi-work@googlegroups.com"' 'my_hdr From: fREW Schmidt <frioux@gmail.com>'
 folder-hook ".*" 'unmy_hdr To'
 folder-hook 'mitsi$'        'my_hdr To: mitsi@googlegroups.com'
 folder-hook 'mitsi\.books$' 'my_hdr To: awesome-books@googlegroups.com'
