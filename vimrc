@@ -99,7 +99,7 @@ set tw=80
 
 " Cool tab completion stuff
 set wildmenu
-set wildmode=full
+set wildmode=longest,list
 " Case insensitive wild menu
 set wildignorecase
 
