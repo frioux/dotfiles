@@ -11,7 +11,7 @@ zstyle ':completion:*:messages' format '%d'
 zstyle ':completion:*:warnings' format 'No matches for: %d'
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*' completer _oldlist _expand _force_rehash _complete
-zstyle ':completion:*' completer _expand _force_rehash _complete _approximate _ignored
+zstyle ':completion:*' completer _expand _force_rehash _complete _ignored
 
 # generate descriptions with magic.
 zstyle ':completion:*' auto-description 'specify: %d'
@@ -37,9 +37,6 @@ zstyle ':completion:*' list-separator '»»'
 zstyle ':completion:*:windows' menu on=0
 zstyle ':completion:*:expand:*' tag-order all-expansions
 
-# more errors allowed for large words and fewer for small words
-zstyle ':completion:*:approximate:*' max-errors 'reply=(  $((  ($#PREFIX+$#SUFFIX)/3  ))  )'
-
 # Errors format
 zstyle ':completion:*:corrections' format '%B%d (errors %e)%b'
 
@@ -48,8 +45,6 @@ zstyle ':completion::*:(rm|vi):*' ignore-line true
 
 # Don't complete directory we are already in (../here)
 zstyle ':completion:*' ignore-parents parent pwd
-
-zstyle ':completion::approximate*:*' prefix-needed false
 
 # make kill way awesome
 zstyle ':completion:*:processes' command 'ps -au$USER -o pid,time,cmd|grep -v "ps -au$USER -o pid,time,cmd"'
