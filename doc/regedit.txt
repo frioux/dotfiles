@@ -1,0 +1,75 @@
+*regedit.txt*
+Author:  Arthur Axel fREW Schmidt <https://blog.afoolishmanifesto.com/>
+License: Same terms as Vim itself (see |license|)
+
+INTRODUCTION                                    *regedit*
+
+RegEdit provides a single mapping, |regedit-<leader>E|, to help you edit
+registers.  The typical use case is that you have recorded a macro and need to
+tidy it up or make some changes.  With this plugin you can use
+|regedit-<leader>E|, press the key for the appropriate register, and an
+expression to update the register will be placed in |Cmdline-mode| for you.
+
+As a convenience a short list of special characters are replaced with
+|keycodes|, to make updating the registers a little bit more clear.
+
+For a more involved tutorial see
+https://blog.afoolishmanifesto.com/posts/editing-registers-in-vim-regedit/
+
+MAPPINGS                                        *regedit-mappings*
+
+                                                *regedit-<Plug>RegEdit*
+<Plug>RegEdit                Populates |Cmdline| with expression to update
+                             the register.
+
+                                                *regedit-<leader>E* *<leader>E*
+<leader>E{a-zA-Z0-9}         Default mapping of <Plug>RegEdit.  If you wanted
+                             to use a different mapping, you could write
+                             something like:
+>
+  nnoremap <leader>r <Plug>RegEdit
+<
+
+FUNCTIONS                                       *regedit-functions*
+
+                                                *regedit-RegEdit()*
+RegEdit(register)           returns expression updating the passed register.
+                            If you happen to record all your macros in a
+                            single register you could make a simpler mapping: >
+  nnoremap <leader>Q :<C-r>=RegEdit('w')<cr>
+<
+
+                                                *regedit-RegEditRHS()*
+RegEditRHS(register)        returns expression for the value of the register,
+                            escaped and convenient for use in a double
+                            quoted string.  If you wanted to inject another
+                            register into the current register you are
+                            editing, you could type
+                            `<C-r>=RegEditRHS('b')<CR>` to inject it.
+
+SETTINGS                                        *regedit-settings*
+
+                                                *regedit-g:RegEdit_keycodes*
+When RegEdit prepares a register for editing, it replaces certain common
+characters with their respective |keymaps|, so instead of seeing ``, you'll
+see `\<Esc>`.  The other built in mappings are for `<CR>`, `<BS>`, and
+`<Tab>`.  If you find that you would like a different set of characters to be
+modified you can use `g:RegEdit_keycodes`: >
+  let g:RegEdit_keycodes = { "\<F1>": '\\<F1>' }
+<
+If you only want to add keycodes, you can copy from the default: >
+  let g:RegEdit_keycodes = copy(g:RegEdit_default_keycodes)
+  let g:RegEdit_keycodes["\<Up>"] = '\\<Up>'
+<
+
+If you prefer raw keycodes, set it to an empty Dictionary: >
+  let g:RegEdit_keycodes = {}
+<
+
+ABOUT                                           *regedit-about*
+
+Grab the latest version or report a bug on GitHub:
+
+https://github.com/frioux/vim-regedit
+
+ vim:tw=78:et:ft=help:norl:
