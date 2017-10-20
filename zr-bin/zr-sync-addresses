@@ -24,12 +24,12 @@ mv "$HOME/bamboo.js.tmp" "$HOME/bamboo.js"
 
 perl -MJSON - <<'PERL' |
 use 5.20.0;
-my ($dn, $pn, $we) = qw(displayName preferredName workEmail);
+my $pn = 'prefName';
 sub l {
-  if ($_->{$pn} && index(fc $_->{$dn}, fc $_->{$pn}) == -1) {
-    $_->{$dn} = "($_->{$pn}) $_->{$dn}"
-  }
-  join "\t", $_->{$we}, $_->{$dn}, $_->{department}
+  my $dn = "$_->{firstName} $_->{lastName}";
+  $dn = "($_->{$pn}) $dn"
+     if $_->{$pn} && index(fc "$dn", fc $_->{$pn}) == -1;
+  join "\t", $_->{email}, $dn, $_->{department}
 }
 open my $fh, "<", "$ENV{HOME}/bamboo.js";
 my $json = do { local $/; <$fh> };
