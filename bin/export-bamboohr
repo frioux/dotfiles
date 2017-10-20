@@ -17,7 +17,10 @@ $mech->submit_form(
    }
 );
 
+die "Failed to login" unless $mech->success;
 
 $mech->get('https://ziprecruiter1.bamboohr.com/employee_directory/ajax/get_directory_info');
+
+die "Failed to get listing" unless $mech->success;
 
 print $mech->content;
