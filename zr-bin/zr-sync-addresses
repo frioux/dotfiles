@@ -34,7 +34,7 @@ sub l {
 open my $fh, "<", "$ENV{HOME}/bamboo.js";
 my $json = do { local $/; <$fh> };
 my $data = decode_json($json);
-say l($_) for $data->@*
+say l($_) for $data->{employees}->@*
 PERL
    grep -v '^	' | sort >> $TMP
 

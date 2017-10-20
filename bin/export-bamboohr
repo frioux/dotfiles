@@ -17,15 +17,7 @@ $mech->submit_form(
    }
 );
 
-$mech->get('https://ziprecruiter1.bamboohr.com/employees/directory.php?pin');
 
-my ($json) =
-   map {
-      m/var data=(.*);/;
-      $1
-   }
-   grep m/var data/,
-   split /\n/,
-   $mech->content;
+$mech->get('https://ziprecruiter1.bamboohr.com/employee_directory/ajax/get_directory_info');
 
-print $json
+print $mech->content;
