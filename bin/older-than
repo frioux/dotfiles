@@ -8,6 +8,8 @@ die "usage: $0 some-file a|m|c 23h\n"
 
 my ($file, $op, $timespec) = @ARGV;
 
+exit unless -e $file;
+
 my %left;
 ((undef) x 8, $left{a}, $left{m}, $left{c}) = stat $file;
 
