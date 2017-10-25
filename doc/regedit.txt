@@ -21,15 +21,29 @@ https://blog.afoolishmanifesto.com/posts/editing-registers-in-vim-regedit/
 MAPPINGS                                        *regedit-mappings*
 
                                                 *regedit-<Plug>RegEdit*
-<Plug>RegEdit                Populates |Cmdline| with expression to update
-                             the register.
+                                                *regedit-<Plug>(RegEditPostfix)*
+<Plug>(RegEditPostfix)       Prompts for a register and populates |Cmdline|
+                             with an expression to update the register.  This is
+                             the default mapping made in |regedit-<leader>E|.
+
+                                                *regedit-<Plug>(RegEditPrefix)*
+<Plug>(RegEditPrefix)        Uses standard VIM register selection for
+                             indicating the register and populates |Cmdline|
+                             with an expression to update the register.  If you
+                             would like to use this, put something like this in
+                             your configuration:
+>
+  nmap <leader>E <Plug>(RegEditPrefix)
+<
+                             After making this mapping, you could edit the 'a'
+                             register by typing "a<leader>E.
 
                                                 *regedit-<leader>E* *<leader>E*
-<leader>E{a-zA-Z0-9}         Default mapping of <Plug>RegEdit.  If you wanted
-                             to use a different mapping, you could write
-                             something like:
+<leader>E{a-zA-Z0-9}         Default mapping of <Plug>(RegEditPostfix).  If
+                             you wanted to use a different mapping, you could
+                             write something like:
 >
-  nmap <leader>r <Plug>RegEdit
+  nmap <leader>r <Plug>(RegEditPostfix)
 <
 
 FUNCTIONS                                       *regedit-functions*

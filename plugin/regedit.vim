@@ -31,7 +31,14 @@ function! RegEdit(which)
    return 'let @' . a:which . ' = "' . RegEditRHS(a:which) . '"'
 endfunction
 
+nnoremap <silent> <Plug>(RegEditPostfix) :<c-r>=RegEdit(nr2char(getchar()))<cr>
+nnoremap <Plug>(RegEditPrefix) :<c-r>=RegEdit(v:register)<cr>
+" keep <Plug>RegEdit around for backwards compatibility.  in general it is
+" better to use the parenthesized mapping to avoid issues with the 'timeout'
+" setting and ambiguous mappings.
 nnoremap <silent> <Plug>RegEdit :<c-r>=RegEdit(nr2char(getchar()))<cr>
-if !hasmapto('<Plug>RegEdit') && mapcheck('<leader>E', 'n') ==# ''
-   nmap <leader>E <Plug>RegEdit
+
+if !hasmapto('<Plug>RegEdit') && !hasmapto('<Plug>(RegEditPrefix)') &&
+ \ !hasmapto('<Plug>(RegEditPostfix)') && mapcheck('<leader>E', 'n') ==# ''
+   nmap <leader>E <Plug>(RegEditPostfix)
 endif
