@@ -27,7 +27,7 @@ MAPPINGS                                        *regedit-mappings*
                              to use a different mapping, you could write
                              something like:
 >
-  nnoremap <leader>r <Plug>RegEdit
+  nmap <leader>r <Plug>RegEdit
 <
 
 FUNCTIONS                                       *regedit-functions*
