@@ -13,7 +13,7 @@ function! s:tidy(str)
 
    let keycodes = g:RegEdit_default_keycodes
 
-   if has_key(g:, 'RegEdit_keycodes')
+   if exists('g:RegEdit_keycodes')
       let keycodes = g:RegEdit_keycodes
    endif
 
