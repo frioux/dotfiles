@@ -9,6 +9,8 @@ registers.  The typical use case is that you have recorded a macro and need to
 tidy it up or make some changes.  With this plugin you can use
 |regedit-<leader>E|, press the key for the appropriate register, and an
 expression to update the register will be placed in |Cmdline-mode| for you.
+When paired with |cedit| the register can even be updated in a normal VIM
+editing environment via the |command-line-window|.
 
 As a convenience a short list of special characters are replaced with
 |keycodes|, to make updating the registers a little bit more clear.
