@@ -2,4 +2,4 @@
 
 export MAILPROFILE=personal
 
-exec /opt/bin/mutt "$@"
+exec /opt/bin/neomutt "$@"

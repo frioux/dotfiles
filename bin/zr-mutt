@@ -5,5 +5,5 @@ sv-run-offlineimap-zr 2>&1 > /dev/null &
 export MAILPROFILE=zr
 export NOTMUCH_CONFIG="$HOME/.zr-notmuch-config"
 tmux rename-window zr-mutt
-/opt/bin/mutt "$@"
+/opt/bin/neomutt "$@"
 tmux set automatic-rename on
