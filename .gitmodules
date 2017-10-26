@@ -133,3 +133,6 @@
 [submodule "vim/bundle/solarized8"]
 	path = vim/bundle/solarized8
 	url = git://github.com/lifepillar/vim-solarized8
+[submodule "vim/bundle/regedit"]
+	path = vim/bundle/regedit
+	url = git://github.com/frioux/vim-regedit
