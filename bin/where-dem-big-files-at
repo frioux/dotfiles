@@ -1,0 +1,27 @@
+#!/bin/sh
+
+set -e
+
+export whatsbig=${1:-/}
+
+cur_mount="$(df "$whatsbig" --output=target | tail -1)"
+
+# sort spills over to temp files
+for x in /tmp /mnt/tmp /vol/tmp /run/shm; do
+   test -e "$x" || continue
+
+   if [ "$(df "$x" --output=target | tail -1)" != "$cur_mount" ]; then
+      export TMPDIR="$x"
+      break
+   fi
+done
+
+du -akx "$whatsbig" > $TMPDIR/big.$$.pid
+
+export LC_ALL=C
+cat "$TMPDIR/big.$$.pid" | sort -n > "$TMPDIR/sorted.$$.pid"
+rm "$TMPDIR/big.$$.pid"
+
+tail -30 "$TMPDIR/sorted.$$.pid"
+
+echo "\nMore detail in $TMPDIR/sorted.$$.pid"
