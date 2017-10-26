@@ -1,5 +1,16 @@
 Changelog for regedit.vim
 
+- 1.0 2017-10-25 19:40 Los Angeles
+
+  * Add another mapping so you can edit the register with the more natural:
+
+       "a<leader>E
+
+    Check out out the |regedit-<Plug>(RegEditPrefix)| doc for more details.
+    (Thanks again Andy!)
+
+  * Fix documentation about how to set up map (Thanks Andy Ruder!)
+
 - 0.9 2017-10-20 08:00 Los Angeles
 
   * Initial Release
