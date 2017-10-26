@@ -108,10 +108,19 @@ if [[ ! -e ~/.frewmbot-maintained ]]; then
 fi
 
 # ensure submodules are checked out before linking to them
-git submodule update --init
-
-test -e ~/.frewmbot-local && \
+if [ ! -e ~/.frewmbot-maintained ]; then
+   git submodule update --init --  \
+      vim/bundle/FastFold          \
+      vim/bundle/airline           \
+      vim/bundle/better-whitespace \
+      vim/bundle/commentary        \
+      vim/bundle/pathogen          \
+      vim/bundle/perl              \
+      vim/bundle/unimpaired
+else
+   git submodule update --init
    link-file zsh/cxregs-bash-tools/lib ~/.smartcd/lib
+fi
 
 mkdir -p "$HOME/.vvar/undo";
 mkdir -p "$HOME/.vvar/swap";
