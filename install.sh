@@ -62,7 +62,6 @@ if [[ -e ~/.frewmbot-local ]]; then
       offlineimaprc   \
       offlineimap.py  \
       perltidyrc      \
-      proverc         \
       signature       \
       tkremindrc      \
       tmux.conf       \
