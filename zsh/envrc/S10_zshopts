@@ -37,4 +37,16 @@ setopt SHARE_HISTORY          # Killer: share history between multiple shells
 
 #}}}
 
+autoload -U select-word-style
+autoload -U forward-word-match
+autoload -U backward-word-match
+
+zstyle ':zle:*-word-shell' word-style shell
+
+zle -N forward-word-shell forward-word-match
+zle -N backward-word-shell backward-word-match
+
+bindkey -M vicmd '^w' forward-word-shell
+bindkey -M vicmd '^b' backward-word-shell
+
 # vim: ft=zsh foldmethod=marker
