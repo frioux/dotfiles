@@ -1,4 +1,5 @@
 import XMonad
+import XMonad.Config.Desktop
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.FadeInactive
@@ -10,13 +11,13 @@ import XMonad.Hooks.EwmhDesktops (ewmh)
 import System.Taffybar.Hooks.PagerHints (pagerHints)
 
 main = do
-    xmonad $ ewmh $ pagerHints $ defaultConfig {
+    xmonad $ ewmh $ pagerHints $ desktopConfig {
         manageHook = composeAll
         [ className =? "trayer" --> doIgnore
         , manageDocks
-        , manageHook defaultConfig
+        , manageHook desktopConfig
         ],
-        layoutHook = avoidStruts  $  layoutHook defaultConfig,
+        layoutHook = avoidStruts  $  layoutHook desktopConfig,
         terminal = "terminator",
         modMask = modMask'
         } `additionalKeys` myKeys
