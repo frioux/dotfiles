@@ -1,0 +1,5 @@
+#!/usr/bin/perl
+
+my ($current) = reverse sort glob shift;
+
+exec 'sh', '-c', qq<tail -f $current | jq --unbuffered -cSM 'select(.["\@tag"] != "tsar.runtime.memstats") | .'>;
