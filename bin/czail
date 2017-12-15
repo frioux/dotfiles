@@ -1,5 +1,47 @@
 #!/usr/bin/perl
 
-my ($current) = reverse sort glob shift;
+my $pattern = shift;
 
-exec 'sh', '-c', qq<tail -f $current | jq --unbuffered -cSM 'select(.["\@tag"] != "tsar.runtime.memstats") | .'>;
+my ($current) = current_match($pattern);
+warn " >> Following $current\n";
+
+my $pid = tail($current);
+
+while (1) {
+   sleep 10;
+
+   my $new_current = current_match($pattern);
+
+   if ($new_current ne $current) {
+      warn " >> Following $new_current now\n";
+      kill 'INT', $pid;
+      $pid = tail($current);
+   }
+}
+
+
+sub current_match {
+   my ($c) = reverse sort glob shift;
+
+   die "No matching file\n" unless -e $c;
+
+   return $c;
+}
+
+sub tail {
+   my $c = shift;
+
+   my $pid = fork;
+
+   if ($pid) {
+      return $pid
+   } elsif ($pid == 0) {
+      exec 'sh',
+         '-c',
+         qq<tail -f $c |> .
+         qq<jq --unbuffered -cSM > .
+         qq<'select(.["\@tag"] != "tsar.runtime.memstats") | .'>;
+   } elsif (!defined $pid) {
+      die "couldn't start tail: $!"
+   }
+}
