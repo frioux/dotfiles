@@ -19,7 +19,7 @@ tch() {
   touch "$@"
 }
 
-_tmux_session() { tmux -2 new-session -s "$1" || tmux -2 attach-session -dt "$1" }
+_tmux_session() { tmux -L "$1" -2 new-session -s "$1" || tmux -2 -L "$1" attach-session -dt "$1" }
 
 tmwork() { _tmux_session work }
 tmmess() { _tmux_session messaging }
