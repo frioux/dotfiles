@@ -35,6 +35,7 @@ augroup vimrc
    au FileType perl setlocal formatprg=perltidy
    au FileType go   setlocal formatprg=gofmt
 
+   au FileType sql    setlocal commentstring=--\ %s
    au FileType sml    setlocal commentstring=(*\ %s\ *)
    au FileType racket setlocal commentstring=;\ %s
    au FileType tf     setlocal commentstring=#\ %s
