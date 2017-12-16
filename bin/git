@@ -3,6 +3,8 @@
 use strict;
 use warnings;
 
+no warnings 'uninitialized';
+
 $0 = 'git';
 
 my %commit = (
