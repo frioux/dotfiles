@@ -2,6 +2,14 @@
 
 my $pattern = shift;
 
+if (!-e $pattern) {
+   $pattern .= q(*)
+      unless $pattern =~ m(\*);
+
+   $pattern = "/vol/log/tsar/$pattern"
+      unless $pattern =~ m(^[./])
+}
+
 my ($current) = current_match($pattern);
 warn " >> Following $current\n";
 
