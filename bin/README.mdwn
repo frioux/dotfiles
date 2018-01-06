@@ -10,17 +10,25 @@ Prints all unicode characters (by name.)
 
 Reminder to stretch every 25m.
 
+### `backlight`
+
+Faster version of `xbacklight` by directly writing to `/sys`.
+
 ### `bible-handler`
 
 Handles `bible://` links.
 
-### `email-handler`
+### `bugzid-handler`
 
-Handles `email://` links.
+Handles `bugzid:` links.
 
-### `fogbugz-handler`
+### `mid-handler`
 
-Handles `fogbugz://` links.
+Handles `mid:` links.
+
+### `rt-handler`
+
+Handles `rt:` links.
 
 ### `file-manager`
 
@@ -57,6 +65,11 @@ Show dmenu of vim sessions to resume.
 
 Show dmenu of unicode characters (by name) and stores selection into
 `~/.uni_history`.
+
+### `type-clipboard`
+
+Some websites block paste; this types whats in the clipboard directly to bypass
+that.
 
 ### `xdg-open`
 
@@ -106,6 +119,10 @@ Run "anonoymous" aws container.
 
 Run "anonoymous" goobook container.
 
+### `hq`
+
+Run "anonoymous" hq container.
+
 ### `hugo`
 
 Run "anonoymous" hugo container.
@@ -124,6 +141,14 @@ output files in a directory if no root directory was created.
 ### `wrap-tar`
 
 Wraps tar to encourage me to not use muscle memory for longer command flags.
+
+### `vim`
+
+Wraps vim to create more advanced sessions.
+
+### `xsel`
+
+Wraps `xsel` to pick a more sensible default copy buffer.
 
 ## Git Tools
 
@@ -171,6 +196,11 @@ Deduplicates addresses based on the mutt address format.
 
 Simple wrapper around `grep` to quickly search a preformatted address file.
 
+### `addrs`
+
+Takes a single glob as an argument, reads all emails matching the glob, and
+sorts the addresses on stdin based on the files.
+
 ### `copy-url`
 
 Copy urls from emails.  Rarely used; flakey?
@@ -178,6 +208,11 @@ Copy urls from emails.  Rarely used; flakey?
 ### `extract_url.pl`
 
 Same as above, but not written by me.
+
+### `email-fix-in-reply-to`
+
+Weird cronjob to munge In-Reply-To headers so that certain emails with thread
+better.  Should be ported to AppScript.
 
 ### `live-email`
 
@@ -187,6 +222,18 @@ List and view emails directly via IMAP.  `live-email -h` for more details.
 
 Creates resized copies of all passed filenames to `1024x768` and initiates a new
 email containing them via mutt.
+
+### `mutt`
+
+neomutt wrapper that specifies my personal mailbox.
+
+### `postqueue-checker` / `postqueue-notify`
+
+Tool that notifies my via desktop notifications if email is stuck in queue.
+
+### `render-mail`
+
+Converts date header to a local timezone.
 
 ### `sync-addresses`
 
@@ -198,6 +245,10 @@ Creates fresh mutt address file using
 An attempt at generically trimming emails for brief responses.  Currently unused
 and flakey.
 
+### `zr-mutt`
+
+neomutt wrapper that specifies my zr mailbox.
+
 ## Misc Tools
 
 ### `ascii-ify`
@@ -205,9 +256,26 @@ and flakey.
 Silly filter that removes all non-ASCII characters, and replaces a couple UTF-8
 characters with ascii versions.
 
+### `calc`
+
+Simple wrapper around `bc` that merges tokens and replaces `x` with `*`.
+
+### `clock`
+
+Shows unicode clock of current time.
+
 ### `clocks`
 
 My personal, digital, wall of clocks.
+
+### `csv2json`
+
+Takes csv (header line, then value lines) and produces lines of json.
+
+### `czail`
+
+Tool to `tail` `tsar` logs.  This is relatively ZR specific but the code is
+basic and clear.
 
 ### `diff-hunk-list`
 
@@ -217,6 +285,15 @@ vim](https://blog.afoolishmanifesto.com/posts/iterating-over-chunks-of-a-diff-in
 ### `dog`
 
 Like `cat`, but better; works with directories too.
+
+### `ec2-find-by-name`
+
+Takes name of an ec2 instance and produces the relevant instance id.
+
+### `evince`
+
+Wraps the normal evince but removes my `TMPDIR` override, which evince gets
+confused by.
 
 ### `expand-url`
 
@@ -228,6 +305,10 @@ tabs.
 
 Prints all contacts managed in BambooHR as JSON.
 
+### `export-bamboohr-tree`
+
+Prints JSON orgchart from BambooHR.
+
 ### `fn`
 
 Create persistent functions by actually writing scripts.  Example usage:
@@ -235,6 +316,10 @@ Create persistent functions by actually writing scripts.  Example usage:
 ```
 fn count-users 'wc -l < /etc/passwd'
 ```
+
+### `fressh`
+
+Tool to automatically push my dotfiles to a server before ssh'ing in.
 
 ### `fx`
 
@@ -248,6 +333,14 @@ gen-pass.pl 'Password1!' 14
 
 Prints bcrypt hash of password, using the given cost.
 
+### `get-kernel-mailine.pl`
+
+Downloads the specified mainline kernel, built by ubuntu.
+
+### `gg`
+
+Shortcut for git-grep.
+
 ### `graph-by-date`
 
 Graphs time series data by parsing CSV from standard in.
@@ -257,10 +350,17 @@ Graphs time series data by parsing CSV from standard in.
 Creates time series data (likely used with the above `graph-by-date`) by
 counting lines and grouping them by a given date format.
 
-### `lb-command`
+### `hgrep`
 
-Silly backdoor to send commands to [Lizard
-Brain](https://github.com/frioux/Lizard-Brain).
+`grep` for csv, without messing up the header line.
+
+### `hsort`
+
+`sort` for csv, without messing up the header line.
+
+### `mc`
+
+Filter to make output monochrome.
 
 ### `minotaur`
 
@@ -275,6 +375,11 @@ netrc-password imap.gmail.com foo@example.com
 ```
 
 Gets a password from your netrc file.  (Login is optional.)
+
+### `older-than`
+
+Exits 1 if the passed file is older than the age spec.  Mostly used to turn
+hourly cronjobs into daily cronjobs.
 
 ### `override-hosts`
 
@@ -314,6 +419,10 @@ Allows pausing, resuming, and aborting the timer entirely.  If a
 installed, will `pomotimer` will slowly decrease light from bright red to black,
 ending with 5 green blinks.
 
+### `rand`
+
+Prints an integer from 1 to the passed integer.
+
 ### `restarter`
 
 ```
@@ -349,6 +458,10 @@ Prompts the user to make a partial screen selection with the mouse, and then
 runs OCR on the screenshot and places the results in the copy buffer.  For best
 results make text of size 16 or higher.
 
+### `shrug`
+
+Puts `¯\_(ツ)_/¯` in copy buffer.
+
 ### `skip`
 
 ```
@@ -365,6 +478,19 @@ echo -n "foo" | store-hist ~/.history
 ```
 
 Basically `tee -a` but only writes a single line and always adds a newline.
+
+### `where-dem-big-files-at`
+
+Tool to automate finding big files in a given directory.  Ensures that sort is
+fast and doesn't spill to the (presumably full) disk.
+
+### `yaml2json`
+
+Converts yaml to json.
+
+### `zrdate`
+
+Prints current date in the zr format (YYYYMMDD.)
 
 ## Perl Tools
 

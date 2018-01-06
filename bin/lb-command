@@ -1,4 +1,0 @@
-#!/bin/sh
-
-ssh irc -f true
-exec nc 127.0.0.1 8000
