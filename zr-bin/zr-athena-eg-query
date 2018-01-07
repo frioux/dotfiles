@@ -1,0 +1,38 @@
+#!/usr/bin/perl
+
+use 5.22.0;
+use warnings;
+
+use JSON;
+use Try::Tiny;
+
+my $table = shift or
+   die "You must pass a table to build an example out of";
+
+my @rows = `bin/zr-athena --database=raw_unified --sql='SELECT record FROM $table WHERE log_date = 20170727 LIMIT 5' | csv2json `;
+
+my %eg;
+
+for my $json (@rows) {
+  my $ref = try { decode_json(decode_json($json)->{record}) }
+            catch { warn "couldn't decode json: $json"; +{} };
+
+  %eg = ( %$ref, %eg);
+}
+
+!defined $eg{$_} and $eg{$_} = 'NULL' for keys %eg;
+
+print "SELECT \n";
+print render_col($_, $eg{$_}) for sort keys %eg;
+print " FROM zr_cron\n";
+print " WHERE log_date BETWEEN 20170727 AND 20170727\n";
+
+sub render_col {
+  my ($key, $val) = @_;
+
+  my $func = "json_extract" . ( !ref $eg{$_} ? '_scalar' : '' );
+  my $path = q<'$> . ( $_ =~ m/^\w+$/ ? qq<.$_> : qq<["$_"]> ) . q<'>;
+  my $eg_out = ! ref $eg{$_} ? $eg{$_} : encode_json($eg{$_});
+
+  "       -- $func(record, $path AS $key, -- $eg_out\n"
+}
