@@ -1,0 +1,32 @@
+{
+   "bin/*": {
+      "type": "bin"
+   },
+   ".projections.json": {
+      "type": "projections"
+   },
+   "vim/bundle/regedit/*": {
+      "type": "regedit"
+   },
+   "vim/bundle/*/": {
+      "type": "vimplug"
+   },
+   "vim/bundle/lost/*": {
+      "type": "lost"
+   },
+   "vimrc": {
+      "type": "vimrc"
+   },
+   "xmonad/xmonad.hs": {
+      "type": "xmonad"
+   },
+   "zr-bin/*": {
+      "type": "zrbin"
+   },
+   "zsh/envrc/*": {
+      "type": "zshenv"
+   },
+   "zsh/rc/*": {
+      "type": "zshrc"
+   }
+}
