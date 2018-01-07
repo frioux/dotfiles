@@ -12,7 +12,7 @@ echo "" >> "$TMP"
 
 if [ -f "$HOME/.goobook_auth.json" ]; then
    goobook query '' >> "$TMP"
-   < $TMP grep -v '^	' | sort | sponge > $TMP
+   < $TMP grep -v '^	' | sort | sponge $TMP
 fi
 
 addrlookup --mutt '' | grep -v '^	' | grep '.' | sort >> $TMP
