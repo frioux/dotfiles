@@ -15,7 +15,7 @@ if [ -f "$HOME/.goobook_auth.json" ]; then
    < $TMP grep -v '^	' | sort | sponge $TMP
 fi
 
-addrlookup --mutt '' | grep -v '^	' | grep '.' | sort >> $TMP
+notmuch address date:..2099-12-13 | addrspec-to-tabs | sort >> $TMP
 
 < $TMP addrs "$HOME/var/mail/gmail.sent/cur/*" | sponge $TMP
 mv $TMP "$HOME/personal-addresses"

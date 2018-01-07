@@ -38,6 +38,6 @@ say l($_) for $data->{employees}->@*
 PERL
    grep -v '^	' | sort >> $TMP
 
-addrlookup --mutt '' | grep -v '^	' | grep '.' | sort >> $TMP
+notmuch address date:..2099-12-13 | addrspec-to-tabs | sort >> $TMP
 < $TMP addrs '/home/frew/var/zr-mail/gmail.sent/cur/*' | sponge $TMP
 mv $TMP "$HOME/zr-addresses"
