@@ -42,6 +42,7 @@ my %hash;
 while (<STDIN>) {
    chomp;
    my ($address, $rest) = split /\t/, $_, 2;
+   next unless $address;
    $hash{$address} ||= ($rest||'');
 }
 
