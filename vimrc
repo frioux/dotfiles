@@ -296,9 +296,9 @@ nnoremap [oW :EnableWhitespace<cr>
 nnoremap ]oW :DisableWhitespace<cr>
 nnoremap coW :ToggleWhitespace<cr>
 
-nnoremap [oS :let b:syntastic_mode = 'active'<cr>
-nnoremap ]oS :let b:syntastic_mode = 'passive'<cr>
-nnoremap coS :SyntasticToggleMode<cr>
+nnoremap [oS :ALEEnable<cr>
+nnoremap ]oS :ALEDisable<cr>
+nnoremap coS :ALEToggle<cr>
 
 nnoremap [oQ :let g:qs_enable = 1<cr>
 nnoremap ]oQ :let g:qs_enable = 0<cr>
