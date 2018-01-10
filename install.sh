@@ -125,6 +125,13 @@ mkdir -p "$HOME/.vvar/undo";
 mkdir -p "$HOME/.vvar/swap";
 mkdir -p "$HOME/.vvar/sessions";
 
+LMURL="$(curl -s https://api.github.com/repos/frioux/leatherman/releases/latest |
+   grep browser_download_url |
+   cut -d '"' -f 4)"
+curl -sL "$LMURL" > ~/bin/leatherman
+chmod +x ~/bin/leatherman
+leatherman explode
+
 # vim works differently on win32
 case $OSTYPE in
    cygwin)
