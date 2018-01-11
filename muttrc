@@ -4,7 +4,7 @@ set beep_new          = no
 set charset           = "utf-8"
 set confirmappend     = no
 set delete            = yes
-set display_filter = $DOTFILES/bin/render-mail
+set display_filter    = render-mail
 set editor            = "vim -c 'set tw=70'"
 set envelope_from     = "yes"
 set fast_reply        = yes
