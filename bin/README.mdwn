@@ -260,10 +260,6 @@ Simple wrapper around `bc` that merges tokens and replaces `x` with `*`.
 
 Shows unicode clock of current time.
 
-### `csv2json`
-
-Takes csv (header line, then value lines) and produces lines of json.
-
 ### `czail`
 
 Tool to `tail` `tsar` logs.  This is relatively ZR specific but the code is
