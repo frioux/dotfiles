@@ -8,7 +8,7 @@ older-than "$HOME/personal-addresses" a 24h
 
 TMP="$HOME/personal-addresses.tmp"
 
-echo "" >> "$TMP"
+truncate --size 0 "$TMP"
 
 if [ -f "$HOME/.goobook_auth.json" ]; then
    goobook query '' >> "$TMP"
