@@ -196,11 +196,6 @@ Deduplicates addresses based on the mutt address format.
 
 Simple wrapper around `grep` to quickly search a preformatted address file.
 
-### `addrs`
-
-Takes a single glob as an argument, reads all emails matching the glob, and
-sorts the addresses on stdin based on the files.
-
 ### `copy-url`
 
 Copy urls from emails.  Rarely used; flakey?
