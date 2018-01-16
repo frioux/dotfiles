@@ -40,6 +40,7 @@ augroup vimrc
    au FileType racket setlocal commentstring=;\ %s
    au FileType tf     setlocal commentstring=#\ %s
    au FileType matlab setlocal commentstring=%\ %s
+   au FileType muttrc setlocal keywordprg=neoman
 
    au BufReadPost *.rkt,*.rktl setlocal filetype=racket
    au FileType racket setlocal lisp

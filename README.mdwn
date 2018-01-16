@@ -21,7 +21,7 @@
     cd neomutt
     ./configure --enable-notmuch --lmdb --ssl --prefix=/opt && \
        make && \
-       sudo make install
+       sudo make install install-doc
 
 # Install docker
 

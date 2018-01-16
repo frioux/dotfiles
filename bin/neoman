@@ -1,0 +1,6 @@
+#!/bin/sh
+
+keyword="$1"
+keyword="$(echo "$keyword" | sed s/_/-/g)"
+
+exec firefox "file:///opt/share/doc/neomutt/manual.html#$keyword" &
