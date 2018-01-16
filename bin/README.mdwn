@@ -209,10 +209,6 @@ Same as above, but not written by me.
 Weird cronjob to munge In-Reply-To headers so that certain emails with thread
 better.  Should be ported to AppScript.
 
-### `live-email`
-
-List and view emails directly via IMAP.  `live-email -h` for more details.
-
 ### `mail-picture`
 
 Creates resized copies of all passed filenames to `1024x768` and initiates a new

@@ -19,7 +19,7 @@
 
     git clone https://github.com/neomutt/neomutt
     cd neomutt
-    ./prepare --enable-notmuch --with-lmdb --prefix=/opt --disable-pgp --disable-smime && \
+    ./configure --enable-notmuch --lmdb --ssl --prefix=/opt && \
        make && \
        sudo make install
 

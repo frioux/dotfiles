@@ -87,6 +87,5 @@ push <show-version>
 
 source ~/.mutt-overrides
 source ~/.mutt/$MAILPROFILE
-set spoolfile         = +INBOX
 
 # vim: ft=muttrc

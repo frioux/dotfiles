@@ -3,6 +3,7 @@ set folder            = "$HOME/var/zr-mail"
 alternates '^frew@ziprecruiter.com$' '^arthur@ziprecruiter.com$'
 
 mailboxes `find ~/var/zr-mail -maxdepth 1 -type d -printf "+%f | grep -v Trash"`
+set spoolfile = +INBOX
 
 reply-hook '~s ".*"' 'set editor="vim"'
 reply-hook '~s "Production errors from yesterday"' 'set editor="maybe-snip vim"'

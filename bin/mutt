@@ -1,5 +1,5 @@
 #!/bin/sh
 
-export MAILPROFILE=personal
+export MAILPROFILE="${MAILPROFILE:-personal}"
 
 exec /opt/bin/neomutt "$@"

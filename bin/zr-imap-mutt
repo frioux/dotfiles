@@ -1,0 +1,6 @@
+#!/bin/sh
+
+export MAILPROFILE=imap
+export IMAP_USER=frew@ziprecruiter.com
+
+exec mutt
