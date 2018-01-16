@@ -4,6 +4,8 @@ alternates '^frew@ziprecruiter.com$' '^arthur@ziprecruiter.com$'
 
 mailboxes `find ~/var/zr-mail -maxdepth 1 -type d -printf "+%f | grep -v Trash"`
 set spoolfile = +INBOX
+set postponed = "+gmail.Drafts"
+set record    = "+gmail.Sent_Mail"
 
 reply-hook '~s ".*"' 'set editor="vim"'
 reply-hook '~s "Production errors from yesterday"' 'set editor="maybe-snip vim"'
