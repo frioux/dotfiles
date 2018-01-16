@@ -10,6 +10,7 @@ set spoolfile = +INBOX
 macro index,pager im "<change-folder>=mitsi<enter>" "view mitsi list"
 macro index,pager iw "<change-folder>=mitsi.work<enter>"   "view mitsi.work"
 macro index,pager id "<change-folder>=DBIx-Class-Devel<enter>"   "view DBIx-Class-Devel"
+folder-hook . 'set read_inc=1000'
 
 send-hook '~t ".*"' 'unmy_hdr From'
 send-hook '~t "(mitsi|bladis)@googlegroups.com"' 'my_hdr From: fREW Schmidt <frew@afoolishmanifesto.com>'
