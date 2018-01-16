@@ -1,4 +1,5 @@
 /xmonad.errors
+/xmonad.state
 /xmonad.hi
 /xmonad.o
 /xmonad-*
