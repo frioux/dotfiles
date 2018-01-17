@@ -17,5 +17,5 @@ fi
 
 notmuch address date:..2099-12-13 | addrspec-to-tabs | sort >> $TMP
 
-< $TMP addrs "$HOME/var/mail/gmail.sent/cur/*" | sponge $TMP
+< $TMP addrs "$HOME/var/mail/gmail.Sent_Mail/cur/*" | sponge $TMP
 mv $TMP "$HOME/personal-addresses"
