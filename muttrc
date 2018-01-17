@@ -50,8 +50,8 @@ macro index gg <first-entry>
 macro pager G <bottom>
 macro pager gg <top>
 macro index,pager g<space> <group-reply>
-macro index C "<copy-message>?<toggle-mailboxes>" "copy a message to a mailbox"
-macro index M "<save-message>?<toggle-mailboxes>" "move a message to a mailbox"
+macro index C "<copy-message>?" "copy a message to a mailbox"
+macro index M "<save-message>?" "move a message to a mailbox"
 macro index,pager c "<change-folder>?<toggle-mailboxes>" "open a different folder"
 macro index,pager za "<collapse-thread>" "collapse thread"
 macro index,pager zi "<collapse-all>" "collapse all"
