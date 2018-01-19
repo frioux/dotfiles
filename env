@@ -33,11 +33,7 @@ if [ -d "$HOME/Dropbox/bin" ]; then
    PATH="$HOME/Dropbox/bin:$PATH"
 fi
 
-PATH="$DOTFILES/bin:$PATH"
-
-if [ -d "$HOME/bin" ]; then
-   PATH="$HOME/bin:$PATH"
-fi
+PATH="$DOTFILES/bin:$HOME/bin:$PATH"
 
 PATH="$(zsh -fc "typeset -TU P=$PATH p; echo \$P")"
 
