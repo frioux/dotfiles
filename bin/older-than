@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 
-use 5.24.0;
+use strict;
 use warnings;
 
 die "usage: $0 some-file a|m|c 23h\n"
@@ -11,7 +11,7 @@ my ($file, $op, $timespec) = @ARGV;
 exit unless -e $file;
 
 my %left;
-((undef) x 8, $left{a}, $left{m}, $left{c}) = stat $file;
+(undef, undef, undef, undef, undef, undef, undef, undef, $left{a}, $left{m}, $left{c}) = stat $file;
 
 my $offset = 0;
 if ($timespec =~ s/(\d+)d//) {
