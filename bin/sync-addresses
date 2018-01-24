@@ -12,10 +12,10 @@ truncate --size 0 "$TMP"
 
 if [ -f "$HOME/.goobook_auth.json" ]; then
    goobook query '' >> "$TMP"
-   < $TMP grep -v '^	' | sort | sponge $TMP
+   < $TMP grep -v '^	' | sponge $TMP
 fi
 
-notmuch address date:..2099-12-13 | addrspec-to-tabs | sort >> $TMP
+notmuch address date:..2099-12-13 | addrspec-to-tabs >> $TMP
 
 < $TMP addrs "$HOME/var/mail/gmail.Sent_Mail/cur/*" | sponge $TMP
 mv $TMP "$HOME/personal-addresses"
