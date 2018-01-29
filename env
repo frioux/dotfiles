@@ -25,6 +25,10 @@ if [ -d "$HOME/go" ]; then
    PATH="$GOPATH/bin:$PATH"
 fi
 
+if [ -d /usr/lib/go-1.9/bin ]; then
+   PATH="/usr/lib/go-1.9/bin:$PATH"
+fi
+
 if [ -d /opt/bin ]; then
    PATH="/opt/bin:$PATH"
 fi
