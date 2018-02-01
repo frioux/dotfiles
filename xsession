@@ -1,3 +1,9 @@
+#!/bin/sh
+
+systemctl --user daemon-reload
+systemctl --user start poller
+systemctl --user start sound
+
 nm-applet &
 dropbox start &
 xautolock -time 5 -locker lock-now &
