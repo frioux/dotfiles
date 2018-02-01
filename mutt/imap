@@ -7,4 +7,12 @@ set header_cache     = ~/tmp/$MAILPROFILE-bodies
 set move             = no
 set imap_keepalive   = 900
 
+macro index,pager IT "<save-message>=[Gmail]/Trash<enter>$"   "delete message"
+macro index,pager IS "<save-message>=[Gmail]/Spam<enter>$"   "mark message as spam"
+macro index,pager Ii "<save-message>=INBOX<enter>$"   "mark message as spam"
+
+macro index,pager ii "<change-folder>=INBOX<enter>" "view inbox"
+macro index,pager iT "<change-folder>=[Gmail]/Trash<enter>"  "view trash"
+macro index,pager iS "<change-folder>=[Gmail]/Spam<enter>"   "view spam"
+
 # vim: ft=muttrc
