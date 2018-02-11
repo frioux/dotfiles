@@ -134,7 +134,7 @@ if test ! -e ~/bin/leatherman || older-than ~/bin/leatherman c 7d; then
    mkdir -p ~/bin
    curl -sL "$LMURL" > ~/bin/leatherman
    chmod +x ~/bin/leatherman
-   leatherman explode
+   ~/bin/leatherman explode
 fi
 
 # vim works differently on win32
