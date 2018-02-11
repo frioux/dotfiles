@@ -273,11 +273,15 @@ let g:ctrlp_match_window = 'top,order:ttb,min:5,max:30'
 " search with regexen by default
 let g:ctrlp_regexp = 1
 
-if exists('g:loaded_denite')
-   call denite#custom#option('_', 'direction', 'aboveleft')
-   nnoremap <silent> <F3> :Denite file_rec<CR>
-   nnoremap <silent> <F4> :DeniteBufferDir file_rec<CR>
-   nnoremap <silent> <F5> :Denite buffer<CR>
+if filereadable($HOME . "/.fzf/README.md")
+   set rtp+=~/.fzf
+
+   " call denite#custom#option('_', 'direction', 'aboveleft')
+   nnoremap <silent> <F3> :FZF<CR>
+
+   nnoremap <silent> <F4> :call fzf#run({'dir': expand("%:h")})<CR>
+
+   nnoremap <silent> <F5> :call fzf#run({'source': map(range(1, bufnr('$')), 'bufname(v:val)'), 'sink': 'e', 'down': '30%'})<CR>
 endif
 
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
