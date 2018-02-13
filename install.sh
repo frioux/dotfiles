@@ -50,6 +50,7 @@ if [[ -e ~/.frewmbot-local ]]; then
       adenosinerc.yml \
       dbic.json       \
       dzil            \
+      editorconfig    \
       gtkrc-2.0       \
       gtkrc.mine      \
       irssi           \

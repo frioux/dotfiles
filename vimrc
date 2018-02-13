@@ -94,12 +94,6 @@ set autoindent
 " Spaces are better than a tab character
 set expandtab
 
-" Who wants an 8 character tab?  Not me!
-set sw=3
-set ts=3
-
-set tw=80
-
 " Cool tab completion stuff
 set wildmenu
 set wildmode=longest,list
