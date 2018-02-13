@@ -120,8 +120,10 @@ if [ ! -e ~/.frewmbot-maintained ]; then
 else
    git submodule update --init
    link-file zsh/cxregs-bash-tools/lib ~/.smartcd/lib
-   git clone https://github.com/junegunn/fzf.git ~/.fzf
-   ~/.fzf/install
+   if [[ ! -e ~/.fzf ]] ; then
+      git clone https://github.com/junegunn/fzf.git ~/.fzf
+      ~/.fzf/install
+   fi
 fi
 
 mkdir -p "$HOME/.vvar/undo";
