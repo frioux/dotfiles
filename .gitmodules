@@ -133,3 +133,6 @@
 [submodule "vim/bundle/regedit"]
 	path = vim/bundle/regedit
 	url = git://github.com/frioux/vim-regedit
+[submodule "vim/bundle/dispatch"]
+	path = vim/bundle/dispatch
+	url = git://github.com/tpope/vim-dispatch
