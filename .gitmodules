@@ -85,9 +85,6 @@
 [submodule "vim/bundle/projectionist"]
 	path = vim/bundle/projectionist
 	url = git://github.com/frioux/vim-projectionist
-[submodule "vim/bundle-python/editorconfig"]
-	path = vim/bundle-python/editorconfig
-	url = git://github.com/editorconfig/editorconfig-vim
 [submodule "vim/bundle/eunuch"]
 	path = vim/bundle/eunuch
 	url = git://github.com/tpope/vim-eunuch
@@ -136,3 +133,6 @@
 [submodule "vim/bundle/dispatch"]
 	path = vim/bundle/dispatch
 	url = git://github.com/tpope/vim-dispatch
+[submodule "vim/bundle/editorconfig"]
+	path = vim/bundle/editorconfig
+	url = git://github.com/sgur/vim-editorconfig
