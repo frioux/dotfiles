@@ -46,7 +46,7 @@ augroup vimrc
    au FileType racket setlocal lisp
    au FileType racket setlocal autoindent
 
-   au FileType markdown let b:lost_regex = '\v^#'
+   au FileType markdown setlocal nowrap | let b:lost_regex = '\v^#'
 
    au FileType help setlocal nolist
 
