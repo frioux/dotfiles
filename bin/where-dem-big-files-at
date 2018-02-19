@@ -21,6 +21,8 @@ for x in /tmp /mnt/tmp /vol/tmp /run/shm; do
 done
 
 du -akx "$whatsbig" > $TMPDIR/big.$$.pid
+lsof -F 0Lnpst "$whatsbig" 2>/dev/null |
+   "$(dirname $0)/du-from-lsof" >> $TMPDIR/big.$$.pid
 
 export LC_ALL=C
 cat "$TMPDIR/big.$$.pid" | sort -n > "$TMPDIR/sorted.$$.pid"

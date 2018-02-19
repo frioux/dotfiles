@@ -1,0 +1,31 @@
+#!/usr/bin/perl
+
+# L user
+# n filename
+# p pid
+# s file size
+# t file type
+
+my %sums; my %r;
+
+while (<STDIN>) {
+   chomp;
+   my @F = split /\0/, $_;
+
+   %r = (
+      p => $r{p}, # process id
+      L => $r{L}, # process user
+
+      map { m/^(.)(.*)$/, $1 => $2 } @F
+   );
+
+   next unless $r{n} =~ m/ \(deleted\)$/ ;
+
+   $sums{q{(deleted)}} += $r{s};
+   $sums{qq{(deleted)/$r{L}}} += $r{s};
+   $sums{qq{(deleted)/$r{L}/$r{p}}} += $r{s};
+
+   print "$r{s}\t$r{n}\n";
+}
+
+print "$sums{$_}\t$_\n" for keys %sums
