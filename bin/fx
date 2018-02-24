@@ -1,6 +1,7 @@
 #!/bin/sh
 
-P=$(mktemp -t tmp.fx.XXXXXXXXXX)
+ext=${1:-XXX}
+P=$(mktemp -t tmp.fx.XXXXXXXXXX.$ext)
 cat /dev/stdin > $P
 firefox $P &
 sleep 1

@@ -2,4 +2,4 @@ text/html; /usr/bin/lynx -dump -force_html '%s'; copiousoutput; description=HTML
 application/pdf; evince '%s'; copiousoutput; description=PDF; nametemplate=%s.pdf
 image/jpeg; feh '%s';description=JPEG; nametemplate=%s.jpeg
 image/png; feh '%s';description=PNG; nametemplate=%s.png
-image/gif; fx < '%s';description=GIF; nametemplate=%s.gif
+image/gif; fx gif < '%s';description=GIF; nametemplate=%s.gif
