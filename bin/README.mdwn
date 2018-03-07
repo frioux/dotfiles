@@ -385,19 +385,6 @@ to go back press `CTRL-O`.
 
 Strips formatting from any text in the copy buffer.
 
-### `pomotimer`
-
-```
-pomotimer 2.5m
-```
-
-Handy terminal based timer especially for [The Pomodoro
-Technique](https://blog.afoolishmanifesto.com/posts/the-pomodoro-technique/).
-Allows pausing, resuming, and aborting the timer entirely.  If a
-[`blink(1)`](https://blink1.thingm.com/) is running and the `blink1-tool` is
-installed, will `pomotimer` will slowly decrease light from bright red to black,
-ending with 5 green blinks.
-
 ### `rand`
 
 Prints an integer from 1 to the passed integer.
