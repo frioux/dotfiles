@@ -310,6 +310,10 @@ nnoremap [oN :NeoCompleteEnable<cr>
 nnoremap ]oN :NeoCompleteDisable<cr>
 nnoremap coN :NeoCompleteToggle<CR>
 
+nnoremap [og :GitGutterEnable<cr>
+nnoremap ]og :GitGutterDisable<cr>
+nnoremap cog :GitGutterToggle<CR>
+
 function! CycleColors()
    let mycolors = []
    if has('termguicolors') && &termguicolors
