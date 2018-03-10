@@ -304,14 +304,6 @@ Tool to automatically push my dotfiles to a server before ssh'ing in.
 
 Firefox wrapper that reads from standard in instead of requiring a filename.
 
-### `gen-pass.pl`
-
-```
-gen-pass.pl 'Password1!' 14
-```
-
-Prints bcrypt hash of password, using the given cost.
-
 ### `get-kernel-mailine.pl`
 
 Downloads the specified mainline kernel, built by ubuntu.
