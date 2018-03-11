@@ -312,15 +312,6 @@ Downloads the specified mainline kernel, built by ubuntu.
 
 Shortcut for git-grep.
 
-### `graph-by-date`
-
-Graphs time series data by parsing CSV from standard in.
-
-### `group-by-date`
-
-Creates time series data (likely used with the above `graph-by-date`) by
-counting lines and grouping them by a given date format.
-
 ### `hgrep`
 
 `grep` for csv, without messing up the header line.
