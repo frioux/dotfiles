@@ -21,12 +21,11 @@ if [ -d "$HOME/.rakudobrew/bin" ]; then
 fi
 
 if [ -d "$HOME/go" ]; then
-   export GOPATH="$HOME/go"
-   PATH="$GOPATH/bin:$PATH"
+   PATH="$HOME/go/bin:$PATH"
 fi
 
-if [ -d /usr/lib/go-1.9/bin ]; then
-   PATH="/usr/lib/go-1.9/bin:$PATH"
+if [ -d "$HOME/local/bin" ]; then
+   PATH="$HOME/local/bin:$PATH"
 fi
 
 if [ -d /opt/bin ]; then
