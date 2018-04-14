@@ -280,14 +280,6 @@ Filter that reads lines prefixed with `$n`tabs and newline separated links;
 writes title of page prefixed with `$n` tabs and link prefixed with `$n + 1`
 tabs.
 
-### `export-bamboohr`
-
-Prints all contacts managed in BambooHR as JSON.
-
-### `export-bamboohr-tree`
-
-Prints JSON orgchart from BambooHR.
-
 ### `fn`
 
 Create persistent functions by actually writing scripts.  Example usage:
