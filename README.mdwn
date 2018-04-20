@@ -32,7 +32,7 @@
 
 Then add `-s overlay2 --live-restore` to the command in the copied file
 
-    sudo systemd daemon-reload
+    sudo systemctl daemon-reload
     sudo systemctl restart docker
 
 # Install Dropbox
