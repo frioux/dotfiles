@@ -1,6 +1,6 @@
 # dotfiles Setup
 
-    touch ~/.frewmbot-local ~/.frewmbot-maintained
+    touch ~/.frewmbot-local ~/.frewmbot-maintained ~/.mutt-overrides
 
     sudo apt-add-repository ppa:git-core/ppa
     sudo apt-get update
