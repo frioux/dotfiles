@@ -1,5 +1,7 @@
 #!/bin/sh
 
+mkdir -p ~/.offlineimap/index ~/var/mail
+
 docker rm -f offlineimap
 docker pull frew/offlineimap
 docker run --name offlineimap             \
