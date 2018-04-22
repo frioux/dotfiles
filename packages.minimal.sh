@@ -5,9 +5,11 @@ exec apt-get --no-install-recommends    \
    aptitude                             \
    curl                                 \
    daemontools                          \
+   gettext                              \
    fail2ban                             \
    htop                                 \
    liblmdb-dev                          \
+   libssl-dev                           \
    moreutils                            \
    mosh                                 \
    openssh-client                       \
