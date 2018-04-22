@@ -11,5 +11,6 @@ exec apt-get --no-install-recommends    \
    linux-tools-generic                  \
    nicstat                              \
    powertop                             \
+   strace                               \
    sysstat                              \
    trace-cmd
