@@ -125,6 +125,8 @@ Also set up Firefox Sync
 
 # Misc Snippets
 
+## `tcpdump`
+
 Record all traffic from a given host/port:
 
     tcpdump -s 65535 -w tcp.dump host 10.6.6.1 and port 10114
@@ -136,3 +138,11 @@ Record all traffic involving a given host:
 Bind localhost:1234 to server.example.com:6667
 
     ssh -L 1234:localhost:6667 server.example.com
+
+## `Xephyr`
+
+Test XMonad or whatever:
+
+```
+Xephyr -screen 1024x768 :1 &
+DISPLAY=:1 xmonad ```
