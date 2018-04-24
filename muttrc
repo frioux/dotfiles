@@ -80,7 +80,6 @@ hdr_order Date: From: User-Agent: X-Mailer X-Operating-System To: \
         Cc: Reply-To: Subject: Mail-Followup-To: Message-ID:
 
 source ~/.mutt/colors
-source ~/.mutt/pgp
 push <show-version>
 
 source ~/.mutt-overrides
