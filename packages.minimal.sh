@@ -8,6 +8,7 @@ exec apt-get --no-install-recommends    \
    gettext                              \
    fail2ban                             \
    htop                                 \
+   jq                                   \
    liblmdb-dev                          \
    libssl-dev                           \
    moreutils                            \

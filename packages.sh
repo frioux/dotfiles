@@ -43,5 +43,6 @@ exec apt-get --no-install-recommends    \
    openvpn                              \
    postfix                              \
    python-gpgme                         \
+   uuid-runtime                         \
    xmlto                                \
    xsltproc
