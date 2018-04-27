@@ -1,5 +1,7 @@
 #!/bin/sh
 
+echo "Starting xsession: $(date)"
+
 systemctl --user daemon-reload
 systemctl --user start poller
 systemctl --user start sound
