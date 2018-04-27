@@ -3,8 +3,10 @@
     touch ~/.frewmbot-local ~/.frewmbot-maintained ~/.mutt-overrides
 
     sudo apt-add-repository ppa:git-core/ppa
+    curl -s https://updates.signal.org/desktop/apt/keys.asc | sudo apt-key add -
+    echo "deb [arch=amd64] https://updates.signal.org/desktop/apt xenial main" | sudo tee -a /etc/apt/sources.list.d/signal-xenial.list
     sudo apt-get update
-    sudo apt-get install git
+    sudo apt-get install git signal-desktop
     mkdir -p ~/code
     git clone git://github.com/frioux/dotfiles ~/code/dotfiles
     cd ~/code/dotfiles
@@ -36,9 +38,22 @@ Then add `-s overlay2 --live-restore` to the command in the copied file
     sudo systemctl daemon-reload
     sudo systemctl restart docker
 
-# Install Dropbox
+# Install Other Software
 
-[Install](https://www.dropbox.com/install)
+ * [Dropbox](https://www.dropbox.com/install)
+ * [Chrome](https://www.google.com/chrome/)
+ * [`blink1-tool`](https://github.com/todbot/blink1/releases)
+ * [`blink(1)` rules](https://github.com/todbot/blink1/blob/master/linux/51-blink1.rules)
+
+## Go
+
+``` bash
+rm ~/local -rf
+curl https://dl.google.com/go/go1.10.1.linux-amd64.tar.gz > go.gz
+tar xvf go.gz
+mv ./go ~/local
+rm go.gz
+```
 
 # Configure Postfix
 
