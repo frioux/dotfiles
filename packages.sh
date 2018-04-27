@@ -41,6 +41,7 @@ exec apt-get --no-install-recommends    \
    libxapian-dev                        \
    lua-filesystem                       \
    lynx                                 \
+   manpages-dev                         \
    mitmproxy                            \
    notmuch                              \
    notmuch-mutt                         \
