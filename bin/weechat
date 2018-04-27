@@ -6,6 +6,7 @@ exec docker run -it    \
      --env "TERM=$TERM" \
      --env "WEE_USER=$(id -u)" \
      --env "HOME=/" \
+     --env "TZ=$TZ" \
      --volume "$HOME/irc-weechat:/.weechat" \
      --name weechat \
      frew/weechat
