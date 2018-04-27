@@ -22,6 +22,7 @@ exec apt-get --no-install-recommends    \
    dict-gcide                           \
    gnupg-agent                          \
    inotify-tools                        \
+   libcapture-tiny-perl                 \
    libcurl4-openssl-dev                 \
    libdir-self-perl                     \
    libemail-address-perl                \
