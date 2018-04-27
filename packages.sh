@@ -26,6 +26,7 @@ exec apt-get --no-install-recommends    \
    libdir-self-perl                     \
    libemail-address-perl                \
    libemail-date-perl                   \
+   libidn11-dev                         \
    libgmime-2.6-dev                     \
    libgpgme11-dev                       \
    libncursesw5-dev                     \
@@ -44,7 +45,6 @@ exec apt-get --no-install-recommends    \
    notmuch-mutt                         \
    openvpn                              \
    postfix                              \
-   python-gpgme                         \
    uuid-runtime                         \
    xmlto                                \
    xsltproc

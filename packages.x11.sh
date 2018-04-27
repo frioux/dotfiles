@@ -9,10 +9,11 @@ exec apt-get --no-install-recommends    \
    fonts-lohit-knda                     \
    gnome-system-monitor                 \
    gnome-power-manager                  \
-   gksu                                 \
    gtk2-engines                         \
    gxmessage                            \
    i3lock                               \
+   libghc-xmonad-contrib-dev            \
+   libghc-taffybar-dev                  \
    pavucontrol                          \
    pcmanfm                              \
    rdesktop                             \
@@ -33,4 +34,5 @@ exec apt-get --no-install-recommends    \
    xfonts-terminus                      \
    xfonts-terminus-oblique              \
    xsel                                 \
+   xinput                               \
    xmonad
