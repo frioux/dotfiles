@@ -1,0 +1,12 @@
+#!/bin/sh
+
+docker rm -f zr-slack
+exec docker run -it    \
+     --rm            \
+     --env "TERM=$TERM" \
+     --env "TZ=$TZ" \
+     --env "WEE_USER=$(id -u)" \
+     --env "HOME=/" \
+     --name zr-slack \
+     --volume "$HOME/zr-weechat:/.weechat" \
+     frew/weechat
