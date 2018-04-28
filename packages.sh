@@ -12,15 +12,12 @@ echo "postfix postfix/main_mailer_type string 'Local only'" | debconf-set-select
 
 exec apt-get --no-install-recommends    \
                              install -y \
-   asciidoc                             \
    at                                   \
-   autoconf                             \
-   automake                             \
    build-essential                      \
    dictd                                \
    dict                                 \
    dict-gcide                           \
-   gnupg-agent                          \
+   gitk                                 \
    inotify-tools                        \
    libcapture-tiny-perl                 \
    libcurl4-openssl-dev                 \
@@ -32,14 +29,9 @@ exec apt-get --no-install-recommends    \
    libgpgme11-dev                       \
    libncursesw5-dev                     \
    libnotmuch-dev                       \
-   libpam0g-dev                         \
-   libpam-u2f                           \
-   pamu2fcfg                            \
    libtalloc-dev                        \
    libtokyocabinet-dev                  \
    libtool                              \
-   libxapian-dev                        \
-   lua-filesystem                       \
    lynx                                 \
    manpages-dev                         \
    mitmproxy                            \
@@ -47,6 +39,4 @@ exec apt-get --no-install-recommends    \
    notmuch-mutt                         \
    openvpn                              \
    postfix                              \
-   uuid-runtime                         \
-   xmlto                                \
-   xsltproc
+   uuid-runtime

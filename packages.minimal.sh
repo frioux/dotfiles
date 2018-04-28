@@ -6,7 +6,6 @@ exec apt-get --no-install-recommends    \
    curl                                 \
    daemontools                          \
    gettext                              \
-   fail2ban                             \
    htop                                 \
    jq                                   \
    liblmdb-dev                          \
