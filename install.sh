@@ -55,7 +55,6 @@ if [[ -e ~/.frewmbot-local ]]; then
       gtkrc.mine      \
       irssi           \
       jshintrc        \
-      msmtprc         \
       mailcap         \
       mutt            \
       muttrc          \
@@ -64,9 +63,7 @@ if [[ -e ~/.frewmbot-local ]]; then
       offlineimap.py  \
       perltidyrc      \
       signature       \
-      tkremindrc      \
       tmux.conf       \
-      vimoutlinerrc   \
       XCompose        \
       Xdefaults       \
       xmodmap         \

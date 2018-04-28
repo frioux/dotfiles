@@ -1,4 +1,0 @@
-let g:vo_modules_load = ''
-let maplocalleader = ',,'
-
-" vim: set ft=vim
