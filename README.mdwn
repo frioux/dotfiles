@@ -18,6 +18,10 @@
     sudo cp random.rules /etc/udev/rules.d/71-disable-random-entropy-estimation.rules
     sudo cp ./pm/* /etc/pm/sleep.d/
 
+    sudo cp ./rc.local /etc/rc.local
+    chown root:root /etc/rc.local
+    chmod 755 /etc/rc.local
+
 # Install mutt
 
     git clone https://github.com/neomutt/neomutt

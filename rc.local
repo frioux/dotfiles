@@ -1,0 +1,10 @@
+#!/bin/sh
+
+chgrp frew /sys/class/backlight/intel_backlight/brightness
+chmod g+w  /sys/class/backlight/intel_backlight/brightness
+
+iptables -A INPUT -i lo -j ACCEPT
+iptables -A INPUT -m state --state ESTABLISHED -j ACCEPT
+iptables -A INPUT -j REJECT
+
+exit 0
