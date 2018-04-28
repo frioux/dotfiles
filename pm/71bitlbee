@@ -1,8 +1,0 @@
-#!/bin/sh
-. "${PM_FUNCTIONS}"
-case "$1" in
-  thaw|resume)
-    docker restart bitlbee
-    ;;
-  *) exit $NA ;;
-esac
