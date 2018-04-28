@@ -5,7 +5,7 @@ import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.FadeInactive
 import qualified XMonad.StackSet as W
 import XMonad.Util.Run(spawnPipe)
-import XMonad.Util.EZConfig(additionalKeys)
+import XMonad.Util.EZConfig(additionalKeys, additionalKeysP)
 import System.IO
 import XMonad.Hooks.EwmhDesktops (ewmh)
 import System.Taffybar.Hooks.PagerHints (pagerHints)
@@ -20,24 +20,23 @@ main = do
         layoutHook = avoidStruts  $  layoutHook desktopConfig,
         terminal = "terminator",
         modMask = modMask'
-        } `additionalKeys` myKeys
+        } `additionalKeys` myKeys `additionalKeysP` myKeys2
 
+myKeys2 = [("M-<Return>", spawn "terminator")
+        ,  ("M-b", sendMessage ToggleStruts)
+        ,  ("M-S-x", spawn "lock-now")
+        ,  ("M-d", spawn "showdm")
+        ,  ("M-u",  spawn "showuni")
+        ,  ("M-v",  spawn "showsession")
+        ,  ("<XF86AudioMute>", spawn "vol toggle")
+        ,  ("<XF86AudioLowerVolume>", spawn "vol down")
+        ,  ("<XF86AudioRaiseVolume>", spawn "vol up")
+        ,  ("<XF86MonBrightnessDown>", spawn "backlight -10")
+        ,  ("<XF86MonBrightnessUp>",   spawn "backlight  10")
+        ,  ("M-S-i", spawn "xcalib -i -a")
+          ]
 
-myKeys = [ ((modMask', xK_Return), spawn "terminator")
-        , ((modMask', xK_b ), sendMessage ToggleStruts)
-        , ((modMask' .|. shiftMask, xK_x), spawn "lock-now")
-        , ((modMask', xK_d), spawn "showdm")
-        , ((modMask', xK_u), spawn "showuni")
-        , ((modMask', xK_v), spawn "showsession")
-        , ((modMask', xK_F1), spawn "vol toggle")
-        , ((modMask', xK_F2), spawn "vol down")
-        , ((modMask', xK_F3), spawn "vol up")
-        , ((modMask', xK_F5), spawn "backlight -10")
-        , ((modMask', xK_F6), spawn "backlight 10")
-        , ((modMask' .|. shiftMask, xK_i), spawn "xcalib -i -a")
-        ]
-        ++
-        [((m .|. modMask', key), screenWorkspace sc >>= flip whenJust (windows . f))
+myKeys = [((m .|. modMask', key), screenWorkspace sc >>= flip whenJust (windows . f))
                 | (key, sc) <- zip [xK_w, xK_e, xK_r] [2,0,1]
                 , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
 
