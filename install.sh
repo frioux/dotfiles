@@ -7,22 +7,19 @@ fi
 
 echo "running rc installer"
 
-function __mkdir { if [[ ! -d $1 ]]; then mkdir -p $1; fi }
-function link-file { __mkdir "${2:h}"; rm -rf "$2"; ln -s "$PWD/$1" "$2" }
-function copy-file { __mkdir "${2:h}"; rm -rf "$2"; cp "$PWD/$1" "$2" }
+function link-file { mkdir -p "${2:h}"; rm -rf "$2"; ln -s "$PWD/$1" "$2" }
+function copy-file { mkdir -p "${2:h}"; rm -rf "$2"; cp "$PWD/$1" "$2" }
 
 ./install-xdg
 
 mkdir -p ~/.config
 
 if [[ -e ~/.frewmbot-local ]]; then
-   link-file awesome ~/.config/awesome
    link-file dotjs ~/.js
    link-file ssh/config ~/.ssh/config
    link-file ssh/authorized_keys ~/.ssh/authorized_keys
    link-file terminator_config ~/.config/terminator/config
    link-file xsession ~/.xinitrc
-   link-file gpg.conf ~/.gnupg/gpg.conf
    link-file taffybar/taffybar.hs ~/.config/taffybar/taffybar.hs
    if [ -d "$HOME/var/mail" ]; then
       link-file crontab.d/hourly/notmuch ~/.crontab.d/hourly/notmuch
