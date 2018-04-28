@@ -1,0 +1,31 @@
+#!/usr/bin/env perl
+
+use 5.24.0;
+use warnings;
+
+use Email::MIME;
+use IO::All;
+
+my $dir = shift;
+
+my @files = io->dir($dir)->all_files;
+
+my %message_id;
+
+for my $file (@files) {
+   my $message_id = Email::MIME->new( $file->all )->header_str('message-id');
+   unless ($message_id) {
+      warn "No Message-ID for $file\n";
+      next;
+   }
+
+   $message_id{$message_id} ||= [];
+   push $message_id{$message_id}->@*, $file->name;
+}
+
+for my $message_id (keys %message_id) {
+   my ($keep, @remove) = $message_id{$message_id}->@*;
+
+   say "# keep $keep";
+   say "rm $_" for @remove;
+}
