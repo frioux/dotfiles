@@ -274,12 +274,6 @@ Takes name of an ec2 instance and produces the relevant instance id.
 Wraps the normal evince but removes my `TMPDIR` override, which evince gets
 confused by.
 
-### `expand-url`
-
-Filter that reads lines prefixed with `$n`tabs and newline separated links;
-writes title of page prefixed with `$n` tabs and link prefixed with `$n + 1`
-tabs.
-
 ### `fn`
 
 Create persistent functions by actually writing scripts.  Example usage:
