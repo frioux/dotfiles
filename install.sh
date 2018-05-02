@@ -125,13 +125,15 @@ mkdir -p "$HOME/.vvar/swap";
 mkdir -p "$HOME/.vvar/sessions";
 
 if test ! -e ~/bin/leatherman || older-than ~/bin/leatherman c 7d; then
-   LMURL="$(curl -s https://api.github.com/repos/frioux/leatherman/releases/latest |
-      grep browser_download_url |
-      cut -d '"' -f 4)"
-   mkdir -p ~/bin
-   curl -sL "$LMURL" > ~/bin/leatherman
-   chmod +x ~/bin/leatherman
-   ~/bin/leatherman explode
+   (
+      LMURL="$(curl -s https://api.github.com/repos/frioux/leatherman/releases/latest |
+         grep browser_download_url |
+         cut -d '"' -f 4)"
+      mkdir -p ~/bin
+      curl -sL "$LMURL" > ~/bin/leatherman
+      chmod +x ~/bin/leatherman
+      ~/bin/leatherman explode
+   ) &
 fi
 
 # vim works differently on win32
