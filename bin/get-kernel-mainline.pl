@@ -9,4 +9,4 @@ my $headers = $all =~ s/all/amd64/r;
 $headers =~ s/_/-generic_/;
 my $image = $headers =~ s/headers/image/r;
 
-system 'wget', $_ for $all, $headers, $imageA;
+system 'wget', $_ for $all, $headers, $image;
