@@ -37,7 +37,7 @@ myKeys2 = [("M-<Return>", spawn "terminator")
           ]
 
 myKeys = [((m .|. modMask', key), screenWorkspace sc >>= flip whenJust (windows . f))
-                | (key, sc) <- zip [xK_w, xK_e, xK_r] [2,0,1]
+                | (key, sc) <- zip [xK_w, xK_e, xK_r] [1,0,2]
                 , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
 
 -- |=
