@@ -23,7 +23,11 @@ if (my $sub = main->can("cmd_$cmd")) {
    die "no such command $cmd\n"
 }
 
-sub _notify { system 'notify-send', shift }
+sub _notify {
+   my $text = shift;
+   system 'killall -TERM dzen2';
+   system "echo '$text' | dzen2 -p 1 &"
+}
 
 sub pick_sink {
    my @sinks = @_;
