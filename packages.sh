@@ -21,6 +21,8 @@ exec apt-get --no-install-recommends    \
    inotify-tools                        \
    libcapture-tiny-perl                 \
    libcurl4-openssl-dev                 \
+   libdbd-sqlite3-perl                  \
+   libdbi-perl                          \
    libdir-self-perl                     \
    libemail-address-perl                \
    libemail-date-perl                   \
@@ -32,6 +34,7 @@ exec apt-get --no-install-recommends    \
    libtalloc-dev                        \
    libtokyocabinet-dev                  \
    libtool                              \
+   libyaml-syck-perl                    \
    lynx                                 \
    manpages-dev                         \
    mitmproxy                            \
