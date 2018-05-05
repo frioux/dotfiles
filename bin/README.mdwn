@@ -419,10 +419,6 @@ Basically `tee -a` but only writes a single line and always adds a newline.
 Tool to automate finding big files in a given directory.  Ensures that sort is
 fast and doesn't spill to the (presumably full) disk.
 
-### `yaml2json`
-
-Converts yaml to json.
-
 ### `zrdate`
 
 Prints current date in the zr format (YYYYMMDD.)
