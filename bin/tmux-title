@@ -1,0 +1,23 @@
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+
+my $h = `hostname -f`;
+
+my ($sc, $id, $tier) =
+   ($h =~ m/^(.+) - (\d\d|[0-9a-f]{17}) \. (\w+)-\w\w\d\.zipaws\.com$/x);
+
+exit if !$sc;
+
+print "\033k";
+
+print $sc;
+if (length $id > 4) {
+   print substr $id, 0, 4
+} else {
+   print $id
+}
+print "." . substr $tier, 0, 1;
+
+print "\033\\";
