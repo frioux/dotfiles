@@ -130,7 +130,8 @@ if test ! -e ~/bin/leatherman || older-than ~/bin/leatherman c 7d; then
          grep browser_download_url |
          cut -d '"' -f 4)"
       mkdir -p ~/bin
-      curl -sL "$LMURL" > ~/bin/leatherman
+      curl -sL "$LMURL" > ~/bin/leatherman.xz
+      xz -d ~/bin/leatherman.xz
       chmod +x ~/bin/leatherman
       ~/bin/leatherman explode
    ) &
