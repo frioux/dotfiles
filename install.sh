@@ -131,7 +131,7 @@ if test ! -e ~/bin/leatherman || older-than ~/bin/leatherman c 7d; then
          cut -d '"' -f 4)"
       mkdir -p ~/bin
       curl -sL "$LMURL" > ~/bin/leatherman.xz
-      xz -d ~/bin/leatherman.xz
+      xz -d -f ~/bin/leatherman.xz
       chmod +x ~/bin/leatherman
       ~/bin/leatherman explode
    ) &
