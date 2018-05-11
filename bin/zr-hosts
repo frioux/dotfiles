@@ -11,7 +11,9 @@ for r in $REGIONS; do
   export AWS_DEFAULT_REGION=$r
   aws ec2 describe-instances > /tmp/instances.tmp
   cat /tmp/instances.tmp |
-    jq -r '.Reservations[].Instances[] | select(.State.Name == "running")' |
-    jq -r '(.Tags[] | select(.Key == "Name") | .Value)' |
+    jq -r '.Reservations[].Instances[] |
+           select(.State.Name == "running") |
+           (.Tags[] | select(.Key == "Name") |
+           .Value)' |
     sed 's/$/.zipaws.com/'
 done

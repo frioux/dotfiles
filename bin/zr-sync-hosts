@@ -6,6 +6,8 @@ set -e
 
 export USER=frew
 
+older-than ~/.ssh/zr_hosts a 1h
+
 zr-hosts > ~/.ssh/zr_hosts.new
 < ~/.ssh/zr_hosts.new sort | sponge ~/.ssh/zr_hosts.new
 mv ~/.ssh/zr_hosts.new ~/.ssh/zr_hosts
