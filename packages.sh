@@ -42,4 +42,5 @@ exec apt-get --no-install-recommends    \
    notmuch-mutt                         \
    openvpn                              \
    postfix                              \
+   shellcheck                           \
    uuid-runtime
