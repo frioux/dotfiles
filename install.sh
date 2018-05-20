@@ -14,7 +14,7 @@ function copy-file { mkdir -p "${2:h}"; rm -rf "$2"; cp "$PWD/$1" "$2" }
 
 mkdir -p ~/.config
 
-if [[ -e ~/.frewmbot-local ]]; then
+if [ -e ~/.frewmbot-local ]; then
    link-file dotjs ~/.js
    link-file ssh/config ~/.ssh/config
    link-file ssh/authorized_keys ~/.ssh/authorized_keys
@@ -96,7 +96,7 @@ done
 
 echo "[submodule]\n\tfetchJobs = $(nproc)\n\n" > ~/.git-multicore
 
-if [[ ! -e ~/.frewmbot-maintained ]]; then
+if [ ! -e ~/.frewmbot-maintained ]; then
    # bypass git wrapper
    /usr/bin/git clean -xdff
 fi
