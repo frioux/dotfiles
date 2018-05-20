@@ -17,7 +17,11 @@ mkdir -p ~/.config
 if [ -e ~/.frewmbot-local ]; then
    link-file dotjs ~/.js
    link-file ssh/config ~/.ssh/config
-   link-file ssh/authorized_keys ~/.ssh/authorized_keys
+
+   if [ -L ~/.ssh/authorized_keys -o ! -e ~/.ssh/authorized_keys ]; then
+      link-file ssh/authorized_keys ~/.ssh/authorized_keys
+   fi
+
    link-file terminator_config ~/.config/terminator/config
    link-file xsession ~/.xinitrc
    link-file taffybar/taffybar.hs ~/.config/taffybar/taffybar.hs
