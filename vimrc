@@ -378,4 +378,15 @@ command! -nargs=1 Gg :Grepper -tool git -query <args>
 
 command! ESession execute ":tabnew | edit " . v:this_session . "x.vim | split" . v:this_session " | split " . v:this_session . "a.vim"
 
+function! Multiple_cursors_before()
+  if exists(':NeoCompleteLock')==2
+    exe 'NeoCompleteLock'
+  endif
+endfunction
+
+function! Multiple_cursors_after()
+  if exists(':NeoCompleteUnlock')==2
+    exe 'NeoCompleteUnlock'
+  endif
+endfunction
 " vim: foldmethod=marker
