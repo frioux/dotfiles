@@ -47,6 +47,12 @@ To enable matchmaker when Vim starts, add the following to your vimrc: >
     let g:matchmaker_enable_startup = 1
 <
 
+                                          *g:matchmaker_ignore_single_match*
+
+To prevent matching when the word under the cursor isn't found anywhere else: >
+    let g:matchmaker_ignore_single_match = 1
+<
+
                                                 *matchmaker-mapping-examples*
 
 To make <Leader>m  toggle Matchmaker on and off: >
