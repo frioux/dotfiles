@@ -6,6 +6,7 @@ endif
 
 let s:enabled = 0
 let g:matchmaker_matchpriority = get(g:, 'matchmaker_matchpriority', 10)
+let g:matchmaker_ignore_single_match = get(g:, 'matchmaker_ignore_single_match', 0)
 
 hi default Matchmaker term=underline    ctermbg=238     guibg=#dddddd
 
@@ -29,7 +30,12 @@ function! s:get_visual_selection()
 endfunction
 
 function! s:highlight(needle)
-    silent! let w:matchmaker_matchid = matchadd('Matchmaker', a:needle, g:matchmaker_matchpriority)
+    " Optionally ignore needles that only match under the cursor (no matches elsewhere in the file)
+    if g:matchmaker_ignore_single_match && getcurpos()[1:2] == searchpos(a:needle, 'nw')
+      return
+    else
+      silent! let w:matchmaker_matchid = matchadd('Matchmaker', a:needle, g:matchmaker_matchpriority)
+    endif
 endfunction
 
 function! s:matchunmake()
