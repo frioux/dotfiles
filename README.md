@@ -19,6 +19,9 @@ Also, I like it more.
 Add `let g:matchmaker_enable_startup = 1` to your `~/.vimrc` to enable
 Matchmaker when vim starts.
 
+Add `let g:matchmaker_ignore_single_match = 1` to your `~/.vimrc` to prevent
+matching when the word under the cursor doesn't show up anywhere else.
+
 If you have any highlighting conflicts with other plugins (such as
 [EasyMotion](https://github.com/Lokaltog/vim-easymotion)) you can configure
 the highlighting priority with `let g:matchmaker_matchpriority = 0`, where
