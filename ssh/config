@@ -13,7 +13,6 @@ Host *
    ControlPath /tmp/ssh_mux_%h_%p_%r
    ControlPersist 2h
    Compression yes
-   VisualHostKey yes
 
 Host *.ziprecruiter.com *.zipaws.com *.ziprecruiter-frew.com
      ForwardAgent yes
