@@ -5,6 +5,4 @@ session="$(vim-sessions | dmenu -fn '-*-terminus-*-r-normal-*-*-120-*-*-*-*-iso8
 if [ -z "$session" ]; then
    exit 1
 fi
-exec terminator -e "vim -S $session"
-
-# vim: ft=vim
+exec terminator -e "vim -S $session" -T "vim:$session"
