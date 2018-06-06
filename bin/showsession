@@ -2,7 +2,7 @@
 
 session="$(vim-sessions | dmenu -fn '-*-terminus-*-r-normal-*-*-120-*-*-*-*-iso8859-*' -nb '#000000' -nf '#FFFFFF' -sb '#0066ff')"
 
-if [ -z $session ]; then
+if [ -z "$session" ]; then
    exit 1
 fi
 exec terminator -e "vim -S $session"
