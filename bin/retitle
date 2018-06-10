@@ -1,0 +1,111 @@
+#!/usr/bin/perl
+
+use warnings;
+use strict;
+
+use JSON::XS 'encode_json';
+
+while (<STDIN>) {
+   chomp;
+
+   my @v;
+
+   if (m/Signal.*/) {
+      @v = (qw(Chat Play));
+   }
+   elsif (m/#([^ ]+) - Mozilla Firefox/) {
+      @v = (qw(Chat Play Discord), $1)
+   }
+   elsif (m/.*"WeeChat.*/) {
+      @v = (qw(Chat IRC))
+   }
+   elsif (m/^messaging:irc:.*/) {
+      @v = (qw(Chat IRC))
+   }
+   elsif (m/^messaging:mutt:.*/) {
+      @v = (qw(Email Personal))
+   }
+   elsif (m/^messaging:zr-(mutt|robbits):.*/) {
+      @v = (qw(Email ZR), $1)
+   }
+
+   # Fun channels
+   elsif (m/.*(dev-potpourri|random) \| ZipRecruiter Slack - Mozilla Firefox/) {
+      @v = (qw(Chat Slack ZR Play), $1)
+   }
+
+   # Direct messages
+   elsif (m/.*\* [^ ]+ \| ZipRecruiter Slack - Mozilla Firefox/) {
+      @v = (qw(Chat Slack ZR Work DM), $1)
+   }
+
+   # The rest
+   elsif (m/(.*) \| ZipRecruiter Slack - Mozilla Firefox/) {
+      @v = (qw(Chat Slack ZR Work ), $1)
+   }
+
+   elsif (m/.* Google Docs - Mozilla Firefox/) {
+      @v = (qw(ZR Docs), $1)
+   }
+   elsif (m/.*Google Hangouts - Google Chrome/) {
+      @v = (qw(ZR Meetings), $1)
+   }
+
+   elsif (m/.* Google Chrome/) {
+      @v = ('Chrome');
+   }
+
+   elsif (m/fREW Schmidt's Notes - Mozilla Firefox/) {
+      @v = (qw(Strategy Notes Reading));
+   }
+
+   elsif (m(^[^:]+:[^:]+:.+/Dropbox/notes)) {
+      @v = (qw(Strategy Notes Writing));
+   }
+
+   elsif (m(^vim:.*/sessions/clog)) {
+      @v = (qw(Coffee Writing));
+   }
+
+   elsif (m(fREW Schmidt's Clog)) {
+      @v = (qw(Coffee Reading));
+   }
+
+   elsif (m(^vim:.*/sessions/wnotes)) {
+      @v = (qw(Strategy Notes Writing));
+   }
+
+   elsif (m/ESV\.org - Mozilla Firefox/) {
+      @v = ('Firefox', 'Bible');
+   }
+
+   elsif (m/.*Mozilla Firefox/) {
+      @v = ('Firefox');
+   }
+
+   elsif ($_ eq "/bin/zsh" || $_ =~ m/^[^:]+:\d+:[^ ]+ - "caliburn"/) {
+      next
+   }
+
+   elsif (m(^[^:]+:[^:]+:.+/unproductive)) {
+      @v = (qw(Fun Project Unproductive));
+   }
+   elsif (m(^[^:]+:[^:]+:.+/dotfiles)) {
+      @v = (qw(Fun Project Dotfiles));
+   }
+
+   elsif (m(^[^:]+:[^:]+:.+/zr)) {
+      @v = ('ZR');
+   }
+   elsif (m(^vim:.+/zr)) {
+      @v = ('ZR');
+   }
+   elsif ($_ eq '') {
+         next
+   } else {
+      @v = ($_);
+   }
+
+
+   print encode_json(\@v) . "\n";
+}
