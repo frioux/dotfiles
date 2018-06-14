@@ -24,7 +24,7 @@ main = do
 
 myKeys2 = [("M-<Return>", spawn "terminator")
         ,  ("M-b", sendMessage ToggleStruts)
-        ,  ("M-S-x", spawn "lock-now")
+        ,  ("M-x", spawn "lock-now")
         ,  ("M-d", spawn "showdm")
         ,  ("M-u",  spawn "showuni")
         ,  ("M-v",  spawn "showsession")
