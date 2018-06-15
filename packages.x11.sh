@@ -23,8 +23,6 @@ exec apt-get --no-install-recommends    \
    taffybar                             \
    terminator                           \
    ttf-ancient-fonts                    \
-   vim-gnome                            \
-   vim-gtk                              \
    vlc                                  \
    xautolock                            \
    xbacklight                           \
