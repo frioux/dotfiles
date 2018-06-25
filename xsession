@@ -11,6 +11,8 @@ dropbox start &
 xautolock -time 5 -locker lock-now &
 eval `gnome-keyring-daemon`
 eval `ssh-agent`
+test -f $HOME/code/unproductive/bin/unproductive &&
+   $HOME/code/unproductive/bin/unproductive >> $HOME/activity-log.txt &
 taffybar &
 xmodmap "$HOME/.xmodmap"
 keepassxc &
