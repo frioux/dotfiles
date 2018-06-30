@@ -133,11 +133,6 @@ Run "anonoymous" jpterm container.
 
 ## Generic Wrappers
 
-### `replace-unzip`
-
-Reimplementation of `unzip`.  Leaves out `.DS_Store` and other OS cruft, wraps
-output files in a directory if no root directory was created.
-
 ### `wrap-tar`
 
 Wraps tar to encourage me to not use muscle memory for longer command flags.
