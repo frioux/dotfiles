@@ -1,14 +1,7 @@
-#!/usr/bin/env perl
+#!/bin/sh
 
-use strict;
-use warnings;
+path="$1"
 
-use IO::All;
+read -r in
 
-my $path = shift;
-
-my $in = <STDIN>;
-
-io->file($path)->append("$in\n");
-
-print $in;
+echo "$in" >> "$path"
