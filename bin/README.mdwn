@@ -269,14 +269,6 @@ Takes name of an ec2 instance and produces the relevant instance id.
 Wraps the normal evince but removes my `TMPDIR` override, which evince gets
 confused by.
 
-### `fn`
-
-Create persistent functions by actually writing scripts.  Example usage:
-
-```
-fn count-users 'wc -l < /etc/passwd'
-```
-
 ### `fressh`
 
 Tool to automatically push my dotfiles to a server before ssh'ing in.
