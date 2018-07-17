@@ -10,10 +10,6 @@ Prints all unicode characters (by name.)
 
 Reminder to stretch every 25m.
 
-### `backlight`
-
-Faster version of `xbacklight` by directly writing to `/sys`.
-
 ### `bible-handler`
 
 Handles `bible://` links.
