@@ -4,4 +4,4 @@ use strict;
 use feature 'say';
 
 my $size = shift;
-say int 1 + $size * rand;
+say int 1 + rand $size;
