@@ -1,13 +1,19 @@
 [global_config]
   borderless = True
   dbus = False
-  enabled_plugins = APTURLHandler, LaunchpadCodeURLHandler, LaunchpadBugURLHandler
+  enabled_plugins = ,
 [keybindings]
+  broadcast_all = None
+  broadcast_group = None
+  broadcast_off = None
   close_term = None
   close_window = None
   copy = None
   cycle_next = None
   cycle_prev = None
+  edit_tab_title = None
+  edit_terminal_title = None
+  edit_window_title = None
   full_screen = None
   go_down = None
   go_left = None
@@ -17,7 +23,11 @@
   go_up = None
   group_all = None
   group_tab = None
+  help = None
   hide_window = None
+  insert_number = None
+  insert_padded = backslash
+  layout_launcher = None
   move_tab_left = None
   move_tab_right = None
   new_tab = None
@@ -31,6 +41,8 @@
   resize_left = None
   resize_right = None
   resize_up = None
+  rotate_ccw = None
+  rotate_cw = None
   scaled_zoom = None
   search = None
   split_horiz = None
