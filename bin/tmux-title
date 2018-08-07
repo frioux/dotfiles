@@ -3,6 +3,8 @@
 use strict;
 use warnings;
 
+exit unless $ENV{TERM} =~ m/^screen/;
+
 my $h = `hostname -f`;
 
 my ($sc, $id, $tier) =
