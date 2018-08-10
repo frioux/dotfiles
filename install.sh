@@ -65,7 +65,6 @@ if [ -e ~/.frewmbot-local ]; then
       perltidyrc      \
       signature       \
       tmux.conf       \
-      XCompose        \
       Xdefaults       \
       xmodmap         \
       xmonad          \
