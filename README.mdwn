@@ -125,18 +125,10 @@ Ensure permissions are correct:
 
 Also set up Firefox Sync
 
-# Add / Replace SSH Keys
+# Add / Replace SSH Key
 
- * Generate Ed25519 Key: `ssh-keygen -t ed25519 -o -a 100`
- * Generate RSA Key: `ssh-keygen -t rsa -b 4096 -o -a 100`
- * Put Ed25519 Key on [github](https://github.com/settings/ssh)
- * Put RSA Key on:
-   - dbsrgits
-   - gitmo
-   - catagits
-   - p5sagit
-   - ZR
-   - agm
+ * Generate Key: `ssh-keygen -t ed25519 -o -a 100`
+ * Put key on [github](https://github.com/settings/ssh)
 
 # services
 
