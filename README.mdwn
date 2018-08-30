@@ -165,4 +165,5 @@ Test XMonad or whatever:
 
 ```
 Xephyr -screen 1024x768 :1 &
-DISPLAY=:1 xmonad ```
+DISPLAY=:1 xmonad
+```
