@@ -389,4 +389,6 @@ function! Multiple_cursors_after()
     exe 'NeoCompleteUnlock'
   endif
 endfunction
+
+let g:go_fmt_command = "goimports"
 " vim: foldmethod=marker

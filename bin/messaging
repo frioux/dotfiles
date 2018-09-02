@@ -9,8 +9,8 @@ tmux rename-window -t 3 zr-robbits
 tmux new-window forever weechat
 ( sleep 10; tmux rename-window -t 4 irc ) &
 
-tmux new-window forever zr-slack
-( sleep 10; tmux rename-window -t 5 slack ) &
+# tmux new-window forever zr-slack
+# ( sleep 10; tmux rename-window -t 5 slack ) &
 
 tmux rename-window -t 1 mutt
 tmux next-window
