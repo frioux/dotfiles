@@ -1,3 +1,3 @@
 #!/bin/zsh
 
-perl -Mcharnames=:full -E'my $str = shift; binmode(STDOUT, ":encoding(UTF-8)"); print charnames::string_vianame(uc $str)' "$(alluni.pl | prepend-emoji-hist ~/.uni_history | dmenu -fn '-*-terminus-*-r-normal-*-*-120-*-*-*-*-iso8859-*' -nb '#000000' -nf '#FFFFFF' -sb '#0066ff')" | store-hist ~/.uni_history | xsel -i
+perl -Mcharnames=:full -E'my $str = shift; binmode(STDOUT, ":encoding(UTF-8)"); print charnames::string_vianame(uc $str)' "$(alluni.pl | prepend-emoji-hist ~/.uni_history | rofi -dmenu)" | store-hist ~/.uni_history | xsel -i

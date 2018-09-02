@@ -41,15 +41,15 @@ directory, every 25 minutes.
 
 ### `showdm`
 
-Show dmenu, to select program to run (eg `firefox`.)
+Show menu of programs to run (eg `firefox`.)
 
 ### `showsession`
 
-Show dmenu of vim sessions to resume.
+Show menu of vim sessions to resume.
 
 ### `showuni`
 
-Show dmenu of unicode characters (by name) and stores selection into
+Show menu of unicode characters (by name) and stores selection into
 `~/.uni_history`.
 
 ### `type-clipboard`
