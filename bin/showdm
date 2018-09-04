@@ -1,2 +1,2 @@
 #!/bin/zsh
-rofu -dmenu
+rofi -show run
