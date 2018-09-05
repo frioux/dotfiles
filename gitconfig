@@ -18,8 +18,7 @@
    fx = commit -a --amend -C HEAD
    ix = diff --staged
    git = !git
-   wip = commit -amWIP
-   unwip = reset HEAD^
+   wip = !git add $(git rev-parse --show-toplevel) && git commit -amWIP
    sync = !git pull && git push
 [diff]
    ;external = git_diff_wrapper
