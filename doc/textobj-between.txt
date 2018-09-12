@@ -51,7 +51,7 @@ These key mappings are defined in Visual mode and Operator-pending mode.
 ==============================================================================
 CUSTOMIZING					*textobj-between-customizing*
 
-				    *g:textobj_cobetweeno_default_key_mappings*
+				    *g:textobj_between_no_default_key_mappings*
 					    *:TextobjBetweenDefaultKeyMappings*
 This plugin will define the following key mappings in Visual mode and
 Operator-pending mode automatically.  If you don't want these key mappings,
