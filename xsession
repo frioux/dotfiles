@@ -9,7 +9,7 @@ systemctl --user start sound
 nm-applet &
 dropbox start &
 xautolock -time 5 -locker lock-now &
-xset dpms 60
+xset dpms 90
 eval `gnome-keyring-daemon`
 eval `ssh-agent`
 test -f $HOME/code/unproductive/bin/unproductive &&
