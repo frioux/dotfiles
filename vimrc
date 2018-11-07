@@ -391,4 +391,7 @@ function! Multiple_cursors_after()
 endfunction
 
 let g:go_fmt_command = "goimports"
+
+nmap co yo
+
 " vim: foldmethod=marker
