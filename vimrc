@@ -329,12 +329,11 @@ function! CycleColors()
    endwhile
    let colordict[mycolors[-1]] = mycolors[0]
 
-   if has_key(g:, 'colors_name') && has_key(colordict, g:colors_name)
-      let nextColor = colordict[g:colors_name]
-   else
-      let nextColor = mycolors[0]
+   if !has_key(g:, 'nextColor') || colordict[g:nextColor] == ""
+      let g:nextColor = mycolors[0]
    endif
-   execute ':colorscheme ' . nextColor
+   let g:nextColor = colordict[g:nextColor]
+   execute ':colorscheme ' . g:nextColor
 endfunction
 nnoremap <F12> :call CycleColors()<cr>
 
