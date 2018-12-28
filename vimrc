@@ -135,16 +135,6 @@ if has('termguicolors') && $COLORTERM == 'truecolor'
    endif
 endif
 
-if has("gui_running")
-   colorscheme solarized
-else
-   if has('termguicolors') && &termguicolors == 1
-      colorscheme solarized8_dark_high
-   else
-      colorscheme elflord
-   endif
-endif
-
 "Status line gnarliness
 set laststatus=2
 
@@ -330,12 +320,26 @@ function! CycleColors()
    let colordict[mycolors[-1]] = mycolors[0]
 
    if !has_key(g:, 'nextColor') || colordict[g:nextColor] == ""
-      let g:nextColor = mycolors[0]
+      let g:nextColor = mycolors[-1]
    endif
-   let g:nextColor = colordict[g:nextColor]
-   execute ':colorscheme ' . g:nextColor
+
+   let attempts = 0
+
+   while 1
+      try
+         let attempts += 1
+         let g:nextColor = colordict[g:nextColor]
+         execute ':colorscheme ' . g:nextColor
+         return
+      catch
+         if attempts == len(mycolors)
+            return
+         endif
+      endtry
+   endwhile
 endfunction
 nnoremap <F12> :call CycleColors()<cr>
+call CycleColors()
 
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
