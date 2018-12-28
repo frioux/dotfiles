@@ -24,10 +24,10 @@ main = do
 
 myKeys2 = [("M-<Return>", spawn "terminator")
         ,  ("M-b", sendMessage ToggleStruts)
-        ,  ("M-x", spawn "lock-now")
         ,  ("M-d", spawn "showdm")
         ,  ("M-u",  spawn "showuni")
         ,  ("M-v",  spawn "showsession")
+        ,  ("M-x", spawn "lock-now")
         ,  ("<XF86AudioMute>", spawn "vol toggle")
         ,  ("<XF86AudioLowerVolume>", spawn "vol down")
         ,  ("<XF86AudioRaiseVolume>", spawn "vol up")
