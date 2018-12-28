@@ -25,6 +25,8 @@ main = do
 myKeys2 = [("M-<Return>", spawn "terminator")
         ,  ("M-b", sendMessage ToggleStruts)
         ,  ("M-d", spawn "showdm")
+        ,  ("M-n",  spawn "terminator -e 'vim -S /home/frew/.vvar/sessions/wnotes' -T 'vim:/home/frew/.vvar/sessions/wnotes'")
+        -- ,  ("M-q",  reloads config)
         ,  ("M-u",  spawn "showuni")
         ,  ("M-v",  spawn "showsession")
         ,  ("M-x", spawn "lock-now")
