@@ -394,6 +394,7 @@ function! Multiple_cursors_after()
 endfunction
 
 let g:go_fmt_command = "goimports"
+let g:go_fmt_options = {'goimports': '-local go.zr.org'}
 
 nmap co yo
 
