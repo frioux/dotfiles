@@ -394,7 +394,17 @@ function! Multiple_cursors_after()
 endfunction
 
 let g:go_fmt_command = "goimports"
-let g:go_fmt_options = {'goimports': '-local go.zr.org'}
+
+augroup configure_projects
+   autocmd!
+   autocmd User ProjectionistActivate call s:configure_format()
+augroup END
+function! s:configure_format() abort
+   let l:i = projectionist#query('localimports')
+   if len(l:i) > 0
+      let g:go_fmt_options = {'goimports': '-local ' . l:i[0][1]}
+   endif
+endfunction
 
 nmap co yo
 
