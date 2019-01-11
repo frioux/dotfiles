@@ -283,12 +283,6 @@ Shortcut for git-grep.
 
 Filter to make output monochrome.
 
-### `minotaur`
-
-Watches a list of directories defined in the json document in the file in the
-first argument, and restarts the `runit` service by sending `SIGTERM`, `SIGCONT`,
-and telling the supervisor to start the service.
-
 ### `netrc-password`
 
 ```
