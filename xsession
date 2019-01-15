@@ -21,6 +21,6 @@ sv-run-offlineimap &
 scenery &
 armstrong &
 postqueue-checker &
-shutter --min_at_startup &
+flameshot &
 
 exec xmonad

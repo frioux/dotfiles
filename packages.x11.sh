@@ -18,7 +18,7 @@ exec apt-get --no-install-recommends    \
    libio-all-perl                       \
    pavucontrol                          \
    pcmanfm                              \
-   shutter                              \
+   flameshot                            \
    suckless-tools                       \
    taffybar                             \
    terminator                           \
