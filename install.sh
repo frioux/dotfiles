@@ -128,17 +128,7 @@ mkdir -p "$HOME/.vvar/swap";
 mkdir -p "$HOME/.vvar/sessions";
 
 if test ! -e ~/bin/leatherman || older-than ~/bin/leatherman c 7d; then
-   (
-      LMURL="$(curl -s https://api.github.com/repos/frioux/leatherman/releases/latest |
-         grep browser_download_url |
-         cut -d '"' -f 4 |
-         grep -F leatherman.xz )"
-      mkdir -p ~/bin
-      curl -sL "$LMURL" > ~/bin/leatherman.xz
-      xz -d -f ~/bin/leatherman.xz
-      chmod +x ~/bin/leatherman
-      ~/bin/leatherman explode
-   ) &
+   install-leatherman &
 fi
 
 # vim works differently on win32
