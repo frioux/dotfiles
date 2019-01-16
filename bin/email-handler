@@ -23,7 +23,7 @@ for my $val (
 
    next unless grep -f, glob "$dir/cur/*";
 
-   system $mutt, qw( -R -f ), "$dir";
+   system $mutt, qw( -R -f ), "$dir", '-e', 'push <space>';
 
    exit;
 }
