@@ -1,0 +1,6 @@
+#!/usr/bin/perl
+
+my $arg = shift;
+my $help = $arg =~ s(^vim:)()r;
+
+exec 'vim', '-c', "help $help"

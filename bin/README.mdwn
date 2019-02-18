@@ -22,6 +22,10 @@ Handles `bugzid:` links.
 
 Handles `mid:` links.
 
+### `vim-help`
+
+Handles `vim:` links.
+
 ### `rt-handler`
 
 Handles `rt:` links.

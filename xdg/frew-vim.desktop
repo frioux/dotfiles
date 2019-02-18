@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Vim Help
+Exec=/home/frew/code/dotfiles/bin/vim-help %u
+Terminal=true
+Type=Application
+Categories=Utility;
+StartupNotify=false
+MimeType=x-scheme-handler/vim;
