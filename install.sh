@@ -116,7 +116,6 @@ if [ ! -e ~/.frewmbot-maintained ]; then
       vim/bundle/unimpaired
 else
    git submodule update --init
-   link-file zsh/cxregs-bash-tools/lib ~/.smartcd/lib
    if [[ ! -e ~/.fzf ]] ; then
       git clone https://github.com/junegunn/fzf.git ~/.fzf
       ~/.fzf/install
