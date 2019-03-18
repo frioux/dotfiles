@@ -217,6 +217,11 @@ Creates fresh mutt address file using
 An attempt at generically trimming emails for brief responses.  Currently unused
 and flakey.
 
+### `unsubscribe`
+
+Takes a full email on stdin and uses the List-Unsubscribe header.  Directly
+calls firefox for http links, runs a new mutt in tmux for mailto links.
+
 ### `zr-mutt`
 
 neomutt wrapper that specifies my zr mailbox.
