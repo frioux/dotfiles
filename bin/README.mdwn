@@ -365,9 +365,9 @@ Prints the screen resolution.
 screenshot-to-text
 ```
 
-Prompts the user to make a partial screen selection with the mouse, and then
-runs OCR on the screenshot and places the results in the copy buffer.  For best
-results make text of size 16 or higher.
+Take a screenshot of some amount of text (with `flameshot` or `shutter`, for
+example) then run this to put an OCR'd version of the image in the text copy
+buffer.  For best results make text of size 16 or higher.
 
 ### `shrug`
 

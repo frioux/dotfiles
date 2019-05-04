@@ -1,4 +1,3 @@
 #!/bin/sh
 
-shutter -s -e -o ~/tmp/foo.png
-tesseract ~/tmp/foo.png stdout | xsel -i
+xclip -o -target image/png -selection clipboard | tesseract stdin stdout | xsel -i
