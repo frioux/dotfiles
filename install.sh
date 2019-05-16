@@ -49,6 +49,7 @@ if [ -e ~/.frewmbot-local ]; then
 
    for x in           \
       adenosinerc.yml \
+      curlrc          \
       dbic.json       \
       dzil            \
       editorconfig    \
