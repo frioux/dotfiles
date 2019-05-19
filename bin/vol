@@ -69,19 +69,28 @@ sub cmd_status {
 
 sub cmd_toggle {
    _notify($muted ? 'Unmuted!' : 'Muted :(');
-   exec 'pacmd', 'set-sink-mute', $sink_id, ( $muted ? 0 : 1 );
+   system 'pacmd', 'set-sink-mute', $sink_id, ( $muted ? 0 : 1 );
+
+   $muted = ( $muted ? 0 : 1 );
+   cmd_status();
 }
 
 sub cmd_up {
    my $new_vol = min(int 65536 * ($vol + 2) / 100, 65536);
    _notify('Increased volume to ' .  sprintf "%d%%", 100 * ($new_vol / 65536));
-   exec 'pacmd', 'set-sink-volume', $sink_id, $new_vol
+   system 'pacmd', 'set-sink-volume', $sink_id, $new_vol;
+
+   $vol += 2;
+   cmd_status();
 }
 
 sub cmd_down {
    my $new_vol = min(int 65536 * ($vol - 2) / 100, 65536);
    _notify('Decreased volume to ' .  sprintf "%d%%", 100 * ($new_vol / 65536));
-   exec 'pacmd', 'set-sink-volume', $sink_id, $new_vol
+   system 'pacmd', 'set-sink-volume', $sink_id, $new_vol;
+
+   $vol -= 2;
+   cmd_status();
 }
 
 sub cmd_help {
