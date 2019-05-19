@@ -15,7 +15,7 @@ shift @sinks;
 my ($sink_id, $sink_data) = pick_sink(@sinks);
 my ($vol, $muted) = parse_sink($sink_data);
 
-my $cmd = shift;
+my $cmd = shift || "help";
 
 if (my $sub = main->can("cmd_$cmd")) {
    $sub->(@ARGV);
@@ -82,4 +82,13 @@ sub cmd_down {
    my $new_vol = min(int 65536 * ($vol - 2) / 100, 65536);
    _notify('Decreased volume to ' .  sprintf "%d%%", 100 * ($new_vol / 65536));
    exec 'pacmd', 'set-sink-volume', $sink_id, $new_vol
+}
+
+sub cmd_help {
+   print <<HELP
+vol [help]             - this message
+     up   <percentage> - increase volume by percentage
+     down <percentage> - decrease volume by percentage
+     status            - prints selected sink, mute status, and volume
+HELP
 }
