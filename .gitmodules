@@ -133,3 +133,6 @@
 [submodule "vim/bundle/multiple-cursors"]
 	path = vim/bundle/multiple-cursors
 	url = git://github.com/terryma/vim-multiple-cursors
+[submodule "awesome/vicious"]
+	path = awesome/vicious
+	url = git://github.com/vicious-widgets/vicious
