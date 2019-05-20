@@ -136,3 +136,6 @@
 [submodule "awesome/vicious"]
 	path = awesome/vicious
 	url = git://github.com/vicious-widgets/vicious
+[submodule "awesome/sharetags"]
+	path = awesome/sharetags
+	url = git://github.com/frioux/sharetags
