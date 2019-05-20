@@ -6,6 +6,7 @@
 -- {{{ Grab environment
 local tonumber = tonumber
 local math = { ceil = math.ceil }
+local os = { date = os.date, difftime = os.difftime, time = os.time }
 local string = { match = string.match }
 
 local spawn = require"vicious.spawn"
@@ -16,6 +17,15 @@ local helpers = require"vicious.helpers"
 -- Weather: provides weather information for a requested station
 -- vicious.widgets.weather
 local weather_all = {}
+
+-- copied from http://lua-users.org/wiki/TimeZone
+local function get_timezone_offset()
+    local ts = os.time()
+    local utcdate   = os.date("!*t", ts)
+    local localdate = os.date("*t", ts)
+    localdate.isdst = false -- this is the trick
+    return os.difftime(os.time(localdate), os.time(utcdate))
+end
 
 
 -- {{{ Weather widget type
@@ -60,16 +70,18 @@ local function parse(stdout, stderr, exitreason, exitcode)
 
     local year, month, day, hour, min =
         string.match(stdout, "(%d%d%d%d).(%d%d).(%d%d) (%d%d)(%d%d) UTC")
-
-    local utctable = {
-        year = year,
-        month = month,
-        day = day,
-        hour = hour,
-        min = min,
-    }
-
-    _weather["{when}"] = os.time(utctable)
+    if year == nil then
+        _weather["{when}"] = "N/A"
+    else
+       local utctable = {
+           year = year,
+           month = month,
+           day = day,
+           hour = hour,
+           min = min,
+       }
+       _weather["{when}"] = os.time(utctable) + get_timezone_offset()
+    end
 
     -- Wind speed in km/h if MPH was available
     if _weather["{windmph}"] ~= "N/A" then
