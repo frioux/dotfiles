@@ -58,6 +58,19 @@ local function parse(stdout, stderr, exitreason, exitcode)
     _weather["{press}"]   = -- Pressure in hPa
        string.match(stdout, "Pressure[%s].+%((.+)[%s]hPa%)") or _weather["{press}"]
 
+    local year, month, day, hour, min =
+        string.match(stdout, "(%d%d%d%d).(%d%d).(%d%d) (%d%d)(%d%d) UTC")
+
+    local utctable = {
+        year = year,
+        month = month,
+        day = day,
+        hour = hour,
+        min = min,
+    }
+
+    _weather["{when}"] = os.time(utctable)
+
     -- Wind speed in km/h if MPH was available
     if _weather["{windmph}"] ~= "N/A" then
        _weather["{windmph}"] = tonumber(_weather["{windmph}"])
