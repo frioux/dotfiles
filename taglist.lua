@@ -1,8 +1,11 @@
+-- @module sharetags.taglist
 ---------------------------------------------------------------------------
 -- @author Julien Danjou &lt;julien@danjou.info&gt;
 -- @copyright 2008-2009 Julien Danjou
 -- @release v3.5.5
 ---------------------------------------------------------------------------
+
+local taglist = {}
 
 -- Grab environment we need
 local capi = { screen = screen,
@@ -24,8 +27,6 @@ local surface = require("gears.surface")
 -- awful.widget.taglist
 local taglist = { mt = {} }
 taglist.filter = {}
-
-module("sharetags.taglist")
 
 function taglist.taglist_label(t, args, screen)
     if not args then args = {} end
@@ -53,7 +54,7 @@ function taglist.taglist_label(t, args, screen)
     local icon
     local bg_resize = false
     local is_selected = false
-    if t.selected and tag.getscreen(t) == screen then
+    if t.selected and t.screen == screen then
         bg_color = bg_focus
         fg_color = fg_focus
     end
@@ -62,7 +63,7 @@ function taglist.taglist_label(t, args, screen)
             -- Check that the selected clients is tagged with 't'.
             local seltags = sel:tags()
             for _, v in ipairs(seltags) do
-                if v == t and tag.getscreen(t) == screen then
+                if v == t and t.screen == screen then
                     bg_image = taglist_squares_sel
                     bg_resize = taglist_squares_resize == "true"
                     is_selected = true
@@ -101,7 +102,7 @@ function taglist.taglist_label(t, args, screen)
     end
     if not tag.getproperty(t, "icon_only") then
         if fg_color then
-            text = text .. "<span color='"..util.color_strip_alpha(fg_color).."'>" ..
+            text = text .. "<span color='"..util.ensure_pango_color(fg_color).."'>" ..
                     (util.escape(t.name) or "") .. "</span>"
         else
             text = text .. (util.escape(t.name) or "")
@@ -109,10 +110,10 @@ function taglist.taglist_label(t, args, screen)
     end
     text = text .. "</span>"
     if not taglist_disable_icon then
-        if tag.geticon(t) and type(tag.geticon(t)) == "image" then
-            icon = tag.geticon(t)
-        elseif tag.geticon(t) then
-            icon = surface.load(tag.geticon(t))
+        if t.icon and type(t.icon) == "image" then
+            icon = t.icon
+        elseif t.icon then
+            icon = surface.load(t.icon)
         end
     end
 
@@ -181,7 +182,7 @@ end
 
 function set_signals(screen, u)
     local uc = function (c) return u(c.screen) end
-    local ut = function (t) return u(tag.getscreen(t)) end
+    local ut = function (t) return u(t.screen) end
     capi.client.connect_signal("focus", uc)
     capi.client.connect_signal("unfocus", uc)
     tag.attached_connect_signal(screen, "property::selected", ut)

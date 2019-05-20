@@ -1,4 +1,6 @@
+-- @module sharetags
 -- functions to share tags on multiple screens
+local sharetags = {}
 
 --{{{ Grab environment we need
 local capi = { screen = screen,
@@ -13,8 +15,6 @@ local awful = require("awful")
 --local naughty = require("naughty")
 --local inspect = require("inspect")
 --}}}
-
-module("sharetags")
 
 --[[
 function dump(data)
@@ -33,7 +33,7 @@ end
 -- @param names : list to label the tags
 -- @param layouts : list of layouts for the tags
 -- @return table of tag objects
-function create_tags(names, layouts)
+function sharetags.create_tags(names, layouts)
     local tags = {}
     local count = #names
     if capi.screen.count() >= #names then
@@ -44,7 +44,7 @@ function create_tags(names, layouts)
         tags[tagnumber] = tag.add(names[tagnumber], {})
         tag.setproperty(tags[tagnumber], "number", tagnumber)
         -- Add tags to screen one by one
-        tag.setscreen(tags[tagnumber], 1)
+        tags[tagnumber].screen = 1
 
         awful.layout.set(layouts[tagnumber], tags[tagnumber])
     end
@@ -52,16 +52,16 @@ function create_tags(names, layouts)
 end
 --}}}
 
---{{{ tag_move: move a tag to a screen
+--{{{ sharetags.tag_move: move a tag to a screen
 -- @param t : the tag object to move
 -- @param screen_target : the screen object to move to
-function tag_move(t, screen_target)
-
+function sharetags.tag_move(t, screen_target)
+    print("tag: " .. t .. " dest_screen: " .. screen_target)
     local ts = t or tag.selected()
 
     if not screen_target then return end
 
-    local current_screen = tag.getscreen(ts)
+    local current_screen = ts.screen
 
     if current_screen and screen_target ~= current_screen then
         -- switch for tag
@@ -112,10 +112,9 @@ end
 
 
 -- Open tag on screen
-function select_tag(t, target_screen)
-
+function sharetags.select_tag(t, target_screen)
     local prev_focus = capi.client.focus;
-    local tag_screen = tag.getscreen(t)
+    local tag_screen = t.screen
     local is_tag_select = t.selected;
     local is_tag_moved = (target_screen ~= tag_screen)
 
@@ -123,8 +122,8 @@ function select_tag(t, target_screen)
     --if t.selected and target_screen ~= tag_screen and #tag.selectedlist(tag_screen) == 1 then
     --    swap_screen(tag_screen, target_screen)
     --else
-        tag_move(t, target_screen)
-        tag.viewonly(t)
+        sharetags.tag_move(t, target_screen)
+        t:view_only()
     --end
 
 
@@ -139,9 +138,9 @@ function select_tag(t, target_screen)
 end
 
 -- Toggle tag on screen
-function toggle_tag(t, screen)
-    if (tag.getscreen(t) ~= screen) then
-        tag_move(t, screen)
+function sharetags.toggle_tag(t, screen)
+    if (t.screen ~= screen) then
+        sharetags.tag_move(t, screen)
         if not t.selected then
             tag.viewtoggle(t)
         end
@@ -152,7 +151,7 @@ end
 
 
 -- Swap all tags between two screens
-function swap_screen(screen1, screen2)
+function sharetags.swap_screen(screen1, screen2)
 
     local tags1 = tag.selectedlist(screen1)
     local tags2 = tag.selectedlist(screen2)
@@ -168,4 +167,4 @@ function swap_screen(screen1, screen2)
     end
 end
 
-
+return sharetags
