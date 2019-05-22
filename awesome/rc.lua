@@ -63,12 +63,25 @@ modkey = "Mod4"
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
     awful.layout.suit.tile,
-    awful.layout.suit.tile.left,
     awful.layout.suit.tile.bottom,
-    awful.layout.suit.tile.top,
     awful.layout.suit.max,
-    awful.layout.suit.max.fullscreen,
 }
+
+local parallel_layouts = {}
+parallel_layouts[awful.layout.suit.tile] = awful.layout.suit.tile.left
+parallel_layouts[awful.layout.suit.tile.left] = awful.layout.suit.tile
+
+parallel_layouts[awful.layout.suit.tile.bottom] = awful.layout.suit.tile.top
+parallel_layouts[awful.layout.suit.tile.top] = awful.layout.suit.tile.bottom
+
+parallel_layouts[awful.layout.suit.max] = awful.layout.suit.max.fullscreen
+parallel_layouts[awful.layout.suit.max.fullscreen] = awful.layout.suit.max
+
+local function swap_layout ()
+   local t = awful.screen.focused().selected_tag
+   local l = t.layout
+   awful.layout.set(parallel_layouts[l])
+end
 -- }}}
 
 -- {{{ Menu
@@ -467,6 +480,7 @@ globalkeys = gears.table.join(
               {description = "select next", group = "layout"}),
     awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(-1)                end,
               {description = "select previous", group = "layout"}),
+    awful.key({ modkey,           }, "z", swap_layout, {description = "toggle layout", group = "layout"}),
 
     awful.key({ modkey, "Control" }, "n",
               function ()
