@@ -25,6 +25,7 @@ if (my $sub = main->can("cmd_$cmd")) {
 
 sub _notify {
    my $text = shift;
+   return; # awesome has a persistent graphic
    system 'killall -q -TERM dzen2';
    system "echo '$text' | dzen2 -p 1 &"
 }
