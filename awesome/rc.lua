@@ -10,9 +10,6 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 local vicious = require("vicious")
 local hotkeys_popup = require("awful.hotkeys_popup").widget
--- Enable hotkeys help widget for VIM and other apps
--- when client with a matching name is opened:
-require("awful.hotkeys_popup.keys")
 
 local sharetags = require("sharetags")
 local taglist = require("sharetags.taglist")
