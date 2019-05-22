@@ -163,6 +163,9 @@ batwidget:buttons(awful.util.table.join(
 
 batwidget_t = awful.tooltip({ objects = { batwidget },})
 vicious.register(batwidget, vicious.widgets.bat, function (widget, args)
+  if args[1] == "+" then
+      args[1] = "☇"
+  end
   batwidget_t:set_text(
     "BAT0: " .. args[1] .. " (" .. args[2] .. ") " .. args[3] .. " left"
   )
