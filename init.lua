@@ -72,8 +72,8 @@ function sharetags.tag_move(t, screen_target)
         local mynumber = tag.getproperty(ts, "number")
 
         -- sort tags
-        local index = #tag.gettags(screen_target)+1
-        for i, screen_tag in pairs(tag.gettags(screen_target)) do
+        local index = #screen_target.tags+1
+        for i, screen_tag in pairs(screen_target.tags) do
             local number = tag.getproperty(screen_tag, "number")
             if (mynumber < number) then
                 index = i
@@ -82,10 +82,10 @@ function sharetags.tag_move(t, screen_target)
         end
 
         -- save curren_screen tags
-        local selected_tags = tag.selectedlist(current_screen)
+        local selected_tags = current_screen.selected_tags
 
         ts.screen = target_screen
-        tag.move(index, ts)
+        ts.index = index
 
         -- restore curren_screen tag
         tag.viewmore(selected_tags, current_screen)
@@ -123,7 +123,7 @@ function sharetags.select_tag(t, target_screen)
     local is_tag_moved = (target_screen ~= tag_screen)
 
 
-    if t.selected and target_screen ~= tag_screen and #tag.selectedlist(tag_screen) == 1 then
+    if t.selected and target_screen ~= tag_screen and #tag_screen.selected_tags == 1 then
         sharetags.swap_screen(tag_screen, target_screen)
     else
         sharetags.tag_move(t, target_screen)
@@ -156,8 +156,8 @@ end
 
 -- Swap all tags between two screens
 function sharetags.swap_screen(screen1, screen2)
-    local tags1 = tag.selectedlist(screen1)
-    local tags2 = tag.selectedlist(screen2)
+    local tags1 = screen1.seelcted_tags
+    local tags2 = screen2.selected_tags
 
     tag.viewnone(screen1)
     tag.viewnone(screen2)
