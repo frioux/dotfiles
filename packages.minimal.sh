@@ -1,15 +1,14 @@
 #!/bin/sh
 
+apt-get build-dep neomutt
+
 exec apt-get --no-install-recommends    \
                              install -y \
    aptitude                             \
    curl                                 \
    daemontools                          \
-   gettext                              \
    htop                                 \
    jq                                   \
-   liblmdb-dev                          \
-   libssl-dev                           \
    moreutils                            \
    mosh                                 \
    openssh-client                       \
@@ -21,4 +20,3 @@ exec apt-get --no-install-recommends    \
    unattended-upgrades                  \
    vim                                  \
    zsh
-
