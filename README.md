@@ -8,45 +8,70 @@ Usage:
 local sharetags = require("sharetags")
 
 -- Widget setup
-local sharetags_taglist = require("sharetags.taglist")
-tags = sharetags.create_tags(tags_names, tags_layout)
+local taglist = require("sharetags.taglist")
+tags = sharetags.create_tags(
+   { "1", "2", "3", "4", "5", "6", "7", "8", "9" },
+   {
+      awful.layout.layouts[1],
+      awful.layout.layouts[1],
+      awful.layout.layouts[1],
+      awful.layout.layouts[1],
+      awful.layout.layouts[1],
+      awful.layout.layouts[1],
+      awful.layout.layouts[1],
+      awful.layout.layouts[1],
+      awful.layout.layouts[1],
+   }
+)
 mytaglist = {}
-for s = 1, screen.count() do
-    -- Create a taglist widget
-    --mytaglist[s] = awful.widget.taglist(s, awful.widget.taglist.filter.all, buttons)
-    mytaglist[s] = sharetags_taglist(tags, s, awful.widget.taglist.filter.all, buttons)
+
+awful.screen.connect_for_each_screen(function(s)
+   s.mytaglist = taglist(tags, s, awful.widget.taglist.filter.all, taglist_buttons)
 end
-
-
 
 -- Keys setup
 
--- 1-9
-local keys = {"#10", "#11", "#12", "#13", "#14", "#15", "#16", "#17", "#18"}
-
-for i, key in ipairs(keys) do
-        globalkeys = awful.util.table.join(globalkeys,
-        awful.key({ modkey }, key,
+for i = 1, 9 do
+    globalkeys = gears.table.join(globalkeys,
+        -- View tag only.
+        awful.key({ modkey }, "#" .. i + 9,
                   function ()
-                      local screen = mouse.screen
-                      local tag = tags[i]
-                      sharetags.select_tag(tag, screen)
-
-                  end),
-        awful.key({ modkey, "Control" }, key,
+                        local screen = awful.screen.focused()
+                        local tag = tags[i]
+                        sharetags.select_tag(tag, screen)
+                  end,
+                  {description = "view tag #"..i, group = "tag"}),
+        -- Toggle tag display.
+        awful.key({ modkey, "Control" }, "#" .. i + 9,
                   function ()
-                      local screen = mouse.screen
+                      local screen = awful.screen.focused()
                       local tag = tags[i]
                       sharetags.toggle_tag(tag, screen)
-                  end),
-        awful.key({ modkey, "Shift" }, key,
+                  end,
+                  {description = "toggle tag #" .. i, group = "tag"}),
+        -- Move client to tag.
+        awful.key({ modkey, "Shift" }, "#" .. i + 9,
                   function ()
                       if client.focus then
                           local tag = tags[i]
-                          awful.client.movetotag(tag)
+                          if tag then
+                              client.focus:move_to_tag(tag)
+                          end
                      end
-                  end)
-        )
+                  end,
+                  {description = "move focused client to tag #"..i, group = "tag"}),
+        -- Toggle tag on focused client.
+        awful.key({ modkey, "Control", "Shift" }, "#" .. i + 9,
+                  function ()
+                      if client.focus then
+                          local tag = tags[i]
+                          if tag then
+                              client.focus:toggle_tag(tag)
+                          end
+                      end
+                  end,
+                  {description = "toggle focused client on tag #" .. i, group = "tag"})
+    )
 end
 ```
 

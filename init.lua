@@ -23,6 +23,11 @@ end
 ]]
 
 
+-- XXX Update README
+-- XXX Fix Swapping
+-- XXX Fix startup
+-- XXX Fix vim window sizing, somehow?
+
 --{{{ Private structures
 
 --}}}
@@ -56,7 +61,6 @@ end
 -- @param t : the tag object to move
 -- @param screen_target : the screen object to move to
 function sharetags.tag_move(t, screen_target)
-    print("tag: " .. t .. " dest_screen: " .. screen_target)
     local ts = t or tag.selected()
 
     if not screen_target then return end
@@ -80,7 +84,7 @@ function sharetags.tag_move(t, screen_target)
         -- save curren_screen tags
         local selected_tags = tag.selectedlist(current_screen)
 
-        tag.setscreen(ts, screen_target)
+        ts.screen = target_screen
         tag.move(index, ts)
 
         -- restore curren_screen tag
@@ -119,12 +123,12 @@ function sharetags.select_tag(t, target_screen)
     local is_tag_moved = (target_screen ~= tag_screen)
 
 
-    --if t.selected and target_screen ~= tag_screen and #tag.selectedlist(tag_screen) == 1 then
-    --    swap_screen(tag_screen, target_screen)
-    --else
+    if t.selected and target_screen ~= tag_screen and #tag.selectedlist(tag_screen) == 1 then
+        sharetags.swap_screen(tag_screen, target_screen)
+    else
         sharetags.tag_move(t, target_screen)
         t:view_only()
-    --end
+    end
 
 
     -- Если было перемещение тега то фокус на окне теряется.
@@ -152,18 +156,17 @@ end
 
 -- Swap all tags between two screens
 function sharetags.swap_screen(screen1, screen2)
-
     local tags1 = tag.selectedlist(screen1)
     local tags2 = tag.selectedlist(screen2)
 
-    tag. viewnone(screen1);
-    tag. viewnone(screen2);
+    tag.viewnone(screen1)
+    tag.viewnone(screen2)
 
     for i, t in ipairs(tags1) do
-        toggle_tag(t, screen2)
+        sharetags.toggle_tag(t, screen2)
     end
     for i, t in ipairs(tags2) do
-        toggle_tag(t, screen1)
+        sharetags.toggle_tag(t, screen1)
     end
 end
 
