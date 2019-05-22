@@ -14,7 +14,6 @@ eval `gnome-keyring-daemon`
 eval `ssh-agent`
 test -f $HOME/code/unproductive/bin/unproductive &&
    $HOME/code/unproductive/bin/unproductive >> $HOME/activity-log.txt &
-taffybar &
 xmodmap "$HOME/.xmodmap"
 keepassxc &
 sv-run-offlineimap &
@@ -23,4 +22,4 @@ armstrong &
 postqueue-checker &
 flameshot &
 
-exec xmonad
+exec awesome
