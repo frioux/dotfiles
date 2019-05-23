@@ -341,6 +341,9 @@ tags = sharetags.create_tags(
 mytaglist = {}
 
 awful.screen.connect_for_each_screen(function(s)
+    tags[s.index].screen = s
+    tags[s.index]:view_only()
+
     -- Create an imagebox widget which will contain an icon indicating which layout we're using.
     -- We need one layoutbox per screen.
     s.mylayoutbox = awful.widget.layoutbox(s)
