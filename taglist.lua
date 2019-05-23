@@ -121,16 +121,16 @@ function taglist.taglist_label(t, args, screen)
 end
 
 local function taglist_update(s, w, buttons, filter, data, style, update_function, tags)
-    --[[local tags = {}
-    for k, t in ipairs(tag.gettags(s)) do
-        if not tag.getproperty(t, "hide") and filter(t) then
-            table.insert(tags, t)
+    local itags = {}
+    for k, t in ipairs(tags) do
+        if not t.hide and filter(t) then
+            table.insert(itags, t)
         end
-    end ]]
+    end
 
     local function label(c) return taglist.taglist_label(c, style, s) end
 
-    update_function(w, buttons, label, data, tags)
+    update_function(w, buttons, label, data, itags)
 end
 
 --- Get the tag object the given widget appears on.
