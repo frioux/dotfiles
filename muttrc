@@ -85,5 +85,6 @@ push <show-version>
 
 source ~/.mutt-overrides
 source ~/.mutt/$MAILPROFILE
+source ~/Dropbox/private-dotfiles/mutt/$MAILPROFILE
 
 # vim: ft=muttrc
