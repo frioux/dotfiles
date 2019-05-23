@@ -26,10 +26,6 @@ end
 -- XXX Fix Swapping
 -- XXX Fix vim window sizing, somehow?
 
---{{{ Private structures
-
---}}}
-
 --{{{ Functions
 
 --{{{ create_tags: create a table of tags and bind them to screens
