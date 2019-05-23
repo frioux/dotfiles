@@ -23,7 +23,6 @@ end
 ]]
 
 
--- XXX Update README
 -- XXX Fix Swapping
 -- XXX Fix startup
 -- XXX Fix vim window sizing, somehow?
