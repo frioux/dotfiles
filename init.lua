@@ -68,12 +68,12 @@ function sharetags.tag_move(t, screen_target)
 
     if current_screen and screen_target ~= current_screen then
         -- switch for tag
-        local mynumber = tag.getproperty(ts, "number")
+        local mynumber = ts.number
 
         -- sort tags
         local index = #screen_target.tags+1
         for i, screen_tag in pairs(screen_target.tags) do
-            local number = tag.getproperty(screen_tag, "number")
+            local number = screen_tag.number
             if (mynumber < number) then
                 index = i
                 break
