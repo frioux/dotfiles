@@ -24,7 +24,6 @@ end
 
 
 -- XXX Fix Swapping
--- XXX Fix startup
 -- XXX Fix vim window sizing, somehow?
 
 --{{{ Private structures
@@ -46,12 +45,17 @@ function sharetags.create_tags(names, layouts)
 
     for tagnumber = 1, count do
         tags[tagnumber] = tag.add(names[tagnumber], {})
-        tag.setproperty(tags[tagnumber], "number", tagnumber)
-        -- Add tags to screen one by one
-        tags[tagnumber].screen = 1
+        tags[tagnumber].number = tagnumber
 
         awful.layout.set(layouts[tagnumber], tags[tagnumber])
-    end
+        -- Add tags to screen one by one
+        for s in capi.screen do
+           if s.index == tagnumber then
+              tags[tagnumber].screen = s
+              tags[tagnumber]:view_only()
+           end
+        end
+     end
     return tags
 end
 --}}}
