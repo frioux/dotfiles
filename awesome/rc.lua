@@ -13,6 +13,7 @@ local hotkeys_popup = require("awful.hotkeys_popup").widget
 
 local sharetags = require("sharetags")
 local taglist = require("sharetags.taglist")
+local os = require("os")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -39,6 +40,8 @@ do
 end
 -- }}}
 
+local DEBUGGING = os.getenv("DISPLAY") ~= ":0"
+
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
@@ -53,12 +56,10 @@ terminal = "x-terminal-emulator"
 editor = os.getenv("EDITOR") or "editor"
 editor_cmd = terminal .. " -e " .. editor
 
--- Default modkey.
--- Usually, Mod4 is the key with a logo between Control and Alt.
--- If you do not like this or do not have such a key,
--- I suggest you to remap Mod4 to another key using xmodmap or other tools.
--- However, you can use another modifier like Mod1, but it may interact with others.
 modkey = "Mod4"
+if DEBUGGING then
+   modkey = "Mod1"
+end
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
@@ -359,6 +360,28 @@ awful.screen.connect_for_each_screen(function(s)
     s.mywibox = awful.wibar({ position = "top", screen = s, height = 32 })
 
     -- Add widgets to the wibox
+    local right = {
+        layout = wibox.layout.fixed.horizontal(right),
+        wibox.widget.systray(),
+        tempwidget,
+        batwidget,
+        memorywidget,
+        cpuwidget,
+        smweatherwidget,
+        osweatherwidget,
+        volumecfg.widget,
+        mytextclock,
+        s.mylayoutbox,
+    }
+    if DEBUGGING then
+        table.remove(right, 2) -- temp
+        table.remove(right, 2) -- bat
+        table.remove(right, 2) -- memory
+        table.remove(right, 2) -- cpu
+        table.remove(right, 2) -- smweather
+        table.remove(right, 2) -- osweather
+        table.remove(right, 2) -- vol
+    end
     s.mywibox:setup {
         layout = wibox.layout.align.horizontal,
         { -- Left widgets
@@ -367,19 +390,7 @@ awful.screen.connect_for_each_screen(function(s)
             s.mytaglist,
         },
         nil,
-        { -- Right widgets
-            layout = wibox.layout.fixed.horizontal(right),
-            wibox.widget.systray(),
-            tempwidget,
-            batwidget,
-            memorywidget,
-            cpuwidget,
-            smweatherwidget,
-            osweatherwidget,
-            volumecfg.widget,
-            mytextclock,
-            s.mylayoutbox,
-        },
+        right,
     }
 end)
 -- }}}
