@@ -674,8 +674,9 @@ tag.connect_signal("request::screen", function(t)
 end)
 
 screen.connect_signal("arrange", function(s)
+    local layout_name = awful.layout.get(s).name
     for _, c in pairs(s.clients) do
-        if #s.tiled_clients == 1 and c.floating == false then
+        if (#s.tiled_clients == 1 and c.floating == false) or layout_name == "max" or layout_name == "fullscreen" then
             c.border_width = 0
         elseif #s.tiled_clients > 1 then
             c.border_width = beautiful.border_width
