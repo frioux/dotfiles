@@ -15,6 +15,7 @@ local sharetags = require("sharetags")
 local taglist = require("sharetags.taglist")
 local os = require("os")
 
+local capi = { screen = screen }
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -662,6 +663,15 @@ function awful.ewmh.activate(c)
     end
 end
 client.connect_signal("request::activate", awful.ewmh.activate)
+
+tag.connect_signal("request::screen", function(t)
+    for s in capi.screen do
+        if s ~= t.screen then
+            t.screen = s
+            return
+        end
+    end
+end)
 
 screen.connect_signal("arrange", function(s)
     for _, c in pairs(s.clients) do
