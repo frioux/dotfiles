@@ -44,13 +44,6 @@ function sharetags.create_tags(names, layouts)
         tags[tagnumber].number = tagnumber
 
         awful.layout.set(layouts[tagnumber], tags[tagnumber])
-        -- Add tags to screen one by one
-        for s in capi.screen do
-           if s.index == tagnumber then
-              tags[tagnumber].screen = s
-              tags[tagnumber]:view_only()
-           end
-        end
      end
     return tags
 end
