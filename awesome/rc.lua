@@ -456,14 +456,6 @@ globalkeys = gears.table.join(
         end,
         {description = "go back", group = "client"}),
 
-    awful.key({ modkey, "Shift"   }, "n",
-    function()
-      local tag = awful.tag.selected()
-      for i=1, #tag:clients() do
-        tag:clients()[i].minimized=false
-      end
-  end),
-
     -- Standard program
     awful.key({ modkey,           }, "Return", function () awful.spawn(terminal) end,
               {description = "open a terminal", group = "launcher"}),
@@ -682,6 +674,10 @@ screen.connect_signal("arrange", function(s)
             c.border_width = beautiful.border_width
         end
     end
+end)
+
+client.connect_signal("property::minimized", function(c)
+    c.minimized = false
 end)
 -- }}}
 
