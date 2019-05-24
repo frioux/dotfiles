@@ -6,7 +6,8 @@ systemctl --user daemon-reload
 systemctl --user start poller
 systemctl --user start sound
 
-nm-applet &
+# this thing prints a ton of stupid GTK warnings
+nm-applet >/dev/null 2>&1 &
 dropbox start &
 xautolock -time 5 -locker lock-now &
 xset dpms 120
