@@ -15,6 +15,8 @@ local sharetags = require("sharetags")
 local taglist = require("sharetags.taglist")
 local os = require("os")
 
+local widgets = require("widgets")
+
 local capi = { screen = screen }
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -165,98 +167,13 @@ volumecfg.widget:buttons(awful.util.table.join(
 volumecfg.update()
 -- }}}
 
--- {{{ battery
-batwidget = wibox.widget.progressbar()
-batwidget:set_background_color("#494B4F")
-batwidget:set_color("#CC0000")
-batwidget:buttons(awful.util.table.join(
-  awful.button({}, 1, function () awful.util.spawn("gnome-power-statistics") end)
-))
+local batwidget = widgets.battery()
+local mytextclock = widgets.clock()
+local cpuwidget = widgets.cpu()
+local tempwidget = widgets.temperature()
+local memorywidget = widgets.memory()
 
-batwidget_t = awful.tooltip({ objects = { batwidget },})
-vicious.register(batwidget, vicious.widgets.bat, function (widget, args)
-  if args[1] == "+" then
-      args[1] = "☇"
-  end
-  batwidget_t:set_text(
-    "BAT0: " .. args[1] .. " (" .. args[2] .. ") " .. args[3] .. " left"
-  )
-  return args[2]
-end, 13, "BAT0")
-
-batwidget = wibox.container.rotate(batwidget, "east")
-batwidget = wibox.container.constraint(batwidget, "max", 16)
-
---- }}}
-
--- {{{ clock
-mytextclock = wibox.widget.textclock()
-local month_calendar = awful.widget.calendar_popup.month()
-month_calendar:attach( mytextclock, "tr" )
---- }}}
-
--- {{{ cpu
-cpuwidget = wibox.widget.graph({ align = "right" })
-cpuwidget:set_width(50)
-cpuwidget:set_background_color("#000000")
-cpuwidget:set_color("#4E9A06")
-cpuwidget:buttons(awful.util.table.join(
-  awful.button({}, 1, function () awful.util.spawn("terminator -e glances") end),
-  awful.button({}, 3, function () awful.util.spawn("terminator -e top") end),
-  awful.button({}, 2, function () awful.util.spawn("gnome-system-monitor") end)
-))
-cpuwidget_t = awful.tooltip({ objects = { cpuwidget },})
-
-vicious.register(cpuwidget, vicious.widgets.cpu,
-  function (widget, args)
-    local str = "Total " .. string.format("%03i", args[1])
-    for i = 2, #args do
-      str = str .. "\ncore " .. i - 1 .. " " .. string.format("%03i", args[i])
-    end
-    cpuwidget_t:set_text(str)
-    return args[1]
-end, 1)
--- }}}
-
--- {{{ temp
-tempwidget = wibox.widget.graph({ align = "right" })
-tempwidget:set_width(50)
-tempwidget:set_background_color("#000000")
-tempwidget:set_color("#C4A000")
-
-tempwidget_t = awful.tooltip({ objects = { tempwidget },})
-vicious.register(tempwidget, vicious.widgets.thermal, function (widget, args)
-  tempwidget_t:set_text("Temperature: " .. args[1] .. "°C")
-  return args[1]
-end, 1, 'thermal_zone0')
-tempwidget:buttons(awful.util.table.join(
-  awful.button({ }, 1, function () awful.util.spawn("gnome-power-statistics") end),
-  awful.button({ }, 3, function () awful.util.spawn("gksudo 'terminator -e powertop'") end)
-))
--- }}}
-
--- {{{ memory
-memorywidget = wibox.widget.graph({ align = "right" })
-memorywidget:set_width(50)
-memorywidget:set_background_color("#000000")
-memorywidget:set_color("#3465A4")
-memorywidget:buttons(awful.util.table.join(
-  awful.button({}, 1, function () awful.util.spawn("terminator -e glances") end),
-  awful.button({}, 3, function () awful.util.spawn("terminator -e top") end),
-  awful.button({}, 2, function () awful.util.spawn("gnome-system-monitor") end)
-))
-
-memorywidget_t = awful.tooltip({ objects = { memorywidget },})
-vicious.register(memorywidget, vicious.widgets.mem,
-  function (widget, args)
-    memorywidget_t:set_text(" RAM: " .. args[2] .. "MB / " .. args[3] .. "MB ")
-    return args[1]
-end, 1)
--- }}}
-
--- {{{ Weather
---
-function margin(widget, margins)
+local function margin(widget, margins)
   local margin = wibox.container.margin()
   if margins.right then
     margin:set_right(margins.right)
@@ -268,39 +185,13 @@ function margin(widget, margins)
   return wibox.container.background(margin)
 end
 
-local weather_widget = function(
-  code,
-  url,
-  name
-)
-  local actual_widget = wibox.widget.textbox()
-  local actual_tooltip = awful.tooltip({ objects = { actual_widget } });
-
-  actual_widget:buttons(awful.util.table.join(
-    awful.button({}, 1, function () awful.spawn("firefox '" .. url .. os.time() .. "'") end)
-  ))
-
-  vicious.register(actual_widget, vicious.widgets.weather,
-    function (widget, args)
-      actual_tooltip:set_text(
-        "City: " .. args["{city}"] ..
-          "\nWind: " .. args["{windmph}"] .. "mph " ..
-          "\nSky: " .. args["{sky}"] ..
-          "\nHumidity: " .. args["{humid}"] ..
-          "\nMeasured at: " .. os.date("%F %T", args["{when}"]))
-      return name .. " " .. args["{tempf}"] .. "°F"
-  end, 60 * 10, code)
-
-  return actual_widget
-end
-
-osweatherwidget = weather_widget(
+local osweatherwidget = widgets.weather(
   "KBIX", "https://darksky.net/30.4113,-88.8279", "OS"
 )
 
 osweatherwidget = margin(osweatherwidget, { right = 5 })
 
-smweatherwidget = weather_widget(
+local smweatherwidget = widgets.weather(
   "KSMO", "https://darksky.net/34.0196,-118.487", "Santa Monica"
 )
 
