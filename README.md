@@ -26,7 +26,10 @@ tags = sharetags.create_tags(
 mytaglist = {}
 
 awful.screen.connect_for_each_screen(function(s)
-   s.mytaglist = taglist(tags, s, awful.widget.taglist.filter.all, taglist_buttons)
+    tags[s.index].screen = s
+    tags[s.index]:view_only()
+
+    s.mytaglist = taglist(tags, s, awful.widget.taglist.filter.all, taglist_buttons)
 end
 
 -- Keys setup
@@ -74,5 +77,3 @@ for i = 1, 9 do
     )
 end
 ```
-
-  
