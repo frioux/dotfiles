@@ -5,28 +5,41 @@ local wibox = require("wibox")
 local widgets = {}
 
 function widgets.battery()
-   local batwidget = wibox.widget.progressbar()
-   batwidget:set_background_color("#494B4F")
-   batwidget:set_color("#CC0000")
-   batwidget:buttons(awful.util.table.join(
+   local chart = wibox.widget.progressbar()
+   chart:set_background_color("#494B4F")
+   chart:set_color("#CC0000")
+
+   local rendered_chart = chart
+   rendered_chart = wibox.container.rotate(rendered_chart, "east")
+   rendered_chart = wibox.container.constraint(rendered_chart, "exact", 16)
+
+
+   local text = wibox.widget.textbox()
+
+   local composite = wibox.widget({
+      rendered_chart,
+      text,
+      layout = wibox.layout.fixed.horizontal,
+      forced_width = 70,
+      spacing = 2,
+   })
+   composite:buttons(awful.util.table.join(
      awful.button({}, 1, function () awful.util.spawn("gnome-power-statistics") end)
    ))
+   local tip = awful.tooltip({ objects = { composite },})
 
-   local batwidget_t = awful.tooltip({ objects = { batwidget },})
-   vicious.register(batwidget, vicious.widgets.bat, function (widget, args)
+   vicious.register(chart, vicious.widgets.bat, function (widget, args)
      if args[1] == "+" then
          args[1] = "☇"
      end
-     batwidget_t:set_text(
+     tip:set_text(
        "BAT0: " .. args[1] .. " (" .. args[2] .. ") " .. args[3] .. " left"
      )
+     text:set_text(args[2] .. "%")
      return args[2]
    end, 13, "BAT0")
 
-   batwidget = wibox.container.rotate(batwidget, "east")
-   batwidget = wibox.container.constraint(batwidget, "max", 16)
-
-   return batwidget
+   return composite
 end
 
 function widgets.clock()
