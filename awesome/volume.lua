@@ -5,15 +5,27 @@ local volume = {}
 
 function volume.new()
    local volumecfg = {}
-   volumecfg._widget = wibox.widget.progressbar()
-   volumecfg._widget:set_max_value(100)
-   volumecfg._widget:set_color('#FFFFFF')
+   local chart = wibox.widget.progressbar()
+   chart:set_max_value(100)
+   chart:set_color('#FFFFFF')
 
-   volumecfg.widget = volumecfg._widget
-   volumecfg.widget = wibox.container.rotate(volumecfg.widget, "east")
-   volumecfg.widget = wibox.container.constraint(volumecfg.widget, "max", 16)
+   local rendered_chart = chart
+   rendered_chart = wibox.container.rotate(rendered_chart, "east")
+   rendered_chart = wibox.container.constraint(rendered_chart, "max", 16)
 
-   local volumecfg_t = awful.tooltip({ objects = { volumecfg.widget.widget },})
+   local text = wibox.widget.textbox()
+
+   local composite = wibox.widget({
+      rendered_chart,
+      text,
+      layout = wibox.layout.fixed.horizontal,
+      forced_width = 70,
+      spacing = 2,
+   })
+
+   volumecfg.widget = composite
+
+   local tip = awful.tooltip({ objects = { volumecfg.widget.widget },})
 
    volumecfg.mixercommand = function (command)
      local fd = io.popen("vol " .. command)
@@ -22,14 +34,15 @@ function volume.new()
 
      local volume = string.match(status, "volume: (%d+)") or 0
      volume = string.format("% 3d", volume)
+     text:set_text(volume)
      status = string.match(status, "muted: (%d)") or ''
-     volumecfg._widget:set_value(tonumber(volume))
+     chart:set_value(tonumber(volume))
      if status == "0" then
-       volumecfg._widget:set_color('#FFFFFF')
-       volumecfg_t:set_text("Volume: " .. volume .. '%')
+       chart:set_color('#FFFFFF')
+       tip:set_text("Volume: " .. volume .. '%')
      else
-       volumecfg._widget:set_color('#FF0000')
-       volumecfg_t:set_text("Volume: " .. volume .. '%, muted')
+       chart:set_color('#FF0000')
+       tip:set_text("Volume: " .. volume .. '%, muted')
      end
    end
 

@@ -116,7 +116,6 @@ mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
 -- }}}
 
 -- {{{ Wibar
--- Create a textclock widget
 
 local volumecfg = vol.new()
 local batwidget = widgets.battery()
