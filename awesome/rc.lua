@@ -138,7 +138,7 @@ local function margin(widget, margins)
 end
 
 local osweatherwidget = widgets.weather(
-  "KBIX", "https://darksky.net/30.4113,-88.8279", "OS"
+  "KGPT", "https://darksky.net/30.4113,-88.8279", "OS"
 )
 
 osweatherwidget = margin(osweatherwidget, { right = 5 })
