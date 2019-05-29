@@ -26,12 +26,8 @@ setopt APPEND_HISTORY         # Don't overwrite, append!
 setopt EXTENDED_HISTORY       # Save the time and how long a command ran
 setopt HIST_EXPIRE_DUPS_FIRST
 setopt HIST_FIND_NO_DUPS
-setopt HIST_IGNORE_ALL_DUPS   # Even if there are commands inbetween commands that are the same, still only save the last one
-setopt HIST_IGNORE_DUPS       # If I type cd and then cd again, only save the last one
 setopt HIST_IGNORE_SPACE      # If a line starts with a space, don't save it.
-setopt HIST_NO_STORE
 setopt HIST_REDUCE_BLANKS     # Pretty    Obvious.  Right?
-setopt HIST_SAVE_NO_DUPS
 setopt HIST_VERIFY            # When using a hist thing, make a newline show the change before executing it.
 setopt SHARE_HISTORY          # Killer: share history between multiple shells
 
