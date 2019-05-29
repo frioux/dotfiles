@@ -72,6 +72,7 @@
     scrollback_lines = 0
     scrollbar_position = hidden
     show_titlebar = False
+    urgent_bell = True
     use_system_font = False
   [[outside]]
     background_color = "#ffffdd"
