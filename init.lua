@@ -147,19 +147,21 @@ end
 
 
 -- Swap all tags between two screens
-function sharetags.swap_screen(screen1, screen2)
-    local tags1 = screen1.seelcted_tags
-    local tags2 = screen2.selected_tags
-
-    tag.viewnone(screen1)
-    tag.viewnone(screen2)
-
-    for i, t in ipairs(tags1) do
-        sharetags.toggle_tag(t, screen2)
+function sharetags.swap_screen(s1, s2)
+    if #s1.selected_tags ~= 1 or #s2.selected_tags ~= 1 then
+        print("can't swap multiple tags yet")
     end
-    for i, t in ipairs(tags2) do
-        sharetags.toggle_tag(t, screen1)
-    end
+
+    local t1 = s1.selected_tag
+    local t2 = s2.selected_tag
+
+    -- hide both tags in scratch space
+    t1:swap(s1.scratch)
+    t2:swap(s2.scratch)
+
+    -- bring tabs back but to alternate screends
+    t2:swap(s1.scratch)
+    t1:swap(s2.scratch)
 end
 
 return sharetags
