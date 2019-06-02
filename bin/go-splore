@@ -1,0 +1,75 @@
+#!/bin/sh
+
+if [ -z "$1" ] || [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
+base=$(basename $0)
+   cat <<USAGE
+usage:
+   $base <pkg> [count]
+
+Like so:
+
+   $base bytes 5
+
+Downloads and vendors up to [count] users of <pkg>.  count defaults to 15.
+USAGE
+   exit
+fi
+
+pkg=$1
+shift
+
+count=${1:-15}
+
+dir=$(basename $pkg)-$count
+mkdir ~/code/$dir
+cd ~/code/$dir
+go mod init github.com/frioux/$dir
+
+exec >main.go
+
+cat <<HEAD
+package main
+
+import (
+   "fmt"
+
+HEAD
+
+curl -s "https://godoc.org/$pkg?importers" |
+   grep -F '<tr><td><a href="' |
+   perl -pe 's{.*href="/([^"]+)".*}{$1}' |
+   grep -v internal |
+   head -$count |
+   perl -pe 's/(.*)/\t_ "$1"/'
+
+cat <<TAIL
+)
+
+func main() { fmt.Println("hello") }
+TAIL
+
+exec >/dev/tty
+
+while true; do
+   out=$(go mod vendor 2>&1)
+   finished=$?
+
+   echo "$out"
+
+   if [ $finished -ne 0 ]; then
+      # go: github.com/dominikh/go-tools@v0.0.0-20190602125119-5a4a2f4a438d: parsing go.mod: unexpected module path "honnef.co/go/tools"
+      #     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      busted=$(echo "$out" | perl -pe "m/^go: ([^@]+)@[^:]+: .*/; \$_ = qq(\$1\n)")
+      if [ -z "$busted" ]; then
+         echo "Couldn't figure out what was wrong, giving up"
+         exit 2
+      fi
+      for pkg in $busted; do
+         echo "removing $pkg"
+         perl -pe'm(\Q'"$pkg"'\E) && undef $_' <main.go | sponge main.go
+      done
+      continue
+   else
+      break
+   fi
+done

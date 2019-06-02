@@ -280,6 +280,14 @@ Downloads the specified mainline kernel, built by ubuntu.
 
 Shortcut for git-grep.
 
+### `go-splore`
+
+```bash
+$ go-splore golang.org/x/tools/go/ast/astutil
+```
+
+Downloads a few packages that import a given package.
+
 ### `hgrep`
 
 `grep` for csv, without messing up the header line.
