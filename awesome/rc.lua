@@ -182,7 +182,7 @@ tags = sharetags.create_tags(
    {
       awful.layout.layouts[1],
       awful.layout.layouts[1],
-      awful.layout.layouts[1],
+      awful.layout.suit.max,
       awful.layout.layouts[1],
       awful.layout.layouts[1],
       awful.layout.layouts[1],
