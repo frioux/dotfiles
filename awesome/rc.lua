@@ -194,8 +194,14 @@ tags = sharetags.create_tags(
 mytaglist = {}
 
 awful.screen.connect_for_each_screen(function(s)
-    tags[s.index].screen = s
-    tags[s.index]:view_only()
+    for i = 1, #tags do
+         if not tags[i].selected then
+             tags[i].screen = s
+             tags[i]:view_only()
+             break
+         end
+    end
+
 
     s.scratch = awful.tag.add('scratch-' .. s.index, {})
 
