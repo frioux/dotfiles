@@ -15,6 +15,8 @@ local sharetags = require("sharetags")
 local taglist = require("sharetags.taglist")
 local os = require("os")
 
+awful.tag.history.restore = function() end
+
 local vol = require("volume")
 
 local widgets = require("widgets")
