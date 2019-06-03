@@ -155,13 +155,19 @@ smweatherwidget = margin(smweatherwidget, { left = 5, right = 5 })
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
-                    awful.button({ }, 1, function(t) t:view_only() end),
+                    awful.button({ }, 1, function(t)
+                        local screen = awful.screen.focused()
+                        sharetags.select_tag(t, screen)
+                    end),
                     awful.button({ modkey }, 1, function(t)
                                               if client.focus then
                                                   client.focus:move_to_tag(t)
                                               end
                                           end),
-                    awful.button({ }, 3, awful.tag.viewtoggle),
+                    awful.button({ }, 3, function(t)
+                        local screen = awful.screen.focused()
+                        sharetags.toggle_tag(t, screen)
+                    end),
                     awful.button({ modkey }, 3, function(t)
                                               if client.focus then
                                                   client.focus:toggle_tag(t)
