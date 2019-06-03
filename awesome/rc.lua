@@ -496,6 +496,7 @@ end
 client.connect_signal("request::activate", awful.ewmh.activate)
 
 tag.connect_signal("request::screen", function(t)
+    t.selected = false
     for s in capi.screen do
         if s ~= t.screen then
             t.screen = s
