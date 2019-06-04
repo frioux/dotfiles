@@ -533,61 +533,6 @@ screen.connect_signal("arrange", function(s)
     end
 end)
 
-local function log(...)
- local arg = {...}
-
- for i = 1, select('#', ...) do
-   if not arg[i] then
-     arg[i] = "<nil>"
-   else
-     arg[i] = tostring(arg[i])
-   end
- end
-
- print(os.date(), table.unpack(arg))
-end
-
-awesome.connect_signal("screen::change", function (output, connection_state)
-   log("Screen ", output, " changed to ", connection_state)
-end)
-
-screen.connect_signal("tag::history::update", function(s)
-   for i, t in ipairs(s.selected_tags) do
-      log("screen ", s.index, " has tag ", t.name)
-   end
-end)
-
-tag.connect_signal("request::screen", function(t)
-   log("tag ", t.name, " request::screen")
-end)
-
-tag.connect_signal("property::selected", function(t, ...)
-   log("tag ", t.name, " property::selected is", t.selected, "at", t.screen.index)
-end)
-
-tag.connect_signal("tagged", function(t, c)
-   log("client ", c.name, "(", c.window, ") tagged with ", t.name)
-end)
-
-tag.connect_signal("untagged", function(t, c)
-   log("client ", c.name, "(", c.window, ") untagged from ", t.name)
-end)
-
-client.connect_signal("request::activate", function(c, ctx, hints)
-   log("client ", c.name, "(", c.window, ") requested ", ctx)
-end)
-
-client.connect_signal("request::tag", function(c, t, hints)
-   local reason = "<unset>"
-   if hints ~= nil then
-      reason = hints.reson
-   end
-   if reason == nil then
-      reason = "<nil>"
-   end
-   log("client ", c.name, "(", c.window, ") requested tag (reason ", reason, ")" )
-end)
-
 client.connect_signal("property::minimized", function(c)
     c.minimized = false
 end)
