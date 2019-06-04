@@ -20,7 +20,7 @@ function widgets.battery()
       rendered_chart,
       text,
       layout = wibox.layout.fixed.horizontal,
-      forced_width = 70,
+      forced_width = 75,
       spacing = 2,
    })
    composite:buttons(awful.util.table.join(
