@@ -59,6 +59,9 @@ function widgets.clock(screen)
                              end
                              self._calendar_clicked_on = self.visible
                        end),
+       awful.button({ }, 3, function ()
+           awful.util.spawn("firefox https://calendar.google.com/calendar/b/0/r/week")
+       end),
        awful.button({ }, 4, function () self:call_calendar(-1) end),
        awful.button({ }, 5, function () self:call_calendar( 1) end)
    ))
