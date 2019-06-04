@@ -1,6 +1,7 @@
 local awful = require("awful")
 local vicious = require("vicious")
 local wibox = require("wibox")
+local gears = require("gears")
 
 local widgets = {}
 
@@ -43,11 +44,39 @@ function widgets.battery()
 end
 
 function widgets.clock(screen)
-   local clock = wibox.widget.textclock()
-   local cal = awful.widget.calendar_popup.month({ screen = screen })
-   cal:attach( clock, "tr" )
+   local widget = wibox.widget.textclock()
+   local self = awful.widget.calendar_popup.month({ screen = screen })
 
-   return clock
+   -- inlined from calendar_popup:attach
+   local position = "tr"
+   local args = args or {}
+   if args.on_hover == nil then args.on_hover=true end
+   widget:buttons(gears.table.join(
+       awful.button({ }, 1, function ()
+                             if not self.visible or self._calendar_clicked_on then
+                                 self:call_calendar(0, position)
+                                 self.visible = not self.visible
+                             end
+                             self._calendar_clicked_on = self.visible
+                       end),
+       awful.button({ }, 4, function () self:call_calendar(-1) end),
+       awful.button({ }, 5, function () self:call_calendar( 1) end)
+   ))
+   if args.on_hover then
+       widget:connect_signal("mouse::enter", function ()
+           if not self._calendar_clicked_on then
+               self:call_calendar(0, position)
+               self.visible = true
+           end
+       end)
+       widget:connect_signal("mouse::leave", function ()
+           if not self._calendar_clicked_on then
+               self.visible = false
+           end
+       end)
+   end
+
+   return widget
 end
 
 function widgets.cpu()
