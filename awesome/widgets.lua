@@ -42,9 +42,9 @@ function widgets.battery()
    return composite
 end
 
-function widgets.clock()
+function widgets.clock(screen)
    local clock = wibox.widget.textclock()
-   local cal = awful.widget.calendar_popup.month()
+   local cal = awful.widget.calendar_popup.month({ screen = screen })
    cal:attach( clock, "tr" )
 
    return clock

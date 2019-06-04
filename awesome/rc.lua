@@ -122,7 +122,6 @@ mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
 
 local volumecfg = vol.new()
 local batwidget = widgets.battery()
-local mytextclock = widgets.clock()
 local cpuwidget = widgets.cpu()
 local tempwidget = widgets.temperature()
 local memorywidget = widgets.memory()
@@ -222,6 +221,8 @@ awful.screen.connect_for_each_screen(function(s)
 
     -- Create the wibox
     s.mywibox = awful.wibar({ position = "top", screen = s, height = 32 })
+
+   local mytextclock = widgets.clock(s)
 
     -- Add widgets to the wibox
     local right = {
