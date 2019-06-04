@@ -67,7 +67,7 @@ function sharetags.tag_move(t, screen_target)
         local index = #screen_target.tags+1
         for i, screen_tag in pairs(screen_target.tags) do
             local number = screen_tag.number
-            if (mynumber < number) then
+            if number ~= nil and mynumber < number then
                 index = i
                 break
             end
