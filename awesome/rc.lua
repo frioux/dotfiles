@@ -227,6 +227,7 @@ awful.screen.connect_for_each_screen(function(s)
     -- Add widgets to the wibox
     local right = {
         layout = wibox.layout.fixed.horizontal(right),
+        spacing = 2,
         wibox.widget.systray(),
         tempwidget,
         batwidget,
