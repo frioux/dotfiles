@@ -52,6 +52,8 @@ augroup vimrc
 
    au BufWritePre /tmp/* setlocal noundofile
    au BufWritePre /run/shm/* setlocal noundofile
+
+   au FileType lua setlocal path+=/usr/share/awesome/lib
 augroup END
 
 "}}}
