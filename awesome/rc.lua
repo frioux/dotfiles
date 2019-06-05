@@ -11,8 +11,8 @@ local naughty = require("naughty")
 local vicious = require("vicious")
 local hotkeys_popup = require("awful.hotkeys_popup").widget
 
-local sharetags = require("sharetags")
-local taglist = require("sharetags.taglist")
+local charitable = require("charitable")
+local taglist = require("charitable.taglist")
 local os = require("os")
 
 awful.tag.history.restore = function() end
@@ -154,10 +154,7 @@ smweatherwidget = margin(smweatherwidget, { left = 5, right = 5 })
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
-    awful.button({ }, 1, function(t)
-        local screen = awful.screen.focused()
-        sharetags.select_tag(t, screen)
-    end),
+    awful.button({ }, 1, function(t) charitable.select_tag(t, awful.screen.focused()) end),
 
     awful.button({ modkey }, 1, function(t)
         if client.focus then
@@ -165,10 +162,7 @@ local taglist_buttons = gears.table.join(
         end
     end),
 
-    awful.button({ }, 3, function(t)
-        local screen = awful.screen.focused()
-        sharetags.toggle_tag(t, screen)
-    end),
+    awful.button({ }, 3, function(t) charitable.toggle_tag(t, awful.screen.focused()) end),
 
     awful.button({ modkey }, 3, function(t)
         if client.focus then
@@ -180,7 +174,7 @@ local taglist_buttons = gears.table.join(
     awful.button({ }, 5, function(t) awful.tag.viewprev(t.screen) end)
 )
 
-tags = sharetags.create_tags(
+local tags = charitable.create_tags(
    { "1", "2", "3", "4", "5", "6", "7", "8", "9" },
    {
       awful.layout.layouts[1],
@@ -194,7 +188,6 @@ tags = sharetags.create_tags(
       awful.layout.layouts[1],
    }
 )
-mytaglist = {}
 
 awful.screen.connect_for_each_screen(function(s)
     for i = 1, #tags do
@@ -281,15 +274,11 @@ globalkeys = gears.table.join(
               {description = "go back", group = "tag"}),
 
     awful.key({ modkey,           }, "j",
-        function ()
-            awful.client.focus.byidx( 1)
-        end,
+        function () awful.client.focus.byidx( 1) end,
         {description = "focus next by index", group = "client"}
     ),
     awful.key({ modkey,           }, "k",
-        function ()
-            awful.client.focus.byidx(-1)
-        end,
+        function () awful.client.focus.byidx(-1) end,
         {description = "focus previous by index", group = "client"}
     ),
 
@@ -381,19 +370,11 @@ for i = 1, 9 do
     globalkeys = gears.table.join(globalkeys,
         -- View tag only.
         awful.key({ modkey }, "#" .. i + 9,
-                  function ()
-                        local screen = awful.screen.focused()
-                        local tag = tags[i]
-                        sharetags.select_tag(tag, screen)
-                  end,
+                  function () charitable.select_tag(tags[i], awful.screen.focused()) end,
                   {description = "view tag #"..i, group = "tag"}),
         -- Toggle tag display.
         awful.key({ modkey, "Control" }, "#" .. i + 9,
-                  function ()
-                      local screen = awful.screen.focused()
-                      local tag = tags[i]
-                      sharetags.toggle_tag(tag, screen)
-                  end,
+                  function () charitable.toggle_tag(tags[i], awful.screen.focused()) end,
                   {description = "toggle tag #" .. i, group = "tag"}),
         -- Move client to tag.
         awful.key({ modkey, "Shift" }, "#" .. i + 9,
