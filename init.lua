@@ -3,28 +3,15 @@
 local sharetags = {}
 
 --{{{ Grab environment we need
-local capi = { screen = screen,
-               client = client
-               }
+local capi = { screen = screen, client = client }
 
 local pairs = pairs
 local ipairs = ipairs
 local tag = require("awful.tag")
 local awful = require("awful")
 
---local naughty = require("naughty")
---local inspect = require("inspect")
 --}}}
 
---[[
-function dump(data)
-    naughty.notify({ text = inspect(data) })
-end
-]]
-
-
--- XXX Fix Swapping
--- XXX Fix vim window sizing, somehow?
 
 --{{{ Functions
 
@@ -88,17 +75,16 @@ function sharetags.tag_move(t, screen_target)
             for _ , c in ipairs(ts:clients()) do
                 if not c.sticky then
                     c.screen = screen_target
-                    c:tags( {ts} )
+                    c:tags({ ts })
 
                     -- Fix maximized client if display sizes not equal
                     local is_maximized = c.maximized
                     if is_maximized then
-                      c.maximized = false
-                      c.maximized = true
+                        c.maximized = false
+                        c.maximized = true
                     end
-
                 else
-                    awful.client.toggletag(ts,c)
+                    awful.client.toggletag(ts, c)
                 end
             end
         end
@@ -112,7 +98,7 @@ function sharetags.select_tag(t, target_screen)
     local prev_focus = capi.client.focus;
     local tag_screen = t.screen
     local is_tag_select = t.selected;
-    local is_tag_moved = (target_screen ~= tag_screen)
+    local is_tag_moved = target_screen ~= tag_screen
 
 
     if t.selected and target_screen ~= tag_screen and #tag_screen.selected_tags == 1 then
@@ -123,19 +109,16 @@ function sharetags.select_tag(t, target_screen)
     end
 
 
-    -- Если было перемещение тега то фокус на окне теряется.
-    -- Проверка на что это тот-же самый тег, восстанавливаем фокус на окне
-    if is_tag_moved and is_tag_select then
-        if #t:clients() > 0 and prev_focus then
-            capi.client.focus = prev_focus
-        end
+    -- If there was a moving tag then the focus on the window is lost.  Checking
+    -- if this is the same tag and thus restore focus on the window
+    if is_tag_moved and is_tag_select and #t:clients() > 0 and prev_focus then
+       capi.client.focus = prev_focus
     end
-
 end
 
 -- Toggle tag on screen
 function sharetags.toggle_tag(t, screen)
-    if (t.screen ~= screen) then
+    if t.screen ~= screen then
         sharetags.tag_move(t, screen)
         if not t.selected then
             tag.viewtoggle(t)
