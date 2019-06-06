@@ -6,7 +6,6 @@ Shared tags library for multiple monitors using AwesomeWM.
 
 ```lua
 local charitable = require("charitable")
-local taglist = require("charitable.taglist")
 
 -- Create tags and taglist
 local taglist_buttons = gears.table.join(
@@ -43,7 +42,11 @@ awful.screen.connect_for_each_screen(function(s)
     -- create a special scratch tag for double buffering
     s.scratch = awful.tag.add('scratch-' .. s.index, {})
 
-    s.mytaglist = taglist(tags, s, taglist.filter.all, taglist_buttons)
+    s.mytaglist = awful.widget.taglist({
+       screen = s,
+       buttons = taglist_buttons,
+       source = function(screen, args) return tags end,
+    })
 
     -- ...
 end
