@@ -12,7 +12,6 @@ local vicious = require("vicious")
 local hotkeys_popup = require("awful.hotkeys_popup").widget
 
 local charitable = require("charitable")
-local taglist = require("charitable.taglist")
 local os = require("os")
 
 awful.tag.history.restore = function() end
@@ -209,8 +208,14 @@ awful.screen.connect_for_each_screen(function(s)
                            awful.button({ }, 3, function () awful.layout.inc(-1) end),
                            awful.button({ }, 4, function () awful.layout.inc( 1) end),
                            awful.button({ }, 5, function () awful.layout.inc(-1) end)))
+
     -- Create a taglist widget
-    s.mytaglist = taglist(tags, s, taglist.filter.noempty, taglist_buttons)
+    s.mytaglist = awful.widget.taglist({
+       screen = s,
+       filter = awful.widget.taglist.filter.noempty,
+       buttons = taglist_buttons,
+       source = function(screen, args) return tags end,
+    })
 
     -- Create the wibox
     s.mywibox = awful.wibar({ position = "top", screen = s, height = 32 })
