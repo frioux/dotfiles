@@ -116,7 +116,6 @@ screens.  This is how XMonad works by default.
  * `charitable.toggle_tag` replaces [`awful.tag.viewtoggle`](https://awesomewm.org/doc/api/classes/tag.html#awful.tag.viewtoggle)
  * `charitable.tag_move` is new
  * `charitable.swap_screen` is new
- * `charitable.taglist.new` replaces [`awful.taglist`](https://awesomewm.org/doc/api/classes/awful.widget.taglist.html#awful.taglist)
 
 ## History
 
