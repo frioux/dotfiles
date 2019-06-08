@@ -54,6 +54,7 @@ augroup vimrc
    au BufWritePre /run/shm/* setlocal noundofile
 
    au FileType lua setlocal path+=/usr/share/awesome/lib
+   au FileType lua setlocal includeexpr=substitute(v:fname,'\\.','/','g')
 augroup END
 
 "}}}
