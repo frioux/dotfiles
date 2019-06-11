@@ -201,7 +201,7 @@ local function get_geometry(widget, screen, position)
         x = wa.x + math.floor((wa.width - width) / 2)
     end
 
-    return {x=x, y=y, width=width, height=height}
+    return {x=x, y=y, width=width, height=2*height}
 end
 
 --- Call the calendar with offset
@@ -217,7 +217,14 @@ function calendar_popup:call_calendar(offset, position, screen)
 
     self.offset = inc_offset ~= 0 and self.offset + inc_offset or 0
 
-    local widget = self:get_widget()
+    local t = self:get_widget().children[2]
+    local path = os.getenv("TMPDIR")
+    if not path then path = "/tmp" end
+    local f = assert(io.open(path .. "/cal", "rb"))
+    local content = f:read("*all")
+    f:close()
+    t:set_text(content)
+    local widget = self:get_widget().children[1]
     local raw_date = os.date("*t")
     local date = {day=raw_date.day, month=raw_date.month, year=raw_date.year}
     if widget._private.type == "month" and self.offset ~= 0 then
@@ -325,6 +332,7 @@ local function get_cal_wibox(caltype, args)
     ret.screen   = args.screen
 
     local t = wibox.widget.textbox()
+    t:set_font("Ubuntu Mono Regular 14")
     local widget = wibox.widget {
         font          = args.font or beautiful.font,
         spacing       = args.spacing,
@@ -335,7 +343,13 @@ local function get_cal_wibox(caltype, args)
         _calendar_margin = args.margin,
         widget = caltype == "year" and wibox.widget.calendar.year or wibox.widget.calendar.month,
     }
-    ret:set_widget(widget)
+    local composite = wibox.widget({
+        widget,
+        t,
+        layout = wibox.layout.flex.vertical,
+        spacing = 2,
+    })
+    ret:set_widget(composite)
 
     ret:buttons(gears.table.join(
             abutton({ }, 1, function ()

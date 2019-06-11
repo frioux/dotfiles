@@ -24,7 +24,7 @@ if [ -e ~/.frewmbot-local ]; then
 
    link-file terminator_config ~/.config/terminator/config
    link-file xsession ~/.xinitrc
-   link-file taffybar/taffybar.hs ~/.config/taffybar/taffybar.hs
+   link-file crontab.d/hourly/gcal ~/.crontab.d/hourly/gcal
    if [ -d "$HOME/var/mail" ]; then
       link-file crontab.d/hourly/notmuch ~/.crontab.d/hourly/notmuch
    else
