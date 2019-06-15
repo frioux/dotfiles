@@ -296,6 +296,11 @@ Downloads a few packages that import a given package.
 
 `sort` for csv, without messing up the header line.
 
+### `mailfmt`
+
+Formats input with `fmt -w80` until it sees `-- `, and thus leaves signature
+alone.
+
 ### `mc`
 
 Filter to make output monochrome.

@@ -1,0 +1,30 @@
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+
+no warnings 'uninitialized';
+
+my @lines = <STDIN>;
+
+my $end = @lines-1;
+my $sigstart = $end;
+
+for my $i (0 .. $end) {
+   if ($lines[$i] eq "-- \n") {
+      $sigstart = $i - 1;
+      last
+   }
+}
+
+open my $fh, '|-', 'fmt', '-w80'
+   or die "Couldn't run fmt -w80: $!\n";
+
+for my $l (@lines[0..$sigstart]) {
+   print $fh $l
+}
+close $fh;
+
+for my $l (@lines[$sigstart+1..$end]) {
+   print $l
+}
