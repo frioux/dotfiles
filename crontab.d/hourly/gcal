@@ -2,4 +2,4 @@
 
 gcalcli --calendar fREW agenda "$(date)" "$(date --date=@$(( $(date +%s) + 8 * 60 * 60 )) )" |
    cut -b 13- |
-   skip 1 > $TMPDIR/cal
+   skip 1 > $TMPDIR/cal.tmp && mv $TMPDIR/cal.tmp $TMPDIR/cal
