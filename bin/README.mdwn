@@ -301,6 +301,11 @@ Downloads a few packages that import a given package.
 Formats input with `fmt -w80` until it sees `-- `, and thus leaves signature
 alone.
 
+### `markdownfmt`
+
+Formats input with `fmt -w80`, excluding lines wrapped with `---`, and thus
+leaving yaml header alone.
+
 ### `mc`
 
 Filter to make output monochrome.
