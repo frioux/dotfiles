@@ -1,7 +1,22 @@
 #!/bin/sh
 
+. ~/.env
+
+# check postfix queue
 old_count="$(postqueue -j | jq 'now - .arrival_time > 300' | grep true | wc -l)"
 
 if [ "$old_count" -gt 0 ]; then
    notify-send -u critical "$old_count emails stuck in queue"
 fi
+
+# check age of zr-addresses
+older-than m 2d "$HOME/zr-addresses" || \
+   notify-send -u critical "zr-addresses is too old"
+
+# check age of personal-addresses
+older-than m 2d "$HOME/personal-addresses" || \
+   notify-send -u critical "personal-addresses is too old"
+
+# check age of cal
+older-than m 2h "$TMPDIR/cal" || \
+   notify-send -u critical "cal is too old"
