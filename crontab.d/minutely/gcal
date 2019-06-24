@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-older-than "$TMPDIR/cal" a 24h || exit
+older-than "$TMPDIR/cal" m 1h || exit
 
 out=$(gcalcli --calendar fREW agenda "$(date)" "$(date --date=@$(( $(date +%s) + 8 * 60 * 60 )) )")
 
