@@ -1,0 +1,20 @@
+#!/bin/sh
+
+set -e
+
+which=zr-
+metadata="$HOME/.${which}offlineimap"
+quick=-q
+
+# if slow hasn't run in 24h run it slow
+older-than "$metadata/ran" m 24h || quick=""
+
+# in quick mode exit early if we already ran in the last 5m
+test -n "$quick" && older-than "$metadata/ran-q" m 5m
+
+EMAIL=frew@ziprecruiter.com /usr/bin/offlineimap $quick -o \
+   -c ~/code/dotfiles/offlineimaprc \
+   -k Repository_Local:localfolders=/home/frew/var/${which}mail \
+   -k "general:metadata=$metadata"
+
+touch "$metadata/ran$quick"
