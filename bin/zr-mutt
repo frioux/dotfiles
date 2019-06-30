@@ -7,5 +7,5 @@ fi
 export MAILPROFILE=zr
 export NOTMUCH_CONFIG="$HOME/.zr-notmuch-config"
 tmux rename-window zr-mutt
-/opt/bin/neomutt "$@"
+/usr/bin/neomutt "$@"
 tmux set automatic-rename on

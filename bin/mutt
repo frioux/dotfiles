@@ -2,4 +2,4 @@
 
 export MAILPROFILE="${MAILPROFILE:-personal}"
 
-exec /opt/bin/neomutt "$@"
+exec /usr/bin/neomutt "$@"
