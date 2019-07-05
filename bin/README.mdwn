@@ -83,22 +83,6 @@ Print the `pstree` of the passed container.
 
 Print the root pids of the passed container.
 
-### `sv-run-offlineimap`
-
-Run offlineimap container.
-
-### `sv-run-w.pl`
-
-Run w.pl container.
-
-### `sv-tail-offlineimap`
-
-Tail offlineimap container.
-
-### `sv-tail-w.pl`
-
-Tail w.pl container.
-
 ## Docker Wrappers
 
 ### `aws`
