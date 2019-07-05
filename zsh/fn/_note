@@ -1,0 +1,16 @@
+#compdef note
+
+local curcontext="$curcontext" state line
+_arguments -C '*:: :->options'
+
+case $state in
+  (options)
+      local -a notes
+      local dir=$HOME/code/notes/content/posts
+      notes=($dir/*(N))
+
+      notes=( ${notes#$dir/} )
+      notes=( ${notes%.md} )
+     _describe -t notes "notes" notes
+  ;;
+esac

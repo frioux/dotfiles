@@ -306,6 +306,11 @@ netrc-password imap.gmail.com foo@example.com
 
 Gets a password from your netrc file.  (Login is optional.)
 
+### `note`
+
+`note` renders [a note](https://frioux.github.io/notes/posts/manual/) as a
+manpage; has tab completion.
+
 ### `older-than`
 
 Exits 1 if the passed file is older than the age spec.  Mostly used to turn
