@@ -1,0 +1,3 @@
+#!/bin/sh
+
+xsel | perl -pe 's/\s+$/\n/' | xsel

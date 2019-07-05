@@ -30,6 +30,10 @@ Handles `vim:` links.
 
 Handles `rt:` links.
 
+### `trim-clipboard`
+
+Removes trailing whitespace from the clipboard buffer, for each line.
+
 ### `file-manager`
 
 Runs my choice of file manager.
