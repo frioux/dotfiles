@@ -17,7 +17,6 @@ test -f $HOME/code/unproductive/bin/unproductive &&
    $HOME/code/unproductive/bin/unproductive >> $HOME/activity-log.txt &
 xmodmap "$HOME/.xmodmap"
 keepassxc &
-sv-run-offlineimap &
 scenery &
 armstrong &
 postqueue-checker &
