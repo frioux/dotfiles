@@ -223,6 +223,12 @@ function calendar_popup:call_calendar(offset, position, screen)
     local f = assert(io.open(path .. "/cal", "rb"))
     local content = f:read("*all")
     f:close()
+    if content == "\n" then
+        -- XXX: randomly select a file from this directory
+        self.bg = gears.color.create_png_pattern("/home/frew/Dropbox/calbg/sunset.png")
+    else
+        self.bg = beautiful.bg_normal
+    end
     t:set_text(content)
     local widget = self:get_widget().children[1]
     local raw_date = os.date("*t")
