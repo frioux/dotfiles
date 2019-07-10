@@ -1,9 +1,5 @@
 #!/bin/sh
 
-if [ -z "$*" ]; then
-   sv-run-offlineimap-zr 2>&1 > /dev/null &
-fi
-
 export MAILPROFILE=zr
 export NOTMUCH_CONFIG="$HOME/.zr-notmuch-config"
 tmux rename-window zr-mutt
