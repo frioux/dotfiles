@@ -200,6 +200,9 @@ nnoremap <silent> <leader>DQ :exe ":profile pause"<cr>:noautocmd wqa!<cr>
 
 nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
 
+inoremap <silent> <PageDown> <nop>
+inoremap <silent> <PageUp> <nop>
+
 "}}}
 
 " {{{ airline settings
