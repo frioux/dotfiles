@@ -352,6 +352,11 @@ call CycleColors()
 
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
+if !exists('g:neocomplete#sources')
+  let g:neocomplete#sources = {}
+endif
+let g:neocomplete#sources.go = ['omni']
+let g:neocomplete#sources.markdown = ['omni']
 
 set directory=$HOME/.vvar/swap
 set undodir=$HOME/.vvar/undo
