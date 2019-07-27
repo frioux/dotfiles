@@ -108,13 +108,13 @@ fi
 # ensure submodules are checked out before linking to them
 if [ ! -e ~/.frewmbot-maintained ]; then
    git submodule update --init --  \
-      vim/bundle/FastFold          \
-      vim/bundle/airline           \
-      vim/bundle/better-whitespace \
-      vim/bundle/commentary        \
-      vim/bundle/pathogen          \
-      vim/bundle/perl              \
-      vim/bundle/unimpaired
+      vim/pack/vanilla/start/FastFold          \
+      vim/pack/vanilla/start/airline           \
+      vim/pack/vanilla/start/better-whitespace \
+      vim/pack/vanilla/start/commentary        \
+      vim/pack/vanilla/opt/pathogen            \
+      vim/pack/vanilla/start/perl              \
+      vim/pack/vanilla/start/unimpaired
 else
    git submodule update --init
    if [[ ! -e ~/.fzf ]] ; then
