@@ -1,20 +1,10 @@
-if has('win32')
-   let &runtimepath = substitute(&runtimepath, '\(\~\|'.$USER.'\)/vimfiles\>', '\1/.vim', 'g')
-endif
+if !has('packages')
+   runtime pack/vanilla/start/pathogen/autoload/pathogen.vim
+   call pathogen#infect('pack/vanilla/start/{}')
 
-runtime bundle/pathogen/autoload/pathogen.vim
-call pathogen#infect()
-
-if has('python3')
-   call pathogen#infect('bundle-python/{}')
-endif
-
-if has('lua')
-   call pathogen#infect('bundle-lua/{}')
-endif
-
-if has('nvim')
-   call pathogen#infect('bundle-nvim/{}')
+   if has('lua')
+      call pathogen#infect('pack/lua-support/start/{}')
+   endif
 endif
 
 let g:deoplete#enable_at_startup = 1
