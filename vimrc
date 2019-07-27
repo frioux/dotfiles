@@ -1,5 +1,5 @@
 if !has('packages')
-   runtime pack/vanilla/start/pathogen/autoload/pathogen.vim
+   runtime pack/vanilla/opt/pathogen/autoload/pathogen.vim
    call pathogen#infect('pack/vanilla/start/{}')
 
    if has('lua')

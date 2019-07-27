@@ -2,7 +2,7 @@
 	path = vimpulse
 	url = git://gitorious.org/vimpulse/vimpulse.git
 [submodule "vim/bundle/vim-pathogen"]
-	path = vim/pack/vanilla/start/pathogen
+	path = vim/pack/vanilla/opt/pathogen
 	url = git://github.com/tpope/vim-pathogen.git
 [submodule "vim/bundle/vim-repeat"]
 	path = vim/pack/vanilla/start/repeat
@@ -47,7 +47,7 @@
 	path = vim/pack/vanilla/start/vinegar
 	url = git://github.com/tpope/vim-vinegar
 [submodule "vim/bundle/goyo"]
-	path = vim/pack/vanilla/start/goyo
+	path = vim/pack/vanilla/opt/goyo
 	url = git://github.com/junegunn/goyo.vim
 [submodule "git-hub"]
 	path = git-hub
