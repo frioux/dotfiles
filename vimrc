@@ -348,8 +348,8 @@ endif
 let g:neocomplete#sources.go = ['omni']
 let g:neocomplete#sources.markdown = ['omni']
 
-set directory=$HOME/.vvar/swap
-set undodir=$HOME/.vvar/undo
+set directory=$HOME/.vvar/swap//
+set undodir=$HOME/.vvar/undo//
 
 " vp doesn't replace paste buffer
 function! RestoreRegister()
