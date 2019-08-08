@@ -163,6 +163,10 @@ function widgets.weather(code, url, name)
 
   vicious.register(weather, vicious.widgets.weather,
     function (widget, args)
+      -- make "N/A" not break vicious
+      if type(args["{when}"]) == "string" then
+         args["{when}"] = 0
+      end
       tip:set_text(
         "City: " .. args["{city}"] ..
           "\nWind: " .. args["{windmph}"] .. "mph " ..
