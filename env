@@ -79,3 +79,4 @@ fi
 
 export TMPDIR=/run/shm
 export TZ=America/Los_Angeles
+export S_COLORS=never
