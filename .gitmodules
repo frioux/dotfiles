@@ -103,9 +103,6 @@
 [submodule "vim/bundle/lastplace"]
 	path = vim/pack/vanilla/start/lastplace
 	url = git://github.com/dietsche/vim-lastplace.git
-[submodule "vim/bundle/go"]
-	path = vim/pack/vanilla/start/go
-	url = git://github.com/fatih/vim-go
 [submodule "vim/bundle/lost"]
 	path = vim/pack/vanilla/start/lost
 	url = git://github.com/frioux/vim-lost
@@ -136,3 +133,6 @@
 [submodule "awesome/charitable"]
 	path = awesome/charitable
 	url = git://github.com/frioux/charitable
+[submodule "vim/pack/vanilla/start/govim"]
+	path = vim/pack/vanilla/start/govim
+	url = https://github.com/myitcv/govim
