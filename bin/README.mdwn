@@ -2,10 +2,6 @@
 
 ## Desktop Tools
 
-### `alluni.pl`
-
-Prints all unicode characters (by name.)
-
 ### `armstrong`
 
 Reminder to stretch every 25m.
