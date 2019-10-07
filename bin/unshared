@@ -1,0 +1,46 @@
+#!/usr/bin/zrperl
+
+use utf8;
+use 5.14.2;
+
+use Linux::Smaps;
+use IO::All;
+use Try::Tiny;
+
+printf "%s       % 14s % 14s % 15s % 15s % 9s\n", 'Process', qw(VmRSS VmSize Shared Private PID);
+my $ppid = shift or die "usage: $0 \$pid";
+printf "%s   % 14s % 14s % 14s % 14s % 9s\n", render_name($ppid), stats($ppid), $ppid;
+for my $pid (map {m(/(\d+)); $1 } grep "$_" =~ m(/\d+$), io->dir("/proc")->all) {
+  my %s = _status($pid);
+  if ($s{PPid} == $ppid) {
+    printf "%s   % 14s % 14s % 14s % 14s % 9s\n", render_name($pid), stats($pid), $pid;
+  }
+}
+sub render_name { io->file("/proc/$_[0]/cmdline")->all =~ s/\0/ /gr }
+
+sub stats {
+  my $pid = shift;
+
+  my $smaps = Linux::Smaps->new($pid);
+  my %status = _status($pid);
+
+  return ($status{VmRSS}, $status{VmSize},
+    try {
+        (
+          (($smaps->shared_clean + $smaps->shared_dirty) . " kB"),
+          (($smaps->private_clean + $smaps->private_dirty) . " kB")
+        )
+    } catch {
+      ()
+    })
+}
+
+sub _status {
+  my $pid = shift;
+
+  my @str = try {
+    io->file("/proc/$pid/status")->slurp;
+  } catch { () };
+
+  map { m/(\w+):\s+(.*)/; $1 => $2 } @str;
+}
