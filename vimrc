@@ -23,7 +23,6 @@ augroup vimrc
    au FileType perl let b:dispatch = 'perl %'
 
    au FileType perl setlocal formatprg=perltidy
-   au FileType go   setlocal formatprg=gofmt
    au FileType mail setlocal formatprg=mailfmt
 
    au FileType markdown setlocal formatprg=markdownfmt
