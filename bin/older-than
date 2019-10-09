@@ -3,8 +3,11 @@
 use strict;
 use warnings;
 
-die "usage: $0 some-file a|m|c 23h\n"
-   unless @ARGV == 3;
+die <<"DIE" unless @ARGV == 3;
+usage: $0 some-file a|m|c 23h
+
+exit 0 if file's time is older than the duration passed
+DIE
 
 my ($file, $op, $timespec) = @ARGV;
 
@@ -13,6 +16,8 @@ exit unless -e $file;
 my %left;
 (undef, undef, undef, undef, undef, undef, undef, undef, $left{a}, $left{m}, $left{c}) = stat $file;
 
+# convert time spec into a duration of seconds
+# 1d2h3m4s = 1*(24 * 60 * 60) + 2*(60 * 60) + 3 * 60 + 4
 my $offset = 0;
 if ($timespec =~ s/(\d+)d//) {
    $offset += $1 * 24 * 60 * 60;
@@ -27,4 +32,14 @@ if ($timespec =~ s/^(\d+)s?$//) {
    $offset += $1
 }
 
-exit 1 unless time - $left{$op} > $offset;
+my $older = time - $left{$op} > $offset;
+
+# if we are in younger mode and the file is older, exit 1
+if ($0 =~ m(/younger-than$) && $older) {
+   exit 1
+}
+
+# if we are in older mode and the file is not older, exit 1
+if ($0 =~ m(/older-than$) && !$older) {
+   exit 1
+}
