@@ -4,7 +4,7 @@ colors
 
 autoload -Uz vcs_info
 host_color=cyan
-history_color=yellow
+zam_color=yellow
 user_color=green
 root_color=red
 directory_color=magenta
@@ -20,11 +20,10 @@ jobs_prompt3="%{$fg_bold[$jobs_color]%})%{$reset_color%}"
 
 jobs_total="%(1j.${jobs_prompt1}${jobs_prompt2}${jobs_prompt3} .)"
 
-history_prompt1="%{$fg_bold[$history_color]%}[%{$reset_color%}"
-history_prompt2="%{$fg[$history_color]%}%h%{$reset_color%}"
-history_prompt3="%{$fg_bold[$history_color]%}]%{$reset_color%}"
+zam_prompt1="%{$fg_bold[$zam_color]%}[%{$reset_color%}"
+zam_prompt3="%{$fg_bold[$zam_color]%}]%{$reset_color%}"
 
-history_total="${history_prompt1}${history_prompt2}${history_prompt3}"
+zam_total="${zam_prompt1}\${zam_prompt2}${zam_prompt3}"
 
 error_prompt1="%{$fg_bold[$error_color]%}<%{$reset_color%}"
 error_prompt2="%{$fg[$error_color]%}%?%{$reset_color%}"
@@ -56,7 +55,13 @@ zstyle ':vcs_info:*:prompt:*' formats       "${fmt_pre}${fmt_branch}${fmt_post} 
 zstyle ':vcs_info:*:prompt:*' nvcsformats   ""
 zstyle ':vcs_info:*:prompt:*' enable git
 
-function precmd { vcs_info 'prompt' }
+function precmd {
+   vcs_info 'prompt'
+
+   if [ -e ~/.zam/zam_account_role ]; then
+      zam_prompt2="%{$fg[$zam_color]%}$(cat ~/.zam/zam_account)%{$reset_color%}%{$fg_bold[$zam_color]%}/%{$reset_color%}%{$fg[$zam_color]%}$(cat ~/.zam/zam_role)%{$reset_color%}"
+   fi
+}
 
 vcs='$vcs_info_msg_0_'
 memento_mori="%{$fg_bold[white]%}💀 \$(clock)%{$reset_color%}"
@@ -65,7 +70,7 @@ function lprompt {
   local vimode='${PR_VIMODE}'
   local vicol='${PR_VICOLOR}'
 
-  PROMPT="${host_prompt} $memento_mori ${jobs_total}${history_total} ${directory_prompt}${vcs}${error_total}
+  PROMPT="${host_prompt} $memento_mori ${jobs_total}${zam_total} ${directory_prompt}${vcs}${error_total}
 %{${vicol}%}${vimode}%{$reset_color%} "
 }
 
