@@ -380,6 +380,46 @@ buffer.  For best results make text of size 16 or higher.
 
 Puts `¯\_(ツ)_/¯` in copy buffer.
 
+### `simpledump`
+
+Prints simplified assembly of built Go code.  Takes filename and regex, with
+regex defaulted to main.main.
+
+```bash
+$ simpledump ~/code/leatherman/leatherman os.Getenv
+TEXT os.Getenv(SB) /home/frew/sdk/go1.13/src/os/env.go
+func Getenv(key string) string {
+                MOVQ FS:0xfffffff8, CX
+                CMPQ 0x10(CX), SP
+                JBE 0x4ce7ab
+                SUBQ $0x30, SP
+                MOVQ BP, 0x28(SP)
+                LEAQ 0x28(SP), BP
+        testlog.Getenv(key)
+                MOVQ 0x38(SP), AX
+                MOVQ AX, 0(SP)
+                MOVQ 0x40(SP), CX
+                MOVQ CX, 0x8(SP)
+                CALL internal/testlog.Getenv(SB)
+        v, _ := syscall.Getenv(key)
+                MOVQ 0x38(SP), AX
+                MOVQ AX, 0(SP)
+                MOVQ 0x40(SP), AX
+                MOVQ AX, 0x8(SP)
+                CALL syscall.Getenv(SB)
+                MOVQ 0x10(SP), AX
+                MOVQ 0x18(SP), CX
+        return v
+                MOVQ AX, 0x48(SP)
+                MOVQ CX, 0x50(SP)
+                MOVQ 0x28(SP), BP
+                ADDQ $0x30, SP
+                RET
+func Getenv(key string) string {
+                CALL runtime.morestack_noctxt(SB)
+                JMP os.Getenv(SB)
+```
+
 ### `skip`
 
 ```

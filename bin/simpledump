@@ -1,0 +1,12 @@
+#!/bin/sh
+
+file=$1
+regex=${2:-main.main}
+
+if [ -z "$1" ]; then
+   echo "usage: $0 <binary] [function-regex]\n\nShows assembly of built Go code."
+   exit 1
+fi
+
+go tool objdump -S -s "$regex" "$file" |
+   perl -p -e "s/^\s+0x[0-9a-f]{6}\t+[0-9a-f]+\t+/\t\t/"
