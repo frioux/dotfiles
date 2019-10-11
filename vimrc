@@ -416,6 +416,4 @@ nmap co yo
 command! -nargs=* GozrTests execute 'cexpr system("bin/gozr tests ' <args> '")'
 command! -nargs=* GozrAnalyze execute 'cexpr system("bin/gozr analyze ' <args> '")'
 
- let g:rainbow_active = 1
-
 " vim: foldmethod=marker
