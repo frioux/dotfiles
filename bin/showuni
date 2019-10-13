@@ -1,3 +1,15 @@
-#!/bin/zsh
+#!/bin/sh
 
-name2rune "$(alluni | tr A-Z a-z | prepend-emoji-hist ~/.uni_history | rofi -dmenu | tr a-z A-Z)" | store-hist ~/.uni_history | perl -pe chomp | xsel -i
+set -e
+
+#               show proir choises first      display uppercase          copy lowercase
+name=$(alluni | prepend-hist ~/.uni_history | tr A-Z a-z | rofi -dmenu | tr a-z A-Z)
+
+# no name selected
+if [ -z "$name" ]; then
+   exit 1
+fi
+
+echo "$name" >> ~/.uni_history
+
+name2rune "$name" | perl -pe chomp | xsel -i

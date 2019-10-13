@@ -1,8 +1,0 @@
-#!/bin/sh
-
-path="$1"
-
-read -r in
-
-echo "$in" >> "$path"
-echo "$in"

@@ -429,14 +429,6 @@ $ perl -E'say for 1..10' | skip 9
 
 Skips the passed amount of lines.
 
-### `store-hist`
-
-```
-echo -n "foo" | store-hist ~/.history
-```
-
-Basically `tee -a` but only writes a single line and always adds a newline.
-
 ### `unshared`
 
 Pass in a pid and this will find out exactly how much memory the process and it's
