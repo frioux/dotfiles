@@ -1,8 +1,11 @@
 #!/bin/sh
 
-session="$(vim-sessions | rofi -dmenu)"
+session="$(vim-sessions | prepend-hist ~/.vim-sessions | rofi -dmenu)"
 
 if [ -z "$session" ]; then
    exit 1
 fi
+
+echo "$session" >> ~/.vim-sessions
+
 exec terminator -e "vim -S $session" -T "vim:$session"
