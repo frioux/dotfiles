@@ -172,7 +172,8 @@ function widgets.weather(code, url, name)
           "\nWind: " .. args["{windmph}"] .. "mph " ..
           "\nSky: " .. args["{sky}"] ..
           "\nHumidity: " .. args["{humid}"] ..
-          "\nMeasured at: " .. os.date("%F %T", args["{when}"]))
+          "\n Measured at: " .. os.date("%F %T", args["{when}"]) ..
+          "\nRequested at: " .. os.date("%F %T"))
       return name .. " " .. args["{tempf}"] .. "°F"
   end, 60 * 10, code)
 
