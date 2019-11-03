@@ -179,6 +179,30 @@ function widgets.weather(code, url, name)
   return weather
 end
 
+function widgets.aqi()
+  local aqi = wibox.widget.textbox()
+  local tip = awful.tooltip({ objects = { aqi } });
+
+  aqi:buttons(awful.util.table.join(
+    awful.button({}, 1, function () awful.spawn("firefox https://www.latimes.com/wildfires-map/") end),
+    awful.button({}, 3, function () awful.spawn("firefox 'https://www.arcgis.com/apps/webappviewer/index.html?id=dd4a15deed8647edacb14f140ca83d05&hootPostID=8646ec6263c43c7e001e1bf7fff48f35'") end),
+    awful.button({ modkey }, 1, function(w) vicious.force(w) end)
+  ))
+
+  vicious.register(aqi, vicious.widgets.aqi,
+    function (widget, args)
+       if args["{when}"] == nil then return end
+       tip:set_text(
+         " Measured at: " .. os.date("%F %T", tonumber(args["{when}"])/1000) ..
+          "\nRequested at: " .. os.date("%F %T"))
+
+       return "AQI " .. args["{aqi}"]
+    end,
+  30 * 60, 'Northwest Coastal LA County')
+
+  return aqi
+end
+
 return widgets
 
 -- vim: ts=4

@@ -137,6 +137,9 @@ local function margin(widget, margins)
   return wibox.container.background(margin)
 end
 
+local aqi = widgets.aqi("Northwest Coastal LA County")
+aqi = margin(aqi, { right = 5 })
+
 local osweatherwidget = widgets.weather(
   "KGPT", "https://darksky.net/30.4113,-88.8279", "OS"
 )
@@ -235,6 +238,7 @@ awful.screen.connect_for_each_screen(function(s)
         osweatherwidget,
         volumecfg.widget,
         s.mytextclock,
+        aqi,
         s.mylayoutbox,
     }
     if DEBUGGING then
