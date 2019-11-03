@@ -158,7 +158,8 @@ function widgets.weather(code, url, name)
   local tip = awful.tooltip({ objects = { weather } });
 
   weather:buttons(awful.util.table.join(
-    awful.button({}, 1, function () awful.spawn("firefox '" .. url .. os.time() .. "'") end)
+    awful.button({}, 1, function () awful.spawn("firefox '" .. url .. os.time() .. "'") end),
+    awful.button({ modkey }, 1, function(w) vicious.force(w) end)
   ))
 
   vicious.register(weather, vicious.widgets.weather,
