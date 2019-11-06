@@ -220,16 +220,18 @@ function calendar_popup:call_calendar(offset, position, screen)
     local t = self:get_widget().children[2]
     local path = os.getenv("TMPDIR")
     if not path then path = "/tmp" end
-    local f = assert(io.open(path .. "/cal", "rb"))
-    local content = f:read("*all")
-    f:close()
-    if content == "\n" then
-        -- XXX: randomly select a file from this directory
-        self.bg = gears.color.create_png_pattern("/home/frew/Dropbox/calbg/sunset.png")
-    else
-        self.bg = beautiful.bg_normal
+    local f = io.open(path .. "/cal", "rb")
+    if f ~= nil then
+        local content = f:read("*all")
+        f:close()
+        if content == "\n" then
+            -- XXX: randomly select a file from this directory
+            self.bg = gears.color.create_png_pattern("/home/frew/Dropbox/calbg/sunset.png")
+        else
+            self.bg = beautiful.bg_normal
+        end
+        t:set_text(content)
     end
-    t:set_text(content)
     local widget = self:get_widget().children[1]
     local raw_date = os.date("*t")
     local date = {day=raw_date.day, month=raw_date.month, year=raw_date.year}
