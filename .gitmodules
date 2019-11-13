@@ -8,7 +8,7 @@
 	path = vim/pack/vanilla/opt/repeat
 	url = git://github.com/tpope/vim-repeat.git
 [submodule "vim/bundle/vim-surround"]
-	path = vim/pack/vanilla/opt/surround
+	path = vim/pack/vanilla/start/surround
 	url = https://github.com/tpope/vim-surround
 [submodule "vim/bundle/nerdcommenter"]
 	path = vim/bundle/nerdcommenter
@@ -17,7 +17,7 @@
 	path = vim/pack/vanilla/opt/fugitive
 	url = git://github.com/tpope/vim-fugitive
 [submodule "vim/bundle/vim-colors-solarized"]
-	path = vim/pack/vanilla/opt/colors-solarized
+	path = vim/pack/vanilla/start/colors-solarized
 	url = git://github.com/altercation/vim-colors-solarized.git
 [submodule "vim/bundle/tabular"]
 	path = vim/pack/vanilla/opt/tabular
@@ -32,7 +32,7 @@
 	path = vim/pack/vanilla/opt/textobj-underscore
 	url = git://github.com/lucapette/vim-textobj-underscore.git
 [submodule "vim/bundle/vim-unimpaired"]
-	path = vim/pack/vanilla/opt/unimpaired
+	path = vim/pack/vanilla/start/unimpaired
 	url = git://github.com/tpope/vim-unimpaired.git
 [submodule "vim/bundle/vim-visual-star-search"]
 	path = vim/pack/vanilla/opt/visual-star-search
@@ -44,7 +44,7 @@
 	path = vim/pack/vanilla/opt/perl
 	url = git://github.com/vim-perl/vim-perl
 [submodule "vim/bundle/vinegar"]
-	path = vim/pack/vanilla/opt/vinegar
+	path = vim/pack/vanilla/start/vinegar
 	url = git://github.com/tpope/vim-vinegar
 [submodule "vim/bundle/goyo"]
 	path = vim/pack/vanilla/opt/goyo
@@ -62,7 +62,7 @@
 	path = vim/pack/vanilla/opt/exchange
 	url = git://github.com/tommcdo/vim-exchange
 [submodule "vim/bundle/commentary"]
-	path = vim/pack/vanilla/opt/commentary
+	path = vim/pack/vanilla/start/commentary
 	url = git://github.com/tpope/vim-commentary
 [submodule "vim/bundle/matchmaker"]
 	path = vim/pack/vanilla/opt/matchmaker
@@ -77,10 +77,10 @@
 	path = vim/pack/vanilla/opt/ctrlp
 	url = git://github.com/ctrlpvim/ctrlp.vim
 [submodule "vim/bundle/projectionist"]
-	path = vim/pack/vanilla/opt/projectionist
+	path = vim/pack/vanilla/start/projectionist
 	url = git://github.com/frioux/vim-projectionist
 [submodule "vim/bundle/eunuch"]
-	path = vim/pack/vanilla/opt/eunuch
+	path = vim/pack/vanilla/start/eunuch
 	url = git://github.com/tpope/vim-eunuch
 [submodule "vim/bundle/terminus"]
 	path = vim/pack/vanilla/opt/terminus
@@ -92,7 +92,7 @@
 	path = vim/bundle/sleuth
 	url = git://github.com/tpope/vim-sleuth
 [submodule "vim/bundle/obsession"]
-	path = vim/pack/vanilla/opt/obsession
+	path = vim/pack/vanilla/start/obsession
 	url = git://github.com/tpope/vim-obsession
 [submodule "vim/bundle/FastFold"]
 	path = vim/pack/vanilla/opt/FastFold
@@ -110,10 +110,10 @@
 	path = vim/pack/vanilla/opt/ale
 	url = git://github.com/w0rp/ale
 [submodule "vim/bundle/grepper"]
-	path = vim/pack/vanilla/opt/grepper
+	path = vim/pack/vanilla/start/grepper
 	url = git://github.com/mhinz/vim-grepper
 [submodule "vim/bundle/solarized8"]
-	path = vim/pack/vanilla/opt/solarized8
+	path = vim/pack/vanilla/start/solarized8
 	url = git://github.com/lifepillar/vim-solarized8
 [submodule "vim/bundle/regedit"]
 	path = vim/pack/vanilla/opt/regedit
