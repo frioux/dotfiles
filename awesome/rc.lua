@@ -263,6 +263,19 @@ awful.screen.connect_for_each_screen(function(s)
 end)
 -- }}}
 
+-- ensure that all taglists get the same updates; the default event hooks only
+-- update "current" taglist, which means you end up with stale taglists.
+gears.timer({
+    timeout = 1,
+    callback = function()
+        for s in screen do
+            s.mytaglist._do_taglist_update_now()
+        end
+    end,
+    autostart = true,
+})
+
+
 -- {{{ Mouse bindings
 root.buttons(gears.table.join(
     awful.button({ }, 3, function () mymainmenu:toggle() end),
