@@ -2,7 +2,7 @@
 
 set -e
 
-younger-than "$TMPDIR/cal" m 1h && exit
+[ -e "$TMPDIR/cal" ] && younger-than "$TMPDIR/cal" m 1h && exit
 
 out=$(gcalcli --calendar fREW agenda "$(date)" "$(date --date=@$(( $(date +%s) + 8 * 60 * 60 )) )")
 
