@@ -1,6 +1,7 @@
 -- Standard awesome library
 local gears = require("gears")
 local awful = require("awful")
+local awful_tag = require("awful.tag")
 require("awful.autofocus")
 -- Widget and layout library
 local wibox = require("wibox")
@@ -265,15 +266,11 @@ end)
 
 -- ensure that all taglists get the same updates; the default event hooks only
 -- update "current" taglist, which means you end up with stale taglists.
-gears.timer({
-    timeout = 1,
-    callback = function()
-        for s in screen do
-            s.mytaglist._do_taglist_update_now()
-        end
-    end,
-    autostart = true,
-})
+awful_tag.attached_connect_signal(nil, "property::urgent", function()
+    for s in screen do
+        s.mytaglist._do_taglist_update_now()
+    end
+end)
 
 
 -- {{{ Mouse bindings
