@@ -48,7 +48,7 @@ augroup vimrc
    au FileType lua setlocal path+=/usr/share/awesome/lib
    au FileType lua setlocal includeexpr=substitute(v:fname,'\\.','/','g')
 
-   au FileType go call govim#config#Set("QuickfixAutoDiagnostics", 0)
+   " au FileType go call govim#config#Set("QuickfixAutoDiagnostics", 0)
 augroup END
 
 "}}}
@@ -421,6 +421,8 @@ nmap co yo
 command! -nargs=* GozrTests execute 'cexpr system("bin/gozr tests ' <args> '")'
 command! -nargs=* GozrAnalyze execute 'cexpr system("bin/gozr analyze ' <args> '")'
 
-command! PackAdd execute 'pa airline | pa ale | pa better-whitespace | pa colors-solarized | pa commentary | pa csv | pa ctrlp | pa dispatch | pa editorconfig | pa eunuch | pa exchange | pa FastFold | pa fugitive | pa fugitive-gitlab | pa gitgutter | pa govim | pa goyo | pa grepper | pa IndentAnything | pa l9 | pa lastplace | pa lost | pa matchit | pa matchmaker | pa multiple-cursors | pa obsession | pa pathogen | pa perl | pa projectionist | pa python | pa quick-scope | pa regedit | pa repeat | pa solarized8 | pa surround | pa tabular | pa terminus | pa textobj-user | pa textobj-between | pa textobj-entire | pa textobj-underscore | pa unimpaired | pa vinegar | pa visual-star-search | pa wipeout'
+command! Kit execute 'pa vinegar | pa eunuch | pa obsession | pa unimpaired | pa commentary'
+
+command! PackAdd execute 'pa airline | pa ale | pa better-whitespace | pa colors-solarized | pa commentary | pa csv | pa ctrlp | pa dispatch | pa editorconfig | pa eunuch | pa exchange | pa FastFold | pa fugitive | pa fugitive-gitlab | pa gitgutter | pa govim | pa goyo | pa grepper | pa IndentAnything | pa l9 | pa lastplace | pa lost | pa matchit | pa matchmaker | pa multiple-cursors | pa obsession | pa perl | pa projectionist | pa python | pa quick-scope | pa regedit | pa repeat | pa solarized8 | pa surround | pa tabular | pa terminus | pa textobj-user | pa textobj-between | pa textobj-entire | pa textobj-underscore | pa unimpaired | pa vinegar | pa visual-star-search | pa wipeout'
 
 " vim: foldmethod=marker
