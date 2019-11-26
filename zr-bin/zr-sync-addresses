@@ -15,13 +15,6 @@ zr-goobook query '' > $TMP
 
 < $TMP grep -v '^	' | sort | sponge $TMP
 
-# reaches out to the internet, likely to fail, so don't pipe
-export-bamboohr > "$HOME/bamboo.js.tmp"
-
-# like to have this around so do the tmp trick to not blow away the old one on
-# fail
-mv "$HOME/bamboo.js.tmp" "$HOME/bamboo.js"
-
 perl -MJSON - <<'PERL' |
 use 5.20.0;
 my $pn = 'prefName';
@@ -31,7 +24,7 @@ sub l {
      if $_->{$pn} && index(fc "$dn", fc $_->{$pn}) == -1;
   join "\t", $_->{email}, $dn, $_->{department}
 }
-open my $fh, "<", "$ENV{HOME}/bamboo.js";
+open my $fh, "<", "$ENV{HOME}/Dropbox/zr/bamboo/bamboo.js";
 my $json = do { local $/; <$fh> };
 my $data = decode_json($json);
 say l($_) for $data->{employees}->@*
