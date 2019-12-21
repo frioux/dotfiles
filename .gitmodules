@@ -14,7 +14,7 @@
 	path = vim/bundle/nerdcommenter
 	url = .
 [submodule "vim/bundle/vim-fugitive"]
-	path = vim/pack/vanilla/opt/fugitive
+	path = vim/pack/vanilla/start/fugitive
 	url = .
 [submodule "vim/bundle/vim-colors-solarized"]
 	path = vim/pack/vanilla/start/colors-solarized
@@ -98,7 +98,7 @@
 	path = vim/pack/vanilla/opt/FastFold
 	url = .
 [submodule "vim/bundle/fugitive-gitlab"]
-	path = vim/pack/vanilla/opt/fugitive-gitlab
+	path = vim/pack/vanilla/start/fugitive-gitlab
 	url = .
 [submodule "vim/bundle/lastplace"]
 	path = vim/pack/vanilla/opt/lastplace
