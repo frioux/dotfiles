@@ -272,6 +272,10 @@ $ go-splore golang.org/x/tools/go/ast/astutil
 
 Downloads a few packages that import a given package.
 
+### `gotest`
+
+Runs `minotaur` to automatically test the current package (`.`) when files are changed.
+
 ### `hgrep`
 
 `grep` for csv, without messing up the header line.
