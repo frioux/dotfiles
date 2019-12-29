@@ -1,0 +1,4 @@
+#!/bin/sh
+
+# replace caps lock with windows key
+setxkbmap -option caps:super

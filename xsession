@@ -15,7 +15,7 @@ eval `gnome-keyring-daemon`
 eval `ssh-agent`
 test -f $HOME/code/unproductive/bin/unproductive &&
    $HOME/code/unproductive/bin/unproductive >> $HOME/activity-log.txt &
-xmodmap "$HOME/.xmodmap"
+setmyxkbmap
 keepassxc &
 scenery &
 armstrong &
