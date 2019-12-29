@@ -419,6 +419,7 @@ endfunction
 nmap co yo
 
 command! -nargs=* GozrTests execute 'cexpr system("bin/gozr tests ' <args> '")'
+command! -nargs=* GoTest execute 'cexpr system("go test ' <args> '")'
 command! -nargs=* GozrAnalyze execute 'cexpr system("bin/gozr analyze ' <args> '")'
 
 command! Kit execute 'pa vinegar | pa eunuch | pa obsession | pa unimpaired | pa commentary'
