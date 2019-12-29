@@ -426,4 +426,6 @@ command! Kit execute 'pa vinegar | pa eunuch | pa obsession | pa unimpaired | pa
 
 command! PackAdd execute 'pa airline | pa ale | pa better-whitespace | pa colors-solarized | pa commentary | pa csv | pa ctrlp | pa dispatch | pa editorconfig | pa eunuch | pa exchange | pa FastFold | pa fugitive | pa fugitive-gitlab | pa gitgutter | pa govim | pa goyo | pa grepper | pa IndentAnything | pa l9 | pa lastplace | pa lost | pa matchit | pa matchmaker | pa multiple-cursors | pa obsession | pa perl | pa projectionist | pa python | pa quick-scope | pa regedit | pa repeat | pa solarized8 | pa surround | pa tabular | pa terminus | pa textobj-user | pa textobj-between | pa textobj-entire | pa textobj-underscore | pa unimpaired | pa vinegar | pa visual-star-search | pa wipeout'
 
+command! -nargs=1 Hl :match ErrorMsg <args>
+
 " vim: foldmethod=marker
