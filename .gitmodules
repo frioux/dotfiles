@@ -104,7 +104,7 @@
 	path = vim/pack/vanilla/opt/lastplace
 	url = .
 [submodule "vim/bundle/lost"]
-	path = vim/pack/vanilla/opt/lost
+	path = vim/pack/vanilla/start/lost
 	url = .
 [submodule "vim/bundle/ale"]
 	path = vim/pack/vanilla/opt/ale
@@ -116,7 +116,7 @@
 	path = vim/pack/vanilla/start/solarized8
 	url = .
 [submodule "vim/bundle/regedit"]
-	path = vim/pack/vanilla/opt/regedit
+	path = vim/pack/vanilla/start/regedit
 	url = .
 [submodule "vim/bundle/dispatch"]
 	path = vim/pack/vanilla/opt/dispatch
