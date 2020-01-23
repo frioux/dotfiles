@@ -83,7 +83,7 @@
 	path = vim/pack/vanilla/start/eunuch
 	url = .
 [submodule "vim/bundle/terminus"]
-	path = vim/pack/vanilla/opt/terminus
+	path = vim/pack/vanilla/start/terminus
 	url = .
 [submodule "vim/bundle/quick-scope"]
 	path = vim/pack/vanilla/opt/quick-scope
