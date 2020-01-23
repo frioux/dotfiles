@@ -1,6 +1,7 @@
 #!/bin/sh
 
 while true; do
-   feh --bg-max ~/Dropbox/Pictures/wallpaper -z
+   # the third arg ends up on the third monitor, which for me is my 4k monitor
+   feh --bg-max $(find ~/Dropbox/Pictures/wallpaper/ | shuf | tail -2) ~/Dropbox/Pictures/wallpaper/marble.jpg
    sleep $(( 60 * 25 ))
 done
