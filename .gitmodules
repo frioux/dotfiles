@@ -134,5 +134,5 @@
 	path = awesome/charitable
 	url = .
 [submodule "vim/pack/vanilla/start/govim"]
-	path = vim/pack/vanilla/opt/govim
+	path = vim/pack/vanilla/start/govim
 	url = .
