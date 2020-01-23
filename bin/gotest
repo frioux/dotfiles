@@ -1,16 +1,23 @@
-#!/bin/sh
+#!/bin/bash
 
 test() {
    date
    echo =================================================
-   go test -v ./...
+   go test $GOTESTARGS
    echo =================================================
 }
 
 if [ "$1" = "test" ]; then
+   shift
    test
 else
-   test
+   # this doesn't properly encode spaces, so args with interior
+   # spaces will break.
+   export GOTESTARGS="${*:-./...}"
+
+   # reexec the current script; this works from minotaur and
+   # ensures the reexec code is working on the first run
+   "$0" test
    minotaur . -- "$0" test
 fi
 
