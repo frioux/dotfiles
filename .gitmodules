@@ -101,7 +101,7 @@
 	path = vim/pack/vanilla/start/fugitive-gitlab
 	url = .
 [submodule "vim/bundle/lastplace"]
-	path = vim/pack/vanilla/opt/lastplace
+	path = vim/pack/vanilla/start/lastplace
 	url = .
 [submodule "vim/bundle/lost"]
 	path = vim/pack/vanilla/start/lost
