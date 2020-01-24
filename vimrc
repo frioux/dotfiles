@@ -48,7 +48,7 @@ augroup vimrc
    au FileType lua setlocal path+=/usr/share/awesome/lib
    au FileType lua setlocal includeexpr=substitute(v:fname,'\\.','/','g')
 
-   " au FileType go call govim#config#Set("QuickfixAutoDiagnostics", 0)
+   au FileType go call govim#config#Set("QuickfixAutoDiagnostics", 0)
 augroup END
 
 "}}}
@@ -194,7 +194,7 @@ nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
 inoremap <silent> <PageDown> <nop>
 inoremap <silent> <PageUp> <nop>
 
-nnoremap <silent> <buffer> gh : <C-u>call GOVIMHover()<CR>
+nnoremap <silent> gh : <C-u>call GOVIMHover()<CR>
 nnoremap <silent> gH :GOVIMQuickfixDiagnostics<CR>
 
 "}}}
