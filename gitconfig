@@ -116,3 +116,6 @@
 	insteadOf = https://git.ziprecruiter.com/
 [commit]
 	verbose = 1
+[status]
+	showStash = true
+	relativePaths = true
