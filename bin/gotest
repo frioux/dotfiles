@@ -3,7 +3,12 @@
 test() {
    date
    echo =================================================
-   go test $GOTESTARGS
+
+   # unpack GOTESTARGS back into $@
+   eval "$GOTESTARGS"
+   set -- "${s[@]}"
+
+   go test "$@"
    echo =================================================
 }
 
@@ -11,13 +16,16 @@ if [ "$1" = "test" ]; then
    shift
    test
 else
-   # this doesn't properly encode spaces, so args with interior
-   # spaces will break.
-   export GOTESTARGS="${*:-./...}"
+   # Serialize into string
+   GOTESTARGS=$(
+      s=("$@")        # temporary array
+      set | grep ^s=  # `set` serializes a named array
+   )
+   export GOTESTARGS
 
    # reexec the current script; this works from minotaur and
    # ensures the reexec code is working on the first run
    "$0" test
-   minotaur . -- "$0" test
+   leatherman minotaur . -- "$0" test
 fi
 
