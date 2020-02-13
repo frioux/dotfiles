@@ -1,8 +1,5 @@
 set folder            = "$HOME/var/mail"
-set from              = "_@frew.co"
 set reverse_name = yes
-
-alternates '^frew@mitsi.com$' '^frioux@gmail.com$' 'frew.co$' 'afoolishmanifesto.com$' '^FREW@cpan.org$'
 
 mailboxes `find ~/var/mail -maxdepth 1 -type d -printf "+%f | grep -v Trash"`
 set spoolfile = +INBOX
@@ -10,24 +7,10 @@ set postponed = "+gmail.Drafts"
 set record    = "+gmail.Sent_Mail"
 
 macro index,pager im "<change-folder>=mitsi<enter>" "view mitsi list"
-macro index,pager iw "<change-folder>=mitsi.work<enter>"   "view mitsi.work"
-macro index,pager id "<change-folder>=DBIx-Class-Devel<enter>"   "view DBIx-Class-Devel"
 folder-hook . 'set read_inc=1000'
 
 send-hook '~t ".*"' 'unmy_hdr From'
-send-hook '~t "mitsi@googlegroups.com"'         'my_hdr From: fREW Schmidt <frew@afoolishmanifesto.com>'
-send-hook '~t "bladis@googlegroups.com"'        'my_hdr From: fREW Schmidt <frew@afoolishmanifesto.com>'
-send-hook '~t "frioux@kindle.com"'              'my_hdr From: fREW Schmidt <frioux@gmail.com>'
-send-hook '~t "mtsi-work@googlegroups.com"'     'my_hdr From: fREW Schmidt <frioux@gmail.com>'
-send-hook '~t "mtsi-movies@googlegroups.com"'   'my_hdr From: fREW Schmidt <frioux@gmail.com>'
-send-hook '~t "awesome-books@googlegroups.com"' 'my_hdr From: fREW Schmidt <frioux@gmail.com>'
-send-hook '~t "awesome-music@googlegroups.com"' 'my_hdr From: fREW Schmidt <frioux@gmail.com>'
 
 folder-hook ".*" 'unmy_hdr To'
-folder-hook 'mitsi$'         'my_hdr To: mitsi@googlegroups.com'
-folder-hook 'mitsi\.books$'  'my_hdr To: awesome-books@googlegroups.com'
-folder-hook 'mitsi\.movies$' 'my_hdr To: mtsi-movies@googlegroups.com'
-folder-hook 'mitsi\.music$'  'my_hdr To: awesome-music@googlegroups.com'
-folder-hook 'mitsi\.work$'   'my_hdr To: mtsi-work@googlegroups.com'
 
 # vim: ft=muttrc
