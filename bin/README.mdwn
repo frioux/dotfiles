@@ -26,6 +26,10 @@ Handles `vim:` links.
 
 Handles `rt:` links.
 
+### `toggle-meet-mic`
+
+Toggles the microphone in Google meet.
+
 ### `trim-clipboard`
 
 Removes trailing whitespace from the clipboard buffer, for each line.

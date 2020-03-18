@@ -1,0 +1,7 @@
+#!/bin/sh
+
+set -e
+
+cur=$(xdotool getwindowfocus)
+xdotool search --name 'Meet' windowfocus --sync key 'ctrl+d'
+xdotool windowfocus "$cur"
