@@ -347,6 +347,7 @@ globalkeys = gears.table.join(
     awful.key({ }, "XF86AudioRaiseVolume", volumecfg.up),
     awful.key({ }, "XF86MonBrightnessDown", function () awful.spawn("backlight -10") end),
     awful.key({ }, "XF86MonBrightnessUp",   function () awful.spawn("backlight  10") end),
+    awful.key({ modkey }, "m",   function () awful.spawn("toggle-meet-mic") end),
 
     awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)          end,
               {description = "increase master width factor", group = "layout"}),
