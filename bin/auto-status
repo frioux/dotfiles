@@ -1,0 +1,29 @@
+#!/bin/sh
+
+. ~/.env
+
+loop=$1
+
+if [ -n "$loop" ]; then
+        while true; do
+                $0
+                sleep 60
+        done
+fi
+
+meeting=$(xdotool search --name Meet)
+slack=$(dump-mozlz4 ~/.mozilla/firefox/wukjiv0u.default-1582776381886/sessionstore-backups/recovery.jsonlz4 |
+        jq -r '.windows[].tabs[] | select(.pinned != true) | .entries[.index - 1] | .title' |
+        grep '^Slack .* ZipRecruiter')
+vpn=$(pgrep openvpn)
+locked=$(pgrep i3lock)
+
+if [ -n "$meeting" ]; then 
+        ./leatherman slack-status -emoji :calendar: -text "in a meeting"
+elif [ -n "$locked" ]; then
+        ./leatherman slack-status -emoji :door: -text "away from computer"
+elif [ -n "$vpn" ] || [ -n "$slack" ]; then
+        ./leatherman slack-status -emoji :male-technologist: -text "workin'"
+else
+        ./leatherman slack-status -emoji :question-marks-purple:  -text "missing in action"
+fi

@@ -6,6 +6,11 @@
 
 Reminder to stretch every 25m.
 
+### `auto-status`
+
+Set slack status automatically based on if I'm in a meeting, running slack,
+have the vpn on, or if my screen is locked.
+
 ### `bible-handler`
 
 Handles `bible://` links.
