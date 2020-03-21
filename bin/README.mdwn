@@ -65,6 +65,10 @@ Show menu of vim sessions to resume.
 Show menu of unicode characters (by name) and stores selection into
 `~/.uni_history`.
 
+### `sync-marble`
+
+Downloads earth picture; pass `loop` and it'll do it every five minutes.
+
 ### `type-clipboard`
 
 Some websites block paste; this types whats in the clipboard directly to bypass
