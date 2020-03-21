@@ -19,11 +19,11 @@ vpn=$(pgrep openvpn)
 locked=$(pgrep i3lock)
 
 if [ -n "$meeting" ]; then 
-        ./leatherman slack-status -emoji :calendar: -text "in a meeting"
+        slack-status -emoji :calendar: -text "in a meeting"
 elif [ -n "$locked" ]; then
-        ./leatherman slack-status -emoji :door: -text "away from computer"
+        slack-status -emoji :door: -text "away from computer"
 elif [ -n "$vpn" ] || [ -n "$slack" ]; then
-        ./leatherman slack-status -emoji :male-technologist: -text "workin'"
+        slack-status -emoji :male-technologist: -text "workin'"
 else
-        ./leatherman slack-status -emoji :question-marks-purple:  -text "missing in action"
+        slack-status -emoji :question-marks-purple:  -text "missing in action"
 fi
