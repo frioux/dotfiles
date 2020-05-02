@@ -93,11 +93,6 @@ function widgets.cpu()
    cpu:set_width(50)
    cpu:set_background_color("#000000")
    cpu:set_color("#4E9A06")
-   cpu:buttons(awful.util.table.join(
-     awful.button({}, 1, function () awful.util.spawn("terminator -e glances") end),
-     awful.button({}, 3, function () awful.util.spawn("terminator -e top") end),
-     awful.button({}, 2, function () awful.util.spawn("gnome-system-monitor") end)
-   ))
    local tip = awful.tooltip({ objects = { cpu },})
 
    vicious.register(cpu, vicious.widgets.cpu,
@@ -124,10 +119,6 @@ function widgets.temperature()
      tip:set_text("Temperature: " .. args[1] .. "°C")
      return args[1]
    end, 1, 'thermal_zone0')
-   temperature:buttons(awful.util.table.join(
-     awful.button({ }, 1, function () awful.util.spawn("gnome-power-statistics") end),
-     awful.button({ }, 3, function () awful.util.spawn("gksudo 'terminator -e powertop'") end)
-))
 
     return temperature
 end
@@ -137,11 +128,6 @@ function widgets.memory()
    memory:set_width(50)
    memory:set_background_color("#000000")
    memory:set_color("#3465A4")
-   memory:buttons(awful.util.table.join(
-     awful.button({}, 1, function () awful.util.spawn("terminator -e glances") end),
-     awful.button({}, 3, function () awful.util.spawn("terminator -e top") end),
-     awful.button({}, 2, function () awful.util.spawn("gnome-system-monitor") end)
-   ))
 
    local tip = awful.tooltip({ objects = { memory },})
    vicious.register(memory, vicious.widgets.mem,
