@@ -27,7 +27,7 @@ function widgets.battery()
       spacing = 2,
    })
    composite:buttons(awful.util.table.join(
-     awful.button({}, 1, function () awful.util.spawn("gnome-power-statistics") end)
+     awful.button({}, 3, function () awful.util.spawn("gnome-power-statistics") end)
    ))
    local tip = awful.tooltip({ objects = { composite },})
 
@@ -144,8 +144,8 @@ function widgets.weather(code, url, name)
   local tip = awful.tooltip({ objects = { weather } });
 
   weather:buttons(awful.util.table.join(
-    awful.button({}, 1, function () awful.spawn("firefox '" .. url .. os.time() .. "'") end),
-    awful.button({ modkey }, 1, function(w) vicious.force(w) end)
+    awful.button({}, 3, function () awful.spawn("firefox '" .. url .. os.time() .. "'") end),
+    awful.button({}, 1, function(w) vicious.force(w) end)
   ))
 
   vicious.register(weather, vicious.widgets.weather,
