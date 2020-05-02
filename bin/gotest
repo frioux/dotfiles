@@ -1,4 +1,4 @@
 #!/bin/sh
 
 # if tests fail print BEL
-exec leatherman minotaur -report . -- sh -c 'go test "$@" || echo "\a"' _ "$@"
+exec minotaur -report . -- sh -c 'go test "$@" || echo "\a"' _ "$@"
