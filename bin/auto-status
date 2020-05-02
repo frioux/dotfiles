@@ -1,5 +1,11 @@
 #!/bin/sh
 
+# rand returns one of the passed parameters chosen at random, but is consistent
+# within the day.
+rand() {
+  perl -e'my ($x, $x, $h, $d, $m) = localtime; srand($d + 100*$m); print $ARGV[int rand @ARGV] . "\n"' "$@"
+}
+
 . ~/.env
 
 loop=$1
@@ -11,19 +17,25 @@ if [ -n "$loop" ]; then
         done
 fi
 
-meeting=$(xdotool search --name Meet)
-slack=$(dump-mozlz4 ~/.mozilla/firefox/wukjiv0u.default-1582776381886/sessionstore-backups/recovery.jsonlz4 |
+lz4=$HOME/.mozilla/firefox/wukjiv0u.default-1582776381886/sessionstore-backups/recovery.jsonlz4
+
+meeting=$(lsof /dev/video0 2>/dev/null)
+slack=$(dump-mozlz4 "$lz4" |
         jq -r '.windows[].tabs[] | select(.pinned != true) | .entries[.index - 1] | .title' |
         grep '^Slack .* ZipRecruiter')
 vpn=$(pgrep openvpn)
 locked=$(pgrep i3lock)
 
 if [ -n "$meeting" ]; then 
-        slack-status -emoji :calendar: -text "in a meeting"
+        echo "in meeting: $meeting"
+        slack-status -emoji :calendar: -text "$(rand "in a meeting" "meetin'" "talking with coworkers about work" "check my calendar")"
 elif [ -n "$locked" ]; then
+        echo "locked: $locked"
         slack-status -emoji :door: -text "away from computer"
 elif [ -n "$vpn" ] || [ -n "$slack" ]; then
+        echo "working: $vpn / $slack"
         slack-status -emoji :male-technologist: -text "workin'"
 else
-        slack-status -emoji :question-marks-purple:  -text "missing in action"
+        echo "???"
+        slack-status -emoji :question-marks-purple: -text "$(rand "missing in action" "living my life" "avoiding the COVID-19")"
 fi
