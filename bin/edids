@@ -1,0 +1,12 @@
+#!/usr/bin/perl
+
+use strict;
+
+my $p = `xrandr --props`;
+
+my @pairs = $p =~ m/\G.*?(\S+) connected[^\n]+\s+EDID:((?:\s*[0-9a-f]{32}\s*)+)/mgcs;
+
+for (my $i = 0; $i < @pairs; $i += 2) {
+        $pairs[$i+1] =~ s/\s+//g;
+        print "$pairs[$i] $pairs[$i+1]\n"
+}
