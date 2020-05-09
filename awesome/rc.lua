@@ -138,6 +138,8 @@ local function margin(widget, margins)
   return wibox.container.background(margin)
 end
 
+local aqiwidget = margin(widgets.aqi(), { left = 5, right = 5 })
+
 local osweatherwidget = widgets.weather(
   "KGPT", "https://darksky.net/30.4113,-88.8279", "OS"
 )
@@ -232,6 +234,7 @@ awful.screen.connect_for_each_screen(function(s)
         batwidget,
         memorywidget,
         cpuwidget,
+        aqiwidget,
         smweatherwidget,
         osweatherwidget,
         volumecfg.widget,
@@ -243,6 +246,7 @@ awful.screen.connect_for_each_screen(function(s)
         table.remove(right, 2) -- bat
         table.remove(right, 2) -- memory
         table.remove(right, 2) -- cpu
+        table.remove(right, 2) -- aqi
         table.remove(right, 2) -- smweather
         table.remove(right, 2) -- osweather
         table.remove(right, 2) -- vol

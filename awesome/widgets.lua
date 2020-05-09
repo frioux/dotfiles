@@ -7,6 +7,29 @@ local calendar_popup = require("gross.calendar_popup")
 
 local widgets = {}
 
+function widgets.aqi()
+  local aqi = wibox.widget.textbox()
+  local tip = awful.tooltip({ objects = { aqi } });
+
+  aqi:buttons(awful.util.table.join(
+    awful.button({}, 3, function () awful.spawn("firefox https://www.latimes.com/wildfires-map/") end),
+    awful.button({}, 1, function(w) vicious.force(w) end)
+  ))
+
+  vicious.register(aqi, vicious.widgets.aqi,
+    function (widget, args)
+       tip:set_text(
+         "Measured at: " .. os.date("%F %T", tonumber(args["{measured_at}"])/1000) ..
+          "\nRequested at: " .. os.date("%F %T")
+       )
+
+       return "AQI " .. args["{aqi}"]
+    end,
+  30 * 60, 'Northwest Coastal LA County')
+
+  return aqi
+end
+
 function widgets.battery()
    local chart = wibox.widget.progressbar()
    chart:set_background_color("#494B4F")
