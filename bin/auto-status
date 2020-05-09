@@ -17,12 +17,7 @@ if [ -n "$loop" ]; then
         done
 fi
 
-lz4=$HOME/.mozilla/firefox/wukjiv0u.default-1582776381886/sessionstore-backups/recovery.jsonlz4
-
 meeting=$(lsof /dev/video0 2>/dev/null)
-slack=$(dump-mozlz4 "$lz4" |
-        jq -r '.windows[].tabs[] | select(.pinned != true) | .entries[.index - 1] | .title' |
-        grep '^Slack .* ZipRecruiter')
 vpn=$(pgrep openvpn)
 locked=$(pgrep i3lock)
 
@@ -32,7 +27,7 @@ if [ -n "$meeting" ]; then
 elif [ -n "$locked" ]; then
         echo "locked: $locked"
         slack-status -emoji :door: -text "away from computer"
-elif [ -n "$vpn" ] || [ -n "$slack" ]; then
+elif [ -n "$vpn" ] || slack-running; then
         echo "working: $vpn / $slack"
         slack-status -emoji :male-technologist: -text "workin'"
 else
