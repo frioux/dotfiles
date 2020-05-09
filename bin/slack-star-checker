@@ -1,0 +1,33 @@
+#!/bin/sh
+
+. "$HOME/.env"
+
+if [ -n "$1" ]; then
+  while true; do
+    "$0"
+    sleep 600
+  done
+fi
+
+lz4=$HOME/.mozilla/firefox/wukjiv0u.default-1582776381886/sessionstore-backups/recovery.jsonlz4
+
+slack=$(dump-mozlz4 "$lz4" |
+        jq -r '.windows[].tabs[] | select(.pinned != true) | .entries[.index - 1] | .title' |
+        grep '^Slack .* ZipRecruiter')
+
+# no need to notify when not running slack
+if [ -z "$slack" ]; then
+        exit 0
+fi
+
+# count starred messages older than 3h
+count="$(curl "https://slack.com/api/stars.list?token=$SLACK_TOKEN" |
+  jq '.items[] | select(.type == "message") | .type' |
+  wc -l)"
+
+if [ "$count" -gt 0 ]; then
+  msg="starred messages over 3h old: $count"
+  echo "$msg"
+  notify-send -u critical "$msg"
+fi
+
