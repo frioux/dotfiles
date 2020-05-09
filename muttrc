@@ -24,6 +24,9 @@ set pager_context     = 5
 set pager_index_lines=9
 set query_command     = "addrlookup-fast '%s'"
 set realname          = "fREW Schmidt"
+
+# this prevents advancing the cursor when I delete a message
+set resolve           = no
 set send_charset      = "utf-8"
 set sendmail          = "/usr/sbin/sendmail"
 set signature         = "~/.signature"
