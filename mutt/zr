@@ -8,7 +8,6 @@ set postponed = "+gmail.Drafts"
 set record    = "+gmail.Sent_Mail"
 
 reply-hook '~s ".*"' 'set editor="vim"'
-reply-hook '~s "Production errors from yesterday"' 'set editor="maybe-snip vim"'
 send-hook '~t ".*"' 'my_hdr From: Frew Schmidt <frew@ziprecruiter.com>'
 
 # vim: ft=muttrc
