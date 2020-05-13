@@ -1,0 +1,18 @@
+#!/bin/sh
+
+cov=$1
+
+if [ -z "$cov" ]; then
+  echo "usage: $0 <coverage.out>"
+  exit 1
+fi
+
+html=$(mktemp -d)
+
+minotaur "$(dirname "$cov")" -- \
+  sh -c "go tool cover -html \"$cov\" -o \"$html/coverage.html\"" &
+pid=$!
+
+trap 'rm -rf "$html"; kill -QUIT "$pid"' INT
+
+srv "$html"
