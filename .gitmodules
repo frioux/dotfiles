@@ -136,3 +136,6 @@
 [submodule "vim/pack/vanilla/start/govim"]
 	path = vim/pack/vanilla/start/govim
 	url = .
+[submodule "vim/pack/vanilla/start/speeddatting"]
+	path = vim/pack/vanilla/start/speeddating
+	url = gh:tpope/vim-speeddating
