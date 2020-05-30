@@ -9,11 +9,16 @@ if [ -n "$1" ]; then
   done
 fi
 
-lz4=$HOME/.mozilla/firefox/wukjiv0u.default-1582776381886/sessionstore-backups/recovery.jsonlz4
+# don't leave a bunch of notifications when screen is locked
+locked=$(curl http://localhost:8081/locked)
+if [ "$locked" = true ]; then
+        exit 0
+fi
 
-slack=$(dump-mozlz4 "$lz4" |
+slack=$(curl http://localhost:8081/tabs |
         jq -r '.windows[].tabs[] | select(.pinned != true) | .entries[.index - 1] | .title' |
         grep '^Slack .* ZipRecruiter')
+
 
 # no need to notify when not running slack
 if [ -z "$slack" ]; then
