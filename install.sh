@@ -17,6 +17,7 @@ mkdir -p ~/.config
 if [ -e ~/.frewmbot-local ]; then
    link-file dotjs ~/.js
    link-file ssh/config ~/.ssh/config
+   link-file XCompose ~/.XCompose
 
    if [ -L ~/.ssh/authorized_keys -o ! -e ~/.ssh/authorized_keys ]; then
       link-file ssh/authorized_keys ~/.ssh/authorized_keys

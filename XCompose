@@ -1,0 +1,6 @@
+include /usr/share/X11/locale/en_US.UTF-8/Compose
+
+<Multi_key> <plus> <plus>   : "👍"   thumbsup
+<Multi_key> <minus> <minus> : "👎"   thumbsdown
+<Multi_key> <i> <r>         : "🙄"   eyeroll
+<Multi_key> <g> <g>         : "😬"   grimace
