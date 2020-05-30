@@ -1,4 +1,8 @@
 #!/bin/sh
 
 # replace caps lock with windows key
-setxkbmap -option caps:super
+# replace print scren with compose (?)
+setxkbmap \
+   -option caps:super \
+   -option compose:prsc
+
