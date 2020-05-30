@@ -1,0 +1,9 @@
+#!/bin/sh
+
+curl localhost:8081/tabs |
+        jq -r '.windows[].tabs[] | select(.pinned != true) | .entries[.index - 1] | .title' |
+        grep -q '^Slack .* RJBS' && exit
+
+curl localhost:8081/tabs |
+        jq -r '.windows[].tabs[] | select(.pinned != true) | .entries[.index - 1] | .url' |
+        grep -q '^https://discord.com/' && exit

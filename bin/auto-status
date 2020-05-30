@@ -17,17 +17,17 @@ if [ -n "$loop" ]; then
         done
 fi
 
-meeting=$(lsof /dev/video0 2>/dev/null)
-vpn=$(pgrep openvpn)
-locked=$(pgrep i3lock)
+meeting=$(curl http://localhost:8081/cam)
+vpn=$(curl http://locahost:8081/vpn)
+locked=$(curl http://localhost:8081/locked)
 
-if [ -n "$meeting" ]; then 
+if [ "$meeting" = true ]; then
         echo "in meeting: $meeting"
         slack-status -emoji :calendar: -text "$(rand "in a meeting" "meetin'" "talking with coworkers about work" "check my calendar")"
-elif [ -n "$locked" ]; then
+elif [ "$locked" = true ]; then
         echo "locked: $locked"
         slack-status -emoji :door: -text "away from computer"
-elif [ -n "$vpn" ] || slack-running; then
+elif [ -n "$vpn" ] || work-slack-running; then
         echo "working: $vpn / $slack"
         slack-status -emoji :male-technologist: -text "workin'"
 else
