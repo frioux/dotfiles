@@ -351,6 +351,10 @@ if !exists('g:neocomplete#sources')
 endif
 let g:neocomplete#sources.go = ['omni']
 let g:neocomplete#sources.markdown = ['omni']
+if !exists('g:neocomplete#force_omni_input_patterns')
+  let g:neocomplete#force_omni_input_patterns = {}
+endif
+let g:neocomplete#force_omni_input_patterns.markdown = '\s"\w*'
 
 set directory=$HOME/.vvar/swap//
 set undodir=$HOME/.vvar/undo//
