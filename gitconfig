@@ -19,7 +19,6 @@
    ix = diff --staged
    git = !git
    wip = !git add $(git rev-parse --show-toplevel) && git commit -amWIP
-   sync = !git pull && git push
 [diff]
    ;external = git_diff_wrapper
    compactionHeuristic = true

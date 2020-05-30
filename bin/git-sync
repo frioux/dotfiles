@@ -1,0 +1,5 @@
+#!/bin/sh
+
+for x in $(seq 1 10); do
+        git pull && git push && break
+done

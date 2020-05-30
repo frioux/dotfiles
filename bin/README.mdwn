@@ -158,6 +158,10 @@ git clone hg::https://hg.python.org/cpython/
 
 Remove whitespace only changes from the current checkout.
 
+### `git-sync`
+
+Try pushing up to 10 times because of our busy monorepo.
+
 ### `wrap-git`
 
 A number of additional features added to core git via simple wrapper:
