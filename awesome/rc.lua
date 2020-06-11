@@ -95,22 +95,19 @@ end
 
 -- {{{ Menu
 -- Create a launcher widget and a main menu
-myawesomemenu = {
-   { "hotkeys", function() return false, hotkeys_popup.show_help end},
-   { "manual", terminal .. " -e man awesome" },
-   { "edit config", editor_cmd .. " " .. awesome.conffile },
-   { "restart", awesome.restart },
-   { "quit", function() awesome.quit() end}
-}
-
-local menu_awesome = { "awesome", myawesomemenu, beautiful.awesome_icon }
-local menu_terminal = { "open terminal", terminal }
-
 mymainmenu = awful.menu({
     items = {
-              menu_awesome,
-              menu_terminal,
-            }
+      { "dock", function () awful.spawn("dock") end },
+      { "undock", function () awful.spawn("undock") end },
+      { "restart", awesome.restart },
+      { "quit", function() awesome.quit() end},
+
+      { "open terminal", terminal },
+
+      { "hotkeys", function() return false, hotkeys_popup.show_help end},
+      { "manual", terminal .. " -e man awesome" },
+      { "edit config", editor_cmd .. " " .. awesome.conffile }
+    }
 })
 
 mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
