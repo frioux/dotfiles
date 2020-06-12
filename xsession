@@ -9,7 +9,7 @@ systemctl --user start sound
 # this thing prints a ton of stupid GTK warnings
 nm-applet >/dev/null 2>&1 &
 dropbox start &
-xautolock -time 5 -locker lock-now &
+xautolock -time 5 -locker lock-now -corners +0-0 &
 xset dpms 120
 eval `gnome-keyring-daemon`
 eval `ssh-agent`
