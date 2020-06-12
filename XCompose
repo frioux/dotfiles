@@ -1,10 +1,11 @@
-include /usr/share/X11/locale/en_US.UTF-8/Compose
+include "/usr/share/X11/locale/en_US.UTF-8/Compose"
 
-<Multi_key> <equal> <equal> : "👍"   thumbsup
-<Multi_key> <minus> <minus> : "👎"   thumbsdown
-<Multi_key> <d> <n>   : "👇"   down
-<Multi_key> <u> <p>   : "☝️"   up
-<Multi_key> <i> <r>         : "🙄"   eyeroll
-<Multi_key> <g> <g>         : "😬"   grimace
+<Multi_key> <equal> <equal> : "👍"
+<Multi_key> <minus> <minus> : "👎"
+<Multi_key> <d> <n>   : "👇"
+<Multi_key> <u> <p>   : "☝️"
+<Multi_key> <i> <r>         : "🙄"
+<Multi_key> <g> <g>         : "😬"
 
-<Multi_key> <question> <question> : "🤷‍♂️"   shrug
+<Multi_key> <question> <question> : "🤷‍♂️"
+<Multi_key> <slash> <slash> : "🤷‍♂️"
