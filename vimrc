@@ -7,8 +7,6 @@ if !has('packages')
    endif
 endif
 
-let g:deoplete#enable_at_startup = 1
-
 "{{{Auto Commands
 
 set formatprg=fmt\ -w80
@@ -343,18 +341,6 @@ function! CycleColors()
 endfunction
 nnoremap <F12> :call CycleColors()<cr>
 call CycleColors()
-
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#enable_smart_case = 1
-if !exists('g:neocomplete#sources')
-  let g:neocomplete#sources = {}
-endif
-let g:neocomplete#sources.go = ['omni']
-let g:neocomplete#sources.markdown = ['omni']
-if !exists('g:neocomplete#force_omni_input_patterns')
-  let g:neocomplete#force_omni_input_patterns = {}
-endif
-let g:neocomplete#force_omni_input_patterns.markdown = '\s"\w*'
 
 set directory=$HOME/.vvar/swap//
 set undodir=$HOME/.vvar/undo//

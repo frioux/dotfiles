@@ -139,3 +139,12 @@
 [submodule "vim/pack/vanilla/start/speeddatting"]
 	path = vim/pack/vanilla/start/speeddating
 	url = gh:tpope/vim-speeddating
+[submodule "vim/pack/vanilla/start/deoplete"]
+	path = vim/pack/vanilla/opt/deoplete
+	url = gh:Shougo/deoplete.nvim
+[submodule "vim/pack/vanilla/start/yarp"]
+	path = vim/pack/vanilla/opt/yarp
+	url = gh:roxma/nvim-yarp
+[submodule "vim/pack/vanilla/start/vim-hug-neovim-rpc"]
+	path = vim/pack/vanilla/opt/vim-hug-neovim-rpc
+	url = gh:roxma/vim-hug-neovim-rpc
