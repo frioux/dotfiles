@@ -117,4 +117,6 @@
 	verbose = 1
 [status]
 	showStash = true
-	relativePaths = true
+        relativePaths = true
+[init]
+    templateDir = ~/code/dotfiles/git/template/
