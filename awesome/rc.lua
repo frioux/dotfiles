@@ -169,8 +169,8 @@ local taglist_buttons = gears.table.join(
         end
     end),
 
-    awful.button({ }, 4, function(t) awful.tag.viewnext(t.screen) end),
-    awful.button({ }, 5, function(t) awful.tag.viewprev(t.screen) end)
+    awful.button({ }, 4, function(t) awful.client.focus.byidx(-1) end),
+    awful.button({ }, 5, function(t) awful.client.focus.byidx( 1) end)
 )
 
 local tags = charitable.create_tags(
