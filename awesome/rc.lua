@@ -486,6 +486,22 @@ awful.rules.rules = {
     { rule = { class = "keepassxc" }, properties = { tag = "8" } },
     { rule = { class = "Signal"    }, properties = { tag = "9" } },
 }
+
+awful.rules.rules[#awful.rules.rules + 1] = {
+  rule = { name = 'accounts.google.com_/o/saml2/initsso', role = 'pop-up' },
+  callback = function(client)
+    client.hidden = true
+
+    client:connect_signal('property::name', function()
+      if client.name == 'accounts.google.com_/o/saml2/initsso' or client.name == 'Forwarding ...' then
+        client.hidden = true
+      else
+        client.hidden = false
+      end
+    end)
+  end,
+}
+
 -- }}}
 
 -- {{{ Signals
