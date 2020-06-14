@@ -55,8 +55,7 @@ function volume.new()
      awful.button({ }, 4, function () volumecfg.up() end),
      awful.button({ }, 5, function () volumecfg.down() end),
      awful.button({ }, 1, function () volumecfg.toggle() end),
-     awful.button({ }, 3, function () awful.util.spawn("terminator -e alsamixer") end),
-     awful.button({ }, 2, function () awful.util.spawn("pavucontrol") end)
+     awful.button({ }, 3, function () awful.util.spawn("pavucontrol") end)
    ))
    volumecfg.update()
 
