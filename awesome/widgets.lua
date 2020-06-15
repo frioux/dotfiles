@@ -7,6 +7,21 @@ local calendar_popup = require("gross.calendar_popup")
 
 local widgets = {}
 
+function widgets.editable(w)
+  local i = debug.getinfo(2, "Sl")
+  assert(string.sub(i.source, 1, 1) == "@", "source is not a filename")
+
+  local realpath = string.sub(i.source, 2) -- strip @ prefix
+  w:buttons(awful.util.table.join(
+    w:buttons(),
+    awful.button({ modkey }, 1, function ()
+      awful.util.spawn("terminator -e 'vim " .. realpath .. " +" .. tostring(i.currentline) .. "'")
+    end)
+  ))
+
+  return w
+end
+
 function widgets.aqi()
   local aqi = wibox.widget.textbox()
   local tip = awful.tooltip({ objects = { aqi } });
@@ -27,6 +42,7 @@ function widgets.aqi()
     end,
   30 * 60, 'Northwest Coastal LA County')
 
+  widgets.editable(aqi)
   return aqi
 end
 
@@ -65,6 +81,7 @@ function widgets.battery()
      return args[2]
    end, 13, "BAT0")
 
+   widgets.editable(composite)
    return composite
 end
 
@@ -108,6 +125,7 @@ function widgets.clock(screen)
        end)
    end
 
+   widgets.editable(widget)
    return widget
 end
 
@@ -128,7 +146,8 @@ function widgets.cpu()
        return args[1]
     end, 1)
 
-    return cpu
+   widgets.editable(cpu)
+   return cpu
 end
 
 function widgets.temperature()
@@ -143,7 +162,8 @@ function widgets.temperature()
      return args[1]
    end, 1, 'thermal_zone0')
 
-    return temperature
+   widgets.editable(temperature)
+   return temperature
 end
 
 function widgets.memory()
@@ -159,6 +179,7 @@ function widgets.memory()
        return args[1]
    end, 1)
 
+   widgets.editable(memory)
    return memory
 end
 
@@ -187,7 +208,8 @@ function widgets.weather(code, url, name)
       return name .. " " .. args["{tempf}"] .. "°F"
   end, 60 * 10, code)
 
-  return weather
+   widgets.editable(weather)
+   return weather
 end
 
 return widgets

@@ -3,6 +3,8 @@ local wibox = require("wibox")
 
 local volume = {}
 
+local widgets = require("widgets")
+
 function volume.new()
    local volumecfg = {}
    local chart = wibox.widget.progressbar()
@@ -59,6 +61,7 @@ function volume.new()
    ))
    volumecfg.update()
 
+   widgets.editable(volumecfg.widget)
    return volumecfg
 end
 
