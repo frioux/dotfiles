@@ -15,4 +15,4 @@ pid=$!
 
 trap 'rm -rf "$html"; kill -QUIT "$pid"' INT
 
-srv "$html"
+srv -port 7001 "$html"
