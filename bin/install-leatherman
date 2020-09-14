@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 LMURL="$(curl -s https://api.github.com/repos/frioux/leatherman/releases/latest |
    grep browser_download_url |
    cut -d '"' -f 4 |
