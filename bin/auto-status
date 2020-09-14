@@ -18,7 +18,7 @@ if [ -n "$loop" ]; then
 fi
 
 meeting=$(curl http://localhost:8081/cam)
-vpn=$(curl http://locahost:8081/vpn)
+vpn=$(curl http://localhost:8081/vpn)
 locked=$(curl http://localhost:8081/locked)
 
 if [ "$meeting" = true ]; then
@@ -27,8 +27,8 @@ if [ "$meeting" = true ]; then
 elif [ "$locked" = true ]; then
         echo "locked: $locked"
         slack-status -emoji :door: -text "away from computer"
-elif [ -n "$vpn" ] || work-slack-running; then
-        echo "working: $vpn / $slack"
+elif [ "$vpn" = true ] || work-slack-running; then
+        echo "working: vpn=$vpn / slack=$slack"
         slack-status -emoji :male-technologist: -text "workin'"
 else
         echo "???"
