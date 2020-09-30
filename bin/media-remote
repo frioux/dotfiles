@@ -1,0 +1,8 @@
+#!/bin/sh
+
+DEST=$(dbus-send --print-reply --dest=org.freedesktop.DBus /org/freedesktop/DBus org.freedesktop.DBus.ListNames |
+        grep MediaPlayer2 |
+        awk '{ print $2 }' |
+        sed 's/"//g')
+
+dbus-send --print-reply --reply-timeout=10 "--dest=$DEST" /org/mpris/MediaPlayer2 "org.mpris.MediaPlayer2.$1"
