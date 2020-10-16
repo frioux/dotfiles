@@ -368,8 +368,8 @@ endfunction
 
 command! Pod call ZRPod()
 let g:qs_highlight_on_keys = [ 'f', 'F', 't', 'T' ]
-command! Gdiffs cexpr system('git diff \| diff-hunk-list')
-command! GLdiffs lexpr system('git diff \| diff-hunk-list')
+command! Gdiffs cexpr system('git diff | diff-hunk-list')
+command! GLdiffs lexpr system('git diff | diff-hunk-list')
 
 command! CountMatches %s///gn
 
