@@ -2,5 +2,6 @@
 
 script="scale=5; $@"
 script="$(echo "$script" | tr 'x' '*' )"
+script="$(echo "$script" | sed s/_//g )"
 
 bc <<< "$script"
