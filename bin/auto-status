@@ -26,10 +26,10 @@ if [ "$meeting" = true ]; then
         slack-status -emoji :calendar: -text "$(rand "in a meeting" "meetin'" "talking with coworkers about work" "check my calendar")"
 elif [ "$locked" = true ]; then
         echo "locked: $locked"
-        slack-status -emoji :door: -text "away from computer"
+        slack-status -emoji :door: -text "$(rand "away from computer")"
 elif [ "$vpn" = true ] || work-slack-running; then
         echo "working: vpn=$vpn / slack=$slack"
-        slack-status -emoji :male-technologist: -text "workin'"
+        slack-status -emoji :male-technologist: -text "$(rand "workin'" )"
 else
         echo "???"
         slack-status -emoji :question-marks-purple: -text "$(rand "missing in action" "living my life" "avoiding the COVID-19")"
