@@ -1,5 +1,9 @@
 #!/bin/sh
 
+if [ -r "$HOME/Dropbox/private-dotfiles/env" ]; then
+   . "$HOME/Dropbox/private-dotfiles/env"
+fi
+
 if [ -r "$HOME/.localdirs" ]; then
    . "$HOME/.localdirs"
 fi
@@ -50,9 +54,24 @@ if [ -d /opt/lib ]; then
    export LDFLAGS=-L/opt/lib
 fi
 
+export C=$HOME/code
+export WHALEBREW_INSTALL_PATH=/home/frew/bin
+
 export EDITOR=vim
 export LESS=-MFRX
+export LESS_TERMCAP_mb=$'\e[1;32m'
+export LESS_TERMCAP_md=$'\e[1;32m'
+export LESS_TERMCAP_me=$'\e[0m'
+export LESS_TERMCAP_se=$'\e[0m'
+export LESS_TERMCAP_so=$'\e[01;33m'
+export LESS_TERMCAP_ue=$'\e[0m'
+export LESS_TERMCAP_us=$'\e[1;4;31m'
 export PAGER=less
+
+export GOVIM_GOPLS_FLAGS=-remote=auto
+export GO111MODULE=
+export GOPROXY=https://proxy.golang.org
+export GOFLAGS=-mod=readonly
 
 if [ -f "$HOME/.dbic.json" ]; then
    export DBIC_TRACE_PROFILE="$HOME/.dbic.json"
