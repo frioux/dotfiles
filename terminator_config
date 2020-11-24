@@ -1,56 +1,78 @@
 [global_config]
-  borderless = True
   dbus = False
+  borderless = True
   enabled_plugins = ,
 [keybindings]
-  broadcast_all = None
-  broadcast_group = None
-  broadcast_off = None
-  close_term = None
-  close_window = None
-  copy = None
+  new_tab = None
   cycle_next = None
   cycle_prev = None
-  edit_tab_title = None
-  edit_terminal_title = None
-  edit_window_title = None
-  full_screen = None
-  go_down = None
-  go_left = None
   go_next = None
   go_prev = None
-  go_right = None
   go_up = None
-  group_all = None
-  group_tab = None
-  help = None
-  hide_window = None
-  insert_number = None
-  insert_padded = None
-  layout_launcher = None
-  move_tab_left = None
-  move_tab_right = None
-  new_tab = None
-  new_terminator = None
-  new_window = None
-  next_tab = None
-  prev_tab = None
-  reset = None
-  reset_clear = None
+  go_down = None
+  go_left = None
+  go_right = None
+  rotate_cw = None
+  rotate_ccw = None
+  split_horiz = None
+  split_vert = None
+  close_term = None
+  copy = None
+  toggle_scrollbar = None
+  search = None
+  close_window = None
+  resize_up = None
   resize_down = None
   resize_left = None
   resize_right = None
-  resize_up = None
-  rotate_ccw = None
-  rotate_cw = None
-  scaled_zoom = None
-  search = None
-  split_horiz = None
-  split_vert = None
-  toggle_scrollbar = None
+  move_tab_right = None
+  move_tab_left = None
   toggle_zoom = None
+  scaled_zoom = None
+  next_tab = None
+  prev_tab = None
+  full_screen = None
+  reset = None
+  reset_clear = None
+  hide_window = None
+  group_all = None
   ungroup_all = None
+  group_tab = None
   ungroup_tab = None
+  new_window = None
+  new_terminator = None
+  broadcast_off = None
+  broadcast_group = None
+  broadcast_all = None
+  insert_number = None
+  insert_padded = None
+  edit_window_title = None
+  edit_tab_title = None
+  edit_terminal_title = None
+  layout_launcher = None
+  help = None
+[profiles]
+  [[default]]
+    urgent_bell = True
+    background_darkness = 1.0
+    cursor_color = "#aaaaaa"
+    cursor_color_fg = False
+    font = Terminus 14
+    show_titlebar = False
+    scrollbar_position = hidden
+    scrollback_lines = 0
+    scrollback_infinite = True
+    palette = "#000000:#aa0000:#00aa00:#aa5500:#0048b5:#aa00aa:#00aaaa:#aaaaaa:#555555:#ff5555:#55ff55:#ffff55:#5555ff:#ff55ff:#55ffff:#ffffff"
+    copy_on_selection = True
+  [[outside]]
+    background_color = "#ffffdd"
+    cursor_color = "#aaaaaa"
+    font = Terminus 14
+    foreground_color = "#000000"
+    show_titlebar = False
+    scrollbar_position = hidden
+    use_system_font = False
+    copy_on_selection = True
 [layouts]
   [[default]]
     [[[child1]]]
@@ -60,26 +82,3 @@
       parent = ""
       type = Window
 [plugins]
-[profiles]
-  [[default]]
-    background_darkness = 1.0
-    copy_on_selection = True
-    cursor_color = "#aaaaaa"
-    cursor_color_fg = False
-    font = Terminus 14
-    palette = "#000000:#aa0000:#00aa00:#aa5500:#0048b5:#aa00aa:#00aaaa:#aaaaaa:#555555:#ff5555:#55ff55:#ffff55:#5555ff:#ff55ff:#55ffff:#ffffff"
-    scrollback_infinite = True
-    scrollback_lines = 0
-    scrollbar_position = hidden
-    show_titlebar = False
-    urgent_bell = True
-    use_system_font = False
-  [[outside]]
-    background_color = "#ffffdd"
-    copy_on_selection = True
-    cursor_color = "#aaaaaa"
-    font = Terminus 14
-    foreground_color = "#000000"
-    scrollbar_position = hidden
-    show_titlebar = False
-    use_system_font = False
