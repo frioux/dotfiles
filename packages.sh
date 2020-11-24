@@ -17,6 +17,7 @@ exec apt-get --no-install-recommends    \
    dictd                                \
    dict                                 \
    dict-gcide                           \
+   gettext                              \
    gitk                                 \
    inotify-tools                        \
    libcapture-tiny-perl                 \
@@ -29,11 +30,14 @@ exec apt-get --no-install-recommends    \
    libidn11-dev                         \
    libgmime-2.6-dev                     \
    libgpgme11-dev                       \
+   liblmdb-dev                          \
    libncursesw5-dev                     \
    libnotmuch-dev                       \
+   libssl-dev                           \
    libtalloc-dev                        \
    libtokyocabinet-dev                  \
    libtool                              \
+   libxml2-utils                        \
    libyaml-syck-perl                    \
    lynx                                 \
    manpages-dev                         \
@@ -43,4 +47,5 @@ exec apt-get --no-install-recommends    \
    openvpn                              \
    postfix                              \
    shellcheck                           \
+   xsltproc                             \
    uuid-runtime

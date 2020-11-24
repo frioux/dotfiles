@@ -1,7 +1,7 @@
 set folder            = "$HOME/var/mail"
 set reverse_name = yes
 
-mailboxes `find ~/var/mail -maxdepth 1 -type d -printf "+%f | grep -v Trash"`
+mailboxes `find ~/var/mail -maxdepth 1 -mindepth 1 -type d -printf "+%f\n"`
 set spoolfile = +INBOX
 set postponed = "+gmail.Drafts"
 set record    = "+gmail.Sent_Mail"

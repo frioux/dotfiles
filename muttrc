@@ -64,7 +64,7 @@ macro index,pager IT "<save-message>=gmail.Trash<enter>$"   "delete message"
 macro index,pager IS "<save-message>=gmail.Spam<enter>$"   "mark message as spam"
 macro index,pager Ii "<save-message>=INBOX<enter>$"   "move message back to inbox"
 
-bind pager i noop
+bind index,pager i noop
 macro index,pager ii "<change-folder>=INBOX<enter>" "view inbox"
 macro index,pager iT "<change-folder>=gmail.Trash<enter>"  "view trash"
 macro index,pager iS "<change-folder>=gmail.Spam<enter>"   "view spam"

@@ -14,7 +14,6 @@ exec apt-get --no-install-recommends    \
    gnome-power-manager                  \
    gtk2-engines                         \
    i3lock                               \
-   libfile-readbackward-perl            \
    libio-all-perl                       \
    pavucontrol                          \
    pcmanfm                              \
