@@ -23,6 +23,7 @@
    ;external = git_diff_wrapper
    compactionHeuristic = true
 	submodule = log
+	colorMoved = default
 
 [super-status]
    master = master
