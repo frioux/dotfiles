@@ -1,0 +1,6 @@
+#!/bin/sh
+
+. ~/.env
+
+   notmuch new --quiet
+zr-notmuch new --quiet
