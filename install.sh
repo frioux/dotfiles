@@ -83,6 +83,7 @@ fi
 
 link-file install.sh .git/hooks/post-checkout
 link-file install.sh .git/hooks/post-merge
+link-file awesome ~/.config/awesome
 
 for x in           \
    env             \

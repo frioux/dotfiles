@@ -4,6 +4,7 @@ sudo snap install keepassxc
 
 exec apt-get --no-install-recommends    \
                              install -y \
+   awesome                              \
    rofi                                 \
    feh                                  \
    firefox                              \
