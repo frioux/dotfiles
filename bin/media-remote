@@ -5,4 +5,9 @@ DEST=$(dbus-send --print-reply --dest=org.freedesktop.DBus /org/freedesktop/DBus
         awk '{ print $2 }' |
         sed 's/"//g')
 
+if [ -z "$1" ]; then
+        echo "$DEST"
+        exit
+fi
+
 dbus-send --print-reply --reply-timeout=10 "--dest=$DEST" /org/mpris/MediaPlayer2 "org.mpris.MediaPlayer2.$1"
