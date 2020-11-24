@@ -79,12 +79,6 @@ if [ -e ~/.frewmbot-local ]; then
    ; do
       link-file $x ~/.$x
    done
-
-   test ! -e ~/.tmux/plugins/tpm && \
-      git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-
-   ~/.tmux/plugins/tpm/bin/clean_plugins
-   ~/.tmux/plugins/tpm/bin/install_plugins
 fi
 
 link-file install.sh .git/hooks/post-checkout
