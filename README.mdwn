@@ -114,14 +114,9 @@ And __.git-smtp-password__:
    smtpPass = $foo
 ```
 
-Put pause credentials in __.pause__:
-
-    user FREW
-    password DERP
-
 Ensure permissions are correct:
 
-    chmod 600 ~/.netrc ~/.pause
+    chmod 600 ~/.netrc
 
 Also set up Firefox Sync
 
