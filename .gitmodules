@@ -136,9 +136,6 @@
 [submodule "vim/pack/vanilla/start/govim"]
 	path = vim/pack/vanilla/start/govim
 	url = .
-[submodule "vim/pack/vanilla/start/speeddatting"]
-	path = vim/pack/vanilla/start/speeddating
-	url = gh:tpope/vim-speeddating
 [submodule "vim/pack/vanilla/start/deoplete"]
 	path = vim/pack/vanilla/opt/deoplete
 	url = gh:Shougo/deoplete.nvim
