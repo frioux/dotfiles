@@ -16,8 +16,3 @@ Host *
 
 Host *.ziprecruiter.com *.zipaws.com *.ziprecruiter-frew.com
      ForwardAgent yes
-
-Host retropie
-     user pi
-     hostname 192.168.1.168
-     ForwardAgent yes
