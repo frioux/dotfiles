@@ -351,7 +351,13 @@ globalkeys = gears.table.join(
     awful.key({ }, "XF86AudioPlay",   function () awful.spawn("media-remote Player.PlayPause") end),
     awful.key({ }, "XF86AudioPrev",   function () awful.spawn("media-remote Player.Previous") end),
     awful.key({ }, "XF86AudioNext",   function () awful.spawn("media-remote Player.Next") end),
-    awful.key({ modkey }, "m",   function () awful.spawn("toggle-meet-mic") end),
+    --awful.key({ modkey }, "m",   function () awful.spawn("toggle-meet-mic") end),
+    awful.key({ modkey,           }, "m",
+            function (c)
+                c.maximized = not c.maximized
+                c:raise()
+            end ,
+            {description = "(un)maximize", group = "client"}),
 
     awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)          end,
               {description = "increase master width factor", group = "layout"}),
