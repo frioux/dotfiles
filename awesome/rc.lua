@@ -332,7 +332,6 @@ globalkeys = gears.table.join(
               {description = "open a terminal", group = "launcher"}),
     awful.key({ modkey }, "b", function () mouse.screen.mywibox.visible = not mouse.screen.mywibox.visible end,
               { description = "toggle wibox", group = "awesome"}),
-    awful.key({ modkey,           }, "b", awful.titlebar.toggle),
     awful.key({ modkey,           }, "d", function () awful.spawn("showdm") end,
               {description = "showdm", group = "launcher"}),
     awful.key({ modkey,           }, "n", function () awful.spawn("terminator -e 'vim -S /home/frew/.vvar/sessions/wnotes' -T 'vim:/home/frew/.vvar/sessions/wnotes'") end,
