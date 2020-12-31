@@ -109,9 +109,6 @@
 [submodule "vim/bundle/ale"]
 	path = vim/pack/vanilla/opt/ale
 	url = .
-[submodule "vim/bundle/grepper"]
-	path = vim/pack/vanilla/start/grepper
-	url = .
 [submodule "vim/bundle/solarized8"]
 	path = vim/pack/vanilla/start/solarized8
 	url = .
