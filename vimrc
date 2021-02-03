@@ -46,7 +46,10 @@ augroup vimrc
    au FileType lua setlocal path+=/usr/share/awesome/lib
    au FileType lua setlocal includeexpr=substitute(v:fname,'\\.','/','g')
 
+   " see docs here https://pkg.go.dev/github.com/govim/govim/cmd/govim/config#Config
    au FileType go call govim#config#Set("QuickfixAutoDiagnostics", 0)
+   au FileType go call govim#config#Set("FormatOnSave", "gofmt")
+   au FileType go call govim#config#Set("HighlightReferences", 0)
 augroup END
 
 "}}}
