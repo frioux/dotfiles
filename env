@@ -92,3 +92,4 @@ fi
 export TMPDIR=/run/shm
 export TZ=America/Los_Angeles
 export S_COLORS=never
+export QT_AUTO_SCREEN_SCALE_FACTOR=0
