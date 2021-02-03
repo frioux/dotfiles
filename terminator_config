@@ -67,7 +67,7 @@
   [[outside]]
     background_color = "#ffffdd"
     cursor_color = "#aaaaaa"
-    font = Terminus 14
+    font = Monospace 11
     foreground_color = "#000000"
     show_titlebar = False
     scrollbar_position = hidden
