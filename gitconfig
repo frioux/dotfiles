@@ -121,3 +121,5 @@
         relativePaths = true
 [init]
     templateDir = ~/code/dotfiles/git/template/
+[protocol]
+	version = 2
