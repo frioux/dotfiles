@@ -20,6 +20,7 @@ keepassxc &
 scenery &
 armstrong &
 postqueue-checker &
+dropbox-checker loop &
 
 # flameshot doesn't like to start before the bar is ready, so start it much later, just in case.
 ( sleep 30; flameshot ) &

@@ -1,0 +1,17 @@
+#!/bin/sh
+
+. ~/.env
+
+if [ -n "$1" ]; then
+   while true; do
+      "$0"
+
+      sleep 1
+   done
+fi
+
+recent_events="$(sqlite3 $HOME/.dropbox/instance1/sync_history.db "select count(*) from sync_history WHERE timestamp > strftime('%s','now') - 1")"
+
+if [ "$recent_events" -eq 0 ]; then
+   notify-send -u critical "Dropbox is stuck"
+fi

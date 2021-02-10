@@ -256,6 +256,13 @@ vim](https://blog.afoolishmanifesto.com/posts/iterating-over-chunks-of-a-diff-in
 
 Like `cat`, but better; works with directories too.
 
+### `dropbox-checker`
+
+Validates that dropbox has synced something in the past 10 minutes and if it
+hasn't notifies the user.  This is to surface when dropbox stops functioning
+due to bugs.  Pass an argument (eg `dropbox-checker loop`) to run in a loop
+every 10m.
+
 ### `ec2-find-by-name`
 
 Takes name of an ec2 instance and produces the relevant instance id.
