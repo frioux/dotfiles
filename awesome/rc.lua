@@ -347,9 +347,9 @@ globalkeys = gears.table.join(
     awful.key({ }, "XF86AudioRaiseVolume", volumecfg.up),
     awful.key({ }, "XF86MonBrightnessDown", function () awful.spawn("backlight -10") end),
     awful.key({ }, "XF86MonBrightnessUp",   function () awful.spawn("backlight  10") end),
-    awful.key({ }, "XF86AudioPlay",   function () awful.spawn("media-remote Player.PlayPause") end),
-    awful.key({ }, "XF86AudioPrev",   function () awful.spawn("media-remote Player.Previous") end),
-    awful.key({ }, "XF86AudioNext",   function () awful.spawn("media-remote Player.Next") end),
+    awful.key({ }, "XF86AudioPlay",   function () awful.spawn("media-remote -play-pause") end),
+    awful.key({ }, "XF86AudioPrev",   function () awful.spawn("media-remote -prev") end),
+    awful.key({ }, "XF86AudioNext",   function () awful.spawn("media-remote -next") end),
     awful.key({ modkey }, "m",   function () awful.spawn("toggle-meet-mic") end),
 
     awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)          end,
