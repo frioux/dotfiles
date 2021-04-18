@@ -1,6 +1,15 @@
 #!/bin/sh
 
 export MAILPROFILE=zr
+
+if [ -e ~/.zr-email ] && younger-than ~/.zr-email m 30m; then
+        echo "frew chill it out"
+        exit 1
+fi
+
+
+touch ~/.zr-email
+
 export NOTMUCH_CONFIG="$HOME/.zr-notmuch-config"
 tmux rename-window zr-mutt
 /usr/bin/neomutt "$@"
