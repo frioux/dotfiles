@@ -176,8 +176,6 @@ vnoremap ; :
 " Make %% represent the dir of the current buffer
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 
-set pastetoggle=<F12>
-
 nmap gV `[v`]
 nnoremap <leader>ts    :r !date "+\%FT\%T\%:z"<CR>
 
@@ -264,12 +262,8 @@ let g:ctrlp_regexp = 1
 if filereadable($HOME . "/.fzf/README.md")
    set rtp+=~/.fzf
 
-   " call denite#custom#option('_', 'direction', 'aboveleft')
-   nnoremap <silent> <F3> :FZF<CR>
-
-   nnoremap <silent> <F4> :call fzf#run({'dir': expand("%:h")})<CR>
-
-   nnoremap <silent> <F5> :call fzf#run({'source': map(range(1, bufnr('$')), 'bufname(v:val)'), 'sink': 'e', 'down': '30%'})<CR>
+   command! FDir :call fzf#run({'dir': expand("%:h"), 'sink': 'e'})
+   command! FBuf :call fzf#run({'source': map(range(1, bufnr('$')), 'bufname(v:val)'), 'sink': 'e', 'down': '30%'})
 endif
 
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
@@ -342,7 +336,7 @@ function! CycleColors()
       endtry
    endwhile
 endfunction
-nnoremap <F12> :call CycleColors()<cr>
+command! CycleColors :call CycleColors()
 call CycleColors()
 
 set directory=$HOME/.vvar/swap//
