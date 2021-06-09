@@ -57,6 +57,7 @@ beautiful.hotkeys_font = "ubuntu mono 20"
 beautiful.hotkeys_description_font = "ubuntu mono 20"
 beautiful.menu_width = 200
 beautiful.menu_height = 24
+beautiful.border_focus = '#ff0000'
 
 -- This is used later as the default terminal and editor to run.
 terminal = "x-terminal-emulator"
