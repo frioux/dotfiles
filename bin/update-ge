@@ -1,0 +1,11 @@
+#!/bin/sh
+
+set -e
+set -x
+
+mkdir -p ~/.steam/root/compatibilitytools.d
+metaurl=https://api.github.com/repos/GloriousEggroll/proton-ge-custom/releases/latest
+url=$(curl -s $metaurl | grep browser_download_url | cut -d '"' -f 4 | grep -F .tar.gz)
+wget "$url" -O /run/shm/ge.tgz
+trap 'rm /run/shm/ge.tgz' EXIT
+tar xf /run/shm/ge.tgz -C ~/.steam/root/compatibilitytools.d/
