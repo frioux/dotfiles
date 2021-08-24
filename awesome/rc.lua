@@ -100,6 +100,7 @@ mymainmenu = awful.menu({
     items = {
       { "dock", function () awful.spawn("dock") end },
       { "undock", function () awful.spawn("undock") end },
+      { "suspend", function () awful.spawn("systemctl suspend") end },
       { "restart", awesome.restart },
       { "quit", function() awesome.quit() end},
 
