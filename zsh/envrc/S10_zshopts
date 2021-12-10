@@ -10,6 +10,7 @@ setopt PUSHD_IGNORE_DUPS # this will ignore multiple directories for the stack
 setopt PUSHD_MINUS
 setopt VI
 setopt INTERACTIVE_COMMENTS # make `#` work in interactive mode
+setopt PIPEFAIL # make perl -e 'exit 1' | tail exit non-zer
 
 unsetopt LIST_AMBIGUOUS
 setopt  COMPLETE_IN_WORD
