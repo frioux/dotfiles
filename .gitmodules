@@ -130,9 +130,6 @@
 [submodule "awesome/charitable"]
 	path = awesome/charitable
 	url = .
-[submodule "vim/pack/vanilla/start/govim"]
-	path = vim/pack/vanilla/start/govim
-	url = .
 [submodule "vim/pack/vanilla/start/deoplete"]
 	path = vim/pack/vanilla/opt/deoplete
 	url = gh:Shougo/deoplete.nvim
