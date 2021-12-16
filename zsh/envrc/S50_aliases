@@ -18,6 +18,9 @@ alias -g G="| grep"
 alias -g L="| $PAGER"
 alias -g V="| vim -"
 
+alias -g J="| jq . -S"
+alias -g JL="| jq . -S | less"
+
 alias -g PTG="2>&1 | grep"
 alias -g PTL="2>&1 | $PAGER"
 alias -g PTV="2>&1 | vim -"
@@ -37,7 +40,7 @@ function gr() {
    git rebase --root --onto $1 -i --autosquash
 }
 alias gr='noglob gr'
-alias gre='gr origin/master'
+alias gre='gr origin/main'
 
 # }}}
 
