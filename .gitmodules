@@ -1,6 +1,3 @@
-[submodule "vimpulse"]
-	path = vimpulse
-	url = .
 [submodule "vim/bundle/vim-pathogen"]
 	path = vim/pack/vanilla/opt/pathogen
 	url = .
@@ -10,9 +7,6 @@
 [submodule "vim/bundle/vim-surround"]
 	path = vim/pack/vanilla/start/surround
 	url = .
-[submodule "vim/bundle/nerdcommenter"]
-	path = vim/bundle/nerdcommenter
-	url = .
 [submodule "vim/bundle/vim-fugitive"]
 	path = vim/pack/vanilla/start/fugitive
 	url = git://github.com/tpope/vim-fugitive
@@ -21,15 +15,6 @@
 	url = .
 [submodule "vim/bundle/tabular"]
 	path = vim/pack/vanilla/opt/tabular
-	url = .
-[submodule "vim/bundle/vim-textobj-user"]
-	path = vim/pack/vanilla/opt/textobj-user
-	url = .
-[submodule "vim/bundle/vim-textobj-entire"]
-	path = vim/pack/vanilla/opt/textobj-entire
-	url = .
-[submodule "vim/bundle/vim-textobj-underscore"]
-	path = vim/pack/vanilla/opt/textobj-underscore
 	url = .
 [submodule "vim/bundle/vim-unimpaired"]
 	path = vim/pack/vanilla/start/unimpaired
@@ -55,26 +40,11 @@
 [submodule "vim/bundle/better-whitespace"]
 	path = vim/pack/vanilla/opt/better-whitespace
 	url = .
-[submodule "vim/bundle/textobj-between"]
-	path = vim/pack/vanilla/opt/textobj-between
-	url = .
-[submodule "vim/bundle/exchange"]
-	path = vim/pack/vanilla/opt/exchange
-	url = .
 [submodule "vim/bundle/commentary"]
 	path = vim/pack/vanilla/start/commentary
 	url = .
 [submodule "vim/bundle/matchmaker"]
 	path = vim/pack/vanilla/opt/matchmaker
-	url = .
-[submodule "vim/bundle/gitgutter"]
-	path = vim/pack/vanilla/opt/gitgutter
-	url = .
-[submodule "vim/bundle/neocomplete"]
-	path = vim/bundle-lua/neocomplete
-	url = .
-[submodule "vim/bundle/ctrlp"]
-	path = vim/pack/vanilla/opt/ctrlp
 	url = .
 [submodule "vim/bundle/projectionist"]
 	path = vim/pack/vanilla/start/projectionist
@@ -85,20 +55,8 @@
 [submodule "vim/bundle/terminus"]
 	path = vim/pack/vanilla/start/terminus
 	url = .
-[submodule "vim/bundle/quick-scope"]
-	path = vim/pack/vanilla/opt/quick-scope
-	url = .
-[submodule "vim/bundle/sleuth"]
-	path = vim/bundle/sleuth
-	url = .
 [submodule "vim/bundle/obsession"]
 	path = vim/pack/vanilla/start/obsession
-	url = .
-[submodule "vim/bundle/FastFold"]
-	path = vim/pack/vanilla/opt/FastFold
-	url = .
-[submodule "vim/bundle/fugitive-gitlab"]
-	path = vim/pack/vanilla/start/fugitive-gitlab
 	url = .
 [submodule "vim/bundle/lastplace"]
 	path = vim/pack/vanilla/start/lastplace
@@ -121,21 +79,9 @@
 [submodule "vim/bundle/editorconfig"]
 	path = vim/pack/vanilla/opt/editorconfig
 	url = .
-[submodule "vim/bundle/multiple-cursors"]
-	path = vim/pack/vanilla/opt/multiple-cursors
-	url = .
 [submodule "awesome/vicious"]
 	path = awesome/vicious
 	url = git://github.com/frioux/vicious
 [submodule "awesome/charitable"]
 	path = awesome/charitable
 	url = .
-[submodule "vim/pack/vanilla/start/deoplete"]
-	path = vim/pack/vanilla/opt/deoplete
-	url = gh:Shougo/deoplete.nvim
-[submodule "vim/pack/vanilla/start/yarp"]
-	path = vim/pack/vanilla/opt/yarp
-	url = gh:roxma/nvim-yarp
-[submodule "vim/pack/vanilla/start/vim-hug-neovim-rpc"]
-	path = vim/pack/vanilla/opt/vim-hug-neovim-rpc
-	url = gh:roxma/vim-hug-neovim-rpc
