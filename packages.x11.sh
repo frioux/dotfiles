@@ -15,6 +15,7 @@ exec apt-get --no-install-recommends    \
    gtk2-engines                         \
    i3lock                               \
    libio-all-perl                       \
+   lua-json                             \
    pavucontrol                          \
    pcmanfm                              \
    flameshot                            \
