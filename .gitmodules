@@ -139,3 +139,5 @@
 [submodule "vim/pack/vanilla/start/vim-hug-neovim-rpc"]
 	path = vim/pack/vanilla/opt/vim-hug-neovim-rpc
 	url = gh:roxma/vim-hug-neovim-rpc
+[submodule "vim/pack/vanilla/start/fugitive"]
+	url = git://github.com/tpope/vim-fugitive
