@@ -15,7 +15,7 @@
 	url = .
 [submodule "vim/bundle/vim-fugitive"]
 	path = vim/pack/vanilla/start/fugitive
-	url = .
+	url = git://github.com/tpope/vim-fugitive
 [submodule "vim/bundle/vim-colors-solarized"]
 	path = vim/pack/vanilla/start/colors-solarized
 	url = .
@@ -139,5 +139,3 @@
 [submodule "vim/pack/vanilla/start/vim-hug-neovim-rpc"]
 	path = vim/pack/vanilla/opt/vim-hug-neovim-rpc
 	url = gh:roxma/vim-hug-neovim-rpc
-[submodule "vim/pack/vanilla/start/fugitive"]
-	url = git://github.com/tpope/vim-fugitive

@@ -10,6 +10,8 @@ if [ -n "$1" ]; then
    done
 fi
 
+exit 0
+
 recent_events="$(sqlite3 $HOME/.dropbox/instance1/sync_history.db "select count(*) from sync_history WHERE timestamp > strftime('%s','now') - 1")"
 
 if [ "$recent_events" -eq 0 ]; then
