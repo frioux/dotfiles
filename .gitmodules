@@ -126,7 +126,7 @@
 	url = .
 [submodule "awesome/vicious"]
 	path = awesome/vicious
-	url = .
+	url = git://github.com/frioux/vicious
 [submodule "awesome/charitable"]
 	path = awesome/charitable
 	url = .
