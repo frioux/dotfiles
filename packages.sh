@@ -42,4 +42,5 @@ exec apt-get --no-install-recommends    \
    openvpn                              \
    shellcheck                           \
    xsltproc                             \
+   fzf                                  \
    uuid-runtime
