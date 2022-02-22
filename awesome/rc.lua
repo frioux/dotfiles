@@ -347,7 +347,6 @@ globalkeys = gears.table.join(
     awful.key({ }, "XF86AudioPlay",   function () awful.spawn("media-remote -play-pause") end),
     awful.key({ }, "XF86AudioPrev",   function () awful.spawn("media-remote -prev") end),
     awful.key({ }, "XF86AudioNext",   function () awful.spawn("media-remote -next") end),
-    awful.key({ modkey }, "m",   function () awful.spawn("toggle-meet-mic") end),
 
     awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)          end,
               {description = "increase master width factor", group = "layout"}),
@@ -372,6 +371,18 @@ globalkeys = gears.table.join(
 )
 
 clientkeys = gears.table.join(
+    -- when you first create a firefox profile (or basically install ubuntu)
+    -- firefox is set as maximized.  Basically nothing else I ever interact
+    -- with is like this, so I have this special key to (un)maximize windows.
+    -- This originally came from
+    -- https://github.com/frioux/dotfiles/pull/5/commits/45dc8b411f48abdf4575fd387fb58a5b5914f6ca,
+    -- which works except that it's in globalkeys instead of clientkeys.
+    awful.key({ modkey,           }, "m",
+            function (c)
+                c.maximized = not c.maximized
+                c:raise()
+            end ,
+            {description = "(un)maximize", group = "client"}),
     awful.key({ modkey, "Shift"   }, "c",      function (c) c:kill()                         end,
               {description = "close", group = "client"}),
     awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ,
