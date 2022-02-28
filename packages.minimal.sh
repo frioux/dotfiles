@@ -7,6 +7,7 @@ exec apt-get --no-install-recommends    \
    aptitude                             \
    curl                                 \
    daemontools                          \
+   fzf                                  \
    htop                                 \
    jq                                   \
    moreutils                            \
