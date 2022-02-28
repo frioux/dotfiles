@@ -13,6 +13,7 @@ exec apt-get --no-install-recommends    \
    mosh                                 \
    openssh-client                       \
    openssh-server                       \
+   ripgrep                              \
    rsync                                \
    pv                                   \
    tmux                                 \
