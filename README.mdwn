@@ -27,12 +27,6 @@
     wget -qO- https://get.docker.com/ | sh
     sudo usermod frew -aG docker
     sudo systemctl enable docker
-    sudo cp /lib/systemd/system/docker.service /etc/systemd/system
-
-Then add `-s overlay2 --live-restore` to the command in the copied file
-
-    sudo systemctl daemon-reload
-    sudo systemctl restart docker
 
 # Install Other Software
 
@@ -45,7 +39,7 @@ Then add `-s overlay2 --live-restore` to the command in the copied file
 
 ``` bash
 rm ~/local -rf
-curl https://dl.google.com/go/go1.10.1.linux-amd64.tar.gz > go.gz
+curl https://dl.google.com/go/go1.17.8.linux-amd64.tar.gz > go.gz
 tar xvf go.gz
 mv ./go ~/local
 rm go.gz
@@ -55,8 +49,3 @@ rm go.gz
 
  * Generate Key: `ssh-keygen -t ed25519 -o -a 100`
  * Put key on [github](https://github.com/settings/ssh)
-
-# services
-
-    sv-run-w.pl
-    sv-run-offlineimap
