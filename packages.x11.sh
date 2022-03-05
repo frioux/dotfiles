@@ -9,7 +9,6 @@ exec apt-get --no-install-recommends    \
    feh                                  \
    firefox                              \
    fonts-lohit-knda                     \
-   gcalcli                              \
    gnome-system-monitor                 \
    gnome-power-manager                  \
    gtk2-engines                         \

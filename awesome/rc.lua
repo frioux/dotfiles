@@ -222,7 +222,7 @@ awful.screen.connect_for_each_screen(function(s)
     -- Create the wibox
     s.mywibox = awful.wibar({ position = "top", screen = s, height = 32 })
 
-    s.mytextclock = widgets.clock(s)
+   local mytextclock = widgets.clock(s)
 
     -- Add widgets to the wibox
     local right = {
@@ -237,7 +237,7 @@ awful.screen.connect_for_each_screen(function(s)
         smweatherwidget,
         osweatherwidget,
         volumecfg.widget,
-        s.mytextclock,
+        mytextclock,
         s.mylayoutbox,
     }
     if DEBUGGING then
@@ -290,11 +290,6 @@ globalkeys = gears.table.join(
               {description = "view next", group = "tag"}),
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore,
               {description = "go back", group = "tag"}),
-    awful.key({ modkey }, "c",
-              function ()
-                 awful.screen.focused().mytextclock._cal:toggle()
-              end,
-              {description = "toggle calendar", group = "awesome"}),
 
     awful.key({ modkey,           }, "j",
         function () awful.client.focus.byidx( 1) end,

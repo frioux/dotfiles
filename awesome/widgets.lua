@@ -3,8 +3,6 @@ local vicious = require("vicious")
 local wibox = require("wibox")
 local gears = require("gears")
 
-local calendar_popup = require("gross.calendar_popup")
-
 local widgets = {}
 
 function widgets.editable(w)
@@ -87,11 +85,7 @@ end
 
 function widgets.clock(screen)
    local widget = wibox.widget.textclock()
-   local self = calendar_popup.month({
-      screen = screen,
-      bg = "#111111",
-   })
-   widget._cal = self
+   local self = awful.widget.calendar_popup.month({ screen = screen })
 
    -- inlined from calendar_popup:attach
    local position = "tr"
