@@ -178,55 +178,6 @@ A number of additional features added to core git via simple wrapper:
 
 Deduplicates addresses based on the mutt address format.
 
-### `addrlookup-fast`
-
-Simple wrapper around `grep` to quickly search a preformatted address file.
-
-### `copy-url`
-
-Copy urls from emails.  Rarely used; flakey?
-
-### `extract_url.pl`
-
-Same as above, but not written by me.
-
-### `email-fix-in-reply-to`
-
-Weird cronjob to munge In-Reply-To headers so that certain emails with thread
-better.  Should be ported to AppScript.
-
-### `mail-picture`
-
-Creates resized copies of all passed filenames to `1024x768` and initiates a new
-email containing them via mutt.
-
-### `mutt`
-
-neomutt wrapper that specifies my personal mailbox.
-
-### `postqueue-checker` / `postqueue-notify`
-
-Tool that notifies my via desktop notifications if email is stuck in queue.
-
-### `sync-addresses`
-
-Creates fresh mutt address file using
-[goobook](https://pypi.python.org/pypi/goobook/1.9) and `addrlookup`.
-
-### `top-post`
-
-An attempt at generically trimming emails for brief responses.  Currently unused
-and flakey.
-
-### `unsubscribe`
-
-Takes a full email on stdin and uses the List-Unsubscribe header.  Directly
-calls firefox for http links, runs a new mutt in tmux for mailto links.
-
-### `zr-mutt`
-
-neomutt wrapper that specifies my zr mailbox.
-
 ## Misc Tools
 
 ### `ascii-ify`
@@ -307,11 +258,6 @@ Runs `minotaur` to automatically test the current package (`.`) when files are c
 ### `hsort`
 
 `sort` for csv, without messing up the header line.
-
-### `mailfmt`
-
-Formats input with `fmt -w80` until it sees `-- `, and thus leaves signature
-alone.
 
 ### `markdownfmt`
 

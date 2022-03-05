@@ -7,9 +7,6 @@ set -e
 ./packages.x11.sh
 ./packages.perf.sh
 
-echo "postfix postfix/mailname string $(hostname)" | debconf-set-selections
-echo "postfix postfix/main_mailer_type string 'Local only'" | debconf-set-selections
-
 exec apt-get --no-install-recommends    \
                              install -y \
    at                                   \
@@ -42,10 +39,7 @@ exec apt-get --no-install-recommends    \
    lynx                                 \
    manpages-dev                         \
    mitmproxy                            \
-   notmuch                              \
-   notmuch-mutt                         \
    openvpn                              \
-   postfix                              \
    shellcheck                           \
    xsltproc                             \
    uuid-runtime

@@ -1,6 +1,0 @@
-#!/bin/sh
-
-export MAILPROFILE=imap
-export IMAP_USER=frioux@gmail.com
-
-exec mutt

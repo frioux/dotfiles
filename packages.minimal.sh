@@ -1,7 +1,5 @@
 #!/bin/sh
 
-apt-get build-dep neomutt
-
 exec apt-get --no-install-recommends    \
                              install -y \
    aptitude                             \
