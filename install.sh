@@ -28,11 +28,6 @@ if [ -e ~/.frewmbot-local ]; then
    link-file terminator_config ~/.config/terminator/config
    link-file xsession ~/.xinitrc
    link-file crontab.d/hourly/gcal ~/.crontab.d/hourly/gcal
-   if [ -d "$HOME/var/mail" ]; then
-      link-file crontab.d/hourly/notmuch ~/.crontab.d/hourly/notmuch
-   else
-      rm -f ~/.crontab.d/hourly/notmuch
-   fi
 
    if [ -f "$HOME/.goobook_auth.json" -o -d "$HOME/var/mail" ]; then
       link-file bin/sync-addresses ~/.crontab.d/hourly/sync-addresses
@@ -61,11 +56,6 @@ if [ -e ~/.frewmbot-local ]; then
       irssi           \
       jshintrc        \
       mailcap         \
-      mutt            \
-      muttrc          \
-      notmuch-config  \
-      offlineimaprc   \
-      offlineimap.py  \
       perltidyrc      \
       signature       \
       tmux.conf       \
@@ -75,7 +65,6 @@ if [ -e ~/.frewmbot-local ]; then
       xscreensaver    \
       xsession        \
       weechat         \
-      zr-mutt         \
    ; do
       link-file $x ~/.$x
    done

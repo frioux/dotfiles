@@ -22,14 +22,6 @@
     chown root:root /etc/rc.local
     chmod 755 /etc/rc.local
 
-# Install mutt
-
-    git clone https://github.com/neomutt/neomutt
-    cd neomutt
-    ./configure --enable-notmuch --lmdb --ssl --prefix=/opt && \
-       make && \
-       sudo make install install-doc
-
 # Install docker
 
     wget -qO- https://get.docker.com/ | sh
@@ -58,69 +50,6 @@ tar xvf go.gz
 mv ./go ~/local
 rm go.gz
 ```
-
-# Configure Postfix
-
-Create `/etc/postfix/sasl_passwd`:
-
-```
-???@gmail.com               ???@gmail.com:$foo
-???@ziprecruiter.com ???@ziprecruiter.com:$bar
-smtp.pobox.com                        ???:$baz
-```
-... and `/etc/postfix/transport`:
-
-```
-???@gmail.com        smtp:[smtp.gmail.com]:587
-???@ziprecruiter.com smtp:[smtp.gmail.com]:587
-```
-
-... and `/etc/postfix/hosts`:
-
-```
-@frew.co               [smtp.pobox.com]:587
-@afoolishmanifesto.com [smtp.pobox.com]:587
-```
-
-And finally, change the config:
-
-```
-sudo sh -c 'cat ./main.cf >> /etc/postfix/main.cf'
-sudo postmap /etc/postfix/{sasl_passwd,transport,hosts}
-sudo chmod 400 /etc/postfix/{sasl_passwd,transport,hosts}{.db,}
-sudo service postfix restart
-```
-
-# Authorize Computer
-
-Get app specific password from gmail, put in __.netrc__:
-
-    machine imap.gmail.com
-    login $bar@gmail.com
-    password $foo
-
-    machine smtp.gmail.com
-    login $bar@gmail.com
-    password $foo
-
-    machine google.com
-    login $bar@gmail.com
-    password $foo
-
-And __.git-smtp-password__:
-
-```
-[sendemail]
-   smtpPass = $foo
-```
-
-Ensure permissions are correct:
-
-    chmod 600 ~/.netrc
-
-Also set up Firefox Sync
-
-Run `gcalcli list` to authenticate to google.
 
 # Add / Replace SSH Key
 
