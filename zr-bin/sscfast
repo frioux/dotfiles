@@ -1,5 +1,0 @@
-#!/bin/sh
-
-FILES="$1"
-shift
-exec ssc --to-run "(000|001|$FILES)" "$@"

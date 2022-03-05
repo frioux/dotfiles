@@ -1,7 +1,0 @@
-#!/bin/sh
-
-exec run-d \
-   sudo \
-   perl bin/sa/sync-server-config \
-   "--define=uid_overlay={frew,$(id -u)}" \
-   "$@"

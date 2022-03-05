@@ -17,7 +17,6 @@ function copy-file { mkdir -p "${2:h}"; rm -rf "$2"; cp "$PWD/$1" "$2" }
 mkdir -p ~/.config
 
 if [ -e ~/.frewmbot-local ]; then
-   link-file dotjs ~/.js
    link-file ssh/config ~/.ssh/config
    link-file XCompose ~/.XCompose
 
@@ -27,44 +26,17 @@ if [ -e ~/.frewmbot-local ]; then
 
    link-file terminator_config ~/.config/terminator/config
    link-file xsession ~/.xinitrc
-   link-file crontab.d/hourly/gcal ~/.crontab.d/hourly/gcal
-
-   if [ -f "$HOME/.goobook_auth.json" -o -d "$HOME/var/mail" ]; then
-      link-file bin/sync-addresses ~/.crontab.d/hourly/sync-addresses
-   else
-      rm -f ~/.crontab.d/hourly/sync-addresses
-   fi
-   mkdir -p ~/.crontab.d/minutely ~/.crontab.d/hourly
-   crontab="$(tempfile)"
-   if [ $(ls "$HOME/.crontab.d/hourly" | wc -l) -gt 0 ]; then
-      echo '3 * * * * . "$HOME/.env" && run-parts "$HOME/.crontab.d/hourly"' >> $crontab
-   fi
-
-   if [ $(ls "$HOME/.crontab.d/minutely" | wc -l) -gt 0 ]; then
-      echo '* * * * * . "$HOME/.env" && run-parts "$HOME/.crontab.d/minutely"' >> $crontab
-   fi
-   crontab "$crontab"
 
    for x in           \
-      adenosinerc.yml \
       curlrc          \
-      dbic.json       \
-      dzil            \
       editorconfig    \
       gtkrc-2.0       \
       gtkrc.mine      \
-      irssi           \
-      jshintrc        \
       mailcap         \
-      perltidyrc      \
       signature       \
       tmux.conf       \
       Xdefaults       \
-      xmodmap         \
-      xmonad          \
-      xscreensaver    \
       xsession        \
-      weechat         \
    ; do
       link-file $x ~/.$x
    done
@@ -102,12 +74,6 @@ if [ ! -e ~/.frewmbot-maintained ]; then
       vim/pack/vanilla/opt/pathogen            \
       vim/pack/vanilla/start/perl              \
       vim/pack/vanilla/start/unimpaired
-else
-   git submodule update --init
-   if [[ ! -e ~/.fzf ]] ; then
-      git clone https://github.com/junegunn/fzf.git ~/.fzf
-      ~/.fzf/install
-   fi
 fi
 
 mkdir -p "$HOME/.vvar/undo";

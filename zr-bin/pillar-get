@@ -1,3 +1,0 @@
-#!/bin/sh
-
-salt pillar.items --out json -l warning | jq ".local.$1"

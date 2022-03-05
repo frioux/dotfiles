@@ -20,7 +20,6 @@
    git = !git
    wip = !git add $(git rev-parse --show-toplevel) && git commit -amWIP
 [diff]
-   ;external = git_diff_wrapper
    compactionHeuristic = true
 	submodule = log
 	colorMoved = default
@@ -34,8 +33,6 @@
 [log]
    date = iso8601-local
    mailmap = 1
-[pager]
-   ;external =
 [merge]
    tool = meld
 [gui]
@@ -56,51 +53,18 @@
 [grep]
    patterntype = perl
 	fallbackToNoIndex = true
-[url "git@50.116.28.218:"]
-   insteadOf = fru:
 [url "https://github.com/"]
    insteadOf = gh:
-[url "gitolite@cs:"]
-   pushInsteadOf = cs:
-   insteadOf = cs:
 [url "git@github.com:"]
    pushInsteadOf = gh:
    pushInsteadOf = git://github.com/
    pushInsteadOf = https://github.com/
 [url "git@gist.github.com:"]
    pushInsteadOf = https://gist.github.com/
-[url "git://git.shadowcat.co.uk/catagits/"]
-   insteadOf = catagits:
-[url "catagits@git.shadowcat.co.uk:"]
-   pushInsteadOf = catagits:
-[url "git://git.shadowcat.co.uk/dbsrgits/"]
-   insteadOf = dbsrgits:
-[url "dbsrgits@git.shadowcat.co.uk:"]
-   pushInsteadOf = dbsrgits:
-[url "git://git.shadowcat.co.uk/gitmo/"]
-   insteadOf = gitmo:
-[url "gitmo@git.shadowcat.co.uk:"]
-   pushInsteadOf = gitmo:
-[url "git://git.shadowcat.co.uk/p5sagit/"]
-   insteadOf = p5sagit:
-[url "p5sagit@git.shadowcat.co.uk:"]
-   pushInsteadOf = p5sagit:
-[url "git://git.shadowcat.co.uk/scpubgit/"]
-   insteadOf = scpubgit:
-[url "scpubgit@git.shadowcat.co.uk:"]
-   pushInsteadOf = scpubgit:
 [core]
 	excludesfile = /home/frew/.gitignore_global
 
-[sendemail]
-    smtpEncryption = tls
-    smtpServer = smtp.gmail.com
-    smtpUser = frioux@gmail.com
-    smtpServerPort = 587
-
-
 [include]
-   path = ~/.git-smtp-password
    path = ~/.git-multicore
 [rebase]
 	autostash = true

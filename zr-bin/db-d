@@ -1,6 +1,0 @@
-#!/bin/sh
-
-# still not quite sure why I need the `_`
-exec execdb \
-   bash -c \
-   'cd /var/starterview; export PATH=$PATH:/var/starterview/bin; exec "$@"' _ "$@"

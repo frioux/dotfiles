@@ -1,9 +1,0 @@
-#!/bin/sh
-
-_execroot $WWW \
-   killall -r plackup -w -q
-
-_execroot $WWW \
-   killall -r starman -w -q
-
-exec run-d zr-www-app "$@"
