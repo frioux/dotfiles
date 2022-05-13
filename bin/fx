@@ -2,6 +2,9 @@
 
 ext=${1:-XXX}
 P=$(mktemp -t tmp.fx.XXXXXXXXXX.$ext)
-cat /dev/stdin > $P
+cat /dev/stdin >$P
 firefox $P &
-( sleep 10; rm $P ) &
+(
+	sleep 10
+	rm $P
+) &

@@ -68,60 +68,59 @@ else
 fi
 
 case "$refname","$newrev_type" in
-	refs/tags/*,commit)
-		# un-annotated tag
-		short_refname=${refname##refs/tags/}
-		if [ "$allowunannotated" != "true" ]; then
-			echo "*** The un-annotated tag, $short_refname, is not allowed in this repository" >&2
-			echo "*** Use 'git tag [ -a | -s ]' for tags you want to propagate." >&2
-			exit 1
-		fi
-		;;
-	refs/tags/*,delete)
-		# delete tag
-		if [ "$allowdeletetag" != "true" ]; then
-			echo "*** Deleting a tag is not allowed in this repository" >&2
-			exit 1
-		fi
-		;;
-	refs/tags/*,tag)
-		# annotated tag
-		if [ "$allowmodifytag" != "true" ] && git rev-parse $refname > /dev/null 2>&1
-		then
-			echo "*** Tag '$refname' already exists." >&2
-			echo "*** Modifying a tag is not allowed in this repository." >&2
-			exit 1
-		fi
-		;;
-	refs/heads/*,commit)
-		# branch
-		if [ "$oldrev" = "$zero" -a "$denycreatebranch" = "true" ]; then
-			echo "*** Creating a branch is not allowed in this repository" >&2
-			exit 1
-		fi
-		;;
-	refs/heads/*,delete)
-		# delete branch
-		if [ "$allowdeletebranch" != "true" ]; then
-			echo "*** Deleting a branch is not allowed in this repository" >&2
-			exit 1
-		fi
-		;;
-	refs/remotes/*,commit)
-		# tracking branch
-		;;
-	refs/remotes/*,delete)
-		# delete tracking branch
-		if [ "$allowdeletebranch" != "true" ]; then
-			echo "*** Deleting a tracking branch is not allowed in this repository" >&2
-			exit 1
-		fi
-		;;
-	*)
-		# Anything else (is there anything else?)
-		echo "*** Update hook: unknown type of update to ref $refname of type $newrev_type" >&2
+refs/tags/*,commit)
+	# un-annotated tag
+	short_refname=${refname##refs/tags/}
+	if [ "$allowunannotated" != "true" ]; then
+		echo "*** The un-annotated tag, $short_refname, is not allowed in this repository" >&2
+		echo "*** Use 'git tag [ -a | -s ]' for tags you want to propagate." >&2
 		exit 1
-		;;
+	fi
+	;;
+refs/tags/*,delete)
+	# delete tag
+	if [ "$allowdeletetag" != "true" ]; then
+		echo "*** Deleting a tag is not allowed in this repository" >&2
+		exit 1
+	fi
+	;;
+refs/tags/*,tag)
+	# annotated tag
+	if [ "$allowmodifytag" != "true" ] && git rev-parse $refname >/dev/null 2>&1; then
+		echo "*** Tag '$refname' already exists." >&2
+		echo "*** Modifying a tag is not allowed in this repository." >&2
+		exit 1
+	fi
+	;;
+refs/heads/*,commit)
+	# branch
+	if [ "$oldrev" = "$zero" -a "$denycreatebranch" = "true" ]; then
+		echo "*** Creating a branch is not allowed in this repository" >&2
+		exit 1
+	fi
+	;;
+refs/heads/*,delete)
+	# delete branch
+	if [ "$allowdeletebranch" != "true" ]; then
+		echo "*** Deleting a branch is not allowed in this repository" >&2
+		exit 1
+	fi
+	;;
+refs/remotes/*,commit)
+	# tracking branch
+	;;
+refs/remotes/*,delete)
+	# delete tracking branch
+	if [ "$allowdeletebranch" != "true" ]; then
+		echo "*** Deleting a tracking branch is not allowed in this repository" >&2
+		exit 1
+	fi
+	;;
+*)
+	# Anything else (is there anything else?)
+	echo "*** Update hook: unknown type of update to ref $refname of type $newrev_type" >&2
+	exit 1
+	;;
 esac
 
 # --- Finished

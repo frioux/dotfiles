@@ -3,36 +3,34 @@
 . "$HOME/.env"
 
 if [ -n "$1" ]; then
-  while true; do
-    "$0"
-    sleep 600
-  done
+	while true; do
+		"$0"
+		sleep 600
+	done
 fi
 
 # don't leave a bunch of notifications when screen is locked
 locked=$(curl http://localhost:8081/locked)
 if [ "$locked" = true ]; then
-        exit 0
+	exit 0
 fi
 
 slack=$(curl http://localhost:8081/tabs |
-        jq -r '.windows[].tabs[] | select(.pinned != true) | .entries[.index - 1] | .title' |
-        grep '^Slack .* ZipRecruiter')
-
+	jq -r '.windows[].tabs[] | select(.pinned != true) | .entries[.index - 1] | .title' |
+	grep '^Slack .* ZipRecruiter')
 
 # no need to notify when not running slack
 if [ -z "$slack" ]; then
-        exit 0
+	exit 0
 fi
 
 # count starred messages older than 3h
 count="$(curl "https://slack.com/api/stars.list?token=$SLACK_TOKEN" |
-  jq '.items[] | select(.type == "message") | .type' |
-  wc -l)"
+	jq '.items[] | select(.type == "message") | .type' |
+	wc -l)"
 
 if [ "$count" -gt 0 ]; then
-  msg="starred messages over 3h old: $count"
-  echo "$msg"
-  notify-send -u critical "$msg"
+	msg="starred messages over 3h old: $count"
+	echo "$msg"
+	notify-send -u critical "$msg"
 fi
-

@@ -1,43 +1,43 @@
 #!/bin/sh
 
 if [ -r "$HOME/Dropbox/private-dotfiles/env" ]; then
-   . "$HOME/Dropbox/private-dotfiles/env"
+	. "$HOME/Dropbox/private-dotfiles/env"
 fi
 
 if [ -r "$HOME/.localdirs" ]; then
-   . "$HOME/.localdirs"
+	. "$HOME/.localdirs"
 fi
 
-export DOTFILES="$(dirname "$(readlink "$HOME/.env")" )"
+export DOTFILES="$(dirname "$(readlink "$HOME/.env")")"
 
 if [ -d /opt/share/man ] && [ -d /usr/bin/manpath ]; then
-   MANPATH=
-   export MANPATH="/opt/share/man:$(manpath)"
+	MANPATH=
+	export MANPATH="/opt/share/man:$(manpath)"
 fi
 MANPATH="$(zsh -fc "typeset -TU P=$MANPATH p; echo \$P")"
 
 if [ -d /opt/lib ]; then
-   export LD_LIBRARY_PATH=/opt/lib
+	export LD_LIBRARY_PATH=/opt/lib
 fi
 
 if [ -d "$HOME/.rakudobrew/bin" ]; then
-   PATH="$HOME/.rakudobrew/bin:$PATH"
+	PATH="$HOME/.rakudobrew/bin:$PATH"
 fi
 
 if [ -d "$HOME/go" ]; then
-   PATH="$HOME/go/bin:$PATH"
+	PATH="$HOME/go/bin:$PATH"
 fi
 
 if [ -d "$HOME/local/bin" ]; then
-   PATH="$HOME/local/bin:$PATH"
+	PATH="$HOME/local/bin:$PATH"
 fi
 
 if [ -d /opt/bin ]; then
-   PATH="/opt/bin:$PATH"
+	PATH="/opt/bin:$PATH"
 fi
 
 if [ -d "$HOME/Dropbox/bin" ]; then
-   PATH="$HOME/Dropbox/bin:$PATH"
+	PATH="$HOME/Dropbox/bin:$PATH"
 fi
 
 PATH="$DOTFILES/bin:$HOME/bin:$PATH"
@@ -47,11 +47,11 @@ PATH="$(zsh -fc "typeset -TU P=$PATH p; echo \$P")"
 export PATH
 
 if [ -d /opt/include ]; then
-   export CFLAGS=-I/opt/include
+	export CFLAGS=-I/opt/include
 fi
 
 if [ -d /opt/lib ]; then
-   export LDFLAGS=-L/opt/lib
+	export LDFLAGS=-L/opt/lib
 fi
 
 export C=$HOME/code
@@ -74,19 +74,19 @@ export GOPROXY=https://proxy.golang.org
 export GOFLAGS=-mod=readonly
 
 if [ -f "$HOME/.dbic.json" ]; then
-   export DBIC_TRACE_PROFILE="$HOME/.dbic.json"
+	export DBIC_TRACE_PROFILE="$HOME/.dbic.json"
 fi
 
 if [ "$TERM" = xterm ]; then
-   export TERM=xterm-256color
+	export TERM=xterm-256color
 fi
 
 if [ -d "$HOME/code/ziprecruiter" ]; then
-   export STARTERVIEW="$HOME/code/ziprecruiter"
+	export STARTERVIEW="$HOME/code/ziprecruiter"
 elif [ -d "$HOME/ziprecruiter" ]; then
-   export STARTERVIEW="$HOME/ziprecruiter"
+	export STARTERVIEW="$HOME/ziprecruiter"
 elif [ -d /var/starterview ]; then
-   export STARTERVIEW=/var/starterview
+	export STARTERVIEW=/var/starterview
 fi
 
 export TMPDIR=/run/shm

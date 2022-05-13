@@ -2,5 +2,5 @@
 
 . ~/.env
 
-   notmuch new --quiet
+notmuch new --quiet
 zr-notmuch new --quiet

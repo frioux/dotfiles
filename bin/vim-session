@@ -3,6 +3,6 @@
 session="$(vim-sessions | fzf)"
 
 if [ -z $session ]; then
-   exit 1
+	exit 1
 fi
 exec vim -S $session

@@ -3,7 +3,7 @@
 # rand returns one of the passed parameters chosen at random, but is consistent
 # within the day.
 rand() {
-  perl -e'my ($x, $x, $h, $d, $m) = localtime; srand($d + 100*$m); print $ARGV[int rand @ARGV] . "\n"' "$@"
+	perl -e'my ($x, $x, $h, $d, $m) = localtime; srand($d + 100*$m); print $ARGV[int rand @ARGV] . "\n"' "$@"
 }
 
 . ~/.env
@@ -11,10 +11,10 @@ rand() {
 loop=$1
 
 if [ -n "$loop" ]; then
-        while true; do
-                $0
-                sleep 60
-        done
+	while true; do
+		$0
+		sleep 60
+	done
 fi
 
 meeting=$(curl http://localhost:8081/cam)
@@ -22,15 +22,15 @@ vpn=$(curl http://localhost:8081/vpn)
 locked=$(curl http://localhost:8081/locked)
 
 if [ "$meeting" = true ]; then
-        echo "in meeting: $meeting"
-        slack-status -emoji :calendar: -text "$(rand "in a meeting" "meetin'" "talking with coworkers about work" "check my calendar")"
+	echo "in meeting: $meeting"
+	slack-status -emoji :calendar: -text "$(rand "in a meeting" "meetin'" "talking with coworkers about work" "check my calendar")"
 elif [ "$locked" = true ]; then
-        echo "locked: $locked"
-        slack-status -emoji :door: -text "$(rand "away from computer")"
+	echo "locked: $locked"
+	slack-status -emoji :door: -text "$(rand "away from computer")"
 elif [ "$vpn" = true ] || work-slack-running; then
-        echo "working: vpn=$vpn / slack=$slack"
-        slack-status -emoji :male-technologist: -text "$(rand "workin'" )"
+	echo "working: vpn=$vpn / slack=$slack"
+	slack-status -emoji :male-technologist: -text "$(rand "workin'")"
 else
-        echo "???"
-        slack-status -emoji :question-marks-purple: -text "$(rand "missing in action" "living my life" "avoiding the COVID-19")"
+	echo "???"
+	slack-status -emoji :question-marks-purple: -text "$(rand "missing in action" "living my life" "avoiding the COVID-19")"
 fi

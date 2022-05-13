@@ -2,8 +2,8 @@
 
 subj=$(git log -1 --pretty=%s)
 if [ "$subj" != "WIP" ]; then
-   echo "Can't unwip non-WIP commit ($subj)" 1>&2
-   exit 1
+	echo "Can't unwip non-WIP commit ($subj)" 1>&2
+	exit 1
 fi
 
 git reset HEAD^

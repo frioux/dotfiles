@@ -1,7 +1,7 @@
 #!/bin/sh
 
 if [ "$(id -u)" != 0 ]; then
-   exec sudo $0 "$@"
+	exec sudo $0 "$@"
 fi
 
 set -e
@@ -12,20 +12,20 @@ cur_mount="$(df "$whatsbig" --output=target | tail -1)"
 
 # sort spills over to temp files
 for x in /tmp /mnt/tmp /vol/tmp /run/shm; do
-   test -e "$x" || continue
+	test -e "$x" || continue
 
-   if [ "$(df "$x" --output=target | tail -1)" != "$cur_mount" ]; then
-      export TMPDIR="$x"
-      break
-   fi
+	if [ "$(df "$x" --output=target | tail -1)" != "$cur_mount" ]; then
+		export TMPDIR="$x"
+		break
+	fi
 done
 
-du -akx "$whatsbig" > $TMPDIR/big.$$.pid
+du -akx "$whatsbig" >$TMPDIR/big.$$.pid
 lsof -F 0Lnpst "$whatsbig" 2>/dev/null |
-   "$(dirname $0)/du-from-lsof" >> $TMPDIR/big.$$.pid
+	"$(dirname $0)/du-from-lsof" >>$TMPDIR/big.$$.pid
 
 export LC_ALL=C
-cat "$TMPDIR/big.$$.pid" | sort -n > "$TMPDIR/sorted.$$.pid"
+cat "$TMPDIR/big.$$.pid" | sort -n >"$TMPDIR/sorted.$$.pid"
 rm "$TMPDIR/big.$$.pid"
 
 tail -30 "$TMPDIR/sorted.$$.pid"

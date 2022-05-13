@@ -1,11 +1,11 @@
 #!/bin/sh
 
 if [ ! -d ~/.local/share/applications ]; then
-   exit
+	exit
 fi
 
 for x in bible mid bugzid rt vim; do
-   xdg-mime install ./xdg/frew-$x.desktop
-   xdg-mime default frew-$x.desktop x-scheme-handler/$x
-   cp ./xdg/frew-$x.desktop ~/.local/share/applications
+	xdg-mime install ./xdg/frew-$x.desktop
+	xdg-mime default frew-$x.desktop x-scheme-handler/$x
+	cp ./xdg/frew-$x.desktop ~/.local/share/applications
 done

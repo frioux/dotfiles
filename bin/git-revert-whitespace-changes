@@ -5,7 +5,7 @@ set -e
 git add .
 git commit -am 'tmp'
 git reset HEAD^
-git diff -w > /tmp/foo.patch
+git diff -w >/tmp/foo.patch
 git checkout .
 git clean -df
 git apply /tmp/foo.patch

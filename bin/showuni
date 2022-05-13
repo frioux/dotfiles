@@ -7,9 +7,9 @@ name=$(alluni | prepend-hist ~/.uni_history | tr A-Z a-z | rofi -dmenu | tr a-z 
 
 # no name selected
 if [ -z "$name" ]; then
-   exit 1
+	exit 1
 fi
 
-echo "$name" >> ~/.uni_history
+echo "$name" >>~/.uni_history
 
 name2rune "$name" | perl -pe chomp | xsel -i

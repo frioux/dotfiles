@@ -1,12 +1,11 @@
 #!/bin/sh
 # 01:00 :: CLOCK FACE ONE OCLOCK :: \U0001F550
 # 01:30 :: CLOCK FACE ONE-THIRTY :: \U0001F55C
-base=$(( 0x1F550 ))
-if [ "x$1" = "x" ];
-then
-  time=$( date +"%I:%M" )
+base=$((0x1F550))
+if [ "x$1" = "x" ]; then
+	time=$(date +"%I:%M")
 else
-  time=$1
+	time=$1
 fi
 hour=${time%%:*}
 minute=${time##*:}
@@ -15,23 +14,20 @@ minute=${time##*:}
 hour=${hour#0}
 minute=${minute#0}
 
-if [ $minute -gt 15 ]
-then
-  if [ $minute -lt 45 ]
-  then
-    base=$(( 0x1F55C ))
-  else
-    hour=$(( hour + 1 ))
-  fi
+if [ $minute -gt 15 ]; then
+	if [ $minute -lt 45 ]; then
+		base=$((0x1F55C))
+	else
+		hour=$((hour + 1))
+	fi
 fi
 
-hour=$(( hour % 12 ))
-if [ $hour -eq 0 ]
-then
-  hour=11
+hour=$((hour % 12))
+if [ $hour -eq 0 ]; then
+	hour=11
 else
-  hour=$(( hour - 1 ))
+	hour=$((hour - 1))
 fi
 
-code=$(printf "%08x" $(( base + hour )))
+code=$(printf "%08x" $((base + hour)))
 exec printf "\U$code\n"

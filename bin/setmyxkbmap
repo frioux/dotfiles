@@ -3,6 +3,5 @@
 # replace caps lock with windows key
 # replace print scren with compose (?)
 setxkbmap \
-   -option caps:super \
-   -option compose:prsc
-
+	-option caps:super \
+	-option compose:prsc

@@ -1,13 +1,13 @@
 #!/bin/sh
 
 if [ -z "$1" ]; then
-  ls --color
+	ls --color
 fi
 
 for x in "$@"; do
-   if [ -f $x ]; then
-     cat $x
-   else
-     ls $x --color
-   fi
+	if [ -f $x ]; then
+		cat $x
+	else
+		ls $x --color
+	fi
 done

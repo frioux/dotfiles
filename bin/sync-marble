@@ -5,11 +5,11 @@ set -e
 loop=$1
 
 if [ -n "$loop" ]; then
-        while true; do
-                $0
-                sleep 300
-        done
+	while true; do
+		$0
+		sleep 300
+	done
 fi
 
-curl https://cdn.star.nesdis.noaa.gov/GOES16/ABI/CONUS/GEOCOLOR/5000x3000.jpg -sS > ~/Dropbox/Pictures/wallpaper/marble.jpg.tmp
+curl https://cdn.star.nesdis.noaa.gov/GOES16/ABI/CONUS/GEOCOLOR/5000x3000.jpg -sS >~/Dropbox/Pictures/wallpaper/marble.jpg.tmp
 mv ~/Dropbox/Pictures/wallpaper/marble.jpg.tmp ~/Dropbox/Pictures/wallpaper/marble.jpg

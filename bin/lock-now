@@ -2,7 +2,7 @@
 
 # if camera is on, do not start the screensaver
 if [ "$(curl localhost:8081/cam)" = "true" ]; then
-   exit
+	exit
 fi
 
 exec i3lock --color 000000 --ignore-empty-password -n

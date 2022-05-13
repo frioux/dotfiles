@@ -3,6 +3,6 @@
 name=$1
 shift
 
-aws ec2 describe-instances --filters Name=tag:Name,Values=$name "$@" | \
-   sponge | \
-   jq '.Reservations[].Instances[] | .InstanceId' -r
+aws ec2 describe-instances --filters Name=tag:Name,Values=$name "$@" |
+	sponge |
+	jq '.Reservations[].Instances[] | .InstanceId' -r

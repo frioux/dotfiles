@@ -13,8 +13,8 @@ older-than "$metadata/ran" m 24h || quick=""
 test -n "$quick" && older-than "$metadata/ran-q" m 5m
 
 EMAIL=frew@ziprecruiter.com /usr/bin/offlineimap $quick -o \
-   -c ~/code/dotfiles/offlineimaprc \
-   -k Repository_Local:localfolders=/home/frew/var/${which}mail \
-   -k "general:metadata=$metadata"
+	-c ~/code/dotfiles/offlineimaprc \
+	-k Repository_Local:localfolders=/home/frew/var/${which}mail \
+	-k "general:metadata=$metadata"
 
 touch "$metadata/ran$quick"

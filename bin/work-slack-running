@@ -1,5 +1,5 @@
 #!/bin/sh
 
 curl localhost:8081/tabs |
-        jq -r '.windows[].tabs[] | select(.pinned != true) | .entries[.index - 1] | .title' |
-        grep -q '^Slack .* ZipRecruiter'
+	jq -r '.windows[].tabs[] | select(.pinned != true) | .entries[.index - 1] | .title' |
+	grep -q '^Slack .* ZipRecruiter'
