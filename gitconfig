@@ -53,12 +53,10 @@
 [grep]
    patterntype = perl
 	fallbackToNoIndex = true
-[url "https://github.com/"]
-   insteadOf = gh:
 [url "git@github.com:"]
-   pushInsteadOf = gh:
-   pushInsteadOf = git://github.com/
-   pushInsteadOf = https://github.com/
+   insteadOf = gh:
+   insteadOf = git://github.com/
+   insteadOf = https://github.com/
 [url "git@gist.github.com:"]
    pushInsteadOf = https://gist.github.com/
 [core]
