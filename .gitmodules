@@ -82,3 +82,6 @@
 [submodule "awesome/charitable"]
 	path = awesome/charitable
 	url = git://github.com/frioux/charitable
+[submodule "vim/pack/vanilla/start/ale"]
+	path = vim/pack/vanilla/start/ale
+	url = https://github.com/dense-analysis/ale

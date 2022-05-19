@@ -221,6 +221,8 @@ set list
 "
 let g:ale_lint_on_text_changed = 'normal'
 let g:ale_lint_on_insert_leave = 1
+set omnifunc=ale#completion#OmniFunc
+nnoremap <silent> gd :ALEGoToDefinition<CR>
 
 " }}}
 
