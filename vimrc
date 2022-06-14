@@ -218,12 +218,26 @@ endif
 set list
 
 " {{{ ale settings
-"
-let g:ale_lint_on_text_changed = 'normal'
-let g:ale_lint_on_insert_leave = 1
-set omnifunc=ale#completion#OmniFunc
-nnoremap <silent> gd :ALEGoToDefinition<CR>
+let g:ale_linters_ignore = {'go': ['golint']}
+" }}}
 
+" {{{ vim-lsp
+let g:lsp_document_code_action_signs_enabled = 0
+let g:lsp_semantic_enabled = 0
+let g:lsp_document_highlight_enabled = 0
+au User lsp_setup call lsp#register_server({
+   \ 'name': 'metals',
+   \ 'cmd': ['metals'],
+   \ 'initialization_options': { 'rootPatterns': 'build.gradle', 'isHttpEnabled': 'true' },
+   \ 'allowlist': [ 'scala', 'sbt' ],
+   \ })
+au User lsp_setup call lsp#register_server({
+   \ 'name': 'gopls',
+   \ 'cmd': ['gopls'],
+   \ 'allowlist': [ 'go' ],
+   \ })
+nnoremap <silent> gd :LspDefinition<CR>
+set omnifunc=lsp#complete
 " }}}
 
 " {{{ ctrlp settings

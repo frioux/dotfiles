@@ -85,3 +85,6 @@
 [submodule "vim/pack/vanilla/start/ale"]
 	path = vim/pack/vanilla/start/ale
 	url = https://github.com/dense-analysis/ale
+[submodule "vim/pack/vanilla/start/vim-lsp"]
+	path = vim/pack/vanilla/start/vim-lsp
+	url = https://github.com/prabirshrestha/vim-lsp
