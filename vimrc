@@ -218,7 +218,7 @@ endif
 set list
 
 " {{{ ale settings
-let g:ale_linters_ignore = {'go': ['golint']}
+let g:ale_linters_ignore = {'go': ['golint', 'gopls']}
 " }}}
 
 " {{{ vim-lsp
