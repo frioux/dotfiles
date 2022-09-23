@@ -5,7 +5,7 @@
     sudo apt install curl -y
 
     sudo apt-add-repository ppa:git-core/ppa
-    curl -s https://updates.signal.org/desktop/apt/keys.asc | sudo apt-key add -
+    curl -s https://updates.signal.org/desktop/apt/keys.asc | tee /etc/apt/trusted.gpg.d/signal.gpg
     echo "deb [arch=amd64] https://updates.signal.org/desktop/apt xenial main" | sudo tee -a /etc/apt/sources.list.d/signal-xenial.list
     sudo apt-get update
     sudo apt-get install git signal-desktop
