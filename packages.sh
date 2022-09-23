@@ -24,15 +24,6 @@ exec apt-get --no-install-recommends \
 	libdir-self-perl \
 	libemail-address-perl \
 	libemail-date-perl \
-	libidn11-dev \
-	libgmime-2.6-dev \
-	libgpgme11-dev \
-	liblmdb-dev \
-	libncursesw5-dev \
-	libnotmuch-dev \
-	libssl-dev \
-	libtalloc-dev \
-	libtokyocabinet-dev \
 	libtool \
 	libxml2-utils \
 	libyaml-syck-perl \

@@ -1,6 +1,6 @@
 # dotfiles Setup
 
-    touch ~/.frewmbot-local ~/.frewmbot-maintained ~/.mutt-overrides
+    touch ~/.frewmbot-local ~/.frewmbot-maintained
 
     sudo apt-add-repository ppa:git-core/ppa
     curl -s https://updates.signal.org/desktop/apt/keys.asc | sudo apt-key add -
