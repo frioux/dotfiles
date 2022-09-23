@@ -81,6 +81,7 @@ mkdir -p "$HOME/.vvar/swap";
 mkdir -p "$HOME/.vvar/sessions";
 
 if test ! -e ~/bin/leatherman || older-than ~/bin/leatherman c 7d; then
+   rehash
    install-leatherman &
 fi
 
