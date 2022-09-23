@@ -7,8 +7,8 @@
     sudo apt-add-repository ppa:git-core/ppa
     curl -s https://updates.signal.org/desktop/apt/keys.asc | tee /etc/apt/trusted.gpg.d/signal.gpg
     echo "deb [arch=amd64] https://updates.signal.org/desktop/apt xenial main" | sudo tee -a /etc/apt/sources.list.d/signal-xenial.list
-    sudo apt-get update
-    sudo apt-get install git signal-desktop
+    sudo apt update
+    sudo apt install git signal-desktop
     mkdir -p ~/code
     git clone git://github.com/frioux/dotfiles ~/code/dotfiles
     cd ~/code/dotfiles
