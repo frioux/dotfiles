@@ -1,6 +1,8 @@
 # dotfiles Setup
 
     touch ~/.frewmbot-local ~/.frewmbot-maintained
+    sudo apt update
+    sudo apt install curl -y
 
     sudo apt-add-repository ppa:git-core/ppa
     curl -s https://updates.signal.org/desktop/apt/keys.asc | sudo apt-key add -
