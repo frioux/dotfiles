@@ -17,6 +17,11 @@ function copy-file { mkdir -p "${2:h}"; rm -rf "$2"; cp "$PWD/$1" "$2" }
 mkdir -p ~/.config
 
 if [ -e ~/.frewmbot-local ]; then
+   link-file awesome ~/.config/awesome
+   git submodule update --init --  \
+      awesome/charitable           \
+      awesome/vicious
+
    link-file ssh/config ~/.ssh/config
    link-file XCompose ~/.XCompose
 
@@ -44,7 +49,6 @@ fi
 
 link-file install.sh .git/hooks/post-checkout
 link-file install.sh .git/hooks/post-merge
-link-file awesome ~/.config/awesome
 
 for x in           \
    env             \
