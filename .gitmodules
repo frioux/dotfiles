@@ -73,9 +73,6 @@
 [submodule "vim/bundle/dispatch"]
 	path = vim/pack/vanilla/opt/dispatch
 	url = git://github.com/tpope/vim-dispatch
-[submodule "vim/bundle/editorconfig"]
-	path = vim/pack/vanilla/opt/editorconfig
-	url = git://github.com/editorconfig/editorconfig-vim
 [submodule "awesome/vicious"]
 	path = awesome/vicious
 	url = git://github.com/frioux/vicious
