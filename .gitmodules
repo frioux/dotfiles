@@ -1,84 +1,84 @@
 [submodule "vim/bundle/vim-pathogen"]
 	path = vim/pack/vanilla/opt/pathogen
-	url = git://github.com/tpope/vim-pathogen
+	url = https://github.com/tpope/vim-pathogen
 [submodule "vim/bundle/vim-repeat"]
 	path = vim/pack/vanilla/opt/repeat
-	url = git://github.com/tpope/vim-repeat
+	url = https://github.com/tpope/vim-repeat
 [submodule "vim/bundle/vim-surround"]
 	path = vim/pack/vanilla/start/surround
-	url = git://github.com/tpope/vim-surround
+	url = https://github.com/tpope/vim-surround
 [submodule "vim/bundle/vim-fugitive"]
 	path = vim/pack/vanilla/start/fugitive
-	url = git://github.com/tpope/vim-fugitive
+	url = https://github.com/tpope/vim-fugitive
 [submodule "vim/bundle/vim-colors-solarized"]
 	path = vim/pack/vanilla/start/colors-solarized
-	url = git://github.com/altercation/solarized
+	url = https://github.com/altercation/solarized
 [submodule "vim/bundle/tabular"]
 	path = vim/pack/vanilla/opt/tabular
-	url = git://github.com/godlygeek/tabular
+	url = https://github.com/godlygeek/tabular
 [submodule "vim/bundle/vim-unimpaired"]
 	path = vim/pack/vanilla/start/unimpaired
-	url = git://github.com/tpope/vim-unimpaired
+	url = https://github.com/tpope/vim-unimpaired
 [submodule "vim/bundle/vim-visual-star-search"]
 	path = vim/pack/vanilla/opt/visual-star-search
-	url = git://github.com/nelstrom/vim-visual-star-search
+	url = https://github.com/nelstrom/vim-visual-star-search
 [submodule "vim/bundle/vim-airline"]
 	path = vim/pack/vanilla/opt/airline/airline
-	url = git://github.com/vim-airline/vim-airline
+	url = https://github.com/vim-airline/vim-airline
 [submodule "vim/bundle/vinegar"]
 	path = vim/pack/vanilla/start/vinegar
-	url = git://github.com/tpope/vim-vinegar
+	url = https://github.com/tpope/vim-vinegar
 [submodule "vim/bundle/goyo"]
 	path = vim/pack/vanilla/opt/goyo
-	url = git://github.com/junegunn/goyo.vim
+	url = https://github.com/junegunn/goyo.vim
 [submodule "git-hub"]
 	path = git-hub
-	url = git://github.com/ingydotnet/git-hub
+	url = https://github.com/ingydotnet/git-hub
 [submodule "vim/bundle/better-whitespace"]
 	path = vim/pack/vanilla/opt/better-whitespace
-	url = git://github.com/ntpeters/vim-better-whitespace
+	url = https://github.com/ntpeters/vim-better-whitespace
 [submodule "vim/bundle/commentary"]
 	path = vim/pack/vanilla/start/commentary
-	url = git://github.com/tpope/vim-commentary
+	url = https://github.com/tpope/vim-commentary
 [submodule "vim/bundle/matchmaker"]
 	path = vim/pack/vanilla/opt/matchmaker
-	url = git://github.com/qstrahl/vim-matchmaker
+	url = https://github.com/qstrahl/vim-matchmaker
 [submodule "vim/bundle/projectionist"]
 	path = vim/pack/vanilla/start/projectionist
-	url = git://github.com/tpope/vim-projectionist
+	url = https://github.com/tpope/vim-projectionist
 [submodule "vim/bundle/eunuch"]
 	path = vim/pack/vanilla/start/eunuch
-	url = git://github.com/tpope/vim-eunuch
+	url = https://github.com/tpope/vim-eunuch
 [submodule "vim/bundle/terminus"]
 	path = vim/pack/vanilla/start/terminus
-	url = git://github.com/wincent/terminus
+	url = https://github.com/wincent/terminus
 [submodule "vim/bundle/obsession"]
 	path = vim/pack/vanilla/start/obsession
-	url = git://github.com/tpope/vim-obsession
+	url = https://github.com/tpope/vim-obsession
 [submodule "vim/bundle/lastplace"]
 	path = vim/pack/vanilla/start/lastplace
-	url = git://github.com/farmergreg/vim-lastplace.git
+	url = https://github.com/farmergreg/vim-lastplace.git
 [submodule "vim/bundle/lost"]
 	path = vim/pack/vanilla/start/lost
-	url = git://github.com/frioux/vim-lost
+	url = https://github.com/frioux/vim-lost
 [submodule "vim/bundle/ale"]
 	path = vim/pack/vanilla/opt/ale
-	url = git://github.com/w0rp/ale
+	url = https://github.com/w0rp/ale
 [submodule "vim/bundle/solarized8"]
 	path = vim/pack/vanilla/start/solarized8
-	url = git://github.com/lifepillar/vim-solarized8
+	url = https://github.com/lifepillar/vim-solarized8
 [submodule "vim/bundle/regedit"]
 	path = vim/pack/vanilla/start/regedit
-	url = git://github.com/frioux/vim-regedit
+	url = https://github.com/frioux/vim-regedit
 [submodule "vim/bundle/dispatch"]
 	path = vim/pack/vanilla/opt/dispatch
-	url = git://github.com/tpope/vim-dispatch
+	url = https://github.com/tpope/vim-dispatch
 [submodule "awesome/vicious"]
 	path = awesome/vicious
-	url = git://github.com/frioux/vicious
+	url = https://github.com/frioux/vicious
 [submodule "awesome/charitable"]
 	path = awesome/charitable
-	url = git://github.com/frioux/charitable
+	url = https://github.com/frioux/charitable
 [submodule "vim/pack/vanilla/start/ale"]
 	path = vim/pack/vanilla/start/ale
 	url = https://github.com/dense-analysis/ale
