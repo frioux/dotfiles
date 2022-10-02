@@ -532,7 +532,7 @@ awful.rules.rules = {
            )
        },
     },
-    { rule = { class = "keepassxc" }, properties = { tag = "8" } },
+    { rule = { class = "KeePassXC" }, properties = { tag = "8" } },
     { rule = { class = "Signal"    }, properties = { tag = "9" } },
 }
 
