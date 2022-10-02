@@ -2,6 +2,7 @@
 
 exec apt-get --no-install-recommends \
 	install -y \
+	age \
 	aptitude \
 	curl \
 	daemontools \
