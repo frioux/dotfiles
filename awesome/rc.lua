@@ -21,6 +21,8 @@ local vol = require("volume")
 
 local widgets = require("widgets")
 
+local manage_log = require("manage_log")
+
 local capi = { screen = screen }
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -388,7 +390,9 @@ globalkeys = gears.table.join(
                       c:raise()
                   end
               end,
-              {description = "restore minimized", group = "client"})
+              {description = "restore minimized", group = "client"}),
+
+    awful.key({ modkey, "Control", "Shift" }, "f", manage_log.flush_window_buffer)
 )
 
 clientkeys = gears.table.join(
@@ -465,22 +469,7 @@ awful.rules.rules = {
     -- All clients will match this rule.
     { rule = { },
       callback = function(c)
-          local t = {
-             ["message"] = "rule evaluation",
-             ["when"] = os.date("%Y-%m-%dT%H:%M:%S"),
-             ["name"] = c.name,
-             ["type"] = c.type,
-             ["class"] = c.class,
-             ["instance"] = c.instance,
-             ["role"] = c.role,
-          }
-          table.insert(window_buffer, t)
-          window_buffer_size = window_buffer_size + 1
-          if window_buffer_size > window_buffer_max then
-                for i = 1, window_buffer_size - window_buffer_max, 1 do
-                        table.remove(window_buffer, 1)
-                end
-          end
+        manage_log.record(c)
       end,
       properties = { border_width = beautiful.border_width,
                      border_color = beautiful.border_normal,
