@@ -51,23 +51,6 @@ end
 
 local DEBUGGING = os.getenv("DISPLAY") ~= ":0"
 
-local success, json = pcall(require, "cjson")
-if not success then
-  json = require("json")
-end
-
-local window_buffer = {}
-local window_buffer_size = 0
-local window_buffer_max = 100
-
-local flush_window_buffer = function()
-        for i, v in pairs(window_buffer) do
-                print(json.encode(v))
-        end
-        window_buffer = {}
-        window_buffer_size = 0
-end
-
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
@@ -121,7 +104,8 @@ mymainmenu = awful.menu({
       { "undock", function () awful.spawn("undock") end },
       { "suspend", function () awful.spawn("systemctl suspend") end },
       { "restart", awesome.restart },
-      { "flush window buffer", flush_window_buffer },
+
+      { "flush window buffer", manage_log.flush_window_buffer },
       { "quit", function() awesome.quit() end},
 
       { "open terminal", terminal },
@@ -390,9 +374,7 @@ globalkeys = gears.table.join(
                       c:raise()
                   end
               end,
-              {description = "restore minimized", group = "client"}),
-
-    awful.key({ modkey, "Control", "Shift" }, "f", manage_log.flush_window_buffer)
+              {description = "restore minimized", group = "client"})
 )
 
 clientkeys = gears.table.join(
