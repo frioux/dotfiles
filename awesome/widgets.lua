@@ -25,7 +25,7 @@ function widgets.aqi()
   local tip = awful.tooltip({ objects = { aqi } });
 
   aqi:buttons(awful.util.table.join(
-    awful.button({}, 3, function () awful.spawn("firefox https://www.latimes.com/wildfires-map/") end),
+    awful.button({}, 3, function () awful.spawn("xdg-open https://www.latimes.com/wildfires-map/") end),
     awful.button({}, 1, function(w) vicious.force(w) end)
   ))
 
@@ -100,7 +100,7 @@ function widgets.clock(screen)
                              self._calendar_clicked_on = self.visible
                        end),
        awful.button({ }, 3, function ()
-           awful.util.spawn("firefox https://calendar.google.com/calendar/u/0/r/week")
+           awful.util.spawn("xdg-open https://calendar.google.com/calendar/u/0/r/week")
        end),
        awful.button({ }, 4, function () self:call_calendar(-1) end),
        awful.button({ }, 5, function () self:call_calendar( 1) end)
@@ -182,7 +182,7 @@ function widgets.weather(code, url, name)
   local tip = awful.tooltip({ objects = { weather } });
 
   weather:buttons(awful.util.table.join(
-    awful.button({}, 3, function () awful.spawn("firefox '" .. url .. os.time() .. "'") end),
+    awful.button({}, 3, function () awful.spawn("xdg-open '" .. url .. os.time() .. "'") end),
     awful.button({}, 1, function(w) vicious.force(w) end)
   ))
 
