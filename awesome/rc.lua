@@ -144,13 +144,13 @@ end
 local aqiwidget = margin(widgets.aqi(), { left = 5, right = 5 })
 
 local osweatherwidget = widgets.weather(
-  "KGPT", "https://darksky.net/30.4113,-88.8279", "OS"
+  "KGPT", "https://www.forecaweather.com/104439506/Ocean-Springs-Jackson-MS", "OS"
 )
 
 osweatherwidget = margin(osweatherwidget, { right = 5 })
 
 local smweatherwidget = widgets.weather(
-  "KSMO", "https://darksky.net/34.0196,-118.487", "Santa Monica"
+  "KSMO", "https://www.forecaweather.com/105393212/Santa-Monica-Los-Angeles-CA", "Santa Monica"
 )
 
 smweatherwidget = margin(smweatherwidget, { left = 5, right = 5 })
