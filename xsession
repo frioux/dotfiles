@@ -18,7 +18,6 @@ test -f $HOME/code/unproductive/bin/unproductive &&
 setmyxkbmap
 keepassxc &
 scenery &
-armstrong &
 dropbox-checker loop &
 
 # flameshot doesn't like to start before the bar is ready, so start it much later, just in case.
