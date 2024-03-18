@@ -1,0 +1,6 @@
+#!/bin/sh
+
+# usage:
+#  csv2sqlite bamboo.csv employees bamboo
+
+echo ".mode csv\n.import $1 $2" | sqlite3 $3

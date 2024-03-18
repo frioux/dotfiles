@@ -85,3 +85,9 @@
     templateDir = ~/code/dotfiles/git/template/
 [protocol]
 	version = 2
+[credential]
+	helper = 
+[credential "https://git.zr.org"]
+	helper = /home/frew/bin/zam-3370249356 git-credential-gitlab
+[credential "https://test-git.zr.org"]
+	helper = /home/frew/bin/zam-3370249356 git-credential-gitlab
