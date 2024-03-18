@@ -61,9 +61,6 @@
 [submodule "vim/bundle/lost"]
 	path = vim/pack/vanilla/start/lost
 	url = https://github.com/frioux/vim-lost
-[submodule "vim/bundle/ale"]
-	path = vim/pack/vanilla/opt/ale
-	url = https://github.com/w0rp/ale
 [submodule "vim/bundle/solarized8"]
 	path = vim/pack/vanilla/start/solarized8
 	url = https://github.com/lifepillar/vim-solarized8
