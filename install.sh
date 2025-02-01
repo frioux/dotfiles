@@ -61,8 +61,6 @@ for x in           \
    link-file $x ~/.$x
 done
 
-echo "[submodule]\n\tfetchJobs = $(nproc)\n\n" > ~/.git-multicore
-
 if [ ! -e ~/.frewmbot-maintained ]; then
    # bypass git wrapper
    /usr/bin/git clean -xdff
