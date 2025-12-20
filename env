@@ -58,7 +58,7 @@ export C=$HOME/code
 export WHALEBREW_INSTALL_PATH=/home/frew/bin
 
 export EDITOR=vim
-export LESS=-MFRX
+export LESS=-MFRXS
 export LESS_TERMCAP_mb=$'\e[1;32m'
 export LESS_TERMCAP_md=$'\e[1;32m'
 export LESS_TERMCAP_me=$'\e[0m'
