@@ -1,0 +1,6 @@
+# Re-establish PATH order after macOS path_helper in /etc/zprofile
+# reorders things. typeset -U path (set in envrc) removes duplicates.
+
+path=($DOTFILES/bin $HOME/bin $HOME/Dropbox/bin $HOME/local/bin $HOME/go/bin $path)
+
+# vim: ft=zsh
