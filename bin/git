@@ -5,6 +5,8 @@ use warnings;
 
 no warnings 'uninitialized';
 
+my ($real_git) = grep { chomp; $_ ne $0 } `which -a git`;
+
 $0 = 'git';
 
 my %commit = (
@@ -19,7 +21,7 @@ my %checkout = (
 
 # git --git-dir=/home/frew/code/dotfiles/.git --no-pager grep -n --no-color foo
 
-exec '/usr/bin/git' unless @ARGV;
+exec $real_git unless @ARGV;
 
 my ($precmd, $command, $args) = _parse_args(@ARGV);
 my @args = @$args;
@@ -74,7 +76,7 @@ if ($commit{$command} && exists $args[0] && $args[0] =~ /^-a|^--all/) {
    }
 }
 
-my @run = ('/usr/bin/git', @$precmd, $command, @args);
+my @run = ($real_git, @$precmd, $command, @args);
 warn join(' ', @run) . "\n" if $ENV{GIT_WRAPPER_DEBUG};
 exec @run;
 
