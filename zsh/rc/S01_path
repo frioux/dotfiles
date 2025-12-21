@@ -3,4 +3,8 @@
 
 path=($DOTFILES/bin $HOME/bin $HOME/Dropbox/bin $HOME/local/bin $HOME/go/bin $path)
 
+if [ -r "$HOME/.localrc" ]; then
+   . "$HOME/.localrc"
+fi
+
 # vim: ft=zsh
