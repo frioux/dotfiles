@@ -51,6 +51,7 @@ augroup END
 
 "{{{Misc Settings
 
+set modelines=5
 set conceallevel=2
 
 " PERSISTENT UNDO
