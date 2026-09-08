@@ -5,14 +5,15 @@ use warnings;
 
 no warnings 'uninitialized';
 
-my ($real_git) = grep { chomp; $_ ne $0 } `which -a git`;
+my $real_git = _find_real_git()
+   or die "git: no git found on PATH besides $0\n";
 
 $0 = 'git';
 
 my %commit = (
    commit => 1,
    ci     => 1,
-),
+);
 
 my %checkout = (
    checkout => 1,
@@ -27,9 +28,9 @@ my ($precmd, $command, $args) = _parse_args(@ARGV);
 my @args = @$args;
 
 if ($commit{$command} && exists $args[0] && $args[0] =~ /^-a|^--all/) {
-   my @staged = grep /^M/, split /\0/, `git status -z`;
+   my @staged = grep /^M/, split /\0/, `$real_git status -z`;
    if (@staged) {
-      my @diff = `git diff --shortstat`;
+      my @diff = `$real_git diff --shortstat`;
       if (@diff) {
          print "There are staged changes, are you sure you want to commit all? (y/N) ";
          chomp(my $answer = <STDIN>);
@@ -98,4 +99,24 @@ sub _parse_args {
    }
 
    return \@precmd, $cmd, \@postcmd;
+}
+
+# Walk PATH ourselves rather than shelling out to `which -a git`: the backtick
+# was a fork on every single git invocation, which doubled the process cost of
+# every git command. We identify ourselves by inode rather than by name --- $0
+# is whatever path the shell resolved, so a string compare misses a second link
+# to this same script on PATH, and picking that one execs into an endless
+# ping-pong between the two.
+sub _find_real_git {
+   my (@self) = stat($0);
+
+   for my $dir (split /:/, ($ENV{PATH} // '')) {
+      next unless length $dir;   # empty PATH entry means cwd; don't run git from there
+      my $cand = "$dir/git";
+      my @st = stat($cand) or next;
+      next unless -f _ && -x _;
+      next if @self && $st[0] == $self[0] && $st[1] == $self[1];
+      return $cand;
+   }
+   return;
 }
