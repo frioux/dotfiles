@@ -1,0 +1,37 @@
+# Unicode clock face for a time of day given as HH:MM, defaulting to now.
+#
+#   01:05 -> 🕐   01:20 -> 🕜   12:00 -> 🕛   06:46 -> 🕖
+#
+# Sets $REPLY rather than printing, so the prompt can call it directly instead
+# of paying for the subshell that $(clock) cost on every single render.
+
+emulate -L zsh
+zmodload -F zsh/datetime b:strftime
+
+local when=$1 hour minute base
+
+if [[ -z $when ]]; then
+   strftime -s when %I:%M $EPOCHSECONDS
+fi
+
+# 10# so that a leading zero isn't read as octal.
+hour=$(( 10#${when%%:*} ))
+minute=$(( 10#${when##*:} ))
+
+base=$(( 0x1F550 ))                # CLOCK FACE ONE OCLOCK
+if (( minute > 15 )); then
+   if (( minute < 45 )); then
+      base=$(( 0x1F55C ))          # CLOCK FACE ONE-THIRTY
+   else
+      (( hour++ ))
+   fi
+fi
+
+(( hour %= 12 ))
+if (( hour == 0 )); then
+   hour=11
+else
+   (( hour-- ))
+fi
+
+REPLY=${(#)$(( base + hour ))}

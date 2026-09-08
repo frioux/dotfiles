@@ -1,3 +1,8 @@
 #!/bin/zsh
 
-tmux-title
+# tmux-title only renames the window on zipaws hosts; everywhere else its perl
+# interpreter and its `hostname -f` fork are pure overhead on every shell. %M
+# is zsh's own full hostname, so this check costs nothing.
+if [[ $TERM == screen* && ${(%):-%M} == *.zipaws.com ]]; then
+   tmux-title
+fi

@@ -4,8 +4,9 @@ if [[ ! -f ~/.dotfilecheck ]]; then
    echo $(($EPOCHSECONDS+60*60*24*7)) > ~/.dotfilecheck
 fi
 
-if [[ $EPOCHSECONDS -gt $(cat ~/.dotfilecheck) ]]; then
-   echo "Updating .zshrc automatically ($EPOCHSECONDS -gt $(cat ~/.dotfilecheck))";
+# $(<file) is a zsh builtin read; $(cat file) would fork on every shell.
+if [[ $EPOCHSECONDS -gt $(<~/.dotfilecheck) ]]; then
+   echo "Updating .zshrc automatically ($EPOCHSECONDS -gt $(<~/.dotfilecheck))";
    echo $(($EPOCHSECONDS+60*60*24*7)) > ~/.dotfilecheck
    git --work-tree=$DOTFILES --git-dir=$DOTFILES/.git pull --ff-only
 fi

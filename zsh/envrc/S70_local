@@ -1,5 +1,7 @@
 
-if [[ -r ~/.localdirs ]]; then
+# ~/.env already sourced this (see LOCALDIRS_SOURCED there); doing it twice
+# means running `brew shellenv` twice per shell.
+if [[ -r ~/.localdirs && -z $LOCALDIRS_SOURCED ]]; then
    source ~/.localdirs
 fi
 

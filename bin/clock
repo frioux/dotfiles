@@ -1,33 +1,13 @@
-#!/bin/sh
-# 01:00 :: CLOCK FACE ONE OCLOCK :: \U0001F550
-# 01:30 :: CLOCK FACE ONE-THIRTY :: \U0001F55C
-base=$((0x1F550))
-if [ "x$1" = "x" ]; then
-	time=$(date +"%I:%M")
-else
-	time=$1
-fi
-hour=${time%%:*}
-minute=${time##*:}
+#!/bin/zsh
 
-# strip leading zero, else shell sees octal
-hour=${hour#0}
-minute=${minute#0}
+# Shows the unicode clock face for a time (HH:MM), defaulting to now.
+#
+# The logic lives in zsh/fn/clock-face so that the prompt can call it as a
+# function; this is just the command-line face of it. It used to be sh, but
+# sh's printf has no \U on macOS, so it printed "U0001f551" instead of a clock.
 
-if [ $minute -gt 15 ]; then
-	if [ $minute -lt 45 ]; then
-		base=$((0x1F55C))
-	else
-		hour=$((hour + 1))
-	fi
-fi
+fpath=(${${0:A:h}:h}/zsh/fn $fpath)
+autoload -Uz clock-face
 
-hour=$((hour % 12))
-if [ $hour -eq 0 ]; then
-	hour=11
-else
-	hour=$((hour - 1))
-fi
-
-code=$(printf "%08x" $((base + hour)))
-exec printf "\U$code\n"
+clock-face "$@"
+print -r -- $REPLY

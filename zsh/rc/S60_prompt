@@ -3,6 +3,7 @@ autoload colors
 colors
 
 autoload -Uz vcs_info
+autoload -Uz clock-face
 host_color=cyan
 user_color=green
 root_color=red
@@ -48,13 +49,17 @@ zstyle ':vcs_info:*:prompt:*' actionformats "${fmt_pre}${fmt_branch}${fmt_action
 zstyle ':vcs_info:*:prompt:*' formats       "${fmt_pre}${fmt_branch}${fmt_post} "
 zstyle ':vcs_info:*:prompt:*' nvcsformats   ""
 zstyle ':vcs_info:*:prompt:*' enable git
+# vcs_info shells out to git several times per prompt; point it at the real
+# git rather than bin/git, which starts a perl interpreter each time.
+[[ -x /usr/bin/git ]] && zstyle ':vcs_info:*' command /usr/bin/git
 
 function precmd {
    vcs_info 'prompt'
+   clock-face; clock_face=$REPLY
 }
 
 vcs='$vcs_info_msg_0_'
-memento_mori="%{$fg_bold[white]%}💀 \$(clock)%{$reset_color%}"
+memento_mori="%{$fg_bold[white]%}💀 \$clock_face%{$reset_color%}"
 
 function lprompt {
   local vimode='${PR_VIMODE}'

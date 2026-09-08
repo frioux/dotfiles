@@ -6,15 +6,30 @@ fi
 
 if [ -r "$HOME/.localdirs" ]; then
 	. "$HOME/.localdirs"
+	# zsh/envrc/S70_local sources this too, and ~/.localdirs runs
+	# `brew shellenv` --- six processes --- so tell it not to bother.
+	LOCALDIRS_SOURCED=1
 fi
 
-export DOTFILES="$(dirname "$(readlink "$HOME/.env")")"
+# $0 is this file when zsh sources it; :A resolves the ~/.env symlink and
+# :h takes its directory. Only a plain sh has to pay the two forks.
+if [ -n "$ZSH_VERSION" ]; then
+	DOTFILES=${0:A:h}
+else
+	DOTFILES="$(dirname "$(readlink "$HOME/.env")")"
+fi
+export DOTFILES
 
 if [ -d /opt/share/man ] && [ -d /usr/bin/manpath ]; then
 	MANPATH=
 	export MANPATH="/opt/share/man:$(manpath)"
 fi
-MANPATH="$(zsh -fc "typeset -TU P=$MANPATH p; echo \$P")"
+# zsh dedupes these itself: MANPATH/manpath and PATH/path are tied to
+# arrays declared `typeset -U` in zsh/envrc/S10_zshopts. Only a plain sh
+# needs the fallback, and it spawns a whole nested zsh to do it.
+if [ -z "$ZSH_VERSION" ]; then
+	MANPATH="$(zsh -fc "typeset -TU P=$MANPATH p; echo \$P")"
+fi
 
 if [ -d /opt/lib ]; then
 	export LD_LIBRARY_PATH=/opt/lib
@@ -42,7 +57,9 @@ fi
 
 PATH="$DOTFILES/bin:$HOME/bin:$PATH"
 
-PATH="$(zsh -fc "typeset -TU P=$PATH p; echo \$P")"
+if [ -z "$ZSH_VERSION" ]; then
+	PATH="$(zsh -fc "typeset -TU P=$PATH p; echo \$P")"
+fi
 
 export PATH
 
