@@ -31,9 +31,6 @@
 [submodule "vim/bundle/goyo"]
 	path = vim/pack/vanilla/opt/goyo
 	url = https://github.com/junegunn/goyo.vim
-[submodule "git-hub"]
-	path = git-hub
-	url = https://github.com/ingydotnet/git-hub
 [submodule "vim/bundle/better-whitespace"]
 	path = vim/pack/vanilla/opt/better-whitespace
 	url = https://github.com/ntpeters/vim-better-whitespace
